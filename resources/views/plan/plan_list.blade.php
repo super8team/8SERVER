@@ -1,4 +1,4 @@
-@extends('YAYAME.page.master')
+@extends('master')
 
 @section('title','planlist')
 
@@ -12,7 +12,7 @@
   {{--  fufufufufufuck! 페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
   @php
-    $plan_write = "http://localhost/Code/laravel/public/plan";
+    $plan_write = "http://localhost/Code/8SERVER/public/plan";
 
     $planlist_rec = 17;
 
@@ -66,10 +66,15 @@
                         계획 수정
                       </a>
 
+                      <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                      </button>
+
                       <a role="button" href="{{----}}" class="btn btn-sm btn-primary">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
                         서류 작성
                       </a>
+
                       <a role="button" href="{{----}}" class="btn btn-sm btn-success">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
                         설문조사

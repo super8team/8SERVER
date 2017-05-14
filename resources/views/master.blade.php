@@ -34,6 +34,15 @@
     <script src="js/bootstrap.min.js"></script>
     {{--  --}}
     <script src="../public/js/parallax.js"></script>
+    <configuration>
+      <system.webServer>
+        <staticContent>
+          <remove fileExtension=".woff2" />
+          <mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
+        </staticContent>
+      </system.webServer>
+    </configuration>
+
     <script type="text/javascript">
 
       //<![CDATA[
@@ -43,6 +52,7 @@
 
         // 홈페이지 url 받아오기
         var currurl = "{{url()->current()}}";
+        var user    = "{{'teacher'}}"; // 학생 학부모 교사 에 따라 css 변경
 
         //37번째 이후 의 문자열을 가저옴 http://localhost/Code/laravel/public/home
         // 폴더 화 가 되었으니 explode 를 사용 하거나 하기
@@ -53,24 +63,25 @@
 
         //페이지별 css 변환
         //  url 별로 하니 피곤하다 사용자 별로 하는게 더 쉬울듯?
-        if (currurl == 'home') {
-          $("#left_menu li:first").addClass(" active ");  //만약 active 가 다른페이지로 이동해도 남아있는경우 removeClass 넣어주기
-        }
-        else if (currurl == 'teacher'){
-          $("nav").removeClass(' navbar-home').addClass('navbar-teacher');
-        }else if (currurl == 'planlist'){
-          $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        }else if (currurl == 'plan'){
-          $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        }
 
-        else{
-          window.alert(currurl+' url 설정하라!');
-        }
+        // if (currurl == 'home') {
+        //   $("#left_menu li:first").addClass(" active ");  //만약 active 가 다른페이지로 이동해도 남아있는경우 removeClass 넣어주기
+        // }
+        // else if (currurl == 'teacher'){
+        //   $("nav").removeClass(' navbar-home').addClass('navbar-teacher');
+        // }else if (currurl == 'planlist'){
+        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
+        // }else if (currurl == 'plan'){
+        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
+        // }
+        //
+        // else{
+        //   window.alert(currurl+' url 설정하라!');
+        // }
 
 
       });
-      //]]>
+      // ]]>
 
 
     </script>
@@ -79,7 +90,7 @@
   <body>
     @php
 
-      $home = "http://localhost/Code/laravel/public/home";
+      $home = "http://localhost/Code/8SERVER/public/home";
 
 
     @endphp

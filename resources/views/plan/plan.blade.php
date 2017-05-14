@@ -1,11 +1,12 @@
-@extends('YAYAME.page.master')
+@extends('master')
 
 @section('title','planlist')
 
 @section('content')
   @php
-    $planlist = "http://localhost/Code/laravel/public/planlist";
-    $sheet = "http://localhost/Code/laravel/public/sheet";
+    $planlist = "http://localhost/Code/8SERVER/public/planlist";
+    $plansheet = "http://localhost/Code/8SERVER/public/sheet";
+
   @endphp
   <div class="bluebg">
     <div class="container">
@@ -19,8 +20,13 @@
 					<span class="clearfix"></span>
 				</div>
 				<div class="panel-body">
+          {{-- 임시 서류 작성 페이지로 이동  --}}
+          <a href="{{$plansheet}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+            <span class="glyphicon glyphicon-open-file"></span>
+            임시 계획 작성
+          </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
-					<form class="sky-form" action="{{$sheet}}" method="post">
+					<form class="sky-form" action="{{$plansheet}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}

@@ -1,4 +1,4 @@
-@extends('YAYAME.page.master')
+@extends('master')
 
 @section('title','모체')
 

@@ -1,11 +1,11 @@
-@extends('YAYAME.page.master')
+@extends('master')
 
 {{-- TODO 뭔가 이름 바꾸는거 변수로 한페이지에서 관리하려면? -> --}}
 @section('title' , 'LEAN&FUN')
 
 @section('content')
   @php
-    $planlist = "http://localhost/Code/laravel/public/planlist";
+    $planlist = "http://localhost/Code/8SERVER/public/planlist";
   @endphp
 <head>
     <script src="../public/js/parallax.js"></script>
@@ -18,8 +18,8 @@
           {{-- 캐러셀 css 나중에 폰트 찾으면 수정 --}}
            <div class="carousel-caption">
              <img src="https://image-proxy.namuwikiusercontent.com/r/https%3A%2F%2Ftgd.kr%2Ffiles%2Fattach%2Fimages%2F248844%2F852%2F473%2F8a9deaef5fb4817b39f253cbafa79105.png" alt="로고자리야 으앙아앙아">
-             <h1>LEAN&FUN</h1>
-            LEANING IN THE FIELD AND FUN
+             <h1>LEARnFUN</h1>
+          leleleelel
            </div>
          </div>
        </div>
