@@ -1,19 +1,19 @@
 @extends('master')
 
-@section('title','planlist')
+@section('title','계획 작성')
 
 @section('content')
   @php
-    $planlist = "http://localhost/Code/8SERVER/public/planlist";
+    $planlist  = "http://localhost/Code/8SERVER/public/planlist";
     $plansheet = "http://localhost/Code/8SERVER/public/sheet";
-
   @endphp
+
   <div class="bluebg">
     <div class="container">
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
-          <a href="{{$planlist}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="javascript:history.back()"role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             뒤로 가기
           </a>
@@ -26,7 +26,11 @@
             임시 계획 작성
           </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
-					<form class="sky-form" action="{{$plansheet}}" method="post">
+
+
+
+
+					<form class="sky-form" action="{{}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
@@ -49,7 +53,7 @@
 									<div class="input-group-addon">
 										<span class="glyphicon glyphicon-th"></span>
 									</div>
-									<input type="text" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
+									<input type="date" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
 								</div>
 
 							</div>
@@ -119,18 +123,18 @@
 							</div>
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="전세버스" name="A1" >전세버스</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="전세버스" name="transpotation[]" >전세버스</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="항공" name="A2" >항공</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="항공" name="transpotation[]" >항공</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="선박" name="A3">선박</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="선박" name="transpotation[]">선박</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="기차" name="A4">기차</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="기차" name="transpotation[]">기차</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="대중교통" name="A5" >대중교통</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="대중교통" name="transpotation[]" >대중교통</label>
 
-								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="A0">없음</label>
-								<input type="text" size="20" placeholder="사용자입력" name="input_A" >
+								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="transpotation[]">없음</label>
+								<input type="text" size="20" placeholder="사용자입력" name="transpotation[]" >
 							</div>
 						</div>
             {{-- 체험 프로그램 선택 --}}
@@ -141,32 +145,32 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="수상활동"name="B0">수상활동</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="수상활동"name="activity[]">수상활동</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="산악등반"name="B1">산악등반</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="산악등반"name="activity[]">산악등반</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="장기도보"name="B2">장기도보</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="장기도보"name="activity[]">장기도보</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="실험참가"name="B3">실험참가</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="실험참가"name="activity[]">실험참가</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="도예체험"name="B4" >도예체험</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="도예체험"name="activity[]" >도예체험</label>
 
-										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="단순기술습득"name="B5">단순기술습득</label>
+										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="단순기술습득"name="activity[]">단순기술습득</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="위험기구사용"name="B6">위험기구사용</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="위험기구사용"name="activity[]">위험기구사용</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="관광"name="B7">관광</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="관광"name="activity[]">관광</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="관람(미술관,박물관 등)"name="B8" >관람(미술관,박물관 등)</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="관람(미술관,박물관 등)"name="activity[]" >관람(미술관,박물관 등)</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="도서관견학"name="B9">도서관견학</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="도서관견학"name="activity[]">도서관견학</label>
 
-										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="강의참가"name="B10">강의참가</label>
+										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="강의참가"name="activity[]">강의참가</label>
 
-										<input type="text" name="input_B" size="20" class="form" placeholder="사용자입력">
+										<input type="text" name="activity[]" size="20" class="form" placeholder="사용자입력">
 									</div>
 								</div>
 							</div>
@@ -179,17 +183,17 @@
 							<div class="col-md-9">
 								<div class="row  margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="시도교육청 직영시설이용" name="C1">시도교육청 직영시설이용</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="시도교육청 직영시설이용" name="institution[]">시도교육청 직영시설이용</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="공공기관 인증프로그램이용" name="C2">공공기관 인증프로그램이용</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="공공기관 인증프로그램이용" name="institution[]">공공기관 인증프로그램이용</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="공공기관 직영프로그램이용" name="C3">공공기관 직영프로그램이용</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="공공기관 직영프로그램이용" name="institution[]">공공기관 직영프로그램이용</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="청소년단체운영프로그램이용" name="C4">청소년단체운영프로그램이용</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="없음" name="C0">없음</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="청소년단체운영프로그램이용" name="institution[]">청소년단체운영프로그램이용</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="없음" name="institution[]">없음</label>
 									</div>
 								</div>
 							</div>
@@ -202,25 +206,25 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="MAS 이용(다수공급자계약제도이용)" name="D1">MAS 이용(다수공급자계약제도이용)</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="MAS 이용(다수공급자계약제도이용)" name="others[]">MAS 이용(다수공급자계약제도이용)</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="지자체 안심수학여행서비스신청 및 회신" name="D2">지자체 안심수학여행서비스신청 및 회신</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="지자체 안심수학여행서비스신청 및 회신" name="others[]">지자체 안심수학여행서비스신청 및 회신</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="현장 경비(비용) 지출 없음" name="D3">현장 경비(비용) 지출 없음</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="현장 경비(비용) 지출 없음" name="others[]">현장 경비(비용) 지출 없음</label>
 									</div>
 								</div>
 								<div class="row  margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="최종계약일로부터 60일이내 체험학습 실시예정" name="D4">최종계약일로부터 60일이내 체험학습 실시예정</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="최종계약일로부터 60일이내 체험학습 실시예정" name="others[]">최종계약일로부터 60일이내 체험학습 실시예정</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="특별보호대상학생없음(신체허약자등)" name="D5">특별보호대상학생없음(신체허약자등)</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="특별보호대상학생없음(신체허약자등)" name="others[]">특별보호대상학생없음(신체허약자등)</label>
 
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="수익자 부담 없음" name="D6">수익자 부담 없음</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="수익자 부담 없음" name="others[]">수익자 부담 없음</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="계약 관계 없음" name="D0" >계약 관계 없음</label>
+										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="계약 관계 없음" name="others[]" >계약 관계 없음</label>
 									</div>
 								</div>
 							</div>
