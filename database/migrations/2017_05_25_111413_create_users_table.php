@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGradeUsersTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,13 @@ class CreateGradeUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-          $table->increments('no');
-          $table->string('id')->unique();
-          $table->string('password');
-          $table->string('name');
-          $table->string('tel')->nullable()->unique();
-          $table->string('type');
+            $table->increments('no');
+            $table->string('id', 255);
+            $table->string('password', 255);
+            $table->string('name', 255);
+            $table->string('tel', 255)->nullable()->unique();
+            $table->string('type', 255);
+
         });
     }
 

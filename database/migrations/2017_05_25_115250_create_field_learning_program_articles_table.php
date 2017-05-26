@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolsTable extends Migration
+class CreateFieldLearningProgramArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateSchoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('schools', function (Blueprint $table) {
-          $table->increments('no');
-          $table->string('name', 255);
-          $table->string('tel', 255)->unique();
+        Schema::create('field_learning_program_articles', function (Blueprint $table) {
+            $table->increments('no');
+            $table->string('article', 255);
 
         });
     }
@@ -28,6 +27,6 @@ class CreateSchoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schools');
+        Schema::dropIfExists('field_learning_program_articles');
     }
 }
