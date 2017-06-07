@@ -18,9 +18,14 @@ class CreateStudentsTable extends Migration
             $table->foreign('student')->references('no')->on('users');
             $table->integer('grade_class')->unsigned();
             $table->foreign('grade_class')->references('no')->on('grade_classes');
+            $table->integer('parents')->unsigned();
+            $table->foreign('parents')->references('no')->on('users');
+
 
         });
     }
+
+
 
     /**
      * Reverse the migrations.

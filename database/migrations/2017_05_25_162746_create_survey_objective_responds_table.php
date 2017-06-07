@@ -18,7 +18,8 @@ class CreateSurveyObjectiveRespondsTable extends Migration
             $table->foreign('survey_respond')->references('no')->on('survey_responds');
             $table->integer('survey_article')->unsigned();
             $table->foreign('survey_article')->references('no')->on('survey_articles');
-            $table->string('respond', 255);
+            $table->integer('respond')->unsigned();
+            $table->foreign('respond')->references('no')->on('survey_answers');
 
         });
     }

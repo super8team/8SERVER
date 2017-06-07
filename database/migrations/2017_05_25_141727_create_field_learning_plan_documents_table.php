@@ -18,7 +18,7 @@ class CreateFieldLearningPlanDocumentsTable extends Migration
             $table->integer('work')->unsigned();
             $table->foreign('work')->references('no')->on('field_learning_plan_works');
             $table->string('document_url', 255);
-            $table->string('explain', 255);
+            $table->string('explain', 255)->nullable();
             $table->string('name', 255);
 
         });

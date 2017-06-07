@@ -16,7 +16,7 @@ class CreateFieldLearningPlanWorksTable extends Migration
         Schema::create('field_learning_plan_works', function (Blueprint $table) {
             $table->increments('no');
             $table->string('name', 255);
-            $table->string('explain', 255);
+            $table->string('explain', 255)->nullable();
             $table->integer('step')->unsigned();
             $table->foreign('step')->references('no')->on('field_learning_plan_steps');
 

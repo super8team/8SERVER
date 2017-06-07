@@ -11,11 +11,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      $users = [
-        ['id'=>'jina', 'password'=>bcrypt('jina123'), 'name'=>'진아임', 'type'=>'teacher'],
-        ['id'=>'swpark', 'password'=>bcrypt('123456'), 'name'=>'성원임', 'type'=>'student'],
-      ];
 
-      DB::table('users')->insert($users);
+      $this->call(UserSeeder::class);
+      $this->call(FieldLearningPlanStepsSeeder::class);
+      $this->call(EtcSelectArticlesSeeder::class);
+      $this->call(TrafficArticlesSeeder::class);
+      $this->call(SchoolsSeeder::class);
+      $this->call(PlaceSeeder::class);
+      $this->call(FieldLearningProgramArticlesSeeder::class);
+      $this->call(InstAuthArticlesSeeder::class);
+      $this->call(ContentsPackageSeeder::class);
+      $this->call(FieldLearningPlanWorksSeeder::class);
+      $this->call(FieldLearningPlanDocumentsSeeder::class);
+      $this->call(SurveyArticlesSeeder::class);
+      $this->call(FieldLearningPlansSeeder::class);
+      $this->call(DetailPlansSeeder::class);
+      $this->call(GroupsSeeder::class);
+      $this->call(HistoriesSeeder::class);
+      $this->call(WorkProgressesSeeder::class);
+      $this->call(SimplePlansSeeder::class);
+      $this->call(SurveyAnswersSeeder::class);
+      $this->call(TeamsSeeder::class);
+      $this->call(UseTrafficsSeeder::class);
+      $this->call(HistorySubstancesSeeder::class);
+      $this->call(HistoryImgsSeeder::class);
+
+
+
+
+
+
     }
+
 }

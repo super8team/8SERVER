@@ -17,7 +17,6 @@ class CreateSurveyAnswersTable extends Migration
             $table->increments('no');
             $table->integer('survey_article')->unsigned();
             $table->foreign('survey_article')->references('no')->on('survey_articles');
-            $table->string('type', 255);
             $table->string('substance', 255);
 
         });

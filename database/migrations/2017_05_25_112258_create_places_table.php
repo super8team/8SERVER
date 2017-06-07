@@ -17,9 +17,9 @@ class CreatePlacesTable extends Migration
             $table->increments('no');
             $table->string('name', 255);
             $table->string('explain', 255);
-            $table->integer('lat');
-            $table->integer('long');
-            $table->integer('radius');
+            $table->float('lat');
+            $table->float('lng');
+            $table->float('radius');
             $table->string('img', 255);
 
         });

@@ -15,10 +15,12 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('no');
-            $table->string('spec', 255);
+            $table->text('spec')->nullable();
+            $table->text('xml');
             $table->integer('like');
             $table->integer('contents_package')->unsigned();
             $table->foreign('contents_package')->references('no')->on('contents_packages');
+            $table->Integer('copy')->default(0);
 
         });
     }

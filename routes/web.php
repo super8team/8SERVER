@@ -19,10 +19,8 @@ Route::get('/', function () {
 });
 
 
-
+//웹 로그인
 Auth::routes();
-
-
 
 //앱 로그인
 Route::post('app/login', 'AppLoginController@login');

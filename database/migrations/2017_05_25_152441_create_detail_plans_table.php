@@ -19,7 +19,7 @@ class CreateDetailPlansTable extends Migration
             $table->foreign('place')->references('no')->on('places');
             $table->integer('plan')->unsigned();
             $table->foreign('plan')->references('no')->on('field_learning_plans');
-            $table->timestamps();
+            $table->timestamp('at');
 
         });
     }

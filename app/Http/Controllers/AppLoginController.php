@@ -19,11 +19,15 @@ class AppLoginController extends Controller
                   "type" => $user->type,
                 );
 
-      if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
-        $result["loginSuccess"] = true;
-        return json_encode($result);
+        if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
+            $result["loginSuccess"] = true;
+            return json_encode($result);
       }
 
       return json_encode($result);
     }
 }
+
+
+
+
