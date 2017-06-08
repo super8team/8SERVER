@@ -25,6 +25,10 @@ Auth::routes();
 //앱 로그인
 Route::post('app/login', 'AppLoginController@login');
 
+Route::post('app/getPlan', 'AppRequestController@getPlan');
+
+Route::post('app/getStudentList', 'AppRequestController@getStudentList');
+
 
 
 // ******************** 플랜 리스트 *********************

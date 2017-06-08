@@ -11,20 +11,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
+        $faker = Faker\Factory::create();
+        for($i = 1; $i < 100; $i++) {
         DB::table('users')->insert([
-
-        ['id' => 'teacher1', 'password' => bcrypt('123456'), 'name' => '선생님1', 'type' => 'teacher'],
-        ['id' => 'teacher2', 'password' => bcrypt('123456'), 'name' => '선생님2', 'type' => 'teacher'],
-        ['id' => 'teacher3', 'password' => bcrypt('123456'), 'name' => '선생님3', 'type' => 'teacher'],
-        ['id' => 'student1', 'password' => bcrypt('123456'), 'name' => '학생1', 'type' => 'student'],
-        ['id' => 'student2', 'password' => bcrypt('123456'), 'name' => '학생2', 'type' => 'student'],
-        ['id' => 'student3', 'password' => bcrypt('123456'), 'name' => '학생3', 'type' => 'student'],
-        ['id' => 'parents1', 'password' => bcrypt('123456'), 'name' => '학부모1', 'type' => 'parents'],
-        ['id' => 'parents2', 'password' => bcrypt('123456'), 'name' => '학부모2', 'type' => 'parents'],
-        ['id' => 'parents3', 'password' => bcrypt('123456'), 'name' => '학부모3', 'type' => 'parents']
-
+        ['id' => $faker->word, 'password' => bcrypt('123456'), 'name' => '선생님', 'type' => 'teacher'],
+        ['id' => $faker->word, 'password' => bcrypt('123456'), 'name' => '학부모', 'type' => 'parents'],
+        ['id' => $faker->word, 'password' => bcrypt('123456'), 'name' => '학생', 'type' => 'student']
     ]);
-
+    }
     }
 }

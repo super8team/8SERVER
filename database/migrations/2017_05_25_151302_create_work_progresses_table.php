@@ -19,7 +19,7 @@ class CreateWorkProgressesTable extends Migration
             $table->integer('work')->unsigned();
             $table->foreign('work')->references('no')->on('field_learning_plan_works');
             $table->tinyInteger('complete')->default(0);
-            $table->timestamps();
+            $table->timestamp('completed_at')->nullable();
 
         });
     }

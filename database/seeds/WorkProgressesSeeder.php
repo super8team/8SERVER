@@ -16,12 +16,12 @@ class WorkProgressesSeeder extends Seeder
 
 
         $plans->each(function ($plan) {
-            $works = DB::table('works')->get();
+            $works = DB::table('field_learning_plan_works')->get();
             $works->each(function ($work) {
 
         DB::table('work_progresses')->insert([
 
-            ['plan' => DB::table('$plan')->inRandomOrder()->first()->no, 'work' => $work->no, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')]
+            ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'work' => $work->no]
 
                 ]);
 

@@ -21,10 +21,14 @@ class DatabaseSeeder extends Seeder
       $this->call(FieldLearningProgramArticlesSeeder::class);
       $this->call(InstAuthArticlesSeeder::class);
       $this->call(ContentsPackageSeeder::class);
+      $this->call(WorksSeeder::class);
+      $this->call(WorksSeeder::class);
+      $this->call(GradeClassesSeeder::class);
       $this->call(FieldLearningPlanWorksSeeder::class);
       $this->call(FieldLearningPlanDocumentsSeeder::class);
       $this->call(SurveyArticlesSeeder::class);
       $this->call(FieldLearningPlansSeeder::class);
+      $this->call(StudentsSeeder::class);
       $this->call(DetailPlansSeeder::class);
       $this->call(GroupsSeeder::class);
       $this->call(HistoriesSeeder::class);
@@ -35,6 +39,10 @@ class DatabaseSeeder extends Seeder
       $this->call(UseTrafficsSeeder::class);
       $this->call(HistorySubstancesSeeder::class);
       $this->call(HistoryImgsSeeder::class);
+      $this->call(GradeClassesSeeder::class);
+
+
+
 
 
 
