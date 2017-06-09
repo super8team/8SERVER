@@ -11,7 +11,7 @@ class AppRequestController extends Controller
 
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
-        $inputId = ; // teacher 임의값
+//        $inputId = ; // teacher 임의값
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
         $school = DB::table('schools')->where('no', $school->school)->first();
@@ -35,7 +35,7 @@ dd($result);
 
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
-        $userid = ; // teacher 임의값
+//        $userid = ; // teacher 임의값
         $plan = DB::table('field_learning_plans')->where('teacher', $userid)->first();
         $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
 

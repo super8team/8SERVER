@@ -66,5 +66,5 @@ Route::resource('survey', 'SurveyController');
 
 // ******************** 앱 요구사항 *********************
 
-Route::get('app/getPlan', 'AppRequestController@getPlan');
-Route::get('app/getStudentList', 'AppRequestController@getStudentList');
+Route::post('app/getPlan', 'AppRequestController@getPlan');
+Route::post('app/getStudentList', 'AppRequestController@getStudentList');

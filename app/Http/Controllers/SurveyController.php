@@ -6,6 +6,51 @@ use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
+
+
+//survey_list.php
+//url : ?/ survey_view
+//
+//return: {
+//survey_id
+//survey_title
+//survey_writedate
+//}
+//
+//
+//survey_write.php
+//url : ?/ survey_view
+//
+//POST : {
+//    q_title[ ] [ ]  		= “(String)”,
+//q_title[ ] [ ] [ ]		= “(String)”,
+//survey_title 		= “(String)”
+//}
+//
+//survey_view.php
+//url : ?/result.php
+//결과는 선생님만 볼수 있는지 아니면 모두가 볼 수있는지 에따라 필요한 페이지가 생김
+//
+//POST : {
+//    answer[]	= “(String)”,
+//}
+//
+//return: {
+//    $q_title[ ] [ ] [ ]
+//$survey_title
+//$survey_id
+//}
+//
+//survey_result
+//
+//return: {
+//    $q_title[][]
+//answer[]
+//}
+
+
+
+
     /**
      * Display a listing of the resource.
      *

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChecklistRespondsTable extends Migration
+class CreateChecklistResponds extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateChecklistRespondsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plan_checklists', function (Blueprint $table) {
-            $table->increments('no');
-            $table->string('title');
-            $table->integer('plan')->unsigned();
-            $table->foreign('plan')->references('no')->on('field_learning_plans');
+        Schema::create('checklist_responds', function (Blueprint $table) {
+
             $table->integer('checklist')->unsigned();
-            $table->foreign('checklist')->references('no')->on('checklists');
+            $table->foreign('checklist')->references('no')->on('plan_checklists');
+            $table->string('respond');
+
         });
     }
 
