@@ -19,6 +19,8 @@ class UserSeeder extends Seeder
         ['id' => $faker->word, 'password' => bcrypt('123456'), 'name' => $faker->word, 'type' => 'student']
     ]);
 
+    }
+
         DB::table('users')->insert([
             ['id' => 'teacher1', 'password' => bcrypt('123456'), 'name' => '선생님1', 'type' => 'teacher'],
             ['id' => 'teacher2', 'password' => bcrypt('123456'), 'name' => '선생님2', 'type' => 'teacher'],
@@ -31,7 +33,7 @@ class UserSeeder extends Seeder
             ['id' => 'parents3', 'password' => bcrypt('123456'), 'name' => '학부모3', 'type' => 'parents']
 
 
-            ]);
-    }
+        ]);
+
     }
 }
