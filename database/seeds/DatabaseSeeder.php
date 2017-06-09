@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
       $this->call(SurveyAnswersSeeder::class);
       $this->call(TeamsSeeder::class);
       $this->call(UseTrafficsSeeder::class);
-      $this->call(HistorySubstancesSeeder::class);
+      $this->call(HistorySubstancesSeeder::class);  
       $this->call(HistoryImgsSeeder::class);
       $this->call(GradeClassesSeeder::class);
 
