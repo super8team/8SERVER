@@ -19,7 +19,7 @@ class CreateChecklistsTable extends Migration
             $table->increments('no');
             $table->string('title');
             $table->string('bigsort');
-            $table->string('smallsort');
+            $table->string('smallsort')->nullable();
             $table->string('substance');
 
           });
