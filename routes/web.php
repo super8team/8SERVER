@@ -23,7 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //앱 로그인
-Route::get('app/login', 'AppLoginController@login');
+Route::post('app/login', 'AppLoginController@login');
 
 Route::post('app/getPlan', 'AppRequestController@getPlan');
 

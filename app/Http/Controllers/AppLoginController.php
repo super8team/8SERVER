@@ -12,8 +12,8 @@ class AppLoginController extends Controller
       $inputId = $request->input('inputID');
       $inputPw = $request->input('inputPASS');
 
-      $inputId='laborum';
-      $inputPw='123456';
+      // $inputId='desmond21';
+      // $inputPw='123456';
 
       $result = array(
                   "loginSuccess" => false,
@@ -33,10 +33,13 @@ class AppLoginController extends Controller
         $result["type"] = $user->type;
 
         if ($user->type == "parents") {
-          $childs = DB::table('students')->where('parents', '=', $user->id)->get('students');
+          $childs = DB::table('users')
+                      ->join('students', 'students.student', '=', 'users.no')
+                      ->where('parents', $user->no)
+                      ->get();
+          $result["childID"] = $childs->toArray();
         }
 
-        dd($result);
         return json_encode($result);
       }
 

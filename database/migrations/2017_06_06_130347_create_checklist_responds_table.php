@@ -13,7 +13,8 @@ class CreateChecklistRespondsTable extends Migration
      */
     public function up()
     {
-        Schema::create('checklist_responds', function (Blueprint $table) {
+        Schema::create('plan_checklists', function (Blueprint $table) {
+            $table->increments('no');
             $table->string('title');
             $table->integer('plan')->unsigned();
             $table->foreign('plan')->references('no')->on('field_learning_plans');
@@ -29,6 +30,6 @@ class CreateChecklistRespondsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checklist_responds');
+        Schema::dropIfExists('plan_checklists');
     }
 }
