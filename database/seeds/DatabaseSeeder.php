@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
       $this->call(GradeClassesSeeder::class);
       $this->call(FieldLearningPlanWorksSeeder::class);
       $this->call(FieldLearningPlanDocumentsSeeder::class);
-      $this->call(SurveyArticlesSeeder::class);
       $this->call(FieldLearningPlansSeeder::class);
       $this->call(StudentsSeeder::class);
       $this->call(DetailPlansSeeder::class);
@@ -36,6 +35,8 @@ class DatabaseSeeder extends Seeder
       $this->call(HistoriesSeeder::class);
       $this->call(WorkProgressesSeeder::class);
       $this->call(SimplePlansSeeder::class);
+      $this->call(SurveySeeder::class);
+      $this->call(SurveyArticlesSeeder::class);
       $this->call(SurveyAnswersSeeder::class);
       $this->call(TeamsSeeder::class);
       $this->call(UseTrafficsSeeder::class);
