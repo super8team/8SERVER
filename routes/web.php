@@ -61,10 +61,3 @@ Route::get('survey/result', 'SurveyController@result');
 
 // 설문조사 리스트, 작성, 열람
 Route::resource('survey', 'SurveyController');
-
-
-
-// ******************** 앱 요구사항 *********************
-
-Route::post('app/getPlan', 'AppRequestController@getPlan');
-Route::post('app/getStudentList', 'AppRequestController@getStudentList');

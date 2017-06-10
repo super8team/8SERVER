@@ -11,7 +11,8 @@ class AppRequestController extends Controller
 
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
-//        $inputId = ; // teacher 임의값
+      //  $inputId = 'Illum' ; // teacher 임의값
+       $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
         $school = DB::table('schools')->where('no', $school->school)->first();
@@ -28,14 +29,17 @@ class AppRequestController extends Controller
                     array_push($result[$school->name][$grade->grade . $grade->class], $user->name);
                 }
         }
-dd($result);
+
         return json_encode($result);
     }
 
 
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
-//        $userid = ; // teacher 임의값
+      //  $userid = 'Illum' ; // teacher 임의값
+       $userid = DB::table('users')->where('id', $userid)->value('no');
+
+
         $plan = DB::table('field_learning_plans')->where('teacher', $userid)->first();
         $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
 
@@ -45,7 +49,6 @@ dd($result);
             $place = DB::table('places')->where('no', $detail->place)->first();
             $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
         }
-        dd($result);
 
         return json_encode($result);
     }
