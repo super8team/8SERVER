@@ -12,22 +12,34 @@ class AppLoginController extends Controller
       $inputId = $request->input('inputID');
       $inputPw = $request->input('inputPASS');
 
-      $user = DB::table('users')->where('id', '=', $inputId)->first();
-      $result = array("loginSuccess" => false,
-                  "id" => $user->id,
-                  "name" => $user->name,
-                  "type" => $user->type,
+      $inputId='laborum';
+      $inputPw='123456';
+
+      $result = array(
+                  "loginSuccess" => false,
+                  "id" => "",
+                  "name" => "",
+                  "type" => "",
+                  "childID" => array(),
                 );
 
-        if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
-            $result["loginSuccess"] = true;
-            return json_encode($result);
+      if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
+        $user = DB::table('users')->where('id', '=', $inputId)->first();
+
+
+        $result["loginSuccess"] = true;
+        $result["id"] = $user->id;
+        $result["name"] = $user->name;
+        $result["type"] = $user->type;
+
+        if ($user->type == "parents") {
+          $childs = DB::table('students')->where('parents', '=', $user->id)->get('students');
+        }
+
+        dd($result);
+        return json_encode($result);
       }
 
-      return json_encode($result);
+    return json_encode($result);
     }
 }
-
-
-
-

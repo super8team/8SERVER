@@ -23,7 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //앱 로그인
-Route::post('app/login', 'AppLoginController@login');
+Route::get('app/login', 'AppLoginController@login');
 
 Route::post('app/getPlan', 'AppRequestController@getPlan');
 
@@ -61,10 +61,3 @@ Route::get('survey/result', 'SurveyController@result');
 
 // 설문조사 리스트, 작성, 열람
 Route::resource('survey', 'SurveyController');
-
-
-
-// ******************** 앱 요구사항 *********************
-
-Route::get('app/getPlan', 'AppRequestController@getPlan');
-Route::get('app/getStudentList', 'AppRequestController@getStudentList');
