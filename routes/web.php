@@ -56,6 +56,9 @@ Route::resource('notice', 'NoticeController');
 
 
 // ******************** 설문조사 *********************
+// 설문조사 리스트
+Route::get('survey/{plan}', 'SurveyController@showList');
+
 // 설문조사 결과
 Route::get('survey/result', 'SurveyController@result');
 
