@@ -5719,9 +5719,15 @@ button.close {
   background: transparent;
   border: 0;
 }
-.modal-open {
-  overflow: hidden;
+
+body.modal-open,{
+padding-left: 15px;
 }
+
+
+/*.modal-open {
+  overflow:hidden;
+}*/
 .modal {
   position: fixed;
   top: 0;

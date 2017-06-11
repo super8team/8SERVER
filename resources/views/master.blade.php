@@ -42,7 +42,9 @@
         </staticContent>
       </system.webServer>
     </configuration>
-
+    <style media="screen">
+  
+    </style>
     <script type="text/javascript">
 
       //<![CDATA[
@@ -78,25 +80,64 @@
         // else{
         //   window.alert(currurl+' url 설정하라!');
         // }
-
-
       });
       // ]]>
-
-
     </script>
   </head>
 
   <body>
     @php
-
       $home = "http://localhost/Code/8SERVER/public/home";
-
+      $join = "http://localhost/Code/8SERVER/public/join";
 
     @endphp
     {{-- 메인 --}}
+    <!-- Modal 모달 -->
+    <div class="modal fade sidemenu" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">로그인</h4>
+          </div>
+          <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
+            <div class="row">
+              <form class="form  col-sm-8 col-md-offset-2">
+                  <fieldset>
+                      <div class="form-group">
+                          <input class="form-control" placeholder="ID" name="id" type="text" autofocus>
+                      </div>
+                      <div class="form-group">
+                          <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                      </div>
+                      <div class="checkbox">
+                          <label>
+                              <input name="remember" type="checkbox" value="Remember Me">아이디 기억하기
+                          </label>
+                      </div>
+                      <!-- Change this to a button or input when using this as a form -->
+                      <p><a href="index.html" class="btn btn-lg btn-success btn-block">로그인</a></p>
+                  </fieldset>
+              </form>
+              <div class="col-sm-8 col-md-offset-2">
+                <p><a href="{{$join}}" class="btn btn-lg btn-warning btn-block">회원가입</a></p>
+              </div>
+
+              <div class="col-sm-8 col-md-offset-2">
+                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">ID찾기</a>
+                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">비번찾기</a>
+              </div>
+            </div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- 상단 고정 메뉴바 fixed static navbar -->
-    <nav id="navbar" class="navbar navbar-home navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-home navbar-fixed-top" role="navigation" style="margin-bottom: 0">
       <div class="container">
         <div class="navbar-header">
           {{-- 화면 폭이 768px 이하로 내려가면 드롭다운 아이콘 이나타남 아이콘 만들기 --}}
@@ -109,28 +150,30 @@
             <span class="icon-bar"></span>
           </button>
           {{-- 상표 이미지 로고 --}}
-          <img class="navbar-brand"
-          src="https://image-proxy.namuwikiusercontent.com/r/https%3A%2F%2Ftgd.kr%2Ffiles%2Fattach%2Fimages%2F248844%2F852%2F473%2F8a9deaef5fb4817b39f253cbafa79105.png"
-           alt="">
+          <img class="navbar-brand" src="../public/img/logo.png" alt="">
            {{-- 상표 이름 적기 --}}
-          <a class="navbar-brand" href="{{$home}}">LEAN&FUN</a>
+          <a class="navbar-brand" href="{{$home}}">LEARnFUN</a>
         </div>
-        <div class="navbar-collapse collapse text-center">
+        <div id="navbar" class="navbar-collapse collapse text-center">
           {{-- <ul id="left_menu" class="nav navbar-nav">
              현제 어느 페이지에 있는지 알려주는거 마스터 템플릿에 넣을라면 구분해야함lo
             <li><a href="{{$home}}">홈페이지</a></li>
             <li><a href="#about">만든 사람들</a></li>
           </ul> --}}
-          {{-- 세션 추가 할 곳 --}}
+          {{-- 세션 추가 할 곳 --}}\
+
+          {{-- TODO --}}
+
           @if (1)
             <ul id="right_menu" class="nav navbar-nav navbar-right">
-              <li class="nav-divider"></li>
-              <li><a href="#">로그인</a></li>
+              {{-- <li class="nav-divider"></li> --}}
+              <!-- Button trigger modal -->
+              <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
               <li><a href="#/">회원가입</a></li>
             </ul>
           @else
           <ul id="right_menu" class="nav navbar-nav navbar-right">
-            <li class="nav-divider"></li>
+            {{-- <li class="nav-divider"></li> --}}
             <li><a href="#">교사 학x2</a></li>
             <li><a href="#/">회원정보 수정</a></li>
           </ul>
@@ -146,7 +189,7 @@
 
     <footer class="footer text-center" style="background-color:#9197B5; color: #FFFFFF;" >
       <div class="container">
-        <p class="">&copy; Since 2017 Super8TeamLEAN&FUN Project Company, Inc.</p>
+        <p class="">&copy; Since 2017 Super8TeamLEARnFUN Project Company, Inc.</p>
       </div>
     </footer>
   </body>

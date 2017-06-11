@@ -17,7 +17,7 @@
          style="height:500px;width:101%;">
           {{-- 캐러셀 css 나중에 폰트 찾으면 수정 --}}
            <div class="carousel-caption">
-             <img src="../public/img/logo.png" alt="로고자리야 으앙아앙아" style="width:500px;height:300px">
+             <img src="../public/img/logo.png" alt="로고자리야 으앙아앙아" style="width:400px;height:300px">
              <h1>LEARnFUN</h1>
              학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스.
            </div>

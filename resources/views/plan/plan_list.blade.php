@@ -18,7 +18,9 @@
     $notice_list  = "http://localhost/Code/8SERVER/public/noticelist";
     $survey_list  = "http://localhost/Code/8SERVER/public/surveylist";
     $plan_map     = "http://localhost/Code/8SERVER/public/planmap";
-
+    $report_list  = "http://localhost/Code/8SERVER/public/reportlist";
+    $staff_list   = "http://localhost/Code/8SERVER/public/stafflist";
+    $check_list   = "http://localhost/Code/8SERVER/public/checklist";
     $planlist_rec = 17;
 
     $planlist_arr['data']['name'] = '소백산 뻐킹 체험학습';
@@ -79,7 +81,7 @@
                     <td>{{$planlist_arr['data']['date']}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{----}}" aria-label="Left Align" class="btn btn-sm btn-default disabled">
+                      <a role="button" href="{{$staff_list}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
                       {{-- 수 정 버튼만 테스트용으로 get 값 넘기기 설정 --}}
@@ -99,15 +101,38 @@
                       <a role="button" href="{{$plan_map}}" class="btn btn-sm btn-danger">
                         상세 계획
                       </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger disabled">
+                      <a role="button" href="{{$check_list}}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger disabled">
+                      <a role="button" href="{{$report_list}}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger disabled">
+
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#share">
                         공유
-                      </a>
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal modal fade " id="share" tabindex="-1" role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="shareLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form-horizontal" action="" method="post">
+                                  <input type="text" class="form-control" placeholder="팁을 입력 하세요">
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary">계획 공유하기</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </td>
                  </tr>
                 @else

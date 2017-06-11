@@ -26,10 +26,7 @@
             임시 계획 작성
           </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
-
-
-
-
+          {{-- plansheet --}}
 					<form class="sky-form" action="{{}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
@@ -232,7 +229,6 @@
 					</form>
 				</div>
 			</div>
-      </div>
     </div>
-
+  </div>
 @endsection
