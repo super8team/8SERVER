@@ -11,9 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-
-
       $this->call(UserSeeder::class);
       $this->call(FieldLearningPlanStepsSeeder::class);
       $this->call(EtcSelectArticlesSeeder::class);
@@ -45,15 +42,6 @@ class DatabaseSeeder extends Seeder
       $this->call(GradeClassesSeeder::class);
       $this->call(CheckListsSeeder::class);
       $this->call(PlanChecklistsSeeder::class);
-
-
-
-
-
-
-
-
-
     }
 
 }

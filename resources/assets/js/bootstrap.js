@@ -21,6 +21,11 @@ try {
 
 window.axios = require('axios');
 
+// <<<<<<< HEAD
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -38,6 +43,7 @@ if (token) {
 }
 
 /**
+ >>>>>>> 7b4fae57c8f4fdf980d2956371e169a489b4ac36
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
