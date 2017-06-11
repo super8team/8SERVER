@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+//    public function work()
+//    {
+//        return $this->belongsTo('App\Work', 'usesrs', 'no');
+//    }
+//
+//    public function surveies()
+//    {
+//        return $this->belongsTo('App\Survey');
+//    }
+//
+//    public function surveyArticles()
+//    {
+//        return $this->hasMany('App\SurveyArticle');
+//    }
+//
+//    public function surveyAnswers()
+//    {
+//        return $this->hasMany('App\SurveyAnswer');
+//    }
+
 }

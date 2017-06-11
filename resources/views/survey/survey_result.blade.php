@@ -54,51 +54,53 @@
   // $resp
 
   for ($num = 0; $num < 4; $num++) {
-    // 문제가 ox 인가?
-     $result[$num][0] = $q_title[$num][0];
-     $result[$num][1] = $q_title[$num][1];
-     //ox
-
-    if($result[$num][0] == "ox"){
-      //안에 빈값이면 0으로 초기화
-      if(isset($result[$num][2]) == false || isset($result[$num][3]) == false) {
-            $result[$num][2] = 0;
-            $result[$num][3] = 0;
-      }
-      //ox 판단 후 해당 값 증가
-      if ($resp[$num] == "true") {
-        $result[$num][2]++;
-        //DB 저장 코드
-      }else{
-        $result[$num][3]++;
-        //DB 저장 코드
-      }
-    }
-    //obj
-    if($result[$num][0] == "obj"){
-      //결과 값 안에 아무것 도 없을 경우 0 으로 초기화
-      //선택항목 갯수
-      $sub_obj_count = count($q_title[$num][2]);
-      //선택한 값
-      $selected = $resp[$num];
-      //선택사항 제목 저장
-      $result[$num][2] = $q_title[$num][2];
-
-      for ($t=0; $t < $sub_obj_count ; $t++) {
-        //빈 값일경우 전부 0 으로 초기화
-        if(isset($result[$num][3][$t]) == false){
-          $result[$num][3][$t] = 0;
+    $result[$num][0] = $q_title[$num][0];
+    $result[$num][1] = $q_title[$num][1];
+    if(isset($resp)){
+      //ox
+      if($result[$num][0] == "ox"){
+        //안에 빈값이면 0으로 초기화
+        if(isset($result[$num][2]) == false || isset($result[$num][3]) == false) {
+              $result[$num][2] = 0;
+              $result[$num][3] = 0;
         }
-        //선택한 값일 경우 +1
-        if($selected == $t){
-          $result[$num][3][$t]++;
+        //ox 판단 후 해당 값 증가
+        if ($resp[$num] == "true") {
+          $result[$num][2]++;
+          //DB 저장 코드
+        }else{
+          $result[$num][3]++;
           //DB 저장 코드
         }
       }
-    }
-    //서술형 저장
-    if($result[$num][0] == "subjec"){
-      $result[$num][2] = $resp[$num];
+      //obj
+      if($result[$num][0] == "obj"){
+        //결과 값 안에 아무것 도 없을 경우 0 으로 초기화
+        //선택항목 갯수
+        $sub_obj_count = count($q_title[$num][2]);
+        //선택한 값
+        $selected = $resp[$num];
+        //선택사항 제목 저장
+        $result[$num][2] = $q_title[$num][2];
+
+        for ($t=0; $t < $sub_obj_count ; $t++) {
+          //빈 값일경우 전부 0 으로 초기화
+          if(isset($result[$num][3][$t]) == false){
+            $result[$num][3][$t] = 0;
+          }
+          //선택한 값일 경우 +1
+          if($selected == $t){
+            $result[$num][3][$t]++;
+            //DB 저장 코드
+          }
+        }
+      }
+      //서술형 저장
+      if($result[$num][0] == "subjec"){
+        $result[$num][2] = $resp[$num];
+      }
+    }else{
+      break;
     }
   }
 
