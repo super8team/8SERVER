@@ -8,93 +8,16 @@ use Illuminate\Support\Facades\DB;
 class SurveyController extends Controller
 {
 
-
-
-    public function index()
-    {
-
-
-    }
-
-
-    public function create()
-    {
-
-        return view('survey.write');
-    }
-
-
-    public function store(Request $request)
-    {
-        $planId = $request->input('plan_id');
-
-
-        $survey_id = DB::table('surveies')->value('no');
-
-
-
-        return view('survey.survey_list')->with('survey_id', '')
-            ->with('survey_title', '')
-            ->with('survey_writedate', '')
-            ->with('plan_id', $planId);
-
-        return redirect('survey.list');
-    }
-
-
-    public function show($survey)
-    {
-
-        return view('survey.survey_view')->with('q_title', '')
-                                         ->with('survey_title', '')
-                                         ->with('survey_id', '');
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
-
-
-    public function result()
-    {
-
-
-
-
-
-
-
-
-        return view('survey.survey_result')->with('q_title', '')
-                                           ->with('resp', '');
-    }
-
-    public function showList(Request $request)
+    public function index(Request $request)
     {
 
         $planId = $request->input('plan_id');
-
-
-        $survey_id = DB::table('surveies')->value('no');
 
 
         $ids = [];
         $titles = [];
         $writedates = [];
+
 
         $surveies= DB::table('surveies')->get();
 
@@ -104,16 +27,47 @@ class SurveyController extends Controller
             array_push($writedates, $survey->created_at);
         }
 
-        dd($ids);
-//        dd($titles);
-//        dd($writedates);
-
-
-        return view('survey.survey_list')->with('survey_id', '')
-                                          ->with('survey_title', '')
-                                          ->with('survey_writedate', '')
-                                          ->with('plan_id', $planId);
-
+        return view('survey.survey_list')->with('survey_id', $ids)
+                                         ->with('survey_title', $titles)
+                                         ->with('survey_writedate', $writedates)
+                                         ->with('plan_id', $planId);
 
     }
+
+
+    public function write(Request $request)
+    {
+        $q_title = $request->input('q_title');
+        $survey_title = $request->input('survey_title');
+
+        // 쿼리
+
+        return view('survey.write');
+    }
+
+
+    public function view(Request $request)
+    {
+
+        $resp = $request->input('resp');
+
+        // 쿼리
+
+        return view('survey.survey_view')->with('q_title', '')
+            ->with('survey_title', '')
+            ->with('survey_id', '');
+    }
+
+
+    public function result(Request $request)
+    {
+
+
+
+
+        return view('survey.survey_result')->with('q_title', '')
+                                            ->with('resp', '');
+    }
+
+
 }
