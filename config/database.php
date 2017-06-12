@@ -67,9 +67,6 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
-<<<<<<< HEAD
-=======
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
@@ -80,8 +77,6 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
         ],
-
->>>>>>> 7b4fae57c8f4fdf980d2956371e169a489b4ac36
     ],
 
     /*
