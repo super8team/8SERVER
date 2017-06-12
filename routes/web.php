@@ -27,7 +27,7 @@ Route::post('app/login', 'AppLoginController@login');
 
 Route::post('app/getPlan', 'AppRequestController@getPlan');
 
-Route::post('app/getStudentList', 'AppRequestController@getStudentList');
+Route::get('app/getStudentList', 'AppRequestController@getStudentList');
 
 
 
