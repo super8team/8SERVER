@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Exception\ErrorException;
 use Faker\Factory;
+use Carbon\Carbon;
 
 class AppRequestController extends Controller
 {
@@ -44,7 +45,7 @@ class AppRequestController extends Controller
 
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
-      //  $userid = 'Illum' ; // teacher 임의값
+       $userid = 'Illum' ; // teacher 임의값
        $userid = DB::table('users')->where('id', $userid)->value('no');
 
 
@@ -54,14 +55,17 @@ class AppRequestController extends Controller
         $result = array();
         $result["gps"] = array();
 
+        $i = 1;
         foreach ($details as $detail) {
             $place = DB::table('places')->where('no', $detail->place)->first();
-            array_push($result["gps"], array("place"=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+            $result["gps"]["place".$i]=array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+            // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
             // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
             // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+            $i++;
         }
 
-        // dd($result);
+        dd($result);
         return json_encode($result);
     }
 }
