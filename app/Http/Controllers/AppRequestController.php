@@ -13,7 +13,7 @@ class AppRequestController extends Controller
 
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
-      //  $inputId = 'Illum' ; // teacher 임의값
+        $inputId = 'Illum' ; // teacher 임의값
        $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
@@ -38,34 +38,35 @@ class AppRequestController extends Controller
                 }
         }
 
-        // dd($result);
+         dd($result);
         return json_encode($result);
     }
 
 
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
-       $userid = 'Illum' ; // teacher 임의값
+        // $userid = 'Illum' ; // teacher 임의값
        $userid = DB::table('users')->where('id', $userid)->value('no');
 
 
         $plan = DB::table('field_learning_plans')->where('teacher', $userid)->first();
         $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
 
-        $result = array();
-        $result["gps"] = array();
+        $result = [];
+        $result["gps"] = [];
 
         $i = 1;
         foreach ($details as $detail) {
             $place = DB::table('places')->where('no', $detail->place)->first();
-            $result["gps"]["place".$i]=array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+            $result["gps"]["place".$i]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
             // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
             // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
             // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
             $i++;
         }
-
-        dd($result);
+	 // dd($result);
+         // dd(json_encode($result));
+	// return json_encode(["id"=>$userid]);
         return json_encode($result);
     }
 }
