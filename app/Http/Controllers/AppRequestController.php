@@ -18,19 +18,26 @@ class AppRequestController extends Controller
         $school = DB::table('works')->where('teacher', $inputId)->first();
         $school = DB::table('schools')->where('no', $school->school)->first();
 
-        $result = array($school->name => array());
-        $grade_classes = DB::table('grade_classes')->where('school', $school->no)->get();
+        $result = array('school' => array());
+        // $result = array("school" => $school->name);
+        // $result["school"]
+
+        $grade_classes = DB::table('grade_classes')->where('school', $school->no)->where('grade', 1)->get();
+        // dd($grade_classes);
 
         foreach ($grade_classes as $grade) {
-            $result[$school->name][$grade->grade . $grade->class] = array();
+          if($grade->grade != '1학년') continue;
+            $result['school']['class'.str_split($grade->class, 1)[0]] = array();
 
                 $students = DB::table('students')->where('grade_class', $grade->no)->get();
                 foreach ($students as $student) {
                     $user = DB::table('users')->where('no', $student->student)->first();
-                    array_push($result[$school->name][$grade->grade . $grade->class], $user->name);
+                    array_push($result['school']['class'.str_split($grade->class, 1)[0]], ["student" => ["id"=>$user->id, "name"=>$user->name]]);
+                    // ["studentId" => $user->id, "studentName" => $user->name]);
                 }
         }
 
+        // dd($result);
         return json_encode($result);
     }
 
@@ -45,12 +52,16 @@ class AppRequestController extends Controller
         $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
 
         $result = array();
+        $result["gps"] = array();
 
         foreach ($details as $detail) {
             $place = DB::table('places')->where('no', $detail->place)->first();
-            $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+            array_push($result["gps"], array("place"=>array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+            // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+            // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
         }
 
+        // dd($result);
         return json_encode($result);
     }
 }
