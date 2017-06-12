@@ -48,7 +48,23 @@ Route::get('plan/map', 'PlanController@map');
 Route::resource('plan', 'PlanController');
 
 
+//플랜 맵
+Route::get('/planmap', function () {
+    return view('plan.plan_map');
+});
 
+//제이슨 저장소
+Route::get('/get', function () {
+    return view('get-events_dnweb');
+});
+
+//테스트 용 페이지
+Route::get('/test', function () {
+    return view('plan.test');
+});
+Route::get('/test2', function () {
+    return view('plan.test2');
+});
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');

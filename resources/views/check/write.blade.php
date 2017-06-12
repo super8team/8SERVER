@@ -3,11 +3,7 @@
 @section('title','체크 리스트 작성')
 
 @section('content')
-  {{--
-  자바스크립트 변수는 카멜
-  라라벨도 카멜
-  html 의 name 값은 스네이크
-   --}}
+
   <head>
     <script type="text/javascript">
     //몇 개의 항목이 생성 되었는지 확인하는 변수

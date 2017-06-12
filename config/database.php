@@ -67,7 +67,6 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
