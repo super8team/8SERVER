@@ -12,7 +12,7 @@ class AppRequestController extends Controller
 
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
-       $inputId = 'Illum' ; // teacher 임의값
+      //  $inputId = 'Illum' ; // teacher 임의값
        $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
@@ -37,14 +37,14 @@ class AppRequestController extends Controller
                 }
         }
 
-        dd($result);
+        // dd($result);
         return json_encode($result);
     }
 
 
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
-       $userid = 'Illum' ; // teacher 임의값
+      //  $userid = 'Illum' ; // teacher 임의값
        $userid = DB::table('users')->where('id', $userid)->value('no');
 
 
@@ -61,7 +61,7 @@ class AppRequestController extends Controller
             // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
         }
 
-        dd($result);
+        // dd($result);
         return json_encode($result);
     }
 }
