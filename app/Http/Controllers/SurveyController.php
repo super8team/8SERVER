@@ -3,132 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
 
-
-//survey_list.php
-//url : ?/ survey_view
-//
-//return: {
-//survey_id
-//survey_title
-//survey_writedate
-//}
-//
-//
-//survey_write.php
-//url : ?/ survey_view
-//
-//POST : {
-//    q_title[ ] [ ]  		= “(String)”,
-//q_title[ ] [ ] [ ]		= “(String)”,
-//survey_title 		= “(String)”
-//}
-//
-//survey_view.php
-//url : ?/result.php
-//결과는 선생님만 볼수 있는지 아니면 모두가 볼 수있는지 에따라 필요한 페이지가 생김
-//
-//POST : {
-//    answer[]	= “(String)”,
-//}
-//
-//return: {
-//    $q_title[ ] [ ] [ ]
-//$survey_title
-//$survey_id
-//}
-//
-//survey_result
-//
-//return: {
-//    $q_title[][]
-//answer[]
-//}
-
-
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('survey.list');
+
+        $planId = $request->input('plan_id');
+
+
+        $ids = [];
+        $titles = [];
+        $writedates = [];
+
+
+        $surveies= DB::table('surveies')->get();
+
+        foreach ($surveies as $survey) {
+            array_push($ids, $survey->no);
+            array_push($titles, $survey->title);
+            array_push($writedates, $survey->created_at);
+        }
+
+        return view('survey.survey_list')->with('survey_id', $ids)
+                                         ->with('survey_title', $titles)
+                                         ->with('survey_writedate', $writedates)
+                                         ->with('plan_id', $planId);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function write(Request $request)
     {
-        return view('survey.write');
+        $q_title = $request->input('q_title');
+        $survey_title = $request->input('survey_title');
+
+        // 쿼리
+
+        return view('survey.survey_write');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function view(Request $request)
     {
-        //
+
+        $resp = $request->input('resp');
+
+        // 쿼리
+
+        return view('survey.survey_view')->with('q_title', '')
+            ->with('survey_title', '')
+            ->with('survey_id', '');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // 설문조사의 응답 결과
+    public function result($no)
     {
-        return view('survey.view');
+
+        //no
+        $surveies= DB::table('surveies')->where('');
+
+
+
+
+        return view('survey.survey_result')->with('q_title', '')
+                                            ->with('resp', '');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function result()
-    {
-        return view('survey.result');
-    }
 }
