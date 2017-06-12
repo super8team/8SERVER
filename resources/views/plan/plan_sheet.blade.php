@@ -34,7 +34,7 @@
 						<span class="clearfix"></span>
 					</div>
 					<div class="panel-body">
-						<form class="forms-wrapper hidden" action="./schooltrip_check.php" method="post" id="check_form">
+						<form class="forms-wrapper hidden" action="route(' ???? ')" method="post" id="check_form">
 							<input type="text" class="hidden" value="" name="schoolplan_no" id="schooltrip_plan_id">
 						</form>
 						<form class="forms-wrapper"  method="post">
@@ -621,7 +621,7 @@
 													   href="#collapse-8">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">8</span> 외부 협조 요청 및 확인													</h5>
+																class="label label-default">8</span> 외부 협조 요청 및 확인</h5>
 													</a>
 												</div>
 												<div id="collapse-8"
@@ -630,7 +630,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 책임범위 및 안전 관련 사항 요구														</label>
+																	class="label label-warning">TIPS</span> 책임범위 및 안전 관련 사항 요구</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -656,7 +656,7 @@
 													   href="#collapse-9">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">9</span> 사전안전교육													</h5>
+																class="label label-default">9</span> 사전안전교육</h5>
 													</a>
 												</div>
 												<div id="collapse-9"
@@ -665,7 +665,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 교과 및 창의적 체험활동 시간을 활용하여 사전교육 실시														</label>
+																	class="label label-warning">TIPS</span> 교과 및 창의적 체험활동 시간을 활용하여 사전교육 실시</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -677,7 +677,7 @@
 																</tr><tr><td class="text-center"><input type="checkbox" value="29" id="chkwork_77" name="result_check[]"></td><td class="text-center">안전요원 안전교육 실시</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 안전요원 교육.hwp">안전요원 교육</a></br></td><td></td>
 																</tr><tr><td class="text-center"><input type="checkbox" value="30" id="chkwork_80" name="result_check[]"></td><td class="text-center">인솔 및 지도교사 안전교육 실시</td><td></td><td><span class="glyphicon glyphicon-info-sign"></span>교장은 인솔 및 지도교사에게 유사시에 대비하여 응급처리요령,안전지도요령,비상탈출방법 등에 대한 사전연수를 실시해야함(필요시 안전전문가를 통해 연수가능함)</br></td>
 																</tr><tr><td class="text-center"><input type="checkbox" value="31" id="chkwork_83" name="result_check[]"></td><td class="text-center">비상연락망 작성</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 비상연락망 양식.hwp">비상연락망 양식</a></br></td><td></td>
-																			</tr>															</tbody>
+																</tr></tbody>
 															</table>
 														</div>
 													</div>
@@ -690,7 +690,7 @@
 													   href="#collapse-10">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">10</span> 구비 및 운영준비													</h5>
+																class="label label-default">10</span> 구비 및 운영준비</h5>
 													</a>
 												</div>
 												<div id="collapse-10"
@@ -699,7 +699,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 운영계획서는 실시 3일전까지 학교 홈페이지 탑재(인적사항삭제)														</label>
+																	class="label label-warning">TIPS</span> 체험학습 운영계획서는 실시 3일전까지 학교 홈페이지 탑재(인적사항삭제)</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -722,7 +722,7 @@
 													   href="#collapse-11">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">11</span> 운영 및 경비집행													</h5>
+																class="label label-default">11</span> 운영 및 경비집행</h5>
 													</a>
 												</div>
 												<div id="collapse-11"
@@ -731,7 +731,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 비상사고시 대처방법 및 보고방법 출력/지참														</label>
+																	class="label label-warning">TIPS</span> 비상사고시 대처방법 및 보고방법 출력/지참</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -763,7 +763,7 @@
 													   href="#collapse-12">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">12</span> 정산													</h5>
+																class="label label-default">12</span> 정산</h5>
 													</a>
 												</div>
 												<div id="collapse-12"
@@ -772,7 +772,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 10일이내 정산결과를 학부모에게 공개해야함.														</label>
+																	class="label label-warning">TIPS</span> 체험학습 종료후 10일이내 정산결과를 학부모에게 공개해야함.</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -793,7 +793,7 @@
 													   href="#collapse-13">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">13</span> 만족도평가													</h5>
+																class="label label-default">13</span> 만족도평가</h5>
 													</a>
 												</div>
 												<div id="collapse-13"
@@ -802,7 +802,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 7일 이내 실시														</label>
+																	class="label label-warning">TIPS</span> 체험학습 종료후 7일 이내 실시</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -811,7 +811,7 @@
 																</tr><tr><td class="text-center"><input type="checkbox" value="52" id="chkwork_139" name="result_check[]"></td><td class="text-center">학생 평가 실시</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 현장체험학습 결과설문지 (학생).hwp">현장체험학습 결과설문지(학생)</a></br></td><td><span class="glyphicon glyphicon-info-sign"></span>참가학생의 설문 평균값을 현장체험학습 결과보고의 만족도 점수에 기록함</br></td>
 																</tr><tr><td class="text-center"><input type="checkbox" value="53" id="chkwork_141" name="result_check[]"></td><td class="text-center">학부모 평가 실시</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 현장체험학습 결과설문지 (학부모).hwp">현장체험학습 결과설문지(학부모)</a></br></td><td></td>
 																</tr><tr><td class="text-center"><input type="checkbox" value="54" id="chkwork_143" name="result_check[]"></td><td class="text-center">교사 평가 실시</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 현장체험학습 결과설문지 (교원).hwp">현장체험학습 결과설문지(교원)</a></br></td><td></td>
-																			</tr>															</tbody>
+																</tr></tbody>
 															</table>
 														</div>
 													</div>
@@ -824,7 +824,7 @@
 													   href="#collapse-14">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">14</span> 평가결과 처리													</h5>
+																class="label label-default">14</span> 평가결과 처리</h5>
 													</a>
 												</div>
 												<div id="collapse-14"
@@ -833,18 +833,45 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 14일 이내 실시														</label>
+																	class="label label-warning">TIPS</span> 체험학습 종료후 14일 이내 실시</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
 
 																<tbody>
-																<tr><td class="text-center"><input type="checkbox" value="55" id="chkwork_145" name="result_check[]"></td><td class="text-center">평가결과 현장체험학습 공개방에 공개</td><td></td><td><span class="glyphicon glyphicon-info-sign"></span>평가조사 결과는 학교 및 수학여행 통합포털사이트 ' 현장체험학습 결과공개방'에 공개</br><span class="glyphicon glyphicon-info-sign"></span>체험학습 실시후 14일 이내에 필수 공개(시기,대상,참가인원,경비,이동경로, 학부모 동의율,계약내용,이동수단,사고발생현황,만족도결과 등)</br></td>
-																</tr><tr><td class="text-center"><input type="checkbox" value="56" id="chkwork_147" name="result_check[]"></td><td class="text-center">평가결과 소위워회 통보</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 평가결과 소위원회 통보양식.hwp">평가결과 소위원회 통보양식</a></br></td><td><span class="glyphicon glyphicon-info-sign"></span>평가결과는 체험학습 종료후 14일 이내에 “현장체험학습소위원회”에 통보하거나 위원들에게 송부함.</br></td>
-																</tr><tr><td class="text-center"><input type="checkbox" value="57" id="chkwork_149" name="result_check[]"></td><td class="text-center">학교생활기록부 기재</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 학교생활기록부기재방법.hwp">학교생활기록부기재방법</a></br></td><td><span class="glyphicon glyphicon-info-sign"></span>현장체험학습 실시 결과는 학교생활기록부 '창의적체험활동 상황'의 자율활동(행사,봉사활동 등)영역에 특기사항을 기록함.</br><span class="glyphicon glyphicon-info-sign"></span>미참가 학생의 경우 잔류학생에 참여하였을 경우 출석으로 처리하고, 자율활동(행사,봉사활동 등)영역에는 기록하지 않음</br></td>
-																</tr><tr><td class="text-center"><input type="checkbox" value="58" id="chkwork_152" name="result_check[]"></td><td class="text-center"><span class="label label-purple">선택사항</span> 에듀팟 기록</td><td></td><td><span class="glyphicon glyphicon-info-sign"></span>학생이 체험하고 느낀 소감 또는 보고서 등 학습 체험을 에듀팟에 누적 기록하여 진로 탐색 등에 활용할 수 있음.</br></td>
-																</tr><tr><td class="text-center"><input type="checkbox" value="59" id="chkwork_155" name="result_check[]"></td><td class="text-center"><span class="label label-purple">표집실시</span> 시민감사 실시(표집실시)</td><td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 시민감사관 현장체험학습 체크리스트.hwp">시민감사관 현장체험학습 체크리스트</a></br></td><td><span class="glyphicon glyphicon-info-sign"></span>대규모 수학여행 실시 학교중 임의 선발 실시</br></td>
-																			</tr>															</tbody>
+																<tr>
+																	<td class="text-center"><input type="checkbox" value="55" id="chkwork_145" name="result_check[]"></td>
+																	<td class="text-center">평가결과 현장체험학습 공개방에 공개</td>
+																	<td></td>
+																	<td><span class="glyphicon glyphicon-info-sign"></span>평가조사 결과는 학교 및 수학여행 통합포털사이트 ' 현장체험학습 결과공개방'에 공개</br>
+																		<span class="glyphicon glyphicon-info-sign"></span>체험학습 실시후 14일 이내에 필수 공개(시기,대상,참가인원,경비,이동경로, 학부모 동의율,계약내용,이동수단,사고발생현황,만족도결과 등)</br></td>
+																</tr>
+																<tr>
+																	<td class="text-center"><input type="checkbox" value="56" id="chkwork_147" name="result_check[]"></td>
+																	<td class="text-center">평가결과 소위워회 통보</td>
+																	<td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 평가결과 소위원회 통보양식.hwp">평가결과 소위원회 통보양식</a></br></td>
+																	<td><span class="glyphicon glyphicon-info-sign"></span>평가결과는 체험학습 종료후 14일 이내에 “현장체험학습소위원회”에 통보하거나 위원들에게 송부함.</br></td>
+																</tr>
+																<tr>
+																	<td class="text-center"><input type="checkbox" value="57" id="chkwork_149" name="result_check[]"></td>
+																	<td class="text-center">학교생활기록부 기재</td><td><span class="glyphicon glyphicon-save-file"></span>
+																		<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 학교생활기록부기재방법.hwp">학교생활기록부기재방법</a></br></td>
+																	<td><span class="glyphicon glyphicon-info-sign"></span>현장체험학습 실시 결과는 학교생활기록부 '창의적체험활동 상황'의 자율활동(행사,봉사활동 등)영역에 특기사항을 기록함.</br>
+																			<span class="glyphicon glyphicon-info-sign"></span>미참가 학생의 경우 잔류학생에 참여하였을 경우 출석으로 처리하고, 자율활동(행사,봉사활동 등)영역에는 기록하지 않음</br></td>
+																</tr>
+																<tr>
+																	<td class="text-center"><input type="checkbox" value="58" id="chkwork_152" name="result_check[]"></td>
+																	<td class="text-center"><span class="label label-purple">선택사항</span> 에듀팟 기록</td>
+																	<td></td>
+																	<td><span class="glyphicon glyphicon-info-sign"></span>학생이 체험하고 느낀 소감 또는 보고서 등 학습 체험을 에듀팟에 누적 기록하여 진로 탐색 등에 활용할 수 있음.</br></td>
+																</tr>
+																<tr>
+																	<td class="text-center"><input type="checkbox" value="59" id="chkwork_155" name="result_check[]"></td>
+																	<td class="text-center"><span class="label label-purple">표집실시</span> 시민감사 실시(표집실시)</td>
+																	<td><span class="glyphicon glyphicon-save-file"></span><a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 시민감사관 현장체험학습 체크리스트.hwp">시민감사관 현장체험학습 체크리스트</a></br></td>
+																	<td><span class="glyphicon glyphicon-info-sign"></span>대규모 수학여행 실시 학교중 임의 선발 실시</br></td>
+																</tr>
+																</tbody>
 															</table>
 														</div>
 													</div>

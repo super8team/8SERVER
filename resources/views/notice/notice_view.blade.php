@@ -3,9 +3,6 @@
 @section('title','가정 통신문 보기')
 
 @section('content')
-  @php
-    $notice_list = "http://localhost/Code/8SERVER/public/noticelist";
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
@@ -42,7 +39,7 @@
             내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
           </div>
         </div>
-        <a href="{{$notice_list}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
+        <a href="{{route('notice_list')}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           뒤로 가기
         </a>

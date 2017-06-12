@@ -100,7 +100,7 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{--해당 가정통신문--}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
