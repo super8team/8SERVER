@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class SurveyController extends Controller
 {
 
+
     /**
      * Display a listing of the resource.
      * 모든 설문조사 리스트를 본다
@@ -80,37 +81,26 @@ class SurveyController extends Controller
         return view('survey.view');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function write(Request $request)
     {
-        //
+        $q_title = $request->input('q_title');
+        $survey_title = $request->input('survey_title');
+
+        // 쿼리
+
+        return view('survey.survey_write');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function view(Request $request)
     {
-        //
+
+        $resp = $request->input('resp');
+
+        // 쿼리
+
+        return view('survey.survey_view')->with('q_title', '')
+            ->with('survey_title', '')
+            ->with('survey_id', '');
     }
 }
