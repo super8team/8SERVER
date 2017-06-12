@@ -69,10 +69,11 @@ return [
         ],
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cadc86d81973754049ec0b514d1bc2bd5ee65f8f
+
+
+
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
@@ -84,10 +85,6 @@ return [
             'prefix' => '',
         ],
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cadc86d81973754049ec0b514d1bc2bd5ee65f8f
     ],
 
     /*

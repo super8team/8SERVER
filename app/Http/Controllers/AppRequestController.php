@@ -56,7 +56,7 @@ class AppRequestController extends Controller
 
         foreach ($details as $detail) {
             $place = DB::table('places')->where('no', $detail->place)->first();
-            array_push($result["gps"], array("place"=>array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+            array_push($result["gps"], array("place"=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
             // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
             // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
         }

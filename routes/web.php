@@ -56,16 +56,15 @@ Route::resource('notice', 'NoticeController');
 
 
 // ******************** 설문조사 *********************
-// 설문조사 메인
-Route::get('survey', 'SurveyController@index')->name('survey');
+// Route::get('survey/result', 'SurveyController@result');
 
-// 설문조사 작성
-Route::post('survey/write', 'SurveyController@write')->name('survey.write');
+// 설문조사 리스트, 작성, 열람
+Route::resource('survey', 'SurveyController');
+// index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
-// 설문조사 열람
-Route::post('survey/view', 'SurveyController@view')->name('survey.view');
+Route::resource('survey.respond', 'SurveyRespondController');
+// index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
-// 설문조사 결과
 Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
 
 
@@ -88,4 +87,3 @@ Route::post('contents/shareShare', 'ContentsController@shareShare')->name('conte
 
 // 콘텐츠 다운로드
 Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
-

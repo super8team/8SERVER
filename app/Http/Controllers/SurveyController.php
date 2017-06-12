@@ -5,35 +5,81 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class SurveyController extends Controller
 {
 
-    public function index(Request $request)
+
+    /**
+     * Display a listing of the resource.
+     * 모든 설문조사 리스트를 본다
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
+      $surveyNoArr = array();
+      $surveyTitleArr = array();
+      $surveyDateArr = array();
 
-        $planId = $request->input('plan_id');
+      $surveies = DB::table('surveies')->get();
+      foreach ($serveies as $survey) {
+        array_push($surveyNoArr, $survey->no);
+        array_push($surveyTitleArr, $survey->title);
+        array_push($surveyDateArr, $survey->created_at);
+      }
 
-
-        $ids = [];
-        $titles = [];
-        $writedates = [];
-
-
-        $surveies= DB::table('surveies')->get();
-
-        foreach ($surveies as $survey) {
-            array_push($ids, $survey->no);
-            array_push($titles, $survey->title);
-            array_push($writedates, $survey->created_at);
-        }
-
-        return view('survey.survey_list')->with('survey_id', $ids)
-                                         ->with('survey_title', $titles)
-                                         ->with('survey_writedate', $writedates)
-                                         ->with('plan_id', $planId);
-
+        return view('survey.list', [
+          'survey_id' => $surveyNoArr,
+          'survey_title' => $surveyTitleArr,
+          'survey_write_date' => $surveyDateArr,
+        ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     * 설문조사를 작성하는 뷰를 보여준다
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('survey.write');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * 작성된 설문조사를 저장한다
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $newSurveyName = $request->input('survey_title');
+      $newSurvey = $request->input('q_title');
+      $userno = $request->input();
+
+      // DB::table('surveies')->insert([
+      //   'name' => $survey_title,
+      //   'writer' => ,
+      //   'created_at' => ,
+      //   'updated_at' => ,
+      // ]);
+
+        // return view('survey_view', [
+        //   'survey_title' => $newSurveyName,
+        //   'q_title' => '', // 전체 설문 응답 결과
+        // ]);
+    }
+
+    /**
+     * Display the specified resource.
+     * 만들어진 설문조사를 본다
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('survey.view');
+    }
 
     public function write(Request $request)
     {
@@ -57,20 +103,4 @@ class SurveyController extends Controller
             ->with('survey_title', '')
             ->with('survey_id', '');
     }
-
-    // 설문조사의 응답 결과
-    public function result($no)
-    {
-
-        //no
-        $surveies= DB::table('surveies')->where('');
-
-
-
-
-        return view('survey.survey_result')->with('q_title', '')
-                                            ->with('resp', '');
-    }
-
-
 }
