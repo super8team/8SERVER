@@ -13,7 +13,7 @@ class AppRequestController extends Controller
 
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
-        $inputId = 'Illum' ; // teacher 임의값
+        // $inputId = 'Illum' ; // teacher 임의값
        $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
@@ -41,7 +41,7 @@ class AppRequestController extends Controller
                 }
         }
 
-         dd($result);
+        //  dd($result);
         return json_encode($result);
     }
 
