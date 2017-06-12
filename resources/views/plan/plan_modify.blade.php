@@ -11,13 +11,13 @@
   {{-- 계획 수정 --}}
   {{-- 1단계 모든 입력을 새로입력 (현제 상태)--}}
   {{-- 2단계 DB 의 값을 인풋란에 미리 작성후 고칠 수있게--}}
-  
+
   <div class="bluebg">
     <div class="container">
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
-          <a href="{{$planlist}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('planlist')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             뒤로 가기
           </a>
@@ -25,12 +25,12 @@
 				</div>
 				<div class="panel-body">
           {{-- 임시 서류 작성 페이지로 이동  --}}
-          <a href="{{$plansheet}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('plansheet')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             임시 계획 작성
           </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
-					<form class="sky-form" action="{{$plansheet}}" method="post">
+					<form class="sky-form" action="{{route('plansheet')}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}

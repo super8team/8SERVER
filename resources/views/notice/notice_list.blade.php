@@ -14,12 +14,12 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 가정통신문
-            <a role="button" href="{{$plan_list}}" aria-label="Right Align"
+            <a role="button" href="{{route('plan_list')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{$notice_write}}" aria-label="Right Align"
+           <a role="button" href="{{route('notice_write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             가정 통신문 작성
@@ -53,7 +53,7 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$notice_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('notice_view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -100,7 +100,7 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{--해당 가정통신문--}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>

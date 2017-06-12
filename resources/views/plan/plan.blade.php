@@ -21,13 +21,13 @@
 				</div>
 				<div class="panel-body">
           {{-- 임시 서류 작성 페이지로 이동  --}}
-          <a href="{{$plansheet}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('plansheet')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             임시 계획 작성
           </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
           {{-- plansheet --}}
-					<form class="sky-form" action="{{}}" method="post">
+					<form class="sky-form" action="{{route('?????')}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
