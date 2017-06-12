@@ -1,0 +1,434 @@
+/* 사용중 (가저온 것들)
+--------------------------------------------------
+bootstrap
+|- stickey-nav-footer?
+prallax.js
+Maxim - style.css
+*/
+
+/*
+|-------------------------------------
+| 공통 + sticky
+|-------------------------------------
+ 현제 navbar default 를 메인 페이지 용으로 css 변경함
+      navbar-inverses 복붙히여 parent 및 student로 추가 하여 변경할것
+*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+/*상단 메뉴 바에 가리 지 않도록 함
+   또한 하단 메뉴 포함*/
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  overflow-y:scroll;
+}
+
+img.minisize{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding-top:35px;
+  padding-bottom:35px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color:#9197B5
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.scrollspy {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}
+
+/* Custom page CSS 아래로 수정한 것들
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+
+/*학생 교사 학부모 페이지별css */
+
+/*
+|-------------------------------------
+| 홈페이지
+|-------------------------------------
+| 설명
+  실패
+  마우스 오버 효과
+  태그별 폰트
+  tpr션
+
+/*  ------------------------시작------------------------ */
+
+/*
+*********************  보류 기능   *********************
+*/
+/*배경 칸*/
+/*.dark-blue-theme{
+  min-height: 30px;
+  max-height: 30px;
+  background-color:#9197B5
+}*/
+/*기본 나브바 수정 및 폰트 사이즈 */
+
+/*
+*********************  홈페이지 메뉴 바   *********************
+*/
+
+.navbar-home {
+  background-color:#7A6CCF ;
+  /*
+  수정
+  기본 색상
+  #f8f8f8
+  후보
+  #9197B5
+  */
+  border: 0px;
+  border-color: #e7e7e7;
+  font-size: 15px;
+}
+/*브랜드 수정*/
+.navbar-home .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-home .navbar-brand:hover,
+.navbar-home .navbar-brand:focus {
+  color: #A8C8F9;
+  background-color: transparent;
+}
+.navbar-home .navbar-text {
+  color: #777;
+}
+/*기본 색 높이 수정함  굵기와 폰트 수정 할 것*/
+.navbar-home .navbar-nav > li > a {
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 40px;
+}
+/*수정 함
+마우스 오버시 색 변경*/
+.navbar-home .navbar-nav > li > a:hover,
+.navbar-home .navbar-nav > li > a:focus {
+  color: #A8C8F9;
+  background-color: transparent;
+}
+.navbar-home .navbar-nav > .active > a,
+.navbar-home .navbar-nav > .active > a:hover,
+.navbar-home .navbar-nav > .active > a:focus {
+  color: #A8C8F9;
+  background-color: #7A6CCF;
+}
+.navbar-home .navbar-nav > .disabled > a,
+.navbar-home .navbar-nav > .disabled > a:hover,
+.navbar-home .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-home .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-home .navbar-toggle:hover,
+.navbar-home .navbar-toggle:focus {
+  background-color: #A8C8F9;;
+}
+/*수정*/
+.navbar-home .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-home .navbar-collapse,
+.navbar-home .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-home .navbar-nav > .open > a,
+.navbar-home .navbar-nav > .open > a:hover,
+.navbar-home .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-home .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+  }
+  .navbar-home .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-home .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-home .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-home .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-home .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-home .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-home .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-home .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-home .navbar-link {
+  color: #777;
+}
+.navbar-home .navbar-link:hover {
+  color: #333;
+}
+.navbar-home .btn-link {
+  color: #777;
+}
+.navbar-home .btn-link:hover,
+.navbar-home .btn-link:focus {
+  color: #333;
+}
+.navbar-home .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-home .btn-link:hover,
+.navbar-home .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-home .btn-link:focus {
+  color: #ccc;
+}
+
+/*
+**************** 섹션 학부모 교사 학생 항목   ***************
+*/
+
+
+/*마우스 오버 효과*/
+
+section.section {
+	padding: 50px 0 50px;
+}
+section.section h4 {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: 46px;
+	font-weight: 700;
+	letter-spacing: -1px;
+}
+
+/*태그별 폰트*/
+.section.blue h4 ,.section.green h4{
+	color: #fcfcfc;
+}
+.section.blue p,.section.green p {
+	color: #f7f7f7;
+}
+
+/*섹션 배경 색*/
+.section.blue {
+  padding-top: 50px;
+  padding-bottom: 50px;
+	background:#A8C8F9;
+}
+
+
+/* 섹션 + ID  */
+
+section#services h2 {
+	font-size: 22px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+	text-align:center;
+}
+section#services p {
+	margin:10px;
+}
+
+
+section#services .service-box {
+	text-align: center;
+	padding: 20px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+/*마우스 올렸을시 번쩍이는 색*/
+section#services .span3:hover {
+	background:#B8D7FF;
+}
+
+section#services .service-box h2 {
+	color: #f7f7f7;
+	font-weight: 700;
+}
+/*마우스 오버 후 번쩍한 후 변하는 색*/
+section#services.section.blue .service-box:hover {
+	background:#90AFFF;
+}
+
+
+/*
+*********************  홈페이지 End  *********************
+*/
+
+/*
+|직업 별
+|-------------------------------------
+| 교사
+|-------------------------------------
+*/
+/* 부트스트랩 색상 수정*/
+.navbar-teacher {
+  background-color:#0C8CFF;
+  /*
+  수정
+  기본 색상
+  #f8f8f8
+  후보
+  #9197B5
+  */
+  border: 0px;
+  border-color: #e7e7e7;
+  font-size: 15px;
+}
+/*브랜드 수정*/
+.navbar-teacher .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar-teacher .navbar-brand:hover,
+.navbar-teacher .navbar-brand:focus {
+  color: #A8C8F9;
+  background-color: transparent;
+}
+.navbar-teacher .navbar-text {
+  color: #777;
+}
+/*기본 색 높이 수정함  굵기와 폰트 수정 할 것*/
+.navbar-teacher .navbar-nav > li > a {
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 40px;
+}
+/*수정 함
+마우스 오버시 색 변경*/
+.navbar-teacher .navbar-nav > li > a:hover,
+.navbar-teacher .navbar-nav > li > a:focus {
+  color: #A8C8F9;
+  background-color: transparent;
+}
+.navbar-teacher .navbar-nav > .active > a,
+.navbar-teacher .navbar-nav > .active > a:hover,
+.navbar-teacher .navbar-nav > .active > a:focus {
+  color: #A8C8F9;
+  background-color: #7A6CCF;
+}
+.navbar-teacher .navbar-nav > .disabled > a,
+.navbar-teacher .navbar-nav > .disabled > a:hover,
+.navbar-teacher .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-teacher .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-teacher .navbar-toggle:hover,
+.navbar-teacher .navbar-toggle:focus {
+  background-color: #A8C8F9;;
+}
+/*수정*/
+.navbar-teacher .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+.navbar-teacher .navbar-collapse,
+.navbar-teacher .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-teacher .navbar-nav > .open > a,
+.navbar-teacher .navbar-nav > .open > a:hover,
+.navbar-teacher .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-teacher .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+  }
+  .navbar-teacher .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-teacher .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-teacher .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-teacher .navbar-link {
+  color: #777;
+}
+.navbar-teacher .navbar-link:hover {
+  color: #333;
+}
+.navbar-teacher .btn-link {
+  color: #777;
+}
+.navbar-teacher .btn-link:hover,
+.navbar-teacher .btn-link:focus {
+  color: #333;
+}
+.navbar-teacher .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-teacher .btn-link:hover,
+.navbar-teacher .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-teacher .btn-link:focus {
+  color: #ccc;
+}
+
+
+/* 뒷 배경 */
+.bluebg{
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%;
+  min-height: 750px;
+  background-color:#e3f2ff;
+}
+
+/*  상단 파랑 바 */
+
+
+.bluedecobar{
+  width: 100%;
+  height: 100px;
+  background-color: #95CDFF;
+}
+
+
+/*
+|-------------------------------------
+| 학부모
+|-------------------------------------
+*/
+
+/*
+|-------------------------------------
+| 학생
+|-------------------------------------
+*/
+
+/*
+|-------------------------------------
+| 기능별
+|-------------------------------------
+*/
