@@ -25,9 +25,9 @@ Auth::routes();
 //앱 로그인
 Route::post('app/login', 'AppLoginController@login');
 
-Route::post('app/getPlan', 'AppRequestController@getPlan');
+Route::get('app/getPlan', 'AppRequestController@getPlan');
 
-Route::post('app/getStudentList', 'AppRequestController@getStudentList');
+Route::get('app/getStudentList', 'AppRequestController@getStudentList');
 
 
 
@@ -57,7 +57,11 @@ Route::resource('notice', 'NoticeController');
 
 // ******************** 설문조사 *********************
 // 설문조사 결과
-Route::get('survey/result', 'SurveyController@result');
+// Route::get('survey/result', 'SurveyController@result');
 
 // 설문조사 리스트, 작성, 열람
 Route::resource('survey', 'SurveyController');
+// index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
+
+Route::resource('survey.respond', 'SurveyRespondController');
+// index(설문보기-학생참여) store(응답저장) show(자기응답보기)
