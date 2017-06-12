@@ -66,26 +66,26 @@ Route::post('survey/write', 'SurveyController@write')->name('survey.write');
 Route::post('survey/view', 'SurveyController@view')->name('survey.view');
 
 // 설문조사 결과
-Route::post('survey/result', 'SurveyController@result')->name('survey.result');
+Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
 
 
 
 // ******************** 콘텐츠 *********************
 // 콘텐츠 메인
-Route::get('contents', 'ContentsController@index')->name('contents');;
+Route::get('contents', 'ContentsController@index')->name('contents');
 
-// 콘텐츠 등록
-Route::get('contents/confirm', 'ContentsController@confirm')->name('contents.confirm');;
+// 콘텐츠 패키지 공유 저장
+Route::post('contents/block', 'ContentsController@block')->name('contents.block');
 
 // 창작마당
 Route::post('contents/share', 'ContentsController@share')->name('contents.share');
 
 // 콘텐츠 상세보기
-Route::post('contents/shareDetail', 'ContentsController@shareDetail')->name('contents.shareDetail');
+Route::get('contents/shareDetail{packageId}', 'ContentsController@shareDetail')->name('contents.shareDetail');
 
 // 콘텐츠 공유하기
 Route::post('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
 
 // 콘텐츠 다운로드
-Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
+Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
 

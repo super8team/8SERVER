@@ -42,7 +42,7 @@ class SurveyController extends Controller
 
         // 쿼리
 
-        return view('survey.write');
+        return view('survey.survey_write');
     }
 
 
@@ -58,9 +58,12 @@ class SurveyController extends Controller
             ->with('survey_id', '');
     }
 
-
-    public function result(Request $request)
+    // 설문조사의 응답 결과
+    public function result($no)
     {
+
+        //no
+        $surveies= DB::table('surveies')->where('');
 
 
 
