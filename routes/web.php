@@ -25,9 +25,9 @@ Auth::routes();
 //앱 로그인
 Route::post('app/login', 'AppLoginController@login');
 
-Route::post('app/getPlan', 'AppRequestController@getPlan');
+Route::get('app/getPlan', 'AppRequestController@getPlan');
 
-Route::post('app/getStudentList', 'AppRequestController@getStudentList');
+Route::get('app/getStudentList', 'AppRequestController@getStudentList');
 
 
 
@@ -87,3 +87,10 @@ Route::post('contents/shareShare', 'ContentsController@shareShare')->name('conte
 
 // 콘텐츠 다운로드
 Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
+
+// *******************  앱 히스토리 *********************
+
+// Route::resource('app/history', 'AppHistoryController');
+
+Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
