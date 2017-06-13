@@ -65,16 +65,16 @@ class SurveyController extends Controller
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
 
-      // for ($i=0; $i<$qCount; $i++) {
-      //   $surveyId = DB::table('survey_articles')->insertGetId([
-      //      'survey' => $surveyId,
-      //      'article' => $,
-      //   ]);
-      // }
+      for ($i=0; $i<$qCount; $i++) {
+        $surveyId = DB::table('survey_articles')->insertGetId([
+           'survey' => $surveyId,
+           'article' => $,
+        ]);
+      }
 
         return view('survey_view', [
           'survey_title' => $newSurveyName,
-          'q_title' => '', // 전체 설문 응답 결과
+          'q_title' => $newSurvey, // 설문지
         ]);
     }
 
