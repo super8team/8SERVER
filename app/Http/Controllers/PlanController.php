@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+<<<<<<< HEAD
+=======
     /**
      * Display a listing of the resource.
      *
@@ -13,92 +15,90 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view('plan.list');
+        return view('plan/plan_list');
     }
+>>>>>>> 79cebf1ebedb7373eaafa3a0fae1ee5f214b6194
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    // 간단 계획
+    public function plan()
     {
-        return view('plan.write');
+
+        return view('plan.plan');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    // 계획 수정
+    public function Modify()
     {
-        //
+        return view('plan.plan_modify');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    // 교사 계획 리스트
+    public function teacherPlanList()
     {
-        //
+
+
+
+        return view('plan.plan_list')->with('plan_title', '')
+                                      ->with('plan_date', '');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    // 학생, 학부모 계획 리스트
+    public function studentParentPlanList()
     {
-        return view('plan.modify');
+        return view('plan.planlist2');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function studentList()
-    {
-        return view('plan.studentList');
-    }
-
-    public function parentList()
-    {
-        return view('plan.parentList');
-    }
-
+    // 서류
     public function sheet()
     {
-        return view('plan.sheet');
+        return view('plan.plan_sheet')->with('plan_title ', '')
+                                       ->with('plan_date', '')
+                                       ->with('teacher_name', '')
+                                       ->with('trip_kind_value', '')
+                                       ->with('attend_class_count', '')
+                                       ->with('attend_student_count	', '')
+                                       ->with('unattend_student_count', '')
+                                       ->with('transpotation ', '')
+                                       ->with('', '')
+                                       ->with('', '')
+                                       ->with('', '')
+                                       ->with('', '');
     }
 
+
+    // 계획 맵
     public function map()
     {
-        return view('plan.map');
+        return view('plan.plan_map');
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
