@@ -32,20 +32,23 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 
 // ******************** 플랜 리스트 *********************
-// 학생 계획 리스트
-Route::get('plan/studentList', 'PlanController@studentList');
+// 간단 계획
+Route::get('plan', 'PlanController@plan')->name('plan');
 
-// 학부모 계획 리스트
-Route::get('plan/parentList', 'PlanController@parentList');
+// 계획 수정
+Route::get('plan/modify', 'PlanController@Modify')->name('plan.modify');
 
-// 교사 서류 작성
-Route::get('plan/sheet', 'PlanController@sheet');
+// 교사 계획 리스트
+Route::get('plan/teacher', 'PlanController@teacherPlanList')->name('plan.teacher');
 
-// 교사 계획 맵
-Route::get('plan/map', 'PlanController@map');
+// 학생, 학부모 계획 리스트
+Route::get('plan/studentParents', 'PlanController@studentParentPlanList')->name('plan.studentParents');
 
-// 교사 계획 리스트, 작성, 수정
-Route::resource('plan', 'PlanController');
+// 서류
+Route::get('plan/sheet', 'PlanController@sheet')->name('plan.sheet');
+
+// 계획 맵
+Route::get('plan/map', 'PlanController@map')->name('plan.map');
 
 
 
