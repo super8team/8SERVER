@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 
 class ContentsController extends Controller
 {
-    public function index(Request $request)
+    public function index($no)
     {
 
+
+        // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
+//        $user = DB::table('users')->where('no', $no)->first();
+
+        $packagesName = DB::table('contents_packages')->where();
+
+
+
+
+
+        return view('blockfactory.block')->with('packages_name', '')
+                                          ->with('packages_id', '')
+                                          ->with('contents_name', '')
+                                          ->with('contents_id', '');
 
     }
 
@@ -140,7 +154,17 @@ class ContentsController extends Controller
 
 
         return view('blockfactory.tool_share_download')->with('choice_contents_name', '')
-                                                        ->with('choice_contents_id', '')
-                                                        ->with('present_package_name', '');
+                                                        ->with('choice_contents_id', '');
+
+
+        $newPackageName = $request->input('new_package_name');
+        $packageName = $request->input('package_name');
+        $packageId = $request->input('package_id');
+        $contenstId = $request->input('contenst_id');
+
+
+
+
+
     }
 }

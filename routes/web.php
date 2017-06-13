@@ -71,7 +71,7 @@ Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result
 
 // ******************** 콘텐츠 *********************
 // 콘텐츠 메인
-Route::get('contents', 'ContentsController@index')->name('contents');
+Route::get('contents{no}', 'ContentsController@index')->name('contents');
 
 // 콘텐츠 패키지 공유 저장
 Route::post('contents/block', 'ContentsController@block')->name('contents.block');
@@ -86,4 +86,4 @@ Route::get('contents/shareDetail{packageId}', 'ContentsController@shareDetail')-
 Route::post('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
 
 // 콘텐츠 다운로드
-Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
