@@ -85,7 +85,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);
@@ -102,7 +102,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);
@@ -117,7 +117,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);

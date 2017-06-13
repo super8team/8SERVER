@@ -100,7 +100,7 @@ Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'Con
 
 // Route::resource('app/history', 'AppHistoryController');
 
-Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+Route::post('app/writeHistroyContent', 'HistroyController@histroyStore')->name('historyStore');
 
 
 // 히스토리 보기
