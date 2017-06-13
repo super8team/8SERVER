@@ -86,4 +86,15 @@ Route::get('contents/shareDetail{packageId}', 'ContentsController@shareDetail')-
 Route::post('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
 
 // 콘텐츠 다운로드
+
 Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
+Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
+
+// *******************  앱 히스토리 *********************
+
+// Route::resource('app/history', 'AppHistoryController');
+
+Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+

@@ -45,100 +45,122 @@ Full Calendar
 
 
  --}}
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    {{-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link href="../public/fullcalendar-3.4.0/fullcalendar.css" rel="stylesheet"/>
     <link href="../public/fullcalendar-3.4.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
     <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/moment.min.js"></script>
     <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="../public/fullcalendar-3.4.0/fullcalendar.js"></script> 
+    <script type="text/javascript" src="../public/fullcalendar-3.4.0/fullcalendar.js"></script> --}}
     {{-- <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/jquery-ui.min/js"></script>--}}
+{{--
+    <link href='../public/x_full_calendar/fullcalendar.css' rel='stylesheet' />
+    <link href='../public/x_full_calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 
+    <script src='../public/x_full_calendar/jquery/jquery-1.10.2.js'></script>
+    <script src='../public/x_full_calendar/jquery/jquery-ui.custom.min.js'></script>
+
+    <script src='../public/x_full_calendar/fullcalendar.js'></script>
+--}}
+
+    <link href='../public/fullcalendar-3.4.0/fullcalendar.min.css' rel='stylesheet' />
+    <link href='../public/fullcalendar-3.4.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='../public/fullcalendar-3.4.0/lib/moment.min.js'></script>
+    <script src='../public/fullcalendar-3.4.0/lib/jquery.min.js'></script>
+    <script src='../public/fullcalendar-3.4.0/fullcalendar.min.js'></script>
     <script type="text/javascript">
     //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
-    $(document).ready(function()
-      {
-        /*
-          date store today date.
-          d store today date.
-          m store current month.
-          y store current year.
-        */
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
+      $(document).ready(function() {
 
-        /*
-          Initialize fullCalendar and store into variable.
-          Why in variable?
-          Because doing so we can use it inside other function.
-          In order to modify its option later.
-        */
+    		$('#calendar').fullCalendar({
+    			header: {
+    				left: 'prev,next today',
+    				center: 'title',
+    				right: 'month,agendaWeek,agendaDay'
+    			},
+    			// defaultDate: '2017-05-12', 이걸 이용하여 날짜 시작일을 설정?
+    			navLinks: true, // can click day/week names to navigate views
+    			selectable: true,
+    			selectHelper: true,
+          firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+    			select: function(start, end) {
+    				var title = prompt('입력 하라...');
+    				var eventData;
+    				if (title) {
+    					eventData = {
+    						title: title,
+    						start: start,
+    						end: end
+    					};
+              // stick? = true
+    					$('#calendar').fullCalendar('renderEvent', eventData, true);
+    				}
+    				$('#calendar').fullCalendar('unselect');
+    			},
+    			editable: true,
+    			eventLimit: true, // allow "more" link when too many events
+    			// events: [
+    			// 	{
+    			// 		title: 'All Day Event',
+    			// 		start: '2017-05-01'
+    			// 	},
+    			// 	{
+    			// 		title: 'Long Event',
+    			// 		start: '2017-05-07',
+    			// 		end: '2017-05-10'
+    			// 	},
+    			// 	{
+    			// 		id: 999,
+    			// 		title: 'Repeating Event',
+    			// 		start: '2017-05-09T16:00:00'
+    			// 	},
+    			// 	{
+    			// 		id: 999,
+    			// 		title: 'Repeating Event',
+    			// 		start: '2017-05-16T16:00:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Conference',
+    			// 		start: '2017-05-11',
+    			// 		end: '2017-05-13'
+    			// 	},
+    			// 	{
+    			// 		title: 'Meeting',
+    			// 		start: '2017-05-12T10:30:00',
+    			// 		end: '2017-05-12T12:30:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Lunch',
+    			// 		start: '2017-05-12T12:00:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Meeting',
+    			// 		start: '2017-05-12T14:30:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Happy Hour',
+    			// 		start: '2017-05-12T17:30:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Dinner',
+    			// 		start: '2017-05-12T20:00:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Birthday Party',
+    			// 		start: '2017-05-13T07:00:00'
+    			// 	},
+    			// 	{
+    			// 		title: 'Click for Google',
+    			// 		url: 'http://google.com/',
+    			// 		start: '2017-05-28'
+    			// 	}
+    			// ]
+    		});
 
-        var calendar = $('#calendar').fullCalendar(
-        {
-          /*
-            header option will define our calendar header.
-            left define what will be at left position in calendar
-            center define what will be at center position in calendar
-            right define what will be at right position in calendar
-          */
-          header:
-          {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-          },
-          /*
-            defaultView option used to define which view to show by default,
-            for example we have used agendaWeek.
-          */
-          defaultView: 'agendaWeek',
-          /*
-            selectable:true will enable user to select datetime slot
-            selectHelper will add helpers for selectable.
-          */
-          selectable: true,
-          selectHelper: true,
-          /*
-            when user select timeslot this option code will execute.
-            It has three arguments. Start,end and allDay.
-            Start means starting time of event.
-            End means ending time of event.
-            allDay means if events is for entire day or not.
-          */
-          select: function (start, end, jsEvent, view) {
-                  do{
-                    var newTitle = prompt('일정제목을 입력 해주세요');
-                    if (newTitle == null) {
-                      break;
-                    }
-                  }while(newTitle == null)
-                  if(newTitle != null){
-                    var allDay = !start.hasTime && !end.hasTime;
-                    var newEvent = new Object();
-                    newEvent.title = newTitle;
-                    newEvent.start = moment(start).format();
-                    newEvent.allDay = false;
-                    $('#calendar').fullCalendar('renderEvent', newEvent);
-                  }
-                },
-          /*
-            editable: true allow user to edit events.
-          */
-          editable: true,
-          /*
-            events is the main option for calendar.
-            for demo we have added predefined events in json object.
-          */
-          events: [
+    	});
 
-          ]
-        });
-
-      });
     </script>
+
     <script>
     //* * * * * * * * * * * * * * * * *  구글 맵스 API  * * * * * * * * * * * * * * * * *
     // $('#myTab day').click(function (e) {
@@ -205,7 +227,7 @@ Full Calendar
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
           var tmpcenter = map.getCenter();
-          document.getElementById("LntLng").append(tmpcenter+"<br>");
+          // document.getElementById("LntLng").append(tmpcenter+"<br>");
           if (places.length == 0) {
             return;
           }
@@ -432,8 +454,6 @@ Full Calendar
         </div> <!-- /.col-lg-4 -->
         <div class="col-sm-8">
           <div class="panel panel-default">
-            <div class="panel-heading">시간 표 넣을 곳
-          </div><!-- /.panel-heading -->
           <div id="calendar"></div>
           </div><!-- /.panel-footer -->
           <div class="col-sm-4">

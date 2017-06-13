@@ -3,23 +3,18 @@
 @section('title','체크 리스트')
 
 @section('content')
-  @php
-    $plan_list    = "http://localhost/Code/8SERVER/public/planlist";
-    $check_write = "http://localhost/Code/8SERVER/public/checkwrite";
-    $check_view  = "http://localhost/Code/8SERVER/public/checkview";
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 체크리스트
-            <a role="button" href="{{$plan_list}}" aria-label="Right Align"
+            <a role="button" href="{{route('plan_list')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{$check_write}}" aria-label="Right Align"
+           <a role="button" href="{{route('check_write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             체크리스트 작성
@@ -38,23 +33,13 @@
               </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
               {{-- 안전사고 예방 체크리스트 --}}
                   <tr>
                     <td>1</td>
                     <td>(기본)안전사고 예방 체크리스트</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$check_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('check_view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>

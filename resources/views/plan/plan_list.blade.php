@@ -11,16 +11,6 @@
   {{--  fufufufufufuck! 페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
   @php
-    $home         = "http://localhost/Code/8SERVER/public/home";
-    $plan         = "http://localhost/Code/8SERVER/public/plan";
-    $plan_modify  = "http://localhost/Code/8SERVER/public/planmodify";
-    $plan_sheet   = "http://localhost/Code/8SERVER/public/sheet";
-    $notice_list  = "http://localhost/Code/8SERVER/public/noticelist";
-    $survey_list  = "http://localhost/Code/8SERVER/public/surveylist";
-    $plan_map     = "http://localhost/Code/8SERVER/public/planmap";
-    $report_list  = "http://localhost/Code/8SERVER/public/reportlist";
-    $staff_list   = "http://localhost/Code/8SERVER/public/stafflist";
-    $check_list   = "http://localhost/Code/8SERVER/public/checklist";
     $planlist_rec = 17;
 
     $planlist_arr['data']['name'] = '소백산 뻐킹 체험학습';
@@ -34,7 +24,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             <a role="button" href="{{$home}}" aria-label="Right Align"
+             <a role="button" href="{{route('main')}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
               뒤로 돌아가기
@@ -50,7 +40,7 @@
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
                 <th>바로가기
-                    <a role="button"  href="{{$plan}}" aria-label="Right Align"
+                    <a role="button"  href="{{route('plan')}}" aria-label="Right Align"
                      class="btn btn-sm btn-default">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
@@ -81,30 +71,29 @@
                     <td>{{$planlist_arr['data']['date']}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$staff_list}}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                      <a role="button" href="{{route('$staff_list')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
-                      {{-- 수 정 버튼만 테스트용으로 get 값 넘기기 설정 --}}
-                      {{-- <a role="button" href="{{"$plan_modify" + "$planid"}}" class="btn btn-sm btn-primary"> --}}
-                      <a role="button" href="{{$plan_modify}}" class="btn btn-sm btn-primary">
+
+                      <a role="button" href="{{route('plan_modify')}}" class="btn btn-sm btn-primary">
                         수정
                       </a>
-                      <a role="button" href="{{$plan_sheet}}" class="btn btn-sm btn-success">
+                      <a role="button" href="{{route('plan_sheet')}}" class="btn btn-sm btn-success">
                         서류작성
                       </a>
-                      <a role="button" href="{{$survey_list}}" class="btn btn-sm btn-info">
+                      <a role="button" href="{{route('survey_list')}}" class="btn btn-sm btn-info">
                         설문조사
                       </a>
-                      <a role="button" href="{{$notice_list}}" class="btn btn-sm btn-warning">
+                      <a role="button" href="{{route('notice_list')}}" class="btn btn-sm btn-warning">
                         가정통신
                       </a>
-                      <a role="button" href="{{$plan_map}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('plan_map')}}" class="btn btn-sm btn-danger">
                         상세 계획
                       </a>
-                      <a role="button" href="{{$check_list}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('check_list')}}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{$report_list}}" class="btn btn-sm btn-danger ">
+                      <a role="button" href="{{route('report_list')}}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
 

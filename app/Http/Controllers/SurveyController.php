@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 
 class SurveyController extends Controller
 {
@@ -55,19 +55,27 @@ class SurveyController extends Controller
     {
       $newSurveyName = $request->input('survey_title');
       $newSurvey = $request->input('q_title');
-      $userno = $request->input();
+      $userno = $request->input('user_id');
+      $qCount = count($newSurvey);
 
-      // DB::table('surveies')->insert([
-      //   'name' => $survey_title,
-      //   'writer' => ,
-      //   'created_at' => ,
-      //   'updated_at' => ,
-      // ]);
+      DB::table('surveies')->insert([
+        'name' => $survey_title,
+        'writer' => $userno,
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
 
-        // return view('survey_view', [
-        //   'survey_title' => $newSurveyName,
-        //   'q_title' => '', // 전체 설문 응답 결과
-        // ]);
+      // for ($i=0; $i<$qCount; $i++) {
+      //   $surveyId = DB::table('survey_articles')->insertGetId([
+      //      'survey' => $surveyId,
+      //      'article' => $,
+      //   ]);
+      // }
+
+        return view('survey_view', [
+          'survey_title' => $newSurveyName,
+          'q_title' => '', // 전체 설문 응답 결과
+        ]);
     }
 
     /**
