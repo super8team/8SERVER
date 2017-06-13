@@ -15,7 +15,6 @@ class NoticeController extends Controller
     //가정통신문 리스트
     public function index()
     {
-
         return view('notice.list');
     }
 
@@ -49,7 +48,7 @@ class NoticeController extends Controller
     public function show($id)
     {
 
-        return view('notice.view');
+        return view('notice.notice_view');
 
     }
 

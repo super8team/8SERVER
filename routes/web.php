@@ -50,6 +50,8 @@ Route::get('plan/sheet', 'PlanController@sheet')->name('plan.sheet');
 // 계획 맵
 Route::get('plan/map', 'PlanController@map')->name('plan.map');
 
+// 앱 디테일플랜
+Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
 
 
 // ******************** 가정 통신문 *********************

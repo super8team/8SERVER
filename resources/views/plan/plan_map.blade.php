@@ -62,13 +62,12 @@ Full Calendar
 
     <script src='../public/x_full_calendar/fullcalendar.js'></script>
 --}}
-
-    <link href='../public/fullcalendar-3.4.0/fullcalendar.min.css' rel='stylesheet' />
-    <link href='../public/fullcalendar-3.4.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-    <script src='../public/fullcalendar-3.4.0/lib/moment.min.js'></script>
-    <script src='../public/fullcalendar-3.4.0/lib/jquery.min.js'></script>
-    <script src='../public/fullcalendar-3.4.0/fullcalendar.min.js'></script>
-    <script type="text/javascript">
+    <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
+    <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
+    <script src  = "{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
+    <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script>
+    <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
+    <script type = "text/javascript">
     //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
       $(document).ready(function() {
 
