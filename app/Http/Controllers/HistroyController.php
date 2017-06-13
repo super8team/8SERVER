@@ -19,7 +19,7 @@ class HistroyController extends Controller
       $weather  = $request->input('weather');
 
       $user     = $request->input('userId');
-      $user     = "Illum"; // teacher 더미
+      // $user     = "Illum"; // teacher 더미
       $user     = DB::table('users')->where('id', $user)->first();
 
       $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
@@ -34,11 +34,11 @@ class HistroyController extends Controller
         ]);
       }
 
-      DB::table('history_substance')->insert([
+      DB::table('history_substances')->insert([
         'history' => $historyNo,
         'place'   => $placeNo,
         'substance' => $content,
-        'weather' => $weather,
+        'wheather' => $weather,
       ]);
     }
 
@@ -69,7 +69,7 @@ class HistroyController extends Controller
         $historyIndex++;
       }
 
-      // dd($result);
+      dd($result);
       return json_encode($result);
     }
 }
