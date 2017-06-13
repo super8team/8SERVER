@@ -18,6 +18,13 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::get('/test22',function(){
+  return view('plan.test22');
+});
+
+Route::get('/get',function(){
+  return view('plan.get-event_dnweb');
+});
 
 //웹 로그인
 Auth::routes();
