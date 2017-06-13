@@ -69,7 +69,7 @@ class HistroyController extends Controller
         $historyIndex++;
       }
 
-      dd($result);
+      // dd($result);
       return json_encode($result);
     }
 }
