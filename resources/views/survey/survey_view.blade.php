@@ -15,7 +15,7 @@
             <div class="well well-sm col-sm-4">
               {{$survey_title}}
             </div>
-            <a role="button" class="btn btn-default pull-right" href="http://localhost/Code/8SERVER/public/surveylist" aria-label="Right Align"
+            <a role="button" class="btn btn-default pull-right" href="{{route('survey.list')}}" aria-label="Right Align"
             class="btn btn-sm btn-default ">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              리스트로 돌아가기

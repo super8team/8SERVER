@@ -34,10 +34,10 @@
 						<span class="clearfix"></span>
 					</div>
 					<div class="panel-body">
-						<form class="forms-wrapper hidden" action="route(' ???? ')" method="post" id="check_form">
+						{{-- <form class="forms-wrapper hidden" action="route(' ???? ')" method="post" id="check_form">
 							<input type="text" class="hidden" value="" name="schoolplan_no" id="schooltrip_plan_id">
-						</form>
-						<form class="forms-wrapper"  method="post">
+						</form> --}}
+						<form class="forms-wrapper" action="{{route('plan.list')}}" method="post">
 							<div class="row form-group" >
 								<input type="text" class="hidden" value="NEW" name="WROKMODE_NAME" id="WORKMODE_ID">
 								<div class="btn-group pull-right">

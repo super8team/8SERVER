@@ -13,7 +13,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view('plan.list');
+        return view('plan/plan_list');
     }
 
     /**

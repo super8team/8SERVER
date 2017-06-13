@@ -121,7 +121,7 @@
         });
 
         $(document).ready("click","#submit",function() {
-            document.survey_write_submit.action = "http://localhost/Code/8SERVER/public/surveyview";
+            document.survey_write_submit.action = "route('survey.result')";
             document.survey_write_submit.submit();
       });
 
@@ -132,7 +132,7 @@
   </div>
   <div class="bluebg">
     <div class="container">
-      <form class="form-horizontal" name="survey_write_submit" action="http://localhost/Code/8SERVER/public/surveyview"  method="POST">
+      <form class="form-horizontal" name="survey_write_submit" action="route('survey.view')"  method="POST">
         {{ csrf_field() }}
         <div class="panel panel-default">
           <div class="panel-heading" style="height:55px;">

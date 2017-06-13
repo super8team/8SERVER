@@ -68,7 +68,6 @@ Route::resource('survey.respond', 'SurveyRespondController');
 Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
 
 
-
 // ******************** 콘텐츠 *********************
 // 콘텐츠 메인
 Route::get('contents', 'ContentsController@index')->name('contents');
