@@ -103,3 +103,8 @@ Route::post('app/writeHistroyContent', 'HistroyController@histroyStore')->name('
 
 // 히스토리 보기
 Route::post('app/getHistoryContent', 'HistroyController@getHistoryContent')->name('history2');
+
+
+// *******************  앱 체크리스트 *********************
+
+Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
