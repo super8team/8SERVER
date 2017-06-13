@@ -14,6 +14,7 @@ class AppRequestController extends Controller
     public function getStudentList (Request $request) {
         $inputId = $request->input('userID');
         // $inputId = 'Illum' ; // teacher 임의값
+
        $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
@@ -50,6 +51,8 @@ class AppRequestController extends Controller
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
       //  $userid = 'Illum' ; // teacher 임의값
+      // $userid = 'dicta' ; // std 임의값
+      // $userid = 'desmond21' ; // parents 임의값
        $user = DB::table('users')->where('id', $userid)->first();
 
        switch ($user->type) {
@@ -102,8 +105,8 @@ class AppRequestController extends Controller
       // $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
 
       $child = DB::table('students')->where('parents', $parents->no)->first();
-      $plan = DB::table('groups')->where('joiner', $child->no)->orderBy('plan', 'desc')->first();
-      $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+      $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'desc')->first();
+      $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
       $result["gps"] = [];
@@ -117,13 +120,13 @@ class AppRequestController extends Controller
           // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
           $placeIndex++;
       }
-
+      // dd($result);
       return $result;
     }
 
     private function getStudentPlan($student) {
       $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'desc')->first();
-      $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+      $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
       $result["gps"] = [];
@@ -137,7 +140,7 @@ class AppRequestController extends Controller
           // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
           $placeIndex++;
       }
-
+      // dd($result);
       return $result;
     }
 }
