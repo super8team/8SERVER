@@ -20,7 +20,7 @@ class UpdateHistorySubstancesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *du
      * @return void
      */
     public function down()

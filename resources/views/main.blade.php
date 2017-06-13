@@ -45,7 +45,7 @@
               <img class="img-circle" src="../public/img/teacher01.jpg" alt="Generic placeholder image" style="width: 200px; height: 200px;">
               <h2>교사</h2>
               <p>서류 자동선택 현장체험학습 계획 만들기</p>
-              <p><a class="btn btn-default" href="{{$planlist}}" role="button">상세보기 &raquo;</a></p>
+              <p><a class="btn btn-default" href="{{route('plan.index')}}" role="button">상세보기 &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->

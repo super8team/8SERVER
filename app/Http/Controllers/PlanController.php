@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+<<<<<<< HEAD
+=======
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('plan/plan_list');
+    }
+>>>>>>> 79cebf1ebedb7373eaafa3a0fae1ee5f214b6194
 
 
     // 간단 계획

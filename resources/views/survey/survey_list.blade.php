@@ -3,10 +3,6 @@
 @section('title','설문조사 리스트')
 
 @section('content')
-  @php
-    $survey_write = "http://localhost/Code/8SERVER/public/surveywrite";
-    $survey_view  = "http://localhost/Code/8SERVER/public/surveyview"
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
@@ -18,7 +14,7 @@
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{$survey_write}}" aria-label="Right Align"
+           <a role="button" href="{{route('survey.write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             설문조사 작성
@@ -52,7 +48,7 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$survey_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('survey.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
