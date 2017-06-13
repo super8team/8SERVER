@@ -49,26 +49,94 @@ class AppRequestController extends Controller
     public function getPlan (Request $request) {
         $userid = $request->input('userID');
       //  $userid = 'Illum' ; // teacher 임의값
-       $userid = DB::table('users')->where('id', $userid)->value('no');
+       $user = DB::table('users')->where('id', $userid)->first();
 
+       switch ($user->type) {
+         case 'student':
+           json_encode(getStudentPlan($user));
+           break;
 
-        $plan = DB::table('field_learning_plans')->where('teacher', $userid)->first();
-        $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+         case 'parents':
+           json_encode(getParentsPlan($user));
+           break;
 
-        $result = [];
-        $result["gps"] = [];
+         case 'teacher':
+           json_encode(getTeacherPlan($user));
+           break;
 
-        $placeIndex = 1;
-        foreach ($details as $detail) {
-            $place = DB::table('places')->where('no', $detail->place)->first();
-            $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
-            // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
-            // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
-            // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
-            $placeIndex++;
-        }
-        // dd($result);
-        // dd(json_encode($result));
-        return json_encode($result);
+         default:
+           # code...
+           break;
+       }
+    }
+
+    private function getTeacherPlan($teacher) {
+      $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
+      $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+
+      return $result;
+    }
+
+    private function getParentsPlan($parents) {
+
+      //  자식이 여러명인 경우, 우선 보류
+      // $children = DB::table('students')->where('parents', $parents->no)->get();
+      // foreach ($children as $child) {
+      //   $plan = DB::table('groups')->where('joiner', $child->no)->orderBy('plan', 'desc')->first();
+      // }
+
+      // $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
+
+      $child = DB::table('students')->where('parents', $parents->no)->first();
+      $plan = DB::table('groups')->where('joiner', $child->no)->orderBy('plan', 'desc')->first();
+      $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+
+      return $result;
+    }
+
+    private function getStudentPlan($student) {
+      $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'desc')->first();
+      $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+
+      return $result;
     }
 }
