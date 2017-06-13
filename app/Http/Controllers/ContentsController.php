@@ -26,6 +26,8 @@ class ContentsController extends Controller
 
     }
 
+
+    // 공유하기 페이지에서 나오는 항목들을 서버로 넘김 -> redirect 메인
     public function block(Request $request)
     {
         $packageImg = $request->input('package_img');
