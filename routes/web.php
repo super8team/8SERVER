@@ -104,7 +104,7 @@ Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
 
 
 // 히스토리 보기
-Route::post('app/getHistoryContent', 'HistroyController@getHistoryContent');
+Route::post('app/getHistoryContent', 'HistroyController@getHistoryContent')->name('getHistoryContent');
 
 
 // *******************  앱 체크리스트 *********************
