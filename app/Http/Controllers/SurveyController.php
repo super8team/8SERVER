@@ -58,7 +58,7 @@ class SurveyController extends Controller
       $userno = $request->input('user_id');
       $qCount = count($newSurvey);
 
-      DB::table('surveies')->insert([
+      $surveyId = DB::table('surveies')->insertGetId([
         'name' => $survey_title,
         'writer' => $userno,
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -66,10 +66,21 @@ class SurveyController extends Controller
       ]);
 
       for ($i=0; $i<$qCount; $i++) {
-        $surveyId = DB::table('survey_articles')->insertGetId([
+        $articleId = DB::table('survey_articles')->insertGetId([
            'survey' => $surveyId,
-           'article' => $,
+           'article' => $newSurvey[$i][1],
+           'type' => $newSurvey[$i][0],
         ]);
+
+        if ($newSurvey[$i][0] == 'obj') {
+          $answerCount = count($newSurvey[$i][2]);
+          for($j=0; $j<$answerCount; $j++) {
+            $surveyId = DB::table('survey_answers')->insertGetId([
+               'survey_article' => $articleId,
+               'substance' => $newSurvey[$i][2][$j],
+            ]);
+          }
+        }
       }
 
         return view('survey_view', [
