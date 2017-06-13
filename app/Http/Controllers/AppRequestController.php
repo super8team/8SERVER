@@ -18,6 +18,7 @@ class AppRequestController extends Controller
        $inputId = DB::table('users')->where('id', $inputId)->value('no');
 
         $school = DB::table('works')->where('teacher', $inputId)->first();
+        // dd($school);
         $school = DB::table('schools')->where('no', $school->school)->first();
 
         $result = array('school' => array());

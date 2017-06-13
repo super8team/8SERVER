@@ -6,7 +6,7 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <form class="form" action="{{-- route(notice_write) --}}">
+      <form class="form" action="{{ route('notice.create') }}">
         <div class="panel panel-default">
           <div class="panel-heading" style="height:55px;">
             <div class="form-group">

@@ -50,6 +50,8 @@ Route::get('plan/sheet', 'PlanController@sheet')->name('plan.sheet');
 // 계획 맵
 Route::get('plan/map', 'PlanController@map')->name('plan.map');
 
+// 앱 디테일플랜
+Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
 
 
 // ******************** 가정 통신문 *********************
@@ -98,4 +100,13 @@ Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'Con
 
 // Route::resource('app/history', 'AppHistoryController');
 
-Route::get('app/writeHistroyContent', 'HistroyController@histroyStore');
+Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+
+
+// 히스토리 보기
+Route::post('app/getHistoryContent', 'HistroyController@getHistoryContent');
+
+
+// *******************  앱 체크리스트 *********************
+
+Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
