@@ -16,7 +16,6 @@
     $planlist_arr['data']['name'] = '소백산  체험학습';
     $planlist_arr['data']['date'] = '2017/05/06';
     $planid = "?planid="+ $planlist_arr['data']['id'] = 1;
-
   @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
@@ -24,13 +23,12 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             <a role="button" href="{{route('main')}}" aria-label="Right Align"
+             {{-- <a role="button" href="{{route('main')}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
-              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+              <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
               뒤로 돌아가기
-            </a>
+            </a> --}}
           </h3>
-
         </div>
         <div class="panel-body">
           <table class="table table-bordered table-hover">
@@ -40,7 +38,7 @@
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
                 <th>바로가기
-                    <a role="button"  href="{{route('plan')}}" aria-label="Right Align"
+                    <a role="button"  href="{{route('plan.teacher')}}" aria-label="Right Align"
                      class="btn btn-sm btn-default">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
@@ -64,36 +62,34 @@
                     수정
                   </a>
               @endforeach --}}
-                @if ($planlist_arr['data']['name'] != null)
                   <tr>
                     <td>{{$count+1}}</td>
                     <td>{{$planlist_arr['data']['name']}}</td>
                     <td>{{$planlist_arr['data']['date']}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('$staff.list')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                      <a role="button" href="{{--route('$staff.list')--}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
-
                       <a role="button" href="{{route('plan.modify')}}" class="btn btn-sm btn-primary">
                         수정
                       </a>
                       <a role="button" href="{{route('plan.sheet')}}" class="btn btn-sm btn-success">
                         서류작성
                       </a>
-                      <a role="button" href="{{route('survey.list')}}" class="btn btn-sm btn-info">
+                      <a role="button" href="{{ route('survey.index')}}" class="btn btn-sm btn-info">
                         설문조사
                       </a>
-                      <a role="button" href="{{route('notice.list')}}" class="btn btn-sm btn-warning">
+                      <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-warning">
                         가정통신
                       </a>
                       <a role="button" href="{{route('plan.map')}}" class="btn btn-sm btn-danger">
                         상세 계획
                       </a>
-                      <a role="button" href="{{route('check.list')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{--route('check.list')--}}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{route('report.list')}}" class="btn btn-sm btn-danger ">
+                      <a role="button" href="{{--route('report.list')--}}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
 
@@ -124,33 +120,6 @@
                       </div>
                     </td>
                  </tr>
-                @else
-                  <tr>
-                    <td>{{$count+1}}</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{----}}" aria-label="Left Align" class="btn btn-sm btn-default">
-                        계획 수정
-                      </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-primary">
-                        서류 작성
-                      </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-success">
-                        설문조사
-                      </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-info">
-                        상세 계획작성
-                      </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-warning">
-                        콘텐츠 제작
-                      </a>
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger">
-                        폭파
-                      </a>
-                    </td>
-                  </tr>
-                @endif
             @endfor
           </tbody>
           </table>
