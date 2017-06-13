@@ -27,18 +27,19 @@ class AppRequestController extends Controller
         // dd($grade_classes);
 
         foreach ($grade_classes as $grade) {
-          if($grade->grade != '1학년') continue;
-            $result['school']['class'.str_split($grade->class, 1)[0]] = array();
+          $result['school']['class'.str_split($grade->class, 1)[0]] = array();
 
-                $students = DB::table('students')->where('grade_class', $grade->no)->get();
+              $students = DB::table('students')->where('grade_class', $grade->no)->get();
+              // dd($students);
+              $stdIndex = 1;
+              foreach ($students as $student) {
+                  $user = DB::table('users')->where('no', $student->student)->first();
+                  $result['school']['class'.$grade->class]["student".$stdIndex] = ["id"=>$user->id, "name"=>$user->name];
+                  // array_push($result['school']['class'.str_split($grade->class, 1)[0]], ["student" => ["id"=>$user->id, "name"=>$user->name]]);
+                  // ["studentId" => $user->id, "studentName" => $user->name]);
 
-                $stdIndex = 1;
-                foreach ($students as $student) {
-                    $user = DB::table('users')->where('no', $student->student)->first();
-                    $result['school']['class'.str_split($grade->class, 1)[0]] =["student".$stdIndex => ["id"=>$user->id, "name"=>$user->name]];
-                    // array_push($result['school']['class'.str_split($grade->class, 1)[0]], ["student" => ["id"=>$user->id, "name"=>$user->name]]);
-                    // ["studentId" => $user->id, "studentName" => $user->name]);
-                }
+                  $stdIndex++;
+              }
         }
 
         //  dd($result);
@@ -53,15 +54,15 @@ class AppRequestController extends Controller
 
        switch ($user->type) {
          case 'student':
-           json_encode(getStudentPlan($user));
+           return json_encode($this->getStudentPlan($user));
            break;
 
          case 'parents':
-           json_encode(getParentsPlan($user));
+           return json_encode($this->getParentsPlan($user));
            break;
 
          case 'teacher':
-           json_encode(getTeacherPlan($user));
+           return json_encode($this->getTeacherPlan($user));
            break;
 
          default:
@@ -71,7 +72,7 @@ class AppRequestController extends Controller
     }
 
     private function getTeacherPlan($teacher) {
-      $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
+      $plan = DB::table('field_learning_plans')->where('teacher', $teacher->no)->first();
       $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
 
       $result = [];
@@ -86,7 +87,7 @@ class AppRequestController extends Controller
           // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
           $placeIndex++;
       }
-
+      // dd($result);
       return $result;
     }
 
