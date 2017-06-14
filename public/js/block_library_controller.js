@@ -60,6 +60,7 @@ BlockLibraryController = function(blockLibraryName, opt_blockLibraryStorage) {
   this.packageBasket = new Array();
   this.packageNumber = 0;
   this.packageArrayKey = 0;
+  this.current_xml;
   // this.test();
 };
 
@@ -84,42 +85,42 @@ BlockLibraryController.prototype.getCurrentBlockType = function() {
  */
 BlockLibraryController.prototype.removeFromBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
-  console.log('삭제');
   console.log(blockType);
   var parent        =  document.getElementById('dropdownDiv_blockLib');
   var child_node    =  document.getElementById('dropdownDiv_blockLib').childNodes;
-
+  var del;
   for(var i = 0 ; i<child_node.length ; i++){
-      console.log(parent[i]);
-
-      if(blockType == child_node[i].textContent){
-        console.log(child_node[i].textContent);
-        parent.removeChild(child_node[i]);
+      console.log(child_node[i]);
+      if(child_node[i].textContent == blockType){
+        console.log(child_node[i]);
+        sessionStorage.removeItem(blockType);
+        this.storage.removeBlock(child_node[i],blockType);
       }
   }
-  this.storage.removeBlock(blockType);
+
+  console.log('삭제!!');
+  // this.storage.removeBlock(blockType);
   this.storage.saveToLocalStorage();
-  this.populateBlockLibrary();
   this.view.updateButtons(blockType, false, false);
   window.href='/block1';
 };
-BlockLibraryController.prototype.removeFromBlockLibrary2 = function() {
-  var blockType = this.getCurrentBlockType();
-}
+
 /**
  * Updates the workspace to show the block user selected from library
  * @param {string} blockType Block to edit on block factory.
  */
  BlockLibraryController.prototype.openBlock2 = function(xml) {
-
+   console.log(xml);
+   console.log('여기176');
    var xmlDoc = $.parseXML(xml);
    var mainXml = xmlDoc.firstChild;
    var xmlText         = new XMLSerializer().serializeToString(mainXml);
-
+   this.current_xml         = xmlText;
    var content_xml     = document.createElement("INPUT");
    content_xml.setAttribute("type","text");
    content_xml.setAttribute("class","contents_xml");
    content_xml.setAttribute("value",xmlText);
+   content_xml.setAttribute("hidden",true);
 
    var parentDiv       = document.getElementById('packageList');
    parentDiv.appendChild(content_xml);
@@ -129,12 +130,29 @@ BlockLibraryController.prototype.removeFromBlockLibrary2 = function() {
    BlockFactory.mainWorkspace.clearUndo();
   //  FactoryUtils.getBlockCode();
  }
+BlockLibraryController.prototype.clickBlock = function(blockType) {
+  if (blockType) {
+    console.log(blockType);
+    var xml = this.storage.getBlockXml(blockType);      // xml - object
+    console.log(xml);
+    var xmlText         = new XMLSerializer().serializeToString(xml);
+    // content_xml.setAttribute("hidden",true);
+
+    //string -> object 로 변환하는 과정  // mainworkspace에는 xml이 객체 형태로 들어가야 됨!!!
+    xmlText = $.parseXML(xmlText);
+    xmlText = xmlText.firstChild;
+    BlockFactory.mainWorkspace.clear();
+    Blockly.Xml.domToWorkspace(xmlText, BlockFactory.mainWorkspace);
+    BlockFactory.mainWorkspace.clearUndo();
+  }
+}
 
 BlockLibraryController.prototype.openBlock = function(blockType) {
   if (blockType) {
     console.log(blockType);
     var xml = this.storage.getBlockXml(blockType);      // xml - object
     console.log(xml);
+    console.log('여기open');
     // var xmlText = new XMLSerializer().serializeToString(xml);
     // var xmlTextNode = document.createTextNode(xmlText);
     // var parentDiv = document.getElementById('xmlinfor');
@@ -147,10 +165,12 @@ BlockLibraryController.prototype.openBlock = function(blockType) {
     content_xml.setAttribute("type","text");
     content_xml.setAttribute("class","contents_xml");
     content_xml.setAttribute("value",xmlText);
-    // content_xml.setAttribute("id",'testtest');
-    // content_xml.setAttribute("hidden",true);
+    content_xml.setAttribute("name","contents_xml");
+    content_xml.setAttribute("hidden",true);
 
-    var parentDiv       = document.getElementById('packageList');
+    var parentDiv       = document.getElementById('dropdown_'+blockType);
+    // var parentDiv       = document.getElementById('dropdownDiv_blockLib');
+
     parentDiv.appendChild(content_xml);
     console.log(content_xml);
     console.log(typeof(xmlText));
@@ -210,7 +230,7 @@ BlockLibraryController.prototype.openBlock = function(blockType) {
     BlockFactory.mainWorkspace.clear();
     Blockly.Xml.domToWorkspace(xmlText, BlockFactory.mainWorkspace);
     BlockFactory.mainWorkspace.clearUndo();
-    // FactoryUtils.getBlockCode();
+    FactoryUtils.getBlockCode(blockType);
   } else {
     BlockFactory.showStarterBlock();
     this.view.setSelectedBlockType(null);
@@ -294,15 +314,13 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   }
   // Create block XML.
   var xmlElement = goog.dom.createDom('xml');
-  var block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
-  console.log(xmlElement);
-  console.log(block);
-
+  var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
 
   // Do not add option again if block type is already in library.
   if (!this.has(blockType)) {
-    this.view.addOption(blockType, true, true);
+    console.log('call addoption');
+    this.view.addOption(blockType, true, false);
   }
 
   // Save block.
@@ -311,6 +329,7 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
 
   // Show saved block without other stray blocks sitting in Block Factory's
   // main workspace.
+  console.log('call openblock');
   this.openBlock(blockType);
 
   // Add select handler to the new option.
@@ -324,7 +343,6 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
  */
 BlockLibraryController.prototype.has = function(blockType) {
   var blockLibrary = this.storage.blocks;
-  console.log("zzz");
   return (blockType in blockLibrary && blockLibrary[blockType] != null);
 };
 
@@ -337,9 +355,28 @@ BlockLibraryController.prototype.populateBlockLibrary = function() {
   var blockLibrary = this.storage.blocks;
   console.log(blockLibrary);
   for (var blockType in blockLibrary) {
-    console.log(blockType);
-    this.view.addOption(blockType, false);
+
+    console.log(blockLibrary[blockType]);
+    console.log(typeof(blockLibrary[blockType]));
+    this.view.addOption(blockType, false,blockLibrary[blockType]);
+    var parent   = document.getElementById('dropdown_'+blockType);
+    var myungse  = document.createElement("INPUT");
+    myungse.setAttribute("type","text");
+    myungse.setAttribute("class","block_myungse");
+    //명세
+    myungse.setAttribute("value",sessionStorage.getItem(blockType));
+    myungse.setAttribute("name",'block_myungse');
+    myungse.setAttribute("hidden",true);
+    parent.appendChild(myungse);
+
+    console.log('세션');
+    // sessionStorage.setItem(blockType, this.block_code);
+    console.log(sessionStorage.getItem(blockType));
+    // var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+    // var code      = FactoryUtils.formatJson_(blockType, rootBlock);
+    // console.log(code);
   }
+
   console.log("call addOptionSelectHandlers");
   this.addOptionSelectHandlers();
 };
@@ -349,7 +386,6 @@ BlockLibraryController.prototype.populateBlockLibrary = function() {
  * @return {Object} Object mapping block type to XML text.
  */
 BlockLibraryController.prototype.getBlockLibrary = function() {
-  console.log("^^");
   return this.storage.getBlockXmlTextMap();
 };
 
@@ -369,6 +405,7 @@ BlockLibraryController.prototype.getBlockXml = function(blockType) {
 BlockLibraryController.prototype.setBlockLibraryStorage
     = function(blockLibStorage) {
   this.storage = blockLibStorage;
+  console.log("this.storage"+this.storage);
 };
 
 /**
@@ -409,7 +446,16 @@ BlockLibraryController.prototype.setNoneSelected = function() {
  * knowing that it will cause them to lose their changes.
  * @return {boolean} Whether or not to proceed.
  */
- BlockLibraryController.prototype.viewContent = function(value,obj) {
+ BlockLibraryController.prototype.viewContent = function(value) {
+   // Assign a click handler to each block option.
+  //  var proceedWithUnsavedChanges = this.warnIfUnsavedChanges();
+  //  if (!proceedWithUnsavedChanges) {
+  //    return;
+  //  }
+   this.setSelectedAndOpen_(value);
+
+ };
+ BlockLibraryController.prototype.viewContent_2 = function(value,obj) {
    // Assign a click handler to each block option.
   //  var proceedWithUnsavedChanges = this.warnIfUnsavedChanges();
   //  if (!proceedWithUnsavedChanges) {
@@ -436,11 +482,10 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
   // Click handler for a block option. Sets the block option as the selected
   // option and opens the block for edit in Block Factory.
   var setSelectedAndOpen_ = function(blockOption) {
-
     var blockType = blockOption.textContent;
     self.view.setSelectedBlockType(blockType);
     console.log("setSelectedAndOpen_");
-    self.openBlock(blockType);
+    self.clickBlock(blockType);
     // The block is saved in the block library and all changes have been saved
     // when the user opens a block from the block library dropdown.
     // Thus, the buttons show up as a disabled update button and an enabled
@@ -451,13 +496,6 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
     blocklyFactory.closeModal();
   };
 
-  // var setSelectedAndOpen_2 = function(blockOption,value) {
-  //   var blockType = blockOpion.textContent;
-  //   self.view.setSelectedBlockType(blockType);
-  //   self.openBlock2(value);
-  //   self.view.updateButtons(blockType,true,true);
-  //   blockFactory.closeModal();
-  // }
 
   // Returns a block option select handler.
     // var viewContent_ = function(value) {
@@ -491,10 +529,7 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
   console.log(blockOption);
   // Use an additional closure to correctly assign the tab callback.
 
-  // document.getElementById('test').addEventListener('click',
-  // viewContent_(blockType));
-
-
+   // viewContent_(blockType));
   // document.getElementById('dropdownDiv_blockLib').addEventListener('click',
   //   function(e){
   //       var click_content = e.target.getAttribute('id');
@@ -524,6 +559,20 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
  * Add select handlers to each option to update the view and the selected
  * blocks accordingly.
  */
+ BlockLibraryController.prototype.setSelectedAndOpen_ = function(blockType) {
+  //  var blockType = blockOption.textContent;
+   this.view.setSelectedBlockType(blockType);
+   console.log("setSelectedAndOpen_");
+   this.clickBlock(blockType);
+   // The block is saved in the block library and all changes have been saved
+   // when the user opens a block from the block library dropdown.
+   // Thus, the buttons show up as a disabled update button and an enabled
+   // delete.
+   console.log("setSelectedAndOpen_ AFTER");
+   console.log(blockType);
+   this.view.updateButtons(blockType, true, true);
+   blocklyFactory.closeModal();
+ };
 BlockLibraryController.prototype.setSelectedAndOpen_2 = function(blockOption,value) {
   var blockType = value.textContent;
   this.view.setSelectedBlockType(blockType);

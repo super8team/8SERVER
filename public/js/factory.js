@@ -142,7 +142,7 @@ BlockFactory.updateLanguage = function() {
   var code = FactoryUtils.getBlockDefinition(blockType, rootBlock, format,
       BlockFactory.mainWorkspace);
       console.log("제일 마지막 업데이트 구문이네요1");
-  FactoryUtils.injectCode(code, 'languagePre');
+  // FactoryUtils.injectCode(code, 'languagePre');
   BlockFactory.updatePreview();
 };
 
@@ -153,7 +153,7 @@ BlockFactory.updateLanguage = function() {
 BlockFactory.updateGenerator = function(block) {
   var language = document.getElementById('language').value;
   var generatorStub = FactoryUtils.getGeneratorStub(block, language);
-  FactoryUtils.injectCode(generatorStub, 'generatorPre');
+  // FactoryUtils.injectCode(generatorStub, 'generatorPre');
 };
 
 /**
