@@ -31,7 +31,7 @@ goog.provide('BlockLibraryView');
 
 goog.require('goog.dom');
 goog.require('goog.dom.classlist');
-
+goog.require('FactoryUtils');
 
 /**
  * BlockLibraryView Class
@@ -60,27 +60,65 @@ var BlockLibraryView = function() {
  *    the dropdown.
  */
 
-BlockLibraryView.prototype.addOption = function(blockType, selected) {
+BlockLibraryView.prototype.addOption = function(blockType, selected,xml) {
   // Create option.
+  console.log('여기');
   console.log(blockType);
   console.log(selected);
+  //화면에 블럭을 추가 할때 실행되는
+  if(xml){
+      var option = goog.dom.createDom('button', {
+        'id': 'dropdown_' + blockType,
+        'class': 'content_list',
+        'style': 'margin-left:8px;',
+      }, blockType);
 
-  var option = goog.dom.createDom('button', {
-    'id': 'dropdown_' + blockType,
-    'class': 'content_list',
-    'style': 'margin-left:8px;',
-  }, blockType);
+      // Add option to dropdown.
+      this.dropdown.appendChild(option);
 
-  console.log(option);
-  // Add option to dropdown.
-  this.dropdown.appendChild(option);
-  this.optionMap[blockType] = option;
+      //불러온 블럭에다가 xml 코드 불러옴!!
+      var parentDiv       = document.getElementById('dropdown_'+blockType);
+      var content_xml     = document.createElement("INPUT");
+      content_xml.setAttribute("type","text");
+      content_xml.setAttribute("class","contents_xml");
+      content_xml.setAttribute("value",xml);
+      content_xml.setAttribute("name",'contents_xml');
+      content_xml.setAttribute("hidden",true);
 
-  // Select the block.
-  if (selected) {
-    this.setSelectedBlockType(blockType);
-  }
+      parentDiv.appendChild(content_xml);
 
+      this.optionMap[blockType] = option;
+      // var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+      // var code      = FactoryUtils.formatJson_(blockType, rootBlock);
+      // console.log(code);
+      //불러온 블럭에다가 명세 불러옴!!
+      // var myungse         = FactoryUtils.getBlockCode(blockType);
+      // var block_myungse   = document.createElement("INPUT");
+      // block_myungse.setAttribute("type","text");
+      // block_myungse.setAttribute("class","block_myungse");
+      // block_myungse.setAttribute("value",myungse);
+      // parentDiv.appendChild(content_xml);
+      // Select the block.
+      if (selected) {
+        this.setSelectedBlockType(blockType);
+      }
+    }else{
+      var option = goog.dom.createDom('button', {
+        'id': 'dropdown_' + blockType,
+        'class': 'content_list',
+        'style': 'margin-left:8px;',
+      }, blockType);
+
+      this.dropdown.appendChild(option);
+
+      // this.dropdown.appendChild(content_xml);
+      this.optionMap[blockType] = option;
+
+      // Select the block.
+      if (selected) {
+        this.setSelectedBlockType(blockType);
+      }
+    }
 };
 
 /**
@@ -141,7 +179,7 @@ BlockLibraryView.prototype.updateButtons =
       this.saveButton.textContent = '저장';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
-      this.updateButton.disabled = false;
+      // this.updateButton.disabled = false;
     } else {
       // Block type has already been saved. Disable the save button unless the
       // there are unsaved changes (checked below).

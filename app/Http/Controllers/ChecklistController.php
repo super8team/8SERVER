@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\DB;
 class ChecklistController extends Controller
 {
 
+    public function index()
+    {
+        return view('check.list');
+    }
+
+    public function write()
+    {
+        return view('check.write');
+    }
+
+    public function view()
+    {
+        return view('check.view');
+    }
+
+
 //   getCheckList
 // checkList { check1 { title : bigsort : smallsort : substance}
 //                      check2 { title : ......

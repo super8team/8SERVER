@@ -86,12 +86,12 @@ AppController.EXPORTER = 'EXPORTER';
  * Block Factory. Expects user to upload a single file of JSON mapping each
  * block type to its XML text representation.
  */
-AppController.prototype.test = function() {
 
-}
  AppController.prototype.importBlockLibraryFromFile = function() {
   var self = this;
   var files = document.getElementById('files');
+  console.log('클릭');
+
   // If the file list is empty, the user likely canceled in the dialog.
   if (files.files.length > 0) {
     // The input tag doesn't have the "multiple" attribute
@@ -103,11 +103,13 @@ AppController.prototype.test = function() {
     // read.
     fileReader.addEventListener('load', function(event) {
       var fileContents = event.target.result;
+      console.log(fileContents);
       // Create empty object to hold the read block library information.
       var blockXmlTextMap = Object.create(null);
       try {
         // Parse the file to get map of block type to XML text.
         blockXmlTextMap = self.formatBlockLibraryForImport_(fileContents);
+        console.log(blockXmlTextMap);
       } catch (e) {
         var message = 'Could not load your block library file.\n'
         window.alert(message + '\nFile Name: ' + file.name);
@@ -115,6 +117,7 @@ AppController.prototype.test = function() {
       }
 
       // Create a new block library storage object with inputted block library.
+      console.log(self.blockLibraryName);
       var blockLibStorage = new BlockLibraryStorage(
           self.blockLibraryName, blockXmlTextMap);
 
@@ -138,8 +141,11 @@ AppController.prototype.test = function() {
 AppController.prototype.exportBlockLibraryToFile = function() {
   // Get map of block type to XML.
   var blockLib = this.blockLibraryController.getBlockLibrary();
+  console.log('--다운로드 과정--');
+  console.log(blockLib);
   // Concatenate the XMLs, each separated by a blank line.
   var blockLibText = this.formatBlockLibraryForExport_(blockLib);
+  console.log(blockLibText);
   // Get file name.
   var filename = prompt('Enter the file name under which to save your block ' +
       'library.', 'library.xml');
@@ -509,15 +515,17 @@ AppController.prototype.assignLibraryClickHandlers = function() {
       function(){
         self.blockLibraryController.makeNewPackage();
       });
-  document.getElementById('getSourceCode').addEventListener('click',
-      function(){
-        FactoryUtils.getBlockCode();
-      });
-  document.getElementById('content').addEventListener('click',
+
+  document.getElementById('dropdownDiv_blockLib').addEventListener('click',
       function(event){
-         var obj   = document.getElementById('content');
-         var value = document.getElementById('content').value;
-         self.blockLibraryController.viewContent(value,obj);
+        var obj   = event.target;
+        var value = event.target.value;
+        console.log('클릭');
+        console.log(event.target.value);
+        if(value)
+         self.blockLibraryController.viewContent_2(value,obj);
+        else
+         self.blockLibraryController.viewContent(value);
       });
 
 
@@ -573,12 +581,6 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
         self.exportBlockLibraryToFile();
       });
 
-  // document.getElementById('helpButton').addEventListener('click',
-  //     function() {
-  //       open('https://developers.google.com/blockly/custom-blocks/block-factory',
-  //            'BlockFactoryHelp');
-  //     });
-
   document.getElementById('files').addEventListener('change',
       function() {
         // Warn user.
@@ -609,20 +611,16 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
       // Close the Block Library Dropdown.
       self.closeModal();
     });
-  document.getElementById("shareContentsButton").addEventListener('click',
-    function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=550';
-      window.open('tool_share_main.html', '창작공유마당', popupOption);
-    });
+
   document.getElementById('registerContents').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=270';
-      window.open('/tool', '창작공유마당', popupOption);
+      window.open('/contents/registerToPlan', '콘텐츠 저장하기', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=550';
-      window.open('/toolShareMain', '창작공유마당', popupOption);
+      window.open('/contents/share', '창작공유마당', popupOption);
     });
 
 };
@@ -646,16 +644,16 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
         self.blockLibraryController));
     });
 
-  document.getElementById('direction')
-      .addEventListener('change', BlockFactory.updatePreview);
-  document.getElementById('languageTA')
-      .addEventListener('change', BlockFactory.updatePreview);
-  document.getElementById('languageTA')
-      .addEventListener('keyup', BlockFactory.updatePreview);
-  document.getElementById('format')
-      .addEventListener('change', BlockFactory.formatChange);
-  document.getElementById('language')
-      .addEventListener('change', BlockFactory.updatePreview);
+  // document.getElementById('direction')
+  //     .addEventListener('change', BlockFactory.updatePreview);
+  // document.getElementById('languageTA')
+  //     .addEventListener('change', BlockFactory.updatePreview);
+  // document.getElementById('languageTA')
+  //     .addEventListener('keyup', BlockFactory.updatePreview);
+  // document.getElementById('format')
+  //     .addEventListener('change', BlockFactory.formatChange);
+  // document.getElementById('language')
+  //     .addEventListener('change', BlockFactory.updatePreview);
 };
 
 /**

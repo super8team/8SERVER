@@ -33,40 +33,39 @@
     <script src="{{URL::asset('/js/test.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
   </head>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      test();
-    });
-  </script>
+
   <body>
       <table id="mainShareList">
+        <div align="center"><b>인기있는 콘텐츠 패키지</b></div>
         <tr id="mainContenstsImage">
-          @foreach ($popularPackageNames as $key=>$value)
-               <td><a href="/toolDetail?package_id={{$value['id']}}"><img src="{{$key}}" alt="{{$key}}"></a></td>
+          @foreach($popularPackage as $key=>$value)
+             <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:100px"></a></td>
           @endforeach
+
         </tr>
         <tr id="mainPackageName">
-          @foreach ($mainPackageName as $main)
-               <td>{{$main}}</a></td>
+          @foreach ($popularPackage as $imgs)
+               <td>패키지 네임</a></td>
           @endforeach
         </tr>
       </table>
       <hr>
-      <input id="testim" type="text" name="" value="z">
+
       <form class="" action="index.html" method="post">
         <input type="text" name="" value="">
         <input type="submit" name="" value="검색">
       </form>
 
       <table id="shareList">
+        <div align="center"><b>콘텐츠 패키지<b></div>
         <tr id="contenstsImage">
-          @foreach ($serbPackageNames as $key=>$value)
-               <td><a href="/toolDetail/{{$value['id']}}"><img src="{{$key}}" alt="{{$key}}"></a></td>
+          @foreach ($otherPackage as $key => $value)
+              <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:150px; height:250px"></a></td>
           @endforeach
         </tr>
         <tr id="packageName">
-          @foreach ($serbPackageName as $main)
-               <td>{{$main}}</a></td>
+          @foreach ($otherPackage as $id)
+               <td>패키지이름</a></td>
           @endforeach
         </tr>
       </table>
@@ -93,7 +92,7 @@
       console.log(m);
       console.log(typeof(n));
 
-    window.location.href='/toolShareShare';
+    window.location.href='/contents/shareShare';
     });
     </script>
 </html>

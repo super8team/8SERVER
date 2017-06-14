@@ -15,40 +15,21 @@ class PlanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // 교사 계획 리스트
+    // 간단 계획
     public function index()
     {
 
-        $planTitle = [];
-        $planDate = [];
-
-        $fieldLearningPlans = DB::table('field_learning_plans')->get();
-
-        foreach ($fieldLearningPlans as $fieldLearningPlan) {
-
-            array_push($planTitle ,$fieldLearningPlan->name);
-            array_push($planDate, $fieldLearningPlan->created_at);
-
-        }
-
-        return view('plan.plan_list')->with('plan_title', $planTitle)
-                                     ->with('plan_date', $planDate);
-
-    }
-
-
-    // 간단 계획
-    public function plan()
-    {
-
         return view('plan.plan');
+
     }
 
 
     // 계획 수정
-    public function Modify(Request $request)
+    public function Modify()
     {
+
         return view('plan.plan_modify');
+
     }
 
 
@@ -56,36 +37,51 @@ class PlanController extends Controller
     public function teacherPlanList()
     {
 
+//        $planTitle = [];
+//        $planDate = [];
+//
+//        $fieldLearningPlans = DB::table('field_learning_plans')->get();
+//
+//        foreach ($fieldLearningPlans as $fieldLearningPlan) {
+//
+//            array_push($planTitle ,$fieldLearningPlan->name);
+//            array_push($planDate, $fieldLearningPlan->created_at);
+//
+//        }
 
-
-        return view('plan.plan_list')->with('plan_title', '')
-                                      ->with('plan_date', '');
+        return view('plan.plan_list');
+//            ->with('plan_title', $planTitle)
+//                                      ->with('plan_date', $planDate);
     }
 
 
     // 학생, 학부모 계획 리스트
     public function studentParentPlanList()
     {
-        return view('plan.planlist2')->with('plan_title ', '')
-                                      ->with('plan_date', '');
+        return view('plan.planlist2');
+//        ->with('plan_title ', '')
+//                                      ->with('plan_date', '');
     }
 
 
-    // 서류
+    // 서류 작성
     public function sheet()
     {
-        return view('plan.plan_sheet')->with('plan_title ', '')
-                                       ->with('plan_date', '')
-                                       ->with('teacher_name', '')
-                                       ->with('trip_kind_value', '')
-                                       ->with('attend_class_count', '')
-                                       ->with('attend_student_count	', '')
-                                       ->with('unattend_student_count', '')
-                                       ->with('transpotation ', '')
-                                       ->with('activity', '')
-                                       ->with('institution', '')
-                                       ->with('others', '')
-                                       ->with('result_check', '');
+
+
+        return view('plan.plan_sheet');
+//            ->with('plan_title ', '')
+//                                       ->with('plan_date', '')
+//                                       ->with('teacher_name', '')
+//                                       ->with('trip_kind_value', '')
+//                                       ->with('attend_class_count', '')
+//                                       ->with('attend_student_count	', '')
+//                                       ->with('unattend_student_count', '')
+//                                       ->with('transpotation ', '')
+//                                       ->with('activity', '')
+//                                       ->with('institution', '')
+//                                       ->with('others', '')
+//                                       ->with('result_check', '');
     }
 
 
@@ -94,6 +90,7 @@ class PlanController extends Controller
     {
         return view('plan.plan_map');
     }
+
 
     // getPlanDetail
     // post {  }

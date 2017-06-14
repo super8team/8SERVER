@@ -52,22 +52,22 @@ class SurveyRespondController extends Controller
 
       }
 
-      // $qTitle = [];
-      // $survey = \DB::table('surveies')->where('no', $id)->first();
-      // $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
-      // $articleCount = count($articles);
-      //
-      // for ($i=0; $i<$articleCount; $i++) {
-      //   $qTitle[$i][0] = $articles[$i]->type;
-      //   $qTitle[$i][1] = $articles[$i]->article;
-      //   if($qTitle[$i][0] == "obj") {
-      //     $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
-      //     $answerCount = count($answers);
-      //     for($j=0; $j<$answerCount; $j++) {
-      //       $qTitle[$i][2][$j] = $answers[$j]->substance;
-      //     }
-      //   }
-      // }
+      $qTitle = [];
+      $survey = \DB::table('surveies')->where('no', $id)->first();
+      $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
+      $articleCount = count($articles);
+
+      for ($i=0; $i<$articleCount; $i++) {
+        $qTitle[$i][0] = $articles[$i]->type;
+        $qTitle[$i][1] = $articles[$i]->article;
+        if($qTitle[$i][0] == "obj") {
+          $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
+          $answerCount = count($answers);
+          for($j=0; $j<$answerCount; $j++) {
+            $qTitle[$i][2][$j] = $answers[$j]->substance;
+          }
+        }
+      }
 
       return view('survey.survey_result', [
         'resp' => ,

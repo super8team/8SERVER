@@ -34,6 +34,7 @@
   <script src="{{URL::asset('/js/package.js')}}"></script>
   <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
   <script>
     var blocklyFactory;
@@ -41,6 +42,7 @@
       blocklyFactory = new AppController();
       blocklyFactory.init();
       window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
+
     };
     window.addEventListener('load', init);
 
@@ -292,28 +294,27 @@
         <td>
           <table id="blockFactoryPreview" >
             <tr>
-              <!-- <td id="previewContainer">
+              <td id="previewContainer" hidden>
                 <h3>Preview:
                   <select id="direction">
                     <option value="ltr">LTR</option>
                     <option value="rtl">RTL</option>
                   </select>
                 </h3>
-              </td> -->
+              </td>
               <td id="buttonContainer">
                 <button id="linkButton" title="Save and link to blocks.">
                   <img src="link.png" height="21" width="21">
                 </button>
-                <button id="clearBlockLibraryButton" title="Clear Block Library.">
+                <button id="clearBlockLibraryButton" title="Clear Block Library." hidden>
                   <span>콘텐츠 전부 삭제하기</span>
                 </button>
-                  <button id="testim" type="text" value="sdsdz">
-                <label for="files" class="buttonStyle">
+                <label for="files" class="buttonStyle" hidden>
                   <span class=>Import Block Library</span>
                 </label>
                 <input id="files" type="file" name="files"
-                    accept="application/xml">
-                <button id="localSaveButton" title="Save block library XML to a local file.">
+                    accept="application/xml" hidden>
+                <button id="localSaveButton" title="Save block library XML to a local file." hidden>
                   <span>Download Block Library</span>
                 </button>
               </td>
@@ -336,19 +337,33 @@
                     </div>
                     <!-- form형태로 수정하기 -->
                     <!-- 콘텐츠들 나열 -->
+
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
                       </div>
-                      @foreach($ownerContents as $key=>$value)
-                      <button id="content" type="button" name="button" value="{{$value}}">{{$key}}</button>
-                      @endforeach
-                    </div>
+                      <!-- <button id="dropdown_??" class= "content_list" type="button" name="button">
+                          blockType
+                          <input type="text" class="contents_xml"  value="">
+                          <input type="text" class="block_myungse" value="">
+                          <input type="text" name="id"  value="">
+                      </button>-->
+                      <button id="list" class= "content_list" type="button" name="button" value="{{$contents_xml}}">
+                          {{$contents_name}}
+                          <input type="text" class="contents_xml"  value="{{$contents_xml}}" hidden>
+                          <input type="text" class="block_myungse" value="{{$block_myungse}}" hidden>
+                          <input type="text" name="id"  value="{{$contents_id}}" hidden>
+                      </button>
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                   </div>
+                    </form>
                   </div>
                 <!-- <select id="blockLibraryDropdown">
                 </select> -->
               </span>
-              </td>
+            </td>
               <td id="blockLibraryControls">
+
                 <button id="registerContents">
                   등록
                 </button>
@@ -372,10 +387,9 @@
         <!-- 블럭 워크스페이스 -->
         <!-- 지도 -->
         <td id="mapSize">
-           <body onload="initialize();">
-          <script src="https://maps.google.com/maps/api/js?key=AIzaSyANVUImryWAYUEOy597XhyWP3OkaW4ChDQ&callback=initMap"></script>
-          <div id="map_canvas" style="width:550px; height:450px"></div>
-          <div id="get_location" hidden></div>
+          <body onload="initialize();">
+            <div id="map_canvas" style="width:550px; height:450px"></div>
+            <div id="get_location" hidden></div>
         </td>
         <!-- 블록 코딩 -->
         <td id="blocklyWorkspaceContainer">
@@ -385,16 +399,12 @@
 
         <td id="packageList">
           <div id="packageDiv" style="border:1px solid">
-
-
+            @foreach($package_name as $key => $value)
+              <button type="button" name="button" value={{$value['ids']}}>{{$value['name']}}</button>
+            @endforeach
           </div>
           <button id="createNewPackage">패키지 생성</button>
-          <form id="contentInformation" action="" method="post">
-            <input id="myungse"    type="text" name="myungse" value="g">
-            <input id="packagenum" type="text" name="packagenum">
-            <input id="getSourceCode" type="button" name="" value="콘텐츠 등록">
-            <input id="please" type="text" name="" value="">
-          </form>
+
         </td>
 
         <!-- 블럭 프리뷰  -->
@@ -418,19 +428,7 @@
     <div id="modalShadow"></div>
 
     <xml id="blockfactory_toolbox" class="toolbox">
-      <category name="Input">
-        <block type="input_value">
-          <value name="TYPE">
-            <shadow type="type_null"></shadow>
-          </value>
-        </block>
-        <block type="input_statement">
-          <value name="TYPE">
-            <shadow type="type_null"></shadow>
-          </value>
-        </block>
-        <block type="input_dummy"></block>
-      </category>
+
       <category name="버튼">
         <block type="button_1"></block>
         <block type="button_2"></block>
@@ -439,9 +437,9 @@
         <block type="vertical"></block>
       </category>
       <category name="텍스트">
-        <block type="field_static"></block>
         <block type="header"></block>
         <block type="bottom"></block>
+        <!-- <block type="field_static"></block> -->
         <!-- <block type="field_number"></block> -->
         <!-- <block type="field_angle"></block> -->
         <!-- <block type="field_dropdown"></block> -->
@@ -463,13 +461,12 @@
 
       <category name="실행">
         <block type="isscript"></block>
+        <block type="checkedit"></block>
         <block type="out_img"></block>
         <block type="out_txt"></block>
+        <block type="end"></block>
       </category>
 
-      <category name="package">
-        <block type="package_name" value="a"></block>
-      </category>
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">
@@ -770,15 +767,6 @@
       <sep></sep>
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
-  <script type="text/javascript">
-      // var pdiv    = document.getElementById('packageDiv');
-      // var pclass  = document.getElementsByClassName('package7');
-      //
-      // pdiv.addEventListener('click',function(e){
-      //   var p_id   =  e.target.id;
-      //   console.log(p_id);
-      //   window.location = '/pid?pid='+p_id;
-      // });
-  </script>
+
   </body>
   </html>

@@ -1,24 +1,36 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 
 <body>
   <span id = "content_wrapper">
     <div>
-      <img src="" alt="콘텐츠 이미지" class="content_img">
-      <input type="text" name="package_name" value="패키지명" style="vertical-align:top">
-      <input type="text" name="package_num" value="{{$id}}" hidden>
+      <img src="/img/{{$package_img}}" alt="콘텐츠 이미지" class="content_img">
+
     </div>
     <div id = "detail_article">
-      <input id = "date"     type="text" name="" value="작성일">
-      <input id = "writer"   type="text" name="" value="작성자">
-      <input id = "download" type="text" name="" value="다운수">
+      <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
+      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" readonly>
+      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80">설명</textarea>
+      <textarea name="name" rows="8" cols="80" readonly>{{$package_subs}}</textarea>
     </div>
+    <div style="border:1px solid black">
+      여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
+    </div>
+    <!-- 컨트롤러에서 넘어온 패키지의 콘텐츠 배열이 넘어와서 출력해준다 -->
+
+      <!-- window.location.href = "/toolShareDownload?package_num="+package_num; -->
+    <form action="{{route('contents.shareDownload')}}" method="post" style="border:1px solid black">
+      @foreach($contents_name as $key => $value)
+        <input type="checkbox" name="choice_content[]" value="{{$value['name']}}">{{$value['name']}}</input>
+      @endforeach
+      <br>
+       {{ csrf_field() }}
+      <input type="submit" name="" value="다운로드">
+    </form>
   </span>
 
-  <button id="content_download" type="button" name="button">다운로드</button>
+  <!-- <button id="content_download" type="button" name="button">다운로드</button> -->
 
   <script type="text/javascript">
   $(document).ready(function(){

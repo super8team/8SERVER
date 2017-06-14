@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class ContentsPackageSeeder extends Seeder
 {
     /**
@@ -15,8 +15,8 @@ class ContentsPackageSeeder extends Seeder
         DB::table('contents_packages')->insert([
 
             ['name' => '콘텐츠1', 'explain' => '설명1', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
+                                                                                    ->where('type', 'teacher')->inRandomOrder()
+                                                                                    ->first()->no],
             ['name' => '콘텐츠2', 'explain' => '설명2', 'owner' => DB::table('users')
                 ->where('type', 'teacher')->inRandomOrder()
                 ->first()->no],

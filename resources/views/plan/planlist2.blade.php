@@ -22,7 +22,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             <a role="button" href="{{route('main')}}" aria-label="Right Align"
+             <a role="button" href="{{--route('main')--}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
               뒤로 돌아가기
@@ -58,21 +58,21 @@
                     <td>{{$planlist_arr['data']['date']}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('$staff.list')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                      <a role="button" href="{{--route('$staff.list')--}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
 
-                      <a role="button" href="{{route('survey.list')}}" class="btn btn-sm btn-info">
+                      <a role="button" href="{{--route('survey.list')--}}" class="btn btn-sm btn-info">
                         설문조사
                       </a>
-                      <a role="button" href="{{route('notice.list')}}" class="btn btn-sm btn-warning">
+                      <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-warning">
                         가정통신
                       </a>
 
-                      <a role="button" href="{{route('check.list')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{--route('check.list')--}}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{route('report.list')}}" class="btn btn-sm btn-danger ">
+                      <a role="button" href="{{--route('report.list')--}}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
                     </td>
