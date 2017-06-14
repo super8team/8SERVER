@@ -38,7 +38,7 @@ class HistoryController extends Controller
         'history' => $historyNo,
         'place'   => $placeNo,
         'substance' => $content,
-        'wheather' => $weather,
+        'weather' => $weather,
       ]);
     }
 
