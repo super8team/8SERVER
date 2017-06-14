@@ -65,12 +65,12 @@ class SurveyController extends Controller
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
 
-      for ($i=0; $i<$qCount; $i++) {
-        $surveyId = DB::table('survey_articles')->insertGetId([
-           'survey' => $surveyId,
-           'article' => $,
-        ]);
-      }
+      // for ($i=0; $i<$qCount; $i++) {
+      //   $surveyId = DB::table('survey_articles')->insertGetId([
+      //      'survey' => $surveyId,
+      //      'article' => $,
+      //   ]);
+      // }
 
         return view('survey_view', [
           'survey_title' => $newSurveyName,

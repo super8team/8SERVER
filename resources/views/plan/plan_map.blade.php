@@ -155,19 +155,19 @@ Full Calendar
     			// 	}
     			// ]
           eventSources: [{
-          url: 'http://localhost/code/8server/public/get',
+            // url: 'http://Code/8SERVER/resources/get',
+          url: './get-events_dnweb.blade.php',
           dataType: 'json',
           async: false,
           type: 'POST',
           data: {
               flg: 1
           },
-              error: function () {
-                alert("data load is fail.")
-              }
+            error: function () {
+              alert("으아니 챠! 왜 안되는거야.");
+            }
           }]
     		});
-
     	});
 
     </script>
