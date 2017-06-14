@@ -106,13 +106,15 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 
 // Route::resource('app/history', 'AppHistoryController');
 
-Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 
 
 // 히스토리 보기
-Route::post('app/getHistoryContent', 'HistroyController@getHistoryContent')->name('getHistoryContent');
+Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->name('getHistoryContent');
 
 
 // *******************  앱 체크리스트 *********************
 
 Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
+
+Route::get('test', function () {return view('test');});

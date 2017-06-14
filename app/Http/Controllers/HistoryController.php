@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
-class HistroyController extends Controller
+class HistoryController extends Controller
 {
 
       // url: writeHistoryContent
       // post: userId,placeNum,content,weather
       // 히스토리에 저장할 글과 날씨
-    public function histroyStore(Request $request) {
+    public function historyStore(Request $request) {
       $placeNo  = $request->input('placeNum');
       $content  = $request->input('content');
       $weather  = $request->input('weather');
@@ -85,7 +85,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);
@@ -102,7 +102,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);
@@ -117,7 +117,7 @@ class HistroyController extends Controller
       $result = ["place" => []];
       $historyIndex = 1;
       foreach ($historySubstances as $history) {
-        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->wheather];
+        $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
       }
       // dd($result);
