@@ -10,9 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+Route::get('/main', function () {
     // 배열로 홈페이지 값 전달하기
-    return view('main');
+    return view('main')->name('main');
 });
 
 Route::get('/test22',function(){

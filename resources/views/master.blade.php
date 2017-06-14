@@ -152,7 +152,7 @@
           {{-- 상표 이미지 로고 --}}
           <img class="navbar-brand" src="{{asset('img/logo.png')}}" alt="">
            {{-- 상표 이름 적기 --}}
-          <a class="navbar-brand" href="{{--route('')--}}">LEARnFUN</a>
+          <a class="navbar-brand" href="{{--route('main')--}}">LEARnFUN</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse text-center">
           {{-- <ul id="left_menu" class="nav navbar-nav">
