@@ -4,9 +4,6 @@
 @section('title' , 'LEAN&FUN')
 
 @section('content')
-  @php
-    $planlist = "http://localhost/Code/8SERVER/public/planlist";
-  @endphp
 <head>
     <script src="../public/js/parallax.js"></script>
     {{-- <script src="js/custum.js"></script> --}}

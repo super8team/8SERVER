@@ -19,7 +19,7 @@
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{$report_write}}" aria-label="Right Align"
+           <a role="button" href="{{route('report.write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             감상문 작성
@@ -53,7 +53,7 @@
                     <td>야 소백산 딱 좋다</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$report_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('report.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -69,7 +69,7 @@
           <h3 class="panel-title">이전 감상문 리스트
 
           </h3>
-          <a role="button" href="{{$report_write}}" class="btn btn-sm btn-info pull-right">
+          <a role="button" href="{{route('report.write')}}" class="btn btn-sm btn-info pull-right">
             소감문 작성
           </a>
           <a role="button" href="{{----}}" class="btn btn-sm btn-info pull-right">
@@ -112,10 +112,10 @@
                       (rand()*100)+1;
                     @endphp</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$report_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('report.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
-                      <a role="button" href="{{$report_evaluation}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('report.evaluation')}}" class="btn btn-sm btn-danger">
                         평가하기
                       </a>
                     </td>

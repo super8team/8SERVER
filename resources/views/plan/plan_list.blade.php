@@ -68,7 +68,7 @@
                     <td>{{$planlist_arr['data']['date']}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{--route('$staff.list')--}}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                      <a role="button" href="{{route('staff')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
                       <a role="button" href="{{route('plan.modify')}}" class="btn btn-sm btn-primary">
@@ -86,10 +86,10 @@
                       <a role="button" href="{{route('plan.map')}}" class="btn btn-sm btn-danger">
                         상세 계획
                       </a>
-                      <a role="button" href="{{--route('check.list')--}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist')}}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{--route('report.list')--}}" class="btn btn-sm btn-danger ">
+                      <a role="button" href="{{route('report')}}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
 
