@@ -15,11 +15,11 @@
     <title> @yield('title')</title>
 
     <!-- 부트스트랩 -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
+    {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     {{-- 커스텀 css --}}
-    <link rel="stylesheet" href="../public/css/custom.css">
-
+    {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
@@ -31,9 +31,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="js/bootstrap.min.js"></script>
-    {{--  --}}
-    <script src="../public/js/parallax.js"></script>
+    {{-- <script src="../public/js/bootstrap.min.js"></script> --}}
+    <link rel="stylesheet" href="{{ asset('js/bootstrap.min.js') }}">
+    {{-- <script src="../public/js/parallax.js"></script> --}}
+    <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
       <system.webServer>
         <staticContent>
@@ -43,7 +44,7 @@
       </system.webServer>
     </configuration>
     <style media="screen">
-  
+
     </style>
     <script type="text/javascript">
 
@@ -89,7 +90,6 @@
     @php
       $home = "http://localhost/Code/8SERVER/public/home";
       $join = "http://localhost/Code/8SERVER/public/join";
-
     @endphp
     {{-- 메인 --}}
     <!-- Modal 모달 -->
@@ -150,9 +150,9 @@
             <span class="icon-bar"></span>
           </button>
           {{-- 상표 이미지 로고 --}}
-          <img class="navbar-brand" src="../public/img/logo.png" alt="">
+          <img class="navbar-brand" src="{{asset('img/logo.png')}}" alt="">
            {{-- 상표 이름 적기 --}}
-          <a class="navbar-brand" href="{{$home}}">LEARnFUN</a>
+          <a class="navbar-brand" href="{{--route('')--}}">LEARnFUN</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse text-center">
           {{-- <ul id="left_menu" class="nav navbar-nav">

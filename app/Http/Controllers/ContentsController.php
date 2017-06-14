@@ -37,6 +37,11 @@ class ContentsController extends Controller
                                                           ->with('contents_id',   $contents[0]->no)
                                                           ->with('package_name', $package_infor);
     }
+
+
+
+    // 공유하기 페이지에서 나오는 항목들을 서버로 넘김 -> redirect 메인
+
     public function block(Request $request)
     {
 
@@ -169,7 +174,7 @@ class ContentsController extends Controller
       foreach($choices as $choice){
         array_push($choice_content,$choices['0']);
       }
-      
+
       return view('ProjectBlockCode.blockfactory.tool_share_download')->with('choice_content', $choice_content);
 
 
