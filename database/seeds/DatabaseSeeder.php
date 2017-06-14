@@ -26,8 +26,13 @@ class DatabaseSeeder extends Seeder
 //      $this->call(FieldLearningPlanWorksSeeder::class);
 //      $this->call(FieldLearningPlanDocumentsSeeder::class);
 //      $this->call(FieldLearningPlansSeeder::class);
+
+//        $this->call(GradeClassesSeeder::class);
+        // $this->call(StudentsSeeder::class);
+
 //      $this->call(GradeClassesSeeder::class);
 //      $this->call(StudentsSeeder::class);
+
 //      $this->call(DetailPlansSeeder::class);
 //      $this->call(GroupsSeeder::class);
 //      $this->call(HistoriesSeeder::class);
@@ -42,7 +47,12 @@ class DatabaseSeeder extends Seeder
 //      $this->call(HistoryImgsSeeder::class);
 //      $this->call(CheckListsSeeder::class);
 //      $this->call(PlanChecklistsSeeder::class);
+
+        // $this->call(ContentsSeeder::class);
+        // $this->call(ContentsPackageSharesSeeder::class);
+
 //        $this->call(PlanDemoSeeder::class);
+
     }
 
 }

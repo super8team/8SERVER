@@ -160,12 +160,28 @@ var FIELD_ARGS = [
     "check": "Field"
   }
 ];
-var SCRIPT_MESSAGE = 'scripts %1';
+var SCRIPT_MESSAGE = 'scripts %1 ';
 var SCRIPT_ARG = [
     {
       "type": "input_statement",
-      "name": "SCRIPTT",
+      "name": "SCRIPT",
       "check":"Field"
+    }
+];
+//true
+var CHECKEDIT_MESSAGE = 'true %1 ';
+var CHECKEDIT_ARG = [
+    {
+      "type": "input_statement",
+      "name": "CHECKEDIT1",
+    }
+];
+//false
+var CHECKEDIT2_MESSAGE = 'false %1 ';
+var CHECKEDIT2_ARG = [
+    {
+      "type": "input_statement",
+      "name": "CHECKEDIT2",
     }
 ];
 var TYPE_MESSAGE = 'type %1';
@@ -244,6 +260,12 @@ Blockly.Blocks['vertical'] = {
     this.setOutput(true, 'Field');
   }
 };
+
+
+
+// console.log(list.children);
+
+
 Blockly.Blocks['horizontal'] = {
   init: function() {
     this.jsonInit({
@@ -252,7 +274,7 @@ Blockly.Blocks['horizontal'] = {
         {
           "type": "field_dropdown",
           "name": "HORIZONTAL",
-          "options" : [["왼쪽","LEFT"],["가운데","CENTER"],["오른쪽","RIGHT"]],
+          "options" : [['왼쪽',"LEFT"],['가운데',"CENTER"],['오른쪽',"RIGHT"]],
         }
       ],
       "colour": 210,
@@ -307,17 +329,7 @@ Blockly.Blocks['input_statement'] = {
     inputNameCheck(this);
   }
 };
-Blockly.Blocks['out_img'] = {
-  init: function() {
-    this.setColour(160);
-    var src = ' ';
-    this.appendDummyInput()
-        .appendField('image src')
-        .appendField(new Blockly.FieldTextInput(src),'OUT_SRC');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
-  }
-};
+
 Blockly.Blocks['isscript'] = {
   init: function() {
       this.jsonInit({
@@ -333,16 +345,57 @@ Blockly.Blocks['isscript'] = {
           }
         ],
         "message1": SCRIPT_MESSAGE,
-        "args1" : SCRIPT_ARG,
+        "args1" :   SCRIPT_ARG,
         "previousStatement": "Input",
         "nextStatement": "Input",
-        "colour": 210,
+        "colour": 160,
       });
 
     }
 };
-
-
+Blockly.Blocks['end'] = {
+  init: function() {
+    this.setColour(230);
+    this.appendDummyInput()
+        .appendField('end')
+    this.setPreviousStatement(true, 'Field');
+  }
+}
+Blockly.Blocks['checkedit'] = {
+  init: function() {
+      this.jsonInit({
+        "message0": "name %1 %2 answer %3 %4 %5",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "EDITINPUTNAME",
+            "text": "NAME",
+          },
+          {
+            "type":"input_dummy"
+          },
+          {
+            "type": "field_input",
+            "name": "ANSWER",
+            "text": " "
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_dummy"
+          }
+        ],
+        "message1": CHECKEDIT_MESSAGE,
+        "args1" : CHECKEDIT_ARG,
+        "message2": CHECKEDIT2_MESSAGE,
+        "args2" : CHECKEDIT2_ARG,
+        "previousStatement": "Input",
+        "nextStatement": "Input",
+        "colour": 160,
+      });
+  }
+}
 // this.setColour(230);
 // this.appendDummyInput()
 //     .appendField('name')

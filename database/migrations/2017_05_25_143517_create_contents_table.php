@@ -15,7 +15,7 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('no');
-            $table->text('spec')->nullable();
+            $table->text('spec')->nullable();//명세
             $table->text('xml');
             $table->integer('like');
             $table->integer('contents_package')->unsigned();

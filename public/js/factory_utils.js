@@ -54,89 +54,88 @@ goog.provide('FactoryUtils');
  var contents_basket = new Array();
  var a = new Array();
  var block_code;
+ var root_block;
+ var myungse = new Array();
 
-FactoryUtils = function(){
-  var xml3 = '<xml xmlns="http://www.w3.org/1999/xhtml">'+
-  '<block type="factory_base" id="jsJbcVlNT:#E9,M-7V(1" deletable="false" movable="false" x="0" y="0">'+
-  '<mutation connections="null"></mutation>'+
-  '<field name="NAME">fef</field>'+
-  '<value name="VERTICAL">'+
-    '<block type="vertical" id="5VQix4TOuX6BV_lv^#;r" deletable="false">'+
-      '<field name="VERTICAL"></field>'+
-    '</block>'+
-  '</value>'+
-  '<value name="HORIZONTAL">'+
-    '<block type="horizontal" id="C)e#DB8cz`+Bo-9o4~0[" deletable="false">'+
-      '<field name="HORIZONTAL"></field>'+
-    '</block>'+
-  '</value>'+
-  '<value name="VISIONABLE">'+
-    '<block type="logic_boolean" id="e@4|/*}pCo~#aYE8Fr15" deletable="false">'+
-      '<field name="BOOL">TRUE</field>'+
-    '</block>'+
-  '</value>'+
-  '<value name="CLICKABLE">'+
-    '<block type="logic_boolean" id="d[._igq{x2w7zubn4[Af" deletable="false">'+
-      '<field name="BOOL">FALSE</field>'+
-    '</block>'+
-  '</value>'+
-  '<value name="DISABLE">'+
-    '<block type="logic_boolean" id="nDYlY2Z{v$2K|XI`c5T^">'+
-      '<field name="BOOL">TRUE</field>'+
-    '</block>'+
-  '</value>'+
-  '</block>'+
-  '</xml>';
-  this.blockLibraryController.openBlock2(xml3);
-}
+// FactoryUtils = function(){
+//   var xml3 = '<xml xmlns="http://www.w3.org/1999/xhtml">'+
+//   '<block type="factory_base" id="jsJbcVlNT:#E9,M-7V(1" deletable="false" movable="false" x="0" y="0">'+
+//   '<mutation connections="null"></mutation>'+
+//   '<field name="NAME">fef</field>'+
+//   '<value name="VERTICAL">'+
+//     '<block type="vertical" id="5VQix4TOuX6BV_lv^#;r" deletable="false">'+
+//       '<field name="VERTICAL"></field>'+
+//     '</block>'+
+//   '</value>'+
+//   '<value name="HORIZONTAL">'+
+//     '<block type="horizontal" id="C)e#DB8cz`+Bo-9o4~0[" deletable="false">'+
+//       '<field name="HORIZONTAL"></field>'+
+//     '</block>'+
+//   '</value>'+
+//   '<value name="VISIONABLE">'+
+//     '<block type="logic_boolean" id="e@4|/*}pCo~#aYE8Fr15" deletable="false">'+
+//       '<field name="BOOL">TRUE</field>'+
+//     '</block>'+
+//   '</value>'+
+//   '<value name="CLICKABLE">'+
+//     '<block type="logic_boolean" id="d[._igq{x2w7zubn4[Af" deletable="false">'+
+//       '<field name="BOOL">FALSE</field>'+
+//     '</block>'+
+//   '</value>'+
+//   '<value name="DISABLE">'+
+//     '<block type="logic_boolean" id="nDYlY2Z{v$2K|XI`c5T^">'+
+//       '<field name="BOOL">TRUE</field>'+
+//     '</block>'+
+//   '</value>'+
+//   '</block>'+
+//   '</xml>';
+//   this.blockLibraryController.openBlock2(xml3);
+// }
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
   blockType = FactoryUtils.cleanBlockType(blockType);
   console.log("현재 블록 작업 할 게요!");
+  console.log(rootBlock);
   switch (format) {
     case 'JSON':
       var code = FactoryUtils.formatJson_(blockType, rootBlock);
-      contents_basket.push(code);
-      this.block_code = code;
-      var parentDiv       = document.getElementById('packageList');
-      var block_myungse   = document.createElement("INPUT");
-      var obj             = JSON.parse(this.block_code);
-      var name            = obj['type'];
-      var myungse_arr     = new Array();
-
-      block_myungse.setAttribute("type","text");
-      block_myungse.setAttribute("class","block_myungse");
-      block_myungse.setAttribute("value",this.block_code);
-
-      parentDiv.append(block_myungse);
-      if(name == 'block_type'){
-        var parent   =   document.getElementById('packageList');
-        var trash    =   document.getElementsByClassName('contents_xml')[0];
-        var trash2   =   document.getElementsByClassName('block_myungse')[0];
-        console.log(trash);
-        parent.removeChild(trash);
-        parent.removeChild(trash2);
-        alert('다시한번 클릭해 주세요');
-      }
 
       this.block_code = code;
-      console.log("factory_utils 51번째 줄"+code);
+      root_block = rootBlock;
+      console.log(this.block_code);
       break;
   }
   return code;
 };
-FactoryUtils.getBlockCode = function(){
+FactoryUtils.add = function(blockType){
+  console.log('백팔');
+  console.log(myungse);
+}
+FactoryUtils.getBlockCode = function(blockType){
   // this.block_code
-  var parentDiv       = document.getElementById('packageList');
+  // var parentDiv       = document.getElementById('dropdownDiv_blockLib');
+  console.log('8181');
+  console.log(contents_basket);
+  var parentDiv       = document.getElementById('dropdown_'+blockType);
+  console.log(parentDiv);
   var block_myungse   = document.createElement("INPUT");
   var obj             = JSON.parse(this.block_code);
   var name            = obj['type'];
-  var myungse_arr     = new Array();
+
+
+  myungse[blockType] = this.block_code;
+  sessionStorage.setItem(blockType, this.block_code);
+            //  var position = sessionStorage.getItem('저장된 이름');
+  console.log(sessionStorage.getItem(blockType));
+
+  console.log('배열');
+  console.log(myungse);
 
   block_myungse.setAttribute("type","text");
   block_myungse.setAttribute("class","block_myungse");
   block_myungse.setAttribute("value",this.block_code);
+  block_myungse.setAttribute("hidden",true);
 
-  parentDiv.append(block_myungse);
+  parentDiv.appendChild(block_myungse);
   if(name == 'block_type'){
     var parent   =   document.getElementById('packageList');
     var trash    =   document.getElementsByClassName('contents_xml')[0];
@@ -146,9 +145,6 @@ FactoryUtils.getBlockCode = function(){
     parent.removeChild(trash2);
     alert('다시한번 클릭해 주세요');
   }
-
-
-
   var currentXml = Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace);
 
   // var obj = JSON.parse(this.block_code);
@@ -157,7 +153,6 @@ FactoryUtils.getBlockCode = function(){
 }
 // FactoryUtils.getBlockCode1 = function(){
   // this.block_code
-  // alert("^^getBlockCode1");
   // var a = FactoryUtils.getBlockCode();
   // alert(a);
   // alert("block"+this.block_code);
@@ -292,8 +287,9 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   // Type is not used by Blockly, but may be used by a loader.
   JS.type = blockType;
 
-  JS.vertical = FactoryUtils.getVerticalRootBlock_(rootBlock);
+  JS.vertical   = FactoryUtils.getVerticalRootBlock_(rootBlock);
   JS.horizontal = FactoryUtils.getHorizontalRootBlock_(rootBlock);
+
   // JS.latitude = ;
   // JS.longitude = ;
   // Generate inputs.
@@ -303,9 +299,9 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   var btn_args = [];
   var srtargs = [];
 
-  var contentsBlock = rootBlock.getInputTargetBlock('IMAGES');
-  var txtBlock      = rootBlock.getInputTargetBlock('TEXTS');
-  var btnBlock      = rootBlock.getInputTargetBlock('BUTTONS');
+  var contentsBlock   = rootBlock.getInputTargetBlock('IMAGES');
+  var txtBlock        = rootBlock.getInputTargetBlock('TEXTS');
+  var btnBlock        = rootBlock.getInputTargetBlock('BUTTONS');
   var isscriptBlock   = rootBlock.getInputTargetBlock('SCRIPT');
 
  console.log('^'+isscriptBlock);
@@ -332,8 +328,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(isscriptBlock) {
     if(!isscriptBlock.disabled  && !isscriptBlock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(
-        isscriptBlock.getInputTargetBlock('SCRIPTT'));
-
+        isscriptBlock.getInputTargetBlock('SCRIPT'));
+      var checkedit1     = FactoryUtils.getFieldsJson_(
+        isscriptBlock.getInputTargetBlock('CHECKEDIT1'));
+      var checkedit2     = FactoryUtils.getFieldsJson_(
+        isscriptBlock.getInputTargetBlock('CHECKEDIT2'));
+      console.log('isscript');
       console.log(script_fields);
 
       // console.log(fields2);
@@ -350,17 +350,24 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         console.log(script_fields[i]);
       }
 
-      var input = {type:isscriptBlock.type};
+      var input  = {type:isscriptBlock.type};
       var number = script_fields.length;
-      console.log(number);
+
       if(isscriptBlock.type != 'input_dummy') {
-        input.name  = isscriptBlock.getFieldValue('FIELDNAME');
+        if(input.type == 'checkedit')
+        {
+          input.name   = isscriptBlock.getFieldValue('EDITINPUTNAME');
+          input.answer = isscriptBlock.getFieldValue('ANSWER');
+          input.true   = checkedit1;
+          input.false  = checkedit2;
+        }else {
+        input.name   = isscriptBlock.getFieldValue('INPUTNAME');
         input.action = script_fields;
+        }
       }
 
-
       srtargs.push(input);
-      console.log(input);
+
   }
     isscriptBlock = isscriptBlock.nextConnection && isscriptBlock.nextConnection.targetBlock();
 }
@@ -483,10 +490,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   //   JS.colour = hue;
   // }
 
-  JS.location = document.getElementById('get_location').innerHTML;
+  JS.location   = document.getElementById('get_location').innerHTML;
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
-  JS.clickable = FactoryUtils.getClickableRootBlock1_(rootBlock);
-  JS.disable = FactoryUtils.getDisableRootBlock_(rootBlock);
+  JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
+  JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
   JS.packagenum = FactoryUtils.getPackagenumRootBlock_(rootBlock);
   //정류장 - 여기 거침
   return JSON.stringify(JS, null, '  ');
@@ -854,6 +861,15 @@ FactoryUtils.getFieldsJson_ = function(block) {
               heght: Number(block.getFieldValue('HEIGHT'))
         });
           break;
+        case 'out_img':
+          script_fields.push({
+              out_img:block.getFieldValue('OUT_SRC')
+          });
+          break;
+        case 'out_txt':
+          script_fields.push({
+              out_txt:block.getFieldValue('OUT_TXT')
+          })
       }
     }
     block = block.nextConnection && block.nextConnection.targetBlock();
@@ -923,6 +939,7 @@ FactoryUtils.getTypesFrom_ = function(block, name) {
  */
 FactoryUtils.getRootBlock = function(workspace) {
   var blocks = workspace.getTopBlocks(true);
+  console.log(blocks);
   var blocks_v2 = "CONTENT"+blocks;
   console.log(blocks_v2);
   var a = blocks_v2.split(',');
@@ -951,6 +968,8 @@ FactoryUtils.getRootBlock = function(workspace) {
   for (var i = 0, block; block = blocks[i]; i++) {
     // factory_base->제일 기본 블럭들
     if (block.type == 'factory_base') {
+      console.log(typeof(block));
+      console.log(String(block));
       return block;
     }
   }
@@ -1171,16 +1190,16 @@ console.log("ff");
  * @param {string} code Lines of code.
  * @param {string} id ID of <pre> element to inject into.
  */
-FactoryUtils.injectCode = function(code, id) {
-  var pre = document.getElementById(id);
-
-  pre.textContent = code;
-  code = pre.textContent;
-  code = prettyPrintOne(code, 'js');
-
-  pre.innerHTML = code;
-  // console.log("904"+code);
-};
+// FactoryUtils.injectCode = function(code, id) {
+//   var pre = document.getElementById(id);
+//
+//   pre.textContent = code;
+//   code = pre.textContent;
+//   code = prettyPrintOne(code, 'js');
+//
+//   pre.innerHTML = code;
+//   console.log("904"+code);
+// };
 
 /**
  * Returns whether or not two blocks are the same based on their XML. Expects

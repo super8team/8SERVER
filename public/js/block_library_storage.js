@@ -97,8 +97,20 @@ BlockLibraryStorage.prototype.addBlock = function(blockType, blockXML) {
  * Removes block from current block library (this.blocks).
  * @param {string} blockType Type of block.
  */
-BlockLibraryStorage.prototype.removeBlock = function(blockType) {
-  delete this.blocks[blockType];
+BlockLibraryStorage.prototype.removeBlock = function(blockobj,blockType) {
+  // console.log(blockobj,);
+  var parent        =  document.getElementById('dropdownDiv_blockLib');
+  if(blockobj){
+  parent.removeChild(blockobj);
+  console.log(blockobj);
+  delete  this.blocks[blockType];
+  }
+  else{
+    parent.removeChild(blockobj);
+    console.log(blockType);
+    delete  this.blocks[blockType];
+  }
+  // delete this.blocks[blockType];
 };
 
 /**

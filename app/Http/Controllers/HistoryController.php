@@ -26,7 +26,7 @@ class HistoryController extends Controller
       $historyNo  = DB::table('histories')->where('plan', $plan->no)->value('no');
 
       if ($historyNo == '') {
-        $historyNo = DB::table('histroies')->insertGetId([
+        $historyNo = DB::table('histories')->insertGetId([
           'plan'       => $plan->no,
           'register'   => $user->no,
           'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -38,7 +38,7 @@ class HistoryController extends Controller
         'history' => $historyNo,
         'place'   => $placeNo,
         'substance' => $content,
-        'wheather' => $weather,
+        'weather' => $weather,
       ]);
     }
 

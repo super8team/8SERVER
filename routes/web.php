@@ -82,24 +82,27 @@ Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result
 
 
 // ******************** 콘텐츠 *********************
-
 // 콘텐츠 패키지 공유 저장
 Route::post('contents/block', 'ContentsController@block')->name('contents.block');
 
 // 창작마당
-Route::post('contents/share', 'ContentsController@share')->name('contents.share');
+Route::get('/contents/share', 'ContentsController@share')->name('contents.share');
 
 // 콘텐츠 상세보기
 Route::get('contents/shareDetail/{packageId}', 'ContentsController@shareDetail')->name('contents.shareDetail');
 
 // 콘텐츠 공유하기
-Route::post('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
+Route::get('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
+
+Route::post('contents/example', 'ContentsController@example')->name('contents.example');
 
 // 콘텐츠 다운로드
-
 Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
 
-Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+// Route::get('contents/shareDownload/{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
+//콘텐츠를 현장학습에 저장
+Route::get('contents/registerToPlan','ContentsController@registerToPlan')->name('contents.registerToPlan');
 
 
 
@@ -145,6 +148,9 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // *******************  앱 히스토리 *********************
 
 // Route::resource('app/history', 'AppHistoryController');
+
+
+Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 

@@ -11,7 +11,7 @@
     <div id="example">
         <table style="width:50%;margin-left:auto;margin-right:auto">
             <tbody>
-                @foreach ($places as $place)
+                @foreach ($picnic as $place)
                 <tr>
                     <td><button style="width:90%" value="{{ $place }}">{{ $place }}</button></td>
                 </tr>
@@ -40,12 +40,12 @@
           content_xml.setAttribute("type","text");
           content_xml.setAttribute("class","contents_xml");
           content_xml.setAttribute("value",xmlText);
-          content_xml.setAttribute("hidden",false);
+          // content_xml.setAttribute("hidden",false);
 
           content_myungse.setAttribute("type","text");
           content_myungse.setAttribute("class","block_myungse");
           content_myungse.setAttribute("value",myungseText);
-          content_myungse.setAttribute("hidden",false);
+          // content_myungse.setAttribute("hidden",false);
           $('body').append(content_xml);
           $('body').append(content_myungse);
       }

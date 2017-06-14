@@ -18,7 +18,7 @@
     <title>다운로드</title>
   </head>
   <body>
-    <form action="{{ route('newPackage') }}">
+    <form action="">
         <button id="new_package"  type="button" name="button">새패키지로 추가 </button>
         <button id="base_package" type="button" name="button">현재패키지로 추가</button>
 
@@ -30,8 +30,8 @@
           <div id = "contents_list">
             콘텐츠 목록
           </div>
-          @foreach($contents as $key => $value)
-            <input id="content{{$key}}" type="checkbox" name="content[]" value="{{$value}}">{{$value}}
+          @foreach($choice_content as $key )
+            <input id="content{{$key}}" type="checkbox" name="content[]" value="{{$key}}">{{$key}}
           @endforeach
         <div>
 
