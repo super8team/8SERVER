@@ -10,14 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
 Route::get('/', function () {
     // 배열로 홈페이지 값 전달하기
     return view('main');
 });
 
+Route::get('/test22',function(){
+  return view('plan.test22');
+});
+
+Route::POST('/get',function(){
+  return view('plan.get-event_dnweb');
+});
+
+Route::get('/sheet',function(){
+  return view('plan.plan_sheet');
+});
 
 //웹 로그인
 Auth::routes();
@@ -74,8 +82,6 @@ Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result
 
 
 // ******************** 콘텐츠 *********************
-// 콘텐츠 메인
-Route::get('contents{no}', 'ContentsController@index')->name('contents');
 
 // 콘텐츠 패키지 공유 저장
 Route::post('contents/block', 'ContentsController@block')->name('contents.block');
@@ -84,7 +90,7 @@ Route::post('contents/block', 'ContentsController@block')->name('contents.block'
 Route::post('contents/share', 'ContentsController@share')->name('contents.share');
 
 // 콘텐츠 상세보기
-Route::get('contents/shareDetail{packageId}', 'ContentsController@shareDetail')->name('contents.shareDetail');
+Route::get('contents/shareDetail/{packageId}', 'ContentsController@shareDetail')->name('contents.shareDetail');
 
 // 콘텐츠 공유하기
 Route::post('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
@@ -94,6 +100,7 @@ Route::post('contents/shareShare', 'ContentsController@shareShare')->name('conte
 Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
 
 Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
 
 
 // *******************  소감문 *********************
@@ -132,6 +139,9 @@ Route::get('checklist/write', 'ChecklistController@write')->name('checklist.writ
 Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
 
 
+
+// 콘텐츠 메인
+Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // *******************  앱 히스토리 *********************
 
 // Route::resource('app/history', 'AppHistoryController');

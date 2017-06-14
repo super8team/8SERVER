@@ -12,7 +12,7 @@
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
-          <a href="{{route('plan.list')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('plan.teacher')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             뒤로 가기
           </a>

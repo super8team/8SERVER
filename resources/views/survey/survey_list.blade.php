@@ -14,7 +14,7 @@
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{route('survey.write')}}" aria-label="Right Align"
+           <a role="button" href="{{route('survey.create')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             설문조사 작성
@@ -48,7 +48,7 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('survey.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('survey.show')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>

@@ -77,7 +77,7 @@ Full Calendar
     				center: 'title',
     				right: 'month,agendaWeek,agendaDay'
     			},
-    			// defaultDate: '2017-05-12', 이걸 이용하여 날짜 시작일을 설정?
+    			defaultDate: '2017-01-12', //이걸 이용하여 날짜 시작일을 설정?
     			navLinks: true, // can click day/week names to navigate views
     			selectable: true,
     			selectHelper: true,
@@ -154,8 +154,20 @@ Full Calendar
     			// 		start: '2017-05-28'
     			// 	}
     			// ]
+          eventSources: [{
+            // url: 'http://Code/8SERVER/resources/get',
+          url: './get-events_dnweb.blade.php',
+          dataType: 'json',
+          async: false,
+          type: 'POST',
+          data: {
+              flg: 1
+          },
+            error: function () {
+              alert("으아니 챠! 왜 안되는거야.");
+            }
+          }]
     		});
-
     	});
 
     </script>
