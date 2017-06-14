@@ -70,8 +70,6 @@ Route::resource('survey', 'SurveyController');
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
-Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
-
 
 // ******************** 콘텐츠 *********************
 // 콘텐츠 메인

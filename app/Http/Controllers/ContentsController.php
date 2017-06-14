@@ -18,6 +18,43 @@ class ContentsController extends Controller
 
 
 
+/////////////////////////////////// for 연제 /////////////////////////////////////////////
+
+// 한 유저(선생님)가 가지고 있는 패키지와 콘텐츠 전체!
+
+// $packages = 여러 패키지들이 담겨있는 배열
+// $packages[번호] = 각 패키지 연관배열
+// $packages[번호]['name'] = 패키지이름
+// $packages[번호]['id'] = 패키지아이디
+// $packages[번호]['contents'] = 포함된 컨텐츠들의 배열
+// $packages[번호]['contents'][번호] = 패키지에 포함된 컨텐츠 연관배열
+// $packages[번호]['contents'][번호]['id'] = 컨텐츠 아이디
+// $packages[번호]['contents'][번호]['name'] = 컨텐츠 이름
+
+
+$userNo = $request->input('user_id'); // 서버한테 post로 현재 유저 아이디를 주고
+$packages = [];
+$owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
+$packageCount = count($owndedPackages);
+
+for($i=0; $i<$packageCount; $i++) {
+  $packages[$i]['name'] = $owndedPackages[$i]->name;
+  $packages[$i]['id'] = $owndedPackages[$i]->no;
+
+  $contents = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
+  $contentCount = count($contents);
+
+  for($j=0; $j<$contentCount; $j++) {
+    $packages[$i]['contents'][$j]['id'] = $contents[$j]->no;
+    $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+  }
+}
+
+return view('', ['packages' => $packages]);
+
+
+/////////////////////////////////// for 연제 /////////////////////////////////////////////
+
 
         return view('blockfactory.block')->with('packages_name', '')
                                           ->with('packages_id', '')
