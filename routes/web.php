@@ -33,7 +33,7 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 // ******************** 플랜 리스트 *********************
 // 간단 계획
-Route::get('plan', 'PlanController@plan')->name('plan');
+Route::get('plan', 'PlanController@index')->name('plan');
 
 // 계획 수정
 Route::get('plan/modify', 'PlanController@Modify')->name('plan.modify');
@@ -94,6 +94,42 @@ Route::post('contents/shareShare', 'ContentsController@shareShare')->name('conte
 Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name('contents.shareDownload');
 
 Route::get('contents/shareDownload{choiceContentsName}/{choiceContentsId}', 'ContentsController@shareDownload')->name('contents.shareDownload');
+
+
+// *******************  소감문 *********************
+// 소감문 목록
+Route::get('report', 'ReportController@index')->name('report');
+
+// 소감문 작성
+Route::get('report/write', 'ReportController@write')->name('report.write');
+
+// 소감문 열람
+Route::get('report/view', 'ReportController@view')->name('report.view');
+
+// 소감문 평가
+Route::get('report/evaluation', 'ReportController@evaluation')->name('report.evaluation');
+
+
+// *******************  위원회 *********************
+// 위원회 목록
+Route::get('staff', 'staffController@index')->name('staff');
+
+// 위원회 결과
+Route::get('staff/result', 'staffController@result')->name('staff.result');
+
+// 위원회 멤버 추가
+Route::get('staff/memberadd', 'staffController@memberAdd')->name('staff.memberadd');
+
+
+// *******************  체크리스트 *********************
+// 체크리스트 목록
+Route::get('checklist', 'ChecklistController@index')->name('checklist');
+
+// 체크리스트 작성
+Route::get('checklist/write', 'ChecklistController@write')->name('checklist.write');
+
+// 체크리스트 열람
+Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
 
 
 // *******************  앱 히스토리 *********************
