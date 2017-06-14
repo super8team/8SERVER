@@ -28,7 +28,7 @@ class SurveyController extends Controller
         array_push($surveyDateArr, $survey->created_at);
       }
 
-        return view('survey.list', [
+        return view('survey.survey_list', [
           'survey_id' => $surveyNoArr,
           'survey_title' => $surveyTitleArr,
           'survey_write_date' => $surveyDateArr,
@@ -42,7 +42,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        return view('survey.write');
+        return view('survey.survey_write');
     }
 
     /**
@@ -83,9 +83,10 @@ class SurveyController extends Controller
         }
       }
 
-        return view('survey_view', [
+        return view('survey.survey_view', [
           'survey_title' => $newSurveyName,
           'q_title' => $newSurvey, // 설문지
+          'survey_id' => $surveyId,
         ]);
     }
 
@@ -97,29 +98,62 @@ class SurveyController extends Controller
      */
     public function show($id)
     {
-        return view('survey.view');
+        $qTitle = [];
+        $survey = \DB::table('surveies')->where('no', $id)->first();
+        $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
+        $articleCount = count($articles);
+
+        for ($i=0; $i<$articleCount; $i++) {
+          $qTitle[$i][0] = $articles[$i]->type;
+          $qTitle[$i][1] = $articles[$i]->article;
+          if($qTitle[$i][0] == "obj") {
+            $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
+            $answerCount = count($answers);
+            for($j=0; $j<$answerCount; $j++) {
+              $qTitle[$i][2][$j] = $answers[$j]->substance;
+            }
+          }
+        }
+
+        // dd($qTitle);
+        return view('survey.survey_view', [
+          'survey_title' => $survey->title,
+          'q_title' => $qTitle, // 설문지
+          'survey_id' => $survey->no,
+        ]);
     }
 
-    public function write(Request $request)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($survey)
     {
-        $q_title = $request->input('q_title');
-        $survey_title = $request->input('survey_title');
-
-        // 쿼리
-
-        return view('survey.survey_write');
+        //
     }
 
-
-    public function view(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $survey)
     {
+        //
+    }
 
-        $resp = $request->input('resp');
-
-        // 쿼리
-
-        return view('survey.survey_view')->with('q_title', '')
-            ->with('survey_title', '')
-            ->with('survey_id', '');
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($survey)
+    {
+        //
     }
 }
