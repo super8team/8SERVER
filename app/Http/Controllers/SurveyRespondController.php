@@ -70,10 +70,10 @@ class SurveyRespondController extends Controller
       }
 
       return view('survey.survey_result', [
-        'resp' => ,
+        'resp' => '',
         'survey_title' => $newSurveyName,
         'q_title' => $newSurvey, // 설문지
-        'survey_id' => $surveyId,'
+        'survey_id' => $surveyId,
       ]);
     }
 

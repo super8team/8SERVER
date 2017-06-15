@@ -82,10 +82,22 @@ class PlanController extends Controller
       $institution = $request->input(institution);
       $others = $request->input(others);
 
-      // 저장
+      // $planNo = \DB::table('field_learning_plans')->insertGetId([
+      //   'name' => $plan_title,
+      //   'created_at' => ,
+      //   'teacher' => ,
+      // ]);
+      //
+      // \DB::table('simple_plans')->insert([
+      //   'plan' => $planNo,
+      //   'type' => ,
+      //   'grade_class_count' => ,
+      //   'student_count' => ,
+      //   'unjoin_students_count' =>
+      // ]);
 
-        // return view('plan.sheet'); // id 보내야됨
-        return redirect()->route('plan.show', $id);
+      // return view('plan.sheet'); // id 보내야됨
+      return redirect()->route('plan.show', $id);
     }
 
     /**
@@ -141,7 +153,7 @@ class PlanController extends Controller
       $institution = $request->input(institution);
       $others = $request->input(others);
 
-      
+
       return redirect()->route('plan.sheet', $id);
     }
 
