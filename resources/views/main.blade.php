@@ -16,7 +16,7 @@
            <div class="carousel-caption">
              <img src="{{asset('img/logo.png')}}" alt="로고자리야 으앙아앙아" style="width:400px;height:300px">
              <h1>LEARnFUN</h1>
-             학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스.
+             학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스. USER {{ Auth::id() }}
            </div>
          </div>
        </div>
@@ -31,7 +31,7 @@
                <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
                <h2>학부모</h2>
                <p>가정통신문, 설문</p>
-               <p><a class="btn btn-default" href="{{route('plan.studentParents')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">상세보기 &raquo;</a></p>
              </div><!-- /.col-sm-4 -->
            </div>
          </div>
@@ -55,7 +55,7 @@
                <img class="img-circle" src="{{asset('img/student01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
                <h2>학생</h2>
                <p>학생이 즐기는 컨텐츠 </p>
-               <p><a class="btn btn-default" href="{{route('plan.studentParents')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">상세보기 &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->

@@ -11,7 +11,6 @@
 |
 */
 Route::get('/', function () {
-    // 배열로 홈페이지 값 전달하기
     return view('main');
 })->name('main');
 
@@ -77,8 +76,6 @@ Route::resource('survey', 'SurveyController');
 
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
-
-Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
 
 
 // ******************** 콘텐츠 *********************
@@ -149,8 +146,6 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 
 // Route::resource('app/history', 'AppHistoryController');
 
-
-Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 

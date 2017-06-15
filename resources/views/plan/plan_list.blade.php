@@ -38,7 +38,7 @@
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
                 <th>바로가기
-                    <a role="button"  href="{{route('plan')}}" aria-label="Right Align"
+                    <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
                      class="btn btn-sm btn-default">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
@@ -51,7 +51,7 @@
 
             {{-- 레코드를 10개 출력  --}}
 
-            @for ($count=0; $count < 10 ; $count++)
+            @for ($count=0; $count < count($plan_tile) ; $count++)
               {{-- @foreach ($param as $value)
                 <td>{{$count+1}}</td>
                 <td>{{$value['data']['name']}}</td>
@@ -63,20 +63,22 @@
                   </a>
               @endforeach --}}
                   <tr>
-                    <td>{{$count+1}}</td>
-                    <td>{{$planlist_arr['data']['name']}}</td>
-                    <td>{{$planlist_arr['data']['date']}}</td>
+                    <td>{{$plan_no[$count]}}</td>
+                    <td>{{$plan_title[$count]}}
+                      <a role="button" href="{{route('plan.edit',$plan_no[$count])}}" class="btn btn-sm btn-primary">
+                        수정
+                      </a>
+                    </td>
+                    <td>{{$plan_date[$count]}}</td>
 
                     <td colspan="2" class="text-center">
+                      <a role="button" href="{{route('plan.sheet',$plan_no[$count])}}" class="btn btn-sm btn-success">
+                        서류작성
+                      </a>
                       <a role="button" href="{{route('staff')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
-                      <a role="button" href="{{route('plan.modify')}}" class="btn btn-sm btn-primary">
-                        수정
-                      </a>
-                      <a role="button" href="{{route('plan.sheet')}}" class="btn btn-sm btn-success">
-                        서류작성
-                      </a>
+
                       <a role="button" href="{{ route('survey.index')}}" class="btn btn-sm btn-info">
                         설문조사
                       </a>

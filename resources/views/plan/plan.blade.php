@@ -3,6 +3,55 @@
 @section('title','계획 작성')
 
 @section('content')
+  @php
+  $plan_id    = 99;
+  $plan_title ="뚝배기 깨기 여행";
+  $plan_date = "2017-09-28";
+  $transpotation[0] = "전세버스";
+  
+      if(isset($plan_id)){
+
+          if(!isset($plan_title )){
+            $plan_title  = "";
+          }
+          if(!isset($plan_date)){
+            $plan_date = "";
+          }
+          if(!isset($teacher_name)){
+            $teacher_name = "";
+          }
+          if(!isset($trip_kind_value)){
+            $trip_kind_value = "";
+          }
+          if(!isset($attend_class_count)){
+            $attend_class_count = "";
+          }
+          if(!isset($attend_student_count)){
+            $attend_student_count = "";
+          }
+          if(!isset($unattend_student_count)){
+            $unattend_student_count = "";
+          }
+
+      }else{
+
+      }
+
+/*
+        plan_title 		           = “(String)”,
+        plan_date                = “(String)”,
+        teacher_name			       = “(String)”,
+        trip_kind_value		       = “(String)”,		//체험학습 종류
+        attend_class_count		   = “(String)”,		//참여 학급 수
+        attend_student_count		 = “(String)”,		//참여 학생 수
+        unattend_student_count	 = “(String)”		  //미참여 학생 수
+        transpotation []			   = “(ArrayString)”	//교통수단 정보
+        activity[]		           = “(ArrayString)”	//체험학습 프로그램
+        institution[]			       = “(ArrayString)”	//기관인증여부
+        others[]			           = “(ArrayString)”	//기타
+        result_check[]			     = “(ArrayString)”	//진행도 여부를 파악용 체크
+    */
+  @endphp
   <div class="bluebg">
     <div class="container">
         <div class="panel panel-info">
@@ -20,9 +69,20 @@
             <span class="glyphicon glyphicon-open-file"></span>
             임시 계획 작성
           </a>
+          {{-- 값이 있는 경우 표시 --}}
+          @if (isset($plan_id))
+            <a href="{{--route('plan.destroy'),$plan_id--}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+              <span class="glyphicon glyphicon-open-file"></span>
+              삭제
+            </a>
+          @endif
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
           {{-- plansheet --}}
-					<form class="sky-form" action="{{route('plan.teacher')}}" method="post">
+          @if (isset($plan_id))
+            <form class="sky-form" action="{{--route('plan.update'),$plan_id--}}" method="post">
+          @else
+            <form class="sky-form" action="{{--route('plan.store')--}}" method="post">
+          @endif
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
@@ -36,7 +96,7 @@
 							<div class="col-md-4">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<input type="text" name="plan_title" class="form-control required" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+									<input type="text" name="plan_title" class="form-control required" value="{{$plan_title}}" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
 								</div>
 							</div>
               {{-- 날짜 입력 구간 --}}
@@ -45,17 +105,17 @@
 									<div class="input-group-addon">
 										<span class="glyphicon glyphicon-th"></span>
 									</div>
-									<input type="date" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
+									<input type="date" class="form-control required" value="{{$plan_date}}" placeholder="체험학습 실시일" name="plan_date">
 								</div>
 
 							</div>
               {{-- 담당교사 이름 입력 구간 --}}
-							<div class="col-md-4">
+							{{-- <div class="col-md-4">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 									<input type="text" name="teacher_name" class="form-control required" size="20" maxlength="20" placeholder="체험학습 담당 교사명" required="">
 								</div>
-							</div>
+							</div> --}}
 						</div>
 						<div class="row form-group">
               {{-- 체험학습 종류 선택 --}}
@@ -63,7 +123,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
 									<select class="form-control" name="trip_kind_value" required="">
-										<option value="" disabled="" selected="">체험학습종류</option>
+										<option value="" disabled="" selected="{{$trip_kind_value}}">체험학습종류</option>
 										<option value="수학여행">수학여행</option>
 										<option value="숙박형">숙박형</option>
 										<option value="1일형">1일형</option>
@@ -75,7 +135,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 									<select class="form-control" name="attend_class_count" required="">
-										<option value="" disabled="" selected="">참여 학급수</option>
+										<option value="" disabled="" selected="{{$attend_class_count}}">참여 학급수</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -98,14 +158,14 @@
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="attend_student_count" class="form-control required" size="20" maxlength="20" placeholder="참여 학생수" required="">
+									<input type="number" name="attend_student_count" value="{{$attend_student_count}}" class="form-control required" size="20" maxlength="20" placeholder="참여 학생수" required="">
 								</div>
 							</div>
               {{-- 미참여 학생 수 입력 --}}
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="unattend_student_count" class="form-control required" size="20" maxlength="20" placeholder="미참여 학생수" required="">
+									<input type="number" name="unattend_student_count" value="{{$unattend_student_count}}" class="form-control required" size="20" maxlength="20" placeholder="미참여 학생수" required="">
 								</div>
 							</div>
 						</div>
@@ -115,7 +175,15 @@
 							</div>
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="전세버스" name="transpotation[]" >전세버스</label>
+                @for ($i=0; $i <6 ; $i++)
+                  @if (isset($transpotation[$i]))
+                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$transpotation[$i]}}" name="transpotation[]" checked>{{$transpotation[$i]}}</label>
+                  @else
+                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="" name="transpotation[]" >전세버스</label>
+                  @endif
+
+                @endfor
+								{{-- <label class="checkbox-inline margin-right-3"><input type="checkbox" value="전세버스" name="transpotation[]" >전세버스</label>
 
 								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="항공" name="transpotation[]" >항공</label>
 
@@ -123,9 +191,9 @@
 
 								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="기차" name="transpotation[]">기차</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="대중교통" name="transpotation[]" >대중교통</label>
+								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="transpotation[]" >대중교통</label>
 
-								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="transpotation[]">없음</label>
+								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="transpotation[]">없음</label> --}}
 								<input type="text" size="20" placeholder="사용자입력" name="transpotation[]" >
 							</div>
 						</div>

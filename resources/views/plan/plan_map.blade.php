@@ -75,7 +75,7 @@ Full Calendar
     			header: {
     				left: 'prev,next today',
     				center: 'title',
-    				right: 'month,agendaWeek,agendaDay'
+    				right: 'agendaDay'
     			},
     			defaultDate: '2017-01-12', //이걸 이용하여 날짜 시작일을 설정?
     			navLinks: true, // can click day/week names to navigate views

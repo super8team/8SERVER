@@ -12,15 +12,19 @@
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
-          <a href="{{route('plan.teacher')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="javascript:history.back()" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             뒤로 가기
+          </a>
+          <a href="{{route('plan.destroy'),$plan_id}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+            <span class="glyphicon glyphicon-open-file"></span>
+            삭제
           </a>
 					<span class="clearfix"></span>
 				</div>
 				<div class="panel-body">
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
-					<form class="sky-form" action="{{route('plan.sheet')}}" method="post">
+					<form class="sky-form" action="{{route('plan.update'),$plan_no}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
@@ -34,7 +38,7 @@
 							<div class="col-md-4">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<input type="text" name="plan_title" class="form-control required" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+									<input type="text" name="plan_title" class="form-control required"  value="{{$plan_title}}" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
 								</div>
 							</div>
               {{-- 날짜 입력 구간 --}}
@@ -43,17 +47,17 @@
 									<div class="input-group-addon">
 										<span class="glyphicon glyphicon-th"></span>
 									</div>
-									<input type="text" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
+									<input type="text" class="form-control required" value="{{$plan_date}}" placeholder="체험학습 실시일" name="plan_date">
 								</div>
 
 							</div>
               {{-- 담당교사 이름 입력 구간 --}}
-							<div class="col-md-4">
+							{{-- <div class="col-md-4">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 									<input type="text" name="teacher_name" class="form-control required" size="20" maxlength="20" placeholder="체험학습 담당 교사명" required="">
 								</div>
-							</div>
+							</div> --}}
 						</div>
 						<div class="row form-group">
               {{-- 체험학습 종류 선택 --}}
@@ -61,7 +65,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
 									<select class="form-control" name="trip_kind_value" required="">
-										<option value="" disabled="" selected="">체험학습종류</option>
+										<option value="" disabled="" selected="{{$trip_kind_value}}">체험학습종류</option>
 										<option value="수학여행">수학여행</option>
 										<option value="숙박형">숙박형</option>
 										<option value="1일형">1일형</option>
@@ -73,7 +77,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 									<select class="form-control" name="attend_class_count" required="">
-										<option value="" disabled="" selected="">참여 학급수</option>
+										<option value="" disabled="" selected="{{$attend_class_count}}">참여 학급수</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -96,14 +100,14 @@
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="attend_student_count" class="form-control required" size="20" maxlength="20" placeholder="참여 학생수" required="">
+									<input type="number" name="attend_student_count" class="form-control required" value="{{$attend_student_coutn}}" size="20" maxlength="20" placeholder="참여 학생수" required="">
 								</div>
 							</div>
               {{-- 미참여 학생 수 입력 --}}
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="unattend_student_count" class="form-control required" size="20" maxlength="20" placeholder="미참여 학생수" required="">
+									<input type="number" name="unattend_student_count" class="form-control required" value="{{$unattend_student_coutn}}" size="20" maxlength="20" placeholder="미참여 학생수" required="">
 								</div>
 							</div>
 						</div>
