@@ -12,7 +12,19 @@
 */
 Route::get('/', function () {
     return view('main');
+})->name('main');
+
+Route::get('/test22',function(){
+  return view('plan.test22');
 });
+
+Route::POST('/get',function(){
+  return view('plan.get-event_dnweb');
+});
+
+// Route::get('/sheet',function(){
+//   return view('plan.plan_sheet');
+// });
 
 //웹 로그인
 Auth::routes();
@@ -126,6 +138,9 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // *******************  앱 히스토리 *********************
 
 // Route::resource('app/history', 'AppHistoryController');
+
+
+Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');

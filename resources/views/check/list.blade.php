@@ -9,12 +9,12 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 체크리스트
-            <a role="button" href="{{route('plan_list')}}" aria-label="Right Align"
+            <a role="button" href="{{route('plan.teacher')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{route('check_write')}}" aria-label="Right Align"
+           <a role="button" href="{{route('checklist.write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             체크리스트 작성
@@ -39,7 +39,7 @@
                     <td>(기본)안전사고 예방 체크리스트</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('check_view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -50,7 +50,7 @@
                     <td>(기본)수학여행 용역 업체 제안서 평가 항목 배점</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$check_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -61,7 +61,7 @@
                     <td>(기본)컨설팅 체크리스트(컨설팅 내용)</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$check_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -72,7 +72,7 @@
                     <td>(기본)컨설팅 체크리스트(조치 결과)</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$check_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
@@ -83,7 +83,7 @@
                     <td>(기본)시민감사관 현장체험학습 체크리스트</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{$check_view}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>

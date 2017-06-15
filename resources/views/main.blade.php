@@ -4,9 +4,6 @@
 @section('title' , 'LEAN&FUN')
 
 @section('content')
-  @php
-    $planlist = "http://localhost/Code/8SERVER/public/planlist";
-  @endphp
 <head>
     <script src="../public/js/parallax.js"></script>
     {{-- <script src="js/custum.js"></script> --}}
@@ -34,7 +31,7 @@
                <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
                <h2>학부모</h2>
                <p>가정통신문, 설문</p>
-               <p><a class="btn btn-default" href="{{route('plan.studentParents')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">상세보기 &raquo;</a></p>
              </div><!-- /.col-sm-4 -->
            </div>
          </div>
@@ -58,7 +55,7 @@
                <img class="img-circle" src="{{asset('img/student01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
                <h2>학생</h2>
                <p>학생이 즐기는 컨텐츠 </p>
-               <p><a class="btn btn-default" href="{{route('plan.studentParents')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">상세보기 &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->
