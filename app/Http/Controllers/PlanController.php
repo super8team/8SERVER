@@ -32,9 +32,11 @@ class PlanController extends Controller
       $planDates = [];
 
       foreach($plans as $plan) {
+
+        // dd($plan);
         array_push($planIds, $plan->no);
-        array_push($planTitles, $plan->title);
-        array_push($planDates, $plan->write_date);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->created_at); // at
       }
 
       return view('plan.plan_list', [
@@ -82,9 +84,10 @@ class PlanController extends Controller
       $institution = $request->input(institution);
       $others = $request->input(others);
 
+
       // $planNo = \DB::table('field_learning_plans')->insertGetId([
       //   'name' => $plan_title,
-      //   'created_at' => ,
+      //   'at' => ,
       //   'teacher' => ,
       // ]);
       //
@@ -108,7 +111,7 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        return view('plan.sheet'); //
+        return view('plan.plan_sheet'); //
     }
 
     /**
