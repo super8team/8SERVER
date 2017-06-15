@@ -11,9 +11,8 @@
 |
 */
 Route::get('/', function () {
-    // 배열로 홈페이지 값 전달하기
     return view('main');
-});
+})->name('main');
 
 Route::get('/test22',function(){
   return view('plan.test22');
@@ -23,9 +22,9 @@ Route::POST('/get',function(){
   return view('plan.get-event_dnweb');
 });
 
-Route::get('/sheet',function(){
-  return view('plan.plan_sheet');
-});
+// Route::get('/sheet',function(){
+//   return view('plan.plan_sheet');
+// });
 
 //웹 로그인
 Auth::routes();
@@ -33,6 +32,7 @@ Auth::routes();
 //앱 로그인
 Route::post('app/login', 'AppLoginController@login');
 
+//
 Route::post('app/getPlan', 'AppRequestController@getPlan');
 
 Route::post('app/getStudentList', 'AppRequestController@getStudentList');
@@ -41,31 +41,18 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 // ******************** 플랜 리스트 *********************
 // 간단 계획
-Route::get('plan', 'PlanController@index')->name('plan');
 
-// 계획 수정
-Route::get('plan/modify', 'PlanController@Modify')->name('plan.modify');
+Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
+Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
+Route::get('plan/students', 'PlanController@student')->name('plan.student');
+Route::resource('plan', 'PlanController');
 
-// 교사 계획 리스트
-Route::get('plan/teacher', 'PlanController@teacherPlanList')->name('plan.teacher');
-
-// 학생, 학부모 계획 리스트
-Route::get('plan/studentParents', 'PlanController@studentParentPlanList')->name('plan.studentParents');
-
-// 서류
-Route::get('plan/sheet', 'PlanController@sheet')->name('plan.sheet');
-
-// 계획 맵
-Route::get('plan/map', 'PlanController@map')->name('plan.map');
-
-// 앱 디테일플랜
+//
+// // 계획 맵
+// Route::get('plan/map', 'PlanController@map')->name('plan.map');
+//
+// // 앱 디테일플랜
 Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
-
-
-// ******************** 가정 통신문 *********************
-// 가정통신문 리스트, 작성, 열람
-Route::resource('notice', 'NoticeController');
-
 
 
 // ******************** 설문조사 *********************
@@ -77,8 +64,6 @@ Route::resource('survey', 'SurveyController');
 
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
-
-Route::get('survey/{packageId}', 'SurveyController@result')->name('survey.result');
 
 
 // ******************** 콘텐츠 *********************
@@ -104,6 +89,11 @@ Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name(
 //콘텐츠를 현장학습에 저장
 Route::get('contents/registerToPlan','ContentsController@registerToPlan')->name('contents.registerToPlan');
 
+
+
+// ******************** 가정 통신문 *********************
+// 가정통신문 리스트, 작성, 열람
+Route::resource('notice', 'NoticeController');
 
 
 // *******************  소감문 *********************
@@ -151,6 +141,7 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
+
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 

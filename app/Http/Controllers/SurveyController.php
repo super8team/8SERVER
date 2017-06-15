@@ -22,7 +22,7 @@ class SurveyController extends Controller
       $surveyDateArr = array();
 
       $surveies = DB::table('surveies')->get();
-      foreach ($serveies as $survey) {
+      foreach ($surveies as $survey) {
         array_push($surveyNoArr, $survey->no);
         array_push($surveyTitleArr, $survey->title);
         array_push($surveyDateArr, $survey->created_at);
