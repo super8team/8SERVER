@@ -3,101 +3,171 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 
 class PlanController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    // 간단 계획
     public function index()
     {
-
-        return view('plan.plan');
-
+        // return view('plan.plan_list');
     }
 
-
-    // 계획 수정
-    public function Modify()
-    {
-
-        return view('plan.plan_modify');
-
-    }
-
-
-    // 교사 계획 리스트
-    public function teacherPlanList()
-    {
-
-//        $planTitle = [];
-//        $planDate = [];
-//
-//        $fieldLearningPlans = DB::table('field_learning_plans')->get();
-//
-//        foreach ($fieldLearningPlans as $fieldLearningPlan) {
-//
-//            array_push($planTitle ,$fieldLearningPlan->name);
-//            array_push($planDate, $fieldLearningPlan->created_at);
-//
-//        }
-
-        return view('plan.plan_list');
-//            ->with('plan_title', $planTitle)
-//                                      ->with('plan_date', $planDate);
-    }
-
-
-    // 학생, 학부모 계획 리스트
-    public function studentParentPlanList()
-    {
-        return view('plan.planlist2');
-//        ->with('plan_title ', '')
-//                                      ->with('plan_date', '');
-    }
-
-
-    // 서류 작성
-    public function sheet()
-    {
-
-
-        return view('plan.plan_sheet');
-//            ->with('plan_title ', '')
-//                                       ->with('plan_date', '')
-//                                       ->with('teacher_name', '')
-//                                       ->with('trip_kind_value', '')
-//                                       ->with('attend_class_count', '')
-//                                       ->with('attend_student_count	', '')
-//                                       ->with('unattend_student_count', '')
-//                                       ->with('transpotation ', '')
-//                                       ->with('activity', '')
-//                                       ->with('institution', '')
-//                                       ->with('others', '')
-//                                       ->with('result_check', '');
-    }
-
-
-    // 계획 맵
-    public function map()
-    {
-        return view('plan.plan_map');
-    }
-
-
-    // getPlanDetail
-    // post {  }
-    // plan{
-    //        plan1 { place : (장소이름)  at: }
-    //        plan2 { ....
+    // planlist.blade.php
+    // return{
+    // 	plan_no			= 숫잡열
+    // 	plan_title 			= “(String)”, 문자열배열
+    // 	plan_date			= “(String)” 문자열배열
     // }
+
+    public function teacher() {
+
+      $plans = \DB::table('field_learning_plans')->get();
+
+      $planIds = [];
+      $planTitles = [];
+      $planDates = [];
+
+      foreach($plans as $plan) {
+        array_push($planIds, $plan->no);
+        array_push($planTitles, $plan->title);
+        array_push($planDates, $plan->write_date);
+      }
+
+      return view('plan.plan_list', [
+        'plan_no' => $planIds,
+        'plan_title' => $planTitles,
+        'plan_date' => $planDates,
+      ]);
+    }
+
+    public function student() {
+      return view('plan.planlist2');
+    }
+
+    public function parents() {
+      return view('plan.planlist2');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('plan.plan');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+     // result_check[]			= “(ArrayString)”	//진행도 여부를 파악용 체크
+    public function store(Request $request)
+    {
+      $plan_title = $request->input(plan_title);
+      $plan_date = $request->input(plan_date);
+      $trip_kind_value = $request->input(trip_kind_value);
+      $attend_class_count = $request->input(attend_class_count);
+      $attend_student_count = $request->input(attend_student_count);
+      $unattend_student_count = $request->input(unattend_student_count);
+      $transpotation = $request->input(transpotation);
+      $activity = $request->input(activity);
+      $institution = $request->input(institution);
+      $others = $request->input(others);
+
+      // $planNo = \DB::table('field_learning_plans')->insertGetId([
+      //   'name' => $plan_title,
+      //   'created_at' => ,
+      //   'teacher' => ,
+      // ]);
+      //
+      // \DB::table('simple_plans')->insert([
+      //   'plan' => $planNo,
+      //   'type' => ,
+      //   'grade_class_count' => ,
+      //   'student_count' => ,
+      //   'unjoin_students_count' =>
+      // ]);
+
+      // return view('plan.sheet'); // id 보내야됨
+      return redirect()->route('plan.show', $id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('plan.sheet'); //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+      return view('plan.plan', [
+        'plan_title' => $plan_title,
+        'plan_date' => $plan_date,
+        'trip_kind_value' => $trip_kind_value,
+        'attend_class_count' => $attend_class_count,
+        'attend_student_count' => $attend_student_count,
+        'unattend_student_count' => $unattend_student_count,
+        'transpotation' => $transpotation,
+        'activity' => $activity,
+        'institution' => $institution,
+        'others' => $others,
+      ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+      $plan_title = $request->input(plan_title);
+      $plan_date = $request->input(plan_date);
+      $trip_kind_value = $request->input(trip_kind_value);
+      $attend_class_count = $request->input(attend_class_count);
+      $attend_student_count = $request->input(attend_student_count);
+      $unattend_student_count = $request->input(unattend_student_count);
+      $transpotation = $request->input(transpotation);
+      $activity = $request->input(activity);
+      $institution = $request->input(institution);
+      $others = $request->input(others);
+
+
+      return redirect()->route('plan.sheet', $id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return view('plan.plan_list'); // teacher_index
+    }
+
     public function getPlanDetial(Request $request) {
       $user = $request->input('userId');
       $user = \DB::table('users')->where('id', $user)->first();
@@ -116,5 +186,4 @@ class PlanController extends Controller
       // dd($result);
       return json_encode($result);
     }
-
 }
