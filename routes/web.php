@@ -150,7 +150,7 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // Route::resource('app/history', 'AppHistoryController');
 
 
-Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 
