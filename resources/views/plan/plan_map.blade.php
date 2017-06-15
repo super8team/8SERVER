@@ -155,7 +155,7 @@ Full Calendar
     			// 	}
     			// ]
           eventSources: [{
-            // url: 'http://Code/8SERVER/resources/get',
+            url: 'http://Code/8SERVER/public/get',
           url: './get-events_dnweb.blade.php',
           dataType: 'json',
           async: false,

@@ -13,6 +13,8 @@
 
     {{-- 제목 받는 곳 --}}
     <title> @yield('title')</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
@@ -21,19 +23,6 @@
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-    <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
-    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    {{-- <script src="../public/js/bootstrap.min.js"></script> --}}
-    <link rel="stylesheet" href="{{ asset('js/bootstrap.min.js') }}">
-    {{-- <script src="../public/js/parallax.js"></script> --}}
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
       <system.webServer>
@@ -41,7 +30,7 @@
           <remove fileExtension=".woff2" />
           <mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
         </staticContent>
-      </system.webServer>
+        </system.webServer>
     </configuration>
     <style media="screen">
 
@@ -50,12 +39,12 @@
 
       //<![CDATA[
       $(document).ready(function(){
-
         // 페이지별로 클래스 등등 변환 하기
 
         // 홈페이지 url 받아오기
         var currurl = "{{url()->current()}}";
         var user    = "{{'teacher'}}"; // 학생 학부모 교사 에 따라 css 변경
+
 
         //37번째 이후 의 문자열을 가저옴 http://localhost/Code/laravel/public/home
         // 폴더 화 가 되었으니 explode 를 사용 하거나 하기
@@ -81,16 +70,16 @@
         // else{
         //   window.alert(currurl+' url 설정하라!');
         // }
+
+
       });
+
       // ]]>
+
     </script>
   </head>
 
   <body>
-    @php
-      $home = "http://localhost/Code/8SERVER/public/home";
-      $join = "http://localhost/Code/8SERVER/public/join";
-    @endphp
     {{-- 메인 --}}
     <!-- Modal 모달 -->
     <div class="modal fade sidemenu" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -120,7 +109,7 @@
                   </fieldset>
               </form>
               <div class="col-sm-8 col-md-offset-2">
-                <p><a href="{{$join}}" class="btn btn-lg btn-warning btn-block">회원가입</a></p>
+                <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">회원가입</a></p>
               </div>
 
               <div class="col-sm-8 col-md-offset-2">
@@ -152,7 +141,7 @@
           {{-- 상표 이미지 로고 --}}
           <img class="navbar-brand" src="{{asset('img/logo.png')}}" alt="">
            {{-- 상표 이름 적기 --}}
-          <a class="navbar-brand" href="{{--route('main')--}}">LEARnFUN</a>
+          <a class="navbar-brand" href="{{ route('main') }}">LEARnFUN</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse text-center">
           {{-- <ul id="left_menu" class="nav navbar-nav">

@@ -3,18 +3,13 @@
 @section('title','위원회 항목')
 
 @section('content')
-  @php
-    $plan_list    = "http://localhost/Code/8SERVER/public/planlist";
-    $result       = "http://localhost/Code/8SERVER/public/staffresult";
-    $member_add   = "http://localhost/Code/8SERVER/public/staffmember"
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 가정통신문
-            <a role="button" href="{{$plan_list}}" aria-label="Right Align"
+            <a role="button" href="javascript:history.back()" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기

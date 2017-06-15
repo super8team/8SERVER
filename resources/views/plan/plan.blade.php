@@ -22,7 +22,7 @@
           </a>
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
           {{-- plansheet --}}
-					<form class="sky-form" action="{{route('plan.list')}}" method="post">
+					<form class="sky-form" action="{{route('plan.teacher')}}" method="post">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}

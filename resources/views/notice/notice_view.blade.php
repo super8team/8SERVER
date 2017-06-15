@@ -8,7 +8,6 @@
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-
             {{-- 제목 가저오기 --}}
             {{-- $notice_title --}}
             가정 통신문 데스
