@@ -84,7 +84,6 @@
             <form class="sky-form" action="{{--route('plan.store')--}}" method="post">
           @endif
             {{csrf_field()}}
-            {{-- 으아아아아 --}}
             <input type="hidden" name="user_no" value="{{Auth::id()}}">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
@@ -178,25 +177,18 @@
 							</div>
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
-                @for ($i=0; $i <6 ; $i++)
-                  @if (isset($transpotation[$i]))
-                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$transpotation[$i]}}" name="transpotation[]" checked>{{$transpotation[$i]}}</label>
-                  @else
-                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="" name="transpotation[]" >전세버스</label>
-                  @endif
+                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="1" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>전세버스</label>
 
-                @endfor
-								{{-- <label class="checkbox-inline margin-right-3"><input type="checkbox" value="전세버스" name="transpotation[]" >전세버스</label>
+    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="2" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>항공</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="항공" name="transpotation[]" >항공</label>
+    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>선박</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="선박" name="transpotation[]">선박</label>
+    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>기차</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="기차" name="transpotation[]">기차</label>
+    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>대중교통</label>
 
-								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="transpotation[]" >대중교통</label>
-
-								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="transpotation[]">없음</label> --}}
+    								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="6" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>없음</label>
+								
 								{{-- <input type="text" size="20" placeholder="사용자입력" name="transpotation[]" > --}}
 							</div>
 						</div>
