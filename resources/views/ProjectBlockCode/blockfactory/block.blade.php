@@ -385,6 +385,20 @@
 
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
+
+        <td id="packageList">
+          <div id="packageDiv" >
+            @foreach($package_name as $key => $value)
+              <button type="button" name="button" value={{$value['name']}}>{{$value['name']}}</button>
+            @endforeach
+          </div>
+          <button id="createNewPackage">패키지 생성</button>
+        </td>
+
+        <td id="blocklyWorkspaceContainer">
+          <div id="blockly"></div>
+          <div id="blocklyMask"></div>
+        </td>
         <!-- 지도 -->
         <td id="mapSize">
           <body onload="initialize();">
@@ -392,20 +406,7 @@
             <div id="get_location" hidden></div>
         </td>
         <!-- 블록 코딩 -->
-        <td id="blocklyWorkspaceContainer">
-          <div id="blockly"></div>
-          <div id="blocklyMask"></div>
-        </td>
 
-        <td id="packageList">
-          <div id="packageDiv" style="border:1px solid">
-            @foreach($package_name as $key => $value)
-              <button type="button" name="button" value={{$value['ids']}}>{{$value['name']}}</button>
-            @endforeach
-          </div>
-          <button id="createNewPackage">패키지 생성</button>
-
-        </td>
 
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
@@ -434,7 +435,6 @@
         <block type="button_2"></block>
         <block type="button_3"></block>
         <block type="button_4"></block>
-        <block type="vertical"></block>
       </category>
       <category name="텍스트">
         <block type="header"></block>
@@ -443,14 +443,14 @@
         <!-- <block type="field_number"></block> -->
         <!-- <block type="field_angle"></block> -->
         <!-- <block type="field_dropdown"></block> -->
-        <block type="field_checkbox"></block>
+        <!-- <block type="field_checkbox"></block> -->
         <!-- <block type="field_colour"></block> -->
         <!--
         Date picker commented out since it increases footprint by 60%.
         Add it only if you need it.  See also goog.require in blockly.js.
         <block type="field_date"></block>
         -->
-        <block type="field_variable"></block>
+        <!-- <block type="field_variable"></block> -->
       </category>
       <category name ="이미지">
         <block type="image_1"></block>
@@ -460,11 +460,11 @@
       </category>
 
       <category name="실행">
-        <block type="isscript"></block>
-        <block type="checkedit"></block>
-        <block type="out_img"></block>
-        <block type="out_txt"></block>
-        <block type="end"></block>
+        <block type="CLICK"></block>
+        <block type="CHECKEDIT"></block>
+        <block type="OUT_IMG"></block>
+        <block type="OUT_TXT"></block>
+        <block type="END"></block>
       </category>
 
     </xml>

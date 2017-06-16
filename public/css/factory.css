@@ -299,10 +299,11 @@ button, .buttonStyle {
 
 #packageList {
   border: 1px solid;
-  width: 52%;
+  width: 20%;
 }
 
 #packageList button{
+
   margin-left: 25%;
   width: 150px;
 }

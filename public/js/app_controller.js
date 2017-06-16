@@ -771,9 +771,9 @@ AppController.prototype.init = function() {
 
   var self = this;
   // Handle Blockly Storage with App Engine.
-  if ('BlocklyStorage' in window) {
-    this.initializeBlocklyStorage();
-  }
+  // if ('BlocklyStorage' in window) {
+  //   this.initializeBlocklyStorage();
+  // }
 
   // Assign click handlers.
   this.assignExporterClickHandlers();
@@ -796,6 +796,8 @@ AppController.prototype.init = function() {
       {collapse: false,
        toolbox: toolbox,
        media: '../../media/'});
+  console.log('메인');
+  console.log(BlockFactory.mainWorkspace);
 
   // Add tab handlers for switching between Block Factory and Block Exporter.
   this.addTabHandlers(this.tabMap);
@@ -809,6 +811,7 @@ AppController.prototype.init = function() {
                                BlockFactory.mainWorkspace);
   } else {
     BlockFactory.showStarterBlock();
+    BlockFactory.showStarterBlock1();
   }
   BlockFactory.mainWorkspace.clearUndo();
 

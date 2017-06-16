@@ -104,7 +104,8 @@ Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name(
 //콘텐츠를 현장학습에 저장
 Route::get('contents/registerToPlan','ContentsController@registerToPlan')->name('contents.registerToPlan');
 
-
+//콘텐츠를 현장학습에 저장 -> DB
+Route::get('contents/registerToPlanDB','ContentsController@registerToPlanDB')->name('contents.registerToPlanDB');
 
 // *******************  소감문 *********************
 // 소감문 목록
@@ -150,7 +151,7 @@ Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // Route::resource('app/history', 'AppHistoryController');
 
 
-Route::post('app/writeHistroyContent', 'HistroyController@histroyStore');
+Route::post('app/writeHistoryContent', 'HistoryyController@histroyStore');
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 

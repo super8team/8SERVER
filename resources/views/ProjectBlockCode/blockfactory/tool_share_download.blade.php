@@ -45,14 +45,14 @@
             var package_parent      = document.getElementById("base_package_list");
 
             for(var i = 0; i < owner_package_list.length ; i++) {
-                  var package_list      =    document.createElement("input");
-                  package_list.setAttribute("type","checkbox");
-                  package_list.setAttribute("value",owner_package_list[i].value);
-                  package_list.setAttribute("name","package_name");
-                  package_list.setAttribute("onclick","oneCheckbox(this)");
-                  var package_text   =   document.createTextNode(owner_package_list[i].value);
-                  package_parent.appendChild(package_list);
-                  package_parent.appendChild(package_text);
+                var package_list      =    document.createElement("input");
+                package_list.setAttribute("type","checkbox");
+                package_list.setAttribute("value",owner_package_list[i].value);
+                package_list.setAttribute("name","package_name");
+                package_list.setAttribute("onclick","oneCheckbox(this)");
+                var package_text   =   document.createTextNode(owner_package_list[i].value);
+                package_parent.appendChild(package_list);
+                package_parent.appendChild(package_text);
             }
         });
 

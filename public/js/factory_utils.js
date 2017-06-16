@@ -302,42 +302,25 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   var contentsBlock   = rootBlock.getInputTargetBlock('IMAGES');
   var txtBlock        = rootBlock.getInputTargetBlock('TEXTS');
   var btnBlock        = rootBlock.getInputTargetBlock('BUTTONS');
-  var isscriptBlock   = rootBlock.getInputTargetBlock('SCRIPT');
-
- console.log('^'+isscriptBlock);
-  // init: function() {
-  //   this.jsonInit({
-  //     "message0": "dummy input",
-  //     "message1": FIELD_MESSAGE,
-  //     "args1": FIELD_ARGS,
-  //     "previousStatement": "Input",
-  //     "nextStatement": "Input",
-  //     "colour": 210,
-  //     "tooltip": "For adding fields on a separate row with no " +
-  //                "connections. Alignment options (left, right, centre) " +
-  //                "apply only to multi-line fields.",
-  //     "helpUrl": "https://www.youtube.com/watch?v=s2_xaEvcVI0#t=293"
-  //   });
-  // }
+  var clickblock      = rootBlock.getInputTargetBlock('SCRIPT');
 
 
 
   var lastInput = null;
   var ifNameNumber = 1;
 
-  while(isscriptBlock) {
-    if(!isscriptBlock.disabled  && !isscriptBlock.getInheritedDisabled()){
+  while(clickblock) {
+    if(!clickblock.disabled  && !clickblock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(
-        isscriptBlock.getInputTargetBlock('SCRIPT'));
-      var checkedit1     = FactoryUtils.getFieldsJson_(
-        isscriptBlock.getInputTargetBlock('CHECKEDIT1'));
-      var checkedit2     = FactoryUtils.getFieldsJson_(
-        isscriptBlock.getInputTargetBlock('CHECKEDIT2'));
-      console.log('isscript');
-      console.log(script_fields);
+        clickblock.getInputTargetBlock('SCRIPT'));
+      var CHECKEDIT1     = FactoryUtils.getFieldsJson_(
+        clickblock.getInputTargetBlock('CHECKEDIT1'));
+      var CHECKEDIT2     = FactoryUtils.getFieldsJson_(
+        clickblock.getInputTargetBlock('CHECKEDIT2'));
+      console.log('CLICK')
 
       // console.log(fields2);
-      var input = {type:isscriptBlock.type};
+      var input = {type:clickblock.type};
 
       // for(var i=0; i< script_fields.length; i++) {
       //   if(typeof script_fields[i] == 'string'){
@@ -350,18 +333,18 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         console.log(script_fields[i]);
       }
 
-      var input  = {type:isscriptBlock.type};
+      var input  = {type:clickblock.type};
       var number = script_fields.length;
-
-      if(isscriptBlock.type != 'input_dummy') {
-        if(input.type == 'checkedit')
+      console.log(input.type);
+      if(clickblock.type != 'input_dummy') {
+        if(input.type == 'CHECKEDIT')
         {
-          input.name   = isscriptBlock.getFieldValue('EDITINPUTNAME');
-          input.answer = isscriptBlock.getFieldValue('ANSWER');
-          input.true   = checkedit1;
-          input.false  = checkedit2;
+          input.name   = clickblock.getFieldValue('EDITINPUTNAME');
+          input.answer = clickblock.getFieldValue('ANSWER');
+          input.true   = CHECKEDIT1;
+          input.false  = CHECKEDIT2;
         }else {
-        input.name   = isscriptBlock.getFieldValue('INPUTNAME');
+        input.name   = clickblock.getFieldValue('INPUTNAME');
         input.action = script_fields;
         }
       }
@@ -369,7 +352,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       srtargs.push(input);
 
   }
-    isscriptBlock = isscriptBlock.nextConnection && isscriptBlock.nextConnection.targetBlock();
+    clickblock = clickblock.nextConnection && clickblock.nextConnection.targetBlock();
 }
   while(btnBlock) {
     if(!btnBlock.disabled){
@@ -378,9 +361,9 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
     if (btnBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
-      input.name  = btnBlock.getFieldValue('FIELDNAME');
-      input.color = btnBlock.getFieldValue('COLOUR');
-      input.text = btnBlock.getFieldValue('TEXT');
+      input.name      = btnBlock.getFieldValue('FIELDNAME');
+      input.color     = btnBlock.getFieldValue('COLOUR');
+      input.text      = btnBlock.getFieldValue('TEXT');
       input.fontColor = btnBlock.getFieldValue('FONTCOLOR');
     }
     btn_args.push(input);
@@ -407,10 +390,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             input.id = '2';
           break;
       }
-      input.text = txtBlock.getFieldValue('TEXT');
-      input.name = txtBlock.getFieldValue('TEXTNAME');
+      input.text  = txtBlock.getFieldValue('TEXT');
+      input.name  = txtBlock.getFieldValue('TEXTNAME');
       input.color = txtBlock.getFieldValue('COLOUR');
-      input.size = txtBlock.getFieldValue('VALUE');
+      input.size  = txtBlock.getFieldValue('VALUE');
     }
       txt_args.push(input);
       // message.push('%' + txt_args.length);
@@ -835,7 +818,7 @@ FactoryUtils.getFieldsJson_ = function(block) {
             type: block.type,
             name: block.getFieldValue('FIELDNAME'),
             color: block.getFieldValue('COLOUR'),
-            text : block.getFieldValue('TEXT`'),
+            text : block.getFieldValue('TEXT'),
             foncColor: block.getFieldValue('FONTCOLOUR')
         });
           break;
@@ -861,15 +844,19 @@ FactoryUtils.getFieldsJson_ = function(block) {
               heght: Number(block.getFieldValue('HEIGHT'))
         });
           break;
-        case 'out_img':
+        case 'OUT_IMG':
           script_fields.push({
               out_img:block.getFieldValue('OUT_SRC')
           });
           break;
-        case 'out_txt':
+        case 'OUT_TXT':
           script_fields.push({
-              out_txt:block.getFieldValue('OUT_TXT')
-          })
+              type: block.getFieldValue('OUT_TXT')
+          });
+        case 'END':
+          script_fields.push({
+              type: block.type
+          });
       }
     }
     block = block.nextConnection && block.nextConnection.targetBlock();
