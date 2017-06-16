@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ContentsController extends Controller
 {
     public function index($id)
-     {
+    {
 //
 //       //no -> 사용자 primary key
 //         // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
@@ -89,6 +89,7 @@ class ContentsController extends Controller
 //                                                           ->with('contents_id',   $contents[0]->no)
 //                                                           ->with('package_name', $package_infor);
 // >>>>>>> 19f1c7ac845580e62f2a5be159c2ee0b35d6ff4c
+
     }
 
 
