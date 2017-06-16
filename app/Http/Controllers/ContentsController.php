@@ -9,86 +9,87 @@ class ContentsController extends Controller
 {
     public function index($id)
     {
+//
+//       //no -> 사용자 primary key
+//         // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
+// <<<<<<< HEAD
+// //        $user = DB::table('users')->where('no', $no)->first();
+//
+//         $packagesName = DB::table('contents_packages')->where();
+//
+//
+//
+//
+// /////////////////////////////////// for 연제 /////////////////////////////////////////////
+//
+// // 한 유저(선생님)가 가지고 있는 패키지와 콘텐츠 전체!
+//
+// // $packages = 여러 패키지들이 담겨있는 배열
+// // $packages[번호] = 각 패키지 연관배열
+// // $packages[번호]['name'] = 패키지이름
+// // $packages[번호]['id'] = 패키지아이디
+// // $packages[번호]['contents'] = 포함된 컨텐츠들의 배열
+// // $packages[번호]['contents'][번호] = 패키지에 포함된 컨텐츠 연관배열
+// // $packages[번호]['contents'][번호]['id'] = 컨텐츠 아이디
+// // $packages[번호]['contents'][번호]['name'] = 컨텐츠 이름
+//
+//
+// $userNo = $request->input('user_id'); // 서버한테 post로 현재 유저 아이디를 주고
+// $packages = [];
+// $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
+// $packageCount = count($owndedPackages);
+//
+// for($i=0; $i<$packageCount; $i++) {
+//   $packages[$i]['name'] = $owndedPackages[$i]->name;
+//   $packages[$i]['id'] = $owndedPackages[$i]->no;
+//
+//   $contents = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
+//   $contentCount = count($contents);
+//
+//   for($j=0; $j<$contentCount; $j++) {
+//     $packages[$i]['contents'][$j]['id'] = $contents[$j]->no;
+//     $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+//   }
+// }
+//
+// return view('', ['packages' => $packages]);
+//
+//
+// /////////////////////////////////// for 연제 /////////////////////////////////////////////
+//
+//
+//         return view('blockfactory.block')->with('packages_name', '')
+//                                           ->with('packages_id', '')
+//                                           ->with('contents_name', '')
+//                                           ->with('contents_id', '');
+//
+// =======
+//         $package_infor = [];
+//         $user = DB::table('users')->where('no','=',$id)->get();
+//         // dd($user);
+//         $packages  =  DB::table('contents_packages')->where('no','=',$id)->first();
+//
+//         $contents  =  DB::table('contents')->where('contents_package','=',$packages->no)->get();
+//         // dd($contents);
+//         //
+//         // 패키지 번호를 알아냄
+//         // 그 패키지 번호를 사용해서
+//         // 외래키를 사용해서 콘텐츠들의 리스트들을 추출함
+//         // $contenst  = DB::table('contents')->where('no','=',$no)->get();
+//         #251 (1) { ["items":protected]=> array(1)
+//
+//         array_push($package_infor, array('ids'=>$packages->no,'name'=>$packages->name));
+//
+//
+//         // var_dump($packages);
+//         // var_dump($packagesx);
+//         return view('ProjectBlockCode.blockfactory.block')->with('contents_xml',  $contents[0]->xml)
+//                                                           ->with('contents_name', '첫번째이야기..')
+//                                                           ->with('block_myungse', $contents[0]->spec)
+//                                                           ->with('contents_id',   $contents[0]->no)
+//                                                           ->with('package_name', $package_infor);
+// >>>>>>> 19f1c7ac845580e62f2a5be159c2ee0b35d6ff4c
 
-      //no -> 사용자 primary key
-        // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
-<<<<<<< HEAD
-//        $user = DB::table('users')->where('no', $no)->first();
-
-        $packagesName = DB::table('contents_packages')->where();
-
-
-
-
-/////////////////////////////////// for 연제 /////////////////////////////////////////////
-
-// 한 유저(선생님)가 가지고 있는 패키지와 콘텐츠 전체!
-
-// $packages = 여러 패키지들이 담겨있는 배열
-// $packages[번호] = 각 패키지 연관배열
-// $packages[번호]['name'] = 패키지이름
-// $packages[번호]['id'] = 패키지아이디
-// $packages[번호]['contents'] = 포함된 컨텐츠들의 배열
-// $packages[번호]['contents'][번호] = 패키지에 포함된 컨텐츠 연관배열
-// $packages[번호]['contents'][번호]['id'] = 컨텐츠 아이디
-// $packages[번호]['contents'][번호]['name'] = 컨텐츠 이름
-
-
-$userNo = $request->input('user_id'); // 서버한테 post로 현재 유저 아이디를 주고
-$packages = [];
-$owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
-$packageCount = count($owndedPackages);
-
-for($i=0; $i<$packageCount; $i++) {
-  $packages[$i]['name'] = $owndedPackages[$i]->name;
-  $packages[$i]['id'] = $owndedPackages[$i]->no;
-
-  $contents = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
-  $contentCount = count($contents);
-
-  for($j=0; $j<$contentCount; $j++) {
-    $packages[$i]['contents'][$j]['id'] = $contents[$j]->no;
-    $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-  }
-}
-
-return view('', ['packages' => $packages]);
-
-
-/////////////////////////////////// for 연제 /////////////////////////////////////////////
-
-
-        return view('blockfactory.block')->with('packages_name', '')
-                                          ->with('packages_id', '')
-                                          ->with('contents_name', '')
-                                          ->with('contents_id', '');
-
-=======
-        $package_infor = [];
-        $user = DB::table('users')->where('no','=',$id)->get();
-        // dd($user);
-        $packages  =  DB::table('contents_packages')->where('no','=',$id)->first();
-
-        $contents  =  DB::table('contents')->where('contents_package','=',$packages->no)->get();
-        // dd($contents);
-        //
-        // 패키지 번호를 알아냄
-        // 그 패키지 번호를 사용해서
-        // 외래키를 사용해서 콘텐츠들의 리스트들을 추출함
-        // $contenst  = DB::table('contents')->where('no','=',$no)->get();
-        #251 (1) { ["items":protected]=> array(1)
-
-        array_push($package_infor, array('ids'=>$packages->no,'name'=>$packages->name));
-
-
-        // var_dump($packages);
-        // var_dump($packagesx);
-        return view('ProjectBlockCode.blockfactory.block')->with('contents_xml',  $contents[0]->xml)
-                                                          ->with('contents_name', '첫번째이야기..')
-                                                          ->with('block_myungse', $contents[0]->spec)
-                                                          ->with('contents_id',   $contents[0]->no)
-                                                          ->with('package_name', $package_infor);
->>>>>>> 19f1c7ac845580e62f2a5be159c2ee0b35d6ff4c
     }
 
 

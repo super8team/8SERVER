@@ -8,7 +8,7 @@
   $plan_title ="뚝배기 깨기 여행";
   $plan_date = "2017-09-28";
   $transpotation[0] = "전세버스";
-  
+
       if(isset($plan_id)){
 
           if(!isset($plan_title )){
@@ -83,6 +83,9 @@
           @else
             <form class="sky-form" action="{{--route('plan.store')--}}" method="post">
           @endif
+            {{csrf_field()}}
+            {{-- 으아아아아 --}}
+            <input type="hidden" name="user_no" value="{{Auth::id()}}">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
@@ -194,7 +197,7 @@
 								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="transpotation[]" >대중교통</label>
 
 								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="없음" name="transpotation[]">없음</label> --}}
-								<input type="text" size="20" placeholder="사용자입력" name="transpotation[]" >
+								{{-- <input type="text" size="20" placeholder="사용자입력" name="transpotation[]" > --}}
 							</div>
 						</div>
             {{-- 체험 프로그램 선택 --}}
@@ -230,7 +233,7 @@
 
 										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="강의참가"name="activity[]">강의참가</label>
 
-										<input type="text" name="activity[]" size="20" class="form" placeholder="사용자입력">
+										{{-- <input type="text" name="activity[]" size="20" class="form" placeholder="사용자입력"> --}}
 									</div>
 								</div>
 							</div>

@@ -32,9 +32,11 @@ class PlanController extends Controller
       $planDates = [];
 
       foreach($plans as $plan) {
+
+        // dd($plan);
         array_push($planIds, $plan->no);
-        array_push($planTitles, $plan->title);
-        array_push($planDates, $plan->write_date);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->created_at); // at
       }
 
       return view('plan.plan_list', [
@@ -71,33 +73,43 @@ class PlanController extends Controller
      // result_check[]			= “(ArrayString)”	//진행도 여부를 파악용 체크
     public function store(Request $request)
     {
-      $plan_title = $request->input(plan_title);
-      $plan_date = $request->input(plan_date);
-      $trip_kind_value = $request->input(trip_kind_value);
-      $attend_class_count = $request->input(attend_class_count);
-      $attend_student_count = $request->input(attend_student_count);
-      $unattend_student_count = $request->input(unattend_student_count);
-      $transpotation = $request->input(transpotation);
-      $activity = $request->input(activity);
-      $institution = $request->input(institution);
-      $others = $request->input(others);
+      $plan_title = $request->input('plan_title');
+      $plan_date = $request->input('plan_date');
+      $trip_kind_value = $request->input('trip_kind_value');
+      $attend_class_count = $request->input('attend_class_count');
+      $attend_student_count = $request->input('attend_student_count');
+      $unattend_student_count = $request->input('unattend_student_count');
+      $transpotation = $request->input('transpotation');
+      $activity = $request->input('activity');
+      $institution = $request->input('institution');
+      $others = $request->input('others');
+      $userNo = $request->input('user_no');
 
-      // $planNo = \DB::table('field_learning_plans')->insertGetId([
-      //   'name' => $plan_title,
-      //   'created_at' => ,
-      //   'teacher' => ,
-      // ]);
-      //
-      // \DB::table('simple_plans')->insert([
-      //   'plan' => $planNo,
-      //   'type' => ,
-      //   'grade_class_count' => ,
-      //   'student_count' => ,
-      //   'unjoin_students_count' =>
-      // ]);
+      $dates = explode("-", $plan_date);
+
+      $planNo = \DB::table('field_learning_plans')->insertGetId([
+        'name' => $plan_title,
+        // 'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
+        'teacher' => $userNo,
+      ]);
+
+      $simple = \DB::table('simple_plans')->insert([
+        'plan' => $planNo,
+        'type' => $trip_kind_value,
+        'grade_class_count' => $attend_class_count,
+        'student_count' => $attend_student_count,
+        'unjoin_students_count' => $unattend_student_count,
+      ]);
+
+      foreach($transpotation as $traffic) // 일반배열 foreach되나? --> 내일 숫자배열 for문으로 바꿔야징 나머지도 ㅎㅎ
+      \DB::table('traffics')->insert([
+        'simple' => $simple,
+        'traffic' => $traffic
+      ]);
+
 
       // return view('plan.sheet'); // id 보내야됨
-      return redirect()->route('plan.show', $id);
+      return redirect()->route('plan.show', $planNo);
     }
 
     /**
@@ -108,7 +120,22 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        return view('plan.sheet'); //
+        $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
+        $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
+
+        $plan_title = $plna->no;
+        $plan_date = $plan->created_at;
+        $trip_kind_value = $simple->type;
+        $attend_class_count = $simple->grade_class_count;
+        $attend_student_count = $simple->student_count;
+        $unattend_student_count = $simple->unjoin_students_count;
+        $transpotation =
+        $activity =
+        $institution =
+        $others =
+
+
+        return view('plan.plan_sheet'); //
     }
 
     /**
@@ -185,5 +212,10 @@ class PlanController extends Controller
       }
       // dd($result);
       return json_encode($result);
+    }
+
+    public function map()
+    {
+        return view('plan.plan_map'); // teacher_index
     }
 }
