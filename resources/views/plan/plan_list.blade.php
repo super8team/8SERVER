@@ -51,7 +51,7 @@
 
             {{-- 레코드를 10개 출력  --}}
 
-            @for ($count=0; $count < count($plan_tile) ; $count++)
+            @for ($count=0; $count < count($plan_title) ; $count++)
               {{-- @foreach ($param as $value)
                 <td>{{$count+1}}</td>
                 <td>{{$value['data']['name']}}</td>
