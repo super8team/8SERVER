@@ -83,6 +83,8 @@
           @else
             <form class="sky-form" action="{{--route('plan.store')--}}" method="post">
           @endif
+            {{csrf_field()}}
+            {{-- 으아아아아 --}}
             <input type="hidden" name="user_no" value="{{Auth::id()}}">
 						<div class="row form-group">
 							<div class="btn-group pull-right">
