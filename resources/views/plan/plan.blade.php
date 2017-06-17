@@ -65,13 +65,13 @@
 				</div>
 				<div class="panel-body">
           {{-- 임시 서류 작성 페이지로 이동  --}}
-          <a href="{{route('plan.sheet')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('plan.show')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             임시 계획 작성
           </a>
           {{-- 값이 있는 경우 표시 --}}
           @if (isset($plan_id))
-            <a href="{{--route('plan.destroy'),$plan_id--}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+            <a href="{{route('plan.destroy'),$plan_id}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
               <span class="glyphicon glyphicon-open-file"></span>
               삭제
             </a>
@@ -79,9 +79,9 @@
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
           {{-- plansheet --}}
           @if (isset($plan_id))
-            <form class="sky-form" action="{{--route('plan.update'),$plan_id--}}" method="post">
+            <form class="sky-form" action="{{route('plan.update'),$plan_id}}" method="post">
           @else
-            <form class="sky-form" action="{{--route('plan.store')--}}" method="post">
+            <form class="sky-form" action="{{route('plan.store')}}" method="post">
           @endif
             {{csrf_field()}}
             <input type="hidden" name="user_no" value="{{Auth::id()}}">
@@ -177,12 +177,19 @@
 							</div>
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
-                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="1" name="transpotation[]" @if (isset($transpotation[0])) checked @endif>전세버스</label>
-    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="2" name="transpotation[]" @if (isset($transpotation[1])) checked @endif>항공</label>
-    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="transpotation[]" @if (isset($transpotation[2])) checked @endif>선박</label>
-    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="transpotation[]" @if (isset($transpotation[3])) checked @endif>기차</label>
-    								<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="transpotation[]" @if (isset($transpotation[4])) checked @endif>대중교통</label>
-    								<label class="checkbox-inline margin-right-15"><input type="checkbox" value="6" name="transpotation[]"@if (isset($transpotation[5])) checked @endif>없음</label>
+								@php
+									$tmp_transportation[] = {'전세버스','항공','선박','기차','대중교통','없음'}
+									$tmp_activity[]				= {'수상활동','산악등반','장기도보','실험참가','도예체험','단순기술습득','위험기구사용','관광','관람(미술관,박물관 등)','도서관견학','강의참가'}
+									$tmp_institution[]		=	{'시도교육청 직영시설이용','공공기관 인증프로그램이용','공공기관 직영프로그램이용','청소년단체운영프로그램이용','없음'}
+									$tmp_others[]					= {'MAS 이용(다수공급자계약제도이용)','지자체 안심수학여행서비스신청 및 회신','현장 경비(비용) 지출 없음','최종계약일로부터 60일이내 체험학습 실시예정','특별보호대상학생없음(신체허약자등)','수익자 부담 없음','계약 관계 없음'}
+								@endphp
+								@for($i =0; $i < count($tmp_transportation)
+									@if ($transpotation[$i] ==$i)
+                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}" name="transpotation[]" checked>{{$tmp_transpotation[$i]}}</label>
+                	@else
+                		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}" name="transpotation[]" >{{$tmp_transportation[$i]}}</label>
+                	@endif
+                @endfor
 								{{-- <input type="text" size="20" placeholder="사용자입력" name="transpotation[]" > --}}
 							</div>
 						</div>
@@ -194,24 +201,22 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="1"name="activity[]" @if (isset($activity[0])) checked @endif>수상활동</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="2"name="activity[]" @if (isset($activity[1])) checked @endif>산악등반</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3"name="activity[]" @if (isset($activity[2])) checked @endif>장기도보</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4"name="activity[]" @if (isset($activity[3])) checked @endif>실험참가</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5"name="activity[]" @if (isset($activity[4])) checked @endif>도예체험</label>
-										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="6"name="activity[]" @if (isset($activity[5])) checked @endif>단순기술습득</label>
+										@for($i =0; $i < count($tmp_activity)
+											@if ($activity[$i] ==$i)
+		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="activity[]"checked>{{$tmp_activity[$i]}}</label>
+		                	@else
+		                		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{i+1}}"name="activity[]">{{$tmp_activity[$i]}}</label>
+		                	@endif
+	               		@endfor
+										
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="7"name="activity[]" @if (isset($activity[6])) checked @endif>위험기구사용</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="8"name="activity[]" @if (isset($activity[7])) checked @endif>관광</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="9"name="activity[]" @if (isset($activity[8])) checked @endif>관람(미술관,박물관 등)</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="10"name="activity[]" @if (isset($activity[9])) checked @endif>도서관견학</label>
-										<label class="checkbox-inline margin-right-15"><input type="checkbox" value="11"name="activity[]" @if (isset($activity[10])) checked @endif>강의참가</label>
-										{{-- <input type="text" name="activity[]" size="20" class="form" placeholder="사용자입력"> --}}
-									</div>
-								</div>
+								<!--<div class="row">-->
+								<!--	<div class="col-md-12">-->
+								<!--	5-->
+								<!--		{{-- <input type="text" name="activity[]" size="20" class="form" placeholder="사용자입력"> --}}-->
+								<!--	</div>-->
+								<!--</div>-->
 							</div>
 						</div>
             {{-- 기관 인증여부 선택 --}}
@@ -222,17 +227,21 @@
 							<div class="col-md-9">
 								<div class="row  margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="1" name="institution[]" @if (isset($institution[0])) checked @endif>시도교육청 직영시설이용</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="2" name="institution[]" @if (isset($institution[1])) checked @endif>공공기관 인증프로그램이용</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="institution[]" @if (isset($institution[2])) checked @endif>공공기관 직영프로그램이용</label>
+										@for($i =0; $i < count($tmp_activity)
+											@if ($institution[$i] ==$i)
+		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="institution[]"checked>{{$tmp_institution[$i]}}</label>
+		                	@else
+		                		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="institution[]">{{$tmp_institution[$i]}}</label>
+		                	@endif
+	               		@endfor
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="institution[]" @if (isset($institution[3])) checked @endif>청소년단체운영프로그램이용</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="institution[]" @if (isset($institution[4])) checked @endif>없음</label>
-									</div>
-								</div>
+								<!--<div class="row">-->
+								<!--	<div class="col-md-12">-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="institution[]" @if (isset($institution[3])) checked @endif>청소년단체운영프로그램이용</label>-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="institution[]" @if (isset($institution[4])) checked @endif>없음</label>-->
+								<!--	</div>-->
+								<!--</div>-->
 							</div>
 						</div>
             {{-- 기타 선택 사항 입력 --}}
@@ -243,23 +252,27 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="1" name="others[]"  @if (isset($others[0])) checked @endif>MAS 이용(다수공급자계약제도이용)</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="2" name="others[]" @if (isset($others[1])) checked @endif>지자체 안심수학여행서비스신청 및 회신</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="3" name="others[]" @if (isset($others[2])) checked @endif>현장 경비(비용) 지출 없음</label>
+										@for($i =0; $i < count($tmp_others)
+											@if ($others[$i] ==$i)
+		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="others[]"checked>{{$tmp_others[$i]}}</label>
+		                	@else
+		                		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="others[]">{{$tmp_others[$i]}}</label>
+		                	@endif
+	               		@endfor
 									</div>
 								</div>
-								<div class="row  margin-bottom-10">
-									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="others[]" @if (isset($others[3])) checked @endif>최종계약일로부터 60일이내 체험학습 실시예정</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="others[]" @if (isset($others[4])) checked @endif>특별보호대상학생없음(신체허약자등)</label>
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="6" name="others[]" @if (isset($others[5])) checked @endif>수익자 부담 없음</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<label class="checkbox-inline margin-right-3"><input type="checkbox" value="7" name="others[]" @if (isset($others[6])) checked @endif>계약 관계 없음</label>
-									</div>
-								</div>
+								<!--<div class="row  margin-bottom-10">-->
+								<!--	<div class="col-md-12">-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="4" name="others[]" @if (isset($others[3])) checked @endif>최종계약일로부터 60일이내 체험학습 실시예정</label>-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="5" name="others[]" @if (isset($others[4])) checked @endif>특별보호대상학생없음(신체허약자등)</label>-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="6" name="others[]" @if (isset($others[5])) checked @endif>수익자 부담 없음</label>-->
+								<!--	</div>-->
+								<!--</div>-->
+								<!--<div class="row">-->
+								<!--	<div class="col-md-12">-->
+								<!--		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="7" name="others[]" @if (isset($others[6])) checked @endif>계약 관계 없음</label>-->
+								<!--	</div>-->
+								<!--</div>-->
 							</div>
 						</div>
 					</form>

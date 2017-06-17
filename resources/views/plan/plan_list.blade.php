@@ -23,11 +23,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             {{-- <a role="button" href="{{route('main')}}" aria-label="Right Align"
+              <a role="button" href="{{route('main')}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
               뒤로 돌아가기
-            </a> --}}
+            </a>
           </h3>
         </div>
         <div class="panel-body">
@@ -38,7 +38,7 @@
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
                 <th>바로가기
-                    <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
+                    <a role="button"  href="{{route('plan.map',$plan_id)}}" aria-label="Right Align"
                      class="btn btn-sm btn-default">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
@@ -72,7 +72,7 @@
                     <td>{{$plan_date[$count]}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('plan.sheet',$plan_no[$count])}}" class="btn btn-sm btn-success">
+                      <a role="button" href="{{route('plan.show',$plan_no[$count])}}" class="btn btn-sm btn-success">
                         서류작성
                       </a>
                       <a role="button" href="{{route('staff')}}" aria-label="Left Align" class="btn btn-sm btn-default ">

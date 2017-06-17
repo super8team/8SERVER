@@ -36,7 +36,7 @@ class PlanController extends Controller
         // dd($plan);
         array_push($planIds, $plan->no);
         array_push($planTitles, $plan->name);
-        array_push($planDates, $plan->created_at); // at
+        array_push($planDates, $plan->at); 
       }
 
       return view('plan.plan_list', [
@@ -150,7 +150,7 @@ class PlanController extends Controller
       $options = \DB::table('etc_select')->where('simple', $simple)->get();
 
       $plan_title = $plna->no;
-      $plan_date = $plan->created_at;
+      $plan_date = $plan->at;
       $trip_kind_value = $simple->type;
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
@@ -208,7 +208,7 @@ class PlanController extends Controller
       $options = \DB::table('etc_select')->where('simple', $simple)->get();
 
       $plan_title = $plna->no;
-      $plan_date = $plan->created_at;
+      $plan_date = $plan->at;
       $trip_kind_value = $simple->type;
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
