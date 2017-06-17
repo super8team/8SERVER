@@ -103,28 +103,28 @@ class PlanController extends Controller
 
       for ($i=0; $i<count($transpotation); $i++) {
         \DB::table('traffics')->insert([
-          'simple' => $simple,
+          'simple_plan' => $simple,
           'traffic' => $transpotation[$i],
         ]);
       }
       
       for ($i=0; $i<count($institution); $i++) {
         \DB::table('inst_auth')->insert([
-          'simple' => $simple,
+          'simple_plan' => $simple,
           'article' => $institution[$i],
         ]);
       }
       
       for ($i=0; $i<count($activity); $i++) {
         \DB::table('field_learning_programs')->insert([
-          'simple' => $simple,
+          'simple_plan' => $simple,
           'program' => $activity[$i],
         ]);
       }
       
       for ($i=0; $i<count($others); $i++) {
-        \DB::table('etc_select')->insert([
-          'simple' => $simple,
+        \DB::table('etc_selects')->insert([
+          'simple_plan' => $simple,
           'option' => $others[$i],
         ]);
       }
@@ -144,17 +144,17 @@ class PlanController extends Controller
       $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
       $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
       
-      $traffics = \DB::table('traffics')->where('simple', $simple)->get();
-      $articles = \DB::table('inst_auth')->where('simple', $simple)->get();
-      $programs = \DB::table('field_learning_programs')->where('simple', $simple)->get();
-      $options = \DB::table('etc_select')->where('simple', $simple)->get();
+      $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
+      $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
+      $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
+      $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
 
-      $plan_title = $plna->no;
+      $plan_title = $plan->no;
       $plan_date = $plan->at;
       $trip_kind_value = $simple->type;
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
-      $unattend_student_count = $simple->unjoin_students_count;
+      $unattend_student_count = $simple->unjoin_student_count;
       
       $transpotation = [];
       $activity = [];
@@ -178,6 +178,7 @@ class PlanController extends Controller
       }
 
       return view('plan.plan_sheet', [
+      'plna_no' => $id,
       'plan_title' => $plan_title,
       'plan_date' => $plan_date,
       'trip_kind_value' => $trip_kind_value,
@@ -202,17 +203,18 @@ class PlanController extends Controller
       $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
       $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
       
-      $traffics = \DB::table('traffics')->where('simple', $simple)->get();
-      $articles = \DB::table('inst_auth')->where('simple', $simple)->get();
-      $programs = \DB::table('field_learning_programs')->where('simple', $simple)->get();
-      $options = \DB::table('etc_select')->where('simple', $simple)->get();
+      $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
+      $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
+      $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
+      $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
 
-      $plan_title = $plna->no;
+      $plan_no = $plan->no;
+      $plan_title = $plan->name;
       $plan_date = $plan->at;
       $trip_kind_value = $simple->type;
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
-      $unattend_student_count = $simple->unjoin_students_count;
+      $unattend_student_count = $simple->unjoin_student_count;
       
       $transpotation = [];
       $activity = [];
@@ -236,6 +238,7 @@ class PlanController extends Controller
       }
       
       return view('plan.plan', [
+        'plan_no' => $plan_no,
         'plan_title' => $plan_title,
         'plan_date' => $plan_date,
         'trip_kind_value' => $trip_kind_value,
@@ -292,7 +295,7 @@ class PlanController extends Controller
 
       for ($i=0; $i<count($transpotation); $i++) {
         \DB::table('traffics')
-            ->where('simple', $simple->no)
+            ->where('simple_plan', $simple->no)
             ->update([
               'traffic' => $transpotation[$i],
               ]);
@@ -300,7 +303,7 @@ class PlanController extends Controller
       
       for ($i=0; $i<count($institution); $i++) {
         \DB::table('inst_auth')
-            ->where('simple', $simple->no)
+            ->where('simple_plan', $simple->no)
             ->update([
               'article' => $institution[$i],
               ]);
@@ -308,15 +311,15 @@ class PlanController extends Controller
       
       for ($i=0; $i<count($activity); $i++) {
         \DB::table('field_learning_programs')
-            ->where('simple', $simple->no)
+            ->where('simple_plan', $simple->no)
             ->update([
               'program' => $activity[$i],
               ]);
       }
       
       for ($i=0; $i<count($others); $i++) {
-        \DB::table('etc_select')
-            ->where('simple', $simple->no)
+        \DB::table('etc_selects')
+            ->where('simple_plan', $simple->no)
             ->update([
               'option' => $others[$i],
               ]);
@@ -334,7 +337,10 @@ class PlanController extends Controller
      */
     public function destroy($id)
     {
-        return view('plan.plan_list'); // teacher_index
+      // field_learning_plans simple_plans traffics inst_auth field_learning_programs etc_selects
+      // soft_delete
+      
+      return view('plan.plan_list'); // teacher_index
     }
 
     public function getPlanDetial(Request $request) {

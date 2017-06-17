@@ -11,11 +11,11 @@
   {{--  페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
   @php
-    $planlist_rec = 17;
+   {{-- $planlist_rec = 17;
 
     $planlist_arr['data']['name'] = '소백산  체험학습';
     $planlist_arr['data']['date'] = '2017/05/06';
-    $planid = "?planid="+ $planlist_arr['data']['id'] = 1;
+    $planid = "?planid="+ $planlist_arr['data']['id'] = 1; --}}
   @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
@@ -38,8 +38,8 @@
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
                 <th>바로가기
-                    <a role="button"  href="{{route('plan.map',$plan_id)}}" aria-label="Right Align"
-                     class="btn btn-sm btn-default">
+                    <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
+                     class="btn btn-sm btn-default"> 
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
                     </a>

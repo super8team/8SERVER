@@ -65,13 +65,17 @@
 				</div>
 				<div class="panel-body">
           {{-- 임시 서류 작성 페이지로 이동  --}}
-          <a href="{{route('plan.show')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          @if (isset($plan_no))
+						<a href="{{route('plan.show', $plan_no)}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+					@else
+						<a href="{{route('plan.create')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+					@endif
             <span class="glyphicon glyphicon-open-file"></span>
             임시 계획 작성
           </a>
           {{-- 값이 있는 경우 표시 --}}
-          @if (isset($plan_id))
-            <a href="{{route('plan.destroy'),$plan_id}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          @if (isset($plan_no))
+            <a href="{{route('plan.destroy', $plan_no)}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
               <span class="glyphicon glyphicon-open-file"></span>
               삭제
             </a>
@@ -79,7 +83,7 @@
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
           {{-- plansheet --}}
           @if (isset($plan_id))
-            <form class="sky-form" action="{{route('plan.update'),$plan_id}}" method="post">
+            <form class="sky-form" action="{{route('plan.update',$plan_id)}}" method="post">
           @else
             <form class="sky-form" action="{{route('plan.store')}}" method="post">
           @endif
@@ -178,14 +182,14 @@
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
 								@php
-									$tmp_transportation[] = {'전세버스','항공','선박','기차','대중교통','없음'}
-									$tmp_activity[]				= {'수상활동','산악등반','장기도보','실험참가','도예체험','단순기술습득','위험기구사용','관광','관람(미술관,박물관 등)','도서관견학','강의참가'}
-									$tmp_institution[]		=	{'시도교육청 직영시설이용','공공기관 인증프로그램이용','공공기관 직영프로그램이용','청소년단체운영프로그램이용','없음'}
-									$tmp_others[]					= {'MAS 이용(다수공급자계약제도이용)','지자체 안심수학여행서비스신청 및 회신','현장 경비(비용) 지출 없음','최종계약일로부터 60일이내 체험학습 실시예정','특별보호대상학생없음(신체허약자등)','수익자 부담 없음','계약 관계 없음'}
+									$tmp_transportation = ['전세버스','항공','선박','기차','대중교통','없음'];
+									$tmp_activity				= ['수상활동','산악등반','장기도보','실험참가','도예체험','단순기술습득','위험기구사용','관광','관람(미술관,박물관 등)','도서관견학','강의참가'];
+									$tmp_institution		=	['시도교육청 직영시설이용','공공기관 인증프로그램이용','공공기관 직영프로그램이용','청소년단체운영프로그램이용','없음'];
+									$tmp_others					= ['MAS 이용(다수공급자계약제도이용)','지자체 안심수학여행서비스신청 및 회신','현장 경비(비용) 지출 없음','최종계약일로부터 60일이내 체험학습 실시예정','특별보호대상학생없음(신체허약자등)','수익자 부담 없음','계약 관계 없음'];
 								@endphp
-								@for($i =0; $i < count($tmp_transportation)
+								@for($i =0; $i < count($tmp_transportation); $i++)
 									@if ($transpotation[$i] ==$i)
-                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}" name="transpotation[]" checked>{{$tmp_transpotation[$i]}}</label>
+                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}" name="transpotation[]" checked>{{$tmp_transportation[$i]}}</label>
                 	@else
                 		<label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}" name="transpotation[]" >{{$tmp_transportation[$i]}}</label>
                 	@endif
@@ -201,7 +205,7 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										@for($i =0; $i < count($tmp_activity)
+										@for($i =0; $i < count($tmp_activity); $i++)
 											@if ($activity[$i] ==$i)
 		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="activity[]"checked>{{$tmp_activity[$i]}}</label>
 		                	@else
@@ -227,7 +231,7 @@
 							<div class="col-md-9">
 								<div class="row  margin-bottom-10">
 									<div class="col-md-12">
-										@for($i =0; $i < count($tmp_activity)
+										@for($i =0; $i < count($tmp_activity); $i++)
 											@if ($institution[$i] ==$i)
 		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="institution[]"checked>{{$tmp_institution[$i]}}</label>
 		                	@else
@@ -252,7 +256,7 @@
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
 									<div class="col-md-12">
-										@for($i =0; $i < count($tmp_others)
+										@for($i =0; $i < count($tmp_others); $i++)
 											@if ($others[$i] ==$i)
 		                    <label class="checkbox-inline margin-right-3"><input type="checkbox" value="{{$i+1}}"name="others[]"checked>{{$tmp_others[$i]}}</label>
 		                	@else
