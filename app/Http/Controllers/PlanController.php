@@ -25,7 +25,7 @@ class PlanController extends Controller
 
     public function teacher() {
 
-      $plans = \DB::table('field_learning_plans')->get();
+      $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
 
       $planIds = [];
       $planTitles = [];
@@ -84,12 +84,13 @@ class PlanController extends Controller
       $institution = $request->input('institution');
       $others = $request->input('others');
       $userNo = $request->input('user_no');
+      dd($userNo);
 
       $dates = explode("-", $plan_date);
 
       $planNo = \DB::table('field_learning_plans')->insertGetId([
         'name' => $plan_title,
-        // 'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
+        'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
         'teacher' => $userNo,
       ]);
 
@@ -98,7 +99,7 @@ class PlanController extends Controller
         'type' => $trip_kind_value,
         'grade_class_count' => $attend_class_count,
         'student_count' => $attend_student_count,
-        'unjoin_students_count' => $unattend_student_count,
+        'unjoin_student_count' => $unattend_student_count,
       ]);
 
       for ($i=0; $i<count($transpotation); $i++) {
@@ -224,7 +225,7 @@ class PlanController extends Controller
       foreach($traffics as $traffic) {
         array_push($transpotation, $traffic->traffic);
       }
-      
+      dd($transpotation);
       foreach($articles as $article) {
         array_push($institution, $article->article);
       }
@@ -275,54 +276,55 @@ class PlanController extends Controller
 
       $dates = explode("-", $plan_date);
 
-      DB::table('field_learning_plans')
+      \DB::table('field_learning_plans')
             ->where('no', $id)
             ->update([
               'name'=>$plan_title,
               'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
               ]);
               
-      DB::table('simple_plans')
+      \DB::table('simple_plans')
             ->where('plan', $id)
             ->update([
               'type' => $trip_kind_value,
               'grade_class_count' => $attend_class_count,
               'student_count' => $attend_student_count,
-              'unjoin_students_count' => $unattend_student_count,
+              'unjoin_student_count' => $unattend_student_count,
               ]);
               
-      $simple = DB::table('simple_plans')->where('plan', $id);
+      $simple = \DB::table('simple_plans')->where('plan', $id)->first();
+      
+      \DB::table('traffics')->where('simple_plan', $simple->no)->delete();
+      \DB::table('inst_auth')->where('simple_plan', $simple->no)->delete();
+      \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->delete();
+      \DB::table('etc_selects')->where('simple_plan', $simple->no)->delete();
 
       for ($i=0; $i<count($transpotation); $i++) {
-        \DB::table('traffics')
-            ->where('simple_plan', $simple->no)
-            ->update([
+        \DB::table('traffics')->insert([
+              'simple_plan' => $simple->no,
               'traffic' => $transpotation[$i],
-              ]);
+            ]);
       }
       
       for ($i=0; $i<count($institution); $i++) {
-        \DB::table('inst_auth')
-            ->where('simple_plan', $simple->no)
-            ->update([
+        \DB::table('inst_auth')->insert([
+              'simple_plan' => $simple->no,
               'article' => $institution[$i],
-              ]);
+            ]);
       }
       
       for ($i=0; $i<count($activity); $i++) {
-        \DB::table('field_learning_programs')
-            ->where('simple_plan', $simple->no)
-            ->update([
+        \DB::table('field_learning_programs')->insert([
+              'simple_plan' => $simple->no,
               'program' => $activity[$i],
-              ]);
+            ]);
       }
       
       for ($i=0; $i<count($others); $i++) {
-        \DB::table('etc_selects')
-            ->where('simple_plan', $simple->no)
-            ->update([
+        \DB::table('etc_selects')->insert([
+              'simple_plan' => $simple->no,
               'option' => $others[$i],
-              ]);
+            ]);
       }
 
       // return view('plan.sheet'); // id 보내야됨
