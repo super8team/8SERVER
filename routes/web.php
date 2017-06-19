@@ -14,13 +14,10 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::get('/test22',function(){
-  return view('plan.test22');
+Route::get('/test23',function(){
+  return view('survey.survey_student_result');
 });
 
-Route::POST('/get',function(){
-  return view('plan.get-event_dnweb');
-});
 
 // Route::get('/sheet',function(){
 //   return view('plan.plan_sheet');
