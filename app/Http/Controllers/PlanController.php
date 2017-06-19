@@ -84,7 +84,6 @@ class PlanController extends Controller
       $institution = $request->input('institution');
       $others = $request->input('others');
       $userNo = $request->input('user_no');
-      dd($userNo);
 
       $dates = explode("-", $plan_date);
 
@@ -94,7 +93,7 @@ class PlanController extends Controller
         'teacher' => $userNo,
       ]);
 
-      $simple = \DB::table('simple_plans')->insert([
+      $simple = \DB::table('simple_plans')->insertGetId([
         'plan' => $planNo,
         'type' => $trip_kind_value,
         'grade_class_count' => $attend_class_count,
@@ -225,7 +224,7 @@ class PlanController extends Controller
       foreach($traffics as $traffic) {
         array_push($transpotation, $traffic->traffic);
       }
-      dd($transpotation);
+      // dd($transpotation);
       foreach($articles as $article) {
         array_push($institution, $article->article);
       }
