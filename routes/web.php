@@ -44,11 +44,11 @@ Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::resource('plan', 'PlanController');
 
-//
-// // 계획 맵
-// Route::get('plan/map', 'PlanController@map')->name('plan.map');
-//
-// // 앱 디테일플랜
+
+// 계획 맵
+Route::get('plan/map', 'PlanController@map')->name('plan.map');
+
+// 앱 디테일플랜
 Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
 
 

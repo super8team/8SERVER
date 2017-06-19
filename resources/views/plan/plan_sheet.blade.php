@@ -13,15 +13,15 @@
 		</thead>
 	@endsection
 @php
-	//임시 변수
+{{--	//임시 변수
 	$plan_title 						= "야비군";
 	$plan_date							= "2017/05/23";
 	$teacher_name 					= "원사님";
 	$trip_kind_value 				= "각개전투";
 	$attend_class_count 		= "1";
-	$attend_student_coutn		= "41";
+	$attend_student_count		= "41";
 	$unattend_student_count	= "1";
-	$transpotation[] 					= ["버스","비행기"];
+	$transpotation[] 					= ["버스","비행기"]; --}}
 @endphp
 
 	<div class="bluebg">
@@ -69,7 +69,7 @@
 														<tr>
 															<td class='info bold'> 체험학습 실시일 </td> <td class="text-center">{{$plan_date}} </td>
 
-															<td class='info bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td>
+															{{-- <td class='info bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td> --}}
 
 															<td class='info bold'> 체험학습 구분  </td> <td class="text-center">{{$trip_kind_value}} </td>
 
@@ -78,7 +78,7 @@
 
 															<td class='info bold'> 참여 학급수 </td> <td class="text-center">{{$attend_class_count}} </td>
 
-															<td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_coutn}} </td>
+															<td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_count}} </td>
 
 															<td class='info bold'> 미참여 학생수 </td> <td class="text-center">{{$unattend_student_count}} </td>
 

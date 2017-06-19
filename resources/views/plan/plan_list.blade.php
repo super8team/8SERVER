@@ -11,11 +11,11 @@
   {{--  페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
   @php
-    $planlist_rec = 17;
+   {{-- $planlist_rec = 17;
 
     $planlist_arr['data']['name'] = '소백산  체험학습';
     $planlist_arr['data']['date'] = '2017/05/06';
-    $planid = "?planid="+ $planlist_arr['data']['id'] = 1;
+    $planid = "?planid="+ $planlist_arr['data']['id'] = 1; --}}
   @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
@@ -23,11 +23,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             {{-- <a role="button" href="{{route('main')}}" aria-label="Right Align"
+              <a role="button" href="{{route('main')}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
               뒤로 돌아가기
-            </a> --}}
+            </a>
           </h3>
         </div>
         <div class="panel-body">
@@ -39,7 +39,7 @@
                 <th>작성일</th>
                 <th>바로가기
                     <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-                     class="btn btn-sm btn-default">
+                     class="btn btn-sm btn-default"> 
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
                     </a>
@@ -51,7 +51,7 @@
 
             {{-- 레코드를 10개 출력  --}}
 
-            @for ($count=0; $count < count($plan_tile) ; $count++)
+            @for ($count=0; $count < count($plan_title) ; $count++)
               {{-- @foreach ($param as $value)
                 <td>{{$count+1}}</td>
                 <td>{{$value['data']['name']}}</td>
@@ -72,7 +72,7 @@
                     <td>{{$plan_date[$count]}}</td>
 
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('plan.sheet',$plan_no[$count])}}" class="btn btn-sm btn-success">
+                      <a role="button" href="{{route('plan.show',$plan_no[$count])}}" class="btn btn-sm btn-success">
                         서류작성
                       </a>
                       <a role="button" href="{{route('staff')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
