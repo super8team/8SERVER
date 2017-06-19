@@ -12,7 +12,8 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        // "surveyview",
-        'app/*'
+        
+        'app/*',  // app-request
+        'json/*', // ajax-for-json-request
     ];
 }

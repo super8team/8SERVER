@@ -344,27 +344,4 @@ class PlanController extends Controller
       return view('plan.plan_list'); // teacher_index
     }
 
-    public function getPlanDetial(Request $request) {
-      $user = $request->input('userId');
-      $user = \DB::table('users')->where('id', $user)->first();
-
-      $plan = \DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
-      $details = \DB::table('detail_plans')->where('plan', $plan->no)->get();
-
-      $result = [];
-
-      $detailIndex = 1;
-      foreach($details as $detail) {
-        $result["plan".$detailIndex] = ["place" => \DB::table('places')->where('no', $detail->place)->value('name'),
-                                        "at"    => $detail->at];
-        $detailIndex++;
-      }
-      // dd($result);
-      return json_encode($result);
-    }
-
-    public function map()
-    {
-        return view('plan.plan_map'); // teacher_index
-    }
 }
