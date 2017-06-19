@@ -85,7 +85,7 @@
                       <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-warning">
                         가정통신
                       </a>
-                      <a role="button" href="{{route('plan.map')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
                         상세 계획
                       </a>
                       <a role="button" href="{{route('checklist')}}" class="btn btn-sm btn-danger">

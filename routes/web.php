@@ -43,13 +43,11 @@ Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::resource('plan', 'PlanController');
-
-
-// 계획 맵
-Route::get('plan/map', 'PlanController@map')->name('plan.map');
+Route::resource('map', 'MapController');
 
 // 앱 디테일플랜
-Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
+Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
+Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 
 
 // ******************** 설문조사 *********************
