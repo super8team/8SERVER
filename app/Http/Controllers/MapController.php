@@ -99,7 +99,7 @@ class MapController extends Controller
       $detailIndex = 1;
       foreach($details as $detail) {
         $result["plan".$detailIndex] = ["place" => \DB::table('places')->where('no', $detail->place)->value('name'),
-                                        "at"    => $detail->at];
+                                        "at"    => $detail->start_time];
         $detailIndex++;
       }
       // dd($result);
@@ -108,19 +108,38 @@ class MapController extends Controller
 
     public function getTimeTable(Request $request)
     {
-        $plan = $request->input('plan_no');
-        $details = \DB::table('detail_plans')->where('plan', $plan)->get();
+        // $plan = $request->input('plan_no');
+        // $details = \DB::table('detail_plans')->where('plan', $plan)->get();
         
-        $result = [];
+        // $result = [];
         
-        foreach($details as $detail) {
-            $addDetail = [];
-            $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
-            $addDetail['start'] = $detail->start_time;
-            $addDetail['end']   = $detail->end_time;
-            array_push($result, $addDetail);
-        }
+        // foreach($details as $detail) {
+        //     $addDetail = [];
+        //     $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
+        //     $addDetail['start'] = $detail->start_time;
+        //     $addDetail['end']   = $detail->end_time;
+        //     array_push($result, $addDetail);
+        // }
         
-        return json_encode($result);
+        // return json_encode($result);
+        
+        $output_arrays[] = array(
+            'title' => 'Meeting',
+            'start' => '2017-01-12T10:30:00-05:00',
+            'end' => '2017-01-12T12:30:00-05:00',
+        );
+        $output_arrays[] = array(
+            'title' => 'Meeting',
+            'start' => '2017-01-12T15:30:00-05:00',
+            'end' => '2017-01-12T16:30:00-05:00',
+        );
+        $output_arrays[] = array(
+            'title' => 'Meeting',
+            'start' => '2017-01-12T19:30:00-05:00',
+            'end' => '2017-01-12T23:30:00-05:00',
+        );
+        
+        dd($output_arrays);
+        return json_encode($output_arrays);
     }
 }

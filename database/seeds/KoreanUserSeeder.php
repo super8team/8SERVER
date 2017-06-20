@@ -25,7 +25,7 @@ class KoreanUserSeeder extends Seeder
                 "성이름", "임채원"];
 
        for ($i=0; $i<count($ids); $i++) {
-          \DB::table('Users')
+          \DB::table('users')
                  ->where('no', $ids[$i])
                  ->update([
                    'name' => $names[$i]
