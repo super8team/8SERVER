@@ -34,8 +34,12 @@
             <input id="content{{$key}}" type="checkbox" name="content[]" value="{{$key}}">{{$key}}
           @endforeach
         <div>
+          <br><br>
+        <div style="border:1px solid black">
+          <button type="button" name="button" onclick="history.back();">뒤로가기</button>
+          <input type="submit" value="등록하기" style="float:right">
+        </div>
 
-        <input type="submit" value="등록하기">
   </form>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -45,12 +49,13 @@
             var package_parent      = document.getElementById("base_package_list");
 
             for(var i = 0; i < owner_package_list.length ; i++) {
+              console.log(owner_package_list[i].innerText);
                 var package_list      =    document.createElement("input");
-                package_list.setAttribute("type","checkbox");
+                package_list.setAttribute("type","checkbox")
                 package_list.setAttribute("value",owner_package_list[i].value);
                 package_list.setAttribute("name","package_name");
                 package_list.setAttribute("onclick","oneCheckbox(this)");
-                var package_text   =   document.createTextNode(owner_package_list[i].value);
+                var package_text   =   document.createTextNode(owner_package_list[i].innerText);
                 package_parent.appendChild(package_list);
                 package_parent.appendChild(package_text);
             }

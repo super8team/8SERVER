@@ -124,3 +124,4 @@ class HistoryController extends Controller
       return $result;
     }
 }
+?>

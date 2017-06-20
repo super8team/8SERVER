@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $primaryKey = 'no';
+    // protected $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +28,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+
 //    public function work()
 //    {
 //        return $this->belongsTo('App\Work', 'usesrs', 'no');

@@ -216,7 +216,7 @@ button, .buttonStyle {
 }
 
 #mainShareList #mainContenstsImage {
-  height: 15%;
+  height: 10%;
   border:1px solid black;
 }
 
@@ -230,12 +230,12 @@ button, .buttonStyle {
   margin-left: 15%;
   margin-top: 5%;
   width:70%;
-  height:50%;
+  height:35%;
 }
 
 #shareList #contenstsImage {
-  height: 10%;
-  border:1px solid black;
+  height: 9%;
+  border:5px solid black;
 }
 
 #shareList #packageName {
@@ -262,6 +262,11 @@ button, .buttonStyle {
   height: 5%;
 }
 
+#as {
+  width: 1%;
+  border:1px solid ;
+}
+
 #blockFactoryPreview {
   height: 100%;
   width: 100%;
@@ -276,10 +281,12 @@ button, .buttonStyle {
 #blockLibraryControls {
   width:30%;
   border: 1px solid;
-  text-align: right;
+  text-align: center;
   vertical-align: middle;
 }
-
+#third{
+  border:4px solid yellow;
+}
 #previewContainer {
   vertical-align: bottom;
 }
@@ -299,7 +306,7 @@ button, .buttonStyle {
 
 #packageList {
   border: 1px solid;
-  width: 20%;
+  width: 17%;
 }
 
 #packageList button{
@@ -314,7 +321,7 @@ button, .buttonStyle {
 }
 
 #packageDiv {
-
+  border: 1px solid;
 }
 
 #createNewPackage {
@@ -326,7 +333,7 @@ button, .buttonStyle {
 }
 
 #blocklyWorkspaceContainer {
-  width: 45%;
+  width: 30%;
   border: 1px solid;
 }
 

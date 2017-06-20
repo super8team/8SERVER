@@ -407,6 +407,20 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
       var input = {type: contentsBlock.type};
 
+      switch(contentsBlock.type){
+        case 'image_1':
+            input.id = '1';
+          break;
+        case 'image_2':
+            input.id = '2';
+          break;
+        case 'image_3':
+            input.id = '3';
+          break;
+        case 'image_4':
+            input.id = '4';
+          break;
+      }
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
@@ -415,11 +429,6 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         input.height = contentsBlock.getFieldValue('HEIGHT');
       }
 
-      // var align = contentsBlock.getFieldValue('ALIGN');
-      // console.log("align :" + align);
-      // if (align != 'LEFT') {
-      //   input.align = align;
-      // }
       args.push(input);
       message.push('%' + args.length);
       lastInput = contentsBlock;
@@ -465,19 +474,11 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
   console.log("^^"+rootBlock);
 
-
-  // Generate colour.
-  // var colourBlock = rootBlock.getInputTargetBlock('COLOUR');
-  // if (colourBlock && !colourBlock.disabled) {
-  //   var hue = parseInt(colourBlock.getFieldValue('HUE'), 10);
-  //   JS.colour = hue;
-  // }
-
   JS.location   = document.getElementById('get_location').innerHTML;
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
   JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
   JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
-  JS.packagenum = FactoryUtils.getPackagenumRootBlock_(rootBlock);
+  // JS.packagenum = FactoryUtils.getPackagenumRootBlock_(rootBlock);
   //정류장 - 여기 거침
   return JSON.stringify(JS, null, '  ');
 
@@ -1356,10 +1357,10 @@ FactoryUtils.getDisableRootBlock_ = function(rootBlock) {
   return '';
 };
 
-FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
-  var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
-  if(packagenumBlock && !packagenumBlock.disabled) {
-    return packagenumBlock.getFieldValue('PACKAGENUM');
-  }
-  return '';
-};
+// FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
+//   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
+//   if(packagenumBlock && !packagenumBlock.disabled) {
+//     return packagenumBlock.getFieldValue('PACKAGENUM');
+//   }
+//   return '';
+// };

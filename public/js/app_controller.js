@@ -490,6 +490,61 @@ AppController.prototype.assignLibraryClickHandlers = function() {
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
         self.blockLibraryController.saveToBlockLibrary();
+        //저장할 [콘텐츠의 정보]를 가져오는 로직
+        //노드 중에서 가장 마지막 요소를 가져온다
+        var storage_contents      = document.getElementsByClassName('content_list');
+        var length                = storage_contents.length;
+        var parent_content        = storage_contents[length-1];
+        var child_content         = parent_content.childNodes;
+
+        //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
+        var storage_package       = document.getElementById('packageDiv');
+        var storage_package_child = storage_package.firstChild;
+
+        var storage_package_name  = storage_package_child.innerText ;
+        console.log('완료');
+        console.log('현재 패키지 이름'+storage_package_name);
+
+        //저장할 컨텐츠 xml
+        var content_xml         = child_content[1].value;
+        console.log(content_xml);
+        //저장할 컨텐츠 명세
+        var content_spec        = child_content[2].value;
+        console.log(content_spec);
+        var content_spec_object = JSON.parse(content_spec);
+
+        //저장할 컨텐츠 이름
+        var content_name        = content_spec_object['type'];
+        console.log(content_name);
+        //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
+        //중복이 없으면 새로운 패키지를 등록하고
+        //중복이 있으면 그 패키지에 등록을 한다
+
+        $.ajax({
+          method: 'GET',
+          url:  '/contents/storageNewContent',
+          data: {
+            'xml'          : content_xml,
+            'spec'         : content_spec,
+            'name'         : content_name,
+            'package_name' : storage_package_name
+          },
+          success: function(data){
+
+            console.log(data);
+            var user_packages = document.getElementsByClassName('package_button');
+            for(var i = 0; i < user_packages.length; i++){
+              var package_name = user_packages[i].innerText;
+              if(package_name == data[i]['name']){
+                user_packages[i].innerText = data[i]['name'];
+                user_packages[i].value     = data[i]['id'];
+              }
+            }
+          },
+          error: function(){
+            alert('실패');
+          }
+        });
       });
 
   // Button for removing selected block from library.
@@ -619,7 +674,7 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=550';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
       window.open('/contents/share', '창작공유마당', popupOption);
     });
 
@@ -811,7 +866,7 @@ AppController.prototype.init = function() {
                                BlockFactory.mainWorkspace);
   } else {
     BlockFactory.showStarterBlock();
-    BlockFactory.showStarterBlock1();
+
   }
   BlockFactory.mainWorkspace.clearUndo();
 

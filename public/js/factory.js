@@ -88,9 +88,6 @@ BlockFactory.STARTER_BLOCK_XML_TEXT = '<xml><block type="factory_base" ' +
     '<block type="logic_boolean" movable="false">' +
     '<field name="BOOLEAN"></field></block></value>' +
 
-    '<value name="PACKAGENUM">' +
-    '<block type="packagenum" deletable="false" movable="false">' +
-    '<field name="PACKAGENUM"></field></block></value>' +
 
     '</block></xml>';
 

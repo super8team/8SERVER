@@ -49,11 +49,11 @@
             내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
           </div>
         </div>
-        <a href="{{$report_list}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
+        <a href="{{route('report')}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           뒤로 가기
         </a>
-        <a href="{{$report_list}}"role="btnsubmit" class="btn btn-sm btn-default margin-right-10 pull-right">
+        <a href="{{route('report')}}"role="btnsubmit" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           평가 완료
         </a>

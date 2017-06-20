@@ -57,8 +57,7 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
         .appendField('disable');
-    this.appendValueInput('PACKAGENUM')
-        .appendField('packagenum');
+
 
     // this.appendDummyInput()
     //     .appendField(dropdown, 'CONNECTIONS');
@@ -282,22 +281,7 @@ Blockly.Blocks['horizontal'] = {
     this.setOutput(true,'Field');
   }
 };
-Blockly.Blocks['packagenum'] = {
-  init: function() {
-    this.jsonInit({
-      "message0" : "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "PACKAGENUM",
-          "options" : [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]],
-        }
-      ],
-      "colour": 210,
-    });
-    this.setOutput(true,'Field');
-  }
-};
+
 
 Blockly.Blocks['input_statement'] = {
   // Statement input.
@@ -515,7 +499,7 @@ Blockly.Blocks['header'] = {
         .appendField('글자 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('HEADER');
+        .appendField('상단');
     this.appendDummyInput()
         .appendField('글자 내용')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
@@ -542,7 +526,7 @@ Blockly.Blocks['bottom'] = {
         .appendField('글자 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('BOTTOM');
+        .appendField('하단');
     this.appendDummyInput()
         .appendField('글자 내용')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
@@ -899,12 +883,34 @@ Blockly.Blocks['OUT_TXT'] = {
     this.setNextStatement(true, 'Field');
   }
 };
+Blockly.Blocks['example_labels'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("image:")
+        .appendField(new Blockly.FieldImage("https://www.gstatic.com/codesite/ph/images/star_on.gif", 15, 15, "*"));
+  }
+};
 
+Blockly.Blocks['image_detail'] = {
+  init:function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('여기에 있는 블럭들은');
+    this.appendDummyInput()
+        .appendField('콘텐츠를 실행 할 때')
+    this.appendDummyInput()
+        .appendField('사용 할 블럭들')
+  }
+}
 Blockly.Blocks['image_1'] = {
   // Image.
   init: function() {
     this.setColour(160);
     var src = ' ';
+    this.appendDummyInput()
+        .appendField('이미지1');
+
+        // .appendField(new Blockly.storageImage());
     this.appendDummyInput()
         .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
@@ -928,6 +934,8 @@ Blockly.Blocks['image_2'] = {
   init: function() {
     this.setColour(160);
     var src = ' ';
+    this.appendDummyInput()
+        .appendField('이미지2');
     this.appendDummyInput()
         .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
@@ -953,6 +961,8 @@ Blockly.Blocks['image_3'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
+        .appendField('이미지3');
+    this.appendDummyInput()
         .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
@@ -975,6 +985,8 @@ Blockly.Blocks['image_4'] = {
   init: function() {
     this.setColour(160);
     var src = ' ';
+    this.appendDummyInput()
+        .appendField('이미지4');
     this.appendDummyInput()
         .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');

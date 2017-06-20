@@ -26,9 +26,11 @@
       @endforeach
       <br>
        {{ csrf_field() }}
-      <input type="submit" name="" value="다운로드">
+      <input type="submit" name="" value="콘텐츠 다운로드">
     </form>
   </span>
+
+  <button type="button" name="button" onclick="history.back();">뒤로가기</button>
 
   <!-- <button id="content_download" type="button" name="button">다운로드</button> -->
 

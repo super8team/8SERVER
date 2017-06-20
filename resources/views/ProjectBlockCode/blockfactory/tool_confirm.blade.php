@@ -13,61 +13,132 @@
             <tbody>
                 @foreach ($picnic as $place)
                 <tr>
-                    <td><button style="width:90%" value="{{ $place }}">{{ $place }}</button></td>
+                    <td class='place_list'>
+                      <button  style="width:90%" value="{{ $place }}">{{ $place }}</button>
+                      @for ($i = 0; $i < 2; $i++)
+                           <input type="checkbox" name="" value="{{$package[$i]['id']}}">{{ $package[$i]['name'] }}
+                           <br>
+                      @endfor
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <div>
+          컨텐츠에 사용 될 이미지를 전부 저장해 주세요
+          <div class="">
+            <input type="file" name="contents_img[]" value="">
+
+          </div>
+        </div>
         <input type="submit" name="" value="등록하기">
       </form>
     <div style="float:right">
-      <button id="cancel">취소</button>
+      <button id="cancel">
+        취소
+      </button>
     </div>
     <script type="text/javascript">
     $(document).ready(function(){
+      //패키지를 선택해서 심어보자!
+      //패키지를 선택하도록 해서 패키지의 아이디 값을 db로 넘겨서
+      //그 패키지안의 콘텐츠들을 심어보자
+    //   var owner_packages = window.opener.document.getElementById('packageDiv');
+    //   var owner_child    = owner_packages.childNodes;
+    //   var place_list     = document.getElementsByClassName('place_list');
+    //   var package_infor;
+    //   var owner_pk_array = [];
+    //   var n = 0;
+    //   for(var i = 0; i<owner_child.length;i++){
+    //     // console.log(owner_child);
+    //     if(owner_child[i].nodeName != '#text'){
+    //           var package_name   = owner_child[i].innerText;
+    //           var package_id     = owner_child[i].value;
+    //           // console.log(package_name);
+    //           package_infor  = document.createElement("input");
+    //           package_infor.setAttribute("type","checkbox");
+    //           package_infor.setAttribute("value",package_name);
+    //           package_infor.setAttribute("name",'contents[]');
+    //           package_infor.appendChild(document.createTextNode(package_name));
+    //           owner_pk_array[n] = package_infor;
+    //           n++;
+    //     }
+    //     // console.log(owner_child[i].nodeName);
+    //   }
+    //
+    //   // for(var i = 0; i< owner_pk_array.length; i++)
+    //   // {
+    //   //   console.log(owner_pk_array[i]);
+    //   // }
+    //
+    //   for(var i = 0; i< place_list.length;i++){
+    //     for (var j = 0; j < owner_pk_array.length; j++) {
+    //       place_list[i].appendChild(owner_pk_array[j])
+    //     }
+    // }
+        // console.log(place_list[i]./childNodes);
+          // place_list[0].appendChild(owner_pk_array[1]);
+
+
+      //2
+      // for(var i = 0; i<owner_pk_array.length; i++){
+      //   if(owner_pk_array[i]){
+      //     console.log(owner_pk_array);
+      //     console.log(i);
+      //     for(var j = 0; j < place_list.length;j++){
+      //       console.log(owner_pk_array[j])
+      //       console.log(place_list.childNodes)
+      //       place_list.childNodes[j].appendChild(owner_pk_array[j]);
+      //     }
+      //   }
+      // }
+      // $('body').appendChild(owner_packages);
+
+
+
       //부모 document의 명세와 xml태그들
-      var contentsMyungse  = window.opener.document.getElementsByClassName("block_myungse");
-      var contentsXml      = window.opener.document.getElementsByClassName("contents_xml");
-      var parent           = document.getElementById('parent');
-      var i;
+      // var contentsMyungse  = window.opener.document.getElementsByClassName("block_myungse");
+      // var contentsXml      = window.opener.document.getElementsByClassName("contents_xml");
+      // var parent           = document.getElementById('parent');
+      // var i;
+      //
+      // for (i = 0; i < contentsXml.length; i++) {
+      //     var content_xml      = document.createElement("input");
+      //     var content_myungse  = document.createElement("input");
+      //
+      //     var xmlText      = contentsXml[i].value;
+      //     var myungseText  = contentsMyungse[i].value;
+      //
+      //     content_xml.setAttribute("type","text");
+      //     content_xml.setAttribute("class","contents_xml");
+      //     content_xml.setAttribute("value",xmlText);
+      //     content_xml.setAttribute("name",'contents_xml[]');
+      //     // content_xml.setAttribute("hidden",false);
+      //
+      //     content_myungse.setAttribute("type","text");
+      //     content_myungse.setAttribute("class","block_myungse");
+      //     content_myungse.setAttribute("value",myungseText);
+      //     content_myungse.setAttribute("name",'contents_value[]');
+      //
+      //     // content_myungse.setAttribute("hidden",false);
+      //     parent.appendChild(content_xml);
+      //     parent.appendChild(content_myungse);
+      // }
 
-      for (i = 0; i < contentsXml.length; i++) {
-          var content_xml      = document.createElement("input");
-          var content_myungse  = document.createElement("input");
+        $('#example').click(function(e){
+          var value = e.target.getAttribute('value');
+          var i;
+          var parameters;
+          var content_xml     = document.getElementsByClassName('contents_xml');
+          var content_myungse = document.getElementsByClassName('block_myungse');
 
-          var xmlText      = contentsXml[i].value;
-          var myungseText  = contentsMyungse[i].value;
-
-          content_xml.setAttribute("type","text");
-          content_xml.setAttribute("class","contents_xml");
-          content_xml.setAttribute("value",xmlText);
-          content_xml.setAttribute("name",'contents_xml[]');
-          // content_xml.setAttribute("hidden",false);
-
-          content_myungse.setAttribute("type","text");
-          content_myungse.setAttribute("class","block_myungse");
-          content_myungse.setAttribute("value",myungseText);
-          content_myungse.setAttribute("name",'contents_value[]');
-          
-          // content_myungse.setAttribute("hidden",false);
-          parent.appendChild(content_xml);
-          parent.appendChild(content_myungse);
-      }
-
-        // $('#example').click(function(e){
-        //   var value = e.target.getAttribute('value');
-        //   var i;
-        //   var parameters;
-        //   var content_xml     = document.getElementsByClassName('contents_xml');
-        //   var content_myungse = document.getElementsByClassName('block_myungse');
-        //
-        //   for(i = 0 ; i < content_xml.length ; i++){
-        //     content_xml[i].value;
-        //     content_myungse[i].value;
-        //     parameters = parameters + '&xml'+i+'='+content_xml[i].value+'&myungse'+i+'='+content_myungse[i].value;
-        //   }
-        // window.location.href='/dashboard?name='+value+parameters;
-        // });
+          for(i = 0 ; i < content_xml.length ; i++){
+            content_xml[i].value;
+            content_myungse[i].value;
+            parameters = parameters + '&xml'+i+'='+content_xml[i].value+'&myungse'+i+'='+content_myungse[i].value;
+          }
+        window.location.href='/dashboard?name='+value+parameters;
+        });
 
       $('#cancel').click(function(){
         window.close();

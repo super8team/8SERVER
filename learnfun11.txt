@@ -1,0 +1,58 @@
+-- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
+--
+-- Host: localhost    Database: localhost
+-- ------------------------------------------------------
+-- Server version	10.1.19-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `field_learning_plans`
+--
+
+DROP TABLE IF EXISTS `field_learning_plans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field_learning_plans` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `contents_package` int(10) unsigned DEFAULT NULL,
+  `teacher` int(10) unsigned NOT NULL,
+  `at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`no`),
+  KEY `field_learning_plans_contents_package_foreign` (`contents_package`),
+  KEY `field_learning_plans_teacher_foreign` (`teacher`),
+  CONSTRAINT `field_learning_plans_contents_package_foreign` FOREIGN KEY (`contents_package`) REFERENCES `contents_packages` (`no`),
+  CONSTRAINT `field_learning_plans_teacher_foreign` FOREIGN KEY (`teacher`) REFERENCES `users` (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field_learning_plans`
+--
+
+LOCK TABLES `field_learning_plans` WRITE;
+/*!40000 ALTER TABLE `field_learning_plans` DISABLE KEYS */;
+INSERT INTO `field_learning_plans` VALUES (1,'체험학습1',NULL,220,NULL),(2,'체험학습2',NULL,10,NULL),(3,'체험학습3',NULL,133,NULL),(4,'체험학습4',NULL,184,NULL),(5,'체험학습5',NULL,277,NULL),(6,'체험학습6',NULL,106,NULL),(7,'체험학습7',NULL,253,NULL),(8,'체험학습8',NULL,286,NULL),(9,'체험학습9',NULL,229,NULL);
+/*!40000 ALTER TABLE `field_learning_plans` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-06-15 20:40:40
