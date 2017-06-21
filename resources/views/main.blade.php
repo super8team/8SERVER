@@ -16,7 +16,7 @@
            <div class="carousel-caption">
              <img src="{{asset('img/logo.png')}}" alt="로고자리야 으앙아앙아" style="width:400px;height:300px">
              <h1>LEARnFUN</h1>
-             학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스. USER {{ Auth::id() }}
+             학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스.
            </div>
          </div>
        </div>

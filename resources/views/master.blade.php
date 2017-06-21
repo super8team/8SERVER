@@ -165,9 +165,15 @@
                 <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
                 <li><a href="#/">회원가입</a></li>
               @else
-                <li><a href="#/"><div class="" onclick="{{Auth::logout()}}">
-                  로그아웃
-                </div></a></li>
+                <li>
+                  <a href="#" onclick="event.preventDefault(); 
+                                                          document.getElementById('logout-form').submit();">
+                    로그아웃
+                  </a>
+                  <form id="logout-form" class="" action="{{route('logout')}}" method="post">
+                    {{csrf_field()}}
+                  </form>
+                </li>
               @endif
             </ul>
           @else
