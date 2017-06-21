@@ -304,17 +304,18 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     }
     public function registerToPlan()
     {
-      dd(Auth::user()->no());
-      // $package_array = [];
-      // $user_package = DB::table('contents_packages')->where('owner','=',259)->get();
-      //
-      // foreach($user_package as $package){
-      //     array_push($package_array, array('name'=>$package->name,'id'=>$package->no));
-      // }
-      // // dd($package_array[0]['name']);
-      //
-      // $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
-      // return view('ProjectBlockCode.blockfactory.tool_confirm',['picnic'=>$picnic,'package'=>$package_array]);
+      //로그인 시
+      dd(Auth::user()->no);
+      $package_array = [];
+      $user_package = DB::table('contents_packages')->where('owner','=',259)->get();
+
+      foreach($user_package as $package){
+          array_push($package_array, array('name'=>$package->name,'id'=>$package->no));
+      }
+      // dd($package_array[0]['name']);
+
+      $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
+      return view('ProjectBlockCode.blockfactory.tool_confirm',['picnic'=>$picnic,'package'=>$package_array]);
     }
 
     public function registerToPlanDB(Request $request)

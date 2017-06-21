@@ -323,6 +323,10 @@
         <td id="blockFactorySupplie">
           <table>
             <tr id="blockLibrary">
+              <td id="contents_list">
+                콘텐츠 리스트
+              </td>
+
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
@@ -586,7 +590,9 @@
         <block type="OUT_TXT"></block>
         <block type="END"></block>
       </category>
-
+      <category name="에디트">
+        <block type="EDIT"></block>
+      </category>
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">
