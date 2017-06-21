@@ -179,14 +179,14 @@ BlockLibraryView.prototype.updateButtons =
       this.saveButton.textContent = '저장';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
-      // this.updateButton.disabled = false;
+      // this.saveButton.disabled = false;
     } else {
       // Block type has already been saved. Disable the save button unless the
       // there are unsaved changes (checked below).
       this.saveButton.textContent = '저장';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
-      this.updateButton.disabled = false;
+      // this.updateButton.disabled = false;
     }
     this.deleteButton.textContent = '삭제';
 
@@ -207,7 +207,7 @@ BlockLibraryView.prototype.updateButtons =
       // No changes to save.
       var classesToRemove = ['button_alert', 'button_warn'];
       goog.dom.classlist.removeAll(this.saveButton, classesToRemove);
-      this.saveButton.disabled = true;
+      this.saveButton.disabled = false;
     }
 
   }

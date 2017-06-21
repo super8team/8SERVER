@@ -24,7 +24,6 @@
         </span>
         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
         <div id="information" style="border: 1px solid ">
-
         </div>
         <input id="sub" type="submit" value="공유 완료">
       </div>

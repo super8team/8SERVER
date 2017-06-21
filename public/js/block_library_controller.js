@@ -55,7 +55,7 @@ BlockLibraryController = function(blockLibraryName, opt_blockLibraryStorage) {
   // the block library dropdown.
   this.view = new BlockLibraryView();
   this.packageName = document.getElementById('packageDiv');
-  this.primaryPackagenum = 1;
+  // this.primaryPackagenum = 1;
 
   this.packageBasket = new Array();
   this.packageNumber = 0;
@@ -269,30 +269,41 @@ BlockLibraryController.prototype.clearBlockLibrary = function() {
  * Saves current block to local storage and updates dropdown.
  */
 BlockLibraryController.prototype.makeNewPackage = function() {
-  console.log(this.packageBasket.length);
+
   if(this.packageBasket.length<5){
     var packageName = prompt("패키지 이름을 입력하여 주세요");
+    if(!packageName)
+    {
+      return;
+    }
 
     // input으로 넣기
     // document.getElementById('packageDiv').innerHTML = packageName;
     // this.packageName = packageName;
 
-    packageName = packageName+'패키지 번호'+this.primaryPackagenum;
+    packageName = packageName
 
-    var packageObject = goog.dom.createDom('input', {
-      'id':this.primaryPackagenum,
-      'class':'package7',
-      'type':'submit',
-      'value':packageName,
+    var packageObject = goog.dom.createDom('button', {
+      'type': 'button',
+      'class':'package_button',
       'display': 'block'
       // disabled: 'false'
-    });
+    },packageName);
+
+    // var packageObject = goog.dom.createDom('input', {
+    //   'id':this.primaryPackagenum,
+    //   'class':'package7',
+    //   'type':'submit',
+    //   'value':packageName,
+    //   'display': 'block'
+    //   // disabled: 'false'
+    // });
 
     this.packageName.appendChild(packageObject);
     this.packageBasket[this.packageArrayKey] = packageObject;
     console.log(this.packageBasket[0].id);
     console.log(this.packageBasket);
-    this.primaryPackagenum++;
+    // this.primaryPackagenum++;
     this.packageArrayKey++;
     return ;
   }else{
@@ -305,13 +316,13 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
   // If user has not changed the name of the starter block.
-  if(this.packageBasket.length === 0) {
-    alert("패키지를 생성 한 후 콘텐츠를 생성해 주세요");
-    return;
-  }else if (blockType == 'block_type') {
-    alert('다른 이름으로 입력 해주세요');
-    return;
-  }
+  // if(this.packageBasket.length === 0) {
+  //   alert("패키지를 생성 한 후 콘텐츠를 생성해 주세요");
+  //   return;
+  // }else if (blockType == 'block_type') {
+  //   alert('다른 이름으로 입력 해주세요');
+  //   return;
+  // }
   // Create block XML.
   var xmlElement = goog.dom.createDom('xml');
   var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);

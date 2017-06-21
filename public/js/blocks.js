@@ -38,6 +38,7 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('HORIZONTAL')
         .appendField('horizontal');
     this.appendStatementInput('SCRIPT')
+        .setCheck('CheckEdit')
         .appendField('실행');
     this.appendStatementInput('IMAGES')
         .setCheck('Image')
@@ -48,6 +49,9 @@ Blockly.Blocks['factory_base'] = {
     this.appendStatementInput('BUTTONS')
         .setCheck('Button')
         .appendField('버튼');
+    this.appendStatementInput('EDIT')
+        .setCheck('Edit')
+        .appendField('에디트');
     this.appendValueInput('VISIONABLE')
         .setCheck('Boolean')
         .appendField('visionable');
@@ -57,8 +61,7 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
         .appendField('disable');
-    this.appendValueInput('PACKAGENUM')
-        .appendField('packagenum');
+
 
     // this.appendDummyInput()
     //     .appendField(dropdown, 'CONNECTIONS');
@@ -160,7 +163,7 @@ var FIELD_ARGS = [
     "check": "Field"
   }
 ];
-var SCRIPT_MESSAGE = 'scripts %1 ';
+var SCRIPT_MESSAGE = '이벤트 %1 ';
 var SCRIPT_ARG = [
     {
       "type": "input_statement",
@@ -169,7 +172,7 @@ var SCRIPT_ARG = [
     }
 ];
 //true
-var CHECKEDIT_MESSAGE = 'true %1 ';
+var CHECKEDIT_MESSAGE = '정답 일 경우 %1 ';
 var CHECKEDIT_ARG = [
     {
       "type": "input_statement",
@@ -177,7 +180,7 @@ var CHECKEDIT_ARG = [
     }
 ];
 //false
-var CHECKEDIT2_MESSAGE = 'false %1 ';
+var CHECKEDIT2_MESSAGE = '오답 일 경우 %1 ';
 var CHECKEDIT2_ARG = [
     {
       "type": "input_statement",
@@ -282,22 +285,7 @@ Blockly.Blocks['horizontal'] = {
     this.setOutput(true,'Field');
   }
 };
-Blockly.Blocks['packagenum'] = {
-  init: function() {
-    this.jsonInit({
-      "message0" : "%1",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "PACKAGENUM",
-          "options" : [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]],
-        }
-      ],
-      "colour": 210,
-    });
-    this.setOutput(true,'Field');
-  }
-};
+
 
 Blockly.Blocks['input_statement'] = {
   // Statement input.
@@ -330,10 +318,10 @@ Blockly.Blocks['input_statement'] = {
   }
 };
 
-Blockly.Blocks['isscript'] = {
+Blockly.Blocks['CLICK'] = {
   init: function() {
       this.jsonInit({
-        "message0" : "name %1 %2",
+        "message0" : "클릭 이벤트 %1 %2",
         "args0": [
           {
             "type": "field_input",
@@ -346,25 +334,25 @@ Blockly.Blocks['isscript'] = {
         ],
         "message1": SCRIPT_MESSAGE,
         "args1" :   SCRIPT_ARG,
-        "previousStatement": "Input",
-        "nextStatement": "Input",
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
         "colour": 160,
       });
 
     }
 };
-Blockly.Blocks['end'] = {
+Blockly.Blocks['END'] = {
   init: function() {
-    this.setColour(230);
+    this.setColour(160);
     this.appendDummyInput()
-        .appendField('end')
-    this.setPreviousStatement(true, 'Field');
+        .appendField('이벤트 끝')
+    this.setPreviousStatement(true, 'CheckEdit');
   }
 }
-Blockly.Blocks['checkedit'] = {
+Blockly.Blocks['CHECKEDIT'] = {
   init: function() {
       this.jsonInit({
-        "message0": "name %1 %2 answer %3 %4 %5",
+        "message0": "클릭 이벤트 %1 %2 정답 %3 %4 %5",
         "args0": [
           {
             "type": "field_input",
@@ -390,20 +378,13 @@ Blockly.Blocks['checkedit'] = {
         "args1" : CHECKEDIT_ARG,
         "message2": CHECKEDIT2_MESSAGE,
         "args2" : CHECKEDIT2_ARG,
-        "previousStatement": "Input",
-        "nextStatement": "Input",
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
         "colour": 160,
       });
   }
 }
-// this.setColour(230);
-// this.appendDummyInput()
-//     .appendField('name')
-//     .appendField(new Blockly.FieldTextInput('default'),'FIELDNAME');
-// this.appendStatementInput('SCRIPT_')
-//     .appendField('action');
-// this.setPreviousStatement(true,'SCRIPT_V');
-// this.setNextStatement(true,'SCRIPT_V');
+
 
 Blockly.Blocks['field_static'] = {
   // Text value.
@@ -423,24 +404,23 @@ Blockly.Blocks['package_name'] = {
     this.setColour(230);
     this.appendDummyInput()
         .appendField('text')
-
   }
 };
 Blockly.Blocks['button_1'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('BUTTON ID')
+        .appendField('버튼 아이디')
         .appendField('1', 'FIELDNAME');
     this.appendDummyInput()
-        .appendField('BUTTON NAME')
+        .appendField('버튼 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('BUTTON COLOUR')
+        .appendField('버튼 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('FONT COLOUR')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
+        .appendField('글자 색')
+        .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOR');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
   },
@@ -452,16 +432,16 @@ Blockly.Blocks['button_2'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('BUTTON ID')
+        .appendField('버튼 아이디')
         .appendField('2', 'VALUE')
     this.appendDummyInput()
-        .appendField('BUTTON NAME')
+        .appendField('글자 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('BUTTON COLOUR')
+        .appendField('버튼 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('FONT COLOUR')
+        .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -474,16 +454,16 @@ Blockly.Blocks['button_3'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('BUTTON ID')
+        .appendField('버튼 아이디')
         .appendField('3', 'VALUE');
     this.appendDummyInput()
-        .appendField('BUTTON NAME')
+        .appendField('버튼 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('BUTTON COLOUR')
+        .appendField('버튼 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('FONT COLOUR')
+        .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -496,16 +476,16 @@ Blockly.Blocks['button_4'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('BUTTON ID')
+        .appendField('버튼 아이디')
         .appendField('4', 'VALUE');
     this.appendDummyInput()
-        .appendField('BUTTON NAME')
+        .appendField('버튼 이름')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('BUTTON COLOUR')
+        .appendField('버튼 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('FONT COLOUR')
+        .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -520,15 +500,18 @@ Blockly.Blocks['header'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('text input')
-        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+        .appendField('글자 이름')
+        .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('HEADER');
+        .appendField('상단');
     this.appendDummyInput()
-        .appendField('text color')
+        .appendField('글자 내용')
+        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+    this.appendDummyInput()
+        .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('text size')
+        .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'VALUE')
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
@@ -544,18 +527,18 @@ Blockly.Blocks['bottom'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('text name')
-        .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME');
-    this.appendDummyInput()
-        .appendField('text input')
-        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+        .appendField('글자 이름')
+        .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('BOTTOM');
+        .appendField('하단');
     this.appendDummyInput()
-        .appendField('text color')
+        .appendField('글자 내용')
+        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+    this.appendDummyInput()
+        .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
-        .appendField('text size')
+        .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'VALUE')
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
@@ -814,7 +797,7 @@ Blockly.Blocks['field_checkbox'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('checkbox')
+        .appendField('체크 박스')
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'CHECKED')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -883,43 +866,81 @@ Blockly.Blocks['field_variable'] = {
     fieldNameCheck(this);
   }
 };
-Blockly.Blocks['out_img'] = {
+Blockly.Blocks['OUT_IMG'] = {
   init: function() {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('image src')
+        .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src),'OUT_SRC');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
   }
 };
-Blockly.Blocks['out_txt'] = {
+Blockly.Blocks['OUT_TXT'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('text')
+        .appendField('텍스트')
         .appendField(new Blockly.FieldTextInput('default'),'OUT_TXT');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
+  }
+};
+Blockly.Blocks['example_labels'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("image:")
+        .appendField(new Blockly.FieldImage("https://www.gstatic.com/codesite/ph/images/star_on.gif", 15, 15, "*"));
   }
 };
 
+Blockly.Blocks['image_detail'] = {
+  init:function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('여기에 있는 블럭들은');
+    this.appendDummyInput()
+        .appendField('콘텐츠를 실행 할 때')
+    this.appendDummyInput()
+        .appendField('사용 할 블럭들')
+  }
+}
+Blockly.Blocks['EDIT'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('텍스트')
+        .appendField(new Blockly.FieldTextInput(''), 'TEXT');
+    this.appendDummyInput()
+        .appendField('힌트')
+        .appendField(new Blockly.FieldTextInput(''), 'HINT');
+    this.appendDummyInput()
+        .appendField('사이즈')
+        .appendField(new Blockly.FieldNumber(0), 'SIZE');
+    this.setPreviousStatement(true, 'Edit');
+    this.setNextStatement(true, 'Edit');
+  }
+}
 Blockly.Blocks['image_1'] = {
   // Image.
   init: function() {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('image src')
+        .appendField('이미지1');
+
+        // .appendField(new Blockly.storageImage());
+    this.appendDummyInput()
+        .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('image name')
+        .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
     this.appendDummyInput()
-        .appendField('width')
+        .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('height')
+        .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
     this.setPreviousStatement(true, 'Image');
     this.setNextStatement(true, 'Image');
@@ -934,18 +955,20 @@ Blockly.Blocks['image_2'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('image src')
+        .appendField('이미지2');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('image name')
+        .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
     this.appendDummyInput()
-        .appendField('width')
+        .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('height')
+        .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
-        this.setPreviousStatement(true, 'Image');
-        this.setNextStatement(true, 'Image');
+    this.setPreviousStatement(true, 'Image');
+    this.setNextStatement(true, 'Image');
   },
   onchange: function() {
     fieldNameCheck(this);
@@ -958,18 +981,20 @@ Blockly.Blocks['image_3'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('image src')
+        .appendField('이미지3');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('image name')
+        .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
     this.appendDummyInput()
-        .appendField('width')
+        .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('height')
+        .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
-        this.setPreviousStatement(true, 'Image');
-        this.setNextStatement(true, 'Image');
+    this.setPreviousStatement(true, 'Image');
+    this.setNextStatement(true, 'Image');
   },
   onchange: function() {
     fieldNameCheck(this);
@@ -981,15 +1006,17 @@ Blockly.Blocks['image_4'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('image src')
+        .appendField('이미지4');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('image name')
+        .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
     this.appendDummyInput()
-        .appendField('width')
+        .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('height')
+        .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
         this.setPreviousStatement(true, 'Image');
         this.setNextStatement(true, 'Image');
@@ -999,105 +1026,7 @@ Blockly.Blocks['image_4'] = {
   }
 };
 
-// Blockly.Blocks['type_group'] = {
-//   // Group of types.
-//   init: function() {
-//     this.typeCount_ = 2;
-//     this.updateShape_();
-//     this.setOutput(true, 'Type');
-//     this.setMutator(new Blockly.Mutator(['type_group_item']));
-//     this.setColour(230);
-//     this.setTooltip('Allows more than one type to be accepted.');
-//     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=677');
-//   },
-//   mutationToDom: function(workspace) {
-//     // Create XML to represent a group of types.
-//     var container = document.createElement('mutation');
-//     container.setAttribute('types', this.typeCount_);
-//     return container;
-//   },
-//   domToMutation: function(container) {
-//     // Parse XML to restore the group of types.
-//     this.typeCount_ = parseInt(container.getAttribute('types'), 10);
-//     this.updateShape_();
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       this.removeInput('TYPE' + i);
-//     }
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       var input = this.appendValueInput('TYPE' + i)
-//                       .setCheck('Type');
-//       if (i == 0) {
-//         input.appendField('any of');
-//       }
-//     }
-//   },
-//   decompose: function(workspace) {
-//     // Populate the mutator's dialog with this block's components.
-//     var containerBlock = workspace.newBlock('type_group_container');
-//     containerBlock.initSvg();
-//     var connection = containerBlock.getInput('STACK').connection;
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       var typeBlock = workspace.newBlock('type_group_item');
-//       typeBlock.initSvg();
-//       connection.connect(typeBlock.previousConnection);
-//       connection = typeBlock.nextConnection;
-//     }
-//     return containerBlock;
-//   },
-//   compose: function(containerBlock) {
-//     // Reconfigure this block based on the mutator dialog's components.
-//     var typeBlock = containerBlock.getInputTargetBlock('STACK');
-//     // Count number of inputs.
-//     var connections = [];
-//     while (typeBlock) {
-//       connections.push(typeBlock.valueConnection_);
-//       typeBlock = typeBlock.nextConnection &&
-//           typeBlock.nextConnection.targetBlock();
-//     }
-//     // Disconnect any children that don't belong.
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       var connection = this.getInput('TYPE' + i).connection.targetConnection;
-//       if (connection && connections.indexOf(connection) == -1) {
-//         connection.disconnect();
-//       }
-//     }
-//     this.typeCount_ = connections.length;
-//     this.updateShape_();
-//     // Reconnect any child blocks.
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       Blockly.Mutator.reconnect(connections[i], this, 'TYPE' + i);
-//     }
-//   },
-//   saveConnections: function(containerBlock) {
-//     // Store a pointer to any connected child blocks.
-//     var typeBlock = containerBlock.getInputTargetBlock('STACK');
-//     var i = 0;
-//     while (typeBlock) {
-//       var input = this.getInput('TYPE' + i);
-//       typeBlock.valueConnection_ = input && input.connection.targetConnection;
-//       i++;
-//       typeBlock = typeBlock.nextConnection &&
-//           typeBlock.nextConnection.targetBlock();
-//     }
-//   },
-//   updateShape_: function() {
-//     // Modify this block to have the correct number of inputs.
-//     // Add new inputs.
-//     for (var i = 0; i < this.typeCount_; i++) {
-//       if (!this.getInput('TYPE' + i)) {
-//         var input = this.appendValueInput('TYPE' + i);
-//         if (i == 0) {
-//           input.appendField('any of');
-//         }
-//       }
-//     }
-//     // Remove deleted inputs.
-//     while (this.getInput('TYPE' + i)) {
-//       this.removeInput('TYPE' + i);
-//       i++;
-//     }
-//   }
-// };
+
 
 Blockly.Blocks['type_group_container'] = {
   // Container.

@@ -60,7 +60,7 @@
         <div align="center"><b>콘텐츠 패키지<b></div>
         <tr id="contenstsImage">
           @foreach ($otherPackage as $key => $value)
-              <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:150px; height:250px"></a></td>
+              <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:150px"></a></td>
           @endforeach
         </tr>
         <tr id="packageName">
@@ -69,7 +69,7 @@
           @endforeach
         </tr>
       </table>
-      <button id="share" type="button" name="button">공유</button>
+      <button id="share" type="button" name="button">패키지 공유하기</button>
     </body>
     <script type="text/javascript">
 // var xmlText         = new XMLSerializer().serializeToString(xml);

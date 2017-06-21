@@ -84,6 +84,16 @@ Route::post('contents/shareDownload', 'ContentsController@shareDownload')->name(
 //콘텐츠를 현장학습에 저장
 Route::get('contents/registerToPlan','ContentsController@registerToPlan')->name('contents.registerToPlan');
 
+//콘텐츠를 현장학습에 저장 -> DB
+Route::get('contents/registerToPlanDB','ContentsController@registerToPlanDB')->name('contents.registerToPlanDB');
+
+//패키지 선택에 따른 컨텐츠 출력하기
+Route::get('contents/packages/{package_id}','ContentsController@extractContents')->name('contents.extractContents');
+
+//콘텐츠 저장하기
+Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
+// 콘텐츠 메인
+Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 
 
 // ******************** 가정 통신문 *********************
@@ -127,15 +137,15 @@ Route::get('checklist/write', 'ChecklistController@write')->name('checklist.writ
 Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
 
 
-
-// 콘텐츠 메인
-Route::get('contents/{id}', 'ContentsController@index')->name('contents');
 // *******************  앱 히스토리 *********************
 
 // Route::resource('app/history', 'AppHistoryController');
 
 
+
+
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
+
 
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');

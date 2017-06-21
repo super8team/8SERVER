@@ -68,7 +68,6 @@ BlockFactory.oldDir = null;
 BlockFactory.STARTER_BLOCK_XML_TEXT = '<xml><block type="factory_base" ' +
     'deletable="false" movable="false">' +
 
-
     '<value name="VERTICAL">' +
     '<block type="vertical" deletable="false" movable="false">' +
     '<field name="VERTICAL"></field></block></value>' +
@@ -89,11 +88,10 @@ BlockFactory.STARTER_BLOCK_XML_TEXT = '<xml><block type="factory_base" ' +
     '<block type="logic_boolean" movable="false">' +
     '<field name="BOOLEAN"></field></block></value>' +
 
-    '<value name="PACKAGENUM">' +
-    '<block type="packagenum" deletable="false" movable="false">' +
-    '<field name="PACKAGENUM"></field></block></value>' +
 
     '</block></xml>';
+
+
 /**
  * Change the language code format.
  */
@@ -291,6 +289,7 @@ BlockFactory.disableEnableLink = function() {
 BlockFactory.showStarterBlock = function() {
   BlockFactory.mainWorkspace.clear();
   var xml = Blockly.Xml.textToDom(BlockFactory.STARTER_BLOCK_XML_TEXT);
+
   Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);
 };
 
