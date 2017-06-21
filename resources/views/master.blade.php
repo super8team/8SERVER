@@ -161,8 +161,14 @@
             <ul id="right_menu" class="nav navbar-nav navbar-right">
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
-              <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
-              <li><a href="#/">회원가입</a></li>
+              @if(!Auth::check())
+                <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
+                <li><a href="#/">회원가입</a></li>
+              @else
+                <li><a href="#/"><div class="" onclick="{{Auth::logout()}}">
+                  로그아웃
+                </div></a></li>
+              @endif
             </ul>
           @else
           <ul id="right_menu" class="nav navbar-nav navbar-right">
