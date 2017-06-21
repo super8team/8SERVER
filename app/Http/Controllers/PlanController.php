@@ -34,9 +34,9 @@ class PlanController extends Controller
       foreach($plans as $plan) {
 
         // dd($plan);
-        array_push($planIds, $plan->no);
+        array_push($planIds,   $plan->no);
         array_push($planTitles, $plan->name);
-        array_push($planDates, $plan->at); 
+        array_push($planDates, $plan->at);
       }
 
       return view('plan.plan_list', [
@@ -107,21 +107,21 @@ class PlanController extends Controller
           'traffic' => $transpotation[$i],
         ]);
       }
-      
+
       for ($i=0; $i<count($institution); $i++) {
         \DB::table('inst_auth')->insert([
           'simple_plan' => $simple,
           'article' => $institution[$i],
         ]);
       }
-      
+
       for ($i=0; $i<count($activity); $i++) {
         \DB::table('field_learning_programs')->insert([
           'simple_plan' => $simple,
           'program' => $activity[$i],
         ]);
       }
-      
+
       for ($i=0; $i<count($others); $i++) {
         \DB::table('etc_selects')->insert([
           'simple_plan' => $simple,
@@ -143,7 +143,7 @@ class PlanController extends Controller
     {
       $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
       $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
-      
+
       $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
       $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
       $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
@@ -155,24 +155,24 @@ class PlanController extends Controller
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
       $unattend_student_count = $simple->unjoin_student_count;
-      
+
       $transpotation = [];
       $activity = [];
       $institution = [];
       $others = [];
-      
+
       foreach($traffics as $traffic) {
         array_push($transpotation, $traffic->traffic);
       }
-      
+
       foreach($articles as $article) {
         array_push($institution, $article->article);
       }
-      
+
       foreach($programs as $program) {
         array_push($activity, $program->program);
       }
-      
+
       foreach($options as $option) {
         array_push($others, $option->option);
       }
@@ -202,7 +202,7 @@ class PlanController extends Controller
     {
       $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
       $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
-      
+
       $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
       $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
       $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
@@ -215,12 +215,12 @@ class PlanController extends Controller
       $attend_class_count = $simple->grade_class_count;
       $attend_student_count = $simple->student_count;
       $unattend_student_count = $simple->unjoin_student_count;
-      
+
       $transpotation = [];
       $activity = [];
       $institution = [];
       $others = [];
-      
+
       foreach($traffics as $traffic) {
         array_push($transpotation, $traffic->traffic);
       }
@@ -228,15 +228,15 @@ class PlanController extends Controller
       foreach($articles as $article) {
         array_push($institution, $article->article);
       }
-      
+
       foreach($programs as $program) {
         array_push($activity, $program->program);
       }
-      
+
       foreach($options as $option) {
         array_push($others, $option->option);
       }
-      
+
       return view('plan.plan', [
         'plan_no' => $plan_no,
         'plan_title' => $plan_title,
@@ -281,7 +281,7 @@ class PlanController extends Controller
               'name'=>$plan_title,
               'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
               ]);
-              
+
       \DB::table('simple_plans')
             ->where('plan', $id)
             ->update([
@@ -290,9 +290,9 @@ class PlanController extends Controller
               'student_count' => $attend_student_count,
               'unjoin_student_count' => $unattend_student_count,
               ]);
-              
+
       $simple = \DB::table('simple_plans')->where('plan', $id)->first();
-      
+
       \DB::table('traffics')->where('simple_plan', $simple->no)->delete();
       \DB::table('inst_auth')->where('simple_plan', $simple->no)->delete();
       \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->delete();
@@ -304,21 +304,21 @@ class PlanController extends Controller
               'traffic' => $transpotation[$i],
             ]);
       }
-      
+
       for ($i=0; $i<count($institution); $i++) {
         \DB::table('inst_auth')->insert([
               'simple_plan' => $simple->no,
               'article' => $institution[$i],
             ]);
       }
-      
+
       for ($i=0; $i<count($activity); $i++) {
         \DB::table('field_learning_programs')->insert([
               'simple_plan' => $simple->no,
               'program' => $activity[$i],
             ]);
       }
-      
+
       for ($i=0; $i<count($others); $i++) {
         \DB::table('etc_selects')->insert([
               'simple_plan' => $simple->no,
@@ -340,7 +340,7 @@ class PlanController extends Controller
     {
       // field_learning_plans simple_plans traffics inst_auth field_learning_programs etc_selects
       // soft_delete
-      
+
       return view('plan.plan_list'); // teacher_index
     }
 

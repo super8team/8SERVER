@@ -5,29 +5,28 @@
     <title>tool_confirm</title>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
   </head>
   <body>
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
         <table style="width:50%;margin-left:auto;margin-right:auto">
             <tbody>
-                @foreach ($picnic as $place)
+                @for($j = 0; $j < {{count($field_lists); $j++}})
                 <tr>
                     <td class='place_list'>
-                      <button  style="width:90%" value="{{ $place }}">{{ $place }}</button>
-                      @for ($i = 0; $i < 2; $i++)
-                           <input type="checkbox" name="" value="{{$package[$i]['id']}}">{{ $package[$i]['name'] }}
+                      <input type="button" name="field_list[]" style="width:90%" value="{{ $field_list[$j]['id'] }}">{{ $field_list[$j]['name'] }}</button>
+                      @for ($i = 0; $i < {{ $package_count }}; $i++)
+                           <input type="checkbox" name="package[]" value="{{$package[$j][$i]['id']}}">{{ $package[$j][$i]['name'] }}
                            <br>
                       @endfor
                     </td>
                 </tr>
-                @endforeach
+                @endfor
             </tbody>
         </table>
         <div>
           컨텐츠에 사용 될 이미지를 전부 저장해 주세요
           <div class="">
-            <input type="file" name="contents_img[]" value="">
+            <!-- <input type="file" name="contents_img[]" value=""> -->
 
           </div>
         </div>
@@ -125,20 +124,20 @@
       //     parent.appendChild(content_myungse);
       // }
 
-        $('#example').click(function(e){
-          var value = e.target.getAttribute('value');
-          var i;
-          var parameters;
-          var content_xml     = document.getElementsByClassName('contents_xml');
-          var content_myungse = document.getElementsByClassName('block_myungse');
-
-          for(i = 0 ; i < content_xml.length ; i++){
-            content_xml[i].value;
-            content_myungse[i].value;
-            parameters = parameters + '&xml'+i+'='+content_xml[i].value+'&myungse'+i+'='+content_myungse[i].value;
-          }
-        window.location.href='/dashboard?name='+value+parameters;
-        });
+        // $('#example').click(function(e){
+        //   var value = e.target.getAttribute('value');
+        //   var i;
+        //   var parameters;
+        //   var content_xml     = document.getElementsByClassName('contents_xml');
+        //   var content_myungse = document.getElementsByClassName('block_myungse');
+        //
+        //   for(i = 0 ; i < content_xml.length ; i++){
+        //     content_xml[i].value;
+        //     content_myungse[i].value;
+        //     parameters = parameters + '&xml'+i+'='+content_xml[i].value+'&myungse'+i+'='+content_myungse[i].value;
+        //   }
+        // window.location.href='/dashboard?name='+value+parameters;
+        // });
 
       $('#cancel').click(function(){
         window.close();
