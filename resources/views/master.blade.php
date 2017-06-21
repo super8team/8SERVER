@@ -91,7 +91,8 @@
           </div>
           <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
             <div class="row">
-              <form class="form  col-sm-8 col-md-offset-2">
+              <form class="form  col-sm-8 col-md-offset-2" action="{{route('login')}}" method="post">
+                {{ csrf_field() }}
                   <fieldset>
                       <div class="form-group">
                           <input class="form-control" placeholder="ID" name="id" type="text" autofocus>
@@ -105,7 +106,10 @@
                           </label>
                       </div>
                       <!-- Change this to a button or input when using this as a form -->
-                      <p><a href="index.html" class="btn btn-lg btn-success btn-block">로그인</a></p>
+                      <p>
+                        <input type="submit" name="" value="로그인" class="btn btn-lg btn-success btn-block">
+                        <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
+                      </p>
                   </fieldset>
               </form>
               <div class="col-sm-8 col-md-offset-2">

@@ -14,13 +14,10 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::get('/test22',function(){
-  return view('plan.test22');
+Route::get('/test23',function(){
+  return view('survey.survey_student_result');
 });
 
-Route::POST('/get',function(){
-  return view('plan.get-event_dnweb');
-});
 
 // Route::get('/sheet',function(){
 //   return view('plan.plan_sheet');
@@ -46,13 +43,11 @@ Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::resource('plan', 'PlanController');
+Route::resource('map', 'MapController');
 
-//
-// // 계획 맵
-// Route::get('plan/map', 'PlanController@map')->name('plan.map');
-//
-// // 앱 디테일플랜
-Route::post('app/getPlanDetail', 'PlanController@getPlanDetial')->name('getPlanDetial');
+// 앱 디테일플랜
+Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
+Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 
 
 // ******************** 설문조사 *********************
