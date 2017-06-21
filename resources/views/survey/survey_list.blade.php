@@ -48,7 +48,8 @@
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('survey.show')}}" class="btn btn-sm btn-danger">
+                      // 2 =? servey_no
+                      <a role="button" href="{{route('survey.show', 2)}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
