@@ -297,18 +297,34 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   var args     = [];
   var txt_args = [];
   var btn_args = [];
-  var srtargs = [];
+  var srtargs  = [];
+  var editargs = [];
 
   var contentsBlock   = rootBlock.getInputTargetBlock('IMAGES');
   var txtBlock        = rootBlock.getInputTargetBlock('TEXTS');
   var btnBlock        = rootBlock.getInputTargetBlock('BUTTONS');
   var clickblock      = rootBlock.getInputTargetBlock('SCRIPT');
-
-
+  var editBlock       = rootBlock.getInputTargetBlock('EDIT')
 
   var lastInput = null;
   var ifNameNumber = 1;
+  while(editBlock) {
+    if(!editBlock.disabled){
 
+    var input = {}
+
+    if (editBlock.type != 'input_dummy') {
+    //name 속성의 값을 가져옴
+      input.text      = editBlock.getFieldValue('TEXT');
+      input.hint      = editBlock.getFieldValue('HINT');
+      input.size      = editBlock.getFieldValue('SIZE');
+    }
+    editargs.push(input);
+    // message.push('%' + txt_args.length);
+    lastInput = editargs;
+    }
+    editBlock = editBlock.nextConnection && editBlock.nextConnection.targetBlock();
+  }
   while(clickblock) {
     if(!clickblock.disabled  && !clickblock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(
@@ -320,7 +336,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       console.log('CLICK')
 
       // console.log(fields2);
-      var input = {type:clickblock.type};
+      var input = {};
 
       // for(var i=0; i< script_fields.length; i++) {
       //   if(typeof script_fields[i] == 'string'){
@@ -329,9 +345,9 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       //     srtargs.push(script_fields[i]);
       //   }
       // }
-      for(var i=0; i< script_fields.length; i++) {
-        console.log(script_fields[i]);
-      }
+      // for(var i=0; i< script_fields.length; i++) {
+      //   console.log(script_fields[i]);
+      // }
 
       var input  = {type:clickblock.type};
       var number = script_fields.length;
@@ -357,7 +373,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(btnBlock) {
     if(!btnBlock.disabled){
 
-    var input = {type: btnBlock.type};
+    var input = {};
 
     if (btnBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
@@ -376,7 +392,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(txtBlock){
     if(!txtBlock.disabled && !txtBlock.getInheritedDisabled()){
 
-    var input = {type: txtBlock.type};
+    var input = {};
     // alert(imgBlock.type);
     // alert(input);
 
@@ -405,7 +421,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while (contentsBlock) {
     if (!contentsBlock.disabled && !contentsBlock.getInheritedDisabled()) {
 
-      var input = {type: contentsBlock.type};
+      var input = {};
 
       switch(contentsBlock.type){
         case 'image_1':
@@ -443,20 +459,20 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         contentsBlock.nextConnection.targetBlock();
   }
   // Remove last input if dummy and not empty.
-  if (lastInput && lastInput.type == 'input_dummy') {
-    var fields = lastInput.getInputTargetBlock('FIELDS');
-    if (fields && FactoryUtils.getFieldsJson_(fields).join('').trim() != '') {
-      var align = lastInput.getFieldValue('ALIGN');
-      if (align != 'LEFT') {
-        JS.lastDummyAlign0 = align;
-      }
-      srtargs.pop();
-      txt_args.pop();
-      btn_args.pop();
-      args.pop();
-      message.pop();
-    }
-  }
+  // if (lastInput && lastInput.type == 'input_dummy') {
+  //   var fields = lastInput.getInputTargetBlock('FIELDS');
+  //   if (fields && FactoryUtils.getFieldsJson_(fields).join('').trim() != '') {
+  //     var align = lastInput.getFieldValue('ALIGN');
+  //     if (align != 'LEFT') {
+  //       JS.lastDummyAlign0 = align;
+  //     }
+  //     srtargs.pop();
+  //     txt_args.pop();
+  //     btn_args.pop();
+  //     args.pop();
+  //     message.pop();
+  //   }
+  // }
   // JS.message0 = message.join(' ');
 
   if (args.length) {
@@ -470,6 +486,9 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   }
   if(srtargs.length) {
     JS.click = srtargs;
+  }
+  if(editargs.length) {
+    JS.edit = editargs;
   }
 
   console.log("^^"+rootBlock);
