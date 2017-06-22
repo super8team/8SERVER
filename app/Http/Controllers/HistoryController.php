@@ -94,9 +94,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
         if($img!=null)
-          $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/historyImgs/$img->img_url";
+          $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -114,9 +114,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
         if($img!=null)
-          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -133,9 +133,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
-        if($img!=null) 
-          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
+        if($img!=null)
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
       // dd($result);
       return $result;
