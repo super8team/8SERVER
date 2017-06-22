@@ -41,11 +41,11 @@ class HistoryController extends Controller
         'weather' => $weather,
       ]);
 
-      $imgUri = $request->file('thisIsImg')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
+      $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
       DB::table('history_imgs')->insert([
         'substance' => $substanceNo,
-        'img' => $imgUri,
+        'img_url' => $imgUri,
       ]);
     }
 
