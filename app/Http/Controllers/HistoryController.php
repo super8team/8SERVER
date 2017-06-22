@@ -124,20 +124,19 @@ class HistoryController extends Controller
 
     private function getTeacherHistoryContent($user, $place) {
       $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
-      $history  = DB::table('histories')->where('plan', $plan)->first();
+      $history  = DB::table('histories')->where('plan', $plan->no)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
       $result = ["place" => []];
       $historyIndex = 1;
-
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null)
+
+        if($img!=null && $img->img_url!="noIMG")
           $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
-      // dd($result);
       return $result;
     }
 }
