@@ -46,11 +46,7 @@ class HistoryController extends Controller
       DB::table('history_imgs')->insert([
         'substance' => $substanceNo,
         'img' => $imgUri,
-      ])
-    }
-
-    public function imgStore(Request $request) {
-
+      ]);
     }
 
 
