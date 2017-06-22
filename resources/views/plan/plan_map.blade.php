@@ -3,7 +3,16 @@
 @section('title','플랜 맵 테스트 페이지')
 
 @section('content')
-
+@php
+  $plan_date = "2017-06-20";
+  $plan_title = "suck";
+  $teacher_name = '개나리';
+  $trip_kind_value = '종말여행';
+  $unattend_student_count ='1';
+  $attend_class_count='1';
+  $attend_student_coutn='1';
+  $transpotation ='수국';
+@endphp
   <!DOCTYPE html>
 <html>
   <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
@@ -17,6 +26,41 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
+    for (var i = 0; i <5 ; i++) {
+      $("#like_list"+i).on('shown.bs.modal', function () {
+       $("#view_calendar"+i).fullCalendar('render');
+     });
+    
+    
+    $('#view_calendar'+i).fullCalendar({
+      locale: 'ko',
+      header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'agendaDay'
+      },
+      defaultView: 'agendaDay',
+      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+      navLinks: true, // can click day/week names to navigate views
+      selectable: false,
+      selectHelper: true,
+      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+      events:[
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T10:00'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T12:00'
+        },
+      ]
+    });
+    }
     // var fuck = new Array("2017","5","20","11","30","0","0");
   		$('#calendar').fullCalendar({
         locale: 'ko',
@@ -49,16 +93,10 @@
             //   alert("data load is fail.")
             // }
         }],
-      events: [
-        {
-          title: '텔미텔미 테테테테테 텔미',
-          start: fuck
-        }
-      ],
   		});
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
-        var title = prompt('입력 하라...');
+        var title = prompt('일정 내용을 입력해주세요.');
         var eventData;
         if (title) {
           eventData = {
@@ -119,6 +157,7 @@
       var clientEvents = $('#calendar').fullCalendar('clientEvents');
 
       console.log(clientEvents.length);
+      //이벤트 겠수 만큼 돌아서 데이터를 뽑아냄
       for (var i = 0; i < clientEvents.length; i++) {
         var title = clientEvents[i]['title'];
         $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][0]' value='"+title+"'>");
@@ -134,26 +173,9 @@
       document.plan_map_write.action = "{{route('map.store')}}";
       document.plan_map_write.submit();
       
-        // var clientevents = $('#calendar').fullCalendar('clientEvents');
-        // $.ajax({
-        //     url: '/eventupdate',
-        //     type: 'POST',
-        //     data: {clientdata: JSON.stringify(clientevents)},
-        //     success: function (response) {
-        //         //get the response from server and process it
-        //         $("#calendarupdated").append(response);
-        //     }
-        // });
-        
-      
-        // 
-        // console.log(clientEvents);
-      });
-
+    
+    });
   });
-  
-
-    // });
     </script>
 
     <script>
@@ -371,7 +393,7 @@
       }
 
     </style>
-
+    
 <div class="bluedecobar">
 </div>
 <div class="bluebg">
@@ -402,9 +424,7 @@
                     <tr>
                       <td class='info bold'> 선택 내용 </td>
                       <td class="text-center"  colspan="5">
-                        @foreach ($transpotation as $value)
-                        {{ "배열 들어갈 꺼임" }}
-                        @endforeach
+                        배열로 넣다
                       </td>
                     </tr>
                   </tbody>
@@ -452,16 +472,53 @@
                   <thead>
                     <th>작성한 학교</th>
                     <th>작성자</th>
+                    <th>링크 버튼</th>
                   </thead>
                   <tbody>
                     @for ($t=0; $t <5 ; $t++)
                       <tr>
-                        <td>헬조선 초등학교</td>
-                        <td>김개똥</td>
+                        <td>헬조선 초등학교</td>{{-- $like_school_name --}}
+                        <td>김개똥</td>{{-- $like_name --}}
+                        <td>
+                          <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
+                          보기
+                          </button>
+                        </td>
                       </tr>
                     @endfor
                   </tbody>
                 </table>
+                @for ($t=0; $t <5 ; $t++)
+                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-bordered table-striped">
+                            <thead>
+                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
+                              <th>김개똥</th> {{-- $like_name --}}
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="2">흐미 불국사 지리구요</td>
+                                
+                              </tr>
+                            </tbody>
+                              <div id="view_calendar"></div>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endfor
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
