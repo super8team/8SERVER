@@ -94,6 +94,8 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', history->no);
+        $result["url"] = $img->img_url;
       }
       // dd($result);
       return $result;
@@ -111,6 +113,8 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', history->no);
+        $result["url"] = $img->img_url;
       }
       // dd($result);
       return $result;
@@ -126,6 +130,8 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', history->no);
+        $result["url"] = $img->img_url;
       }
       // dd($result);
       return $result;
