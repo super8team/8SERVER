@@ -5,17 +5,28 @@
     <title>tool_confirm</title>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    function oneCheckbox(a){
+        var obj = document.getElementsByName("package_name");
+        for(var i=0; i<obj.length; i++){
+              if(obj[i] != a){
+                obj[i].checked = false;
+              }
+            }
+      }
+    </script>
   </head>
   <body>
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
         <table style="width:50%;margin-left:auto;margin-right:auto">
             <tbody>
-                @for($j = 0; $j < {{count($field_lists); $j++}})
+                @for($j = 0; $j < $field_count; $j++)
                 <tr>
-                    <td class='place_list'>
-                      <input type="button" name="field_list[]" style="width:90%" value="{{ $field_list[$j]['id'] }}">{{ $field_list[$j]['name'] }}</button>
-                      @for ($i = 0; $i < {{ $package_count }}; $i++)
-                           <input type="checkbox" name="package[]" value="{{$package[$j][$i]['id']}}">{{ $package[$j][$i]['name'] }}
+                    <td>
+                      <input type="button" name="" value="{{ $field_lists[$j]['name']}}">
+                      <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['name']}}" hidden>
+                      @for ($i = 0; $i < $package_count ; $i++)
+                           <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)">{{ $package[$i]['name'] }}
                            <br>
                       @endfor
                     </td>
@@ -30,6 +41,7 @@
 
           </div>
         </div>
+        {{ csrf_field() }}
         <input type="submit" name="" value="등록하기">
       </form>
     <div style="float:right">

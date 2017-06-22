@@ -18,11 +18,12 @@
     <title>다운로드</title>
   </head>
   <body>
-    <form action="">
-        <button id="new_package"  type="button" name="button">새패키지로 추가 </button>
+    <form action="{{route('contents.downloadShareContent')}}">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+        <button id="new_package"  type="button" name="button">새패키지로 추가  </button>
         <button id="base_package" type="button" name="button">현재패키지로 추가</button>
 
-        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+
         <div id = "contents_list_wrap">
           <div id="base_package_list">
 
@@ -30,9 +31,10 @@
           <div id = "contents_list">
             콘텐츠 목록
           </div>
-          @foreach($choice_content as $key )
-            <input id="content{{$key}}" type="checkbox" name="content[]" value="{{$key}}">{{$key}}
-          @endforeach
+
+          @for($i=0; $i< count($choice_content) ; $i++)
+            <input type="checkbox" name="content[]" value="{{$choice_content[$i]['no']}}">{{$choice_content[$i]['name']}}
+          @endfor
         <div>
           <br><br>
         <div style="border:1px solid black">
@@ -43,7 +45,7 @@
   </form>
   <script type="text/javascript">
     $(document).ready(function(){
-
+        //현재 패키지로 추가하기
         document.getElementById("base_package").addEventListener('click',function(){
             var owner_package_list  = window.opener.document.getElementById("packageDiv").children;
             var package_parent      = document.getElementById("base_package_list");
@@ -63,7 +65,7 @@
 
 
 
-
+      //새로운 패키지 생성하기
       document.getElementById('new_package').addEventListener('click',function(){
           var check_num = $("input[type=checkbox]:checked").length;
           if(!check_num)

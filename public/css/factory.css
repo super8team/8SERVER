@@ -77,13 +77,30 @@ p {
 input[type="submit"]:disabled, .inputStyle:disabled {
   opacity: 0.6;
 }
+input[type="button"]:disabled, .inputStyle:disabled {
+  opacity: 0.6;
+}
 
 input[type="submit"]>*, .inputStyle>* {
   opacity: 1;
   vertical-align: text-bottom;
 }
+input[type="button"]>*, .inputStyle>* {
+  opacity: 1;
+  vertical-align: text-bottom;
+}
 
 input[type="submit"], .inputStyle {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: #000;
+  padding: 10px;
+  margin: 10px 5px;
+  font-size: small;
+}
+
+input[type="button"], .inputStyle {
   border-radius: 4px;
   border: 1px solid #ddd;
   background-color: #eee;
@@ -100,9 +117,19 @@ input[type="submit"], .inputStyle {
 .inputStyle:hover:not(:disabled)>*, input[type="submit"]:hover:not(:disabled)>* {
   opacity: 1;
 }
+.inputStyle:hover:not(:disabled), input[type="button"]:hover:not(:disabled) {
+  box-shadow: 2px 2px 5px #888;
+}
+
+.inputStyle:hover:not(:disabled)>*, input[type="button"]:hover:not(:disabled)>* {
+  opacity: 1;
+}
 #contents_list{
-  border: 0px solid black;
-  width: 5%;
+  width: 10%;
+}
+#contents_list > button {
+  height: 100px;
+  font-size: 15px;
 }
 #share_contents_list{
   border: 1px solid black;
@@ -177,6 +204,24 @@ input[type="submit"], .inputStyle {
   margin: 10px 5px;
   font-size: small;
 }
+input[type="button"]:disabled, .inputStyle:disabled {
+  opacity: 0.6;
+}
+
+input[type="button"]>*, .inputStyle>* {
+  opacity: 1;
+  vertical-align: text-bottom;
+}
+
+input[type="button"], .inputStyle {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: #000;
+  padding: 10px;
+  margin: 10px 5px;
+  font-size: small;
+}
 button:disabled, .buttonStyle:disabled {
   opacity: 0.6;
 }
@@ -201,6 +246,13 @@ button, .buttonStyle {
 }
 
 .inputStyle:hover:not(:disabled)>*, input[type="submit"]:hover:not(:disabled)>* {
+  opacity: 1;
+}
+.inputStyle:hover:not(:disabled), input[type="button"]:hover:not(:disabled) {
+  box-shadow: 2px 2px 5px #888;
+}
+
+.inputStyle:hover:not(:disabled)>*, input[type="button"]:hover:not(:disabled)>* {
   opacity: 1;
 }
 
@@ -279,7 +331,7 @@ button, .buttonStyle {
 
 #blockLibraryContainer {
   width: 32%;
-  border: 1px solid;
+  border: 0px solid;
   vertical-align: bottom;
 }
 

@@ -324,11 +324,9 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list">
-                <div style="text-align:center">
-                <h5>
-                콘<br>텐<br>츠<br>리<br>스<br>트
-                </h5>
-                </div>
+                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트">
+                  {{$user}}<br>콘텐츠리스트
+                </button>
               </td>
 
               <td id="blockLibraryContainer">
@@ -338,10 +336,7 @@
                       <button>
                         <a id="createNewBlockButton">new 콘텐츠</a>
                       </button>
-
                     </div>
-                    <!-- form형태로 수정하기 -->
-                    <!-- 콘텐츠들 나열 -->
 
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
@@ -391,7 +386,7 @@
         <!-- 블럭 워크스페이스 -->
 
         <td id="packageList">
-          <button type="button" name="button">(사용자)님의 패키지</button>
+          <button type="button" name="button">{{$user}}님의 패키지</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
