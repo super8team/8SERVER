@@ -1,175 +1,159 @@
 @extends('master')
 
-@section('title','상세 계획 작성 페이지')
+@section('title','플랜 맵 테스트 페이지')
 
 @section('content')
-  @php
-  	//임시 변수
-  	$plan_title 						= "야비군";
-  	$plan_date							= "2017/05/23";
-  	$teacher_name 					= "원사님";
-  	$trip_kind_value 				= "각개전투";
-  	$attend_class_count 		= "1";
-  	$attend_student_coutn		= "41";
-  	$unattend_student_count	= "1";
-  	$transpotation 					= ["버스","비행기"];
-
-    $day = 3;
-  @endphp
 
   <!DOCTYPE html>
 <html>
-{{--
-구현 해야되는 기능
-Full Calendar
+  <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
+  <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
+  <script src  = "{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
+  <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script>
+  <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
+  <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
+  
+  <script type = "text/javascript">
+  //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
+    $(document).ready(function() {
+    var tmp_date = '{{$plan_date}}';
+    // var fuck = new Array("2017","5","20","11","30","0","0");
+  		$('#calendar').fullCalendar({
+        locale: 'ko',
+  			header: {
+  				left: 'prev,next today',
+  				center: 'title',
+  				right: 'agendaDay'
+  			},
+        defaultView: 'agendaDay',
+  			defaultDate: '{{$plan_date}}', //이걸 이용하여 날짜 시작일을 설정?
+  			navLinks: true, // can click day/week names to navigate views
+  			selectable: true,
+  			selectHelper: true,
+        firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+  			select: inputscheduel,
+        
+  			editable: true,
+  			eventLimit: true, // allow "more" link when too many events
+        // * * * * * * * * 데이터 불러오기 * * * * * * * *
+        // 방법 1 json data 가저오기
+        eventSources: [{
+        url: '{{route('map.getTimeTable')}}',
+        dataType: 'json',
+        // async: false,
+        type: 'POST',
+        // data: {
+        //     flg: 1
+        // },
+            // error: function () {
+            //   alert("data load is fail.")
+            // }
+        }],
+      events: [
+        {
+          title: '텔미텔미 테테테테테 텔미',
+          start: fuck
+        }
+      ],
+  		});
+      //캘린더에서 작동하는 부분
+      function inputscheduel(start, end) {
+        var title = prompt('입력 하라...');
+        var eventData;
+        if (title) {
+          eventData = {
+            title: title,
+            start: start,
+            end: end
+          };
+          // stick? = true
+          $('#calendar').fullCalendar('renderEvent', eventData, true);
+        }
+        $('#calendar').fullCalendar('unselect');
+      }
+      
+      //버튼 클릭시 동작하는버튼
+      $(document).on("click","#addscheduel",function(){
+        var title = $("#addscheduel").prev().text();
+        var eventData;
+        if (title) {
+          eventData = {
+            title: title,
+            start: tmp_date
+          };
+          // stick? = true
+          $('#calendar').fullCalendar('renderEvent', eventData, true);
+          }
+        $('#calendar').fullCalendar('unselect');
+      });
+      // 현제 보고 있는 날짜의 정보를 가져옴
+      // 왼쪽(이전) 버튼을 클릭하였을 경우 
+    jQuery("button.fc-prev-button").click(function() {
+        var date = jQuery("#calendar").fullCalendar("getDate");
+        convertDate(date);
+    });
 
-1. Tour Api or 기본 구글 맵스
-  - ????
-2. 시간표를 스크롤
-  - 조건 : 몇박몇칠인지를 먼저 받아와야함
-  - 버튼을 눌러 날짜별 시간표를 봄
-  - 시간표가 바뀔떄 이때까지 작업한 마커의 위치 값을 배열에 저장하고 지도를 초기화
-  - 새로운 작업
-  - 작성 완료까지 반복
-
-3. 드래그 앤 드롭
-  - 검색
-    - 검색된 기본 정보
-      : 검색 장소 명
-      : 장소 간략 설명 정보 (미정)
-    - 장소와 관련 있는 공유된 계획서
-      - 저장 되어 상세계획 정보
-
-   - 관심 목록
-     - 저장 되어 상세계획 정보
+    // 오른쪽(다음) 버튼을 클릭하였을 경우
+    jQuery("button.fc-next-button").click(function() {
+        var date = jQuery("#calendar").fullCalendar("getDate");
+        convertDate(date);
+    });
 
 
- --}}
-    {{-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link href="../public/fullcalendar-3.4.0/fullcalendar.css" rel="stylesheet"/>
-    <link href="../public/fullcalendar-3.4.0/fullcalendar.print.css" rel="stylesheet" media="print"/>
-    <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/moment.min.js"></script>
-    <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="../public/fullcalendar-3.4.0/fullcalendar.js"></script> --}}
-    {{-- <script type="text/javascript" src="../public/fullcalendar-3.4.0/lib/jquery-ui.min/js"></script>--}}
-{{--
-    <link href='../public/x_full_calendar/fullcalendar.css' rel='stylesheet' />
-    <link href='../public/x_full_calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+    // 받은 날짜값을 date 형태로 형변환 .
+    function convertDate(date) {
+        var date = new Date(date);
+        tmp_date = date.yyyymmdd();
+    }
 
-    <script src='../public/x_full_calendar/jquery/jquery-1.10.2.js'></script>
-    <script src='../public/x_full_calendar/jquery/jquery-ui.custom.min.js'></script>
+    // 받은 날짜값을 YYYY-MM-DD 형태로 출력하기위해 바꿔준다
+    Date.prototype.yyyymmdd = function() {
+      var yyyy = this.getFullYear().toString();
+      var mm = (this.getMonth() + 1).toString();
+      var dd = this.getDate().toString();
+      return yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
+  }
+    $(document).on("click","#addsave",function(){
+      $('#calendar').fullCalendar('updateEvents', event);
+      var clientEvents = new Object();
+      var clientEvents = $('#calendar').fullCalendar('clientEvents');
 
-    <script src='../public/x_full_calendar/fullcalendar.js'></script>
---}}
-    <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
-    <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
-    <script src  = "{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
-    <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script>
-    <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
-    <script type = "text/javascript">
-    //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
-      $(document).ready(function() {
+      console.log(clientEvents.length);
+      for (var i = 0; i < clientEvents.length; i++) {
+        var title = clientEvents[i]['title'];
+        $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][0]' value='"+title+"'>");
+          if(clientEvents[i]['start']['_i'] != null){
+              start = clientEvents[i]['start']['_i'];
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][1]' value='"+start+"'>");
+        }
+          if(clientEvents[i]['end'] != null){  
+              end = clientEvents[i]['start']['_i'];
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][2]' value='"+end+"'>");
+        }
+      }
+      document.plan_map_write.action = "{{route('map.store')}}";
+      document.plan_map_write.submit();
+      
+        // var clientevents = $('#calendar').fullCalendar('clientEvents');
+        // $.ajax({
+        //     url: '/eventupdate',
+        //     type: 'POST',
+        //     data: {clientdata: JSON.stringify(clientevents)},
+        //     success: function (response) {
+        //         //get the response from server and process it
+        //         $("#calendarupdated").append(response);
+        //     }
+        // });
+        
+      
+        // 
+        // console.log(clientEvents);
+      });
 
-    		$('#calendar').fullCalendar({
-    			header: {
-    				left: 'prev,next today',
-    				center: 'title',
-    				right: 'agendaDay'
-    			},
-    			defaultDate: '2017-01-12', //이걸 이용하여 날짜 시작일을 설정?
-    			navLinks: true, // can click day/week names to navigate views
-    			selectable: true,
-    			selectHelper: true,
-          firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-    			select: function(start, end) {
-    				var title = prompt('입력 하라...');
-    				var eventData;
-    				if (title) {
-    					eventData = {
-    						title: title,
-    						start: start,
-    						end: end
-    					};
-              // stick? = true
-    					$('#calendar').fullCalendar('renderEvent', eventData, true);
-    				}
-    				$('#calendar').fullCalendar('unselect');
-    			},
-    			editable: true,
-    			eventLimit: true, // allow "more" link when too many events
-    			// events: [
-    			// 	{
-    			// 		title: 'All Day Event',
-    			// 		start: '2017-05-01'
-    			// 	},
-    			// 	{
-    			// 		title: 'Long Event',
-    			// 		start: '2017-05-07',
-    			// 		end: '2017-05-10'
-    			// 	},
-    			// 	{
-    			// 		id: 999,
-    			// 		title: 'Repeating Event',
-    			// 		start: '2017-05-09T16:00:00'
-    			// 	},
-    			// 	{
-    			// 		id: 999,
-    			// 		title: 'Repeating Event',
-    			// 		start: '2017-05-16T16:00:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Conference',
-    			// 		start: '2017-05-11',
-    			// 		end: '2017-05-13'
-    			// 	},
-    			// 	{
-    			// 		title: 'Meeting',
-    			// 		start: '2017-05-12T10:30:00',
-    			// 		end: '2017-05-12T12:30:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Lunch',
-    			// 		start: '2017-05-12T12:00:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Meeting',
-    			// 		start: '2017-05-12T14:30:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Happy Hour',
-    			// 		start: '2017-05-12T17:30:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Dinner',
-    			// 		start: '2017-05-12T20:00:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Birthday Party',
-    			// 		start: '2017-05-13T07:00:00'
-    			// 	},
-    			// 	{
-    			// 		title: 'Click for Google',
-    			// 		url: 'http://google.com/',
-    			// 		start: '2017-05-28'
-    			// 	}
-    			// ]
-          eventSources: [{
-            url: 'http://Code/8SERVER/public/get',
-          url: './get-events_dnweb.blade.php',
-          dataType: 'json',
-          async: false,
-          type: 'POST',
-          data: {
-              flg: 1
-          },
-            error: function () {
-              alert("으아니 챠! 왜 안되는거야.");
-            }
-          }]
-    		});
-    	});
+  });
+  
 
+    // });
     </script>
 
     <script>
@@ -181,15 +165,12 @@ Full Calendar
       // This example creates an interactive map which constructs a polyline based on
       // user clicks. Note that the polyline only appears once its path property
       // contains two LatLng coordinates.
-
       var poly;
       var path;
       var map;
       var marker;
-
       function initMap() {
         //시작 위치를 받아올 수 있다면 자기 위치에 서 시작
-
         //아니면 기본 위치는 서울로 지정 할 것
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 7,
@@ -215,7 +196,7 @@ Full Calendar
         // Add a listener for the click event
         // 클릭시 위도 경도 를 더하는 함수를 호출
         map.addListener('click', addLatLng);
-
+        
         //********************  검색  ********************
         // Create the search box and link it to the UI element.
         // 검색 창에 대한 설정
@@ -227,6 +208,32 @@ Full Calendar
         // bounds_changed 가 뭔지 모르겠으나 검색 되었을 때일려나? 이함 수 검색 하기
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
+          var searchInput = $("input[name=map_search_box]").val();
+          if(searchInput){
+                $.ajax({
+                url: 'http://ko.wikipedia.org/w/api.php',
+                data: { 
+                        action: 'query', 
+                        list: 'search',
+                        srsearch:searchInput , 
+                        format: 'json' 
+                      },
+                dataType: 'jsonp',
+                success: function processResult(apiResult){
+                  $('#display-result').empty();
+                 // 검색 결과 목록을 모두 부를 경우
+                 //  for (var i = 0; i < apiResult.query.search.length; i++){
+                 //     $('#display-result').append('<p>'+apiResult.query.search[i].title+'</p>');
+                 //   }
+                 var title = apiResult.query.search[0].title;
+                 //일정을 추가할 버튼 생성
+                 $('#display-result').append('<p">'+title+'</p>')
+                  .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
+              }
+            });
+            }
+            //위키피디아 
+            // infoResult(searchInput);
         });
 
         // 검색 부분 마커
@@ -290,15 +297,26 @@ Full Calendar
           map.fitBounds(bounds);
         });
      }//init() End
+     //****************** 위키피디아에서 받아오는 정보 표시******************
+     
+    // function infoResult(argSearchInput){
+    //    SearchInput = argSearchInput;
+    //    var url="http://ko.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchInput+"&redirects&prop=text&callback=?";
+    //   $.getJSON(url,function(data){
+    //     wikiHTML = data.parse.text['*'];
+    //     $wikiDOM = $("<document>"+wikiHTML+"</document>");
+    //     $("#display-result").append($wikiDOM.find('.infobox .mw-parser-output').html());
+    //   });
+    // }
 
      //****************** 폴리 라인에 사용되는 함수  ******************
      function addLatLng(event) {
        path = poly.getPath();
 
-       //test
-       var tmpcenter = map.getCenter();
+       //클릭한 위치의 위도 경도 정보 받아오기 
+       //  var tmpcenter = map.getCenter();
        // 위도 경도 뜨는 위치 확인용
-      //  document.getElementById("LntLng").append(tmpcenter);
+       //  document.getElementById("LntLng").append(tmpcenter);
 
        // Because path is an MVCArray, we can simply append a new coordinate
        // and it will automatically appear.
@@ -326,11 +344,15 @@ Full Calendar
       //   // marker.setMap(map);
       //   poly.setMap(map);
       // }
+    
 
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
     </script>
+    {{-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAioq4xWVTdiZlwL-jWehKgSKHhPJCBcHI&libraries=places&callback=initMap">
+    </script> --}}
 
     <style media="screen">
       .panel-heading{
@@ -412,7 +434,7 @@ Full Calendar
             </div><!-- /.panel-heading -->
             <div class="panel-body">
               <div class="input-group">
-                <input id="pac-input" class="form-control input-lg" type="text" placeholder="지역명을 입력해 주세요">
+                <input id="pac-input" class="form-control input-lg" name='map_search_box' type="text" placeholder="지역명을 입력해 주세요">
                 <span class="input-group-btn">
                   <button class="btn btn-lg btn-default" type="button">검색</button>
                 </span>
@@ -420,9 +442,9 @@ Full Calendar
               <br>
                 <div class="panel panel-default">
                   <div class="panel-body" >
-                    <blockquote >
-                      <p id="draggable">불국사</p>
-                      <footer>아치형 멋진다리 텟트스세ㅔㅌ르테서ㅏㄴㅁㅇ라ㅓㄴㅁ어ㅣㅏ</footer>
+                    <blockquote id="display-result" >
+                      {{-- <p>불국사</p>
+                      <a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a> --}}
                     </blockquote>
                   </div>
                 </div>
@@ -466,12 +488,16 @@ Full Calendar
         <div class="col-sm-8">
           <div class="panel panel-default">
           <div id="calendar"></div>
-          </div><!-- /.panel-footer -->
+        </div><!-- /.panel-footer -->
           <div class="col-sm-4">
             <p><a href="{{----}}" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
           </div>
           <div class="col-sm-8">
-            <p><a href="{{----}}" class="btn btn-lg btn-warning btn-block">저장</a></p>
+            <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
+              <form class="form" name="plan_map_write" method="post">
+                <div id ="saveZone">
+                </div>
+              </form>
           </div>
         </div>
       </div><!-- /.col-lg-4 -->
