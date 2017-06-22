@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,4 +160,7 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 
 Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
 
-Route::get('test', function () {return view('test');});
+Route::post('app/upload', function (Request $request) {
+  
+
+});
