@@ -38,6 +38,7 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('HORIZONTAL')
         .appendField('horizontal');
     this.appendStatementInput('SCRIPT')
+        .setCheck('CheckEdit')
         .appendField('실행');
     this.appendStatementInput('IMAGES')
         .setCheck('Image')
@@ -48,6 +49,9 @@ Blockly.Blocks['factory_base'] = {
     this.appendStatementInput('BUTTONS')
         .setCheck('Button')
         .appendField('버튼');
+    this.appendStatementInput('EDIT')
+        .setCheck('Edit')
+        .appendField('에디트');
     this.appendValueInput('VISIONABLE')
         .setCheck('Boolean')
         .appendField('visionable');
@@ -330,8 +334,8 @@ Blockly.Blocks['CLICK'] = {
         ],
         "message1": SCRIPT_MESSAGE,
         "args1" :   SCRIPT_ARG,
-        "previousStatement": "Input",
-        "nextStatement": "Input",
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
         "colour": 160,
       });
 
@@ -342,7 +346,7 @@ Blockly.Blocks['END'] = {
     this.setColour(160);
     this.appendDummyInput()
         .appendField('이벤트 끝')
-    this.setPreviousStatement(true, 'Field');
+    this.setPreviousStatement(true, 'CheckEdit');
   }
 }
 Blockly.Blocks['CHECKEDIT'] = {
@@ -374,8 +378,8 @@ Blockly.Blocks['CHECKEDIT'] = {
         "args1" : CHECKEDIT_ARG,
         "message2": CHECKEDIT2_MESSAGE,
         "args2" : CHECKEDIT2_ARG,
-        "previousStatement": "Input",
-        "nextStatement": "Input",
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
         "colour": 160,
       });
   }
@@ -869,8 +873,8 @@ Blockly.Blocks['OUT_IMG'] = {
     this.appendDummyInput()
         .appendField('이미지 주소')
         .appendField(new Blockly.FieldTextInput(src),'OUT_SRC');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
   }
 };
 Blockly.Blocks['OUT_TXT'] = {
@@ -879,8 +883,8 @@ Blockly.Blocks['OUT_TXT'] = {
     this.appendDummyInput()
         .appendField('텍스트')
         .appendField(new Blockly.FieldTextInput('default'),'OUT_TXT');
-    this.setPreviousStatement(true, 'Field');
-    this.setNextStatement(true, 'Field');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
   }
 };
 Blockly.Blocks['example_labels'] = {
@@ -900,6 +904,22 @@ Blockly.Blocks['image_detail'] = {
         .appendField('콘텐츠를 실행 할 때')
     this.appendDummyInput()
         .appendField('사용 할 블럭들')
+  }
+}
+Blockly.Blocks['EDIT'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('텍스트')
+        .appendField(new Blockly.FieldTextInput(''), 'TEXT');
+    this.appendDummyInput()
+        .appendField('힌트')
+        .appendField(new Blockly.FieldTextInput(''), 'HINT');
+    this.appendDummyInput()
+        .appendField('사이즈')
+        .appendField(new Blockly.FieldNumber(0), 'SIZE');
+    this.setPreviousStatement(true, 'Edit');
+    this.setNextStatement(true, 'Edit');
   }
 }
 Blockly.Blocks['image_1'] = {
@@ -947,8 +967,8 @@ Blockly.Blocks['image_2'] = {
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
         .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
-        this.setPreviousStatement(true, 'Image');
-        this.setNextStatement(true, 'Image');
+    this.setPreviousStatement(true, 'Image');
+    this.setNextStatement(true, 'Image');
   },
   onchange: function() {
     fieldNameCheck(this);
@@ -973,8 +993,8 @@ Blockly.Blocks['image_3'] = {
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
         .appendField('높이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
-        this.setPreviousStatement(true, 'Image');
-        this.setNextStatement(true, 'Image');
+    this.setPreviousStatement(true, 'Image');
+    this.setNextStatement(true, 'Image');
   },
   onchange: function() {
     fieldNameCheck(this);

@@ -323,6 +323,14 @@
         <td id="blockFactorySupplie">
           <table>
             <tr id="blockLibrary">
+              <td id="contents_list">
+                <div style="text-align:center">
+                <h5>
+                콘<br>텐<br>츠<br>리<br>스<br>트
+                </h5>
+                </div>
+              </td>
+
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
@@ -383,6 +391,7 @@
         <!-- 블럭 워크스페이스 -->
 
         <td id="packageList">
+          <button type="button" name="button">(사용자)님의 패키지</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -586,7 +595,9 @@
         <block type="OUT_TXT"></block>
         <block type="END"></block>
       </category>
-
+      <category name="에디트">
+        <block type="EDIT"></block>
+      </category>
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">

@@ -39,7 +39,7 @@
                 <th>작성일</th>
                 <th>바로가기
                     <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-                     class="btn btn-sm btn-default"> 
+                     class="btn btn-sm btn-default">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
                     </a>
@@ -125,7 +125,7 @@
             @endfor
           </tbody>
           </table>
-          <a role="button" href="{{----}}" aria-label="Left Align" class="btn btn-sm btn-default disabled">
+          <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-sm btn-default">
             콘텐츠 툴
           </a>
           {{-- 페이지 네이션 --}}

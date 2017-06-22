@@ -34,11 +34,18 @@ class HistoryController extends Controller
         ]);
       }
 
-      DB::table('history_substances')->insert([
+      $substanceNo = DB::table('history_substances')->insertGetId([
         'history' => $historyNo,
         'place'   => $placeNo,
         'substance' => $content,
         'weather' => $weather,
+      ]);
+
+      $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
+
+      DB::table('history_imgs')->insert([
+        'substance' => $substanceNo,
+        'img_url' => $imgUri,
       ]);
     }
 

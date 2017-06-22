@@ -101,7 +101,12 @@ input[type="submit"], .inputStyle {
   opacity: 1;
 }
 #contents_list{
+  border: 0px solid black;
+  width: 5%;
+}
+#share_contents_list{
   border: 1px solid black;
+  width: 15%;
 }
 .content_name{
   margin-left: 35px;
@@ -252,7 +257,7 @@ button, .buttonStyle {
 }
 
 #blockFactoryContent {
-  height: 85%;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
