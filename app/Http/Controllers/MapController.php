@@ -37,7 +37,7 @@ class MapController extends Controller
         $planNo = $reuqest->plan_id;
         $details = $request->saveEvent; // 이름
         $chngedTime = [];
-        
+
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
             $replacedTime = str_split($replacedTime, 19);
@@ -45,16 +45,16 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-            
+
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
-                'place' => $details[$i]['title'], 
+                'place' => $details[$i]['title'],
                 'plan' => $planNo,
                 'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
                 'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
             ]);
         }
-        
+
     }
 
     /**
@@ -65,7 +65,7 @@ class MapController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -78,7 +78,7 @@ class MapController extends Controller
     {
         return view('plan.plan_map', [
             'plan_date' => \Carbon\Carbon::now(),
-            ]); 
+            ]);
     }
 
     /**
@@ -103,7 +103,7 @@ class MapController extends Controller
     {
         //
     }
-    
+
     /**
      * show detail-plan for app request.
      *
@@ -132,31 +132,31 @@ class MapController extends Controller
     {
         $plan = $request->input('plan_no');
         $details = \DB::table('detail_plans')->where('plan', $plan)->get();
-        
+
         $result = [];
         $detailIndex = 0;
-        
+
         $startTime = str_replace(" ", "T", $detail->start_time);
-        $startTime .= "-05:00"
-        
+        $startTime .= "-05:00";
+
         $endTime = str_replace(" ", "T", $detail->end_time);
-        $endTime .= "-05:00"
-        
-        
+        $endTime .= "-05:00";
+
+
         $replacedTime = str_replace("T", " ", $details[$i]['start']);
             $replacedTime = str_split($replacedTime, 19);
             $start = $replacedTime[0];
-        
+
         foreach($details as $detail) {
-            
+
             $addDetail = [];
             $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
             $addDetail['start'] = $startTime;
             $addDetail['end']   = $endTime;
             array_push($result, $addDetail);
         }
-        
+
         return json_encode($result);
-        
+
     }
 }
