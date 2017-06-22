@@ -95,7 +95,7 @@ Route::get('contents/packages/{package_id}','ContentsController@extractContents'
 //콘텐츠 저장하기
 Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 // 콘텐츠 메인
-Route::get('contents/{id}', 'ContentsController@index')->name('contents');
+Route::get('contents', 'ContentsController@index')->name('contents');
 
 
 // ******************** 가정 통신문 *********************
@@ -162,6 +162,6 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
 
 Route::post('app/upload', function (Request $request) {
-  
+
 
 });
