@@ -41,7 +41,7 @@ class HistoryController extends Controller
         'weather' => $weather,
       ]);
 
-      $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
+      $imgUri = $request->file('image')->storeAs('public/historyImgs', "$historyNo-$substanceNo.png");
 
       DB::table('history_imgs')->insert([
         'substance' => $substanceNo,
@@ -95,7 +95,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
-        $result["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
+        $result["url"] = "https://163.44.166.91/LEARnFUN/public/storage/historyImgs/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -116,7 +116,7 @@ class HistoryController extends Controller
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         $result["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
-      // dd($result);
+      dd($result);
       return $result;
     }
 
