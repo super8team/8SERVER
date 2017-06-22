@@ -94,7 +94,7 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', history->no)->first();
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         $result["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
@@ -113,7 +113,7 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', history->no)->first();
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         $result["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
@@ -130,7 +130,7 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', history->no)->first();
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         $result["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
