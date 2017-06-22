@@ -95,7 +95,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null)
+        if($img!=null  && $img->img_url!="noIMG")
           $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/$img->img_url";
       }
       // dd($result);
@@ -115,7 +115,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null)
+        if($img!=null  && $img->img_url!="noIMG")
           $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
       // dd($result);
@@ -134,10 +134,10 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null)
+        if($img!=null  && $img->img_url!="noIMG")
           $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
-      // dd($result);
+      dd($result);
       return $result;
     }
 }
