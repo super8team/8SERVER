@@ -74,6 +74,7 @@ Route::get('contents/shareDetail/{packageId}', 'ContentsController@shareDetail')
 
 // 콘텐츠 공유하기
 Route::get('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
+Route::get('contents/sharePackages','ContentsController@sharePackages')->name('contents.sharePackages');
 
 Route::post('contents/example', 'ContentsController@example')->name('contents.example');
 

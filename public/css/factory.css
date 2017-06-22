@@ -101,10 +101,12 @@ input[type="submit"], .inputStyle {
   opacity: 1;
 }
 #contents_list{
+  border: 0px solid black;
+  width: 5%;
+}
+#share_contents_list{
   border: 1px solid black;
-  width: 10%;
-  writing-mode: vertical-rl;
-
+  width: 15%;
 }
 .content_name{
   margin-left: 35px;

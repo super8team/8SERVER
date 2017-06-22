@@ -34,7 +34,7 @@ class PlanController extends Controller
       foreach($plans as $plan) {
 
         // dd($plan);
-        array_push($planIds, $plan->no);
+        array_push($planIds,   $plan->no);
         array_push($planTitles, $plan->name);
         array_push($planDates, $plan->at);
       }
