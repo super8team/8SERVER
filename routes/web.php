@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +97,9 @@ Route::get('contents/storageNewContent','ContentsController@storageNewContent')-
 
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
 // 콘텐츠 메인
+
 Route::get('contents/', 'ContentsController@index')->name('contents');
+
 
 
 // ******************** 가정 통신문 *********************
@@ -162,4 +165,7 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 
 Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
 
-Route::get('test', function () {return view('test');});
+Route::post('app/upload', function (Request $request) {
+
+
+});

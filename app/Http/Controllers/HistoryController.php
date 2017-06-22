@@ -34,11 +34,18 @@ class HistoryController extends Controller
         ]);
       }
 
-      DB::table('history_substances')->insert([
+      $substanceNo = DB::table('history_substances')->insertGetId([
         'history' => $historyNo,
         'place'   => $placeNo,
         'substance' => $content,
         'weather' => $weather,
+      ]);
+
+      $imgUri = $request->file('image')->storeAs('public/historyImgs', "$historyNo-$substanceNo.png");
+
+      DB::table('history_imgs')->insert([
+        'substance' => $substanceNo,
+        'img_url' => $imgUri,
       ]);
     }
 
@@ -87,6 +94,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
+        if($img!=null  && $img->img_url!="noIMG")
+          $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -104,6 +114,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
+        if($img!=null  && $img->img_url!="noIMG")
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -111,16 +124,20 @@ class HistoryController extends Controller
 
     private function getTeacherHistoryContent($user, $place) {
       $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
-      $history  = DB::table('histories')->where('plan', $plan->no)->first();
+      $history  = DB::table('histories')->where('plan', $plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
       $result = ["place" => []];
       $historyIndex = 1;
+
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
+        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
+        if($img!=null  && $img->img_url!="noIMG")
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
       }
-      // dd($result);
+      dd($result);
       return $result;
     }
 }

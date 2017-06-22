@@ -86,7 +86,6 @@ class PlanController extends Controller
       $userNo = $request->input('user_no');
 
       $dates = explode("-", $plan_date);
-
       $planNo = \DB::table('field_learning_plans')->insertGetId([
         'name' => $plan_title,
         'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
