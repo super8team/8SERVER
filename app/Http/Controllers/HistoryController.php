@@ -95,7 +95,8 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
-        $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/historyImgs/$img->img_url";
+        if($img!=null)
+          $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/historyImgs/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -114,24 +115,27 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
-        $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
+        if($img!=null)
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
       }
-      dd($result);
+      // dd($result);
       return $result;
     }
 
     private function getTeacherHistoryContent($user, $place) {
       $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
-      $history  = DB::table('histories')->where('plan', $plan->no)->first();
+      $history  = DB::table('histories')->where('plan', $plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
       $result = ["place" => []];
       $historyIndex = 1;
+
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
-        $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
+        if($img!=null) 
+          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/historyImgs/$img->img_url";
       }
       // dd($result);
       return $result;
