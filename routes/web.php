@@ -100,8 +100,6 @@ Route::get('contents/downloadShareContent','ContentsController@downloadShareCont
 
 Route::get('contents/', 'ContentsController@index')->name('contents');
 
-
-
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');

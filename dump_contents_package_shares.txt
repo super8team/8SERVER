@@ -1,0 +1,59 @@
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
+--
+-- Host: localhost    Database: localhost
+-- ------------------------------------------------------
+-- Server version	10.1.21-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `contents_package_shares`
+--
+
+DROP TABLE IF EXISTS `contents_package_shares`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contents_package_shares` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `contents_package` int(10) unsigned NOT NULL,
+  `img_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `explain` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `views` int(11) NOT NULL DEFAULT '0',
+  `downloads` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`no`),
+  KEY `contents_package_shares_contents_package_foreign` (`contents_package`),
+  CONSTRAINT `contents_package_shares_contents_package_foreign` FOREIGN KEY (`contents_package`) REFERENCES `contents_packages` (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contents_package_shares`
+--
+
+LOCK TABLES `contents_package_shares` WRITE;
+/*!40000 ALTER TABLE `contents_package_shares` DISABLE KEYS */;
+INSERT INTO `contents_package_shares` VALUES (1,1,'image1.jpg','첨성대, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',12,4,'2017-06-13 06:16:51',NULL),(2,2,'image2.jpg','영진, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',23,4,'2017-06-13 06:16:51',NULL),(3,3,'image3.jpg','김종률교수님, 이중권교수님, 왕릉의 역사를 공부할 수 있는 문제!',43,4,'2017-06-13 06:16:51',NULL),(4,4,'image4.jpg','야구장, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',1,4,'2017-06-13 06:16:51',NULL),(5,5,'image5.jpg','경주, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',23,4,'2017-06-13 06:16:51',NULL),(6,6,'image6.jpg','서울, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',54,4,'2017-06-13 06:16:51',NULL),(7,7,'image7.jpg','3층석탑, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',45,4,'2017-06-13 06:16:51',NULL),(8,8,'image8.jpg','첨성대, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',45,4,'2017-06-13 06:16:51',NULL),(9,8,'image9.jpg','첨성대, 불국사, 왕릉의 역사를 공부할 수 있는 문제!',64,4,'2017-06-13 06:16:51',NULL),(10,23,'증명사진.png','ㄼㄼㅈ',0,0,NULL,NULL),(11,24,'증명사진.png','ㅂㅈㄼㅈ',0,0,NULL,NULL),(12,25,'증명사진.png','fqw',0,0,NULL,NULL),(13,27,'증명사진.png','fqw',0,0,NULL,NULL),(14,28,'테이블erd.png','fqw',0,0,NULL,NULL),(15,29,'테이블erd.png','설명',0,0,NULL,NULL),(16,30,'증명사진.png','ㅂㅈㄼㅈㄼ',0,0,NULL,NULL),(17,31,'증명사진.png','ㅂㅈㄼㅈㄼ',0,0,NULL,NULL),(18,32,'테이블erd.png','ㄹㅈㄷㄹㅈ',0,0,NULL,NULL),(19,33,'증명사진.png','ㄹㅈㄷ',0,0,NULL,NULL),(20,34,'테이블erd.png','ㄹㅈ',0,0,NULL,NULL),(21,35,'테이블erd.png','ㄹㅈ',0,0,NULL,NULL),(22,36,'테이블erd.png','ㄼ',0,0,NULL,NULL),(23,37,'테이블erd.png','ㄼㅈ',0,0,NULL,NULL),(24,38,'테이블erd.png','ㄼㅈ',0,0,NULL,NULL),(25,39,'picture.png','fqwqw',0,0,NULL,NULL),(26,40,'테이블erd.png','설명',0,0,NULL,NULL),(27,41,'테이블erd.png','설명',0,0,NULL,NULL),(28,42,'테이블erd.png','설명',0,0,NULL,NULL),(29,43,'테이블erd.png','설명',0,0,NULL,NULL),(30,44,'picture.png','asd',0,0,NULL,NULL),(31,45,'picture.png','asd',0,0,NULL,NULL);
+/*!40000 ALTER TABLE `contents_package_shares` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-06-23 10:36:27

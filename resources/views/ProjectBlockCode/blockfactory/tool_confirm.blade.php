@@ -52,14 +52,14 @@
           </div>
         </div>
         {{ csrf_field() }}
-
+        <div>
+          <input type="submit" name="" value="등록하기">
+          <button id="cancel">
+            취소
+          </button>
+        </div>
       </form>
-    <div>
-      <input type="submit" name="" value="등록하기">
-      <button id="cancel">
-        취소
-      </button>
-    </div>
+
     <script type="text/javascript">
     $(document).ready(function(){
       //패키지를 선택해서 심어보자!
