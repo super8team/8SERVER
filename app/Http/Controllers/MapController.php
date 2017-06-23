@@ -60,7 +60,7 @@ class MapController extends Controller
                 'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', "2015-$end[1]-$end[2] $end[3]:$end[4]:00"),
             ]);
         }
-
+        return redirect()->route('plan.teacher');
     }
 
     /**
