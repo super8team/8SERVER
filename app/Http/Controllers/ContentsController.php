@@ -356,9 +356,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     public function registerToPlanDB(Request $request)
     {
 
-      // dd($request->input('field_list'));
-
-
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
 

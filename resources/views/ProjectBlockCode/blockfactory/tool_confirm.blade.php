@@ -18,13 +18,23 @@
   </head>
   <body>
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
-        <table style="width:50%;margin-left:auto;margin-right:auto">
+        <table style="width:70%;margin-left:auto;margin-right:auto;">
             <tbody>
+                <tr style="border:1px solid">
+                  <td style="border:1px solid;text-align:center">
+                    체험 학습 리스트
+                  </td>
+                  <td style="border:1px solid;text-align:center">
+                    선택 가능한 패키지 리스트
+                  </td>
+                </tr>
                 @for($j = 0; $j < $field_count; $j++)
-                <tr>
-                    <td>
+                <tr style="border:1px solid">
+                    <td style="border:1px solid;text-align:center">
                       <input type="button" name="" value="{{ $field_lists[$j]['name']}}">
                       <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['name']}}" hidden>
+                    </td>
+                    <td style="border:1px solid;vertical-align:middle;text-align:center">
                       @for ($i = 0; $i < $package_count ; $i++)
                            <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)">{{ $package[$i]['name'] }}
                            <br>
@@ -35,16 +45,17 @@
             </tbody>
         </table>
         <div>
-          컨텐츠에 사용 될 이미지를 전부 저장해 주세요
+          <!-- 컨텐츠에 사용 될 이미지를 전부 저장해 주세요 -->
           <div class="">
             <!-- <input type="file" name="contents_img[]" value=""> -->
 
           </div>
         </div>
         {{ csrf_field() }}
-        <input type="submit" name="" value="등록하기">
+
       </form>
-    <div style="float:right">
+    <div>
+      <input type="submit" name="" value="등록하기">
       <button id="cancel">
         취소
       </button>

@@ -31,12 +31,12 @@ Blockly.Blocks['factory_base'] = {
   init: function() {
     this.setColour(120);
     this.appendDummyInput()
-        .appendField('/콘텐츠 이름')
-        .appendField(new Blockly.FieldTextInput('block_type'), 'NAME');
+        .appendField('콘텐츠 이름')
+        .appendField(new Blockly.FieldTextInput(''), 'NAME');
     this.appendValueInput('VERTICAL')
-        .appendField('vertical');
+        .appendField('콘텐츠 세로 정렬');
     this.appendValueInput('HORIZONTAL')
-        .appendField('horizontal');
+        .appendField('콘텐츠 가로 정렬');
     this.appendStatementInput('SCRIPT')
         .setCheck('CheckEdit')
         .appendField('실행');
@@ -54,13 +54,13 @@ Blockly.Blocks['factory_base'] = {
         .appendField('에디트');
     this.appendValueInput('VISIONABLE')
         .setCheck('Boolean')
-        .appendField('visionable');
+        .appendField('콘텐츠 표시');
     this.appendValueInput('CLICKABLE')
         .setCheck('Boolean')
-        .appendField('clickable');
+        .appendField('클릭 작동');
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
-        .appendField('disable');
+        .appendField('콘텐츠 작동 여부');
 
 
     // this.appendDummyInput()
