@@ -34,7 +34,7 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        $planNo = $reuqest->plan_id;
+        $planNo = $request->plan_id;
         $details = $request->saveEvent; // 이름
         $chngedTime = [];
 
@@ -76,8 +76,58 @@ class MapController extends Controller
      */
     public function edit($id)
     {
+        $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
+        $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
+
+        $teacher = \DB::table('users')->where('no', $plan->teacher)->first();
+
+        $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
+        $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
+        $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
+        $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
+
+        $plan_title = $plan->no;
+        $plan_date = $plan->at;
+        $trip_kind_value = $simple->type;
+        $attend_class_count = $simple->grade_class_count;
+        $attend_student_count = $simple->student_count;
+        $unattend_student_count = $simple->unjoin_student_count;
+
+        $transpotation = [];
+        $activity = [];
+        $institution = [];
+        $others = [];
+
+        foreach($traffics as $traffic) {
+          array_push($transpotation, $traffic->traffic);
+        }
+
+        foreach($articles as $article) {
+          array_push($institution, $article->article);
+        }
+
+        foreach($programs as $program) {
+          array_push($activity, $program->program);
+        }
+
+        foreach($options as $option) {
+          array_push($others, $option->option);
+        }
+
         return view('plan.plan_map', [
             'plan_date' => \Carbon\Carbon::now(),
+            'teacher_name' => $teacher->name,
+            'plna_no' => $id,
+            'plan_title' => $plan_title,
+            'plan_date' => $plan_date,
+            'trip_kind_value' => $trip_kind_value,
+            'attend_class_count' => $attend_class_count,
+            'attend_student_count' => $attend_student_count,
+            'unattend_student_count' => $unattend_student_count,
+            'transpotation' => $transpotation,
+            'activity' => $activity,
+            'institution' => $institution,
+            'others' => $others,
             ]);
     }
 
@@ -136,18 +186,13 @@ class MapController extends Controller
         $result = [];
         $detailIndex = 0;
 
-        $startTime = str_replace(" ", "T", $detail->start_time);
-        $startTime .= "-05:00";
-
-        $endTime = str_replace(" ", "T", $detail->end_time);
-        $endTime .= "-05:00";
-
-
-        $replacedTime = str_replace("T", " ", $details[$i]['start']);
-            $replacedTime = str_split($replacedTime, 19);
-            $start = $replacedTime[0];
 
         foreach($details as $detail) {
+            $startTime = str_replace(" ", "T", $detail->start_time);
+            $startTime .= "-05:00";
+
+            $endTime = str_replace(" ", "T", $detail->end_time);
+            $endTime .= "-05:00";
 
             $addDetail = [];
             $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');

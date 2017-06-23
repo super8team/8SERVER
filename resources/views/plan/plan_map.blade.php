@@ -4,21 +4,22 @@
 
 @section('content')
 @php
-  $plan_date = "2017-06-20";
-  $plan_title = "suck";
-  $teacher_name = '개나리';
-  $trip_kind_value = '종말여행';
-  $unattend_student_count ='1';
-  $attend_class_count='1';
-  $attend_student_coutn='1';
-  $transpotation ='수국';
+  // $plan_date = "2017-06-20";
+  // $plan_title = "플랜타이틀";
+  // $teacher_name = '개나리';
+  // $trip_kind_value = '종말여행';
+  // $unattend_student_count ='1';
+  // $attend_class_count='1';
+  // $attend_student_count='1';
+  // $transpotation ='수국';
+  $search_list_count =1;
 @endphp
   <!DOCTYPE html>
 <html>
   <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
   <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
   <script src  = "{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
-  <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script>
+  {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
   
@@ -26,13 +27,9 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-    for (var i = 0; i <5 ; i++) {
-      $("#like_list"+i).on('shown.bs.modal', function () {
-       $("#view_calendar"+i).fullCalendar('render');
-     });
     
-    
-    $('#view_calendar'+i).fullCalendar({
+    @for ( $i = 0; $i <$search_list_count ; $i++) 
+    $("#view_calendar{{$i}}").fullCalendar({
       locale: 'ko',
       header: {
         left: 'prev,next',
@@ -51,16 +48,26 @@
           start: '2017-06-20'
         },
         {
-          title:'불국사 개꿀잼',
+
+          title:'불국사 개질림',
           start: '2017-06-20T10:00'
         },
         {
-          title:'불국사 개꿀잼',
+          title:'불국사 개노잼',
           start: '2017-06-20T12:00'
         },
       ]
     });
-    }
+    //페이지 로드를 위한 꼼수
+    $("#showModal{{$i}}").on('click', function () {
+      $('#like_list{{$i}}').modal('show'); 
+      window.setTimeout(clickNextPrev, 200);
+      console.log('1번');
+      $("#view_calendar{{$i}}").fullCalendar('render');
+      console.log('2번');
+    }); 
+
+    @endfor
     // var fuck = new Array("2017","5","20","11","30","0","0");
   		$('#calendar').fullCalendar({
         locale: 'ko',
@@ -85,7 +92,7 @@
         url: '{{route('map.getTimeTable')}}',
         dataType: 'json',
         // async: false,
-        type: 'POST',
+        type: 'POST'
         // data: {
         //     flg: 1
         // },
@@ -151,6 +158,10 @@
       var dd = this.getDate().toString();
       return yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
   }
+  function clickNextPrev() {
+    $('.fc-next-button').click();
+    $('.fc-prev-button').click();
+  }
     $(document).on("click","#addsave",function(){
       $('#calendar').fullCalendar('updateEvents', event);
       var clientEvents = new Object();
@@ -160,17 +171,17 @@
       //이벤트 겠수 만큼 돌아서 데이터를 뽑아냄
       for (var i = 0; i < clientEvents.length; i++) {
         var title = clientEvents[i]['title'];
-        $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][0]' value='"+title+"'>");
+        $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][title]' value='"+title+"'>");
           if(clientEvents[i]['start']['_i'] != null){
               start = clientEvents[i]['start']['_i'];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][1]' value='"+start+"'>");
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
           if(clientEvents[i]['end'] != null){  
               end = clientEvents[i]['start']['_i'];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][2]' value='"+end+"'>");
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
-      document.plan_map_write.action = "{{route('map.store')}}";
+      document.plan_map_write.action = "{{route('map.store',$plan_no)}}";
       document.plan_map_write.submit();
       
     
@@ -391,9 +402,7 @@
       .body {
         position: relative;
       }
-
     </style>
-    
 <div class="bluedecobar">
 </div>
 <div class="bluebg">
@@ -418,7 +427,7 @@
                     </tr>
                     <tr>
                       <td class='info bold'> 참여 학급수 </td> <td class="text-center">{{$attend_class_count}} </td>
-                      <td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_coutn}} </td>
+                      <td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_count}} </td>
                       <td class='info bold'> 미참여 학생수 </td> <td class="text-center">{{$unattend_student_count}} </td>
                     </tr>
                     <tr>
@@ -441,8 +450,7 @@
               <div class="panel-body">
                 <div id="map" style="min-height:500px;"></div>
               </div>
-              <!-- /.panel-body -->
-          </div><!-- /.panel -->
+          </div>
         </div>
         <div class="col-lg-4" id="show">
           <div class="panel panel-default">
@@ -475,12 +483,15 @@
                     <th>링크 버튼</th>
                   </thead>
                   <tbody>
-                    @for ($t=0; $t <5 ; $t++)
+                    @for ($t=0; $t <$search_list_count ; $t++)
                       <tr>
-                        <td>헬조선 초등학교</td>{{-- $like_school_name --}}
-                        <td>김개똥</td>{{-- $like_name --}}
+                        <td>헬조선 초등학교</td>{{-- $search_school_name --}}
+                        <td>김개똥</td>{{-- $search_name --}}
                         <td>
-                          <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
+                          {{-- <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
+                          보기
+                          </button> --}}
+                          <button type="button" class="btn btn-sm btn-default" data-toggle="modal" id="showModal{{$t}}">
                           보기
                           </button>
                         </td>
@@ -488,7 +499,7 @@
                     @endfor
                   </tbody>
                 </table>
-                @for ($t=0; $t <5 ; $t++)
+                @for ($t=0; $t <$search_list_count ; $t++)
                   <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -505,11 +516,10 @@
                             <tbody>
                               <tr>
                                 <td colspan="2">흐미 불국사 지리구요</td>
-                                
                               </tr>
                             </tbody>
-                              <div id="view_calendar"></div>
                           </table>
+                          <div id="view_calendar{{$t}}"></div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
@@ -552,6 +562,8 @@
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
               <form class="form" name="plan_map_write" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="plan_no" value="{{$plan_no}}">
                 <div id ="saveZone">
                 </div>
               </form>
