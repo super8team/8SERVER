@@ -48,7 +48,7 @@ class MapController extends Controller
 
             $start = explode(",", $details[$i]['start']);
             $end = explode(",", $details[$i]['end']);
-            $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->first()->no;
+            // $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->first()->no;
             $placeNo = 5; // 더미
             
             $re = [];
