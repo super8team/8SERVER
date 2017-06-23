@@ -5,7 +5,7 @@
 @section('content')
 @php
   $plan_date = "2017-06-20";
-  $plan_title = "suck";
+  $plan_title = "플랜타이틀";
   $teacher_name = '개나리';
   $trip_kind_value = '종말여행';
   $unattend_student_count ='1';
@@ -26,13 +26,16 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-    for (var i = 0; i <5 ; i++) {
-      $("#like_list"+i).on('shown.bs.modal', function () {
-       $("#view_calendar"+i).fullCalendar('render');
+
+    @for ( $i = 0; $i <5 ; $i++) 
+      $("#like_list{{$i}}").on('shown.bs.modal', function () {
+        console.log('function is activated!');
+       $("#view_calendar{{$i}}").fullCalendar('render');
+       
      });
     
     
-    $('#view_calendar'+i).fullCalendar({
+    $("#view_calendar{{$i}}").fullCalendar({
       locale: 'ko',
       header: {
         left: 'prev,next',
@@ -51,16 +54,17 @@
           start: '2017-06-20'
         },
         {
-          title:'불국사 개꿀잼',
+
+          title:'불국사 개질림',
           start: '2017-06-20T10:00'
         },
         {
-          title:'불국사 개꿀잼',
+          title:'불국사 개노잼',
           start: '2017-06-20T12:00'
         },
       ]
     });
-    }
+    @endfor
     // var fuck = new Array("2017","5","20","11","30","0","0");
   		$('#calendar').fullCalendar({
         locale: 'ko',
@@ -391,9 +395,7 @@
       .body {
         position: relative;
       }
-
     </style>
-    
 <div class="bluedecobar">
 </div>
 <div class="bluebg">
@@ -441,8 +443,7 @@
               <div class="panel-body">
                 <div id="map" style="min-height:500px;"></div>
               </div>
-              <!-- /.panel-body -->
-          </div><!-- /.panel -->
+          </div>
         </div>
         <div class="col-lg-4" id="show">
           <div class="panel panel-default">
@@ -477,8 +478,8 @@
                   <tbody>
                     @for ($t=0; $t <5 ; $t++)
                       <tr>
-                        <td>헬조선 초등학교</td>{{-- $like_school_name --}}
-                        <td>김개똥</td>{{-- $like_name --}}
+                        <td>헬조선 초등학교</td>{{-- $search_school_name --}}
+                        <td>김개똥</td>{{-- $search_name --}}
                         <td>
                           <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
                           보기
@@ -505,11 +506,10 @@
                             <tbody>
                               <tr>
                                 <td colspan="2">흐미 불국사 지리구요</td>
-                                
                               </tr>
                             </tbody>
-                              <div id="view_calendar"></div>
                           </table>
+                          <div id="view_calendar{{$t}}"></div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
@@ -552,6 +552,7 @@
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
               <form class="form" name="plan_map_write" method="post">
+                {{ csrf_field() }}
                 <div id ="saveZone">
                 </div>
               </form>
