@@ -239,7 +239,7 @@ class PlanController extends Controller
       return view('plan.plan', [
         'plan_no' => $plan_no,
         'plan_title' => $plan_title,
-        'plan_date' => $plan_date,
+        'plan_date' => str_split($plan_date, 10)[0],
         'trip_kind_value' => $trip_kind_value,
         'attend_class_count' => $attend_class_count,
         'attend_student_count' => $attend_student_count,

@@ -48,10 +48,11 @@ class MapController extends Controller
 
             $start = explode(",", $details[$i]['start']);
             $end = explode(",", $details[$i]['end']);
-            // $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->first()->no;
-            $placeNo = 5; // 더미
+            $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
+            // $placeNo = 5; // 더미
             
             $re = [];
+            \DB::table('detail_plans')->where('plan', $planNo)->delete();
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
@@ -206,8 +207,45 @@ class MapController extends Controller
             $addDetail['end']   = $endTime;
             array_push($result, $addDetail);
         }
-
+        
         return json_encode($result);
 
+    }
+    
+    public function getDetailShare(Request $request) {
+        $niddle = $request->niddle;
+        $places = \DB::table('places')->where('name', 'like', "%$niddle%")->orWhere('explain', 'like', "%$niddle%")->get();
+        
+        $result = [];
+        
+        // 검색에 해당되는 모든 장소
+        foreach($places as $place) {
+            // $shares = \DB::table('detail_plan_shares')->where('place', $place->no)->get();
+            $details = \DB::table('detail_plans')->where('place', $place->no)->get();
+            // dd($details);
+            // 검색된 장소를 포함하고 있는 모든 공유게시글
+            foreach ($details as $detail) {
+                // $detail = \DB::table('detail_plans')->where('no', $share->detail_plan)->first();
+                $shares = \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->get();// 디테일플랜을 공유한 글
+
+                foreach($shares as $share) {
+                    $plan = \DB::table('field_learning_plans')->where('no', $detail->plan)->first();
+                    $teacher = \DB::table('users')->where('no', $plan->teacher)->first();
+                    $school = \DB::table('works')->where('teacher', $teacher->no)->first();
+                    if(is_object($school)) {
+                      $school = \DB::table('schools')->where('no', $school->school)->first();
+                      $result[] = [
+                              'plan_no' => $plan->no,
+                              'plan_teacher' => $teacher->name,
+                              'school_name' => $school->name,
+                          ];
+                    }
+                }
+
+            }
+        }
+        
+        // dd($result);
+        return json_encode($result);
     }
 }
