@@ -13,34 +13,35 @@ class ContentsPackageSeeder extends Seeder
     {
 
         DB::table('contents_packages')->insert([
-
-            ['name' => '콘텐츠1', 'explain' => '설명1', 'owner' => DB::table('users')
-                                                                                    ->where('type', 'teacher')->inRandomOrder()
-                                                                                    ->first()->no],
-            ['name' => '콘텐츠2', 'explain' => '설명2', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠3', 'explain' => '설명3', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠4', 'explain' => '설명4', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠5', 'explain' => '설명5', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠6', 'explain' => '설명6', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠7', 'explain' => '설명7', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠8', 'explain' => '설명8', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '콘텐츠9', 'explain' => '설명9', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no]
+            //
+            // ['name' => '콘텐츠1', 'explain' => '설명1', 'owner' => DB::table('users')
+            //                                                                         ->where('type', 'teacher')->inRandomOrder()
+            //                                                                         ->first()->no],
+            // ['name' => '콘텐츠2', 'explain' => '설명2', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠3', 'explain' => '설명3', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠4', 'explain' => '설명4', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠5', 'explain' => '설명5', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠6', 'explain' => '설명6', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠7', 'explain' => '설명7', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠8', 'explain' => '설명8', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            // ['name' => '콘텐츠9', 'explain' => '설명9', 'owner' => DB::table('users')
+            //     ->where('type', 'teacher')->inRandomOrder()
+            //     ->first()->no],
+            ['name' => '패키지임다', 'explain' => '불국사를 대표하는 문제', 'owner' => 106]
 
         ]);
 

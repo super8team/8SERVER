@@ -5,17 +5,38 @@
     <title>tool_confirm</title>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    function oneCheckbox(a){
+        var obj = document.getElementsByName("package_name");
+        for(var i=0; i<obj.length; i++){
+              if(obj[i] != a){
+                obj[i].checked = false;
+              }
+            }
+      }
+    </script>
   </head>
   <body>
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
-        <table style="width:50%;margin-left:auto;margin-right:auto">
+        <table style="width:70%;margin-left:auto;margin-right:auto;">
             <tbody>
-                @for($j = 0; $j < {{count($field_lists); $j++}})
-                <tr>
-                    <td class='place_list'>
-                      <input type="button" name="field_list[]" style="width:90%" value="{{ $field_list[$j]['id'] }}">{{ $field_list[$j]['name'] }}</button>
-                      @for ($i = 0; $i < {{ $package_count }}; $i++)
-                           <input type="checkbox" name="package[]" value="{{$package[$j][$i]['id']}}">{{ $package[$j][$i]['name'] }}
+                <tr style="border:1px solid">
+                  <td style="border:1px solid;text-align:center">
+                    체험 학습 리스트
+                  </td>
+                  <td style="border:1px solid;text-align:center">
+                    선택 가능한 패키지 리스트
+                  </td>
+                </tr>
+                @for($j = 0; $j < $field_count; $j++)
+                <tr style="border:1px solid">
+                    <td style="border:1px solid;text-align:center">
+                      <input type="button" name="" value="{{ $field_lists[$j]['name']}}">
+                      <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['name']}}" hidden>
+                    </td>
+                    <td style="border:1px solid;vertical-align:middle;text-align:center">
+                      @for ($i = 0; $i < $package_count ; $i++)
+                           <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)">{{ $package[$i]['name'] }}
                            <br>
                       @endfor
                     </td>
@@ -24,15 +45,17 @@
             </tbody>
         </table>
         <div>
-          컨텐츠에 사용 될 이미지를 전부 저장해 주세요
+          <!-- 컨텐츠에 사용 될 이미지를 전부 저장해 주세요 -->
           <div class="">
             <!-- <input type="file" name="contents_img[]" value=""> -->
 
           </div>
         </div>
-        <input type="submit" name="" value="등록하기">
+        {{ csrf_field() }}
+
       </form>
-    <div style="float:right">
+    <div>
+      <input type="submit" name="" value="등록하기">
       <button id="cancel">
         취소
       </button>

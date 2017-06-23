@@ -11,11 +11,11 @@
 </script>
 <body>
 
-    <form class="downForm"action="{{route('contents.sharePackages')}}" method="get" enctype="multipart/form-data">
+    <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">
       <div class="wrapper" >
         <span id="content_wrapper">
           <div>
-            <input name="picture" type="file">
+            <input type="file" name="image" >
             <div id="holder" style="border:1px solid;width:120px;height:120px"></div>
             <input type="text" name="package_name" value="패키지 이름" style="vertical-align:top" onfocus="this.value=''">
           </div>
