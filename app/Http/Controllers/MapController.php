@@ -117,7 +117,7 @@ class MapController extends Controller
         return view('plan.plan_map', [
             'plan_date' => \Carbon\Carbon::now(),
             'teacher_name' => $teacher->name,
-            'plna_no' => $id,
+            'plan_no' => $id,
             'plan_title' => $plan_title,
             'plan_date' => $plan_date,
             'trip_kind_value' => $trip_kind_value,
