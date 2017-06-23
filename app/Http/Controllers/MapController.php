@@ -34,7 +34,7 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        $planNo = $request->plan_id;
+        $planNo = $request->plan_no;
         $details = $request->saveEvent; // 이름
         $chngedTime = [];
 
