@@ -74,7 +74,7 @@ Route::get('contents/shareDetail/{packageId}', 'ContentsController@shareDetail')
 
 // 콘텐츠 공유하기
 Route::get('contents/shareShare', 'ContentsController@shareShare')->name('contents.shareShare');
-Route::get('contents/sharePackages','ContentsController@sharePackages')->name('contents.sharePackages');
+Route::post('contents/sharePackages','ContentsController@sharePackages')->name('contents.sharePackages');
 
 Route::post('contents/example', 'ContentsController@example')->name('contents.example');
 
@@ -94,8 +94,12 @@ Route::get('contents/packages/{package_id}','ContentsController@extractContents'
 
 //콘텐츠 저장하기
 Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
+
+Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
 // 콘텐츠 메인
-Route::get('contents/{id}', 'ContentsController@index')->name('contents');
+
+Route::get('contents/', 'ContentsController@index')->name('contents');
+
 
 
 // ******************** 가정 통신문 *********************
@@ -162,6 +166,6 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
 
 Route::post('app/upload', function (Request $request) {
-  
+
 
 });

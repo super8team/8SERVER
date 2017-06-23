@@ -10,6 +10,7 @@
       <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
       <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" readonly>
       <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" readonly>
+      <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
       <textarea name="name" rows="8" cols="80" readonly>{{$package_subs}}</textarea>
@@ -21,9 +22,11 @@
 
       <!-- window.location.href = "/toolShareDownload?package_num="+package_num; -->
     <form action="{{route('contents.shareDownload')}}" method="post" style="border:1px solid black">
-      @foreach($contents_name as $key => $value)
-        <input type="checkbox" name="choice_content[]" value="{{$value['name']}}">{{$value['name']}}</input>
-      @endforeach
+
+      @for($i = 0; $i < count($contents_name); $i++)
+        <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
+        
+      @endfor
       <br>
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">

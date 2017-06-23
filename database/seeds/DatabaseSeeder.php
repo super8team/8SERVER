@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
 
 //        $this->call(PlanDemoSeeder::class);
 
-        $this->call(KoreanUserSeeder::class);
-        $this->call(DetailPlansTimeSeeder::class);
+        // $this->call(KoreanUserSeeder::class);
+        $this->call(ContentsSeeder::class);
 
 
     }

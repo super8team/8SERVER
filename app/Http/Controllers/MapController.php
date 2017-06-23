@@ -34,10 +34,10 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        $planNo = $reuqest->plan_id;
+        $planNo = $request->plan_id;
         $details = $request->saveEvent; // 이름
         $chngedTime = [];
-        
+
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
             $replacedTime = str_split($replacedTime, 19);
@@ -45,16 +45,16 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-            
+
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
-                'place' => $details[$i]['title'], 
+                'place' => $details[$i]['title'],
                 'plan' => $planNo,
                 'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
                 'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
             ]);
         }
-        
+
     }
 
     /**
@@ -65,7 +65,7 @@ class MapController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -74,8 +74,12 @@ class MapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    {
         $plan = \DB::table('field_learning_plans')->where('no', $id)->first();
         $simple = \DB::table('simple_plans')->where('plan', $plan->no)->first();
+
+        $teacher = \DB::table('users')->where('no', $plan->teacher)->first();
 
         $traffics = \DB::table('traffics')->where('simple_plan', $simple->no)->get();
         $articles = \DB::table('inst_auth')->where('simple_plan', $simple->no)->get();
@@ -112,6 +116,7 @@ class MapController extends Controller
 
         return view('plan.plan_map', [
             'plan_date' => \Carbon\Carbon::now(),
+            'teacher_name' => $teacher->name,
             'plna_no' => $id,
             'plan_title' => $plan_title,
             'plan_date' => $plan_date,
@@ -124,6 +129,7 @@ class MapController extends Controller
             'institution' => $institution,
             'others' => $others,
             ]);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -147,7 +153,7 @@ class MapController extends Controller
     {
         //
     }
-    
+
     /**
      * show detail-plan for app request.
      *
@@ -176,26 +182,26 @@ class MapController extends Controller
     {
         $plan = $request->input('plan_no');
         $details = \DB::table('detail_plans')->where('plan', $plan)->get();
-        
+
         $result = [];
         $detailIndex = 0;
-        
-        
+
+
         foreach($details as $detail) {
             $startTime = str_replace(" ", "T", $detail->start_time);
             $startTime .= "-05:00";
-            
+
             $endTime = str_replace(" ", "T", $detail->end_time);
             $endTime .= "-05:00";
-            
+
             $addDetail = [];
             $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
             $addDetail['start'] = $startTime;
             $addDetail['end']   = $endTime;
             array_push($result, $addDetail);
         }
-        
+
         return json_encode($result);
-        
+
     }
 }

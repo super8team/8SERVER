@@ -9,7 +9,7 @@ use File;
 
 class ContentsController extends Controller
 {
-    public function index($id)
+    public function index()
     {
       // Request $request
 /////////////////////////////////// for 연제 /////////////////////////////////////////////
@@ -29,13 +29,14 @@ class ContentsController extends Controller
 // $userNo   = $request->input('user_id'); // 서버한테 post로 현재 유저 아이디를 주고
 // dd(Auth::user());
 //
-// Auth::user()->no
-$userNo   = $id; // 서버한테 post로 현재 유저 아이디를 주고
+
+$userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
 $packages = [];
 // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
-$content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no);
+$content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+// dd($content_count);
 $content_count = count($content_count);
 
 $packageCount = count($owndedPackages);
@@ -54,9 +55,9 @@ for($i = 0; $i<$packageCount;$i++){
     $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
   }
 }
-
+// dd($packages);
 // dd($packages[0]['contents'][0]['xml']);
-return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0]);
+return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
 
 
 
@@ -249,10 +250,9 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $contentsId = [];
 
         // packageId를 가지는 contents_pacage_share 가져옴
+        $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 
-        $contentsPackageShare= DB::table('contents_package_shares')->where('no','=', $package_id)->first();
-
-        $contentsPackage = DB::table('contents_packages')->where('no','=', $contentsPackageShare->contents_package)->first();
+        $contentsPackage       = DB::table('contents_packages')->where('no','=', $contentsPackageShare->contents_package)->first();
 
         // contents_package onwer컬럼과 일치하는 user 가져오기
         $user = DB::table('users')->where('no','=', $contentsPackage->owner)->first();
@@ -266,7 +266,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         }
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
-                                                     ->with('package_name', '경주로 2박 3일')
+                                                     ->with('package_name',$contentsPackage->name )
                                                      ->with('package_img', $contentsPackageShare->img_url)
                                                      ->with('package_subs', $contentsPackageShare->explain)
                                                      ->with('write_date', $contentsPackageShare->created_at)
@@ -282,7 +282,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     }
     public function shareShare(Request $request)
     {
-      $teacher_packages       = DB::table('contents_packages')->where('owner',259)->get();
+      $teacher_packages       = DB::table('contents_packages')->where('owner',Auth::user()->no)->get();
       $teacher_packages_no = [];
       for($i = 0; $i<count($teacher_packages); $i++){
         $teacher_packages_no[$i] = $teacher_packages[$i]->no;
@@ -294,30 +294,26 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $teacher_contents[$i] = DB::table('contents')->where('contents_package',$teacher_packages_no[$i])
                                                      ->where('copy',0)
                                                      ->get();
+
         for($j = 0; $j<count($teacher_contents[$i]);$j++){
           array_push($arr,$teacher_contents[$i][$j]);
         }
       }
-
-
-
       return view('ProjectBlockCode.blockfactory.tool_share_share')->with('teacher_contents', $arr);
-
 
     }
 
     public function shareDownload(Request $request)
     {
-      $choices = $request->input('choice_content');
-      $choice_content = [];
-      $i = 0;
+      $choices_no = $request->input('choice_content');
+      $content_arr = [];
+      foreach($choices_no as $no){
+        $content = DB::table('contents')->where('no',$no)->first();
 
-      foreach($choices as $choice){
-        array_push($choice_content,$choices[$i]);
-        $i++;
+        array_push($content_arr,['no'=>$no,'name'=>$content->name]);
       }
 
-      return view('ProjectBlockCode.blockfactory.tool_share_download')->with('choice_content', $choice_content);
+      return view('ProjectBlockCode.blockfactory.tool_share_download')->with('choice_content', $content_arr);
       // $newPackageName = $request->input('new_package_name');
       // $packageName = $request->input('package_name');
       // $packageId = $request->input('package_id');
@@ -326,29 +322,33 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     public function registerToPlan()
     {
 
-      dd(Auth::user()->no);
+      // dd(Auth::user()->no);
       //체험현장학습 리스트를 뽑아내는 쿼리
-      $field_list_array = [];
+      $field_list_array   = [];
+      $package_list_array = [];
       $teacher_no = Auth::user()->no;
-      $field_lists = DB::table('field_learning_plans')->where('teacher','=',$teacher_no);
+      $field_lists = DB::table('field_learning_plans')->where('teacher','=',$teacher_no)->get();
+
       foreach($field_lists as $field_list){
         array_push($field_list_array, array('no'=>$field_list->no,'name'=>$field_list->name));
       }
+      // dd($field_list_array);
 
+      $packages = DB::table('contents_packages')->where('owner',$teacher_no)->get();
+
+      foreach($packages as $package ){
+        array_push($package_list_array,array('no'=>$package->no,'name'=>$package->name));
+      }
 
       //교사가 가지고 있는 패키지를 담습니다.
-      $package_array = [];
-      $user_package = DB::table('contents_packages')->where('owner','=',259)->get();
-      // $user_package = DB::table('contents_packages')->where('owner','=',$teacher_no)->get();
-      foreach($user_package as $package){
-          array_push($package_array, array('name'=>$package->name,'id'=>$package->no));
-      }
+
 
       // $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
       return view('ProjectBlockCode.blockfactory.tool_confirm',
-                  [
-                    'field_lists'=>$field_list_array,'package'=>$package_array,'package_count'=>count($package_array)
-                  ]);
+                [
+                  'field_lists'=>$field_list_array,'package'=>$package_list_array,
+                  'package_count'=>count($package_list_array),'field_count'=>count($field_list_array)
+                ]);
     }
 
 
@@ -356,21 +356,17 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     public function registerToPlanDB(Request $request)
     {
 
-      // $contents_xml_sizeof = sizeof($request->input('contents_xml'));
-      // //
-      // $filed      =    $request->input('field_list');
-      // $package    =    $request->input('package');
-      //
-      // for($i = 0 ; $i < count($field); $i++){
-      //   현장체험학습 리스트 : $field[$i]
-      // }
-      //
-      // for($i = 0 ; $i < count($field) ; $i++){
-      //   DB::table('field_learning_plans')
-      //               ->where('no',Auth::user()->no)
-      //               ->where('name',$field[$i])
-      //               ->update('contents_package',$package)
-      // }
+      $packages = $request->input('package');
+      $fields   = $request->input('field_list');
+
+      for($i = 0 ; $i < count($fields) ; $i++){
+        for($j = 0; $j < count($packages[$i]); $j++){
+          DB::table('field_learning_plans')
+                      ->where('teacher',Auth::user()->no)
+                      ->where('name',$fields[$i])
+                      ->update(['contents_package'=>$packages[$i][$j]]);
+        }
+      }
       // for($i = 0; $i < $contents_xml_sizeof; $i++)
       // {
       //   DB::table('contents')->insert([
@@ -427,7 +423,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         {
             //새로운 패키지를 저장한다
             DB::table('contents_packages')->insert([
-                ['owner'=>259,'name'=>$package_name]
+                ['owner'=>Auth::user()->no,'name'=>$package_name]
             ]);
             //저장한 패키지의 primary key 값을 얻어온다
             $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
@@ -458,21 +454,19 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
     public function sharePackages(Request $request)
     {
+      $img_name   =   $request->input('image');
+
+      $request->file('image')->storeAs('public/packageImgs', "$img_name");
 
       $package_name    =  $request->input('package_name');
       $explain         =  $request->input('package_explain');
-      $img             =  $request->input('picture')->getClientOriginalName;
-      dd($img);
+
       $downContents    =  $request->input('downContents');
-      $destinationPath =  public_path().'\img\\';
 
-
-
-      // $name            =  Input::file('picture')->getClientOriginalName();    //name값
 
       //공유할 패키지를 새로 등록한다.
       DB::table('contents_packages')->insert([
-          ['owner' => 259, 'name' => $package_name]
+          ['owner' => Auth::user()->no, 'name' => $package_name]
       ]);
 
       // 가장최근에 만든 콘텐츠 패키지
@@ -492,8 +486,53 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
           ['contents_package' => $newContentsPackage->no, 'img_url' => $img, 'explain' => $explain, 'views' => 0, 'downloads' => 0]
       ]);
       // Input::file('picture')->move($destinationPath, $img);
-      dump($destinationPath);
-      dump($img);
-      File::move($destinationPath, $img);
+
+      return;
+    }
+
+
+    public function downloadShareContent(Request $request)
+    {
+      //선생님이 새로운 패키지에 컨텐츠를 저장 할려고 하는 경우
+      // dd($request->input());
+      $user        = Auth::user()->no;
+      if($request->input('new_package')){
+        $package     = $request->input('new_package');
+        $contents    = $request->input('content');
+        $content_arr = [];
+        $new_package = DB::table('contents_packages')->insert([
+                                                          'owner'=>$user,'name'=>$package
+                                                       ]);
+        //다운받으려는 콘텐츠의 spec, xml을 저장하기 위함
+        for($i = 0; $i<count($contents); $i++){
+          $content_arr[$i]=DB::table('contents')->where('no',$contents[$i])->first();
+        }
+        //새로운 컨텐츠 패키지를 갖는 컨텐츠들을 저장한다.
+        for($i = 0; $i<count($contents_arr); $i++){
+          DB::table('contents')->insert([
+            'spec'=>$contents_arr[$i]->spec,'xml'=>$contents_arr[$i]->xml,'like'=>0,
+            'contents_package'=>$new_package->no,'copy'=>0,'name'=>$contents_arr[$i]->name
+          ]);
+        }
+      }
+      //선생님이 자신이 가지고 있는 패키지에 콘텐츠를 저장 할려고 하는 경우
+      else{
+        $package_num      = $request->input('package_name');
+        dd($package_num);
+        $content          = $request->input('content');
+        $contents_infor   = [];
+        //자신의 패키지에 다운받으려먼 콘텐츠의 정보들을 가져온다.
+        for($i=0; $i<count($content); $i++){
+          $contents_infor[$i] = DB::table('contents')->where('no',$content[$i])->first();
+        }
+
+        //자신의 패키지에 콘텐츠를 저장한다.
+        for($i=0; $i<count($contents_infor); $i++){
+          DB::table('contents')->insert([
+            'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'like'=>0,
+            'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
+          ]);
+        }
+      }
     }
 }
