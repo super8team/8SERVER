@@ -324,7 +324,7 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list">
-                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트">
+                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
                   {{$user}}<br>콘텐츠리스트
                 </button>
               </td>
@@ -386,7 +386,7 @@
         <!-- 블럭 워크스페이스 -->
 
         <td id="packageList">
-          <button type="button" name="button">{{$user}}님의 패키지</button>
+          <button type="button" name="button" disabled>{{$user}}님의 패키지</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -420,8 +420,8 @@
    var markersArray = [];
 
    var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 12,
-    center: new google.maps.LatLng(37.49736948554443, 127.02452659606933),
+    zoom: 18,
+    center: new google.maps.LatLng(35.8963091, 128.62205110000002),
     mapTypeId: google.maps.MapTypeId.ROADMAP
    });
 

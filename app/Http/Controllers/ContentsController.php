@@ -31,6 +31,12 @@ class ContentsController extends Controller
 //
 
 $userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
+
+//유저 타입이 선생님이 아니면 경고창을 띄우기
+// $user_bool = DB::table('users')->where('no',$userNO)->first();
+// if($user_bool->type != 'teacher'){
+//
+// }
 $packages = [];
 // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
@@ -193,7 +199,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
 
         // 가장최근에 만든 콘텐츠 패키지
-        $newContentsPackage = DB::table('contents_packages')->ordeyBy('no', 'desc')->first();
+        $newContentsPackage = DB::table('contents_packages')->orderBy('no', 'desc')->first();
 
 
         // contents 추가
@@ -500,27 +506,31 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $package     = $request->input('new_package');
         $contents    = $request->input('content');
         $content_arr = [];
-        $new_package = DB::table('contents_packages')->insert([
-                                                          'owner'=>$user,'name'=>$package
-                                                       ]);
+
+        DB::table('contents_packages')->insert([
+                                                  'owner'=>$user,'name'=>$package
+                                               ]);
+        $new_package    =    DB::table('contents_packages')->orderBy('no', 'desc')->first();
+
         //다운받으려는 콘텐츠의 spec, xml을 저장하기 위함
         for($i = 0; $i<count($contents); $i++){
           $content_arr[$i]=DB::table('contents')->where('no',$contents[$i])->first();
         }
         //새로운 컨텐츠 패키지를 갖는 컨텐츠들을 저장한다.
-        for($i = 0; $i<count($contents_arr); $i++){
+        for($i = 0; $i<count($content_arr); $i++){
           DB::table('contents')->insert([
-            'spec'=>$contents_arr[$i]->spec,'xml'=>$contents_arr[$i]->xml,'like'=>0,
-            'contents_package'=>$new_package->no,'copy'=>0,'name'=>$contents_arr[$i]->name
+            'spec'=>$content_arr[$i]->spec,'xml'=>$content_arr[$i]->xml,'like'=>0,
+            'contents_package'=>$new_package->no,'copy'=>0,'name'=>$content_arr[$i]->name
           ]);
         }
+        return;
       }
       //선생님이 자신이 가지고 있는 패키지에 콘텐츠를 저장 할려고 하는 경우
       else{
         $package_num      = $request->input('package_name');
-        dd($package_num);
         $content          = $request->input('content');
         $contents_infor   = [];
+        
         //자신의 패키지에 다운받으려먼 콘텐츠의 정보들을 가져온다.
         for($i=0; $i<count($content); $i++){
           $contents_infor[$i] = DB::table('contents')->where('no',$content[$i])->first();
@@ -533,6 +543,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
           ]);
         }
+        return;
       }
     }
 }
