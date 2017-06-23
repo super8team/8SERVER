@@ -181,7 +181,7 @@
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
-      document.plan_map_write.action = "{{route('map.store',$plan_no)}}";
+      document.plan_map_write.action = "{{route('map.store')}}";
       document.plan_map_write.submit();
       
     
