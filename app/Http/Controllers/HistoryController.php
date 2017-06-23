@@ -95,7 +95,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather, "url" => ""];
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         if ($img!=null  && $img->img_url!="noIMG")
-          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
+          $result["place"]["content".$historyIndex]["url"] = "http://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
         $historyIndex++;
       }
       // dd($result);
@@ -115,7 +115,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather, ];
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         if ($img!=null  && $img->img_url!="noIMG")
-          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
+          $result["place"]["content".$historyIndex]["url"] = "http://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
         $historyIndex++;
       }
       // dd($result);
@@ -133,7 +133,7 @@ class HistoryController extends Controller
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $img = DB::table('history_imgs')->where('substance', $history->no)->first();
         if ($img!=null  && $img->img_url!="noIMG")
-          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
+          $result["place"]["content".$historyIndex]["url"] = "http://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
         $historyIndex++;
       }
       // dd($result);
