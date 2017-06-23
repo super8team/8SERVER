@@ -55,8 +55,9 @@ class MapController extends Controller
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
-                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
-                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
+                // if 2015->2017
+                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', "2015-$start[1]-$start[2] $start[3]:$start[4]:00"),
+                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', "2015-$end[1]-$end[2] $end[3]:$end[4]:00"),
             ]);
         }
 
