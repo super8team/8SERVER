@@ -48,8 +48,8 @@ Route::resource('map', 'MapController');
 
 // 앱 디테일플랜
 Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
-Route::post('json/getTimeTable', 'MapController@getTimeTable');
-Route::post('json/getDetailShare', 'MapController@getDetailShare');
+Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
+Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.search');
 
 
 // ******************** 설문조사 *********************
