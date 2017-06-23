@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','플랜 맵 테스트 페이지')
+@section('title','플랜 맵 ')
 
 @section('content')
 @php
@@ -12,7 +12,8 @@
   // $attend_class_count='1';
   // $attend_student_count='1';
   // $transpotation ='수국';
-  $search_list_count =1;
+  // $search_list_count =1;
+  // $plan_no = 9;
 @endphp
   <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
 
-    @for ( $i = 0; $i <$search_list_count ; $i++)
+    @for ( $i = 0; $i <5 ; $i++)
     $("#view_calendar{{$i}}").fullCalendar({
       locale: 'ko',
       header: {
@@ -37,34 +38,31 @@
         right: 'agendaDay'
       },
       defaultView: 'agendaDay',
-      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+      defaultDate: '2017-06-20',{{--$search_plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
       navLinks: true, // can click day/week names to navigate views
       selectable: false,
       selectHelper: true,
       firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-      events:[
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20'
-        },
-        {
-
-          title:'불국사 개질림',
-          start: '2017-06-20T10:00'
-        },
-        {
-          title:'불국사 개노잼',
-          start: '2017-06-20T12:00'
-        },
-      ]
+      events: {
+              // 여기에 검색한 결과 추가 할 것
+                url: '{{route('map.getTimeTable')}}',
+                type:'POST',
+                 dataType: 'json',
+            },
+      // eventSources: [{
+      // url: '{{--route('map.getTimeTable')--}}',
+      // // url: '{{--route('map.getTimeTable',$test_no)--}}',
+      // dataType: 'json',
+      // // async: false,
+      // type: 'POST'
+      // }],
     });
     //페이지 로드를 위한 꼼수
     $("#showModal{{$i}}").on('click', function () {
       $('#like_list{{$i}}').modal('show');
+      //버튼 클릭 함수 호출
       window.setTimeout(clickNextPrev, 200);
-      console.log('1번');
       $("#view_calendar{{$i}}").fullCalendar('render');
-      console.log('2번');
     });
 
     @endfor
@@ -74,7 +72,7 @@
   			header: {
   				left: 'prev,next today',
   				center: 'title',
-  				right: 'agendaDay'
+  				right: 'month,agendaWeek,agendaDay,listWeek'
   			},
         defaultView: 'agendaDay',
   			defaultDate: '{{$plan_date}}', //이걸 이용하여 날짜 시작일을 설정?
@@ -88,18 +86,24 @@
   			eventLimit: true, // allow "more" link when too many events
         // * * * * * * * * 데이터 불러오기 * * * * * * * *
         // 방법 1 json data 가저오기
-        eventSources: [{
-        url: '{{route('map.getTimeTable')}}',
-        dataType: 'json',
+        // eventSources: [{
+        // url: '{{--route('map.getTimeTable')--}}',
+        // // url: '{{--route('map.getTimeTable',$test_no)--}}',
+        // dataType: 'json',
         // async: false,
-        type: 'POST'
+        // type: 'POST'
         // data: {
         //     flg: 1
         // },
             // error: function () {
             //   alert("data load is fail.")
             // }
-        }],
+        // }],
+        events: {
+                  url: '{{route('map.getTimeTable')}}',
+                  type:'POST',
+                  dataType: 'json',
+              },
   		});
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
@@ -181,7 +185,7 @@
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
-      document.plan_map_write.action = "{{route('map.store')}}";
+      // document.plan_map_write.action = "{{--route('map.store',$plan_no)--}}";
       document.plan_map_write.submit();
 
 
@@ -263,6 +267,50 @@
                  $('#display-result').append('<p">'+title+'</p>')
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
               }
+            });
+            $.ajax({
+              url: '{{route('map.search')}}',
+              type:'POST',
+              data:{
+                niddle:searchInput
+              },
+              dataType: 'jsonp',
+              success: function processResult(arg_share_plan){
+                console.log("콘솔콘솔");
+                var share_plan = Array;
+                share_plan = arg_share_plan;
+               //일정을 추가할 버튼 생성
+               for (var i = 0; i < share_plan.length; i++) {
+                 @php $j=0; @endphp
+                 $('#result_search').append(
+                   "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+share_plan[i]['plan_teacher']+"</td><td>"+
+                   "<button type='button' class='btn btn-sm btn-default' data-toggle='modal' id='showModal"+i+"'>보기</button></td></tr>"
+                 );
+                 $('#modal_place').append(
+                   "<div class='modal modal fade ' id=like_list tabindex='-1' role='dialog' aria-labelledby='like_list_label"+i+"' aria-hidden='true'>"+
+                     "<div class='modal-dialog'>"+
+                       "<div class='modal-content'>"+
+                         "<div class='modal-header'>"+
+                           "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+
+                           "<h4 class='modal-title' id='like_list_label"+i+"'>공유 정보</h4>"+
+                         "</div>"+
+                         "<div class='modal-body'>"+
+                          "<table class='table table-bordered table-striped'>"+
+                             "<thead>"+
+                               "<th>"+share_plan[i]['school_name']+"</th>"+
+                               "<th>"+share_plan[i]['plan_teacher']+"</th>"+
+                             "</thead>"+
+                             "<tbody><tr><td colspan='2'>흐미 불국사 지리구요</td></tr></tbody>"+
+                           "</table>"+
+                           "<div id='view_calendar"+i+"'></div></div>"+
+                        " <div class='modal-footer'>"+
+                           "<form class='form' action='http://127.0.0.1/map/"+i+"/edit' method='post'>"+
+                             "<button type='submitbtn' class='btn btn-default'>계획 가저오기</button>"+
+                             "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"+
+                           "</form></div></div></div></div>"
+                 );
+               }
+            }
             });
             }
             //위키피디아
@@ -405,6 +453,9 @@
     </style>
 <div class="bluedecobar">
 </div>
+<div id="madal_palce">
+
+</div>
 <div class="bluebg">
   <div class="container">
     <div class="row">
@@ -476,31 +527,17 @@
                     </blockquote>
                   </div>
                 </div>
-                <table class="table table-bordered table-striped">
+                <table  class="table table-bordered table-striped">
                   <thead>
                     <th>작성한 학교</th>
                     <th>작성자</th>
                     <th>링크 버튼</th>
                   </thead>
-                  <tbody>
-                    @for ($t=0; $t <$search_list_count ; $t++)
-                      <tr>
-                        <td>헬조선 초등학교</td>{{-- $search_school_name --}}
-                        <td>김개똥</td>{{-- $search_name --}}
-                        <td>
-                          {{-- <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
-                          보기
-                          </button> --}}
-                          <button type="button" class="btn btn-sm btn-default" data-toggle="modal" id="showModal{{$t}}">
-                          보기
-                          </button>
-                        </td>
-                      </tr>
-                    @endfor
+                  <tbody id="result_search">
+
                   </tbody>
                 </table>
-                @for ($t=0; $t <$search_list_count ; $t++)
-                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
+                  {{-- <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -510,8 +547,8 @@
                         <div class="modal-body">
                           <table class="table table-bordered table-striped">
                             <thead>
-                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
-                              <th>김개똥</th> {{-- $like_name --}}
+                              <th>길주 초등학교</th>
+                              <th>권 웅</th>
                             </thead>
                             <tbody>
                               <tr>
@@ -519,16 +556,17 @@
                               </tr>
                             </tbody>
                           </table>
-                          <div id="view_calendar{{$t}}"></div>
+                          <div id="view_calendar$t"></div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                          <form class="form" action="route('map.edit',$plan_no)" method="post">
+                            <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                          </form>
                         </div>
                       </div>
                     </div>
-                  </div>
-                @endfor
+                  </div> --}}
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
@@ -549,6 +587,9 @@
                     </li>
                   </ul>
                 </nav>
+                <div id="script-warning">
+
+                </div>
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
         </div> <!-- /.col-lg-4 -->
@@ -563,7 +604,7 @@
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
               <form class="form" name="plan_map_write" method="post">
                 {{ csrf_field() }}
-                <input type="hidden" name="plan_no" value="{{$plan_no}}">
+                <input type="hidden" name="plan_no" value="{{--$plan_no--}}">
                 <div id ="saveZone">
                 </div>
               </form>
