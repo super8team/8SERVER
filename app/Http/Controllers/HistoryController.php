@@ -41,7 +41,7 @@ class HistoryController extends Controller
         'weather' => $weather,
       ]);
 
-      $imgUri = $request->file('image')->storeAs('public/historyImgs', "$historyNo-$substanceNo.png");
+      $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
       DB::table('history_imgs')->insert([
         'substance' => $substanceNo,
@@ -94,9 +94,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null  && $img->img_url!="noIMG")
-          $result["url"] = "http://163.44.166.91/LEARnFUN/public/storage/$img->img_url";
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
+        if ($img!=null  && $img->img_url!="noIMG")
+          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -114,9 +114,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null  && $img->img_url!="noIMG")
-          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
+        if ($img!=null  && $img->img_url!="noIMG")
+          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
       return $result;
@@ -132,9 +132,9 @@ class HistoryController extends Controller
       foreach ($historySubstances as $history) {
         $result["place"]["content".$historyIndex] = ["content" => $history->substance, "weather" => $history->weather];
         $historyIndex++;
-        $img = DB::table('history_imgs')->where('substance', $history->no)->orderBy('no', 'desc')->first();
-        if($img!=null  && $img->img_url!="noIMG")
-          $result["url"] = "http://163.44.166.91/LEARnFUN/storage/$img->img_url";
+        $img = DB::table('history_imgs')->where('substance', $history->no)->first();
+        if ($img!=null  && $img->img_url!="noIMG")
+          $result["place"]["content".$historyIndex]["url"] = "https://163.44.166.91/LEARnFUN/storage/app/$img->img_url";
       }
       // dd($result);
       return $result;
