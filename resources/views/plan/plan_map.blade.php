@@ -22,13 +22,13 @@
   {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
-  
+
   <script type = "text/javascript">
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-    
-    @for ( $i = 0; $i <$search_list_count ; $i++) 
+
+    @for ( $i = 0; $i <$search_list_count ; $i++)
     $("#view_calendar{{$i}}").fullCalendar({
       locale: 'ko',
       header: {
@@ -60,12 +60,12 @@
     });
     //페이지 로드를 위한 꼼수
     $("#showModal{{$i}}").on('click', function () {
-      $('#like_list{{$i}}').modal('show'); 
+      $('#like_list{{$i}}').modal('show');
       window.setTimeout(clickNextPrev, 200);
       console.log('1번');
       $("#view_calendar{{$i}}").fullCalendar('render');
       console.log('2번');
-    }); 
+    });
 
     @endfor
     // var fuck = new Array("2017","5","20","11","30","0","0");
@@ -83,7 +83,7 @@
   			selectHelper: true,
         firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
   			select: inputscheduel,
-        
+
   			editable: true,
   			eventLimit: true, // allow "more" link when too many events
         // * * * * * * * * 데이터 불러오기 * * * * * * * *
@@ -116,7 +116,7 @@
         }
         $('#calendar').fullCalendar('unselect');
       }
-      
+
       //버튼 클릭시 동작하는버튼
       $(document).on("click","#addscheduel",function(){
         var title = $("#addscheduel").prev().text();
@@ -132,7 +132,7 @@
         $('#calendar').fullCalendar('unselect');
       });
       // 현제 보고 있는 날짜의 정보를 가져옴
-      // 왼쪽(이전) 버튼을 클릭하였을 경우 
+      // 왼쪽(이전) 버튼을 클릭하였을 경우
     jQuery("button.fc-prev-button").click(function() {
         var date = jQuery("#calendar").fullCalendar("getDate");
         convertDate(date);
@@ -176,15 +176,15 @@
               start = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
-          if(clientEvents[i]['end'] != null){  
+          if(clientEvents[i]['end'] != null){
               end = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
-      document.plan_map_write.action = "{{route('map.store')}}";
+      document.plan_map_write.action = "{{route('map.store',$plan_no)}}";
       document.plan_map_write.submit();
-      
-    
+
+
     });
   });
     </script>
@@ -229,7 +229,7 @@
         // Add a listener for the click event
         // 클릭시 위도 경도 를 더하는 함수를 호출
         map.addListener('click', addLatLng);
-        
+
         //********************  검색  ********************
         // Create the search box and link it to the UI element.
         // 검색 창에 대한 설정
@@ -245,11 +245,11 @@
           if(searchInput){
                 $.ajax({
                 url: 'http://ko.wikipedia.org/w/api.php',
-                data: { 
-                        action: 'query', 
+                data: {
+                        action: 'query',
                         list: 'search',
-                        srsearch:searchInput , 
-                        format: 'json' 
+                        srsearch:searchInput ,
+                        format: 'json'
                       },
                 dataType: 'jsonp',
                 success: function processResult(apiResult){
@@ -265,7 +265,7 @@
               }
             });
             }
-            //위키피디아 
+            //위키피디아
             // infoResult(searchInput);
         });
 
@@ -331,7 +331,7 @@
         });
      }//init() End
      //****************** 위키피디아에서 받아오는 정보 표시******************
-     
+
     // function infoResult(argSearchInput){
     //    SearchInput = argSearchInput;
     //    var url="http://ko.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchInput+"&redirects&prop=text&callback=?";
@@ -346,7 +346,7 @@
      function addLatLng(event) {
        path = poly.getPath();
 
-       //클릭한 위치의 위도 경도 정보 받아오기 
+       //클릭한 위치의 위도 경도 정보 받아오기
        //  var tmpcenter = map.getCenter();
        // 위도 경도 뜨는 위치 확인용
        //  document.getElementById("LntLng").append(tmpcenter);
@@ -377,7 +377,7 @@
       //   // marker.setMap(map);
       //   poly.setMap(map);
       // }
-    
+
 
     </script>
     <script async defer
