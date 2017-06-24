@@ -46,15 +46,15 @@ class MapController extends Controller
         
         
         for($i=0; $i<count($details); $i++) {
-            // $replacedTime = str_replace("T", " ", $details[$i]['start']);
-            // $replacedTime = str_split($replacedTime, 19);
-            // $start = $replacedTime[0];
-            // $replacedTime = str_replace("T", " ", $details[$i]['end']);
-            // $replacedTime = str_split($replacedTime, 19);
-            // $end = $replacedTime[0];
+            $replacedTime = str_replace("T", " ", $details[$i]['start']);
+            $replacedTime = str_split($replacedTime, 19);
+            $start = $replacedTime[0];
+            $replacedTime = str_replace("T", " ", $details[$i]['end']);
+            $replacedTime = str_split($replacedTime, 19);
+            $end = $replacedTime[0];
 
-            $start = explode(",", $details[$i]['start']);
-            $end = explode(",", $details[$i]['end']);
+            // $start = explode(",", $details[$i]['start']);
+            // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
             
@@ -63,8 +63,8 @@ class MapController extends Controller
                 'place' => $placeNo,
                 'plan' => $planNo,
                 // if 2015->2017
-                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', "2015-$start[1]-$start[2] $start[3]:$start[4]:00"),
-                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', "2015-$end[1]-$end[2] $end[3]:$end[4]:00"),
+                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
+                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
             ]);
         }
         return redirect()->route('plan.teacher');
