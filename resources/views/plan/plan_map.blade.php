@@ -25,13 +25,48 @@
   {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
-  
+
   <script type = "text/javascript">
   
   var share_plan = new Array();
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
+<<<<<<< HEAD
+    for (var i = 0; i <5 ; i++) {
+      $("#like_list"+i).on('shown.bs.modal', function () {
+       $("#view_calendar"+i).fullCalendar('render');
+     });
+
+
+    $('#view_calendar'+i).fullCalendar({
+      locale: 'ko',
+      header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'agendaDay'
+      },
+      defaultView: 'agendaDay',
+      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+      navLinks: true, // can click day/week names to navigate views
+      selectable: false,
+      selectHelper: true,
+      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+      events:[
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T10:00'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T12:00'
+        },
+      ]
+=======
 
     
       
@@ -101,6 +136,7 @@
           
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
     });
     
     // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
@@ -120,7 +156,7 @@
   			selectHelper: true,
         firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
   			select: inputscheduel,
-        
+
   			editable: true,
   			eventLimit: true, // allow "more" link when too many events
         // * * * * * * * * 데이터 불러오기 * * * * * * * *
@@ -159,7 +195,7 @@
         }
         $('#calendar').fullCalendar('unselect');
       }
-      
+
       //버튼 클릭시 동작하는버튼
       $(document).on("click","#addscheduel",function(){
         var title = $("#addscheduel").prev().text();
@@ -175,7 +211,7 @@
         $('#calendar').fullCalendar('unselect');
       });
       // 현제 보고 있는 날짜의 정보를 가져옴
-      // 왼쪽(이전) 버튼을 클릭하였을 경우 
+      // 왼쪽(이전) 버튼을 클릭하였을 경우
     jQuery("button.fc-prev-button").click(function() {
         var date = jQuery("#calendar").fullCalendar("getDate");
         convertDate(date);
@@ -220,15 +256,15 @@
               start = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
-          if(clientEvents[i]['end'] != null){  
+          if(clientEvents[i]['end'] != null){
               end = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
       document.plan_map_write.action = "{{route('map.store')}}";
       document.plan_map_write.submit();
-      
-    
+
+
     });
   });
     </script>
@@ -273,7 +309,7 @@
         // Add a listener for the click event
         // 클릭시 위도 경도 를 더하는 함수를 호출
         map.addListener('click', addLatLng);
-        
+
         //********************  검색  ********************
         // Create the search box and link it to the UI element.
         // 검색 창에 대한 설정
@@ -289,11 +325,11 @@
           if(searchInput){
                 $.ajax({
                 url: 'http://ko.wikipedia.org/w/api.php',
-                data: { 
-                        action: 'query', 
+                data: {
+                        action: 'query',
                         list: 'search',
-                        srsearch:searchInput , 
-                        format: 'json' 
+                        srsearch:searchInput ,
+                        format: 'json'
                       },
                 dataType: 'jsonp',
                 success: function processResult(apiResult){
@@ -309,6 +345,11 @@
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
               }  //위키피디아 
             });
+<<<<<<< HEAD
+            }
+            //위키피디아
+            // infoResult(searchInput);
+=======
             $.ajax({
             url: '{{route('map.search')}}',
             type:'POST',
@@ -337,6 +378,7 @@
            // 검색정보 + 검색된 결과 겟수  
            
          }
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
         });
 
         // 검색 부분 마커
@@ -401,7 +443,7 @@
         });
      }//init() End
      //****************** 위키피디아에서 받아오는 정보 표시******************
-     
+
     // function infoResult(argSearchInput){
     //    SearchInput = argSearchInput;
     //    var url="http://ko.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchInput+"&redirects&prop=text&callback=?";
@@ -416,7 +458,7 @@
      function addLatLng(event) {
        path = poly.getPath();
 
-       //클릭한 위치의 위도 경도 정보 받아오기 
+       //클릭한 위치의 위도 경도 정보 받아오기
        //  var tmpcenter = map.getCenter();
        // 위도 경도 뜨는 위치 확인용
        //  document.getElementById("LntLng").append(tmpcenter);
@@ -447,7 +489,7 @@
       //   // marker.setMap(map);
       //   poly.setMap(map);
       // }
-    
+
 
     </script>
     <script async defer
@@ -473,6 +515,10 @@
         position: relative;
       }
     </style>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
 <div class="bluedecobar">
 </div>
 <div id="madal_palce">
@@ -599,7 +645,41 @@
                   
                   </tbody>
                 </table>
+<<<<<<< HEAD
+                @for ($t=0; $t <5 ; $t++)
+                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-bordered table-striped">
+                            <thead>
+                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
+                              <th>김개똥</th> {{-- $like_name --}}
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="2">흐미 불국사 지리구요</td>
+
+                              </tr>
+                            </tbody>
+                              <div id="view_calendar"></div>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endfor
+=======
                   
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">

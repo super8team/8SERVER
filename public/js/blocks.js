@@ -929,11 +929,9 @@ Blockly.Blocks['image_1'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지1');
-
-        // .appendField(new Blockly.storageImage());
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');

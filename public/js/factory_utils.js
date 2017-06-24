@@ -45,7 +45,7 @@ goog.provide('FactoryUtils');
  * @return {string} Block definition.
  */
 
-
+ var abcnumber = 1;
  var detail  = new Array();
  var imgArgs = new Array();
 
@@ -420,31 +420,63 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
   while (contentsBlock) {
     if (!contentsBlock.disabled && !contentsBlock.getInheritedDisabled()) {
+      console.log('실험1');
 
       var input = {};
+      var cform = document.form_name;
+      var ex;
+      var ex2;
 
+      console.log(contentsBlock.type);
       switch(contentsBlock.type){
         case 'image_1':
             input.id = '1';
-          break;
+            var elements = document.getElementsByClassName('file_list');
+            if(abcnumber == 1){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
+            break;
         case 'image_2':
             input.id = '2';
+            if(abcnumber == 2){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
+            input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_3':
             input.id = '3';
+            if(abcnumber == 3){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
+            input.src = document.getElementsByClassName('file_list')[3].value;
           break;
         case 'image_4':
             input.id = '4';
+            if(abcnumber == 4){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
+            input.src = document.getElementsByClassName('file_list')[4].value;
           break;
       }
+      var a = document.getElementsByClassName('file_list')
+      console.log(a);
+      console.log(a[0]);
+
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
-        input.src = contentsBlock.getFieldValue('SRC');
+        // input.src = contentsBlock.getFieldValue('SRC');
         input.width = contentsBlock.getFieldValue('WIDTH');
         input.height = contentsBlock.getFieldValue('HEIGHT');
       }
-
       args.push(input);
       message.push('%' + args.length);
       lastInput = contentsBlock;
@@ -453,7 +485,6 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       for(var i = 0; i<args.length; i++){
         console.log(args[i].src);
       }
-
     }
     contentsBlock = contentsBlock.nextConnection &&
         contentsBlock.nextConnection.targetBlock();

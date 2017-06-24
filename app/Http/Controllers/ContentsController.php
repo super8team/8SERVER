@@ -229,13 +229,13 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
     public function share()
     {
-        $popularPackageIds   = [];
-        $popularPackageImgs = [];
-        $otherPackageInfor  = [];
+        $popularPackageIds    = [];
+        $popularPackageImgs   = [];
+        $otherPackageInfor    = [];
         $popularPackageInfor  = [];
-        $popularPackages  = DB::table('contents_package_Shares')->orderBy('views', 'desc')->take(3)->get();
+        $popularPackages      = DB::table('contents_package_Shares')->orderBy('views', 'desc')->take(3)->get();
 
-        $otherPackages    = DB::table('contents_package_Shares')->orderBy('views', 'asc ')->take(6)->get();
+        $otherPackages        = DB::table('contents_package_Shares')->orderBy('views', 'asc ')->take(6)->get();
 
         foreach ($popularPackages as $popularPackage ) {
             array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
@@ -401,9 +401,10 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               $contents_array[$i]['xml']  = $contents[$i]->xml;
               $contents_array[$i]['spec'] = $contents[$i]->spec;
             }
-
             return $contents_array;
+            
       }
+
     }
 
     public function storageNewContent(Request $request)
@@ -530,7 +531,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $package_num      = $request->input('package_name');
         $content          = $request->input('content');
         $contents_infor   = [];
-        
+
         //자신의 패키지에 다운받으려먼 콘텐츠의 정보들을 가져온다.
         for($i=0; $i<count($content); $i++){
           $contents_infor[$i] = DB::table('contents')->where('no',$content[$i])->first();
