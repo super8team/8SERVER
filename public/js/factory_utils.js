@@ -433,26 +433,36 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
             if(abcnumber == 1){
-            console.log(abcnumber);
-            cform.upFile.click();
-            abcnumber++;
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
             }
             break;
         case 'image_2':
             input.id = '2';
             if(abcnumber == 2){
-            console.log(abcnumber);
-            cform.upFile.click();
-            abcnumber++;
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
             }
             input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_3':
             input.id = '3';
+            if(abcnumber == 3){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
             input.src = document.getElementsByClassName('file_list')[3].value;
           break;
         case 'image_4':
             input.id = '4';
+            if(abcnumber == 4){
+              console.log(abcnumber);
+              cform.upFile.click();
+              abcnumber++;
+            }
             input.src = document.getElementsByClassName('file_list')[4].value;
           break;
       }
