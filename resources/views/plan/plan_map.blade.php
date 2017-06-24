@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','플랜 맵 ')
+@section('title','테스트22 ')
 
 @section('content')
 @php
@@ -14,6 +14,8 @@
   // $transpotation ='수국';
   // $search_list_count =1;
   // $plan_no = 9;
+  // $test_count =2;
+  // $j=0; 
 @endphp
   <!DOCTYPE html>
 <html>
@@ -23,50 +25,87 @@
   {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
-
+  
   <script type = "text/javascript">
+  
+  var share_plan = new Array();
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
 
-    @for ( $i = 0; $i <5 ; $i++)
-    $("#view_calendar{{$i}}").fullCalendar({
-      locale: 'ko',
-      header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'agendaDay'
-      },
-      defaultView: 'agendaDay',
-      defaultDate: '2017-06-20',{{--$search_plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
-      navLinks: true, // can click day/week names to navigate views
-      selectable: false,
-      selectHelper: true,
-      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-      events: {
-              // 여기에 검색한 결과 추가 할 것
-                url: '{{route('map.getTimeTable')}}',
-                type:'POST',
-                 dataType: 'json',
-            },
-      // eventSources: [{
-      // url: '{{--route('map.getTimeTable')--}}',
-      // // url: '{{--route('map.getTimeTable',$test_no)--}}',
-      // dataType: 'json',
-      // // async: false,
-      // type: 'POST'
-      // }],
+    
+      
+    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
+    $(document).on('click','.modal_btn',function(){
+        // 클릭한 버튼 의 id 가저오기
+        var id = $(this).attr('id');
+        console.log('클릭한 버튼 id :'+id);
+        //데이터 가저오기
+        // 검색하면 자동으로 값이 정의 됨share_plan[id][]
+        
+        // 미리 생성된 캘린더 있는 경우를 대비해 비워줌
+        $("#view_calendar_place").empty();
+        $("#modal_info").empty();
+        // 캘린더 생성
+        $("#view_calendar_place").append(
+          "<div id='view_calendar'></div>"
+        );
+        //값 변경
+        console.log('객체 출력결1 ');    
+        console.log(share_plan); 
+        $("#modal_info").append(
+          "<tr>"+
+            "<td >"+share_plan[id]['school_name']+"</td>"+
+            "<td>"+share_plan[id]['plan_teacher']+"</td>"+
+          "</tr>"+
+          "<tr>"+
+            "<td colspan='2' >팁!</td>"+
+          "</tr>"+
+          "<tr>"+
+            "<td colspan='2' >"+share_plan[id]['plan_tip']+"</td>"+
+          "</tr>"
+        );
+        $("#view_calendar").fullCalendar({
+          locale: 'ko',
+          header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'agendaDay'
+          },
+          defaultView: 'agendaDay',
+          defaultDate: '2017-06-20',{{--$search_plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+          navLinks: true, // can click day/week names to navigate views
+          selectable: false,
+          selectHelper: true,
+          firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+          
+          events: {
+                    url: '{{route('map.getTimeTable')}}',
+                    type:'POST',
+                    dataType: 'json',
+                    data:{
+                      plan_no :share_plan[id]['plan_no']
+                    }
+                },
+        });
+        function day(){
+          if(share_plan[id]['plan_date'] != null){
+            return share_plan[id]['plan_date'];
+          }else{
+            console.log('error!');
+            return '2017-06-20';
+          }
+        }
+        //
+          $('#result_modal').modal('show');
+          
+          window.setTimeout(clickNextPrev, 200);
+          $("#view_calendar").fullCalendar('render');
     });
-    //페이지 로드를 위한 꼼수
-    $("#showModal{{$i}}").on('click', function () {
-      $('#like_list{{$i}}').modal('show');
-      //버튼 클릭 함수 호출
-      window.setTimeout(clickNextPrev, 200);
-      $("#view_calendar{{$i}}").fullCalendar('render');
-    });
-
-    @endfor
-    // var fuck = new Array("2017","5","20","11","30","0","0");
+    
+    // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
+  
+    
   		$('#calendar').fullCalendar({
         locale: 'ko',
   			header: {
@@ -81,29 +120,29 @@
   			selectHelper: true,
         firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
   			select: inputscheduel,
-
+        
   			editable: true,
   			eventLimit: true, // allow "more" link when too many events
         // * * * * * * * * 데이터 불러오기 * * * * * * * *
         // 방법 1 json data 가저오기
-        // eventSources: [{
-        // url: '{{--route('map.getTimeTable')--}}',
-        // // url: '{{--route('map.getTimeTable',$test_no)--}}',
-        // dataType: 'json',
-        // async: false,
-        // type: 'POST'
-        // data: {
-        //     flg: 1
-        // },
-            // error: function () {
-            //   alert("data load is fail.")
-            // }
-        // }],
-        events: {
-                  url: '{{route('map.getTimeTable')}}',
-                  type:'POST',
-                  dataType: 'json',
-              },
+        eventSources: [{
+        url: '{{route('map.getTimeTable')}}',
+        // url: '{{--route('map.getTimeTable',$test_no)--}}',
+        dataType: 'json',
+        async: false,
+        type: 'POST',
+        data:{
+          plan_no : {{$plan_no}}
+        },
+            error: function () {
+              console.log("data load is fail.")
+            }
+        }],
+        // events: {
+        //           url: '{{--route('map.getTimeTable')--}}',
+        //           type:'POST',
+        //           dataType: 'json',
+        //       },
   		});
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
@@ -120,7 +159,7 @@
         }
         $('#calendar').fullCalendar('unselect');
       }
-
+      
       //버튼 클릭시 동작하는버튼
       $(document).on("click","#addscheduel",function(){
         var title = $("#addscheduel").prev().text();
@@ -136,7 +175,7 @@
         $('#calendar').fullCalendar('unselect');
       });
       // 현제 보고 있는 날짜의 정보를 가져옴
-      // 왼쪽(이전) 버튼을 클릭하였을 경우
+      // 왼쪽(이전) 버튼을 클릭하였을 경우 
     jQuery("button.fc-prev-button").click(function() {
         var date = jQuery("#calendar").fullCalendar("getDate");
         convertDate(date);
@@ -162,6 +201,7 @@
       var dd = this.getDate().toString();
       return yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
   }
+  //캘린더 로드를 위한 꼼수
   function clickNextPrev() {
     $('.fc-next-button').click();
     $('.fc-prev-button').click();
@@ -180,15 +220,15 @@
               start = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
-          if(clientEvents[i]['end'] != null){
+          if(clientEvents[i]['end'] != null){  
               end = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
-      // document.plan_map_write.action = "{{--route('map.store',$plan_no)--}}";
+      document.plan_map_write.action = "{{route('map.store')}}";
       document.plan_map_write.submit();
-
-
+      
+    
     });
   });
     </script>
@@ -233,7 +273,7 @@
         // Add a listener for the click event
         // 클릭시 위도 경도 를 더하는 함수를 호출
         map.addListener('click', addLatLng);
-
+        
         //********************  검색  ********************
         // Create the search box and link it to the UI element.
         // 검색 창에 대한 설정
@@ -249,15 +289,16 @@
           if(searchInput){
                 $.ajax({
                 url: 'http://ko.wikipedia.org/w/api.php',
-                data: {
-                        action: 'query',
+                data: { 
+                        action: 'query', 
                         list: 'search',
-                        srsearch:searchInput ,
-                        format: 'json'
+                        srsearch:searchInput , 
+                        format: 'json' 
                       },
                 dataType: 'jsonp',
                 success: function processResult(apiResult){
                   $('#display-result').empty();
+                  result_search
                  // 검색 결과 목록을 모두 부를 경우
                  //  for (var i = 0; i < apiResult.query.search.length; i++){
                  //     $('#display-result').append('<p>'+apiResult.query.search[i].title+'</p>');
@@ -266,55 +307,36 @@
                  //일정을 추가할 버튼 생성
                  $('#display-result').append('<p">'+title+'</p>')
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
-              }
+              }  //위키피디아 
             });
             $.ajax({
-              url: '{{route('map.search')}}',
-              type:'POST',
-              data:{
-                niddle:searchInput
-              },
-              dataType: 'jsonp',
-              success: function processResult(arg_share_plan){
-                console.log("콘솔콘솔");
-                var share_plan = Array;
-                share_plan = arg_share_plan;
-               //일정을 추가할 버튼 생성
-               for (var i = 0; i < share_plan.length; i++) {
-                 @php $j=0; @endphp
-                 $('#result_search').append(
-                   "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+share_plan[i]['plan_teacher']+"</td><td>"+
-                   "<button type='button' class='btn btn-sm btn-default' data-toggle='modal' id='showModal"+i+"'>보기</button></td></tr>"
-                 );
-                 $('#modal_place').append(
-                   "<div class='modal modal fade ' id=like_list tabindex='-1' role='dialog' aria-labelledby='like_list_label"+i+"' aria-hidden='true'>"+
-                     "<div class='modal-dialog'>"+
-                       "<div class='modal-content'>"+
-                         "<div class='modal-header'>"+
-                           "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+
-                           "<h4 class='modal-title' id='like_list_label"+i+"'>공유 정보</h4>"+
-                         "</div>"+
-                         "<div class='modal-body'>"+
-                          "<table class='table table-bordered table-striped'>"+
-                             "<thead>"+
-                               "<th>"+share_plan[i]['school_name']+"</th>"+
-                               "<th>"+share_plan[i]['plan_teacher']+"</th>"+
-                             "</thead>"+
-                             "<tbody><tr><td colspan='2'>흐미 불국사 지리구요</td></tr></tbody>"+
-                           "</table>"+
-                           "<div id='view_calendar"+i+"'></div></div>"+
-                        " <div class='modal-footer'>"+
-                           "<form class='form' action='http://127.0.0.1/map/"+i+"/edit' method='post'>"+
-                             "<button type='submitbtn' class='btn btn-default'>계획 가저오기</button>"+
-                             "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"+
-                           "</form></div></div></div></div>"
-                 );
-               }
-            }
-            });
-            }
-            //위키피디아
-            // infoResult(searchInput);
+            url: '{{route('map.search')}}',
+            type:'POST',
+            data:{
+              niddle:searchInput
+            },
+            dataType: 'json',
+             success: function processResult(arg_share_plan){
+               share_plan = arg_share_plan;
+               console.log('객체 출력결과1 ');    
+               console.log(share_plan);        
+               $('#result_search').empty();    
+                 for (var i = 0; i <share_plan.length ; i++) {
+                   $('#result_search').append(
+                     "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+  share_plan[i]['plan_teacher']+"</td>"+
+                     "<td><button type='button' class='btn btn-sm btn-default modal_btn' data-toggle='modal' id='"+i+"'>보기</button></td></tr>"
+                   );
+                 }
+                  
+             },
+             error: function error (e) {
+               console.log(e);
+            
+             }
+           });
+           // 검색정보 + 검색된 결과 겟수  
+           
+         }
         });
 
         // 검색 부분 마커
@@ -379,7 +401,7 @@
         });
      }//init() End
      //****************** 위키피디아에서 받아오는 정보 표시******************
-
+     
     // function infoResult(argSearchInput){
     //    SearchInput = argSearchInput;
     //    var url="http://ko.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchInput+"&redirects&prop=text&callback=?";
@@ -394,7 +416,7 @@
      function addLatLng(event) {
        path = poly.getPath();
 
-       //클릭한 위치의 위도 경도 정보 받아오기
+       //클릭한 위치의 위도 경도 정보 받아오기 
        //  var tmpcenter = map.getCenter();
        // 위도 경도 뜨는 위치 확인용
        //  document.getElementById("LntLng").append(tmpcenter);
@@ -425,7 +447,7 @@
       //   // marker.setMap(map);
       //   poly.setMap(map);
       // }
-
+    
 
     </script>
     <script async defer
@@ -454,7 +476,47 @@
 <div class="bluedecobar">
 </div>
 <div id="madal_palce">
-
+  {{-- 모달 --}}
+  <div class="modal modal fade " id="result_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_label" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <h4 class="modal-title" id="result_modal_label">공유 정보</h4>
+         </div>
+         <div class="modal-body">
+           <table class="table table-bordered table-striped">
+             <thead>
+               <th>작성한 학교</th>
+               <th>작성자</th> 
+               
+             </thead>
+             <tbody id="modal_info">
+               <tr>
+                 <td id="school">학교</td>
+                 <td id="writer">작성자</td>
+               </tr>
+               <tr>
+                 <td colspan="2" id="tip">흐미 불국사 지리구요</td>
+               </tr>
+             </tbody>
+           </table>
+           <div id="view_calendar_place">
+             <div id="view_calendar">
+               
+             </div>
+           </div>
+         </div>
+         <div class="modal-footer">
+           
+           <form class="form" action="" method="post">
+             <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
 </div>
 <div class="bluebg">
   <div class="container">
@@ -534,39 +596,10 @@
                     <th>링크 버튼</th>
                   </thead>
                   <tbody id="result_search">
-
+                  
                   </tbody>
                 </table>
-                  {{-- <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
-                        </div>
-                        <div class="modal-body">
-                          <table class="table table-bordered table-striped">
-                            <thead>
-                              <th>길주 초등학교</th>
-                              <th>권 웅</th>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td colspan="2">흐미 불국사 지리구요</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <div id="view_calendar$t"></div>
-                        </div>
-                        <div class="modal-footer">
-                          <form class="form" action="route('map.edit',$plan_no)" method="post">
-                            <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div> --}}
+                  
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
@@ -588,7 +621,7 @@
                   </ul>
                 </nav>
                 <div id="script-warning">
-
+                  
                 </div>
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
@@ -602,9 +635,10 @@
           </div>
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-              <form class="form" name="plan_map_write" method="post">
+            <p><a id="addsavetest" class="btn btn-lg btn-warning btn-block">저장 테스트</a></p>
+              <form class="form" name="plan_map_write" method="post" >
                 {{ csrf_field() }}
-                <input type="hidden" name="plan_no" value="{{--$plan_no--}}">
+                <input type="hidden" name="plan_no" value="{{$plan_no}}">
                 <div id ="saveZone">
                 </div>
               </form>
