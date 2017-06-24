@@ -38,6 +38,13 @@ class MapController extends Controller
         $details = $request->saveEvent; // 이름
         $chngedTime = [];
 
+        $detailPlans = \DB::table('detail_plans')->where('plan', $planNo)->get();
+        foreach ($detailPlans as $detail) {
+            \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->delete();
+            \DB::table('detail_plans')->where('no', $detail->no)->delete();
+        }
+        
+        
         for($i=0; $i<count($details); $i++) {
             // $replacedTime = str_replace("T", " ", $details[$i]['start']);
             // $replacedTime = str_split($replacedTime, 19);
@@ -52,7 +59,6 @@ class MapController extends Controller
             // $placeNo = 5; // 더미
             
             $re = [];
-            \DB::table('detail_plans')->where('plan', $planNo)->delete();
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
@@ -122,7 +128,6 @@ class MapController extends Controller
         }
 
         return view('plan.plan_map', [
-            'plan_date' => \Carbon\Carbon::now(),
             'teacher_name' => $teacher->name,
             'plan_no' => $id,
             'plan_title' => $plan_title,
@@ -238,6 +243,8 @@ class MapController extends Controller
                               'plan_no' => $plan->no,
                               'plan_teacher' => $teacher->name,
                               'school_name' => $school->name,
+                              'plan_date' => str_split($plan->at, 10)[0],
+                              'plan_tip' => $share->comment,
                           ];
                     }
                 }
