@@ -1,31 +1,38 @@
 @extends('master')
 
-@section('title','플랜 맵 테스트 페이지')
+@section('title','테스트22 ')
 
 @section('content')
 @php
-  $plan_date = "2017-06-20";
-  $plan_title = "suck";
-  $teacher_name = '개나리';
-  $trip_kind_value = '종말여행';
-  $unattend_student_count ='1';
-  $attend_class_count='1';
-  $attend_student_coutn='1';
-  $transpotation ='수국';
+  // $plan_date = "2017-06-20";
+  // $plan_title = "플랜타이틀";
+  // $teacher_name = '개나리';
+  // $trip_kind_value = '종말여행';
+  // $unattend_student_count ='1';
+  // $attend_class_count='1';
+  // $attend_student_count='1';
+  // $transpotation ='수국';
+  // $search_list_count =1;
+  // $plan_no = 9;
+  // $test_count =2;
+  // $j=0; 
 @endphp
   <!DOCTYPE html>
 <html>
   <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.css')}}" rel='stylesheet' />
   <link  href  = "{{asset('fullcalendar-3.4.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
   <script src  = "{{asset('fullcalendar-3.4.0/lib/moment.min.js')}}"></script>
-  <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script>
+  {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
 
   <script type = "text/javascript">
+  
+  var share_plan = new Array();
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
+<<<<<<< HEAD
     for (var i = 0; i <5 ; i++) {
       $("#like_list"+i).on('shown.bs.modal', function () {
        $("#view_calendar"+i).fullCalendar('render');
@@ -59,15 +66,88 @@
           start: '2017-06-20T12:00'
         },
       ]
+=======
+
+    
+      
+    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
+    $(document).on('click','.modal_btn',function(){
+        // 클릭한 버튼 의 id 가저오기
+        var id = $(this).attr('id');
+        console.log('클릭한 버튼 id :'+id);
+        //데이터 가저오기
+        // 검색하면 자동으로 값이 정의 됨share_plan[id][]
+        
+        // 미리 생성된 캘린더 있는 경우를 대비해 비워줌
+        $("#view_calendar_place").empty();
+        $("#modal_info").empty();
+        // 캘린더 생성
+        $("#view_calendar_place").append(
+          "<div id='view_calendar'></div>"
+        );
+        //값 변경
+        console.log('객체 출력결1 ');    
+        console.log(share_plan); 
+        $("#modal_info").append(
+          "<tr>"+
+            "<td >"+share_plan[id]['school_name']+"</td>"+
+            "<td>"+share_plan[id]['plan_teacher']+"</td>"+
+          "</tr>"+
+          "<tr>"+
+            "<td colspan='2' >팁!</td>"+
+          "</tr>"+
+          "<tr>"+
+            "<td colspan='2' >"+share_plan[id]['plan_tip']+"</td>"+
+          "</tr>"
+        );
+        $("#view_calendar").fullCalendar({
+          locale: 'ko',
+          header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'agendaDay'
+          },
+          defaultView: 'agendaDay',
+          defaultDate: '2017-06-20',{{--$search_plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+          navLinks: true, // can click day/week names to navigate views
+          selectable: false,
+          selectHelper: true,
+          firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+          
+          events: {
+                    url: '{{route('map.getTimeTable')}}',
+                    type:'POST',
+                    dataType: 'json',
+                    data:{
+                      plan_no :share_plan[id]['plan_no']
+                    }
+                },
+        });
+        function day(){
+          if(share_plan[id]['plan_date'] != null){
+            return share_plan[id]['plan_date'];
+          }else{
+            console.log('error!');
+            return '2017-06-20';
+          }
+        }
+        //
+          $('#result_modal').modal('show');
+          
+          window.setTimeout(clickNextPrev, 200);
+          $("#view_calendar").fullCalendar('render');
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
     });
-    }
-    // var fuck = new Array("2017","5","20","11","30","0","0");
+    
+    // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
+  
+    
   		$('#calendar').fullCalendar({
         locale: 'ko',
   			header: {
   				left: 'prev,next today',
   				center: 'title',
-  				right: 'agendaDay'
+  				right: 'month,agendaWeek,agendaDay,listWeek'
   			},
         defaultView: 'agendaDay',
   			defaultDate: '{{$plan_date}}', //이걸 이용하여 날짜 시작일을 설정?
@@ -83,16 +163,22 @@
         // 방법 1 json data 가저오기
         eventSources: [{
         url: '{{route('map.getTimeTable')}}',
+        // url: '{{--route('map.getTimeTable',$test_no)--}}',
         dataType: 'json',
-        // async: false,
+        async: false,
         type: 'POST',
-        // data: {
-        //     flg: 1
-        // },
-            // error: function () {
-            //   alert("data load is fail.")
-            // }
+        data:{
+          plan_no : {{$plan_no}}
+        },
+            error: function () {
+              console.log("data load is fail.")
+            }
         }],
+        // events: {
+        //           url: '{{--route('map.getTimeTable')--}}',
+        //           type:'POST',
+        //           dataType: 'json',
+        //       },
   		});
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
@@ -151,6 +237,11 @@
       var dd = this.getDate().toString();
       return yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
   }
+  //캘린더 로드를 위한 꼼수
+  function clickNextPrev() {
+    $('.fc-next-button').click();
+    $('.fc-prev-button').click();
+  }
     $(document).on("click","#addsave",function(){
       $('#calendar').fullCalendar('updateEvents', event);
       var clientEvents = new Object();
@@ -160,14 +251,14 @@
       //이벤트 겠수 만큼 돌아서 데이터를 뽑아냄
       for (var i = 0; i < clientEvents.length; i++) {
         var title = clientEvents[i]['title'];
-        $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][0]' value='"+title+"'>");
+        $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][title]' value='"+title+"'>");
           if(clientEvents[i]['start']['_i'] != null){
               start = clientEvents[i]['start']['_i'];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][1]' value='"+start+"'>");
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
           if(clientEvents[i]['end'] != null){
               end = clientEvents[i]['start']['_i'];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][2]' value='"+end+"'>");
+              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
       document.plan_map_write.action = "{{route('map.store')}}";
@@ -243,6 +334,7 @@
                 dataType: 'jsonp',
                 success: function processResult(apiResult){
                   $('#display-result').empty();
+                  result_search
                  // 검색 결과 목록을 모두 부를 경우
                  //  for (var i = 0; i < apiResult.query.search.length; i++){
                  //     $('#display-result').append('<p>'+apiResult.query.search[i].title+'</p>');
@@ -251,11 +343,42 @@
                  //일정을 추가할 버튼 생성
                  $('#display-result').append('<p">'+title+'</p>')
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
-              }
+              }  //위키피디아 
             });
+<<<<<<< HEAD
             }
             //위키피디아
             // infoResult(searchInput);
+=======
+            $.ajax({
+            url: '{{route('map.search')}}',
+            type:'POST',
+            data:{
+              niddle:searchInput
+            },
+            dataType: 'json',
+             success: function processResult(arg_share_plan){
+               share_plan = arg_share_plan;
+               console.log('객체 출력결과1 ');    
+               console.log(share_plan);        
+               $('#result_search').empty();    
+                 for (var i = 0; i <share_plan.length ; i++) {
+                   $('#result_search').append(
+                     "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+  share_plan[i]['plan_teacher']+"</td>"+
+                     "<td><button type='button' class='btn btn-sm btn-default modal_btn' data-toggle='modal' id='"+i+"'>보기</button></td></tr>"
+                   );
+                 }
+                  
+             },
+             error: function error (e) {
+               console.log(e);
+            
+             }
+           });
+           // 검색정보 + 검색된 결과 겟수  
+           
+         }
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
         });
 
         // 검색 부분 마커
@@ -391,10 +514,55 @@
       .body {
         position: relative;
       }
-
     </style>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
 <div class="bluedecobar">
+</div>
+<div id="madal_palce">
+  {{-- 모달 --}}
+  <div class="modal modal fade " id="result_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_label" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <h4 class="modal-title" id="result_modal_label">공유 정보</h4>
+         </div>
+         <div class="modal-body">
+           <table class="table table-bordered table-striped">
+             <thead>
+               <th>작성한 학교</th>
+               <th>작성자</th> 
+               
+             </thead>
+             <tbody id="modal_info">
+               <tr>
+                 <td id="school">학교</td>
+                 <td id="writer">작성자</td>
+               </tr>
+               <tr>
+                 <td colspan="2" id="tip">흐미 불국사 지리구요</td>
+               </tr>
+             </tbody>
+           </table>
+           <div id="view_calendar_place">
+             <div id="view_calendar">
+               
+             </div>
+           </div>
+         </div>
+         <div class="modal-footer">
+           
+           <form class="form" action="" method="post">
+             <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
 </div>
 <div class="bluebg">
   <div class="container">
@@ -418,7 +586,7 @@
                     </tr>
                     <tr>
                       <td class='info bold'> 참여 학급수 </td> <td class="text-center">{{$attend_class_count}} </td>
-                      <td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_coutn}} </td>
+                      <td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_count}} </td>
                       <td class='info bold'> 미참여 학생수 </td> <td class="text-center">{{$unattend_student_count}} </td>
                     </tr>
                     <tr>
@@ -441,8 +609,7 @@
               <div class="panel-body">
                 <div id="map" style="min-height:500px;"></div>
               </div>
-              <!-- /.panel-body -->
-          </div><!-- /.panel -->
+          </div>
         </div>
         <div class="col-lg-4" id="show">
           <div class="panel panel-default">
@@ -468,26 +635,17 @@
                     </blockquote>
                   </div>
                 </div>
-                <table class="table table-bordered table-striped">
+                <table  class="table table-bordered table-striped">
                   <thead>
                     <th>작성한 학교</th>
                     <th>작성자</th>
                     <th>링크 버튼</th>
                   </thead>
-                  <tbody>
-                    @for ($t=0; $t <5 ; $t++)
-                      <tr>
-                        <td>헬조선 초등학교</td>{{-- $like_school_name --}}
-                        <td>김개똥</td>{{-- $like_name --}}
-                        <td>
-                          <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#like_list{{$t}}">
-                          보기
-                          </button>
-                        </td>
-                      </tr>
-                    @endfor
+                  <tbody id="result_search">
+                  
                   </tbody>
                 </table>
+<<<<<<< HEAD
                 @for ($t=0; $t <5 ; $t++)
                   <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
                     <div class="modal-dialog">
@@ -519,6 +677,9 @@
                     </div>
                   </div>
                 @endfor
+=======
+                  
+>>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
@@ -539,6 +700,9 @@
                     </li>
                   </ul>
                 </nav>
+                <div id="script-warning">
+                  
+                </div>
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
         </div> <!-- /.col-lg-4 -->
@@ -551,7 +715,10 @@
           </div>
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-              <form class="form" name="plan_map_write" method="post">
+            <p><a id="addsavetest" class="btn btn-lg btn-warning btn-block">저장 테스트</a></p>
+              <form class="form" name="plan_map_write" method="post" >
+                {{ csrf_field() }}
+                <input type="hidden" name="plan_no" value="{{$plan_no}}">
                 <div id ="saveZone">
                 </div>
               </form>
