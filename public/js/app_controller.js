@@ -667,16 +667,16 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
       self.closeModal();
     });
 
-  document.getElementById('registerContents').addEventListener('click',
-    function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=270';
-      window.open('/contents/registerToPlan', '콘텐츠 저장하기', popupOption);
-    });
-  document.getElementById('shareContentsButton').addEventListener('click',
-    function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
-      window.open('/contents/share', '창작공유마당', popupOption);
-    });
+  // document.getElementById('registerContents').addEventListener('click',
+  //   function(event){
+  //     var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=270';
+  //     window.open('/contents/registerToPlan', '콘텐츠 저장하기', popupOption);
+  //   });
+  // document.getElementById('shareContentsButton').addEventListener('click',
+  //   function(event){
+  //     var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
+  //     window.open('/contents/share', '창작공유마당', popupOption);
+  //   });
 
 };
 

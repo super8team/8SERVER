@@ -1,3 +1,9 @@
+@extends('master')
+
+@section('title','블록 메인')
+
+@section('content')
+
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
@@ -49,13 +55,8 @@
   </script>
 </head>
 <body>
-  <h1>
+<div class="decobar"></div>
 
-    <center>
-      LEARnFUN
-      <br>
-    </center>
-  </h1>
   <div id="tabContainer">
       <div id="blockFactory_tab" class="tab tabon" >Block Factory</div>
       <!-- <div id="blocklibraryExporter_tab" class="tab taboff">Block Exporter</div> -->
@@ -288,6 +289,7 @@
     <!--workspace factory------->
 
     <!-- Blockly Factory Tab -->
+    <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
         <td id='as'>
@@ -303,7 +305,7 @@
               </td>
               <td id="buttonContainer">
                 <button id="linkButton" title="Save and link to blocks.">
-                  <img src="link.png" height="21" width="21">
+                  <img src="link.png" height="21" width="21" hidden>
                 </button>
                 <button id="clearBlockLibraryButton" title="Clear Block Library." hidden>
                   <span>콘텐츠 전부 삭제하기</span>
@@ -323,12 +325,13 @@
         <td id="blockFactorySupplie">
           <table>
             <tr id="blockLibrary">
+
               <td id="contents_list">
+
                 <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
                   {{$user}}<br>콘텐츠리스트
                 </button>
               </td>
-
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
@@ -336,6 +339,10 @@
                       <button>
                         <a id="createNewBlockButton">new 콘텐츠</a>
                       </button>
+                      <!-- <button id="presentPackageName" type="button" name="button">
+                      </button> -->
+<input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+
                     </div>
 
                     <div id="dropdownDiv_blockLib">
@@ -412,10 +419,10 @@
                   <input type="submit" value="검색">
                   <button onclick="resetSearch()">리셋</button>
             </form>
-         </div>
+          </div>
 
-         <div id="map" style="height: 400px; width: 530px;">
-         </div>
+          <div id="map" style="height: 400px; width: 530px;">
+          </div>
 <script type="text/javascript">
    var markersArray = [];
 
@@ -540,7 +547,7 @@
             <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
           </div>
           <div id="get_location" border="1px solid black" ></div>
-        </div>
+        <!-- </div> -->
 
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
@@ -559,7 +566,7 @@
         <!-- 블록 프리뷰 마감 -->
       </tr>
     </table>
-
+<!-- </div> -->
     <div id="modalShadow"></div>
 
     <xml id="blockfactory_toolbox" class="toolbox">
@@ -573,7 +580,6 @@
       <category name="텍스트">
         <block type="header"></block>
         <block type="bottom"></block>
-
       </category>
       <category name ="이미지">
         <block type="image_detail"></block>
@@ -893,9 +899,54 @@
       <sep></sep>
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
+</div>
+  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
+  </form>
 
   </body>
   <script type="text/javascript">
+
+  function getCmaFileInfo(obj,stype) {
+    console.log('fdf');
+     var fileObj, pathHeader , pathMiddle, pathEnd, allFilename, fileName, extName;
+     var parent = document.getElementById('img_parent');
+     if(obj == "[object HTMLInputElement]") {
+       fileObj = obj.value
+     } else {
+       fileObj = document.getElementById(obj).value;
+     }
+             pathHeader = fileObj.lastIndexOf("\\");
+             pathMiddle = fileObj.lastIndexOf(".");
+             pathEnd = fileObj.length;
+             fileName = fileObj.substring(pathHeader+1, pathMiddle);
+             extName = fileObj.substring(pathMiddle+1, pathEnd);
+             allFilename = fileName+"."+extName;
+
+             var file_list = document.createElement('input');
+             file_list.setAttribute("type","text");
+             file_list.setAttribute("value",allFilename);
+             file_list.setAttribute("class","file_list")
+             file_list.setAttribute("name","filename[]");
+             parent.appendChild(file_list);
+             console.log('ff');
+             console.log(file_list);
+  }
+
+ function getCmaFileView(obj,stype) {
+     var s = getCmaFileInfo(obj,stype);
+ }
+
+  document.getElementById('registerContents').addEventListener('click',
+    function(event){
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=270';
+      window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
+    });
+  document.getElementById('shareContentsButton').addEventListener('click',
+    function(event){
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
+      window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
+    });
     var package_div     = document.getElementById('packageDiv');
 
   package_div.addEventListener('click',function(event){
@@ -914,16 +965,24 @@
     $('.content_list').remove();
 
     var package_id = event.target.value;
-    console.log(event.target);
+    console.log('919');
+    console.log(event.target.textContent);
+    var textContent = event.target.textContent;
+    console.log(textContent);
+    var present = document.getElementById('presentPackageName');
+    var str_space = /\s/;  // 공백체크
+    if(str_space.exec(textContent)) { //공백 체크
+       textContent = textContent.replace(' ',''); // 공백제거
+    }
+    console.log(present);
+    present.value = "現在패키지"+textContent;
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
       url: '/contents/packages/'+package_id, // This is the url we gave in the route
       data: {'id' : package_id}, // a JSON object to send back
       success: function(data){ // What to do if we succeed
-        console.log('926');
-          console.log(data.length);
-
+          console.log('926');
           if(data){
           // console.log(data[0]['name']);
           for(var i = 0; i < data.length; i++){
@@ -974,3 +1033,4 @@
   </script>
 
   </html>
+  @endsection
