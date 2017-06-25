@@ -345,11 +345,6 @@
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
               }  //위키피디아 
             });
-<<<<<<< HEAD
-            }
-            //위키피디아
-            // infoResult(searchInput);
-=======
             $.ajax({
             url: '{{route('map.search')}}',
             type:'POST',
@@ -378,7 +373,6 @@
            // 검색정보 + 검색된 결과 겟수  
            
          }
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
         });
 
         // 검색 부분 마커
@@ -515,10 +509,7 @@
         position: relative;
       }
     </style>
-<<<<<<< HEAD
-
-=======
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
+    
 <div class="bluedecobar">
 </div>
 <div id="madal_palce">
@@ -645,41 +636,6 @@
                   
                   </tbody>
                 </table>
-<<<<<<< HEAD
-                @for ($t=0; $t <5 ; $t++)
-                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
-                        </div>
-                        <div class="modal-body">
-                          <table class="table table-bordered table-striped">
-                            <thead>
-                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
-                              <th>김개똥</th> {{-- $like_name --}}
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td colspan="2">흐미 불국사 지리구요</td>
-
-                              </tr>
-                            </tbody>
-                              <div id="view_calendar"></div>
-                          </table>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endfor
-=======
-                  
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
