@@ -32,9 +32,6 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-
-
-    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 ->
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
         var id = $(this).attr('id');
@@ -633,7 +630,6 @@
           </div>
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-            <p><a id="addsavetest" class="btn btn-lg btn-warning btn-block">저장 테스트</a></p>
               <form class="form" name="plan_map_write" method="post" >
                 {{ csrf_field() }}
                 <input type="hidden" name="plan_no" value="{{$plan_no}}">
