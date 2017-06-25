@@ -98,7 +98,7 @@ class MapController extends Controller
         $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
         $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
 
-        $plan_title = $plan->no;
+        $plan_title = $plan->name;
         $plan_date = $plan->at;
         $trip_kind_value = $simple->type;
         $attend_class_count = $simple->grade_class_count;
