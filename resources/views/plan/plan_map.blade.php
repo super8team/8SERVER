@@ -32,42 +32,6 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-<<<<<<< HEAD
-    for (var i = 0; i <5 ; i++) {
-      $("#like_list"+i).on('shown.bs.modal', function () {
-       $("#view_calendar"+i).fullCalendar('render');
-     });
-
-
-    $('#view_calendar'+i).fullCalendar({
-      locale: 'ko',
-      header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'agendaDay'
-      },
-      defaultView: 'agendaDay',
-      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
-      navLinks: true, // can click day/week names to navigate views
-      selectable: false,
-      selectHelper: true,
-      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-      events:[
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20'
-        },
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20T10:00'
-        },
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20T12:00'
-        },
-      ]
-=======
-
     
       
     // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
@@ -136,7 +100,6 @@
           
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
     });
     
     // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
