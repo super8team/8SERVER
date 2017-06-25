@@ -34,13 +34,13 @@
           }
 
       }
-      // $plan_title  = "농촌 고구마 캐기 여행";
-      // $plan_date = "2017-05-22";
-      // $teacher_name = "서현숙";
-      // $trip_kind_value = "수학여행"; 
-      // $attend_class_count = "3";
-      // $attend_student_count = "75";
-      // $unattend_student_count = "3";
+      $plan_title  = "농촌 고구마 캐기 여행";
+      $plan_date = "2017-05-22";
+      $teacher_name = "서현숙";
+      $trip_kind_value = "수학여행"; 
+      $attend_class_count = "3";
+      $attend_student_count = "75";
+      $unattend_student_count = "3";
 
 
         // plan_title 		           = “(String)”,
