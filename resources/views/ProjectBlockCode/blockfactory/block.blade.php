@@ -341,7 +341,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-<input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+                      <input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
 
                     </div>
 
@@ -902,7 +902,7 @@
 </div>
   <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
 
-
+    <input id="present_file" type="text" name="" value="1">
     <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
 
     </form>

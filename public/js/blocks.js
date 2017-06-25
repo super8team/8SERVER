@@ -60,7 +60,7 @@ Blockly.Blocks['factory_base'] = {
         .appendField('클릭 작동');
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 작동 여부');
+        .appendField('콘텐츠 정지');
 
 
     // this.appendDummyInput()
@@ -160,7 +160,7 @@ var FIELD_ARGS = [
   {
     "type": "input_statement",
     "name": "FIELDS",
-    "check": "Field"
+    // "check": "Field"
   }
 ];
 var SCRIPT_MESSAGE = '이벤트 %1 ';
@@ -168,7 +168,7 @@ var SCRIPT_ARG = [
     {
       "type": "input_statement",
       "name": "SCRIPT",
-      "check":"Field"
+      // "check":"Field"
     }
 ];
 //true
@@ -317,38 +317,6 @@ Blockly.Blocks['input_statement'] = {
     inputNameCheck(this);
   }
 };
-
-Blockly.Blocks['CLICK'] = {
-  init: function() {
-      this.jsonInit({
-        "message0" : "클릭 이벤트 %1 %2",
-        "args0": [
-          {
-            "type": "field_input",
-            "name": "INPUTNAME",
-            "text": "NAME"
-          },
-          {
-            "type": "input_dummy"
-          }
-        ],
-        "message1": SCRIPT_MESSAGE,
-        "args1" :   SCRIPT_ARG,
-        "previousStatement": "CheckEdit",
-        "nextStatement": "CheckEdit",
-        "colour": 160,
-      });
-
-    }
-};
-Blockly.Blocks['END'] = {
-  init: function() {
-    this.setColour(160);
-    this.appendDummyInput()
-        .appendField('이벤트 끝')
-    this.setPreviousStatement(true, 'CheckEdit');
-  }
-}
 Blockly.Blocks['CHECKEDIT'] = {
   init: function() {
       this.jsonInit({
@@ -383,8 +351,37 @@ Blockly.Blocks['CHECKEDIT'] = {
         "colour": 160,
       });
   }
+};
+Blockly.Blocks['CLICK'] = {
+  init: function() {
+      this.jsonInit({
+        "message0" : "클릭 이벤트 %1 %2",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "INPUTNAME",
+            "text": "NAME"
+          },
+          {
+            "type": "input_dummy"
+          }
+        ],
+        "message1": SCRIPT_MESSAGE,
+        "args1" :  SCRIPT_ARG,
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
+        "colour": 160,
+      });
+    }
+};
+Blockly.Blocks['END'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('이벤트 끝')
+    this.setPreviousStatement(true, 'CheckEdit');
+  }
 }
-
 
 Blockly.Blocks['field_static'] = {
   // Text value.
@@ -398,14 +395,14 @@ Blockly.Blocks['field_static'] = {
     // this.setNextStatement(true, 'Field');
   }
 };
-
-Blockly.Blocks['package_name'] = {
-  init: function() {
-    this.setColour(230);
-    this.appendDummyInput()
-        .appendField('text')
-  }
-};
+//
+// Blockly.Blocks['package_name'] = {
+//   init: function() {
+//     this.setColour(230);
+//     this.appendDummyInput()
+//         .appendField('text')
+//   }
+// };
 Blockly.Blocks['button_1'] = {
   init: function() {
     this.setColour(160);
@@ -882,7 +879,7 @@ Blockly.Blocks['OUT_TXT'] = {
     this.setColour(160);
     this.appendDummyInput()
         .appendField('텍스트')
-        .appendField(new Blockly.FieldTextInput('default'),'OUT_TXT');
+        .appendField(new Blockly.FieldTextInput(''),'OUT_TXT');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }

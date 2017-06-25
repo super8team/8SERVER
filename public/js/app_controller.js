@@ -492,7 +492,9 @@ AppController.prototype.assignLibraryClickHandlers = function() {
         self.blockLibraryController.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
         //노드 중에서 가장 마지막 요소를 가져온다
+
         var storage_contents      = document.getElementsByClassName('content_list');
+
         var length                = storage_contents.length;
         var parent_content        = storage_contents[length-1];
         var child_content         = parent_content.childNodes;
@@ -547,6 +549,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             // alert('실패');
           }
         });
+        document.getElementById('present_file').value = 0;
       });
 
   // Button for removing selected block from library.
@@ -575,6 +578,10 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
   document.getElementById('dropdownDiv_blockLib').addEventListener('click',
       function(event){
+        document.getElementById('present_file').value = 0;
+        console.log('파일');
+        console.log(document.getElementById('present_file').value);
+
         var obj   = event.target;
         var value = event.target.value;
         console.log('클릭');
@@ -654,10 +661,9 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
 
   document.getElementById('createNewBlockButton')
     .addEventListener('click', function() {
-      // If there are unsaved changes warn user, check if they'd like to
-      // proceed with unsaved changes, and act accordingly.
       var proceedWithUnsavedChanges =
           self.blockLibraryController.warnIfUnsavedChanges();
+      document.getElementById('present_file').value = 1;
       if (!proceedWithUnsavedChanges) {
         return;
       }

@@ -433,36 +433,35 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         case 'image_1':
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
-            if(abcnumber == 5 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              abcnumber++;
+            var val      = document.getElementById('present_file').value;
+            if(val == 1){
+              cform.upFile.click();
             }
             break;
         case 'image_2':
             input.id = '2';
-            if(abcnumber == 2 ){
+            if(val == 1 ){
               console.log(abcnumber);
               // cform.upFile.click();
-              abcnumber++;
+              // val++;
             }
             // input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_3':
             input.id = '3';
-            if(abcnumber == 3 ){
+            if(val == 1 ){
               console.log(abcnumber);
               // cform.upFile.click();
-              abcnumber++;
+              // val++;
             }
             // input.src = document.getElementsByClassName('file_list')[3].value;
           break;
         case 'image_4':
             input.id = '4';
-            if(abcnumber == 4 ){
+            if(val == 1 ){
               console.log(abcnumber);
               // cform.upFile.click();
-              abcnumber++;
+
             }
             // input.src = document.getElementsByClassName('file_list')[4].value;
           break;
@@ -483,9 +482,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       lastInput = contentsBlock;
       var lastInput2 = '/'+lastInput;
       console.log(imgArgs);
-      for(var i = 0; i<args.length; i++){
-        console.log(args[i].src);
-      }
+
     }
     contentsBlock = contentsBlock.nextConnection &&
         contentsBlock.nextConnection.targetBlock();
