@@ -492,37 +492,41 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 // dd($request);
       // \DB::table('')
 // dd("TT");
-      $package_name    =  $request->input('package_name');
-      $request->file('image')->storeAs('public/packageImgs', "$package_name.png");
-      $explain         =  $request->input('package_explain');
-
-      $downContents    =  $request->input('downContents');
 
 
-      //공유할 패키지를 새로 등록한다.
-      DB::table('contents_packages')->insert([
-          ['owner' => Auth::user()->no, 'name' => $package_name]
-      ]);
 
-      // 가장최근에 만든 콘텐츠 패키지
-      $newContentsPackage = DB::table('contents_packages')->orderBy('no', 'desc')->first();
-
-      // contents 추가
-      for($i = 0; $i < sizeof($downContents); $i++) {
-          $oldContents = DB::table('contents')->where('no', $downContents[$i])->first();
-
-       // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
-          DB::table('contents')->insert([
-              ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
-          ]);
-      }
-
-      DB::table('contents_package_shares')->insert([
-          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'views' => 0, 'downloads' => 0]
-      ]);
-      // Input::file('picture')->move($destinationPath, $img);
-
-     echo "<script>window.close();</script>";
+echo "<script>window.close();</script>";
+    //   $package_name    =  $request->input('package_name');
+    //   $request->file('image')->storeAs('public/packageImgs', "$package_name.png");
+    //   $explain         =  $request->input('package_explain');
+     //
+    //   $downContents    =  $request->input('downContents');
+     //
+     //
+    //   //공유할 패키지를 새로 등록한다.
+    //   DB::table('contents_packages')->insert([
+    //       ['owner' => Auth::user()->no, 'name' => $package_name]
+    //   ]);
+     //
+    //   // 가장최근에 만든 콘텐츠 패키지
+    //   $newContentsPackage = DB::table('contents_packages')->orderBy('no', 'desc')->first();
+     //
+    //   // contents 추가
+    //   for($i = 0; $i < sizeof($downContents); $i++) {
+    //       $oldContents = DB::table('contents')->where('no', $downContents[$i])->first();
+     //
+    //    // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
+    //       DB::table('contents')->insert([
+    //           ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
+    //       ]);
+    //   }
+     //
+    //   DB::table('contents_package_shares')->insert([
+    //       ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'views' => 0, 'downloads' => 0]
+    //   ]);
+    //   // Input::file('picture')->move($destinationPath, $img);
+     //
+    //  echo "<script>window.close();</script>";
     }
 
 
