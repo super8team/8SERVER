@@ -70,7 +70,7 @@
             right: 'agendaDay'
           },
           defaultView: 'agendaDay',
-          defaultDate: day(),{{--$search_plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+          defaultDate: share_plan[id]['plan_date'], //이걸 이용하여 날짜 시작일
           navLinks: true, // can click day/week names to navigate views
           selectable: false,
           selectHelper: true,
@@ -85,21 +85,11 @@
                     }
                 },
         });
-        function day(){
-          if(share_plan[id]['plan_date'] != null){
-            console.log('success');
-            
-            console.log(share_plan[id]['plan_date']);
-            return share_plan[id]['plan_date'];
-          }else{
-            console.log('error!');
-            return '2017-05-22';
-          }
-        }
         //
           $('#result_modal').modal('show');
 
           window.setTimeout(clickNextPrev, 200);
+          
           $("#view_calendar").fullCalendar('render');
     });
 
@@ -221,7 +211,8 @@
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
           if(clientEvents[i]['end'] != null){  
-              end = clientEvents[i]['start']['_i'];
+              console.log(clientEvents[i]['end']);
+              end = clientEvents[i]['end']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
         }
       }
@@ -489,7 +480,6 @@
              <thead>
                <th>작성한 학교</th>
                <th>작성자</th>
-
              </thead>
              <tbody id="modal_info">
                <tr>
@@ -508,7 +498,6 @@
            </div>
          </div>
          <div class="modal-footer">
-
            <form class="form" action="" method="post">
              <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
              <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -635,7 +624,6 @@
           </div>
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-            <p><a id="addsavetest" class="btn btn-lg btn-warning btn-block">저장 테스트</a></p>
               <form class="form" name="plan_map_write" method="post" >
                 {{ csrf_field() }}
                 <input type="hidden" name="plan_no" value="{{$plan_no}}">

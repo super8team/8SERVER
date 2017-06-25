@@ -9,38 +9,39 @@
   // $plan_date  = "2017-09-28";
   // $transpotation = {"전세버스","선박"};
 
-      // if(isset($plan_id)){
-      // 
-      //     if(!isset($plan_title )){
-      //       $plan_title  = "농촌 고구마 캐기 여행";
-      //     }
-      //     if(!isset($plan_date)){
-      //       $plan_date = "2017-05-22";
-      //     }
-      //     if(!isset($teacher_name)){
-      //       $teacher_name = "서현숙";
-      //     }
-      //     if(!isset($trip_kind_value)){
-      //       $trip_kind_value = "수학여행";
-      //     }
-      //     if(!isset($attend_class_count)){
-      //       $attend_class_count = "3";
-      //     }
-      //     if(!isset($attend_student_count)){
-      //       $attend_student_count = "75";
-      //     }
-      //     if(!isset($unattend_student_count)){
-      //       $unattend_student_count = "3";
-      //     }
-      // 
-      // }
-      $plan_title  = "농촌 고구마 캐기 여행";
-      $plan_date = "2017-05-22";
-      $teacher_name = "서현숙";
-      $trip_kind_value = "수학여행"; 
-      $attend_class_count = "3";
-      $attend_student_count = "75";
-      $unattend_student_count = "3";
+      if(isset($plan_id)){
+
+          if(!isset($plan_title )){
+            $plan_title  = "";
+          }
+          if(!isset($plan_date)){
+            $plan_date = "";
+          }
+          if(!isset($teacher_name)){
+            $teacher_name = "";
+          }
+          if(!isset($trip_kind_value)){
+            $trip_kind_value = "";
+          }
+          if(!isset($attend_class_count)){
+            $attend_class_count = "";
+          }
+          if(!isset($attend_student_count)){
+            $attend_student_count = "";
+          }
+          if(!isset($unattend_student_count)){
+            $unattend_student_count = "";
+          }
+
+      }
+      // $plan_title  = "농촌 고구마 캐기 여행";
+      // $plan_date = "2017-05-22";
+      // $teacher_name = "서현숙";
+      // $trip_kind_value = "수학여행"; 
+      // $attend_class_count = "3";
+      // $attend_student_count = "75";
+      // $unattend_student_count = "3";
+
 
         // plan_title 		           = “(String)”,
         // plan_date                = “(String)”,

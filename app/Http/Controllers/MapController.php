@@ -57,6 +57,7 @@ class MapController extends Controller
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
+            dd($start, $end);
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
@@ -230,8 +231,7 @@ class MapController extends Controller
             // 검색된 장소를 포함하고 있는 모든 공유게시글
             foreach ($details as $detail) {
                 // $detail = \DB::table('detail_plans')->where('no', $share->detail_plan)->first();
-                $shares = \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->get();// 디테일플랜을 공유한 글
-
+                $shares = \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->get();// 디테일플랜을 공유한
                 foreach($shares as $share) {
                     $plan = \DB::table('field_learning_plans')->where('no', $detail->plan)->first();
                     $teacher = \DB::table('users')->where('no', $plan->teacher)->first();
