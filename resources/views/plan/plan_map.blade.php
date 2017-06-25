@@ -32,13 +32,7 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-<<<<<<< HEAD
-
     
-      
-    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
-=======
->>>>>>> 3e0008ac56284e0a1cdccd61dc4a4ba804c4bf2c
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
         var id = $(this).attr('id');
