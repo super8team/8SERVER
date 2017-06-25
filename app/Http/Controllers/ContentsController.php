@@ -364,6 +364,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
+      // dd($fields);
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];
@@ -375,19 +376,24 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
           array_push($planField,$fields[$i],$packages[$i]);
         }
       }
-
+      $pack = count($packages);
+      // dd(count($planField)-1);
+      // dd($planField);
+      // dd(count($pack));
       // dd($planField);
       // dd($packages);
       // dd($planField);
-      for($i = 0 ; $i < count($planField) ; $i++){
+      for($i = 0 ; $i < count($planField)-1 ; $i++){
         //체험학습 리스트
         $fieldList  =   $planField[$i];
-        for($j = 0; $j < count($planField[$i]); $j++){
-          $package = $planField[$i][$j];
+        // dd(count($planField));
+        for($j = 0; $j < $pack; $j++){
+          $package = $planField[$i+1][$j];
           DB::table('field_learning_plans')
-                            ->where('teacher',Auth::user()->no)
-                            ->where('name',$fieldList)
-                            ->update(['contents_package'=>$package]);
+                            ->where([
+                              ['teacher','=', Auth::user()->no],
+                              ['name', '=',$fieldList],
+                            ])->update(['contents_package'=>$package]);
         }
       }
         // $package    =   $planField[$i+1]
@@ -405,7 +411,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //   //
       //   //
       // }
-      return;
+      echo "<script>window.close();</script>";
     }
 
     public function extractContents($package_id)
@@ -447,7 +453,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
-      
+
           return ;
         }else
         {
@@ -519,7 +525,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
     public function downloadShareContent(Request $request)
     {
-      //선생님이 새로운 패키지에 컨텐츠를 저장 할려고 하는 경우
+      // 선생님이 새로운 패키지에 컨텐츠를 저장 할려고 하는 경우
       // dd($request->input());
       $user        = Auth::user()->no;
       if($request->input('new_package')){
@@ -543,7 +549,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             'contents_package'=>$new_package->no,'copy'=>0,'name'=>$content_arr[$i]->name
           ]);
         }
-        return;
+        echo "<script>opener.parent.location.reload();window.close();</script>";
       }
       //선생님이 자신이 가지고 있는 패키지에 콘텐츠를 저장 할려고 하는 경우
       else{
@@ -562,8 +568,11 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'like'=>0,
             'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
           ]);
+          echo "<script>window.close();</script>";
         }
-        return;
+        echo "<script>window.close();</script>";
+
       }
+
     }
 }

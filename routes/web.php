@@ -71,7 +71,7 @@ Route::post('contents/block', 'ContentsController@block')->name('contents.block'
 Route::get('/contents/share', 'ContentsController@share')->name('contents.share');
 
 // 콘텐츠 상세보기
-Route::get('LEARnFUN/public/shareDetail/{packageId}', 'ContentsController@shareDetail')
+Route::get('contents/shareDetail/{packageId}', 'ContentsController@shareDetail')
       ->name('contents.shareDetail');
 
 // 콘텐츠 공유하기
