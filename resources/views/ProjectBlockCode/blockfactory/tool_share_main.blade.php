@@ -38,10 +38,15 @@
       <table id="mainShareList">
         <div align="center"><b>인기있는 콘텐츠 패키지</b></div>
         <tr id="mainContenstsImage">
-          @foreach($popularPackage as $key=>$value)
-             <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:100px"></a></td>
-          @endforeach
+          @foreach ($otherPackage as $key => $value)
+          @php
+            $url = Storage::url('packageImgs/'.$value['imgs']);
+          @endphp
+            <td><a href="LEARnFUN/public/shareDetail/{{$value['ids']}}">
+                <img src="{{$url}}" alt="" style="width:100px; height:100px">
+              </a></td>
 
+          @endforeach
         </tr>
         <tr id="mainPackageName">
           @foreach ($popularPackage as $imgs)
@@ -60,7 +65,10 @@
         <div align="center"><b>콘텐츠 패키지<b></div>
         <tr id="contenstsImage">
           @foreach ($otherPackage as $key => $value)
-              <td><a href="LEARnFUN/public/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:150px"></a></td>
+          @php
+            $url = Storage::url('packageImgs/'.$value['imgs']);
+          @endphp
+              <td><a href="{{$url}}"><img src="{{URL::asset('/img/$img')}}" alt="" style="width:100px; height:150px"></a></td>
           @endforeach
         </tr>
         <tr id="packageName">

@@ -3,8 +3,7 @@
 <body>
   <span id = "content_wrapper">
     <div>
-      <img src="/img/{{$package_img}}" alt="콘텐츠 이미지" class="content_img">
-
+      <img src="{{URL::asset('/img/$package_img')}}" alt="콘텐츠 이미지" class="content_img">
     </div>
     <div id = "detail_article">
       <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
