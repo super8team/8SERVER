@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','테스트22 ')
+@section('title','상세 계획 페이지 ')
 
 @section('content')
 @php
@@ -264,7 +264,7 @@
   }
   //캘린더 로드를 위한 꼼수
   function clickNextPrev() {
-    $('.fc-next-button').click();
+    // $('.fc-next-button').click();
     $('.fc-prev-button').click();
   }
     $(document).on("click","#addsave",function(){
