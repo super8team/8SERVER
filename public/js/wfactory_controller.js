@@ -56,7 +56,7 @@ WorkspaceFactoryController = function(toolboxName, toolboxDiv, previewDiv) {
        length: 3,
        colour: '#ccc',
        snap: true},
-       media: '../../media/',
+      //  media: '../../media/',
        toolbox: this.toolbox
      });
 
@@ -67,7 +67,7 @@ WorkspaceFactoryController = function(toolboxName, toolboxDiv, previewDiv) {
        length: 3,
        colour: '#ccc',
        snap: true},
-     media: '../../media/',
+    //  media: '../../media/',
      toolbox: '<xml></xml>',
      zoom:
        {controls: true,
@@ -1133,7 +1133,7 @@ WorkspaceFactoryController.prototype.readOptions_ = function() {
   }
 
   optionsObj['css'] = document.getElementById('option_css_checkbox').checked;
-  optionsObj['media'] = document.getElementById('option_media_text').value;
+  // optionsObj['media'] = document.getElementById('option_media_text').value;
   optionsObj['rtl'] = document.getElementById('option_rtl_checkbox').checked;
   optionsObj['scrollbars'] =
       document.getElementById('option_scrollbars_checkbox').checked;

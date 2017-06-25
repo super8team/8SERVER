@@ -39,7 +39,7 @@
         <div align="center"><b>인기있는 콘텐츠 패키지</b></div>
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
-             <td><a href="/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:100px"></a></td>
+             <td><a href="LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="/img/{{$value['imgs']}}" alt="" style="width:100px; height:100px"></a></td>
           @endforeach
 
         </tr>
@@ -92,7 +92,7 @@
       console.log(m);
       console.log(typeof(n));
 
-    window.location.href='/contents/shareShare';
+    window.location.href='LEARnFUN/public/contents/shareShare';
     });
     </script>
 </html>

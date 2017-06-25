@@ -25,7 +25,7 @@
 
       @for($i = 0; $i < count($contents_name); $i++)
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
-        
+
       @endfor
       <br>
        {{ csrf_field() }}
@@ -41,7 +41,7 @@
   $(document).ready(function(){
     document.getElementById('content_download').addEventListener('click',function(){
       var package_num = document.getElementsByName('package_num')[0].value;
-      window.location.href = "/toolShareDownload?package_num="+package_num;
+      window.location.href = "LEARnFUN/public/toolShareDownload?package_num="+package_num;
     });
   });
 

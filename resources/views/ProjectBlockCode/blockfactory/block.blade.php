@@ -244,7 +244,7 @@
                 <label><input type="checkbox" id="gridOption_snap_checkbox">Snap</label><br>
               </div>
             </div>
-            <label>Path to Blockly Media <input type="text" id="option_media_text" style="width: 90%"></label><br>
+            <!-- <label>Path to Blockly Media <input type="text" id="option_media_text" style="width: 90%"></label><br> -->
             <label><input type="checkbox" id="option_rtl_checkbox">Layout with RTL</label><br>
             <label><input type="checkbox" id="option_scrollbars_checkbox">Scrollbars</label><br>
             <label><input type="checkbox" id="option_zoom_checkbox">Zoom</label><br>
@@ -901,8 +901,11 @@
     </xml>
 </div>
   <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+
+
     <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
-  </form>
+
+    </form>
 
   </body>
   <script type="text/javascript">

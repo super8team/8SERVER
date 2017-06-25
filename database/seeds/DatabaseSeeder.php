@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
 //        $this->call(PlanDemoSeeder::class);
 
         // $this->call(KoreanUserSeeder::class);
+        // $this->call(ContentsSeeder::class);
         $this->call(ContentsSeeder::class);
 
 
