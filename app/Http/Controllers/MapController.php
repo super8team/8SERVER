@@ -52,19 +52,18 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-
+    
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
-            
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
                 // if 2015->2017
-                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
-                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
+                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $start, 'Asia/Seoul'),
+                'end_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $end, 'Asia/Seoul'),
             ]);
         }
         return redirect()->route('plan.teacher');

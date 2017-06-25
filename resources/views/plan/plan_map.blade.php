@@ -634,7 +634,6 @@
           </div>
           <div class="col-sm-8">
             <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-            <p><a id="addsavetest" class="btn btn-lg btn-warning btn-block">저장 테스트</a></p>
               <form class="form" name="plan_map_write" method="post" >
                 {{ csrf_field() }}
                 <input type="hidden" name="plan_no" value="{{$plan_no}}">
