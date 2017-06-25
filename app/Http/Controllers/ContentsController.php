@@ -486,11 +486,14 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
     public function sharePackages(Request $request)
     {
-      $img_name   =   $request->input('image');
-
-      $request->file('image')->storeAs('public/packageImgs', "$img_name");
-
+      $img_name   =   $request->file('image');
+      // dd($request->file('image'));
+      // $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
+// dd($request);
+      // \DB::table('')
+// dd("TT");
       $package_name    =  $request->input('package_name');
+      $request->file('image')->storeAs('public/packageImgs', "$package_name.png");
       $explain         =  $request->input('package_explain');
 
       $downContents    =  $request->input('downContents');
@@ -515,11 +518,11 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       }
 
       DB::table('contents_package_shares')->insert([
-          ['contents_package' => $newContentsPackage->no, 'img_url' => $img, 'explain' => $explain, 'views' => 0, 'downloads' => 0]
+          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'views' => 0, 'downloads' => 0]
       ]);
       // Input::file('picture')->move($destinationPath, $img);
 
-      return;
+     echo "<script>window.close();</script>";
     }
 
 
