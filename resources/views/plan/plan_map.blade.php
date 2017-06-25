@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','테스트22 ')
+@section('title','상세 계획 페이지 ')
 
 @section('content')
 @php
@@ -32,11 +32,17 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-    
+    cal_init();
+    function cal_init(){
+      load_calendar();
+    }
+    //보기 버튼 클릭시 하는 행동
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
         var id = $(this).attr('id');
+        var save_plan_no = $(this).next().attr('id');
         console.log('클릭한 버튼 id :'+id);
+        console.log(save_plan_no);
         //데이터 가저오기
         // 검색하면 자동으로 값이 정의 됨share_plan[id][]
 
@@ -87,16 +93,81 @@
         });
         //
           $('#result_modal').modal('show');
-
           window.setTimeout(clickNextPrev, 200);
-          
           $("#view_calendar").fullCalendar('render');
+          
+          // 계획 가저오기 버튼 클릭시 작동하는 버튼
+              $(document).on("click","#modal_clcik",function(){
+                //클릭했을때 데이터를 바인딩
+                // "<form class='form' name='modal_action' action='#' method='post'>"
+                //   "<button type='submitbtn' class='btn btn-default'>계획 가저오기</button>"
+                //   "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"
+                // "</form>"
+                
+                //로컬용
+                // console.log('http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit');
+                // location.href= 'http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit';
+                // document.modal_action.action = 'http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit';
+                
+                //서버용
+                // document.modal_action.action = 'http://163.44.166.91/LEARnFUN/public/map/'+share_plan[id]['plan_no']+'/edit';
+                // document.modal_action.submit();
+                
+                //데이터를 현제 페이지에 가져옴
+                // plan_no로 검색한 데이터
+                $('#result_modal').modal('hide');
+                $('#calendar_place').empty();
+                $('#calendar_place').append(
+                  "<div id='calendar'></div>"
+                );
+                $('#calendar').fullCalendar({    
+                  locale: 'ko',
+                  header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listWeek'
+                  },
+                  defaultView: 'agendaDay',
+                  defaultDate: share_plan[id]['plan_date'], //이걸 이용하여 날짜 시작일을 설정?
+                  navLinks: true, // can click day/week names to navigate views
+                  selectable: true,
+                  selectHelper: true,
+                  firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+                  select: inputscheduel,
+                  
+                  editable: true,
+                  eventLimit: true, // allow "more" link when too many events
+                  // * * * * * * * * 데이터 불러오기 * * * * * * * *
+                  // 방법 1 json data 가저오기
+                  eventSources: [{
+                  url: '{{route('map.getTimeTable')}}',
+                  // url: '{{--route('map.getTimeTable',$test_no)--}}',
+                  dataType: 'json',
+                  async: false,
+                  type: 'POST',
+                  data:{
+                    plan_no : share_plan[id]['plan_no']
+                  }, 
+                      success: function(){
+                        console.log('불러오기  캘린더 성공')
+                        console.log(share_plan[id])
+                        console.log('플랜넘버'+share_plan[id]['plan_no'])
+                      },
+                      error: function () {
+                        console.log("data load is fail.")
+                      }
+                  }],
+                });
+              });
     });
+  
+        
 
-    // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
 
-
-  		$('#calendar').fullCalendar({
+    // 클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
+    
+    function load_calendar(){
+      $('#calendar').fullCalendar({ 
         locale: 'ko',
   			header: {
   				left: 'prev,next today',
@@ -124,16 +195,16 @@
         data:{
           plan_no : {{$plan_no}}
         },
+            success: function(){
+              console.log('페이지 시작 캘린더 성공')
+            },
             error: function () {
               console.log("data load is fail.")
             }
         }],
-        // events: {
-        //           url: '{{--route('map.getTimeTable')--}}',
-        //           type:'POST',
-        //           dataType: 'json',
-        //       },
   		});
+    }
+  		
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
         var title = prompt('일정 내용을 입력해주세요.');
@@ -193,14 +264,16 @@
   }
   //캘린더 로드를 위한 꼼수
   function clickNextPrev() {
-    $('.fc-next-button').click();
+    // $('.fc-next-button').click();
     $('.fc-prev-button').click();
   }
     $(document).on("click","#addsave",function(){
       $('#calendar').fullCalendar('updateEvents', event);
       var clientEvents = new Object();
       var clientEvents = $('#calendar').fullCalendar('clientEvents');
-
+      
+      location.replace('/asersadr'+clientEvents);
+      
       console.log(clientEvents.length);
       //이벤트 겠수 만큼 돌아서 데이터를 뽑아냄
       for (var i = 0; i < clientEvents.length; i++) {
@@ -218,8 +291,6 @@
       }
       document.plan_map_write.action = "{{route('map.store')}}";
       document.plan_map_write.submit();
-      
-    
     });
   });
     </script>
@@ -315,7 +386,8 @@
                  for (var i = 0; i <share_plan.length ; i++) {
                    $('#result_search').append(
                      "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+  share_plan[i]['plan_teacher']+"</td>"+
-                     "<td><button type='button' class='btn btn-sm btn-default modal_btn' data-toggle='modal' id='"+i+"'>보기</button></td></tr>"
+                     "<td><button type='button' class='btn btn-sm btn-default modal_btn' data-toggle='modal' id='"+i+"'>보기</button></td></tr>"+
+                     "<input id='"+share_plan[i]['plan_no']+"' type='hidden' >"
                    );
                  }
 
@@ -493,16 +565,14 @@
            </table>
            <div id="view_calendar_place">
              <div id="view_calendar">
-
              </div>
            </div>
          </div>
-         <div class="modal-footer">
-           <form class="form" action="" method="post">
-             <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
-             <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-           </form>
+         <div id="modal-form-place" class="modal-footer">
+           <button type="button" id="modal_clcik" class="btn btn-default">계획 가저오기</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
          </div>
+         
        </div>
      </div>
    </div>
@@ -617,7 +687,10 @@
         </div> <!-- /.col-lg-4 -->
         <div class="col-sm-8">
           <div class="panel panel-default">
-          <div id="calendar"></div>
+            <div id="calendar_place">
+              <div id="calendar"></div>
+            </div>
+              
         </div><!-- /.panel-footer -->
           <div class="col-sm-4">
             <p><a href="{{----}}" class="btn btn-lg btn-warning btn-block">관심목록</a></p>

@@ -57,7 +57,7 @@ class MapController extends Controller
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
-            dd($start, $end);
+            // dd($start, $end);
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,

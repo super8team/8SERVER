@@ -40,9 +40,10 @@
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
           @php
-            $url = Storage::url('packageImgs/'.$value['imgs']);
+          $url = Storage::url('packageImgs/'.$value['imgs']);
+//	$url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
           @endphp
-             <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="{{$url}}" alt="" style="width:100px; height:100px"></a></td>
+             <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="" style="width:100px; height:100px"></a></td>
           @endforeach
 
         </tr>
@@ -65,8 +66,9 @@
           @foreach ($otherPackage as $key => $value)
             @php
               $url = Storage::url('packageImgs/'.$value['imgs']);
+// echo $url;
             @endphp
-              <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="{{$url}}" alt="" style="width:100px; height:150px"></a></td>
+              <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" al t="" style="width:100px; height:150px"></a></td>
           @endforeach
         </tr>
         <tr id="packageName">
