@@ -15,7 +15,7 @@
   // $search_list_count =1;
   // $plan_no = 9;
   // $test_count =2;
-  // $j=0; 
+  // $j=0;
 @endphp
   <!DOCTYPE html>
 <html>
@@ -27,57 +27,21 @@
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
 
   <script type = "text/javascript">
-  
+
   var share_plan = new Array();
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-<<<<<<< HEAD
-    for (var i = 0; i <5 ; i++) {
-      $("#like_list"+i).on('shown.bs.modal', function () {
-       $("#view_calendar"+i).fullCalendar('render');
-     });
 
 
-    $('#view_calendar'+i).fullCalendar({
-      locale: 'ko',
-      header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'agendaDay'
-      },
-      defaultView: 'agendaDay',
-      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
-      navLinks: true, // can click day/week names to navigate views
-      selectable: false,
-      selectHelper: true,
-      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-      events:[
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20'
-        },
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20T10:00'
-        },
-        {
-          title:'불국사 개꿀잼',
-          start: '2017-06-20T12:00'
-        },
-      ]
-=======
-
-    
-      
-    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
+    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 ->
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
         var id = $(this).attr('id');
         console.log('클릭한 버튼 id :'+id);
         //데이터 가저오기
         // 검색하면 자동으로 값이 정의 됨share_plan[id][]
-        
+
         // 미리 생성된 캘린더 있는 경우를 대비해 비워줌
         $("#view_calendar_place").empty();
         $("#modal_info").empty();
@@ -86,8 +50,8 @@
           "<div id='view_calendar'></div>"
         );
         //값 변경
-        console.log('객체 출력결1 ');    
-        console.log(share_plan); 
+        console.log('객체 출력결1 ');
+        console.log(share_plan);
         $("#modal_info").append(
           "<tr>"+
             "<td >"+share_plan[id]['school_name']+"</td>"+
@@ -113,7 +77,7 @@
           selectable: false,
           selectHelper: true,
           firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
-          
+
           events: {
                     url: '{{route('map.getTimeTable')}}',
                     type:'POST',
@@ -133,15 +97,14 @@
         }
         //
           $('#result_modal').modal('show');
-          
+
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
     });
-    
+
     // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
-  
-    
+
+
   		$('#calendar').fullCalendar({
         locale: 'ko',
   			header: {
@@ -343,13 +306,8 @@
                  //일정을 추가할 버튼 생성
                  $('#display-result').append('<p">'+title+'</p>')
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
-              }  //위키피디아 
+              }  //위키피디아
             });
-<<<<<<< HEAD
-            }
-            //위키피디아
-            // infoResult(searchInput);
-=======
             $.ajax({
             url: '{{route('map.search')}}',
             type:'POST',
@@ -359,26 +317,25 @@
             dataType: 'json',
              success: function processResult(arg_share_plan){
                share_plan = arg_share_plan;
-               console.log('객체 출력결과1 ');    
-               console.log(share_plan);        
-               $('#result_search').empty();    
+               console.log('객체 출력결과1 ');
+               console.log(share_plan);
+               $('#result_search').empty();
                  for (var i = 0; i <share_plan.length ; i++) {
                    $('#result_search').append(
                      "<tr><td>"+share_plan[i]['school_name']+"</td><td>"+  share_plan[i]['plan_teacher']+"</td>"+
                      "<td><button type='button' class='btn btn-sm btn-default modal_btn' data-toggle='modal' id='"+i+"'>보기</button></td></tr>"
                    );
                  }
-                  
+
              },
              error: function error (e) {
                console.log(e);
-            
+
              }
            });
-           // 검색정보 + 검색된 결과 겟수  
-           
+           // 검색정보 + 검색된 결과 겟수
+
          }
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
         });
 
         // 검색 부분 마커
@@ -515,10 +472,6 @@
         position: relative;
       }
     </style>
-<<<<<<< HEAD
-
-=======
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
 <div class="bluedecobar">
 </div>
 <div id="madal_palce">
@@ -534,8 +487,8 @@
            <table class="table table-bordered table-striped">
              <thead>
                <th>작성한 학교</th>
-               <th>작성자</th> 
-               
+               <th>작성자</th>
+
              </thead>
              <tbody id="modal_info">
                <tr>
@@ -549,12 +502,12 @@
            </table>
            <div id="view_calendar_place">
              <div id="view_calendar">
-               
+
              </div>
            </div>
          </div>
          <div class="modal-footer">
-           
+
            <form class="form" action="" method="post">
              <button type="submitbtn" class="btn btn-default">계획 가저오기</button>
              <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -642,44 +595,9 @@
                     <th>링크 버튼</th>
                   </thead>
                   <tbody id="result_search">
-                  
+
                   </tbody>
                 </table>
-<<<<<<< HEAD
-                @for ($t=0; $t <5 ; $t++)
-                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
-                        </div>
-                        <div class="modal-body">
-                          <table class="table table-bordered table-striped">
-                            <thead>
-                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
-                              <th>김개똥</th> {{-- $like_name --}}
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td colspan="2">흐미 불국사 지리구요</td>
-
-                              </tr>
-                            </tbody>
-                              <div id="view_calendar"></div>
-                          </table>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endfor
-=======
-                  
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
@@ -701,7 +619,7 @@
                   </ul>
                 </nav>
                 <div id="script-warning">
-                  
+
                 </div>
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->

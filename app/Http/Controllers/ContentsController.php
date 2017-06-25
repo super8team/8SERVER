@@ -233,9 +233,9 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $popularPackageImgs   = [];
         $otherPackageInfor    = [];
         $popularPackageInfor  = [];
-        $popularPackages      = DB::table('contents_package_Shares')->orderBy('views', 'desc')->take(3)->get();
+        $popularPackages      = DB::table('contents_package_shares')->orderBy('views', 'desc')->take(3)->get();
 
-        $otherPackages        = DB::table('contents_package_Shares')->orderBy('views', 'asc ')->take(6)->get();
+        $otherPackages        = DB::table('contents_package_shares')->orderBy('views', 'asc ')->take(6)->get();
 
         foreach ($popularPackages as $popularPackage ) {
             array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
@@ -364,15 +364,39 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
-
-      for($i = 0 ; $i < count($fields) ; $i++){
-        for($j = 0; $j < count($packages[$i]); $j++){
-          DB::table('field_learning_plans')
-                      ->where('teacher',Auth::user()->no)
-                      ->where('name',$fields[$i])
-                      ->update(['contents_package'=>$packages[$i][$j]]);
+      //현장체험 리스트를 담는 변수
+      $planField = [];
+      $planField_second = [];
+      // dd($packages);
+      // dd($fields);
+      //패키지를 등록할 현장학습리스트를 추출한다
+      for($i = 0; $i<10; $i++){
+        if(array_key_exists($i, $packages)){
+          array_push($planField,$fields[$i],$packages[$i]);
         }
       }
+
+      // dd($planField);
+      // dd($packages);
+      // dd($planField);
+      for($i = 0 ; $i < count($planField) ; $i++){
+        //체험학습 리스트
+        $fieldList  =   $planField[$i];
+        for($j = 0; $j < count($planField[$i]); $j++){
+          $package = $planField[$i][$j];
+          DB::table('field_learning_plans')
+                            ->where('teacher',Auth::user()->no)
+                            ->where('name',$fieldList)
+                            ->update(['contents_package'=>$package]);
+        }
+      }
+        // $package    =   $planField[$i+1]
+          // DB::table('field_learning_plans')
+          //             ->where('teacher',Auth::user()->no)
+          //             ->where('name',$fields[$i])
+          //             ->update(['contents_package'=>$packages[$i][$j]]);
+        // }
+
       // for($i = 0; $i < $contents_xml_sizeof; $i++)
       // {
       //   DB::table('contents')->insert([
@@ -381,7 +405,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //   //
       //   //
       // }
-
       return;
     }
 
@@ -390,7 +413,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       $contents_array = [];
 
       //패키지 번호에 해당하는 컨텐츠들을 가져온다
-
       $contents = DB::table('contents')->where('contents_package','=',$package_id)->get();
       if($contents){
             $contentsCount = count($contents);
@@ -402,7 +424,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               $contents_array[$i]['spec'] = $contents[$i]->spec;
             }
             return $contents_array;
-            
+
       }
 
     }
@@ -425,7 +447,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
-          return;
+      
+          return ;
         }else
         {
             //새로운 패키지를 저장한다
@@ -439,14 +462,10 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
                 ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
                 'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
             ]);
-
-
-
             //사용자의 패키지를 담을 배열 변수
             $package_array = [];
-
             //유저가 가지고 있는 패키지들을 가져온다
-            $packages      = DB::table('contents_packages')->where('owner','=',259)->get();
+            $packages      = DB::table('contents_packages')->where('owner','=',Auth::user()->no)->get();
 
             //배열의 크기를 담는다
             $packageCount = count($packages);

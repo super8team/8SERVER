@@ -530,15 +530,17 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             'package_name' : storage_package_name
           },
           success: function(data){
-
-            console.log(data);
-            var user_packages = document.getElementsByClassName('package_button');
-            for(var i = 0; i < user_packages.length; i++){
-              var package_name = user_packages[i].innerText;
-              if(package_name == data[i]['name']){
-                user_packages[i].innerText = data[i]['name'];
-                user_packages[i].value     = data[i]['id'];
+            if(data){
+              var user_packages = document.getElementsByClassName('package_button');
+              for(var i = 0; i < user_packages.length; i++){
+                var package_name = user_packages[i].innerText;
+                if(package_name == data[i]['name']){
+                  user_packages[i].innerText = data[i]['name'];
+                  user_packages[i].value     = data[i]['id'];
+                }
               }
+            }else{
+              console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
             }
           },
           error: function(){
@@ -849,8 +851,8 @@ AppController.prototype.init = function() {
   var toolbox = document.getElementById('blockfactory_toolbox');
   BlockFactory.mainWorkspace = Blockly.inject('blockly',
       {collapse: false,
-       toolbox: toolbox,
-       media: '../../media/'});
+       toolbox: toolbox});
+      //  media: '../../media/'
   console.log('메인');
   console.log(BlockFactory.mainWorkspace);
 
