@@ -906,7 +906,6 @@
     <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
 
     </form>
-
   </body>
   <script type="text/javascript">
 

@@ -926,9 +926,9 @@ Blockly.Blocks['image_1'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지1');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
@@ -951,9 +951,9 @@ Blockly.Blocks['image_2'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지2');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
@@ -977,9 +977,9 @@ Blockly.Blocks['image_3'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지3');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
@@ -1002,9 +1002,9 @@ Blockly.Blocks['image_4'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지4');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
