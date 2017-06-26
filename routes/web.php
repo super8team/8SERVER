@@ -123,13 +123,13 @@ Route::get('report/evaluation', 'ReportController@evaluation')->name('report.eva
 
 // *******************  위원회 *********************
 // 위원회 목록
-Route::get('staff', 'staffController@index')->name('staff');
+Route::get('staff', 'StaffController@index')->name('staff');
 
 // 위원회 결과
-Route::get('staff/result', 'staffController@result')->name('staff.result');
+Route::get('staff/result', 'StaffController@result')->name('staff.result');
 
 // 위원회 멤버 추가
-Route::get('staff/memberadd', 'staffController@memberAdd')->name('staff.memberadd');
+Route::get('staff/memberadd', 'StaffController@memberAdd')->name('staff.memberadd');
 
 
 // *******************  체크리스트 *********************
