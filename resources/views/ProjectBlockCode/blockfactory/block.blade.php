@@ -902,8 +902,8 @@
 </div>
   <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
 
-    <input id="present_file" type="text" name="" value="1">
-    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
+    <input id="present_file" type="text" name="" value="1" hidden>
+    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
 
     </form>
 

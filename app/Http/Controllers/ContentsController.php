@@ -300,7 +300,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $teacher_contents[$i] = DB::table('contents')->where('contents_package',$teacher_packages_no[$i])
                                                      ->where('copy',0)
                                                      ->get();
-
+    
         for($j = 0; $j<count($teacher_contents[$i]);$j++){
           array_push($arr,$teacher_contents[$i][$j]);
         }

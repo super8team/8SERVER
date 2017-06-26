@@ -461,7 +461,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             if(val == 1 ){
               console.log(abcnumber);
               // cform.upFile.click();
-
+              document.getElementById('present_file').value = 0;
             }
             // input.src = document.getElementsByClassName('file_list')[4].value;
           break;
