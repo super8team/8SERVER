@@ -10,12 +10,6 @@
   {{-- 총 레코드 수를 가저오기 --}}
   {{--  fufufufufufuck! 페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
-  @php
-    // $planlist_rec = 17;
-    // $planlist_arr['data']['name'] = '소백산 뻐킹 체험학습';
-    // $planlist_arr['data']['date'] = '2017/05/06';
-    // $planid = "?planid="+ $planlist_arr['data']['id'] = 1;
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
@@ -39,7 +33,7 @@
                 <th>작성일</th>
                 <th>바로가기
                     <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-                     class="btn btn-sm btn-default">
+                     class="btn btn-sm btn-default pull-right">
                       {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                       새 계획 작성
                     </a>
@@ -51,33 +45,30 @@
 
             {{-- 레코드를 10개 출력  --}}
 
-            @for ($count=0; $count < 10 ; $count++)
+            @for ($count=0; $count < count($plan_title) ; $count++)
                   <tr>
                     <td>{{$count+1}}</td>
-                    <td>{{$planlist_arr['data']['name']}}</td>
-                    <td>{{$planlist_arr['data']['date']}}</td>
+                    <td>{{$plan_no[$count]}}</td>
+                    <td>{{$plan_title[$count]}}</td>
 
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
                         위원회
                       </a>
-
                       <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
                         설문조사
                       </a>
                       <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-warning">
                         가정통신
                       </a>
-
                       <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
                         체크리스트
                       </a>
-                      <a role="button" href="{{ route('report.view', $count+1) }}" class="btn btn-sm btn-danger ">
+                      <a role="button" href="{{ route('report.view') }}" class="btn btn-sm btn-danger ">
                         소감문
                       </a>
                     </td>
                  </tr>
-
             @endfor
           </tbody>
           </table>

@@ -47,11 +47,49 @@ class PlanController extends Controller
     }
 
     public function student() {
-      return view('plan.planlist2');
+      
+      $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
+      
+      $planIds = [];
+      $planTitles = [];
+      $planDates = [];
+
+      foreach($plans as $plan) {
+
+        // dd($plan);
+        array_push($planIds,   $plan->no);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->at);
+      }
+
+      return view('plan.planlist2', [
+        'plan_no' => $planIds,
+        'plan_title' => $planTitles,
+        'plan_date' => $planDates,
+      ]);
     }
 
     public function parents() {
-      return view('plan.planlist2');
+      
+      $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
+      
+      $planIds = [];
+      $planTitles = [];
+      $planDates = [];
+
+      foreach($plans as $plan) {
+
+        // dd($plan);
+        array_push($planIds,   $plan->no);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->at);
+      }
+
+      return view('plan.planlist2', [
+        'plan_no' => $planIds,
+        'plan_title' => $planTitles,
+        'plan_date' => $planDates,
+      ]);
     }
 
     /**
