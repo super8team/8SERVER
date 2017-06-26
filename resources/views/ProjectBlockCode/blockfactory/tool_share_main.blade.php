@@ -66,7 +66,6 @@
           @foreach ($otherPackage as $key => $value)
             @php
               $url = Storage::url('packageImgs/'.$value['imgs']);
-// echo $url;
             @endphp
               <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" al t="" style="width:100px; height:150px"></a></td>
           @endforeach
@@ -100,7 +99,7 @@
       console.log(m);
       console.log(typeof(n));
 
-    window.location.href='LEARnFUN/public/contents/shareShare';
+    window.location.href='shareShare';
     });
     </script>
 </html>

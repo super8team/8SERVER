@@ -341,7 +341,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-<input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+                      <input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
 
                     </div>
 
@@ -900,13 +900,12 @@
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
 </div>
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data" hidden>
 
-
-    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
+    <input id="present_file" type="text" name="" value="1" hidden>
+    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
 
     </form>
-
   </body>
   <script type="text/javascript">
 
@@ -982,7 +981,7 @@
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
-      url: '/contents/packages/'+package_id, // This is the url we gave in the route
+      url: '/LEARnFUN/public/contents/packages/'+package_id, // This is the url we gave in the route
       data: {'id' : package_id}, // a JSON object to send back
       success: function(data){ // What to do if we succeed
           console.log('926');
@@ -1027,7 +1026,6 @@
       },
       error: function() { // What to do if we fail
           console.log('해당x');
-
       }
   });
 
