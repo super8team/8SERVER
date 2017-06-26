@@ -300,7 +300,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $teacher_contents[$i] = DB::table('contents')->where('contents_package',$teacher_packages_no[$i])
                                                      ->where('copy',0)
                                                      ->get();
-    
+
         for($j = 0; $j<count($teacher_contents[$i]);$j++){
           array_push($arr,$teacher_contents[$i][$j]);
         }
@@ -575,9 +575,8 @@ echo "<script>window.close();</script>";
             'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'like'=>0,
             'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
           ]);
-          echo "<script>window.close();</script>";
         }
-        echo "<script>window.close();</script>";
+        echo "<script>opener.parent.location.reload();window.close();</script>";
 
       }
 
