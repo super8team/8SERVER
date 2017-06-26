@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,8 @@
 
     {{-- 제목 받는 곳 --}}
     <title> @yield('title')</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> --}}
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
     <!-- 부트스트랩 -->
@@ -95,10 +96,10 @@
                 {{ csrf_field() }}
                   <fieldset>
                       <div class="form-group">
-                          <input class="form-control" placeholder="ID" name="id" type="text" autofocus>
+                          <input class="form-control" placeholder="ID" name="id" type="text" value="ut" autofocus>
                       </div>
                       <div class="form-group">
-                          <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                          <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
                       </div>
                       <div class="checkbox">
                           <label>
@@ -163,7 +164,7 @@
               <!-- Button trigger modal -->
               @if(!Auth::check())
                 <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
-                <li><a href="#/">회원가입</a></li>
+                <li><a href="#">회원가입</a></li>
               @else
                 <li>
                   <a href="#" onclick="event.preventDefault(); 
