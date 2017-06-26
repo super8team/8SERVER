@@ -99,11 +99,7 @@
       console.log(m);
       console.log(typeof(n));
 
-<<<<<<< HEAD
-    window.location.href='/LEARnFUN/public/contents/shareShare';
-=======
     window.location.href='shareShare';
->>>>>>> 1370c75be94c9fc8233e21d60e22e50c5040ce76
     });
     </script>
 </html>

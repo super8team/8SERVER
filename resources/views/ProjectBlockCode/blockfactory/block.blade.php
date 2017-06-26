@@ -900,7 +900,7 @@
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
 </div>
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data" hidden>
 
     <input id="present_file" type="text" name="" value="1" hidden>
     <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
