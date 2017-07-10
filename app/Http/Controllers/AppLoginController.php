@@ -32,14 +32,51 @@ class AppLoginController extends Controller
         $result["name"] = $user->name;
         $result["type"] = $user->type;
 
-        if ($user->type == "parents") {
-          $childs = DB::table('users')
-                      ->join('students', 'students.student', '=', 'users.no')
-                      ->where('parents', $user->no)
-                      ->get();
-          $result["childID"] = $childs->toArray();
-        }
+        switch ($user->type) {
+          case "parents":
+            $childs = DB::table('users')
+                        ->join('students', 'students.student', '=', 'users.no')
+                        ->where('parents', $user->no)
+                        ->get();
+            $result["childID"] = $childs->toArray();
+            break;
 
+          case "student":
+            $grade_class = DB::table('students')
+                             ->where('student', $user->no)
+                             ->first()->grade_class;
+            $grade_class = DB::table('grade_classes')
+                             ->where('no', $grade_class)
+                             ->first();
+            $result["grade"] = $grade_class->grade;
+            $result["class"] = $grade_class->class;
+
+            $school = DB::table('schools')
+                        ->where('no', $grade_class->school)
+                        ->first()->name;
+
+            $result["schoolName"] = $school;
+            break;
+
+          case "teacher":
+            $grade_class = DB::table('grade_classes')
+                              ->where('teacher', $user->no)
+                              ->first();
+            $result["grade"] = $grade_class->grade;
+            $result["class"] = $grade_class->class;
+
+            $school = DB::table('schools')
+                        ->where('no', $grade_class->school)
+                        ->first()->name;
+
+            $result["schoolName"] = $school;
+            break;
+
+          default:
+            # code...
+            break;
+        }
+        // dd($result);
         return json_encode($result);
       }
 
