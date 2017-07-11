@@ -20,7 +20,7 @@ class AppLoginController extends Controller
                   "id" => "",
                   "name" => "",
                   "type" => "",
-                  "childID" => array(),
+                  "child" => array(),
                 );
 
       if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
@@ -38,7 +38,11 @@ class AppLoginController extends Controller
                         ->join('students', 'students.student', '=', 'users.no')
                         ->where('parents', $user->no)
                         ->get();
-            $result["childID"] = $childs->toArray();
+            // $result["childID"] = $childs->toArray();
+            $childIndex = 1;
+            for($i=0; $i<count($childs); $i++) {
+              $result["child"]["child$childIndex"] = ["id"=>$childs[$i]->id, "name"=>$childs[$i]->name];
+            }
             break;
 
           case "student":
