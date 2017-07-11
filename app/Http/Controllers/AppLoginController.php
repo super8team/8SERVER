@@ -21,6 +21,9 @@ class AppLoginController extends Controller
                   "name" => "",
                   "type" => "",
                   "child" => array(),
+                  "grade" => "",
+                  "class" => "",
+                  "schoolName" => "",
                 );
 
       if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
@@ -32,8 +35,7 @@ class AppLoginController extends Controller
         $result["name"] = $user->name;
         $result["type"] = $user->type;
 
-        switch ($user->type) {
-          case "parents":
+        if ($user->type == "parents") {
             $childs = DB::table('users')
                         ->join('students', 'students.student', '=', 'users.no')
                         ->where('parents', $user->no)
@@ -43,9 +45,7 @@ class AppLoginController extends Controller
             for($i=0; $i<count($childs); $i++) {
               $result["child"]["child$childIndex"] = ["id"=>$childs[$i]->id, "name"=>$childs[$i]->name];
             }
-            break;
-
-          case "student":
+        } else if ($user->type == "student") {
             $grade_class = DB::table('students')
                              ->where('student', $user->no)
                              ->first()->grade_class;
@@ -58,11 +58,8 @@ class AppLoginController extends Controller
             $school = DB::table('schools')
                         ->where('no', $grade_class->school)
                         ->first()->name;
-
             $result["schoolName"] = $school;
-            break;
-
-          case "teacher":
+          } else if ($user->type == "teacher") {
             $grade_class = DB::table('grade_classes')
                               ->where('teacher', $user->no)
                               ->first();
@@ -74,12 +71,7 @@ class AppLoginController extends Controller
                         ->first()->name;
 
             $result["schoolName"] = $school;
-            break;
-
-          default:
-            # code...
-            break;
-        }
+         }
         // dd($result);
         return json_encode($result);
       }
