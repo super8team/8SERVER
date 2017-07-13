@@ -956,6 +956,7 @@
           },
           success: function(data){
             if(data){
+              console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
               for(var i = 0; i < user_packages.length; i++){
                 var package_name = user_packages[i].innerText;
