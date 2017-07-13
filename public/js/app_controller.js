@@ -497,6 +497,8 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
         var length                = storage_contents.length;
         var parent_content        = storage_contents[length-1];
+        console.log('테스트임');
+        console.log(parent_content);
         var child_content         = parent_content.childNodes;
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
@@ -546,7 +548,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             }
           },
           error: function(){
-            alert('실패');
+            alert('실패임');
           }
         });
         document.getElementById('present_file').value = 0;
