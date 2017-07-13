@@ -504,8 +504,8 @@ AppController.prototype.assignLibraryClickHandlers = function() {
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
         var storage_package_child = storage_package.firstChild;
-
         var storage_package_name  = storage_package_child.innerText ;
+
         console.log('완료');
         console.log('현재 패키지 이름'+storage_package_name);
 
@@ -526,7 +526,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
         $.ajax({
           method: 'GET',
-          url:  '/contents/storageNewContent',
+          url: '{{route('contents.storageNewContent')}}',
           data: {
             'xml'          : content_xml,
             'spec'         : content_spec,
@@ -551,7 +551,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             alert('실패임');
           }
         });
-        document.getElementById('present_file').value = 0;
+        document.getElementById('change').value = 0;
       });
 
   // Button for removing selected block from library.
