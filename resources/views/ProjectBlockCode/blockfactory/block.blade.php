@@ -910,7 +910,7 @@
 
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
-        self.blockLibraryController.saveToBlockLibrary();
+        // self.blockLibraryController.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
         //노드 중에서 가장 마지막 요소를 가져온다
 
