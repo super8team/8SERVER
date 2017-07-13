@@ -526,7 +526,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
         $.ajax({
           method: 'GET',
-          url: '{{route('contents.storageNewContent')}}',
+          url: '{!! route('contents.storageNewContent') !!}',
           data: {
             'xml'          : content_xml,
             'spec'         : content_spec,
