@@ -487,9 +487,9 @@ AppController.prototype.assignLibraryClickHandlers = function() {
   var self = this;
 
   // Button for saving block to library.
-  document.getElementById('saveToBlockLibraryButton').addEventListener('click',
-      function() {
-        self.blockLibraryController.saveToBlockLibrary();
+  // document.getElementById('saveToBlockLibraryButton').addEventListener('click',
+  //     function() {
+  //       self.blockLibraryController.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
         //노드 중에서 가장 마지막 요소를 가져온다
 
@@ -552,7 +552,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
       //     }
       //   });
       //   document.getElementById('change').value = 0;
-      });
+      // });
 
   // Button for removing selected block from library.
   document.getElementById('removeBlockFromLibraryButton').addEventListener(
@@ -593,6 +593,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
         var obj   = event.target;
         var value = event.target.value;
+        console.log(obj);
         console.log('클릭');
         console.log(event.target.value);
         if(value)
