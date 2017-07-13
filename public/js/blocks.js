@@ -931,7 +931,7 @@ Blockly.Blocks['image_1'] = {
     //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField('링컨','IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -956,7 +956,7 @@ Blockly.Blocks['image_2'] = {
     //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField('안중근','IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -982,7 +982,7 @@ Blockly.Blocks['image_3'] = {
     //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField('심슨','IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -1007,7 +1007,7 @@ Blockly.Blocks['image_4'] = {
     //     .appendField(new Blockly.FieldTextInput('default'), 'IMGNAME');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField('간디','IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')

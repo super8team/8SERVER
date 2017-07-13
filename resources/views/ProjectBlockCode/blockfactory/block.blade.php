@@ -900,17 +900,16 @@
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
 </div>
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data" hidden>
 
-    <input id="present_file" type="text" name="" value="1" hidden>
-    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
-
+  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+    <input id="change" type="text" name="" value="0" hidden>
+    <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
     </form>
   </body>
   <script type="text/javascript">
 
   function getCmaFileInfo(obj,stype) {
-    console.log('fdf');
+    console.log('getCmaFileInfo function');
      var fileObj, pathHeader , pathMiddle, pathEnd, allFilename, fileName, extName;
      var parent = document.getElementById('img_parent');
      if(obj == "[object HTMLInputElement]") {
@@ -931,7 +930,7 @@
              file_list.setAttribute("class","file_list")
              file_list.setAttribute("name","filename[]");
              parent.appendChild(file_list);
-             console.log('ff');
+             console.log('getCmaFileInfo function 2');
              console.log(file_list);
   }
 
@@ -958,7 +957,7 @@
     if(event.target != package_div.firstChild)
       package_div.insertBefore(event.target, package_div.firstChild);
 
-    var parent        = document.getElementById('dropdownDiv_blockLib');
+    var parent       = document.getElementById('dropdownDiv_blockLib');
 
     var remove_obj    = document.getElementsByClassName("content_list");
 
@@ -988,7 +987,7 @@
           if(data){
           // console.log(data[0]['name']);
           for(var i = 0; i < data.length; i++){
-              console.log('938');
+              console.log('990');
               var parent_wrap  = document.createElement("button");
               var child_wrap   = document.createElement("input");
 
@@ -1021,15 +1020,12 @@
               parent_wrap.appendChild(name_text);
               $('#dropdownDiv_blockLib').append(parent_wrap);
             }
-
           }
       },
       error: function() { // What to do if we fail
           console.log('해당x');
       }
   });
-
-
   });
   </script>
 

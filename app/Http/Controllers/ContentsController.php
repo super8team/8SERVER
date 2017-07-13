@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use File;
 
+
 class ContentsController extends Controller
 {
     public function index()
@@ -244,9 +245,13 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         foreach ($otherPackages as $otherPackage ) {
               array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
         }
+        //페이지네이
+        $otherPackageInfor = DB::table('contentS_package_shares')->orderBy('views','asc')->simplePaginate(4);
 
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
+
+
 
       }
     public function shareDetail($package_id)

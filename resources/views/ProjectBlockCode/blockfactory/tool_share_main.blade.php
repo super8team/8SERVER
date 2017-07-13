@@ -36,45 +36,56 @@
 
   <body>
       <table id="mainShareList">
-        <div align="center"><b>인기있는 콘텐츠 패키지</b></div>
+        <div align="center" id="mainShareListTitle" >인기있는 콘텐츠 패키지</div>
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
           @php
           $url = Storage::url('packageImgs/'.$value['imgs']);
-//	$url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
+          //	$url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
           @endphp
-             <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="" style="width:100px; height:100px"></a></td>
+             <td>
+               <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                 <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="" style="width:170px; height:100px">
+               </a>
+             </td>
           @endforeach
-
         </tr>
         <tr id="mainPackageName">
           @foreach ($popularPackage as $imgs)
-               <td>패키지 네임</a></td>
+               <td>contents_package_shares 컬럼 추가하기</td>
           @endforeach
         </tr>
       </table>
-      <hr>
-
-      <form class="" action="index.html" method="post">
-        <input type="text" name="" value="">
-        <input type="submit" name="" value="검색">
-      </form>
-
+      <br>
+      <br>
+      <div align="center" id="contentsPackageTitle">
+        콘텐츠 패키지
+      </div>
+      <div id="packageResearch">
+        <form class="" action="index.html" method="post" align="right">
+          <input type="text" name="" value="">
+          <input type="submit" name="" value="검색">
+        </form>
+      </div>
       <table id="shareList">
-        <div align="center"><b>콘텐츠 패키지<b></div>
         <tr id="contenstsImage">
           @foreach ($otherPackage as $key => $value)
             @php
               $url = Storage::url('packageImgs/'.$value['imgs']);
             @endphp
-              <td><a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}"><img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" al t="" style="width:100px; height:150px"></a></td>
+              <td>
+                <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                  <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
+                </a>
+              </td>
           @endforeach
         </tr>
         <tr id="packageName">
           @foreach ($otherPackage as $id)
-               <td>패키지이름</a></td>
+               <td>DB 수정하기</a></td>
           @endforeach
         </tr>
+        {{$otherPackage->links() }}
       </table>
       <button id="share" type="button" name="button">패키지 공유하기</button>
     </body>

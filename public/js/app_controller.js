@@ -546,7 +546,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             }
           },
           error: function(){
-            // alert('실패');
+            alert('실패');
           }
         });
         document.getElementById('present_file').value = 0;
@@ -578,9 +578,16 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
   document.getElementById('dropdownDiv_blockLib').addEventListener('click',
       function(event){
-        document.getElementById('present_file').value = 0;
+        var img_file_object = document.getElementsByClassName('file_list');
+        for(var i = 0 ; i < img_file_object.length ; i++){
+            console.log(img_file_object[i].value);
+            img_file_object[i].remove();
+        }
+        document.getElementById('upFile').value = null;
+        document.getElementById('change').value = 1;
         console.log('파일');
-        console.log(document.getElementById('present_file').value);
+
+
 
         var obj   = event.target;
         var value = event.target.value;
@@ -659,11 +666,19 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
         }
       });
 
-  document.getElementById('createNewBlockButton')
-    .addEventListener('click', function() {
+  document.getElementById('createNewBlockButton').addEventListener('click', function() {
       var proceedWithUnsavedChanges =
           self.blockLibraryController.warnIfUnsavedChanges();
-      document.getElementById('present_file').value = 1;
+      // document.getElementById('present_file').value = 1;
+
+      var img_file_object = document.getElementsByClassName('file_list');
+
+      for(var i = 0 ; i < img_file_object.length ; i++){
+          console.log(img_file_object[i].value);
+          img_file_object[i].remove();
+      }
+      document.getElementById('upFile').value = null;
+      document.getElementById('change').value = 0;
       if (!proceedWithUnsavedChanges) {
         return;
       }

@@ -175,9 +175,7 @@ FactoryUtils.cleanBlockType = function(blockType) {
   }
   return blockType.replace(/\W/g, '_').replace(/^(\d)/, '_$1');
 };
-FactoryUtils.test = function(){
-  alert("12341234");
-}
+
 /**
  * Get the generator code for a given block.
  * @param {!Blockly.Block} block Rendered block in preview workspace.
@@ -419,9 +417,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     txtBlock = txtBlock.nextConnection && txtBlock.nextConnection.targetBlock();
   }
 
+
   while (contentsBlock) {
     if (!contentsBlock.disabled && !contentsBlock.getInheritedDisabled()) {
-      console.log('실험1');
+      console.log('upfile 실험1');
 
       var input = {};
       var cform = document.form_name;
@@ -431,39 +430,73 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       console.log(contentsBlock.type);
       switch(contentsBlock.type){
         case 'image_1':
+          console.log('1');
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
-            var val      = document.getElementById('present_file').value;
-            if(val == 1){
-              cform.upFile.click();
+            if(contentsBlock){
+              console.log(document.getElementById('change').value);
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[0] == null)
+              {
+                cform.upFile.click();
+              }
             }
+            input.src = document.getElementsByClassName('file_list')[0].value;
             break;
         case 'image_2':
+          console.log('2');
             input.id = '2';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              // val++;
+            console.log('2');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[1] == null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[2].value;
+          input.src = document.getElementsByClassName('file_list')[1].value;
           break;
         case 'image_3':
+        console.log('3');
             input.id = '3';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              // val++;
+            console.log('3');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[2]== null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[3].value;
+            input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_4':
+        console.log('4');
             input.id = '4';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              document.getElementById('present_file').value = 0;
+            console.log('4');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[3]== null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[4].value;
+          input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
       var a = document.getElementsByClassName('file_list')

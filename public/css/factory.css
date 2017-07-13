@@ -265,25 +265,34 @@ button, .buttonStyle {
 }
 
 #mainShareList {
-  border:1px solid black;
+  /*border:1px solid black;*/
   margin-left: 15%;
   margin-top: 5%;
   width:70%;
   height:20%;
 }
+#mainShareListTitle {
+  font-size: 24px;
+}
 
+#contentsPackageTitle {
+  font-size: 24px;
+}
 #mainShareList #mainContenstsImage {
   height: 10%;
-  border:1px solid black;
+  /*border:1px solid black;*/
+}
+#packageResearch {
+  margin-right : 15%;
 }
 
 #mainShareList #mainPackageName {
   height: 4%;
-  border:1px solid black;
+  /*border:1px solid black;*/
 }
 
 #shareList {
-  border:1px solid black;
+  /*border:1px solid black;*/
   margin-left: 15%;
   margin-top: 5%;
   width:70%;
@@ -292,12 +301,12 @@ button, .buttonStyle {
 
 #shareList #contenstsImage {
   height: 9%;
-  border:5px solid black;
+  /*border:5px solid black;*/
 }
 
 #shareList #packageName {
   height: 4%;
-  border:1px solid black;
+  /*border:1px solid black;*/
 }
 
 #linkButton {
