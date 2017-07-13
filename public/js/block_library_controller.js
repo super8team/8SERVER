@@ -593,7 +593,7 @@ BlockLibraryController.prototype.setSelectedAndOpen_2 = function(blockOption,val
   this.view.setSelectedBlockType(blockType);
   this.openBlock2(blockOption);
   this.view.updateButtons(blockType,true,true);
-  BlockFactory.closeModal();
+  blocklyFactory.closeModal();
 }
 BlockLibraryController.prototype.addOptionSelectHandlers = function() {
   // Assign a click handler to each block option.
