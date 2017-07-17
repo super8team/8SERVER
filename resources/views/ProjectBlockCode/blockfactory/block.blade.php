@@ -599,6 +599,7 @@
       <category name="에디트">
         <block type="EDIT"></block>
       </category>
+
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">

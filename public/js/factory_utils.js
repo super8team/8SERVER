@@ -332,9 +332,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         clickblock.getInputTargetBlock('CHECKEDIT1'));
       var CHECKEDIT2     = FactoryUtils.getFieldsJson_(
         clickblock.getInputTargetBlock('CHECKEDIT2'));
-      console.log('CLICK')
 
-      // console.log(fields2);
       var input = {};
 
       // for(var i=0; i< script_fields.length; i++) {
@@ -359,13 +357,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           input.true   = CHECKEDIT1;
           input.false  = CHECKEDIT2;
         }else {
-        input.name   = clickblock.getFieldValue('INPUTNAME');
-        input.action = script_fields;
+          input.name   = clickblock.getFieldValue('INPUTNAME');
+          input.action = script_fields;
         }
+
       }
-
       srtargs.push(input);
-
   }
     clickblock = clickblock.nextConnection && clickblock.nextConnection.targetBlock();
 }
@@ -559,8 +556,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
   JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
   JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
-  // JS.packagenum = FactoryUtils.getPackagenumRootBlock_(rootBlock);
-  //정류장 - 여기 거침
+  JS.toast      = FactoryUtils.getToastRootBlock_(rootBlock);
+  JS.quest      = FactoryUtils.getQuestRootBlock_(rootBlock);
+  JS.bingo      = FactoryUtils.getBingoRootBlock_(rootBlock);
+  JS.collection = FactoryUtils.getCollectionRootBlock_(rootBlock);
+  JS.map        = FactoryUtils.getMapRootBlock_(rootBlock);
+
   return JSON.stringify(JS, null, '  ');
 
 };
@@ -891,7 +892,6 @@ FactoryUtils.getFieldsJson_ = function(block) {
   while (block) {
     if (!block.disabled && !block.getInheritedDisabled()) {
       switch (block.type) {
-
         case 'button_1':
         case 'button_2':
         case 'button_3':
@@ -933,8 +933,9 @@ FactoryUtils.getFieldsJson_ = function(block) {
           break;
         case 'OUT_TXT':
           script_fields.push({
-              type: block.getFieldValue('OUT_TXT')
+              out_txt: block.getFieldValue('OUT_TXT')
           });
+          break;
         case 'END':
           script_fields.push({
               type: block.type
@@ -1437,6 +1438,46 @@ FactoryUtils.getDisableRootBlock_ = function(rootBlock) {
   }
   return '';
 };
+
+FactoryUtils.getToastRootBlock_ = function(rootBlock) {
+  var toastBlock = rootBlock.getInputTargetBlock('TOAST');
+  if(toastBlock && !toastBlock.disabled){
+    return toastBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getQuestRootBlock_ = function(rootBlock) {
+  var questBlock = rootBlock.getInputTargetBlock('QUEST');
+  if(questBlock && !questBlock.disabled){
+    return questBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getBingoRootBlock_ = function(rootBlock) {
+  var bingoBlock = rootBlock.getInputTargetBlock('BINGO');
+  if(bingoBlock && !bingoBlock.disabled){
+    return bingoBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getCollectionRootBlock_ = function(rootBlock) {
+  var collectionBlock = rootBlock.getInputTargetBlock('COLLECTION');
+  if(collectionBlock && !collectionBlock.disabled){
+    return collectionBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getMapRootBlock_ = function(rootBlock) {
+  var mapBlock = rootBlock.getInputTargetBlock('MAP');
+  if(mapBlock && !mapBlock.disabled){
+    return mapBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
 
 // FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
 //   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
