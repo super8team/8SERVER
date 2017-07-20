@@ -106,8 +106,7 @@
 									  <input type="text" name="plan_title" class="form-control required" 
                     value="{{$plan_title}}" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
                   @else
-                    <input type="text" name="plan_title" class="form-control required"  
-                    size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+
                   @endif
 								</div>
 							</div>
@@ -119,7 +118,8 @@
 									</div>
                   @if(isset($plan_date)) 
                     <input type="date" class="form-control required" value="{{$plan_date}}" name="plan_date">
-                  @else
+                  @else<input type="text" name="plan_title" class="form-control required"
+											   size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
                     <input type="date" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
                   @endif
 								</div>

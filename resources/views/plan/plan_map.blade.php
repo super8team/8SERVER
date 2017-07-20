@@ -32,7 +32,7 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
-<<<<<<< HEAD
+
     for (var i = 0; i <5 ; i++) {
       $("#like_list"+i).on('shown.bs.modal', function () {
        $("#view_calendar"+i).fullCalendar('render');
@@ -66,7 +66,7 @@
           start: '2017-06-20T12:00'
         },
       ]
-=======
+
 
     
       
@@ -136,7 +136,7 @@
           
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
+
     });
     
     // 4.클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
@@ -345,11 +345,11 @@
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
               }  //위키피디아 
             });
-<<<<<<< HEAD
+
             }
             //위키피디아
             // infoResult(searchInput);
-=======
+
             $.ajax({
             url: '{{route('map.search')}}',
             type:'POST',
@@ -378,7 +378,7 @@
            // 검색정보 + 검색된 결과 겟수  
            
          }
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
+
         });
 
         // 검색 부분 마커
@@ -645,7 +645,7 @@
                   
                   </tbody>
                 </table>
-<<<<<<< HEAD
+
                 @for ($t=0; $t <5 ; $t++)
                   <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
                     <div class="modal-dialog">
@@ -677,9 +677,7 @@
                     </div>
                   </div>
                 @endfor
-=======
-                  
->>>>>>> 68c0f14e88a9908ccbeee71b4f3304a57eee23df
+
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
