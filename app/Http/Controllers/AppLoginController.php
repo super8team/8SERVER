@@ -17,6 +17,7 @@ class AppLoginController extends Controller
 
       $result = array(
                   "loginSuccess" => false,
+                  "no" => "",
                   "id" => "",
                   "name" => "",
                   "type" => "",
@@ -31,6 +32,7 @@ class AppLoginController extends Controller
 
 
         $result["loginSuccess"] = true;
+        $result["no"] = $user->no;
         $result["id"] = $user->id;
         $result["name"] = $user->name;
         $result["type"] = $user->type;
@@ -41,9 +43,8 @@ class AppLoginController extends Controller
                         ->where('parents', $user->no)
                         ->get();
             // $result["childID"] = $childs->toArray();
-            $childIndex = 1;
             for($i=0; $i<count($childs); $i++) {
-              $result["child"]["child$childIndex"] = ["id"=>$childs[$i]->id, "name"=>$childs[$i]->name];
+              $result["child"]["child".($i+1)] = ["id"=>$childs[$i]->id, "name"=>$childs[$i]->name, "no"=>$childs[$i]->no];
             }
         } else if ($user->type == "student") {
             $grade_class = DB::table('students')
