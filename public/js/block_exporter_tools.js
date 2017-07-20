@@ -56,8 +56,9 @@ BlockExporterTools = function() {
    * @type {Blockly.Workspace}
    */
   this.hiddenWorkspace = Blockly.inject(this.container.id,
-      {collapse: false,
-       media: '../../media/'});
+      {collapse: false
+      //  media: '../../media/'
+      });
 };
 
 /**

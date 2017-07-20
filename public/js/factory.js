@@ -88,9 +88,67 @@ BlockFactory.STARTER_BLOCK_XML_TEXT = '<xml><block type="factory_base" ' +
     '<block type="logic_boolean" movable="false">' +
     '<field name="BOOLEAN"></field></block></value>' +
 
+    '<value name="TOAST">' +
+    '<block type="logic_boolean" movable="false">' +
+    '<field name="BOOLEAN"></field></block></value>' +
+
+    '<value name="QUEST">' +
+    '<block type="logic_boolean" movable="false">' +
+    '<field name="BOOLEAN"></field></block></value>' +
+
+    '<value name="BINGO">' +
+    '<block type="bingo" movable="false">' +
+    '<field name="BOOLEAN"></field></block></value>' +
+
+    '<value name="COLLECTION">' +
+    '<block type="logic_boolean" movable="false">' +
+    '<field name="BOOLEAN"></field></block></value>' +
+
+    '<value name="MAP">' +
+    '<block type="logic_boolean" movable="false">' +
+    '<field name="BOOLEAN"></field></block></value>'
 
     '</block></xml>';
+    // var BINGO_MESSAGE = '%1';
+    // var BINGO_ARGS = [
+    //   {
+    //     "type": "field_dropdown",
+    //     "name": "BINGO",
+    //     "options": [['1',1],['2',2],['3',3]],
+    //   }
+    // ];
 
+
+    // Blockly.Blocks['input_value'] = {
+    //   // Value input.
+    //   init: function() {
+    //     this.jsonInit({
+    //       "message0": "value input %1 %2",
+    //       "args0": [
+    //         {
+    //           "type": "field_input",
+    //           "name": "INPUTNAME",
+    //           "text": " "
+    //         },
+    //         {
+    //           "type": "input_dummy"
+    //         }
+    //       ],
+    //       "message1": FIELD_MESSAGE,
+    //       "args1": FIELD_ARGS,
+    //       "message2": TYPE_MESSAGE,
+    //       "args2": TYPE_ARGS,
+    //       "previousStatement": "Input",
+    //       "nextStatement": "Input",
+    //       "colour": 210,
+    //       "tooltip": "A value socket for horizontal connections.",
+    //       "helpUrl": "https://www.youtube.com/watch?v=s2_xaEvcVI0#t=71"
+    //     });
+    //   },
+    //   onchange: function() {
+    //     inputNameCheck(this);
+    //   }
+    // };
 
 /**
  * Change the language code format.
@@ -167,7 +225,7 @@ BlockFactory.updatePreview = function() {
     var rtl = newDir == 'rtl';
     BlockFactory.previewWorkspace = Blockly.inject('preview',
         {rtl: rtl,
-         media: '../../media/',
+        //  media: '../../media/',
          scrollbars: true});
     BlockFactory.oldDir = newDir;
 

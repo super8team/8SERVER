@@ -487,65 +487,72 @@ AppController.prototype.assignLibraryClickHandlers = function() {
   var self = this;
 
   // Button for saving block to library.
-  document.getElementById('saveToBlockLibraryButton').addEventListener('click',
-      function() {
-        self.blockLibraryController.saveToBlockLibrary();
+  // document.getElementById('saveToBlockLibraryButton').addEventListener('click',
+  //     function() {
+  //       self.blockLibraryController.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
         //노드 중에서 가장 마지막 요소를 가져온다
-        var storage_contents      = document.getElementsByClassName('content_list');
-        var length                = storage_contents.length;
-        var parent_content        = storage_contents[length-1];
-        var child_content         = parent_content.childNodes;
 
-        //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
-        var storage_package       = document.getElementById('packageDiv');
-        var storage_package_child = storage_package.firstChild;
-
-        var storage_package_name  = storage_package_child.innerText ;
-        console.log('완료');
-        console.log('현재 패키지 이름'+storage_package_name);
-
-        //저장할 컨텐츠 xml
-        var content_xml         = child_content[1].value;
-        console.log(content_xml);
-        //저장할 컨텐츠 명세
-        var content_spec        = child_content[2].value;
-        console.log(content_spec);
-        var content_spec_object = JSON.parse(content_spec);
-
-        //저장할 컨텐츠 이름
-        var content_name        = content_spec_object['type'];
-        console.log(content_name);
-        //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
-        //중복이 없으면 새로운 패키지를 등록하고
-        //중복이 있으면 그 패키지에 등록을 한다
-
-        $.ajax({
-          method: 'GET',
-          url:  '/contents/storageNewContent',
-          data: {
-            'xml'          : content_xml,
-            'spec'         : content_spec,
-            'name'         : content_name,
-            'package_name' : storage_package_name
-          },
-          success: function(data){
-
-            console.log(data);
-            var user_packages = document.getElementsByClassName('package_button');
-            for(var i = 0; i < user_packages.length; i++){
-              var package_name = user_packages[i].innerText;
-              if(package_name == data[i]['name']){
-                user_packages[i].innerText = data[i]['name'];
-                user_packages[i].value     = data[i]['id'];
-              }
-            }
-          },
-          error: function(){
-            alert('실패');
-          }
-        });
-      });
+      //   var storage_contents      = document.getElementsByClassName('content_list');
+      //
+      //   var length                = storage_contents.length;
+      //   var parent_content        = storage_contents[length-1];
+      //   console.log('테스트임');
+      //   console.log(parent_content);
+      //   var child_content         = parent_content.childNodes;
+      //
+      //   //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
+      //   var storage_package       = document.getElementById('packageDiv');
+      //   var storage_package_child = storage_package.firstChild;
+      //   var storage_package_name  = storage_package_child.innerText ;
+      //
+      //   console.log('완료');
+      //   console.log('현재 패키지 이름'+storage_package_name);
+      //
+      //   //저장할 컨텐츠 xml
+      //   var content_xml         = child_content[1].value;
+      //   console.log(content_xml);
+      //   //저장할 컨텐츠 명세
+      //   var content_spec        = child_content[2].value;
+      //   console.log(content_spec);
+      //   var content_spec_object = JSON.parse(content_spec);
+      //
+      //   //저장할 컨텐츠 이름
+      //   var content_name        = content_spec_object['type'];
+      //   console.log(content_name);
+      //   //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
+      //   //중복이 없으면 새로운 패키지를 등록하고
+      //   //중복이 있으면 그 패키지에 등록을 한다
+      //
+      //   $.ajax({
+      //     method: 'GET',
+      //     url: '/LEARnFUN/public/contents/shareDetail/contents/storageNewContent',
+      //     data: {
+      //       'xml'          : content_xml,
+      //       'spec'         : content_spec,
+      //       'name'         : content_name,
+      //       'package_name' : storage_package_name
+      //     },
+      //     success: function(data){
+      //       if(data){
+      //         var user_packages = document.getElementsByClassName('package_button');
+      //         for(var i = 0; i < user_packages.length; i++){
+      //           var package_name = user_packages[i].innerText;
+      //           if(package_name == data[i]['name']){
+      //             user_packages[i].innerText = data[i]['name'];
+      //             user_packages[i].value     = data[i]['id'];
+      //           }
+      //         }
+      //       }else{
+      //         console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
+      //       }
+      //     },
+      //     error: function(){
+      //       alert('실패임');
+      //     }
+      //   });
+      //   document.getElementById('change').value = 0;
+      // });
 
   // Button for removing selected block from library.
   document.getElementById('removeBlockFromLibraryButton').addEventListener(
@@ -573,8 +580,20 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 
   document.getElementById('dropdownDiv_blockLib').addEventListener('click',
       function(event){
+        var img_file_object = document.getElementsByClassName('file_list');
+        for(var i = 0 ; i < img_file_object.length ; i++){
+            console.log(img_file_object[i].value);
+            img_file_object[i].remove();
+        }
+        document.getElementById('upFile').value = null;
+        document.getElementById('change').value = 1;
+        console.log('파일');
+
+
+
         var obj   = event.target;
         var value = event.target.value;
+        console.log(obj);
         console.log('클릭');
         console.log(event.target.value);
         if(value)
@@ -650,12 +669,19 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
         }
       });
 
-  document.getElementById('createNewBlockButton')
-    .addEventListener('click', function() {
-      // If there are unsaved changes warn user, check if they'd like to
-      // proceed with unsaved changes, and act accordingly.
+  document.getElementById('createNewBlockButton').addEventListener('click', function() {
       var proceedWithUnsavedChanges =
           self.blockLibraryController.warnIfUnsavedChanges();
+      // document.getElementById('present_file').value = 1;
+
+      var img_file_object = document.getElementsByClassName('file_list');
+
+      for(var i = 0 ; i < img_file_object.length ; i++){
+          console.log(img_file_object[i].value);
+          img_file_object[i].remove();
+      }
+      document.getElementById('upFile').value = null;
+      document.getElementById('change').value = 0;
       if (!proceedWithUnsavedChanges) {
         return;
       }
@@ -849,8 +875,8 @@ AppController.prototype.init = function() {
   var toolbox = document.getElementById('blockfactory_toolbox');
   BlockFactory.mainWorkspace = Blockly.inject('blockly',
       {collapse: false,
-       toolbox: toolbox,
-       media: '../../media/'});
+       toolbox: toolbox});
+      //  media: '../../media/'
   console.log('메인');
   console.log(BlockFactory.mainWorkspace);
 

@@ -60,8 +60,17 @@ Blockly.Blocks['factory_base'] = {
         .appendField('클릭 작동');
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 작동 여부');
-
+        .appendField('콘텐츠 정지');
+    this.appendValueInput('TOAST')
+        .appendField('토스트');
+    this.appendValueInput('QUEST')
+        .appendField('퀘스트')
+    this.appendValueInput('BINGO')
+        .appendField('빙고')
+    this.appendValueInput('COLLECTION')
+        .appendField('컬렉션')
+    this.appendValueInput('MAP')
+        .appendField('지도')
 
     // this.appendDummyInput()
     //     .appendField(dropdown, 'CONNECTIONS');
@@ -71,8 +80,6 @@ Blockly.Blocks['factory_base'] = {
     // this.appendValueInput('HELPURL')
     //     .setCheck('String')
     //     .appendField('help url');
-
-
 
     // this.appendValueInput('VARI')
     //     .setCheck('Boolean')
@@ -149,6 +156,14 @@ Blockly.Blocks['factory_base'] = {
   }
 
 };
+var BINGO_MESSAGE = '%1';
+var BINGO_ARGS = [
+  {
+    "type": "field_dropdown",
+    "name": "BINGO",
+    "options": [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9']],
+  }
+];
 
 var FIELD_MESSAGE = 'fields %1 %2';
 var FIELD_ARGS = [
@@ -160,7 +175,7 @@ var FIELD_ARGS = [
   {
     "type": "input_statement",
     "name": "FIELDS",
-    "check": "Field"
+    // "check": "Field"
   }
 ];
 var SCRIPT_MESSAGE = '이벤트 %1 ';
@@ -168,7 +183,7 @@ var SCRIPT_ARG = [
     {
       "type": "input_statement",
       "name": "SCRIPT",
-      "check":"Field"
+      // "check":"Field"
     }
 ];
 //true
@@ -264,11 +279,6 @@ Blockly.Blocks['vertical'] = {
   }
 };
 
-
-
-// console.log(list.children);
-
-
 Blockly.Blocks['horizontal'] = {
   init: function() {
     this.jsonInit({
@@ -286,6 +296,16 @@ Blockly.Blocks['horizontal'] = {
   }
 };
 
+Blockly.Blocks['bingo'] = {
+  init: function() {
+    this.jsonInit({
+    "message0" : BINGO_MESSAGE,
+    "args0" : BINGO_ARGS,
+    "colour": 210,
+  });
+  this.setOutput(true,'Field');
+  },
+};
 
 Blockly.Blocks['input_statement'] = {
   // Statement input.
@@ -317,38 +337,6 @@ Blockly.Blocks['input_statement'] = {
     inputNameCheck(this);
   }
 };
-
-Blockly.Blocks['CLICK'] = {
-  init: function() {
-      this.jsonInit({
-        "message0" : "클릭 이벤트 %1 %2",
-        "args0": [
-          {
-            "type": "field_input",
-            "name": "INPUTNAME",
-            "text": "NAME"
-          },
-          {
-            "type": "input_dummy"
-          }
-        ],
-        "message1": SCRIPT_MESSAGE,
-        "args1" :   SCRIPT_ARG,
-        "previousStatement": "CheckEdit",
-        "nextStatement": "CheckEdit",
-        "colour": 160,
-      });
-
-    }
-};
-Blockly.Blocks['END'] = {
-  init: function() {
-    this.setColour(160);
-    this.appendDummyInput()
-        .appendField('이벤트 끝')
-    this.setPreviousStatement(true, 'CheckEdit');
-  }
-}
 Blockly.Blocks['CHECKEDIT'] = {
   init: function() {
       this.jsonInit({
@@ -383,8 +371,37 @@ Blockly.Blocks['CHECKEDIT'] = {
         "colour": 160,
       });
   }
+};
+Blockly.Blocks['CLICK'] = {
+  init: function() {
+      this.jsonInit({
+        "message0" : "클릭 이벤트 %1 %2",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "INPUTNAME",
+            "text": "NAME"
+          },
+          {
+            "type": "input_dummy"
+          }
+        ],
+        "message1": SCRIPT_MESSAGE,
+        "args1" :  SCRIPT_ARG,
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
+        "colour": 160,
+      });
+    }
+};
+Blockly.Blocks['END'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('이벤트 끝')
+    this.setPreviousStatement(true, 'CheckEdit');
+  }
 }
-
 
 Blockly.Blocks['field_static'] = {
   // Text value.
@@ -398,14 +415,14 @@ Blockly.Blocks['field_static'] = {
     // this.setNextStatement(true, 'Field');
   }
 };
-
-Blockly.Blocks['package_name'] = {
-  init: function() {
-    this.setColour(230);
-    this.appendDummyInput()
-        .appendField('text')
-  }
-};
+//
+// Blockly.Blocks['package_name'] = {
+//   init: function() {
+//     this.setColour(230);
+//     this.appendDummyInput()
+//         .appendField('text')
+//   }
+// };
 Blockly.Blocks['button_1'] = {
   init: function() {
     this.setColour(160);
@@ -882,7 +899,7 @@ Blockly.Blocks['OUT_TXT'] = {
     this.setColour(160);
     this.appendDummyInput()
         .appendField('텍스트')
-        .appendField(new Blockly.FieldTextInput('default'),'OUT_TXT');
+        .appendField(new Blockly.FieldTextInput(''),'OUT_TXT');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
@@ -934,7 +951,7 @@ Blockly.Blocks['image_1'] = {
     //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -954,12 +971,12 @@ Blockly.Blocks['image_2'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지2');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -980,12 +997,12 @@ Blockly.Blocks['image_3'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지3');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
@@ -1005,12 +1022,12 @@ Blockly.Blocks['image_4'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지4');
-    this.appendDummyInput()
-        .appendField('이미지 주소')
-        .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    // this.appendDummyInput()
+    //     .appendField('이미지 주소')
+    //     .appendField(new Blockly.FieldTextInput('default'), 'IMGNAME');
     this.appendDummyInput()
         .appendField('이미지 이름')
-        .appendField(new Blockly.FieldTextInput('default'),'IMGNAME');
+        .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
         .appendField('길이')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')

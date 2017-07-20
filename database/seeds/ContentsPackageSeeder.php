@@ -13,7 +13,6 @@ class ContentsPackageSeeder extends Seeder
     {
 
         DB::table('contents_packages')->insert([
-            //
             // ['name' => '콘텐츠1', 'explain' => '설명1', 'owner' => DB::table('users')
             //                                                                         ->where('type', 'teacher')->inRandomOrder()
             //                                                                         ->first()->no],
@@ -41,8 +40,7 @@ class ContentsPackageSeeder extends Seeder
             // ['name' => '콘텐츠9', 'explain' => '설명9', 'owner' => DB::table('users')
             //     ->where('type', 'teacher')->inRandomOrder()
             //     ->first()->no],
-            ['name' => '패키지임다', 'explain' => '불국사를 대표하는 문제', 'owner' => 106]
-
+            ['name' => '이순신', 'explain' => '이순신 일대기를 알아 볼 수 있는 패키지', 'owner' => 28]
         ]);
 
 

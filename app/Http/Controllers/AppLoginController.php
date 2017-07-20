@@ -20,7 +20,10 @@ class AppLoginController extends Controller
                   "id" => "",
                   "name" => "",
                   "type" => "",
-                  "childID" => array(),
+                  "child" => array(),
+                  "grade" => "",
+                  "class" => "",
+                  "schoolName" => "",
                 );
 
       if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
@@ -33,13 +36,43 @@ class AppLoginController extends Controller
         $result["type"] = $user->type;
 
         if ($user->type == "parents") {
-          $childs = DB::table('users')
-                      ->join('students', 'students.student', '=', 'users.no')
-                      ->where('parents', $user->no)
-                      ->get();
-          $result["childID"] = $childs->toArray();
-        }
+            $childs = DB::table('users')
+                        ->join('students', 'students.student', '=', 'users.no')
+                        ->where('parents', $user->no)
+                        ->get();
+            // $result["childID"] = $childs->toArray();
+            $childIndex = 1;
+            for($i=0; $i<count($childs); $i++) {
+              $result["child"]["child$childIndex"] = ["id"=>$childs[$i]->id, "name"=>$childs[$i]->name];
+            }
+        } else if ($user->type == "student") {
+            $grade_class = DB::table('students')
+                             ->where('student', $user->no)
+                             ->first()->grade_class;
+            $grade_class = DB::table('grade_classes')
+                             ->where('no', $grade_class)
+                             ->first();
+            $result["grade"] = $grade_class->grade;
+            $result["class"] = $grade_class->class;
 
+            $school = DB::table('schools')
+                        ->where('no', $grade_class->school)
+                        ->first()->name;
+            $result["schoolName"] = $school;
+          } else if ($user->type == "teacher") {
+            $grade_class = DB::table('grade_classes')
+                              ->where('teacher', $user->no)
+                              ->first();
+            $result["grade"] = $grade_class->grade;
+            $result["class"] = $grade_class->class;
+
+            $school = DB::table('schools')
+                        ->where('no', $grade_class->school)
+                        ->first()->name;
+
+            $result["schoolName"] = $school;
+         }
+        // dd($result);
         return json_encode($result);
       }
 

@@ -3,8 +3,10 @@
 <body>
   <span id = "content_wrapper">
     <div>
-      <img src="/img/{{$package_img}}" alt="콘텐츠 이미지" class="content_img">
-
+      @php
+        $url = Storage::url('packageImgs/'.$package_img);
+      @endphp
+      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
     </div>
     <div id = "detail_article">
       <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
@@ -25,7 +27,7 @@
 
       @for($i = 0; $i < count($contents_name); $i++)
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
-        
+
       @endfor
       <br>
        {{ csrf_field() }}
@@ -41,7 +43,7 @@
   $(document).ready(function(){
     document.getElementById('content_download').addEventListener('click',function(){
       var package_num = document.getElementsByName('package_num')[0].value;
-      window.location.href = "/toolShareDownload?package_num="+package_num;
+      window.location.href = "LEARnFUN/public/toolShareDownload?package_num="+package_num;
     });
   });
 

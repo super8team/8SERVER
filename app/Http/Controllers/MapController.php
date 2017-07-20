@@ -52,19 +52,19 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-
+    
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
-            
+            // dd($start, $end);
             $re = [];
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
                 // if 2015->2017
-                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $start),
-                'end_time' =>  \Carbon\Carbon::createFromFormat('Y-m-d H:m:s', $end),
+                'start_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $start, 'Asia/Seoul'),
+                'end_time' => \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $end, 'Asia/Seoul'),
             ]);
         }
         return redirect()->route('plan.teacher');
@@ -99,7 +99,7 @@ class MapController extends Controller
         $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
         $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
 
-        $plan_title = $plan->no;
+        $plan_title = $plan->name;
         $plan_date = $plan->at;
         $trip_kind_value = $simple->type;
         $attend_class_count = $simple->grade_class_count;
@@ -231,8 +231,7 @@ class MapController extends Controller
             // 검색된 장소를 포함하고 있는 모든 공유게시글
             foreach ($details as $detail) {
                 // $detail = \DB::table('detail_plans')->where('no', $share->detail_plan)->first();
-                $shares = \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->get();// 디테일플랜을 공유한 글
-
+                $shares = \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->get();// 디테일플랜을 공유한
                 foreach($shares as $share) {
                     $plan = \DB::table('field_learning_plans')->where('no', $detail->plan)->first();
                     $teacher = \DB::table('users')->where('no', $plan->teacher)->first();

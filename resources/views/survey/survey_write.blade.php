@@ -16,7 +16,6 @@
 
         // OX 퀴즈  추가 부분
         $(document).on("click","#addOx",function make_ox() {
-
           // var elementId = "Q"+countQuestion;
           allString[countQuestion] =
           "<div id='"+ countQuestion +"' class='col-sm-12 OX'>"+
@@ -38,9 +37,9 @@
           //  $("#createForm").append("<input type='hidden' name ='hidden_arry[]' value='"+allString[countQuestion]+"'>")
           countQuestion++;
         });
+        
         // 객관식 설문 추가 부분
         $(document).on("click", "#addObjTest",function make_obj() {
-
         allString[countQuestion] =
         "<div id='"+countQuestion +"'class='col-sm-12 Obj'>"+
            "<div class='panel panel-default'>"+
@@ -61,15 +60,15 @@
            "</div>"+
           "</div>"
           $("#createForm").append(allString[countQuestion])
-
            countQuestion++;
         });
+        
           //객관식 설문 항목 추가
           $(document).on("click", ".addSubObjBtn",function make_objq() {
             //1. 클릭한 위치 구하기
             //.addSubObjBtn 를 가진 버튼의 위치를 가져와서 저장
             var index = $(".addSubObjBtn").index(this);
-
+            
             //몇번째 설문의 버튼이 클릭됫는지 구분하기위해 설문 종류의 ID 값을 가져옴
             var id = $(".Obj:eq(" + index + ")").attr('id');
 
@@ -121,7 +120,7 @@
         });
 
         $(document).ready("click","#submit",function() {
-            document.survey_write_submit.action = "route('survey.store')";
+            document.survey_write_submit.action = "{{route('survey.store')}}";
             document.survey_write_submit.submit();
       });
 

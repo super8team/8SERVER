@@ -1,14 +1,7 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 
 <script src="http://code.jquery.com/jquery-1.5.js"></script>
-<script type="text/javascript">
- $(document).ready(function(){
 
-
- });
-
- document.getElementsByClassName
-</script>
 <body>
 
     <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">

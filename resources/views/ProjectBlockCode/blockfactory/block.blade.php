@@ -244,7 +244,7 @@
                 <label><input type="checkbox" id="gridOption_snap_checkbox">Snap</label><br>
               </div>
             </div>
-            <label>Path to Blockly Media <input type="text" id="option_media_text" style="width: 90%"></label><br>
+            <!-- <label>Path to Blockly Media <input type="text" id="option_media_text" style="width: 90%"></label><br> -->
             <label><input type="checkbox" id="option_rtl_checkbox">Layout with RTL</label><br>
             <label><input type="checkbox" id="option_scrollbars_checkbox">Scrollbars</label><br>
             <label><input type="checkbox" id="option_zoom_checkbox">Zoom</label><br>
@@ -341,7 +341,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-<input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+                      <input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
 
                     </div>
 
@@ -599,6 +599,7 @@
       <category name="에디트">
         <block type="EDIT"></block>
       </category>
+
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">
@@ -900,15 +901,86 @@
       <category name="Block Library" colour="260" id="blockLibCategory"></category>
     </xml>
 </div>
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
-    <input type="file"  name="upFile" id="upFile" onchange="getCmaFileView(this,'name')">
-  </form>
 
+  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+    <input id="change" type="text" name="" value="0" hidden>
+    <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
+    </form>
   </body>
   <script type="text/javascript">
 
+  document.getElementById('saveToBlockLibraryButton').addEventListener('click',
+      function() {
+        // self.blockLibraryController.saveToBlockLibrary();
+        var a = new BlockLibraryController();
+        a.saveToBlockLibrary();
+        //저장할 [콘텐츠의 정보]를 가져오는 로직
+        //노드 중에서 가장 마지막 요소를 가져온다
+
+        var storage_contents      = document.getElementsByClassName('content_list');
+
+        var length                = storage_contents.length;
+        var parent_content        = storage_contents[length-1];
+        console.log('테스트임');
+        console.log(parent_content);
+        var child_content         = parent_content.childNodes;
+
+        //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
+        var storage_package       = document.getElementById('packageDiv');
+        var storage_package_child = storage_package.firstChild;
+        var storage_package_name  = storage_package_child.innerText ;
+
+        console.log('완료');
+        console.log('현재 패키지 이름'+storage_package_name);
+
+        //저장할 컨텐츠 xml
+        var content_xml         = child_content[1].value;
+        console.log(content_xml);
+        //저장할 컨텐츠 명세
+        var content_spec        = child_content[2].value;
+        console.log(content_spec);
+        var content_spec_object = JSON.parse(content_spec);
+
+        //저장할 컨텐츠 이름
+        var content_name        = content_spec_object['type'];
+        console.log(content_name);
+        //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
+        //중복이 없으면 새로운 패키지를 등록하고
+        //중복이 있으면 그 패키지에 등록을 한다
+
+        $.ajax({
+          method: 'GET',
+          url: '{{ route('contents.storageNewContent')}}',
+          data: {
+            'xml'          : content_xml,
+            'spec'         : content_spec,
+            'name'         : content_name,
+            'package_name' : storage_package_name
+          },
+          success: function(data){
+            if(data){
+              console.log(data);
+              var user_packages = document.getElementsByClassName('package_button');
+              for(var i = 0; i < user_packages.length; i++){
+                var package_name = user_packages[i].innerText;
+                if(package_name == data[i]['name']){
+                  user_packages[i].innerText = data[i]['name'];
+                  user_packages[i].value     = data[i]['id'];
+                }
+              }
+            }else{
+              console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
+            }
+          },
+          error: function(){
+            alert('실패임');
+          }
+        });
+        document.getElementById('change').value = 0;
+      });
+
   function getCmaFileInfo(obj,stype) {
-    console.log('fdf');
+    console.log('getCmaFileInfo function');
      var fileObj, pathHeader , pathMiddle, pathEnd, allFilename, fileName, extName;
      var parent = document.getElementById('img_parent');
      if(obj == "[object HTMLInputElement]") {
@@ -929,7 +1001,7 @@
              file_list.setAttribute("class","file_list")
              file_list.setAttribute("name","filename[]");
              parent.appendChild(file_list);
-             console.log('ff');
+             console.log('getCmaFileInfo function 2');
              console.log(file_list);
   }
 
@@ -956,7 +1028,7 @@
     if(event.target != package_div.firstChild)
       package_div.insertBefore(event.target, package_div.firstChild);
 
-    var parent        = document.getElementById('dropdownDiv_blockLib');
+    var parent       = document.getElementById('dropdownDiv_blockLib');
 
     var remove_obj    = document.getElementsByClassName("content_list");
 
@@ -979,14 +1051,14 @@
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
-      url: '/contents/packages/'+package_id, // This is the url we gave in the route
+      url: '/LEARnFUN/public/contents/packages/'+package_id, // This is the url we gave in the route
       data: {'id' : package_id}, // a JSON object to send back
       success: function(data){ // What to do if we succeed
           console.log('926');
           if(data){
           // console.log(data[0]['name']);
           for(var i = 0; i < data.length; i++){
-              console.log('938');
+              console.log('990');
               var parent_wrap  = document.createElement("button");
               var child_wrap   = document.createElement("input");
 
@@ -1019,16 +1091,12 @@
               parent_wrap.appendChild(name_text);
               $('#dropdownDiv_blockLib').append(parent_wrap);
             }
-
           }
       },
       error: function() { // What to do if we fail
           console.log('해당x');
-
       }
   });
-
-
   });
   </script>
 

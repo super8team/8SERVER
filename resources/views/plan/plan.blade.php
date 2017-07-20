@@ -34,21 +34,28 @@
           }
 
       }
+      $plan_title  = "농촌 고구마 캐기 여행";
+      $plan_date = "2017-05-22";
+      $teacher_name = "서현숙";
+      $trip_kind_value = "수학여행"; 
+      $attend_class_count = "3";
+      $attend_student_count = "75";
+      $unattend_student_count = "3";
 
-/*
-        plan_title 		           = “(String)”,
-        plan_date                = “(String)”,
-        teacher_name			       = “(String)”,
-        trip_kind_value		       = “(String)”,		//체험학습 종류
-        attend_class_count		   = “(String)”,		//참여 학급 수
-        attend_student_count		 = “(String)”,		//참여 학생 수
-        unattend_student_count	 = “(String)”		  //미참여 학생 수
-        transpotation []			   = “(ArrayString)”	//교통수단 정보
-        activity[]		           = “(ArrayString)”	//체험학습 프로그램
-        institution[]			       = “(ArrayString)”	//기관인증여부
-        others[]			           = “(ArrayString)”	//기타
-        result_check[]			     = “(ArrayString)”	//진행도 여부를 파악용 체크
-    */
+
+        // plan_title 		           = “(String)”,
+        // plan_date                = “(String)”,
+        // teacher_name			       = “(String)”,
+        // trip_kind_value		       = “(String)”,		//체험학습 종류
+        // attend_class_count		   = “(String)”,		//참여 학급 수
+        // attend_student_count		 = “(String)”,		//참여 학생 수
+        // unattend_student_count	 = “(String)”		  //미참여 학생 수
+        // transpotation []			   = “(ArrayString)”	//교통수단 정보
+        // activity[]		           = “(ArrayString)”	//체험학습 프로그램
+        // institution[]			       = “(ArrayString)”	//기관인증여부
+        // others[]			           = “(ArrayString)”	//기타
+        // result_check[]			     = “(ArrayString)”	//진행도 여부를 파악용 체크
+        // 
   @endphp
   <div class="bluebg">
     <div class="container">

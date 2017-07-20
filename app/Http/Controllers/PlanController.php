@@ -47,11 +47,49 @@ class PlanController extends Controller
     }
 
     public function student() {
-      return view('plan.planlist2');
+      
+      $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
+      
+      $planIds = [];
+      $planTitles = [];
+      $planDates = [];
+
+      foreach($plans as $plan) {
+
+        // dd($plan);
+        array_push($planIds,   $plan->no);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->at);
+      }
+
+      return view('plan.planlist2', [
+        'plan_no' => $planIds,
+        'plan_title' => $planTitles,
+        'plan_date' => $planDates,
+      ]);
     }
 
     public function parents() {
-      return view('plan.planlist2');
+      
+      $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
+      
+      $planIds = [];
+      $planTitles = [];
+      $planDates = [];
+
+      foreach($plans as $plan) {
+
+        // dd($plan);
+        array_push($planIds,   $plan->no);
+        array_push($planTitles, $plan->name);
+        array_push($planDates, $plan->at);
+      }
+
+      return view('plan.planlist2', [
+        'plan_no' => $planIds,
+        'plan_title' => $planTitles,
+        'plan_date' => $planDates,
+      ]);
     }
 
     /**
@@ -148,7 +186,7 @@ class PlanController extends Controller
       $programs = \DB::table('field_learning_programs')->where('simple_plan', $simple->no)->get();
       $options = \DB::table('etc_selects')->where('simple_plan', $simple->no)->get();
 
-      $plan_title = $plan->no;
+      $plan_title = $plan->name;
       $plan_date = $plan->at;
       $trip_kind_value = $simple->type;
       $attend_class_count = $simple->grade_class_count;

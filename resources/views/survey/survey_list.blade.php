@@ -33,22 +33,12 @@
               </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
+        
                   <tr>
                     <td>1</td>
                     <td>으앙아아아앙</td>
                     <td>0000/00/00</td>
                     <td colspan="2" class="text-center">
-                      // 2 =? servey_no
                       <a role="button" href="{{route('survey.show', 2)}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
