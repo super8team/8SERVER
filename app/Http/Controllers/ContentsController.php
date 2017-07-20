@@ -46,7 +46,7 @@ $content_count = DB::table('contents')->where('contents_package',$owndedPackages
 // dd($content_count);
 $content_count = count($content_count);
 
-$packageCount = count($owndedPackages);
+$packageCount  = count($owndedPackages);
 
 for($i = 0; $i<$packageCount;$i++){
   $packages[$i]['name'] = $owndedPackages[$i]->name;
@@ -243,10 +243,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         }
 
         foreach ($otherPackages as $otherPackage ) {
-              array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
+            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
         }
-        //페이지네이
-        $otherPackageInfor = DB::table('contentS_package_shares')->orderBy('views','asc')->simplePaginate(4);
 
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
@@ -585,5 +583,22 @@ echo "<script>window.close();</script>";
 
       }
 
+    }
+
+    public function searchContents(Request $request)
+    {
+      $searchWord = $request->searchWord1;
+
+      $result_array = [];
+
+      $result = DB::table('contents_package_shares')->where('explain',$searchWord)->first();
+      array_push($result_array,$result);
+
+      $package_serial = $result->contents_package;
+
+      $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
+      array_push($result_array,$package_name->name);
+
+      return $result_array;
     }
 }

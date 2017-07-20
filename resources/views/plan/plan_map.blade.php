@@ -32,11 +32,53 @@
   //* * * * * * * * * * * * * * * * *  캘린더 자바스크립트 * * * * * * * * * * * * * * * * *
     $(document).ready(function() {
     var tmp_date = '{{$plan_date}}';
+<<<<<<< HEAD
+
+    for (var i = 0; i <5 ; i++) {
+      $("#like_list"+i).on('shown.bs.modal', function () {
+       $("#view_calendar"+i).fullCalendar('render');
+     });
+
+
+    $('#view_calendar'+i).fullCalendar({
+      locale: 'ko',
+      header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'agendaDay'
+      },
+      defaultView: 'agendaDay',
+      defaultDate: '2017-06-20',{{--$plan_date--}} //이걸 이용하여 날짜 시작일을 설정?
+      navLinks: true, // can click day/week names to navigate views
+      selectable: false,
+      selectHelper: true,
+      firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
+      events:[
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T10:00'
+        },
+        {
+          title:'불국사 개꿀잼',
+          start: '2017-06-20T12:00'
+        },
+      ]
+
+
+    
+      
+    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
+=======
     cal_init();
     function cal_init(){
       load_calendar();
     }
     //보기 버튼 클릭시 하는 행동
+>>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
         var id = $(this).attr('id');
@@ -95,6 +137,9 @@
           $('#result_modal').modal('show');
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
+<<<<<<< HEAD
+
+=======
           
           // 계획 가저오기 버튼 클릭시 작동하는 버튼
               $(document).on("click","#modal_clcik",function(){
@@ -159,6 +204,7 @@
                   }],
                 });
               });
+>>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
     });
   
         
@@ -371,6 +417,14 @@
                   .append("<a id='addscheduel' class='btn btn-sm btn-warning btn-block'>일정에 추가</a>")
               }  //위키피디아
             });
+<<<<<<< HEAD
+
+            }
+            //위키피디아
+            // infoResult(searchInput);
+
+=======
+>>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
             $.ajax({
             url: '{{route('map.search')}}',
             type:'POST',
@@ -400,6 +454,10 @@
            // 검색정보 + 검색된 결과 겟수
 
          }
+<<<<<<< HEAD
+
+=======
+>>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
         });
 
         // 검색 부분 마커
@@ -658,7 +716,43 @@
 
                   </tbody>
                 </table>
+<<<<<<< HEAD
+
+                @for ($t=0; $t <5 ; $t++)
+                  <div class="modal modal fade " id="like_list{{$t}}" tabindex="-1" role="dialog" aria-labelledby="like_list_label{{$t}}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="like_list_label{{$t}}">공유 정보</h4>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-bordered table-striped">
+                            <thead>
+                              <th>헬조선 초등학교</th>{{-- $like_school_name --}}
+                              <th>김개똥</th> {{-- $like_name --}}
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td colspan="2">흐미 불국사 지리구요</td>
+
+                              </tr>
+                            </tbody>
+                              <div id="view_calendar"></div>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="get_data" class="btn btn-default">계획 가저오기</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endfor
+
+=======
                   
+>>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">

@@ -301,7 +301,7 @@ button, .buttonStyle {
 
 #shareList #contenstsImage {
   height: 9%;
-  /*border:5px solid black;*/
+  display: inline-block;
 }
 
 #shareList #packageName {
