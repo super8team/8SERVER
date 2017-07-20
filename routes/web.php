@@ -106,6 +106,13 @@ Route::get('contents/', 'ContentsController@index')->name('contents');
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');
 
+// 앱 - 리스트보기
+
+Route::post('app/noticeList', 'AppRequestController@getNoticeList')->name('app.noticelist');
+Route::post('app/noticeDetail', 'AppRequestController@getNoticeDetail')->name('app.noticedetail');
+Route::post('app/respondStore', 'AppRequestController@noticeRespondStore')->name('app.respondstore');
+Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->name('app.responddate');
+
 
 // *******************  소감문 *********************
 // 소감문 목록

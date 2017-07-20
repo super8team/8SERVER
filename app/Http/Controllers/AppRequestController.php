@@ -44,7 +44,7 @@ class AppRequestController extends Controller
               }
         }
 
-        //  dd($result);
+         dd($result);
         return json_encode($result);
     }
 
@@ -143,5 +143,117 @@ class AppRequestController extends Controller
       }
       // dd($result);
       return $result;
+    }
+
+    public function getNoticeList(Request $request) {
+      // @request 부모 정보
+      // return 자녀의 플랜에 해당하는 가정통신문!
+      // [{no: (int), title: (string), answer:(string), answerDate: (string)}, {}, {} ...]
+      $result = [];
+      $notice = array(
+        "no" => '',
+        "title" => '',
+        "answer" => '',
+        "answerDate" => '',
+      );
+      // 해당 학부모의 자식과 숫자를 얻음
+      $children = $request->input('child');
+      $search = "''";
+      // jsonarray를 디코딩해야됩니다 ㅠㅠ!
+      dd(str_replace()$children);
+      $a = json_decode($children);
+      dd($a);
+      // $children
+      $children = json_decode($children);
+      $cCount   = count($children);
+
+      for ($i=1; $i<=$cCount; $i++) {
+        $no     = $children["child$i"]["no"];
+
+
+        $planNo = \DB::table('group')->where('joiner', $no)->plan;
+        $notices = \DB::table('notices')->where('plan', $planNo);
+
+        dd('list'.$notices);
+        foreach($notices as $notice) {
+
+          $result['no'] = $notice->no;
+          $result['title'] = $notice->title;
+
+          $respond = \DB::table('notice_responds')
+            ->where('notice', $notice->no)->where('parents', $request->input('no'))->first();
+
+          if ($respond != null) {
+            $result['respond'] = $respond->respond;
+            $result['respondDate'] = $respond->updated_at;
+          } else {
+            $result['respond'] = "미응답";
+            $result['respondDate'] = "";
+          }
+        }
+      }
+      return $result;
+
+    }
+
+    /**
+    * @param
+    * no, notice
+    * @return
+    * notice, responds
+    */
+    public function getNoticeDetail(Request $request) {
+      $notice = \DB::table('notices')->where('no', $request->input('notice'))->first();
+      $respond = \DB::table('notice', $notice->no)->where('parents', $request->input('no'))->first();
+
+      $result = array(
+        'notice' => $notice->no,
+        'title' => $notice->title,
+        'substance' => $notice->substance,
+        'writer' => $notice->writer,
+        'date' => $notice->create_at,
+        'limitDate' => $notice->limit_date,
+      );
+
+      if ($respond != null) {
+        $result['respond'] = $respond->respond;
+        $result['respondDate'] = $respond->updated_at;
+      } else {
+        $result['respond'] = "";
+        $result['respondDate'] = "";
+      }
+
+      return $result;
+    }
+
+    /**
+    * @param
+    * no, notice, respond
+    */
+    public function noticeRespondStore(Request $request) {
+      $userNo = $request->input('no');
+      $noticeNo = $request->input('notice');
+      $respond = $request->input('respond');
+
+      \DB::table('notice_responds')->insert([
+        'notice'  => $noticeNo,
+        'parents' => $userNo,
+        'respond' => $respond,
+        'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
+    }
+
+    public function noticeRespondUpdate(Request $request) {
+      $userNo = $request->input('no');
+      $noticeNo = $request->input('notice');
+      $respond = $request->input('respond');
+
+      \DB::table('notice_responds')->where('notice', $noticeNo)->where('parents', $userNo)
+        ->update([
+          'respond' => $respond,
+          'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
     }
 }
