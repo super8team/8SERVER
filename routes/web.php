@@ -98,8 +98,9 @@ Route::get('contents/packages/{package_id}','ContentsController@extractContents'
 Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
-// 콘텐츠 메인
 
+Route::get('contents/searchContents','ContentsController@searchContents')->name('contents.searchContents');
+// 콘텐츠 메인
 Route::get('contents/', 'ContentsController@index')->name('contents');
 
 // ******************** 가정 통신문 *********************

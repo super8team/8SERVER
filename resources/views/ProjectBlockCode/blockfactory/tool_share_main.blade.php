@@ -62,31 +62,41 @@
         콘텐츠 패키지
       </div>
       <div id="packageResearch">
-        <form class="" action="index.html" method="post" align="right">
-          <input type="text" name="" value="">
-          <input type="submit" name="" value="검색">
-        </form>
+
+          <input id="searchWord"   type="text"   name="word"   value="설명">
+          <input id="searchButton" type="button" name="button" value="검색">
+
       </div>
-      <table id="shareList">
-        <tr id="contenstsImage">
+      <div id="shareList">
+          @php
+          $i = 1
+          @endphp
+          @if($i==5)
+            @continue;
+          @endif
+
           @foreach ($otherPackage as $key => $value)
+                  @php
+                    $url = Storage::url('packageImgs/'.$value['imgs']);
+                  @endphp
+          <div id="contenstsImage">
+                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
+                    </a>
+                    <div display="inline-block">
+                        수정하기
+                    </div>
+          </div>
+            @if($i%4==0)
+              <br>
+            @endif
             @php
-              $url = Storage::url('packageImgs/'.$value['imgs']);
+              $i++;
             @endphp
-              <td>
-                <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                  <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
-                </a>
-              </td>
           @endforeach
-        </tr>
-        <tr id="packageName">
-          @foreach ($otherPackage as $id)
-               <td>DB 수정하기</a></td>
-          @endforeach
-        </tr>
-        {{$otherPackage->links() }}
-      </table>
+
+
+      </div>
       <button id="share" type="button" name="button">패키지 공유하기</button>
     </body>
     <script type="text/javascript">
@@ -111,6 +121,35 @@
       console.log(typeof(n));
 
     window.location.href='shareShare';
+    });
+
+    $('#searchButton').click(function(){
+
+      var searchWord = document.getElementById('searchWord').value;
+
+      console.log('검색한 키워드');
+      console.log(searchWord);
+      $.ajax({
+        method: 'GET',
+        url: '{{ route('contents.searchContents')}}',
+        data: {
+          'searchWord1'  : searchWord
+        },
+        success: function(data){
+            console.log('통신 성공');
+            var img_url      = data[0]['img_url'];
+            var package_name = data[1];
+            console.log(package_name);
+            console.log(img_url);
+            // var img_url = data['img_url'];
+            // var package_name = data[''];
+
+
+        },
+        error: function(){
+          console.log('통신실패');
+        }
+      })
     });
     </script>
 </html>
