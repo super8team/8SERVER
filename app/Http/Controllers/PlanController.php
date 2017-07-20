@@ -381,4 +381,5 @@ class PlanController extends Controller
       return view('plan.plan_list'); // teacher_index
     }
 
+
 }

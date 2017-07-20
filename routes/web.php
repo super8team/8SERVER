@@ -43,6 +43,7 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
+Route::get('plan/download', 'PlanController@download')->name('plan.download');
 Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
 
@@ -168,5 +169,12 @@ Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getCh
 
 Route::post('app/upload', function (Request $request) {
 
-
 });
+
+
+Route::get('fileentry', 'FileEntryController@index');
+Route::get('fileentry/get/{filename}', [
+    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+Route::post('fileentry/add',[
+    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+

@@ -37,7 +37,7 @@
                   <tr>
                     <td>1</td>
                     <td>(기본)안전사고 예방 체크리스트</td>
-                    <td>0000/00/00</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
@@ -48,7 +48,7 @@
                   <tr>
                     <td>2</td>
                     <td>(기본)수학여행 용역 업체 제안서 평가 항목 배점</td>
-                    <td>0000/00/00</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
@@ -59,7 +59,7 @@
                   <tr>
                     <td>3</td>
                     <td>(기본)컨설팅 체크리스트(컨설팅 내용)</td>
-                    <td>0000/00/00</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
@@ -70,7 +70,7 @@
                   <tr>
                     <td>4</td>
                     <td>(기본)컨설팅 체크리스트(조치 결과)</td>
-                    <td>0000/00/00</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
@@ -81,7 +81,7 @@
                   <tr>
                     <td>5</td>
                     <td>(기본)시민감사관 현장체험학습 체크리스트</td>
-                    <td>0000/00/00</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
@@ -126,10 +126,10 @@
               @endforeach --}}
                   <tr>
                     <td>{{$count+1}}</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
+                    <td>이전에 작성한 체크리스트</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{----}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
                         보기
                       </a>
                     </td>
