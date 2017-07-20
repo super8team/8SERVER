@@ -599,6 +599,8 @@ echo "<script>window.close();</script>";
       $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
       array_push($result_array,$package_name->name);
 
+
+
       return $result_array;
     }
 }

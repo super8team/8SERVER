@@ -83,7 +83,7 @@
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
                       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
                     </a>
-                    <div display="inline-block">
+                    <div id="package_name" display="inline-block">
                         수정하기
                     </div>
           </div>
@@ -137,13 +137,35 @@
         },
         success: function(data){
             console.log('통신 성공');
-            var img_url      = data[0]['img_url'];
-            var package_name = data[1];
-            console.log(package_name);
-            console.log(img_url);
-            // var img_url = data['img_url'];
-            // var package_name = data[''];
+            $('#shareList').empty();
 
+            var img_url          = data[0]['img_url'];
+            var package_name     = data[1];
+            var contents_package = data[0]['contents_package'];
+
+            var parent_div = document.getElementById('shareList');
+
+            var infor_div    = document.createElement('div');
+            infor_div.setAttribute('id','contentsImage');
+
+            var name_div   = document.createElement('div');
+            name_div.setAttribute('id','package_name');
+
+            var a_ele      = document.createElement('a');
+            a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
+
+            var img_ele    = document.createElement('img');
+            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public{{Storage::url("packageImgs/image1.jpg")}}');
+
+            name_div.innerHTML = package_name;
+
+            a_ele.appendChild(img_ele);
+
+            infor_div.appendChild(name_div);
+            infor_div.appendChild(a_ele);
+
+            parent_div.appendChild(infor_div);
+            console.log(parent_div);
 
         },
         error: function(){
