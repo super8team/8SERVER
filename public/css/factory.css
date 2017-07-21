@@ -830,7 +830,6 @@ td.taboff:hover {
 }
 
 .star-input>.input,
-.star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
 .star-input>.input>input:checked+label{
     display: inline-block;
@@ -842,9 +841,9 @@ td.taboff:hover {
 }
 .star-input>.input{
     display:inline-block;
-    width: 100px;
-    background-size: 100px;
-    height: 19px;
+    width: 200px;
+    background-size: 200px;
+    height: 38px;
     white-space: nowrap;
     overflow: hidden;
     position: relative;
@@ -861,7 +860,7 @@ td.taboff:hover {
 .star-input>.input>label{
     width: 10px;
     height: 0;
-    padding: 19px 0 0 0;
+    padding: 39px 20px 0 0;
     overflow: hidden;
     float: left;
     cursor: pointer;
@@ -872,50 +871,50 @@ td.taboff:hover {
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
 .star-input>.input>input:checked+label{
-    background-size: 100px;
+    background-size: 200px;
     background-position: 0 bottom;
 }
 .star-input>.input>label:hover~label{
     background-image: none;
 }
 .star-input>.input>label[for="p1"]{
-    width: 10px;
+    width: 1px;
     z-index: 10;
 }
 .star-input>.input>label[for="p2"]{
-    width: 20px;
+    width: 22px;
     z-index: 9;
 }
 .star-input>.input>label[for="p3"]{
-    width: 30px;
+    width: 40px;
     z-index: 8;
 }
 .star-input>.input>label[for="p4"]{
-    width: 40px;
+    width: 58px;
     z-index: 7;
 }
 .star-input>.input>label[for="p5"]{
-    width: 50px;
+    width: 80px;
     z-index: 6;
 }
 .star-input>.input>label[for="p6"]{
-    width: 60px;
+    width: 98px;
     z-index: 5;
 }
 .star-input>.input>label[for="p7"]{
-    width: 70px;
+    width: 120px;
     z-index: 4;
 }
 .star-input>.input>label[for="p8"]{
-    width: 80px;
+    width: 138px;
     z-index: 3;
 }
 .star-input>.input>label[for="p9"]{
-    width: 90px;
+    width: 160px;
     z-index: 2;
 }
 .star-input>.input>label[for="p10"]{
-    width: 100px;
+    width: 178px;
     z-index: 1;
 }
 .star-input>output{

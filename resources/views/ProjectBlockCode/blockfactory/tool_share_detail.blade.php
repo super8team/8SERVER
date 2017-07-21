@@ -10,16 +10,16 @@
 
       <span class="star-input">
         <span class="input">
-          <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
-          <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
-          <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
-          <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
-          <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
-          <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
-          <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
-          <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
-          <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
-          <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+          <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
+          <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
+          <input type="radio" name="star-input" id="p3" value="3" disabled><label for="p3">3</label>
+          <input type="radio" name="star-input" id="p4" value="4" disabled><label for="p4">4</label>
+          <input type="radio" name="star-input" id="p5" value="5" disabled><label for="p5">5</label>
+          <input type="radio" name="star-input" id="p6" value="6" disabled><label for="p6">6</label>
+          <input type="radio" name="star-input" id="p7" value="7" disabled><label for="p7">7</label>
+          <input type="radio" name="star-input" id="p8" value="8" disabled><label for="p8">8</label>
+          <input type="radio" name="star-input" id="p9" value="9" disabled><label for="p9">9</label>
+          <input type="radio" name="star-input" id="p10" value="10" disabled><label for="p10">10</label>
         </span>
       <output for="star-input"><b>0</b>점</output>
       </span>
@@ -62,44 +62,34 @@
               console.log(s);
               switch(s){
                 case '1':
-
                   document.getElementsByName('star-input')[0].checked=true;
                 break;
                 case '2':
-
                   document.getElementsByName('star-input')[1].checked=true;
                 break;
                 case '3':
-
                   document.getElementsByName('star-input')[2].checked=true;
                 break;
                 case '4':
-
                   document.getElementsByName('star-input')[3].checked=true;
                 break;
                 case '5':
-
                   document.getElementsByName('star-input')[4].checked=true;
                 break;
                 case '6':
-
                   document.getElementsByName('star-input')[5].checked=true;
                 break;
                 case '7':
-
                   document.getElementsByName('star-input')[6].checked=true;
                 break;
                 case '8':
-
                   document.getElementsByName('star-input')[7].checked=true;
                 break;
                 case '9':
-
                   document.getElementsByName('star-input')[8].checked=true;
                 break;
                 case '10':
-
-                  document.getElementsByName('star-input')[8].checked=true;
+                  document.getElementsByName('star-input')[9].checked=true;
                 break;
 
               }
