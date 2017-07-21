@@ -291,6 +291,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     }
     public function shareShare(Request $request)
     {
+      
       $teacher_packages       = DB::table('contents_packages')->where('owner',Auth::user()->no)->get();
       $teacher_packages_no = [];
       for($i = 0; $i<count($teacher_packages); $i++){
@@ -598,6 +599,8 @@ echo "<script>window.close();</script>";
 
       $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
       array_push($result_array,$package_name->name);
+
+
 
       return $result_array;
     }

@@ -9,7 +9,7 @@
         <span id="content_wrapper">
           <div>
             <input type="file" name="image" >
-            <div id="holder" style="border:1px solid;width:120px;height:120px"></div>
+            <div id="holder" ></div>
             <input type="text" name="package_name" value="패키지 이름" style="vertical-align:top" onfocus="this.value=''">
           </div>
           <br>
@@ -49,7 +49,7 @@ upload.onchange = function (e) {
   reader.onload = function (event) {
     var img = new Image();
     img.src = event.target.result;
-    img.width = 120;
+    img.width  = 120;
     img.height = 120;
     // note: no onload required since we've got the dataurl...I think! :)
 
