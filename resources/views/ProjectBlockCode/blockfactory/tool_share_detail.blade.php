@@ -2,12 +2,12 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <body>
   <span id = "content_wrapper">
-    <div>
+    <div style="border: 1px solid black">
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
-      <div style="vertical-align: middle; display: inline-block">
+      <div style="vertical-align: middle;border:1px solid black; display: inline">
       <span class="star-input">
         <span class="input">
           <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
@@ -24,7 +24,6 @@
         </div>
       <output for="star-input" hidden><b>0</b>점</output>
       </span>
-
     </div>
     <div id = "detail_article">
       <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
