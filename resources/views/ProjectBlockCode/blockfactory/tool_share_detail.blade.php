@@ -7,7 +7,7 @@
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
-      fa
+      <div style="vertical-align: middle">
       <span class="star-input">
         <span class="input">
           <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
@@ -21,6 +21,7 @@
           <input type="radio" name="star-input" id="p9" value="9" disabled><label for="p9">9</label>
           <input type="radio" name="star-input" id="p10" value="10" disabled><label for="p10">10</label>
         </span>
+        </div>
       <output for="star-input" hidden><b>0</b>점</output>
       </span>
 
