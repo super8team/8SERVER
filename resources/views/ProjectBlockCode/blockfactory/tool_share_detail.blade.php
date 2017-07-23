@@ -1,15 +1,7 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function resizeWindow(win)    {
 
-var wid = win.document.body.offsetWidth + 30;
-
-var hei = win.document.body.offsetHeight + 40;        //30 과 40은 넉넉하게 하려는 임의의 값임
-
-win.resizeTo(wid,hei);
-
-}
 
 </script>
 <body onload='resizeWindow(this)'>
@@ -68,7 +60,15 @@ win.resizeTo(wid,hei);
   <!-- <button id="content_download" type="button" name="button">다운로드</button> -->
 
   <script type="text/javascript">
+  function resizeWindow(win)    {
 
+  var wid = win.document.body.offsetWidth + 30;
+
+  var hei = win.document.body.offsetHeight + 40;        //30 과 40은 넉넉하게 하려는 임의의 값임
+
+  win.resizeTo(wid,hei);
+
+  }
   function myfunction(){
               var s = prompt('점수를 입력','점수');
               console.log(s);
