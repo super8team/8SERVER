@@ -175,9 +175,7 @@ FactoryUtils.cleanBlockType = function(blockType) {
   }
   return blockType.replace(/\W/g, '_').replace(/^(\d)/, '_$1');
 };
-FactoryUtils.test = function(){
-  alert("12341234");
-}
+
 /**
  * Get the generator code for a given block.
  * @param {!Blockly.Block} block Rendered block in preview workspace.
@@ -334,9 +332,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         clickblock.getInputTargetBlock('CHECKEDIT1'));
       var CHECKEDIT2     = FactoryUtils.getFieldsJson_(
         clickblock.getInputTargetBlock('CHECKEDIT2'));
-      console.log('CLICK')
 
-      // console.log(fields2);
       var input = {};
 
       // for(var i=0; i< script_fields.length; i++) {
@@ -361,13 +357,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           input.true   = CHECKEDIT1;
           input.false  = CHECKEDIT2;
         }else {
-        input.name   = clickblock.getFieldValue('INPUTNAME');
-        input.action = script_fields;
+          input.name   = clickblock.getFieldValue('INPUTNAME');
+          input.action = script_fields;
         }
+
       }
-
       srtargs.push(input);
-
   }
     clickblock = clickblock.nextConnection && clickblock.nextConnection.targetBlock();
 }
@@ -419,9 +414,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     txtBlock = txtBlock.nextConnection && txtBlock.nextConnection.targetBlock();
   }
 
+
   while (contentsBlock) {
     if (!contentsBlock.disabled && !contentsBlock.getInheritedDisabled()) {
-      console.log('실험1');
+      console.log('upfile 실험1');
 
       var input = {};
       var cform = document.form_name;
@@ -431,39 +427,73 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       console.log(contentsBlock.type);
       switch(contentsBlock.type){
         case 'image_1':
+          console.log('1');
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
-            var val      = document.getElementById('present_file').value;
-            if(val == 1){
-              cform.upFile.click();
+            if(contentsBlock){
+              console.log(document.getElementById('change').value);
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[0] == null)
+              {
+                cform.upFile.click();
+              }
             }
+            input.src = document.getElementsByClassName('file_list')[0].value;
             break;
         case 'image_2':
+          console.log('2');
             input.id = '2';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              // val++;
+            console.log('2');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[1] == null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[2].value;
+          input.src = document.getElementsByClassName('file_list')[1].value;
           break;
         case 'image_3':
+        console.log('3');
             input.id = '3';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              // val++;
+            console.log('3');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[2]== null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[3].value;
+            input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_4':
+        console.log('4');
             input.id = '4';
-            if(val == 1 ){
-              console.log(abcnumber);
-              // cform.upFile.click();
-              document.getElementById('present_file').value = 0;
+            console.log('4');
+            if(contentsBlock){
+              if(document.getElementById('change').value == 1)
+              {
+                console.log('들어옴');
+                break;
+              }
+              else if(elements[3]== null)
+              {
+                cform.upFile.click();
+              }
             }
-            // input.src = document.getElementsByClassName('file_list')[4].value;
+          input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
       var a = document.getElementsByClassName('file_list')
@@ -526,8 +556,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
   JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
   JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
-  // JS.packagenum = FactoryUtils.getPackagenumRootBlock_(rootBlock);
-  //정류장 - 여기 거침
+  JS.toast      = FactoryUtils.getToastRootBlock_(rootBlock);
+  JS.quest      = FactoryUtils.getQuestRootBlock_(rootBlock);
+  JS.bingo      = FactoryUtils.getBingoRootBlock_(rootBlock);
+  JS.collection = FactoryUtils.getCollectionRootBlock_(rootBlock);
+  JS.map        = FactoryUtils.getMapRootBlock_(rootBlock);
+
   return JSON.stringify(JS, null, '  ');
 
 };
@@ -858,7 +892,6 @@ FactoryUtils.getFieldsJson_ = function(block) {
   while (block) {
     if (!block.disabled && !block.getInheritedDisabled()) {
       switch (block.type) {
-
         case 'button_1':
         case 'button_2':
         case 'button_3':
@@ -900,8 +933,9 @@ FactoryUtils.getFieldsJson_ = function(block) {
           break;
         case 'OUT_TXT':
           script_fields.push({
-              type: block.getFieldValue('OUT_TXT')
+              out_txt: block.getFieldValue('OUT_TXT')
           });
+          break;
         case 'END':
           script_fields.push({
               type: block.type
@@ -1404,6 +1438,46 @@ FactoryUtils.getDisableRootBlock_ = function(rootBlock) {
   }
   return '';
 };
+
+FactoryUtils.getToastRootBlock_ = function(rootBlock) {
+  var toastBlock = rootBlock.getInputTargetBlock('TOAST');
+  if(toastBlock && !toastBlock.disabled){
+    return toastBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getQuestRootBlock_ = function(rootBlock) {
+  var questBlock = rootBlock.getInputTargetBlock('QUEST');
+  if(questBlock && !questBlock.disabled){
+    return questBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getBingoRootBlock_ = function(rootBlock) {
+  var bingoBlock = rootBlock.getInputTargetBlock('BINGO');
+  if(bingoBlock && !bingoBlock.disabled){
+    return bingoBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getCollectionRootBlock_ = function(rootBlock) {
+  var collectionBlock = rootBlock.getInputTargetBlock('COLLECTION');
+  if(collectionBlock && !collectionBlock.disabled){
+    return collectionBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
+
+FactoryUtils.getMapRootBlock_ = function(rootBlock) {
+  var mapBlock = rootBlock.getInputTargetBlock('MAP');
+  if(mapBlock && !mapBlock.disabled){
+    return mapBlock.getFieldValue('BOOL');
+  }
+  return '';
+}
 
 // FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
 //   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');

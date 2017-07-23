@@ -472,6 +472,9 @@ BlockLibraryController.prototype.setNoneSelected = function() {
   //  if (!proceedWithUnsavedChanges) {
   //    return;
   //  }
+  console.log('테스트');
+  console.log(value);
+  console.log(obj);
    this.setSelectedAndOpen_2(value,obj);
 
  };
@@ -586,10 +589,11 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
  };
 BlockLibraryController.prototype.setSelectedAndOpen_2 = function(blockOption,value) {
   var blockType = value.textContent;
+  console.log(blockType);
   this.view.setSelectedBlockType(blockType);
   this.openBlock2(blockOption);
   this.view.updateButtons(blockType,true,true);
-  blockFactory.closeModal();
+  blocklyFactory.closeModal();
 }
 BlockLibraryController.prototype.addOptionSelectHandlers = function() {
   // Assign a click handler to each block option.

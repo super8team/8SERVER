@@ -47,9 +47,9 @@ class PlanController extends Controller
     }
 
     public function student() {
-      
+
       $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
-      
+
       $planIds = [];
       $planTitles = [];
       $planDates = [];
@@ -70,9 +70,9 @@ class PlanController extends Controller
     }
 
     public function parents() {
-      
+
       $plans = \DB::table('field_learning_plans')->orderBy('no', 'desc')->get();
-      
+
       $planIds = [];
       $planTitles = [];
       $planDates = [];

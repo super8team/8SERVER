@@ -4,21 +4,17 @@
 @section('title','위원회 관리')
 
 @section('content')
-  @php
-    $staff_list   = "http://localhost/Code/8SERVER/public/stafflist";
-    $member_add   = "http://localhost/Code/8SERVER/public/staffmember";
-    $member_del   = "http://localhost/Code/8SERVER/public/staffmember";
-  @endphp
+
   <script type="text/javascript">
   $(document).ready(function(){
       // 1 검색
 
     $(document).on("click","#searchBtn",function search(){
       $("#search").find('tr').remove();
-      @for ($i=0; $i <10 ; $i++)
+      @for ($i=0; $i < 5; $i++)
         $("#search").append(
         "<tr><td>"+
-        "가나다<input type='checkbox' name='add[]' value='각각이름'>"+
+        "이름<input type='checkbox' name='add[]' value='각각이름'>"+
         "<input type='hidden' name='name_id[]' value='{{$i}}'>"+
         "</td></tr>")
       @endfor
@@ -57,7 +53,7 @@
   </style>
   <div class="bluebg">
     <div class="container">
-      <form class="form" action="{{$member_add}}" method="POST">
+      <form class="form" action="{{route('staff.memberadd')}}" method="POST">
         {{ csrf_field() }}
         <div class="col-lg-5">
           <div class="panel panel-default">
@@ -81,11 +77,11 @@
 
               --}}
               <table id="search"class="table table-bordered table-hover">
-                @for ($i=0; $i <10 ; $i++)
+                @for ($i=0; $i < 10; $i++)
                   <tr>
                     <td>
-                      권유성
-                      <input type="checkbox" name="staff_name[]" value="각각이름">
+                      박성원
+                      {{--<input type="checkbox" name="staff_name[]" value="각각이름">--}}
                       <input type="hidden" name="staff_id[]" value="숫자">
                     </td>
                   </tr>
@@ -108,10 +104,10 @@
           </div>
         </form>
 
-        <form class="form" action="{{$member_del}}" method="post">
+        <form class="form" action="{{route('staff.memberadd')}}" method="post">
           {{ csrf_field() }}
           <div class="text-center">
-            <a role="button" type="btnSubmit"class="btn btn-lg btn-default">
+            <a role="button" type="btnSubmit" class="btn btn-lg btn-default">
               삭제
               <span class="glyphicon glyphicon-backward"></span>
             </a>
@@ -122,7 +118,7 @@
           <div class="col-lg-5">
             <div class="panel panel-default">
               <div class="panel-heading">
-                현제 위원회
+                현재 위원회
               </div><!-- /.panel-heading -->
                 <div class="panel-body scrollspy">
                   <table class="table table-bordered table-hover ">
@@ -130,8 +126,8 @@
                     @for ($i=0; $i <10 ; $i++)
                       <tr>
                         <td>
-                          권유성
-                          <input type="checkbox" name="delete[]" value="각각이름">
+                          박성원
+                          {{--<input type="checkbox" name="delete[]" value="각각이름">--}}
                           <input type="hidden" name="name_id[]" value="숫자">
                         </td>
                       </tr>

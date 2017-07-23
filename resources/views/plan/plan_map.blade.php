@@ -366,7 +366,7 @@
           $('#result_modal').modal('show');
           window.setTimeout(clickNextPrev, 200);
           $("#view_calendar").fullCalendar('render');
-          
+
           // 계획 가저오기 버튼 클릭시 작동하는 버튼
             $(document).on("click","#modal_clcik",function(){
               //로컬용
@@ -625,7 +625,11 @@
   });
     </script>
 
-  
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
+    </script>
     {{-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAioq4xWVTdiZlwL-jWehKgSKHhPJCBcHI&libraries=places&callback=initMap">
     </script> --}}
@@ -768,7 +772,6 @@
 
                   </tbody>
                 </table>
-                  
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
