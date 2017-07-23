@@ -40,8 +40,8 @@
               @endforeach --}}
                   <tr>
                     <td>1</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
+                    <td>선택한 체험학습</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('staff.memberadd')}}" class="btn btn-sm btn-default">
                         위원 관리
@@ -90,8 +90,8 @@
               @endforeach --}}
                   <tr>
                     <td>{{$count+1}}</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
+                    <td>이전 체험학습</td>
+                    <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('staff.memberadd')}}" class="btn btn-sm btn-default">
                         위원 관리
@@ -104,8 +104,27 @@
             @endfor
           </tbody>
           </table>
-          {{-- 여기 페이징 기능점요 ㅋ --}}
         </div>
+        {{-- 페이지 네이션 --}}
+        <nav class="page text-center">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

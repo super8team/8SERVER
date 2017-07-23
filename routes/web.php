@@ -43,6 +43,7 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
+Route::get('plan/download', 'PlanController@download')->name('plan.download');
 Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
 
@@ -98,13 +99,21 @@ Route::get('contents/packages/{package_id}','ContentsController@extractContents'
 Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
-// 콘텐츠 메인
 
+Route::get('contents/searchContents','ContentsController@searchContents')->name('contents.searchContents');
+// 콘텐츠 메인
 Route::get('contents/', 'ContentsController@index')->name('contents');
 
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');
+
+// 앱 - 리스트보기
+
+Route::post('app/noticeList', 'AppRequestController@getNoticeList')->name('app.noticelist');
+Route::post('app/noticeDetail', 'AppRequestController@getNoticeDetail')->name('app.noticedetail');
+Route::post('app/respondStore', 'AppRequestController@noticeRespondStore')->name('app.respondstore');
+Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->name('app.responddate');
 
 
 // *******************  소감문 *********************
@@ -167,5 +176,12 @@ Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getCh
 
 Route::post('app/upload', function (Request $request) {
 
-
 });
+
+
+Route::get('fileentry', 'FileEntryController@index');
+Route::get('fileentry/get/{filename}', [
+    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+Route::post('fileentry/add',[
+    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+
