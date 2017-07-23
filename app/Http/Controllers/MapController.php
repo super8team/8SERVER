@@ -44,7 +44,6 @@ class MapController extends Controller
             \DB::table('detail_plans')->where('no', $detail->no)->delete();
         }
         
-        
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
             $replacedTime = str_split($replacedTime, 19);
@@ -52,6 +51,9 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
+            
+            // $start = $details[$i]['start'];
+            // $end   = $details[$i]['end'];
     
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
@@ -59,6 +61,7 @@ class MapController extends Controller
             // $placeNo = 5; // 더미
             // dd($start, $end);
             $re = [];
+            // dd($start, $end);
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,

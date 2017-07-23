@@ -110,7 +110,8 @@ class PlanController extends Controller
      */
      // result_check[]			= “(ArrayString)”	//진행도 여부를 파악용 체크
     public function store(Request $request)
-    {
+    { 
+      
       $plan_title = $request->input('plan_title');
       $plan_date = $request->input('plan_date');
       $trip_kind_value = $request->input('trip_kind_value');
@@ -122,6 +123,9 @@ class PlanController extends Controller
       $institution = $request->input('institution');
       $others = $request->input('others');
       $userNo = $request->input('user_no');
+      
+      //유성 추가
+      // $result_check = $request->input('result_check[]');
 
       $dates = explode("-", $plan_date);
       $planNo = \DB::table('field_learning_plans')->insertGetId([
@@ -137,7 +141,26 @@ class PlanController extends Controller
         'student_count' => $attend_student_count,
         'unjoin_student_count' => $unattend_student_count,
       ]);
-
+      //DB 에 값 넣는 곳
+      
+      // for($t=0; $t<59; $t++){
+      //   if($result_check[$t] == $t+1){
+      //     \DB::table('work_progresses')
+      //     ->where('plan','=', $id)
+      //     ->where('work','=', $t)
+      //     ->update([
+      //       'complete' => 1,
+      //     ]);
+      //   }else{
+      //     \DB::table('work_progresses')
+      //     ->where('plan','=', $id)
+      //     ->where('work','=', $t)
+      //       ->update([
+      //       'complete' => 0,
+      //     ]);
+      //   } 
+      // }
+      
       for ($i=0; $i<count($transpotation); $i++) {
         \DB::table('traffics')->insert([
           'simple_plan' => $simple,
@@ -313,14 +336,14 @@ class PlanController extends Controller
       $dates = explode("-", $plan_date);
 
       \DB::table('field_learning_plans')
-            ->where('no', $id)
+            ->where('no', $planNo)
             ->update([
               'name'=>$plan_title,
               'at' => \Carbon\Carbon::createFromDate($dates[0], $dates[1], $dates[2], 'Asia/Seoul'),
               ]);
 
       \DB::table('simple_plans')
-            ->where('plan', $id)
+            ->where('plan', $planNo)
             ->update([
               'type' => $trip_kind_value,
               'grade_class_count' => $attend_class_count,
