@@ -150,17 +150,13 @@ class AppRequestController extends Controller
       // return 자녀의 플랜에 해당하는 가정통신문!
       // [{no: (int), title: (string), answer:(string), answerDate: (string)}, {}, {} ...]
       $result = [];
-      $notice = array(
-        "no" => '',
-        "title" => '',
-        "answer" => '',
-        "answerDate" => '',
-      );
+      $newNotice = [];
+      
       // 해당 학부모의 자식과 숫자를 얻음
-
       $children = $request->input('child');
+      $children = json_decode($children);
       $cCount   = count($children);
-
+//children[0];
       // test용
       // $children = array(
       //   "child1" => array(
@@ -169,32 +165,32 @@ class AppRequestController extends Controller
       //     "no" => "159",
       //   ),
       // );
+//	return(json_encode($children));
 
-      for ($i=1; $i<=$cCount; $i++) {
-        $no     = $children["child$i"]["no"];
-
+//      for ($i=1; $i<=$cCount; $i++) {
+      foreach($children as $child) {
+	$no = $child->no;
         $planNo = \DB::table('groups')->where('joiner', $no)->first()->plan;
         $notices = \DB::table('notices')->where('plan', $planNo)->get();
 
         foreach($notices as $notice) {
-
-          $result['no'] = $notice->no;
-          $result['title'] = $notice->title;
-
+          $newNotice['no'] = (string)$notice->no;
+          $newNotice['title'] = $notice->title;
           $respond = \DB::table('notice_responds')
             ->where('notice', $notice->no)->where('parents', $request->input('no'))->first();
 
           if ($respond != null) {
-            $result['respond'] = $respond->respond;
-            $result['respondDate'] = $respond->updated_at;
+            $newNotice['respond'] = $respond->respond;
+            $newNotice['respondDate'] = $respond->updated_at;
           } else {
-            $result['respond'] = "미응답";
-            $result['respondDate'] = "";
+            $newNotice['respond'] = "미응답";
+            $newNotice['respondDate'] = "";
           }
         }
+        $result[] = $newNotice;
       }
 
-      return $result;
+      return json_encode($result);
 
     }
 
@@ -226,7 +222,7 @@ class AppRequestController extends Controller
       }
 
       // dd($result);
-      return $result;
+      return json_encode($result);
     }
 
     /**
