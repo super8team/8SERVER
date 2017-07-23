@@ -62,9 +62,9 @@
   <script type="text/javascript">
   function resizeWindow(win)    {
 
-  var wid = win.document.body.offsetWidth + 30;
+  var wid = 200;
 
-  var hei = win.document.body.offsetHeight + 40;        //30 과 40은 넉넉하게 하려는 임의의 값임
+  var hei = 200;        //30 과 40은 넉넉하게 하려는 임의의 값임
 
   win.resizeTo(wid,hei);
 
