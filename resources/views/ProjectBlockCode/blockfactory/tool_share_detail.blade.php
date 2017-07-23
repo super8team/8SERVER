@@ -7,20 +7,20 @@
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
-      <div style="vertical-align: middle;border:1px solid black; display: inline">
-      <span class="star-input">
-        <span class="input">
-          <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
-          <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
-          <input type="radio" name="star-input" id="p3" value="3" disabled><label for="p3">3</label>
-          <input type="radio" name="star-input" id="p4" value="4" disabled><label for="p4">4</label>
-          <input type="radio" name="star-input" id="p5" value="5" disabled><label for="p5">5</label>
-          <input type="radio" name="star-input" id="p6" value="6" disabled><label for="p6">6</label>
-          <input type="radio" name="star-input" id="p7" value="7" disabled><label for="p7">7</label>
-          <input type="radio" name="star-input" id="p8" value="8" disabled><label for="p8">8</label>
-          <input type="radio" name="star-input" id="p9" value="9" disabled><label for="p9">9</label>
-          <input type="radio" name="star-input" id="p10" value="10" disabled><label for="p10">10</label>
-        </span>
+      <div style="border:1px solid black; display: inline">
+        <span class="star-input">
+          <span class="input">
+            <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
+            <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
+            <input type="radio" name="star-input" id="p3" value="3" disabled><label for="p3">3</label>
+            <input type="radio" name="star-input" id="p4" value="4" disabled><label for="p4">4</label>
+            <input type="radio" name="star-input" id="p5" value="5" disabled><label for="p5">5</label>
+            <input type="radio" name="star-input" id="p6" value="6" disabled><label for="p6">6</label>
+            <input type="radio" name="star-input" id="p7" value="7" disabled><label for="p7">7</label>
+            <input type="radio" name="star-input" id="p8" value="8" disabled><label for="p8">8</label>
+            <input type="radio" name="star-input" id="p9" value="9" disabled><label for="p9">9</label>
+            <input type="radio" name="star-input" id="p10" value="10" disabled><label for="p10">10</label>
+          </span>
         </div>
       <output for="star-input" hidden><b>0</b>점</output>
       </span>
