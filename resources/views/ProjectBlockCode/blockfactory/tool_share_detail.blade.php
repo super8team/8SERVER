@@ -1,8 +1,20 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<body>
+<script type="text/javascript">
+function resizeWindow(win)    {
+
+var wid = win.document.body.offsetWidth + 30;
+
+var hei = win.document.body.offsetHeight + 40;        //30 과 40은 넉넉하게 하려는 임의의 값임
+
+win.resizeTo(wid,hei);
+
+}
+
+</script>
+<body onload='resizeWindow(this)'>
   <span id = "content_wrapper">
-    <div style="border: 1px solid black">
+    <div>
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
@@ -34,13 +46,13 @@
     <div>
       <textarea name="name" rows="8" cols="80" readonly>{{$package_subs}}</textarea>
     </div>
-    <div style="border:1px solid black">
+    <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
     </div>
     <!-- 컨트롤러에서 넘어온 패키지의 콘텐츠 배열이 넘어와서 출력해준다 -->
 
       <!-- window.location.href = "/toolShareDownload?package_num="+package_num; -->
-    <form action="{{route('contents.shareDownload')}}" method="post" style="border:1px solid black">
+    <form action="{{route('contents.shareDownload')}}" method="post" >
 
       @for($i = 0; $i < count($contents_name); $i++)
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
@@ -56,6 +68,7 @@
   <!-- <button id="content_download" type="button" name="button">다운로드</button> -->
 
   <script type="text/javascript">
+
   function myfunction(){
               var s = prompt('점수를 입력','점수');
               console.log(s);
