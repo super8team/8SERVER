@@ -8,7 +8,7 @@
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
 
-      <span class="star-input">
+      <span class="star-input" style="margin-top:14px">
         <span class="input">
           <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
           <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
@@ -21,7 +21,7 @@
           <input type="radio" name="star-input" id="p9" value="9" disabled><label for="p9">9</label>
           <input type="radio" name="star-input" id="p10" value="10" disabled><label for="p10">10</label>
         </span>
-      <output for="star-input"><b>0</b>점</output>
+      <output for="star-input" hidden><b>0</b>점</output>
       </span>
 
     </div>
@@ -44,7 +44,6 @@
 
       @for($i = 0; $i < count($contents_name); $i++)
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
-
       @endfor
       <br>
        {{ csrf_field() }}
