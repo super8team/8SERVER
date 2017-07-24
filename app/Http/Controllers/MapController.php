@@ -43,7 +43,7 @@ class MapController extends Controller
             \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->delete();
             \DB::table('detail_plans')->where('no', $detail->no)->delete();
         }
-        
+
         
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
@@ -52,7 +52,7 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-    
+
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
@@ -212,17 +212,17 @@ class MapController extends Controller
             $addDetail['end']   = $endTime;
             array_push($result, $addDetail);
         }
-        
+
         return json_encode($result);
 
     }
-    
+
     public function getDetailShare(Request $request) {
         $niddle = $request->niddle;
         $places = \DB::table('places')->where('name', 'like', "%$niddle%")->orWhere('explain', 'like', "%$niddle%")->get();
-        
+
         $result = [];
-        
+
         // 검색에 해당되는 모든 장소
         foreach($places as $place) {
             // $shares = \DB::table('detail_plan_shares')->where('place', $place->no)->get();
@@ -250,7 +250,7 @@ class MapController extends Controller
 
             }
         }
-        
+
         // dd($result);
         return json_encode($result);
     }

@@ -25,7 +25,7 @@
   {{-- <script src  = "{{asset('fullcalendar-3.4.0/lib/jquery.min.js')}}"></script> --}}
   <script src  = "{{asset('fullcalendar-3.4.0/fullcalendar.min.js')}}"></script>
   <script src  = "{{asset('fullcalendar-3.4.0/locale-all.js')}}"></script>
-  
+
   <script type = "text/javascript">
 
   var share_plan = new Array();
@@ -69,9 +69,9 @@
       ]
 
 
-    
-      
-    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 -> 
+
+
+    // 3. 버튼 클릭 -> 클릭한 버튼으로 모달 실행 ->
 =======
     cal_init();
     function cal_init(){
@@ -140,7 +140,7 @@
 <<<<<<< HEAD
 
 =======
-          
+
           // 계획 가저오기 버튼 클릭시 작동하는 버튼
               $(document).on("click","#modal_clcik",function(){
                 //클릭했을때 데이터를 바인딩
@@ -148,16 +148,16 @@
                 //   "<button type='submitbtn' class='btn btn-default'>계획 가저오기</button>"
                 //   "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"
                 // "</form>"
-                
+
                 //로컬용
                 // console.log('http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit');
                 // location.href= 'http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit';
                 // document.modal_action.action = 'http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit';
-                
+
                 //서버용
                 // document.modal_action.action = 'http://163.44.166.91/LEARnFUN/public/map/'+share_plan[id]['plan_no']+'/edit';
                 // document.modal_action.submit();
-                
+
                 //데이터를 현제 페이지에 가져옴
                 // plan_no로 검색한 데이터
                 $('#result_modal').modal('hide');
@@ -165,7 +165,7 @@
                 $('#calendar_place').append(
                   "<div id='calendar'></div>"
                 );
-                $('#calendar').fullCalendar({    
+                $('#calendar').fullCalendar({
                   locale: 'ko',
                   header: {
                     left: 'prev,next today',
@@ -179,7 +179,7 @@
                   selectHelper: true,
                   firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
                   select: inputscheduel,
-                  
+
                   editable: true,
                   eventLimit: true, // allow "more" link when too many events
                   // * * * * * * * * 데이터 불러오기 * * * * * * * *
@@ -192,7 +192,7 @@
                   type: 'POST',
                   data:{
                     plan_no : share_plan[id]['plan_no']
-                  }, 
+                  },
                       success: function(){
                         console.log('불러오기  캘린더 성공')
                         console.log(share_plan[id])
@@ -206,14 +206,14 @@
               });
 >>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
     });
-  
-        
+
+
 
 
     // 클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
-    
+
     function load_calendar(){
-      $('#calendar').fullCalendar({ 
+      $('#calendar').fullCalendar({
         locale: 'ko',
   			header: {
   				left: 'prev,next today',
@@ -227,7 +227,7 @@
   			selectHelper: true,
         firstDay: 1,      // 1 == 월요일 시작 0 == 일요일 시작
   			select: inputscheduel,
-        
+
   			editable: true,
   			eventLimit: true, // allow "more" link when too many events
         // * * * * * * * * 데이터 불러오기 * * * * * * * *
@@ -250,7 +250,7 @@
         }],
   		});
     }
-  		
+
       //캘린더에서 작동하는 부분
       function inputscheduel(start, end) {
         var title = prompt('일정 내용을 입력해주세요.');
@@ -266,7 +266,7 @@
         }
         $('#calendar').fullCalendar('unselect');
       }
-      
+
       //버튼 클릭시 동작하는버튼
       $(document).on("click","#addscheduel",function(){
         var title = $("#addscheduel").prev().text();
@@ -282,7 +282,7 @@
         $('#calendar').fullCalendar('unselect');
       });
       // 현제 보고 있는 날짜의 정보를 가져옴
-      // 왼쪽(이전) 버튼을 클릭하였을 경우 
+      // 왼쪽(이전) 버튼을 클릭하였을 경우
     jQuery("button.fc-prev-button").click(function() {
         var date = jQuery("#calendar").fullCalendar("getDate");
         convertDate(date);
@@ -317,9 +317,9 @@
       $('#calendar').fullCalendar('updateEvents', event);
       var clientEvents = new Object();
       var clientEvents = $('#calendar').fullCalendar('clientEvents');
-      
+
       location.replace('/asersadr'+clientEvents);
-      
+
       console.log(clientEvents.length);
       //이벤트 겠수 만큼 돌아서 데이터를 뽑아냄
       for (var i = 0; i < clientEvents.length; i++) {
@@ -329,7 +329,7 @@
               start = clientEvents[i]['start']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][start]' value='"+start+"'>");
         }
-          if(clientEvents[i]['end'] != null){  
+          if(clientEvents[i]['end'] != null){
               console.log(clientEvents[i]['end']);
               end = clientEvents[i]['end']['_i'];
               $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+end+"'>");
@@ -381,7 +381,7 @@
         // Add a listener for the click event
         // 클릭시 위도 경도 를 더하는 함수를 호출
         map.addListener('click', addLatLng);
-        
+
         //********************  검색  ********************
         // Create the search box and link it to the UI element.
         // 검색 창에 대한 설정
@@ -397,11 +397,11 @@
           if(searchInput){
                 $.ajax({
                 url: 'http://ko.wikipedia.org/w/api.php',
-                data: { 
-                        action: 'query', 
+                data: {
+                        action: 'query',
                         list: 'search',
-                        srsearch:searchInput , 
-                        format: 'json' 
+                        srsearch:searchInput ,
+                        format: 'json'
                       },
                 dataType: 'jsonp',
                 success: function processResult(apiResult){
@@ -522,7 +522,7 @@
         });
      }//init() End
      //****************** 위키피디아에서 받아오는 정보 표시******************
-     
+
     // function infoResult(argSearchInput){
     //    SearchInput = argSearchInput;
     //    var url="http://ko.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchInput+"&redirects&prop=text&callback=?";
@@ -537,7 +537,7 @@
      function addLatLng(event) {
        path = poly.getPath();
 
-       //클릭한 위치의 위도 경도 정보 받아오기 
+       //클릭한 위치의 위도 경도 정보 받아오기
        //  var tmpcenter = map.getCenter();
        // 위도 경도 뜨는 위치 확인용
        //  document.getElementById("LntLng").append(tmpcenter);
@@ -568,7 +568,7 @@
       //   // marker.setMap(map);
       //   poly.setMap(map);
       // }
-    
+
 
     </script>
     <script async defer
@@ -630,7 +630,7 @@
            <button type="button" id="modal_clcik" class="btn btn-default">계획 가저오기</button>
            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
          </div>
-         
+
        </div>
      </div>
    </div>
@@ -751,7 +751,7 @@
                 @endfor
 
 =======
-                  
+
 >>>>>>> be4dadb6b2709ddedd03a6423f843edddd353301
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
@@ -784,7 +784,7 @@
             <div id="calendar_place">
               <div id="calendar"></div>
             </div>
-              
+
         </div><!-- /.panel-footer -->
           <div class="col-sm-4">
             <p><a href="{{----}}" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
