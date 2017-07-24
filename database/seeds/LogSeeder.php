@@ -15,27 +15,35 @@ class LogSeeder extends Seeder
         \DB::table('schedule_logs')->insert([
           'plan' => 6,
           'in_out_substance' => "영진전문대 도서관을 출발했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "동대구역에 도착했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "동대구역을 출발했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "경대병원역에 도착했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "경대병원역을 출발했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "반월당역에 도착했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "반월당역을 출발했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ], [
           'plan' => 6,
           'in_out_substance' => "서문시장역에 도착했습니다.",
+          'time' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }
