@@ -151,7 +151,7 @@ class AppRequestController extends Controller
       // [{no: (int), title: (string), answer:(string), answerDate: (string)}, {}, {} ...]
       $result = [];
       $newNotice = [];
-      
+
       // 해당 학부모의 자식과 숫자를 얻음
       $children = $request->input('child');
       $children = json_decode($children);
@@ -169,7 +169,7 @@ class AppRequestController extends Controller
 
 //      for ($i=1; $i<=$cCount; $i++) {
       foreach($children as $child) {
-	$no = $child->no;
+	      $no = $child->no;
         $planNo = \DB::table('groups')->where('joiner', $no)->first()->plan;
         $notices = \DB::table('notices')->where('plan', $planNo)->get();
 
@@ -256,5 +256,37 @@ class AppRequestController extends Controller
           'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
+    }
+
+    public function logStore(Request $request) {
+      $userNo = $request->input('userNo');
+      $logMsg = $request->input('log');
+
+      // 실용 코드
+      // $plan = \DB::table('groups')->where('joiner', $userNo)->get(); // 이 중 날짜가 맞는 하나만 고르기!
+
+      // 시연 코드
+      $group = \DB::table('groups')->where('joiner', $userNo)->first();
+
+      \DB::table('schedule_logs')->insert([
+        "in_out_substance" => $logMsg,
+        "plan"             => $group->plan,
+        "time"             => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
+    }
+
+    public function logView(Request $request) {
+      $userNo = $request->input('userNo');
+
+      $group = \DB::table('groups')->where('joiner', $userNo)->first();
+      $logs = \DB::table('schedule_logs')->where('plan', $group->plan)->get();
+
+      $result = '';
+
+      foreach ($logs as $log) {
+        $result .= $log->in_out_substance."\n";
+      }
+      // dd($result);
+      return json_encode($result);
     }
 }
