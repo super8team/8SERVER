@@ -204,11 +204,13 @@ class AppRequestController extends Controller
       $notice = \DB::table('notices')->where('no', $request->input('notice'))->first();
       $respond = \DB::table('notice_responds', $notice->no)->where('parents', $request->input('no'))->first();
 
+      $user = \DB::table('users')->where('no', $notice->writer)->first()->name;
+
       $result = array(
         'notice' => $notice->no,
         'title' => $notice->title,
         'substance' => $notice->substance,
-        'writer' => $notice->writer,
+        'writer' => $user,
         'date' => $notice->created_at,
         // 'limitDate' => $notice->limit_date,
       );
