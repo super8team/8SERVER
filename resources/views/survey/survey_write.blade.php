@@ -131,7 +131,7 @@
   </div>
   <div class="bluebg">
     <div class="container">
-      <form class="form-horizontal" name="survey_write_submit" action="route('survey.store')"  method="POST">
+      <form class="form-horizontal" name="survey_write_submit" method="POST">
         {{ csrf_field() }}
         <div class="panel panel-default">
           <div class="panel-heading" style="height:55px;">

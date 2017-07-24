@@ -43,7 +43,10 @@ class MapController extends Controller
             \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->delete();
             \DB::table('detail_plans')->where('no', $detail->no)->delete();
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffaf0d9b8a4f0df856e18371089122d5b080063f
         
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
@@ -52,13 +55,21 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
+<<<<<<< HEAD
 
+=======
+            
+            // $start = $details[$i]['start'];
+            // $end   = $details[$i]['end'];
+    
+>>>>>>> ffaf0d9b8a4f0df856e18371089122d5b080063f
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
             // dd($start, $end);
             $re = [];
+            // dd($start, $end);
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
