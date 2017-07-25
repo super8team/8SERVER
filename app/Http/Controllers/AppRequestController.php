@@ -311,4 +311,24 @@ class AppRequestController extends Controller
       return json_encode($result);
       // dd($result);
     }
+
+
+
+
+    public function getContents (Request $request) {
+      $result = [];
+      $userNo = $request->input('inputID');
+
+      // 시연용코드
+      $group = \DB::table('groups')->where('joiner', $userNo)->first();
+      $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
+      $contents = \DB::table('contents')->where('contents_package', $plan->contents_package)->get();
+
+      foreach ($contents as $content) {
+        # code...
+        $result[] = $content->spec;
+      }
+      var_dump(json_encode($result));
+      // return json_encode($result);
+    }
 }
