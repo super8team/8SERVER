@@ -156,15 +156,9 @@ Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view')
 
 // Route::resource('app/history', 'AppHistoryController');
 
-
-
-
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
-
-
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
-
 
 // 히스토리 보기
 Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->name('getHistoryContent');
@@ -179,9 +173,23 @@ Route::post('app/upload', function (Request $request) {
 });
 
 
+<<<<<<< HEAD
 Route::get('fileentry', 'FileEntryController@index');
 Route::get('fileentry/get/{filename}', [
     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
 Route::post('fileentry/add',[
     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
+=======
+// Route::get('fileentry', 'FileEntryController@index');
+// Route::get('fileentry/get/{filename}', [
+//     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+// Route::post('fileentry/add',[
+//     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+
+
+// *******************  앱 로그  *********************
+Route::post('app/setLog', 'AppRequestController@logStore');
+
+Route::post('app/getLog', 'AppRequestController@logView');
+>>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
