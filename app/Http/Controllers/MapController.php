@@ -43,13 +43,6 @@ class MapController extends Controller
             \DB::table('detail_plan_shares')->where('detail_plan', $detail->no)->delete();
             \DB::table('detail_plans')->where('no', $detail->no)->delete();
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> ffaf0d9b8a4f0df856e18371089122d5b080063f
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
         
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
@@ -58,17 +51,12 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
             
             // $start = $details[$i]['start'];
             // $end   = $details[$i]['end'];
     
->>>>>>> ffaf0d9b8a4f0df856e18371089122d5b080063f
+
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
@@ -217,7 +205,7 @@ class MapController extends Controller
 
 
         foreach($details as $detail) {
-<<<<<<< HEAD
+
            $startTime = str_replace(" ", "T", $detail->start_time);
            $startTime .= "-05:00";
 
@@ -249,21 +237,6 @@ class MapController extends Controller
            array_push($result, $addDetail);
        }
         
-=======
-            $startTime = str_replace(" ", "T", $detail->start_time);
-            $startTime .= "-05:00";
-
-            $endTime = str_replace(" ", "T", $detail->end_time);
-            $endTime .= "-05:00";
-
-            $addDetail = [];
-            $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
-            $addDetail['start'] = $startTime;
-            $addDetail['end']   = $endTime;
-            array_push($result, $addDetail);
-        }
-
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
         return json_encode($result);
 
     }
