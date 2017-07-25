@@ -48,6 +48,7 @@ Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
 
 // 앱 디테일플랜
+Route::post('app/getPlanList', 'AppRequestController@getPlanList');
 Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
 Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.search');
@@ -158,7 +159,7 @@ Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view')
 
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
-Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
+// Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 
 // 히스토리 보기
 Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->name('getHistoryContent');
@@ -171,7 +172,6 @@ Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getCh
 Route::post('app/upload', function (Request $request) {
 
 });
-
 
 // Route::get('fileentry', 'FileEntryController@index');
 // Route::get('fileentry/get/{filename}', [
