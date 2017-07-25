@@ -172,15 +172,6 @@ Route::post('app/upload', function (Request $request) {
 
 });
 
-
-<<<<<<< HEAD
-Route::get('fileentry', 'FileEntryController@index');
-Route::get('fileentry/get/{filename}', [
-    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
-Route::post('fileentry/add',[
-    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
-
-=======
 // Route::get('fileentry', 'FileEntryController@index');
 // Route::get('fileentry/get/{filename}', [
 //     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
@@ -192,4 +183,3 @@ Route::post('fileentry/add',[
 Route::post('app/setLog', 'AppRequestController@logStore');
 
 Route::post('app/getLog', 'AppRequestController@logView');
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
