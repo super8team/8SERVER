@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('main');
 
 Route::get('/test23',function(){
-  return view('survey.survey_student_result');
+  return view('._student_result');
 });
 
 
@@ -54,13 +54,13 @@ Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.se
 
 
 // ******************** 설문조사 *********************
-// Route::get('survey/result', 'SurveyController@result');
+// Route::get('/result', 'Controller@result');
 
 // 설문조사 리스트, 작성, 열람
-Route::resource('survey', 'SurveyController');
+Route::resource('', 'Controller');
 // index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
-Route::resource('survey.respond', 'SurveyRespondController');
+Route::resource('.respond', 'RespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
 
