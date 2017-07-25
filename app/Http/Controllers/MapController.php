@@ -203,18 +203,36 @@ class MapController extends Controller
 
 
         foreach($details as $detail) {
-            $startTime = str_replace(" ", "T", $detail->start_time);
-            $startTime .= "-05:00";
+           $startTime = str_replace(" ", "T", $detail->start_time);
+           $startTime .= "-05:00";
 
-            $endTime = str_replace(" ", "T", $detail->end_time);
-            $endTime .= "-05:00";
+           $endTime = str_replace(" ", "T", $detail->end_time);
+           $endTime .= "-05:00";
 
-            $addDetail = [];
-            $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
-            $addDetail['start'] = $startTime;
-            $addDetail['end']   = $endTime;
-            array_push($result, $addDetail);
-        }
+           $place = \DB::table('places')->where('no', $detail->place)->first();
+           
+          //  dd($place);
+           
+           $lat = $place->lat;
+           $lat = (string)$lat;
+           
+           $lng = $place->lng;
+           $lng = (string)$lng;
+           
+           $lntlng_id = $lat.','.$lng;
+          
+           $className = 'lntlng';
+           
+           
+           $addDetail = [];
+           $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
+           $addDetail['id'] = $lntlng_id;
+           $addDetail['className'] = $className;
+          
+           $addDetail['start'] = $startTime;
+           $addDetail['end']   = $endTime;
+           array_push($result, $addDetail);
+       }
         
         return json_encode($result);
 

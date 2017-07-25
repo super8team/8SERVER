@@ -60,7 +60,6 @@
         // path.push(place.geometry.location);
         //그위치에 마커 밖기
         places.forEach(function(place) {
-          //테스트용 으로 주석 중
           var marker = new google.maps.Marker({
           position: place.geometry.location,
           map: map
@@ -93,6 +92,7 @@
       });
       
         $(document).on("click","#line",function(){
+          console.log('#line clicked');
           //맵 폴리라인및 마커 삭제
           setMapOnAll(null);
           function setMapOnAll(map) {
@@ -102,7 +102,7 @@
         }
           markers = [];
           
-          path.clear();
+          // path.clear();
           
           //폴리라인? ㅎ
           
@@ -306,6 +306,11 @@
     cal_init();
     function cal_init(){
       load_calendar();
+      poly();
+      setTimeout(function() { 
+        $('#line').click()
+      }, 1000);
+      
     }
     //보기 버튼 클릭시 하는 행동
     $(document).on('click','.modal_btn',function(){
@@ -460,14 +465,15 @@
         data:{
           plan_no : {{$plan_no}}
         },
+        color:'black',
             success: function(){
-              console.log('페이지 시작 캘린더 성공')
+              console.log('페이지 시작 캘린더 성공');
             },
             error: function () {
-              console.log("data load is fail.")
+              console.log("data load is fail.");
             }
         }],
-        eventDrop: function(event, delta, revertFunc,start) {
+        eventDrop: function (event, delta, revertFunc,start) {
           
           console.log('- - - -  - - - - - - -  - - - - -');
           console.log('- - - - 드롭이벤트 실행!  - - - - -');
@@ -477,47 +483,51 @@
           $('#calendar').fullCalendar('updateEvents', event);
           //순서 배열 초기화
           
-          lntlng_id = Array();
-        //이벤트 정보를 가져온다
-        var clientEvents = new Object();
-        var clientEvents = $('#calendar').fullCalendar('clientEvents');
-        var time_arr = new Array;
-        var count = 0;
-        
-        //캘린더 이벤트에서 시간정보를 뽑아낸다
-        for (var i = 0; i < clientEvents.length; i++) {
-          // console.log('루프수'+i);
-          // console.log(moment(clientEvents[i].start).format('h:mm:ss a'));
-          //format('X') 유닉스 타임스탬프 세컨드 x = 밀리세컨드
-          // console.log(moment(clientEvents[i].start).format('X'));
-        if(clientEvents[i]['className'] == 'lntlng'){;
-            // console.log(moment(clientEvents[i].start).format('h:mm:ss a'));
-            time_arr[i] =  moment(clientEvents[i].start).format('X');
-          }
-        }
-        
-        //시간이 빠른 순서로 배열한다
-        if(time_arr){
-          time_arr = time_arr.sort(function(a, b){
-            return a - b;
-          });       
-        }
-        
-        //시간순서로 배열되었는 time_arr값과 이벤트의 clientEvents 배열값이 일치할 경우
-        // 아이디값을 가져온다
-        for (var i = 0; i < clientEvents.length; i++) {
-            if(clientEvents[i]['className'] == 'lntlng'){
-              for(var t = 0; t < clientEvents.length ; t++){
-                if(time_arr[i] == moment(clientEvents[t].start).format('X')){
-                lntlng_id[i]= clientEvents[t]['id'];
-              }
-            }
-          }
-        }
-        console.log('시간순으로 정렬된 아이디 출력');
-        console.log(lntlng_id);       
+          poly();
       }
     });
+  }
+  function poly(){
+    console.log('poly function start');
+    lntlng_id = Array();
+  //이벤트 정보를 가져온다
+  var clientEvents = new Object();
+  var clientEvents = $('#calendar').fullCalendar('clientEvents');
+  console.log(clientEvents);
+  var time_arr = new Array;
+  
+  //캘린더 이벤트에서 시간정보를 뽑아낸다
+  for (var i = 0; i < clientEvents.length; i++) {
+    // console.log('루프수'+i);
+    // console.log(moment(clientEvents[i].start).format('h:mm:ss a'));
+    //format('X') 유닉스 타임스탬프 세컨드 x = 밀리세컨드
+    // console.log(moment(clientEvents[i].start).format('X'));
+  if(clientEvents[i]['className'] == 'lntlng'){;
+      // console.log(moment(clientEvents[i].start).format('h:mm:ss a'));
+      time_arr[i] =  moment(clientEvents[i].start).format('X');
+    }
+  }
+  
+  //시간이 빠른 순서로 배열한다
+  if(time_arr){
+    time_arr = time_arr.sort(function(a, b){
+      return a - b;
+    });       
+  }
+  
+  //시간순서로 배열되었는 time_arr값과 이벤트의 clientEvents 배열값이 일치할 경우
+  // 아이디값을 가져온다
+  for (var i = 0; i < clientEvents.length; i++) {
+      if(clientEvents[i]['className'] == 'lntlng'){
+        for(var t = 0; t < clientEvents.length ; t++){
+          if(time_arr[i] == moment(clientEvents[t].start).format('X')){
+          lntlng_id[i]= clientEvents[t]['id'];
+        }
+      }
+    }
+  }
+  console.log('시간순으로 정렬된 아이디 출력');
+  console.log(lntlng_id);    
   }
 
       //캘린더에서 작동하는 부분
@@ -538,7 +548,7 @@
         $('#calendar').fullCalendar('unselect');
         count_id++;
       }
-      
+    
       // 현제 보고 있는 날짜의 정보를 가져옴
       // 왼쪽(이전) 버튼을 클릭하였을 경우 
     jQuery("button.fc-prev-button").click(function() {
@@ -602,34 +612,29 @@
               console.log('종료시간');
               console.log(end); 
             }
-            
-            if(clientEvents[i]['id'] != null){
-              id = clientEvents[i]['id'];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+id+"'>");
-              console.log(id);
-            }
-            
-            if(clientEvents[i]['className'] != null){
-              className = clientEvents[i]['className'][0];
-              $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][end]' value='"+className+"'>");
-              console.log(className);
-            }
+        //     if(clientEvents[i]['id'] != null){
+        //       id = clientEvents[i]['id'];
+        //       $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][id]' value='"+id+"'>");
+        //       console.log(id);
+        //     }         
+        //     if(clientEvents[i]['className'] != null){
+        //       className = clientEvents[i]['className'][0];
+        //       $('#saveZone').append("<input type='hidden' name='saveEvent["+i+"][className]' value='"+className+"'>");
+        //       console.log(className);
+        //  }
       }
-      // document.plan_map_write.action = "{{--route('map.store')--}}";
-      // document.plan_map_write.submit();
+      document.plan_map_write.action = "{{route('map.store')}}";
+      document.plan_map_write.submit();
     });
   });
-  $(document).ready(function(){
-    console.log('실행');
-    $('#line').click();
-  });
+
     </script>
 
 
-    </script>
+    {{-- </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
-    </script>
+    </script> --}}
     {{-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAioq4xWVTdiZlwL-jWehKgSKHhPJCBcHI&libraries=places&callback=initMap">
     </script> --}}
@@ -772,6 +777,7 @@
 
                   </tbody>
                 </table>
+
                 {{-- 페이지 네이션 --}}
                 <nav class="page text-center">
                   <ul class="pagination">
