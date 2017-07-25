@@ -151,11 +151,6 @@ class AppRequestController extends Controller
       // [{no: (int), title: (string), answer:(string), answerDate: (string)}, {}, {} ...]
       $result = [];
       $newNotice = [];
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
       // 해당 학부모의 자식과 숫자를 얻음
       $children = $request->input('child');
       $children = json_decode($children);
@@ -173,11 +168,7 @@ class AppRequestController extends Controller
 
 //      for ($i=1; $i<=$cCount; $i++) {
       foreach($children as $child) {
-<<<<<<< HEAD
-	$no = $child->no;
-=======
 	      $no = $child->no;
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
         $planNo = \DB::table('groups')->where('joiner', $no)->first()->plan;
         $notices = \DB::table('notices')->where('plan', $planNo)->get();
 
@@ -263,8 +254,6 @@ class AppRequestController extends Controller
         ]);
 
     }
-<<<<<<< HEAD
-=======
 
     public function logStore(Request $request) {
       $userNo = $request->input('userNo');
@@ -317,8 +306,7 @@ class AppRequestController extends Controller
           "date" => $plan->at,
         );
       }
-
-      dd($result);
+      return json_encode($result);
+      // dd($result);
     }
->>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
 }
