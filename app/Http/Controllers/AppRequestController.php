@@ -284,7 +284,30 @@ class AppRequestController extends Controller
       foreach ($logs as $log) {
         $result .= $log->in_out_substance."\n";
       }
-      // dd($result);
-      return json_encode($result);
+      dd(array("log" => $result));
+      return json_encode(array("log" => $result));
+    }
+
+
+    // getHistoryList
+    // data: userId
+    // 사용자가 다녀온 체험학습 목록
+
+    public function getPlanList(Request $request) {
+      $userNo = $request->input('userNo');
+      $result = [];
+
+      $groups = \DB::table('groups')->where('joiner', $userNo)->get();
+      foreach ($groups as $group) {
+        # code...
+        $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
+        $result[] = array(
+          "no" => $plan->no,
+          "title" => $plan->name,
+          "date" => $plan->at,
+        );
+      }
+
+      dd($result);
     }
 }
