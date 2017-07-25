@@ -173,7 +173,6 @@ Route::post('app/upload', function (Request $request) {
 
 });
 
-
 // Route::get('fileentry', 'FileEntryController@index');
 // Route::get('fileentry/get/{filename}', [
 //     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
