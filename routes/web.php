@@ -177,3 +177,8 @@ Route::get('fileentry/get/{filename}', [
 Route::post('fileentry/add',[
     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
+
+
+
+Route :: get ('test', 'FieldLearningPlanDocumentController@generateDocx');
+
