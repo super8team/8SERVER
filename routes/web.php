@@ -105,6 +105,8 @@ Route::get('contents/searchContents','ContentsController@searchContents')->name(
 // 콘텐츠 메인
 Route::get('contents/', 'ContentsController@index')->name('contents');
 
+Route::post('app/getContents', 'AppRequestController@getContents');
+
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');
