@@ -455,21 +455,20 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
-          $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
-          // $number      = DB::table('contents_packages')->where('contents_package','=',$package_key->no)->get();
-          // $number = $number + 1;
+          $package_key              = DB::table('contents_packages')->where('name','=', $package_name)->first();
+          $contents_count   = DB::table('contents')->where('contents_package',$package_key->no)->get();
+          $contents_count   = count($contents_count) + 1;
 
-          // $numberCount = count($number);
-          // $json = json_decode($content_spec,true);
-          // $json['number'] = '1';
-          // $content_spec = json_encode($json);
+          $json = json_decode($content_spec,true);
+          $json['number'] = $contents_count;
+          $content_spec = json_encode($json);
 
           DB::table('contents')->insert([
               ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
-          return $package_key;
+          return null;
         }else
         {
             //새로운 패키지를 저장한다
