@@ -984,7 +984,7 @@
             }
           },
           error: function(){
-            alert('실패임');
+            alert('실패임f');
           }
         });
         document.getElementById('change').value = 0;
