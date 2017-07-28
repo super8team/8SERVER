@@ -1045,10 +1045,10 @@
     $('.content_list').remove();
 
     var package_id = event.target.value;
+    console.log(event.target);
     console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
-    console.log(textContent);
     var present = document.getElementById('presentPackageName');
     var str_space = /\s/;  // 공백체크
     if(str_space.exec(textContent)) { //공백 체크
