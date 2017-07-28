@@ -456,7 +456,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
-          $number = DB::select('select count(*) from contents where contents_package = :package_num',['package_num'=>$package_key]);
+          $number = DB::select('select count(*) from contents where contents_package = :package_num',['package_num'=>$package_key['contents_package']]);
           $number = $number + 1;
 
           $json = json_decode($content_spec,true);
