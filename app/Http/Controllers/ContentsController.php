@@ -462,7 +462,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
-          return $content_spec;
+          return null;
         }else
         {
             //새로운 패키지를 저장한다
