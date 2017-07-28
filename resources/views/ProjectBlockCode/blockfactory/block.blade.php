@@ -414,14 +414,12 @@
         <td id="mapSize">
           <div>
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  콘텐츠 장소 검색창 :
-                  <input id="address" style="width: 200px;" type="text" value="">
+                  <input id="address" style="width: 200px;" type="text" value='장소 검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input type="submit" value="검색">
-                  <button onclick="resetSearch()">리셋</button>
             </form>
           </div>
 
-          <div id="map" style="height: 400px; width: 530px;">
+          <div id="map" style="height: 400px; width: 650px;">
           </div>
 <script type="text/javascript">
    var markersArray = [];
@@ -488,7 +486,16 @@
      map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
      map.setZoom(14);
  }
-
+ function clearField(field){
+    if (field.value == field.defaultValue) {
+      field.value = '';
+    }
+  }
+  function checkField(field){
+    if (field.value == '') {
+      field.value = field.defaultValue;
+    }
+  }
  function resetSearch()
  {
      location.reload();
@@ -543,9 +550,9 @@
  }
 </script>
 
-          <div id="addrList">
+          <!-- <div id="addrList">
             <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
-          </div>
+          </div> -->
           <div id="get_location" border="1px solid black" ></div>
         <!-- </div> -->
 

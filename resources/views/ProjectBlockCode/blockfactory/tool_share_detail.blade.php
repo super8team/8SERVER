@@ -13,7 +13,7 @@
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
       <div style="display:inline">
         <span class="star-input" style="margin-top:100px">
-          <span class="input" style=";margin-top:50px">
+          <span class="input" style="margin-top:50px">
             <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
             <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
             <input type="radio" name="star-input" id="p3" value="3" disabled><label for="p3">3</label>
@@ -62,17 +62,15 @@
   <script type="text/javascript">
   function resizeWindow(win)    {
 
-  var wid = 600;
+  var wid = 590;
 
-  var hei = 600;        //30 과 40은 넉넉하게 하려는 임의의 값임
+  var hei = 590;        //30 과 40은 넉넉하게 하려는 임의의 값임
 
   win.resizeTo(wid,hei);
 
   }
-  function myfunction(){
-              var s = prompt('점수를 입력','점수');
-              console.log(s);
-              switch(s){
+  function myfunction(rating){
+              switch(rating){
                 case '1':
                   document.getElementsByName('star-input')[0].checked=true;
                 break;
@@ -103,7 +101,6 @@
                 case '10':
                   document.getElementsByName('star-input')[9].checked=true;
                 break;
-
               }
             }
             var starRating = function(){

@@ -451,7 +451,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_xml  = $request->xml;
         $content_spec = $request->spec;
         $content_name = $request->name;
-
+        dd($request->spec);
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
@@ -507,7 +507,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       $explain         =  $request->input('package_explain');
       //공유 패키지를 구성할 콘텐츠
       $downContents    =  $request->input('downContents');
-      
+
       //공유할 패키지를 새로 등록한다.
       DB::table('contents_packages')->insert([
           [
