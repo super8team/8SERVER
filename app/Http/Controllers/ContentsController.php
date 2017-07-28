@@ -451,7 +451,9 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_xml  = $request->xml;
         $content_spec = $request->spec;
         $content_name = $request->name;
-        $contents_spec.number = '1';
+        $json = json_decode($content_spec,true);
+        $json['number']='1';
+        $contents_spec = json_encode($json);
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
@@ -460,7 +462,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
-          return $contents_spec;
+          return ;
         }else
         {
             //새로운 패키지를 저장한다
