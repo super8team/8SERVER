@@ -44,7 +44,6 @@ class MapController extends Controller
             \DB::table('detail_plans')->where('no', $detail->no)->delete();
         }
         
-        
         for($i=0; $i<count($details); $i++) {
             $replacedTime = str_replace("T", " ", $details[$i]['start']);
             $replacedTime = str_split($replacedTime, 19);
@@ -52,13 +51,19 @@ class MapController extends Controller
             $replacedTime = str_replace("T", " ", $details[$i]['end']);
             $replacedTime = str_split($replacedTime, 19);
             $end = $replacedTime[0];
+
+            
+            // $start = $details[$i]['start'];
+            // $end   = $details[$i]['end'];
     
+
             // $start = explode(",", $details[$i]['start']);
             // $end = explode(",", $details[$i]['end']);
             $placeNo = \DB::table('places')->where('name', 'like', "%".$details[$i]['title']."%")->value('no');
             // $placeNo = 5; // 더미
             // dd($start, $end);
             $re = [];
+            // dd($start, $end);
             $re[] = \DB::table('detail_plans')->insertGetId([
                 'place' => $placeNo,
                 'plan' => $planNo,
@@ -200,29 +205,48 @@ class MapController extends Controller
 
 
         foreach($details as $detail) {
-            $startTime = str_replace(" ", "T", $detail->start_time);
-            $startTime .= "-05:00";
 
-            $endTime = str_replace(" ", "T", $detail->end_time);
-            $endTime .= "-05:00";
+           $startTime = str_replace(" ", "T", $detail->start_time);
+           $startTime .= "-05:00";
 
-            $addDetail = [];
-            $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
-            $addDetail['start'] = $startTime;
-            $addDetail['end']   = $endTime;
-            array_push($result, $addDetail);
-        }
+           $endTime = str_replace(" ", "T", $detail->end_time);
+           $endTime .= "-05:00";
+
+           $place = \DB::table('places')->where('no', $detail->place)->first();
+           
+          //  dd($place);
+           
+           $lat = $place->lat;
+           $lat = (string)$lat;
+           
+           $lng = $place->lng;
+           $lng = (string)$lng;
+           
+           $lntlng_id = $lat.','.$lng;
+          
+           $className = 'lntlng';
+           
+           
+           $addDetail = [];
+           $addDetail['title'] = \DB::table('places')->where('no', $detail->place)->value('name');
+           $addDetail['id'] = $lntlng_id;
+           $addDetail['className'] = $className;
+          
+           $addDetail['start'] = $startTime;
+           $addDetail['end']   = $endTime;
+           array_push($result, $addDetail);
+       }
         
         return json_encode($result);
 
     }
-    
+
     public function getDetailShare(Request $request) {
         $niddle = $request->niddle;
         $places = \DB::table('places')->where('name', 'like', "%$niddle%")->orWhere('explain', 'like', "%$niddle%")->get();
-        
+
         $result = [];
-        
+
         // 검색에 해당되는 모든 장소
         foreach($places as $place) {
             // $shares = \DB::table('detail_plan_shares')->where('place', $place->no)->get();
@@ -250,7 +274,7 @@ class MapController extends Controller
 
             }
         }
-        
+
         // dd($result);
         return json_encode($result);
     }

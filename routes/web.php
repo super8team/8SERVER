@@ -48,6 +48,7 @@ Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
 
 // 앱 디테일플랜
+Route::post('app/getPlanList', 'AppRequestController@getPlanList');
 Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
 Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.search');
@@ -104,6 +105,8 @@ Route::get('contents/searchContents','ContentsController@searchContents')->name(
 // 콘텐츠 메인
 Route::get('contents/', 'ContentsController@index')->name('contents');
 
+Route::post('app/getContents', 'AppRequestController@getContents');
+
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::resource('notice', 'NoticeController');
@@ -156,15 +159,9 @@ Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view')
 
 // Route::resource('app/history', 'AppHistoryController');
 
-
-
-
 Route::post('app/writeHistoryContent', 'HistoryController@historyStore');
 
-
-
-Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
-
+// Route::post('app/writeHistoryContent', 'HistoryController@historyStore')->name('historyStore');
 
 // 히스토리 보기
 Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->name('getHistoryContent');
@@ -178,10 +175,14 @@ Route::post('app/upload', function (Request $request) {
 
 });
 
+// Route::get('fileentry', 'FileEntryController@index');
+// Route::get('fileentry/get/{filename}', [
+//     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+// Route::post('fileentry/add',[
+//     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
-Route::get('fileentry', 'FileEntryController@index');
-Route::get('fileentry/get/{filename}', [
-    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
-Route::post('fileentry/add',[
-    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
+// *******************  앱 로그  *********************
+Route::post('app/setLog', 'AppRequestController@logStore');
+
+Route::post('app/getLog', 'AppRequestController@logView');

@@ -28,7 +28,7 @@
             <tr>
               <th>#</th>
               <th>체험 학습 이름</th>
-              <th>작성일</th>
+              <th>체험학습 실시일</th>
               <th>바로가기
                   <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
                    class="btn btn-sm btn-default pull-right">
