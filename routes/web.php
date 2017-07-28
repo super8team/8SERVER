@@ -64,6 +64,9 @@ Route::resource('survey', 'SurveyController');
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
+Route::post('app/getSurveyList', 'AppRequestController@getSurveyList');
+Route::post('app/getSurveyDetail', 'AppRequestController@getSurveyDetail');
+
 
 // ******************** 콘텐츠 *********************
 // 콘텐츠 패키지 공유 저장
