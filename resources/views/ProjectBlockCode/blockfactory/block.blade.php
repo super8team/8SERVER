@@ -414,14 +414,12 @@
         <td id="mapSize">
           <div>
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  콘텐츠 장소 검색창 :
-                  <input id="address" style="width: 200px;" type="text" value="">
+                  <input id="address" style="width: 200px;" type="text" value='장소 검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input type="submit" value="검색">
-                  <button onclick="resetSearch()">리셋</button>
             </form>
           </div>
 
-          <div id="map" style="height: 400px; width: 530px;">
+          <div id="map" style="height: 400px; width: 650px;">
           </div>
 <script type="text/javascript">
    var markersArray = [];
@@ -488,7 +486,16 @@
      map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
      map.setZoom(14);
  }
-
+ function clearField(field){
+    if (field.value == field.defaultValue) {
+      field.value = '';
+    }
+  }
+  function checkField(field){
+    if (field.value == '') {
+      field.value = field.defaultValue;
+    }
+  }
  function resetSearch()
  {
      location.reload();
@@ -543,9 +550,9 @@
  }
 </script>
 
-          <div id="addrList">
+          <!-- <div id="addrList">
             <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
-          </div>
+          </div> -->
           <div id="get_location" border="1px solid black" ></div>
         <!-- </div> -->
 
@@ -959,21 +966,25 @@
           },
           success: function(data){
             if(data){
+              console.log('저장');
               console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
-              for(var i = 0; i < user_packages.length; i++){
-                var package_name = user_packages[i].innerText;
-                if(package_name == data[i]['name']){
-                  user_packages[i].innerText = data[i]['name'];
-                  user_packages[i].value     = data[i]['id'];
-                }
-              }
+              var id_value     = data.length - 1;
+              storage_package_child.value = data[id_value].id;
+              console.log(storage_package_child);
+              // for(var i = 0; i < user_packages.length; i++){
+              //   var package_name = user_packages[i].innerText;
+              //   if(package_name == data[i]['name']){
+              //     user_packages[i].innerText = data[i]['name'];
+              //     user_packages[i].value     = data[i]['id'];
+              //   }
+              // }
             }else{
               console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
             }
           },
           error: function(){
-            alert('실패임');
+            alert('실패임f');
           }
         });
         document.getElementById('change').value = 0;
@@ -1037,10 +1048,10 @@
     $('.content_list').remove();
 
     var package_id = event.target.value;
+    console.log(event.target);
     console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
-    console.log(textContent);
     var present = document.getElementById('presentPackageName');
     var str_space = /\s/;  // 공백체크
     if(str_space.exec(textContent)) { //공백 체크

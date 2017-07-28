@@ -452,15 +452,23 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_spec = $request->spec;
         $content_name = $request->name;
 
+
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
-          $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
+          $package_key              = DB::table('contents_packages')->where('name','=', $package_name)->first();
+          $contents_count   = DB::table('contents')->where('contents_package',$package_key->no)->get();
+          $contents_count   = count($contents_count) + 1;
+
+          $json = json_decode($content_spec,true);
+          $json['number'] = $contents_count;
+          $content_spec = json_encode($json);
+
           DB::table('contents')->insert([
               ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
-          return ;
+          return null;
         }else
         {
             //새로운 패키지를 저장한다
@@ -507,7 +515,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       $explain         =  $request->input('package_explain');
       //공유 패키지를 구성할 콘텐츠
       $downContents    =  $request->input('downContents');
-      
+
       //공유할 패키지를 새로 등록한다.
       DB::table('contents_packages')->insert([
           [
