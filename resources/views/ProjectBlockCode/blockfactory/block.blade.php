@@ -966,6 +966,7 @@
           },
           success: function(data){
             if(data){
+              console.log('저장');
               console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
               for(var i = 0; i < user_packages.length; i++){
