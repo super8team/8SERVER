@@ -170,7 +170,7 @@ BlockLibraryController.prototype.openBlock = function(blockType) {
 
     var parentDiv       = document.getElementById('dropdown_'+blockType);
     // var parentDiv       = document.getElementById('dropdownDiv_blockLib');
-
+    console.log(parentDiv);
     parentDiv.appendChild(content_xml);
     console.log(content_xml);
     console.log(typeof(xmlText));
