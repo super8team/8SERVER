@@ -969,13 +969,16 @@
               console.log('저장');
               console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
-              for(var i = 0; i < user_packages.length; i++){
-                var package_name = user_packages[i].innerText;
-                if(package_name == data[i]['name']){
-                  user_packages[i].innerText = data[i]['name'];
-                  user_packages[i].value     = data[i]['id'];
-                }
-              }
+              var id_value     = data.length - 1;
+              storage_package_child.value = data[id_value].id;
+              console.log(storage_package_child);
+              // for(var i = 0; i < user_packages.length; i++){
+              //   var package_name = user_packages[i].innerText;
+              //   if(package_name == data[i]['name']){
+              //     user_packages[i].innerText = data[i]['name'];
+              //     user_packages[i].value     = data[i]['id'];
+              //   }
+              // }
             }else{
               console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
             }
