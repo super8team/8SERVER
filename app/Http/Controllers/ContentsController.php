@@ -460,7 +460,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
           $number = $number + 1;
 
           $json = json_decode($content_spec,true);
-          $json['number'] = $number;
+          $json['number'] = '1';
           $content_spec = json_encode($json);
 
           DB::table('contents')->insert([
@@ -468,7 +468,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
-          return null;
+          return $number;
         }else
         {
             //새로운 패키지를 저장한다
