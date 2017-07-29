@@ -20,7 +20,6 @@
             설문조사 작성
           </a>
          </h3>
-
         </div>
         <div class="panel-body">
           <table class="table table-bordered table-hover">
@@ -33,7 +32,6 @@
               </tr>
             </thead>
             <tbody>
-        
                   <tr>
                     <td>1</td>
                     <td>으앙아아아앙</td>
@@ -44,7 +42,6 @@
                       </a>
                     </td>
                   </tr>
-
           </tbody>
           </table>
         </div>

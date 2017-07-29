@@ -13,15 +13,16 @@
 		</thead>
 	@endsection
 @php
-{{--	//임시 변수
-	$plan_title 						= "야비군";
-	$plan_date							= "2017/05/23";
-	$teacher_name 					= "원사님";
-	$trip_kind_value 				= "각개전투";
-	$attend_class_count 		= "1";
-	$attend_student_count		= "41";
-	$unattend_student_count	= "1";
-	$transpotation[] 					= ["버스","비행기"]; --}}
+
+//임시 변수
+	// $plan_title 						= "야비군";
+	// $plan_date							= "2017/05/23";
+	// $teacher_name 					= "원사님";
+	// $trip_kind_value 				= "각개전투";
+	// $attend_class_count 		= "1";
+	// $attend_student_count		= "41";
+	// $unattend_student_count	= "1";
+	// $transpotation[] 					= ["버스","비행기"]; 
 @endphp
 
 	<div class="bluebg">
@@ -41,10 +42,9 @@
 							<div class="row form-group" >
 								<input type="text" class="hidden" value="NEW" name="WROKMODE_NAME" id="WORKMODE_ID">
 								<div class="btn-group pull-right">
-									<button type="button"  class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan"><span class="fa fa-download"> 다시 계획하기 </button>
-									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"><span class="fa fa-download"> 첨부파일 일괄다운로드 </button>
-									<button type="butotn" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"
-										disabled > <span class="fa fa-save"> 계획 저장하기 </button>
+									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan"> <span class="fa fa-download"> 다시 계획하기 </button>
+									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"> <span class="fa fa-download"> 첨부파일 일괄다운로드 </button>
+									<button type="btnSubmit" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"> <span class="fa fa-save"> 계획 저장하기 </button>
 								</div>
 							</div>
 
@@ -181,7 +181,7 @@
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획서 양식.hwp">수학여행 계획서 양식</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 안심수학여행서비스신청서.hwp">안심수학여행서비스신청서</a>
+																<a href="{{route('word', ['no'=>1, 'plan_number'=>$plan_no])}}">안심수학여행서비스신청서</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 청렴교육.hwp">청렴교육</a>

@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
 //      $this->call(StudentsSeeder::class);
 
 //      $this->call(DetailPlansSeeder::class);
-//      $this->call(GroupsSeeder::class);
+        $this->call(GroupsSeeder::class);
+        $this->call(LogSeeder::class);
 //      $this->call(HistoriesSeeder::class);
 //      $this->call(WorkProgressesSeeder::class);
 //      $this->call(SimplePlansSeeder::class);
@@ -55,8 +56,14 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(KoreanUserSeeder::class);
         // $this->call(ContentsSeeder::class);
-        $this->call(ContentsSeeder::class);
+        // $this->call(ContentsSeeder::class);
 
+
+<<<<<<< HEAD
+        $this->call(NoticeSeeder::class);
+=======
+        // $this->call(NoticeSeeder::class);
+>>>>>>> e27c3bf271088df06a45fcbe864ba78a21955ed1
 
     }
 

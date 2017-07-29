@@ -1,4 +1,5 @@
 @extends('master')
+@extends('master')
 
 @section('title' , '학생 회원가입')
 

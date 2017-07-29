@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\Settings;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 define('CLI', (PHP_SAPI == 'cli') ? true : false);
 define('EOL', CLI ? PHP_EOL : '<br />');
@@ -21,39 +23,86 @@ class FieldLearningPlanDocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function generateDocx(ReQuest $request)
+    public function generateDocx($no, $plan_number)
     {
 
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/documents/test.docx");
+        switch ($no) {
+            case 1:
+               $this->word($plan_number);
+                return response()->download('./word.docx');
+            break;
+            case 2:
+            break;
+            case 3:
+            break;
 
-        // 디비에 접근 테이블에서 문서를 하나씩 출력
-        // 해당 문서를 열어 각 변수에 해당 하는 값이 들어갈 수 있도록 지정
-        // 더 있나?
-
-
-        $templateProcessor->setValue('schoolName', '영진전문대학');
-        $templateProcessor->setValue('schoolAddress', '대구광역시 북구');
-        $templateProcessor->setValue('teacher', '박성원');
-        $templateProcessor->setValue('schoolPhone', '010-5034-6922');
-        $templateProcessor->setValue('period', '7/24 ~ 7/31');
-        $templateProcessor->setValue('total_count', '51');
-        $templateProcessor->setValue('teacher_count', '1');
-        $templateProcessor->setValue('student_count', '50');
-        $templateProcessor->setValue('facilityName', '나래 학원');
-        $templateProcessor->setValue('facilityAddress', '후쿠오카 텐진');
-        $templateProcessor->setValue('representative', '나래 학원 원장');
-        $templateProcessor->setValue('representativePhone', '010-1234-5678');
-        $templateProcessor->setValue('n', '7');
-        $templateProcessor->setValue('m', '7');
-        $templateProcessor->setValue('d', '23');
-        $templateProcessor->setValue('applicant', '박성원');
-
-        $templateProcessor->saveAs('./test.docx');
-
-        return response()->download('./test.docx');
-
+        }
 
     }
+
+
+
+    public function word($plan_number)
+    {
+
+        // 로그인한 유저의 학교 정보(선생님)이 필요
+        // Auth로 사용자 아이디 가져오기
+        // works table에 teacher를 선택
+        // schools 테이블 정보를 works school 컬럼이 foreign키로 가지고 있어서 둘이 공통되는 번호 찾는 쿼리
+
+        $file = \DB::table('field_learning_plan_documents')->where('no', 1)->first();
+
+        $file->document_url;
+
+        // 현재 로그인한 유저(선생님)
+        $user = Auth::user();
+
+        // 현재 로그인한 유저(선생님)의 근무정보 가져옴
+//        $work = \DB::table('works')->where('teacher', $user->no)->first();
+        $work = \DB::table('works')->where('teacher', 106)->first();
+
+        // 근무정보 해당하는 학교의 정보를 가져옴
+        $school = \DB::table('schools')->where('no', $work->school)->first();
+
+        // 현재 작성중인 계획 번호를 하나 가져옴
+        $startDay = \DB::table('field_learning_plans')->where('no', $plan_number)->first();
+
+        // 현재 시간을 기준으로 문서 작성
+        $date = \Carbon\Carbon::now();
+
+        // 체험학습에 참여할 총인원의 수를 가져옴
+       $total_count_count = \DB::table('groups')->where('plan', $plan_number)->count();
+        
+        // 체험학습에 참여한 학생
+        $student_count = \DB::table('groups')->where('plan', $plan_number)
+                                            ->where('type', 'student')->count();
+
+        // 체험학습에 참여한 인솔자
+        $teacher_count = \DB::table('groups')->where('plan', $plan_number)
+                                            ->where('type', 'teacher')->count();
+
+
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/documents/word.docx");
+
+
+        $templateProcessor->setValue('schoolName', $school->name);
+        $templateProcessor->setValue('schoolAddress', $school->address);
+        $templateProcessor->setValue('schoolPhone', $school->tel);
+//        $templateProcessor->setValue('teacher', $user->name);
+        $templateProcessor->setValue('teacher', "박성원 ㅎㅎ");
+        $templateProcessor->setValue('period', $startDay->at);
+        $templateProcessor->setValue('total_count', $total_count_count);
+        $templateProcessor->setValue('teacher_count', $teacher_count);
+        $templateProcessor->setValue('student_count', $student_count);
+        $templateProcessor->setValue('date', $date);
+
+
+        $templateProcessor->saveAs('./word.docx');
+
+//        return response()->download('./word.docx');
+    }
+
+
 
     function getEndingNotes($writers)
     {
@@ -86,5 +135,6 @@ class FieldLearningPlanDocumentController extends Controller
         }
 
         return $result;
+
     }
 }
