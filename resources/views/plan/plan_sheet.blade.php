@@ -181,7 +181,7 @@
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획서 양식.hwp">수학여행 계획서 양식</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 안심수학여행서비스신청서.hwp">안심수학여행서비스신청서</a>
+																<a href="{{route('word', ['no'=>1, 'plan_number'=>$plan_no])}}">안심수학여행서비스신청서</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 청렴교육.hwp">청렴교육</a>

@@ -188,4 +188,12 @@ Route::post('app/upload', function (Request $request) {
 // *******************  앱 로그  *********************
 Route::post('app/setLog', 'AppRequestController@logStore');
 
+
 Route::post('app/getLog', 'AppRequestController@logView');
+
+
+
+
+// *******************  워드 파일 다운로드  *********************
+Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@generateDocx')->name('word');;
+
