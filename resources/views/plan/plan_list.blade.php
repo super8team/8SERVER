@@ -76,7 +76,7 @@
                       체크리스트
                     </a>
                     {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
-                    <a role="button" href="{{route('report.index')}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{route('report_list',$plan_no)}}" class="btn btn-sm btn-default">
                       소감문
                     </a>
                     <!-- Button trigger modal -->

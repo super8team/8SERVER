@@ -66,10 +66,17 @@
                         @if ($user_info['type'] == 'teacher')
                         <th>{{$report_score[$count]}}</th>
                         @endif
+                                              
+                        
                         <td colspan="2" class="text-center">
                           <a role="button" href="{{route('report.show',$report_no[$count])}}" class="btn btn-sm btn-warning">
                             보기
                           </a>
+                          @if ($user_info['type'] == 'teacher')                          
+                          <a role="button" href="{{route('reportevaluationview',$report_no[$count])}}" class="btn btn-sm btn-warning">
+                            평가하기
+                          </a>
+                          @endif
                         </td>
                       </tr>
                 @endfor
@@ -82,6 +89,11 @@
                     <a role="button"  class="btn btn-sm btn-warning disabled">
                       보기
                     </a>
+                    @if ($user_info['type'] == 'teacher')                          
+                    <a role="button" class="btn btn-sm btn-warning disabled">
+                      평가하기
+                    </a>
+                    @endif
                   </td>
                 </tr>
               @endif

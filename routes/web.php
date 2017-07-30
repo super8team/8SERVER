@@ -113,6 +113,7 @@ Route::post('app/getContents', 'AppRequestController@getContents');
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
 Route::get('noticelist/{plan_no}', 'NoticeController@custom_index')->name('notice_list');
+Route::get('noticecreate/{plan_no}', 'NoticeController@custom_create')->name('notice_create');
 Route::resource('notice', 'NoticeController');
 
 // 앱 - 리스트보기
@@ -128,6 +129,7 @@ Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->na
 Route::get('reportlist/{plan_no}', 'ReportController@custom_index')->name('report_list');
 
 //소감문 평가 뷰
+Route::get('reportevaluationview/{report_no}', 'ReportController@view_evaluation')->name('report_view_evaluation');
 
 // 소감문 평가
 Route::post('reportevaluation/{report_no}', 'ReportController@evaluation')->name('report_evaluation');

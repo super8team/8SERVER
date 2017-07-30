@@ -49,18 +49,18 @@ class ReportController extends Controller
   
   public function view_evaluation($report_no){
     //디비에서 값 가져오기
-    //TODO 여기 ㅎ 디비 추가좀 plan_no 와 report_no 가 필요할듯함
+    //TODO  report_no 로 검색하여 가저오기
     $reports = \DB::table('')->where('no', $report_no)->first();
     
     return view('report.evalution',[
-      'plan_no'    => $reports->plan,
+      'plan_no'      => $reports->plan,
       'report_no'    => $reports->no,
       'report_title' => $reports->title,
       'report_text'  => $reports->substance,
     ]);
   
   }
-  
+  //TODO 
   public function evaluation(Request $request)
   { 
     $report_no     = $request->input('report_no');    
@@ -69,11 +69,11 @@ class ReportController extends Controller
     DB::table('')->where('no',$report_no)->insert([
     'score' => $report_score,
   ]);
-    
-    return view('report.evaluation');
+    //TODO 저거 위 디비에서 가저온 no 의 플랜에 접근하여 플랜넘버를 가져오삼
+    return view('report.report_list',$plan_no);
   }
   
-  public function custom_index($plan_no){
+  public function custom_index($plan_no)
     {
       //넘길애들 선언
       $report_no    = array();
@@ -149,8 +149,8 @@ class ReportController extends Controller
     //유저의 id 고유번호를 받아온다
     $userno = Auth::id();
     
-    //디비에 삽입
-    $id = DB::table('reports')->insertGetId([
+    //TODO디비에 삽입
+    $id = DB::table('')->insertGetId([
     'title' => $report_title,
     'writer' => $userno,
     'substance' => $report_text,
@@ -173,7 +173,7 @@ class ReportController extends Controller
   public function show($report_no)
   {
     //디비에서 값 가져오기
-    //TODO 여기 ㅎ 디비 추가좀 plan_no 와 report_no 가 필요할듯함
+    //TODO report_no 가 필요할듯함
     $report = \DB::table('')->where('no', $report_no)->first();
     
     return view('report.view',[

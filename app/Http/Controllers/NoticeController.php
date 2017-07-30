@@ -42,7 +42,6 @@ class NoticeController extends Controller
         array_push($notice_date , $notice->created_at);
       }
       // 뿌리기
-      // dd();
         return view('notice.notice_list',[
           'notices'      => $notices,
           'notice_no'    => $notice_no,
@@ -83,9 +82,15 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    // public function create()
+    // {
+    //     return view('notice.notice_write');
+    // }
+    public function custom_create($plan_no)
     {
-        return view('notice.notice_write');
+        return view('notice.notice_write',[
+          'plan_no' => $plan_no,
+        ]);
     }
 
     /**
@@ -100,6 +105,7 @@ class NoticeController extends Controller
        $notice_title    = $request->input('notice_title');
        $notice_simekiri = $request->input('simekiri');
        $notice_text     = $request->input('notice_text');
+       $plan_no         = $request->input('plan_no');
        //유저의 id 고유번호를 받아온다
        $userno = Auth::id();
        
@@ -115,6 +121,7 @@ class NoticeController extends Controller
      return view('notice.notice_view',[
        'notice_title' => $notice_title,
        'notice_text'  => $notice_text,
+       'plan_no'      => $plan_no,
      ]);
     }
 
