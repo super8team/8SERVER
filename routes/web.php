@@ -58,10 +58,10 @@ Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.se
 // Route::get('/result', 'Controller@result');
 
 // 설문조사 리스트, 작성, 열람
-Route::resource('', 'Controller');
+Route::resource('survey', 'SurveyController');
 // index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
-Route::resource('.respond', 'RespondController');
+Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
 
@@ -107,6 +107,7 @@ Route::get('contents/', 'ContentsController@index')->name('contents');
 
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
+Route::get('noticelist/{plan_no}', 'NoticeController@custom_index')->name('notice_list');
 Route::resource('notice', 'NoticeController');
 
 // 앱 - 리스트보기
@@ -119,17 +120,15 @@ Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->na
 
 // *******************  소감문 *********************
 // 소감문 목록
-Route::get('report', 'ReportController@index')->name('report');
+Route::get('reportlist/{plan_no}', 'ReportController@custom_index')->name('report_list');
 
-// 소감문 작성
-Route::get('report/write', 'ReportController@write')->name('report.write');
-
-// 소감문 열람
-Route::get('report/view', 'ReportController@view')->name('report.view');
+//소감문 평가 뷰
 
 // 소감문 평가
-Route::get('report/evaluation', 'ReportController@evaluation')->name('report.evaluation');
+Route::post('reportevaluation/{report_no}', 'ReportController@evaluation')->name('report_evaluation');
 
+// 소감문 기타
+Route::resource('report','ReportController');
 
 // *******************  위원회 *********************
 // 위원회 목록
