@@ -1502,13 +1502,3 @@ FactoryUtils.getQuestRootBlock_ = function(rootBlock) {
   }
   return '';
 }
-
-
-
-// FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
-//   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
-//   if(packagenumBlock && !packagenumBlock.disabled) {
-//     return packagenumBlock.getFieldValue('PACKAGENUM');
-//   }
-//   return '';
-// };
