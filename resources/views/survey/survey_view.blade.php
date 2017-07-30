@@ -3,12 +3,17 @@
 @section('title','설문조사 리스트')
 
 @section('content')
+  @php
+    $user_kind = Auth::user();
+  @endphp
   <div class="bluedecobar">
   </div>
   <div class="bluebg">
-    <div class="container">
-      <form class="form-horizontal" name="survey_write_submit" action=""  method="POST">
+    <div class="container">                                                       
+      <form class="form-horizontal" name="survey_write_submit" 
+      action="{{route('survey.respond.store',$survey_no)}}"  method="POST">
         {{ csrf_field() }}
+        <input type="hidden" name="survey_no" value="{{$survey_no}}">
       <div class="panel panel-default">
         <div class="panel-heading" style="height:55px;">
           <h3 class="panel-title">
@@ -95,7 +100,7 @@
             </div>
             @endif
 
-            @if ($q_title[$i][0] == "subjec")
+            @if ($q_title[$i][0] == "sub")
               <div class='col-sm-12 Subjec'>
                 <div class='panel panel-default'>
                   <div class='panel-heading'style='height:55px;'>
@@ -114,10 +119,18 @@
               </div>
             @endif
          @endfor
-         <button type="submit" aria-label="Right Align"
-         class="btn btn-sm btn-default pull-right" style="margin-right:15px; margin-top20px;">
-          설문 완료
-        </button>
+         @if ($user_kind['type'] == 'teacher')
+           <button type="submit" aria-label="Right Align"
+           class="btn btn-sm btn-default pull-right disabled" style="margin-right:15px; margin-top20px;">
+            설문 완료
+          </button>
+        @else
+          <button type="submit" aria-label="Right Align"
+          class="btn btn-sm btn-default pull-right" style="margin-right:15px; margin-top20px;">
+           설문 완료
+         </button>
+         @endif
+         
      </div>
     </div>
   </form>

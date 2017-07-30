@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 
 class SurveyRespondController extends Controller
 {
@@ -36,7 +36,10 @@ class SurveyRespondController extends Controller
      */
     public function store(Request $request, $survey)
     {
-      $userNo = $request->input('user_id');
+      $id = $request->input('survey_no');
+    
+      $userNo = Auth::id();
+      // $userNo = $request->input('user_id');
       $responds = $request->input('resp');
 
       \DB::table('survey_responds')->insert([
@@ -45,11 +48,10 @@ class SurveyRespondController extends Controller
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
-
+      
       $respondCount = count($responds);
       for($i=0; $i<$respondCount; $i++) {
         // 응답 자체는 어떻게 구성되어 있지?
-
       }
 
       $qTitle = [];
@@ -72,7 +74,7 @@ class SurveyRespondController extends Controller
       return view('survey.survey_result', [
         'resp' => '',
         'survey_title' => $newSurveyName,
-        'q_title' => $newSurvey, // 설문지
+        'q_title' => $qTitle, // 설문지
         'survey_id' => $surveyId,
       ]);
     }
@@ -85,7 +87,7 @@ class SurveyRespondController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

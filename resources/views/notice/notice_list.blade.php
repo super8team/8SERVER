@@ -9,12 +9,24 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 가정통신문
-            <a role="button" href="" aria-label="Right Align"
+            @php
+            $user_info = Auth::user();
+            
+            if($user_info['type'] == 'student'){
+              $back_route = 'plan.student';
+            }elseif ($user_info['type'] == 'teacher'){
+              $back_route = 'plan.teacher';
+            }else{
+              $back_route = 'plan.parents';
+            }              
+            @endphp
+            
+            <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{route('notice.create')}}" aria-label="Right Align"
+           <a role="button" href="{{route('notice_create',$plan_no)}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             가정 통신문 작성
@@ -27,83 +39,42 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 이름</th>
+                <th>가정통신문 제목 이름</th>
                 <th>작성일</th>
                 <th>바로가기</th>
               </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
-                  <tr>
-                    <td>1</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('notice.show')}}" class="btn btn-sm btn-danger">
-                        보기
-                      </a>
-                    </td>
-                  </tr>
-
+              @if ($notice_title)
+                @for ($count=0; $count < count($notice_title) ; $count++)
+                      <tr>
+                        <td>{{$count+1}}</td>
+                        <td>{{$notice_title[$count]}}</td>
+                        <td>{{$notice_date[$count]}}</td>
+                        <td colspan="2" class="text-center">
+                          <a role="button" href="{{route('notice.show',$notice_no[$count])}}" class="btn btn-sm btn-warning">
+                            보기
+                          </a>
+                        </td>
+                      </tr>
+                @endfor
+              @else
+                <tr>
+                  <td>아직</td>
+                  <td>작성된 가정통신문이</td>
+                  <td>하나도 없답니다 ㅎㅎ</td>
+                  <td colspan="2" class="text-center">
+                    <a role="button"  class="btn btn-sm btn-warning disabled">
+                      보기
+                    </a>
+                  </td>
+                </tr>
+              @endif
           </tbody>
           </table>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">이전에 작성한 가정 통신문 리스트
-          </h3>
-
-        </div>
-        <div class="panel-body">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>작성일</th>
-                <th>바로가기</th>
-              </tr>
-            </thead>
-            <tbody>
-            {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
-
-            {{-- 레코드를 10개 출력  --}}
-
-            @for ($count=0; $count < 10 ; $count++)
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
-                  <tr>
-                    <td>{{$count+1}}</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{--해당 가정통신문--}}" class="btn btn-sm btn-danger">
-                        보기
-                      </a>
-                    </td>
-                  </tr>
-            @endfor
-          </tbody>
-          </table>
-          {{-- 여기 페이징 기능점요 ㅋ --}}
+          <div class="">
+            {{$notices->links() }}
+          </div>
         </div>
       </div>
     </div>

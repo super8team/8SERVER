@@ -42,7 +42,7 @@
 							<div class="row form-group" >
 								<input type="text" class="hidden" value="NEW" name="WROKMODE_NAME" id="WORKMODE_ID">
 								<div class="btn-group pull-right">
-									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan"> <span class="fa fa-download"> 다시 계획하기 </button>
+									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan" onclick="location.href='{{route('plan.edit',$plan_no)}}'"> <span class="fa fa-download"> 다시 계획하기 </button>
 									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"> <span class="fa fa-download"> 첨부파일 일괄다운로드 </button>
 									<button type="btnSubmit" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"> <span class="fa fa-save"> 계획 저장하기 </button>
 								</div>
@@ -51,11 +51,10 @@
 							<div class="panel-group">
 								<div class="panel panel-default">
 									<div class="panel-heading" id="heading-0">
-										<a role="button" class="nounderline"  data-toggle="collapse"   href="#collapse-0">
 											<h5 class="panel-title text-center">
 												<< 체험학습 선택 사항 요약 >>
 											</h5>
-										</a>
+										
 									</div>
 									<div id="collapse-0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-0">
 										<div class="panel-body">
@@ -100,11 +99,11 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading dark-3" role="tab" id="heading-0">
-										<a role="button" class="nounderline"  data-toggle="collapse" data-parent="#faqlist" href="#collapse-0" aria-expanded="true" aria-controls="collapse-0">
+										
 											<h5 class="panel-title text-orange text-center">
 												<< 체험학습 업무 사항 요약 >>
 											</h5>
-										</a>
+										
 									</div>
 									<div id="collapse-0" class="toggle toggle-transparent toggle-bordered-full active" role="tabpanel" aria-labelledby="heading-0">
 										<div class="panel-body">
@@ -181,7 +180,7 @@
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획서 양식.hwp">수학여행 계획서 양식</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 안심수학여행서비스신청서.hwp">안심수학여행서비스신청서</a>
+																<a href="{{route('word', ['no'=>1, 'plan_number'=>$plan_no])}}">안심수학여행서비스신청서</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 청렴교육.hwp">청렴교육</a>

@@ -65,7 +65,8 @@
                     <a role="button" href="{{ route('survey.index')}}" class="btn btn-sm btn-default">
                       설문조사
                     </a>
-                    <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
                     <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
@@ -74,7 +75,8 @@
                     <a role="button" href="{{route('checklist')}}" class="btn btn-sm btn-default">
                       체크리스트
                     </a>
-                    <a role="button" href="{{route('report')}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
+                    <a role="button" href="{{route('report_list',$plan_no)}}" class="btn btn-sm btn-default">
                       소감문
                     </a>
                     <!-- Button trigger modal -->

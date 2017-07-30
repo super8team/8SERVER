@@ -312,6 +312,10 @@
       }, 1000);
       
     }
+    // $(document).on('click','#likelist',function(){
+    //       $('#likelist_modal').modal('show');
+    // });
+    
     //보기 버튼 클릭시 하는 행동
     $(document).on('click','.modal_btn',function(){
         // 클릭한 버튼 의 id 가저오기
@@ -373,7 +377,7 @@
           $("#view_calendar").fullCalendar('render');
 
           // 계획 가저오기 버튼 클릭시 작동하는 버튼
-            $(document).on("click","#modal_clcik",function(){
+            $(document).on("click",".save_click",function(){
               //로컬용
               // console.log('http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit');
               // location.href= 'http://localhost/Code/8SERVER/public/map/'+share_plan[id]['plan_no']+'/edit';
@@ -476,7 +480,7 @@
         eventDrop: function (event, delta, revertFunc,start) {
           
           console.log('- - - -  - - - - - - -  - - - - -');
-          console.log('- - - - 드롭이벤트 실행!  - - - - -');
+          console.log('- - - -  드롭이벤트 실행!  - - - - -');
           console.log('- - - -  - - - - - - -  - - - - -');
         
           $('#calendar').fullCalendar( 'refetchEventSources', event );
@@ -658,8 +662,9 @@
     
 <div class="bluedecobar">
 </div>
-<div id="madal_palce">
+<div id="modal_place">
   {{-- 모달 --}}
+  {{-- 계획 불러오기용 모달 --}}
   <div class="modal modal fade " id="result_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_label" aria-hidden="true">
      <div class="modal-dialog">
        <div class="modal-content">
@@ -673,13 +678,13 @@
                <th>작성한 학교</th>
                <th>작성자</th>
              </thead>
-             <tbody id="modal_info">
+             <tbody id="likelist_info">
                <tr>
-                 <td id="school">학교</td>
-                 <td id="writer">작성자</td>
+                 <td학교</td>
+                 <td>작성자</td>
                </tr>
                <tr>
-                 <td colspan="2" id="tip">흐미 불국사 지리구요</td>
+                 <td colspan="2">흐미 불국사 지리구요</td>
                </tr>
              </tbody>
            </table>
@@ -689,12 +694,49 @@
            </div>
          </div>
          <div id="modal-form-place" class="modal-footer">
-           <button type="button" id="modal_clcik" class="btn btn-default">계획 가저오기</button>
+           <button type="button" {{--id="save_click"--}} class="btn btn-default save_click">계획 가저오기</button>
            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
          </div>
        </div>
      </div>
    </div>
+</div>
+{{-- 관심목록 보기용 모달  --}}
+<!--<div id = 'modal_place2'>
+  <div class="modal modal fade " id="likelist_modal" tabindex="-1" role="dialog" aria-labelledby="likelist_modal_label" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <h4 class="modal-title" id="likelist_modal_label">공유 정보</h4>
+         </div>
+         <div class="modal-body">
+           <table class="table table-bordered table-striped">
+             <thead>
+               <th>작성한 학교</th>
+               <th>작성자</th>
+               <th>적용하기</th>
+             </thead>
+             <tbody id="modal_info">
+               {{-- @for ($i=0; $i <count($likelist_school='1') ; $i++)
+                 <tr>
+                   <td>{{$likelist_school[$i] = '테수투'}}</td>
+                   <td>{{$likelist_writer[$i] = '테수투2'}}</td>
+                   <td><button type="button" class="btn btn-default save_click">적용하기</button></td>
+                 </tr>   
+               @endfor --}}
+               
+             </tbody>
+           </table>
+           {{-- 관심목록을 불러온다 --}}
+         </div>
+         <div id="modal-form-place" class="modal-footer">
+           {{-- <button type="button" id="" class="btn btn-default">계획 가저오기</button> --}}
+           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+         </div>
+       </div>
+     </div>
+   </div>-->
 </div>
 <div class="bluebg">
   <div class="container">
@@ -731,16 +773,6 @@
                 </table>
               </div>
            </div><!-- /.panel-body -->
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <div class="panel panel-default collapsed">
-              <div class="panel-heading">
-                맵 들어가는 곳
-              </div>
-              <div class="panel-body">
-                <div id="map" style="min-height:500px;"></div>
-              </div>
           </div>
         </div>
         <div class="col-lg-4" id="show">
@@ -804,6 +836,7 @@
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
         </div> <!-- /.col-lg-4 -->
+        
         <div class="col-sm-8">
           <div class="panel panel-default">
             <div id="calendar_place">
@@ -811,20 +844,32 @@
             </div>
               
         </div><!-- /.panel-footer -->
-          <div class="col-sm-4">
-            <p><a href="{{----}}" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
-          </div>
-          <div class="col-sm-8">
-            <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-            <p><a id="line" class="btn btn-lg btn-warning btn-block">경로 재설정</a></p>
-              <form class="form" name="plan_map_write" method="post" >
-                {{ csrf_field() }}
-                <input type="hidden" name="plan_no" value="{{$plan_no}}">
-                <div id ="saveZone">
-                </div>
-              </form>
+        
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default collapsed">
+              <div class="panel-heading">
+                맵 들어가는 곳
+              </div>
+              <div class="panel-body">
+                <div id="map" style="min-height:500px;"></div>
+              </div>
           </div>
         </div>
+        {{-- <div class="col-sm-4">
+          <p><a id="likelist" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
+        </div> --}}
+        <div class="col-sm-8">
+          <p><a id="addsave" class="btn btn-lg btn-warning pull-right">저장</a></p>
+          <p><a id="line" class="btn btn-lg btn-warning pull-right">경로 재설정</a></p>
+            <form class="form" name="plan_map_write" method="post" >
+              {{ csrf_field() }}
+              <input type="hidden" name="plan_no" value="{{$plan_no}}">
+              <div id ="saveZone">
+              </div>
+            </form>
+        </div>
+        
       </div><!-- /.col-lg-4 -->
     </div>
   </div>
