@@ -1503,23 +1503,7 @@ FactoryUtils.getQuestRootBlock_ = function(rootBlock) {
   return '';
 }
 
-FactoryUtils.getBingoRootBlock_ = function(rootBlock) {
-  var bingoBlock = rootBlock.getInputTargetBlock('BINGO');
-  if(bingoBlock && !bingoBlock.disabled){
-    return bingoBlock.getFieldValue('BOOL');
-  }
-  return '';
-}
 
-
-
-FactoryUtils.getMapRootBlock_ = function(rootBlock) {
-  var mapBlock = rootBlock.getInputTargetBlock('MAP');
-  if(mapBlock && !mapBlock.disabled){
-    return mapBlock.getFieldValue('BOOL');
-  }
-  return '';
-}
 
 // FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
 //   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
