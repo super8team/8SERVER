@@ -14,7 +14,7 @@ define('EOL', CLI ? PHP_EOL : '<br />');
 define('SCRIPT_FILENAME', basename($_SERVER['SCRIPT_FILENAME'], '.php'));
 define('IS_INDEX', SCRIPT_FILENAME == 'index');
 
-Settings::loadConfig();
+// Settings::loadConfig();
 class FieldLearningPlanDocumentController extends Controller
 {
 

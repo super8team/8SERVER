@@ -3,27 +3,43 @@
 @section('title','소감문 리스트')
 
 @section('content')
-  @php
-    $report_evaluation = "http://localhost/Code/8SERVER/public/reportevaluation";
-    $report_write = "http://localhost/Code/8SERVER/public/reportwrite";
-    $report_view  = "http://localhost/Code/8SERVER/public/reportview";
-  @endphp
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">선택한 체험학습의 소감문
-            <a role="button" href="javascript:history.back()" aria-label="Right Align"
+          @php
+          $user_info = Auth::user();
+          
+          if($user_info['type'] == 'student'){
+            $back_route = 'plan.student';
+          }elseif ($user_info['type'] == 'teacher'){
+            $back_route = 'plan.student';
+          }else{
+            $back_route = 'plan.parents';
+          }              
+          @endphp
+          <h3 class="panel-title">선택한 체험학습의 소감문            
+            <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
-           <a role="button" href="{{route('report.write')}}" aria-label="Right Align"
-           class="btn btn-sm btn-default pull-right">
-            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            감상문 작성
-          </a>
+           
+           @if ($user_info['type'] == 'student')
+             <a role="button" href="{{route('report.create')}}" aria-label="Right Align"
+             class="btn btn-sm btn-default pull-right">
+              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+              감상문 작성
+            </a>   
+          @else
+            <a role="button" href="" aria-label="Right Align"
+            class="btn btn-sm btn-default pull-right disabled">
+             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+             감상문 작성
+           </a>   
+           @endif
+           
          </h3>
 
         </div>
@@ -32,100 +48,63 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 명</th>
+                <th>소감문 제목</th>
                 <th>작성일</th>
-                <th>바로가기</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
-                  <tr>
-                    <td>1</td>
-                    <td>야 소백산 딱 좋다</td>
-                    <td>0000/00/00</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('report.view')}}" class="btn btn-sm btn-danger">
-                        보기
-                      </a>
-                    </td>
-                  </tr>
-
-          </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" style="height:55px">
-
-          <h3 class="panel-title">이전 감상문 리스트
-
-          </h3>
-          <a role="button" href="{{route('report.write')}}" class="btn btn-sm btn-info pull-right">
-            소감문 작성
-          </a>
-          <a role="button" href="{{----}}" class="btn btn-sm btn-info pull-right">
-            돌아가기
-          </a>
-
-        </div>
-        <div class="panel-body">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>소감문 학습 이름</th>
-                <th>작성일</th>
+                @if ($user_info['type'] == 'teacher')
                 <th>점수</th>
+                @endif
                 <th>바로가기</th>
               </tr>
             </thead>
             <tbody>
-            {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
-
-            {{-- 레코드를 10개 출력  --}}
-
-            @for ($count=0; $count < 10 ; $count++)
-              {{-- @foreach ($param as $value)
-                <td>{{$count+1}}</td>
-                <td>{{$value['data']['name']}}</td>
-                <td>{{$value['data']['date']}}</td>
-                  $num = $value['data']['id']
-                  예시
-                  <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
-                  </a>
-              @endforeach --}}
-                  <tr>
-                    <td>{{$count+1}}</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
-                    <td>@php
-                      (rand()*100)+1;
-                    @endphp</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('report.view')}}" class="btn btn-sm btn-danger">
-                        보기
-                      </a>
-                      <a role="button" href="{{route('report.evaluation')}}" class="btn btn-sm btn-danger">
-                        평가하기
-                      </a>
-                    </td>
-                  </tr>
-            @endfor
+              @if ($report_title)
+                @for ($count=0; $count < count($report_title) ; $count++)
+                      <tr>
+                        <td>{{$count+1}}</td>
+                        <td>{{$report_title[$count]}}</td>
+                        <td>{{$report_date[$count]}}</td>
+                        @if ($user_info['type'] == 'teacher')
+                        <th>{{$report_score[$count]}}</th>
+                        @endif
+                                              
+                        
+                        <td colspan="2" class="text-center">
+                          <a role="button" href="{{route('report.show',$report_no[$count])}}" class="btn btn-sm btn-warning">
+                            보기
+                          </a>
+                          @if ($user_info['type'] == 'teacher')                          
+                          <a role="button" href="{{route('reportevaluationview',$report_no[$count])}}" class="btn btn-sm btn-warning">
+                            평가하기
+                          </a>
+                          @endif
+                        </td>
+                      </tr>
+                @endfor
+              @else
+                <tr>
+                  <td>아직</td>
+                  <td>작성된 감상문이 </td>
+                  <td>하나도 없답니다 ㅎㅎ</td>
+                  <td colspan="2" class="text-center">
+                    <a role="button"  class="btn btn-sm btn-warning disabled">
+                      보기
+                    </a>
+                    @if ($user_info['type'] == 'teacher')                          
+                    <a role="button" class="btn btn-sm btn-warning disabled">
+                      평가하기
+                    </a>
+                    @endif
+                  </td>
+                </tr>
+              @endif
           </tbody>
           </table>
-          {{-- 여기 페이징 기능점요 ㅋ --}}
+          <div class="">
+            {{$reports->links() }}
+          </div>
         </div>
       </div>
+    
     </div>
   </div>
 @endsection

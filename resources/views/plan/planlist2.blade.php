@@ -16,7 +16,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">계획 리스트
-             <a role="button" href="{{--route('main')--}}" aria-label="Right Align"
+             <a role="button" href="{{route('main')}}" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
               뒤로 돌아가기
@@ -44,30 +44,77 @@
             {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
 
             {{-- 레코드를 10개 출력  --}}
-
+            @php
+            $user_info = Auth::user();
+            
+            if($user_info['type'] == 'student'){
+              $back_route = 'plan.student';
+            }elseif ($user_info['type'] == 'teacher'){
+              $back_route = 'plan.teacher';
+            }else{
+              $back_route = 'plan.parents';
+            }              
+            @endphp
+            
             @for ($count=0; $count < count($plan_title) ; $count++)
                   <tr>
                     <td>{{$count+1}}</td>
                     <td>{{$plan_no[$count]}}</td>
                     <td>{{$plan_title[$count]}}</td>
-
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
-                        위원회
-                      </a>
-                      <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
-                        설문조사
-                      </a>
-                      <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-warning">
-                        가정통신
-                      </a>
-                      <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
-                        체크리스트
-                      </a>
-                      <a role="button" href="{{ route('report.view') }}" class="btn btn-sm btn-danger ">
-                        소감문
-                      </a>
-                    </td>
+                    @if($user_info['type'] == 'student')
+                      <td colspan="2" class="text-center">
+                        <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
+                          설문조사
+                        </a>
+                        <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-warning">
+                          가정통신
+                        </a>
+                        <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
+                          체크리스트
+                        </a>
+                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
+                          소감문
+                        </a>
+                      </td>
+                    @elseif($user_info['type'] == 'parents')
+                      <td colspan="2" class="text-center">
+                        <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                          위원회
+                        </a>
+                        <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
+                          설문조사
+                        </a>
+                        <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-warning">
+                          가정통신
+                        </a>
+                        <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
+                          체크리스트
+                        </a>
+                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
+                          소감문
+                        </a>
+                      </td>
+                      {{-- 센세가 셋킨시타토키  테수토 용 --}}
+                    @else
+                      <td colspan="2" class="text-center">
+                        <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                          위원회
+                        </a>
+                        <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
+                          설문조사
+                        </a>
+                        <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-warning">
+                          가정통신
+                        </a>
+                        <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
+                          체크리스트
+                        </a>
+                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
+                          소감문
+                        </a>
+                      </td>
+                    @endif
+                    
                  </tr>
             @endfor
           </tbody>
