@@ -61,7 +61,6 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
         .appendField('콘텐츠 정지');
-
   },
   mutationToDom: function() {
     var container = document.createElement('mutation');
@@ -939,7 +938,7 @@ Blockly.Blocks['collection'] = {
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
-}
+};
 Blockly.Blocks['toast'] = {
   init: function() {
     this.setColour(160);
@@ -949,7 +948,7 @@ Blockly.Blocks['toast'] = {
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
-}
+};
 
 Blockly.Blocks['quest'] = {
   init: function() {
@@ -960,7 +959,8 @@ Blockly.Blocks['quest'] = {
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
-}
+};
+
 Blockly.Blocks['bingo'] = {
   init: function() {
     this.jsonInit({

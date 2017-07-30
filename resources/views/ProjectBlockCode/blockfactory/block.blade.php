@@ -613,7 +613,7 @@
         <block type="endQuest"></block>
         <!-- blocks_ 139line -->
       </category>
-      <category name="빙고1">
+      <category name="빙고">
         <block type="bingo"></block>
         <block type="endBingo"></block>
       </category>
