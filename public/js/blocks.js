@@ -61,16 +61,7 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
         .appendField('콘텐츠 정지');
-    // this.appendValueInput('TOAST')
-    //     .appendField('토스트');
-    // this.appendValueInput('QUEST')
-    //     .appendField('퀘스트')
-    // this.appendValueInput('BINGO')
-    //     .appendField('빙고')
-    // this.appendValueInput('COLLECTION')
-    //     .appendField('컬렉션')
-    // this.appendValueInput('MAP')
-    //     .appendField('지도')
+
   },
   mutationToDom: function() {
     var container = document.createElement('mutation');
