@@ -309,4 +309,80 @@ class AppRequestController extends Controller
       return json_encode($result);
       // dd($result);
     }
+
+
+
+
+    public function getContents (Request $request) {
+      $result = [];
+      $userNo = $request->input('inputID');
+
+      // 시연용코드
+      $group = \DB::table('groups')->where('joiner', $userNo)->first();
+      $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
+      $contents = \DB::table('contents')->where('contents_package', $plan->contents_package)->get();
+
+      foreach ($contents as $content) {
+        # code...
+        $result[] = $content->spec;
+      }
+      var_dump(json_encode($result));
+      // return json_encode($result);
+    }
+
+    public function getSurveyList(Request $request) {
+      $result     = [];
+      $newSurvey  = [];
+
+      $userNo = $request->input('no');
+      $responds = \DB::table('survey_responds')->where('respondent', $userNo)->get();
+      $responds = \DB::table('surveies')->get();
+      foreach ($responds as $respond) {
+          // $survey = \DB::table('surveies')->where('no', $respond->survey)->first();
+          $survey = \DB::table('surveies')->where('no', $respond->no)->first();
+          $result[] = array(
+            "no" => $survey->no,
+            "title" => $survey->title,
+          );
+      }
+      // dd($result);
+      return json_encode($result);
+    }
+
+    public function getSurveyDetail(Request $request) {
+      $surveyNo = $request->input('survey');
+      $articles = \DB::table('survey_articles')->where('survey', $surveyNo)->get();
+      $userNo = $request->input('no');
+      $respond = \DB::table('survey_responds')->where('survey', $surveyNo)
+                          ->where('respondent', $userNo)->first();
+
+      $result = array();
+
+      $questionIndex = 0;
+      foreach ($articles as $article) {
+        $newSurvey = array(
+          "question" => $article->article,
+          "answers" => "",
+          "selected" => "",
+        );
+        if ($article->type == "obj") {
+          $answers = \DB::table('survey_answers')->where('survey_article', $article->no)->get();
+          foreach ($answers as $answer) {
+            $newSurvey['answers'][] = $answer->substance;
+          }
+        } elseif ($article->type == "ox") {
+          $newSurvey['answers'][] = "o";
+          $newSurvey['answers'][] = "x";
+        }
+        if($respond != null) {
+          $respondContent = \DB::table('survey_respond_contents')
+                        ->where('survey_respond', $respond->no)
+                        ->where('survey_article', $article->no)->first();
+          $newSurvey['selected'] = $respondContent->respond;
+        }
+        $result[] = $newSurvey;
+      } // end of foreache, articles
+      //  dd($result);
+      return json_encode($result);
+    }
 }

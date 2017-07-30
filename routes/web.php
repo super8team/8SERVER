@@ -64,6 +64,9 @@ Route::resource('survey', 'SurveyController');
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
+Route::post('app/getSurveyList', 'AppRequestController@getSurveyList');
+Route::post('app/getSurveyDetail', 'AppRequestController@getSurveyDetail');
+
 
 // ******************** 콘텐츠 *********************
 // 콘텐츠 패키지 공유 저장
@@ -104,6 +107,8 @@ Route::get('contents/downloadShareContent','ContentsController@downloadShareCont
 Route::get('contents/searchContents','ContentsController@searchContents')->name('contents.searchContents');
 // 콘텐츠 메인
 Route::get('contents/', 'ContentsController@index')->name('contents');
+
+Route::post('app/getContents', 'AppRequestController@getContents');
 
 // ******************** 가정 통신문 *********************
 // 가정통신문 리스트, 작성, 열람
@@ -182,4 +187,12 @@ Route::post('app/upload', function (Request $request) {
 // *******************  앱 로그  *********************
 Route::post('app/setLog', 'AppRequestController@logStore');
 
+
 Route::post('app/getLog', 'AppRequestController@logView');
+
+
+
+
+// *******************  워드 파일 다운로드  *********************
+Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@generateDocx')->name('word');;
+
