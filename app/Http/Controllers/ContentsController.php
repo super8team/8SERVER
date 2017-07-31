@@ -259,7 +259,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
         $contentsName = [];
         $contentsId = [];
-
+        $package_contents_sum = 0;
         // packageId를 가지는 contents_pacage_share 가져옴
         $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 
@@ -273,8 +273,11 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
 
         foreach($contents as $content){
+            $package_contents_sum=$package_contents_avg + $content->avg;
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
+
+        $package_contents_avg = $package_contents_sum / count($contents);
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )
@@ -284,7 +287,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
                                                      ->with('view', $contentsPackageShare->views)
                                                      ->with('writer', $user->name)
                                                      ->with('download_count', $contentsPackageShare->downloads)
-                                                     ->with('contents_name', $contentsName);
+                                                     ->with('contents_name', $contentsName)
+                                                     ->with('package_avg',$package_contents_avg);
 
     }
     public function shareRegister(Request $request)
@@ -508,6 +512,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
 
+
       //공유 패키지 이미지
       Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
       dd('이미지 저정 방법 알아보기');
@@ -519,8 +524,9 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //공유할 패키지를 새로 등록한다.
       DB::table('contents_packages')->insert([
           [
-           'owner' => Auth::user()->no,
-           'name' => $package_name
+           'owner'  => Auth::user()->no,
+           'name'   => $package_name,
+           'explain'=> $explain
           ]
       ]);
 
