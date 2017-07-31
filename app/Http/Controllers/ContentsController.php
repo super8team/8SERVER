@@ -456,7 +456,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_spec = $request->spec;
         $content_name = $request->name;
 
-
+        dd($contents_spec);
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key              = DB::table('contents_packages')->where('name','=', $package_name)->first();
