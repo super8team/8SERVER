@@ -6,20 +6,21 @@
 @section('content')
 
   <script type="text/javascript">
-  $(document).ready(function(){
-      // 1 검색
+  {{--$(document).ready(function(){--}}
+      {{--// 1 검색--}}
 
-    $(document).on("click","#searchBtn",function search(){
-      $("#search").find('tr').remove();
-      @for ($i=0; $i < 5; $i++)
-        $("#search").append(
-        "<tr><td>"+
-        "이름<input type='checkbox' name='add[]' value='각각이름'>"+
-        "<input type='hidden' name='name_id[]' value='{{$i}}'>"+
-        "</td></tr>")
-      @endfor
+    {{--$(document).on("click","#searchBtn",function search(){--}}
+      {{--$("#search").find('tr').remove();--}}
+      {{--@for ($i=0; $i < 5; $i++)--}}
+        {{--$("#search").append(--}}
+        {{--"<tr><td>"+--}}
+        {{--"이름<input type='checkbox' name='add[]' value='각각이름'>"+--}}
+        {{--"<input type='hidden' name='name_id[]' value='{{$i}}'>"+--}}
+        {{--"</td></tr>")--}}
+      {{--@endfor--}}
 
-    });
+    {{--});--}}
+
     // 1- 2 검색후 조건이 있을경우 div를 비움
     // 1- 3 없을경우 안내 멘트
 
@@ -29,7 +30,8 @@
     // 2-2 버튼을 누르면 체크된 항목은 지워지고 추가할 목록에 표시
 
     //3
-  });
+//  });
+
   </script>
   <div class="bluedecobar">
 
@@ -62,24 +64,35 @@
                 <div class="form-group col-sm-9">
                   <input type="text" class="form-control" placeholder="이름을 검색 해주세요">
                 </div>
-
                   <button type="button" id="searchBtn" class="btn btn-default">검색</button>
-
+              <script>
+                  $('#searchBtn').click(function search(){
+                      $.ajax({
+                          url: '{{route('staff.search')}}',
+                          type : 'get',
+                          date : json()
+                          success: function(html) {
+                              $('#searchBtn').append(html);
+                          }
+                      })
+                  })
+              </script>
             </div>
-
             <div class="clearfix"></div>
             <div class="panel-body scrollspy">
               {{-- Step 1 :검색 --}}
 
               {{-- Step 2 : 데이터 추가
                    검색 안 했을시 담당 반의 학생의 학부모 출력
-                   담당 반이 없는 교사의경우 .. 아몰랑
+                   담당 반이 없는 교사의경우 .. 아몰랑-> ㅋㅋㅋㅋ
 
               --}}
               <table id="search"class="table table-bordered table-hover">
                 @for ($i=0; $i < 10; $i++)
                   <tr>
                     <td>
+                      <!-- 교사, 학부모 리스트 -->
+                      <!-- 디비에서 값을 가져옴 어떻게? -->
                       박성원
                       {{--<input type="checkbox" name="staff_name[]" value="각각이름">--}}
                       <input type="hidden" name="staff_id[]" value="숫자">
@@ -126,6 +139,8 @@
                     @for ($i=0; $i <10 ; $i++)
                       <tr>
                         <td>
+                          <!-- 위원회 인원 -->
+                          <!-- 디비에서 값을 가져옴 어떻게? -->
                           박성원
                           {{--<input type="checkbox" name="delete[]" value="각각이름">--}}
                           <input type="hidden" name="name_id[]" value="숫자">
