@@ -28,6 +28,7 @@
               </tr>
             </thead>
             <tbody>
+            <!-- 선택한 체험학습 -->
               {{-- @foreach ($param as $value)
                 <td>{{$count+1}}</td>
                 <td>{{$value['data']['name']}}</td>
@@ -74,10 +75,11 @@
             </thead>
             <tbody>
             {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
-
+            {{-- 이전 체험학습 리스트 --}}
             {{-- 레코드를 10개 출력  --}}
 
-            @for ($count=0; $count < 10 ; $count++)
+              {{--@for ($count=0; $count < count($plan_title) ; $count++)--}}
+              @for ($count=0; $count < 10 ; $count++)
               {{-- @foreach ($param as $value)
                 <td>{{$count+1}}</td>
                 <td>{{$value['data']['name']}}</td>

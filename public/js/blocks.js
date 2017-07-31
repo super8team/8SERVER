@@ -61,30 +61,6 @@ Blockly.Blocks['factory_base'] = {
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
         .appendField('콘텐츠 정지');
-    this.appendValueInput('TOAST')
-        .appendField('토스트');
-    this.appendValueInput('QUEST')
-        .appendField('퀘스트')
-    this.appendValueInput('BINGO')
-        .appendField('빙고')
-    this.appendValueInput('COLLECTION')
-        .appendField('컬렉션')
-    this.appendValueInput('MAP')
-        .appendField('지도')
-
-    // this.appendDummyInput()
-    //     .appendField(dropdown, 'CONNECTIONS');
-    // this.appendValueInput('TOOLTIP')
-    //     .setCheck('String')
-    //     .appendField('tooltip');
-    // this.appendValueInput('HELPURL')
-    //     .setCheck('String')
-    //     .appendField('help url');
-
-    // this.appendValueInput('VARI')
-    //     .setCheck('Boolean')
-    //     .appendField('variable');
-
   },
   mutationToDom: function() {
     var container = document.createElement('mutation');
@@ -162,6 +138,33 @@ var BINGO_ARGS = [
     "type": "field_dropdown",
     "name": "BINGO",
     "options": [['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9']],
+  }
+];
+
+var VISION_MESSAGE = '콘텐츠 표시 %1';
+var VISION_ARGS = [
+  {
+    "type": "field_dropdown",
+    "name": "VISION",
+    "options": [['true','true'],['true','true']],
+  }
+];
+
+var CLICK_MESSAGE = '클릭 작동 %1';
+var CLICK_ARGS = [
+  {
+    "type": "field_dropdown",
+    "name": "CLICK",
+    "options": [['true','true'],['true','true']],
+  }
+];
+
+var DISABLE_MESSAGE = 'DISABLE %1';
+var DISABLE_ARGS = [
+  {
+    "type": "field_dropdown",
+    "name": "DISABLE",
+    "options": [['true','true'],['true','true']],
   }
 ];
 
@@ -296,16 +299,7 @@ Blockly.Blocks['horizontal'] = {
   }
 };
 
-Blockly.Blocks['bingo'] = {
-  init: function() {
-    this.jsonInit({
-    "message0" : BINGO_MESSAGE,
-    "args0" : BINGO_ARGS,
-    "colour": 210,
-  });
-  this.setOutput(true,'Field');
-  },
-};
+
 
 Blockly.Blocks['input_statement'] = {
   // Statement input.
@@ -394,6 +388,33 @@ Blockly.Blocks['CLICK'] = {
       });
     }
 };
+Blockly.Blocks['CONFIG'] = {
+  init: function() {
+      this.jsonInit({
+        "message0" : "수정할 콘텐츠 이름 %1 %2 ",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "CONTENTNAME",
+            "text": "NAME"
+          },
+          {
+            "type": "input_dummy"
+          }
+        ],
+        "message1": VISION_MESSAGE,
+        "args1" :  VISION_ARGS,
+        "message2": CLICK_MESSAGE,
+        "args2" :  CLICK_ARGS,
+        "message3": DISABLE_MESSAGE,
+        "args3" :  DISABLE_ARGS,
+        "previousStatement": "CheckEdit",
+        "nextStatement": "CheckEdit",
+        "colour": 160,
+      });
+    }
+};
+
 Blockly.Blocks['END'] = {
   init: function() {
     this.setColour(160);
@@ -904,25 +925,57 @@ Blockly.Blocks['OUT_TXT'] = {
     this.setNextStatement(true, 'CheckEdit');
   }
 };
-Blockly.Blocks['example_labels'] = {
+
+Blockly.Blocks['collection'] = {
   init: function() {
+    this.setColour(160);
     this.appendDummyInput()
-        .appendField("image:")
-        .appendField(new Blockly.FieldImage("https://www.gstatic.com/codesite/ph/images/star_on.gif", 15, 15, "*"));
+        .appendField('이미지')
+        .appendField(new Blockly.FieldTextInput(''),'COLLECTION_SRC');
+    this.appendDummyInput()
+        .appendField('콜렉션')
+        .appendField(new Blockly.FieldTextInput(''),'COLLECTION');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
+  }
+};
+Blockly.Blocks['toast'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('토스트')
+        .appendField(new Blockly.FieldTextInput(''),'TOAST');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
   }
 };
 
-Blockly.Blocks['image_detail'] = {
-  init:function() {
+Blockly.Blocks['quest'] = {
+  init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('여기에 있는 블럭들은');
-    this.appendDummyInput()
-        .appendField('콘텐츠를 실행 할 때')
-    this.appendDummyInput()
-        .appendField('사용 할 블럭들')
+        .appendField('퀘스트 내용')
+        .appendField(new Blockly.FieldTextInput('퀘스트 내용 입력'),'QUEST');
+    this.setPreviousStatement(true, 'CheckEdit');
+    this.setNextStatement(true, 'CheckEdit');
   }
-}
+};
+
+Blockly.Blocks['bingo'] = {
+  init: function() {
+    this.jsonInit({
+    "message0" : BINGO_MESSAGE,
+    "args0" : BINGO_ARGS,
+    "colour": 210,
+  });
+  this.setPreviousStatement(true, 'CheckEdit');
+  this.setNextStatement(false, 'CheckEdit');
+  },
+};
+
+
+
+
 Blockly.Blocks['EDIT'] = {
   init: function() {
     this.setColour(160);
@@ -931,7 +984,7 @@ Blockly.Blocks['EDIT'] = {
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.appendDummyInput()
         .appendField('힌트')
-        .appendField(new Blockly.FieldTextInput(''), 'HINT');
+        .appendField(new Blockly.FieldTextInput('힌트를 입력해 주세요'), 'HINT');
     this.appendDummyInput()
         .appendField('사이즈')
         .appendField(new Blockly.FieldNumber(0), 'SIZE');
@@ -1040,8 +1093,6 @@ Blockly.Blocks['image_4'] = {
     fieldNameCheck(this);
   }
 };
-
-
 
 Blockly.Blocks['type_group_container'] = {
   // Container.
