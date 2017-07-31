@@ -1005,7 +1005,7 @@
             }
           },
           error: function(){
-            alert('실패임f');
+            alert('실패임');
           }
         });
         document.getElementById('change').value = 0;
