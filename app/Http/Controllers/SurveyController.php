@@ -61,9 +61,10 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
       // 입력한 값을 가져와서
-     // dd(Auth::id());
+     
      $newSurveyName = $request->input('survey_title');
      $newSurvey = $request->input('q_title');
+    //  dd($newSurveyName,$newSurvey);
      $userno = Auth::id();
      $qCount = count($newSurvey);
 // dd($newSurvey);
