@@ -18,7 +18,7 @@
             {{ $report_text}}
           </div>
         </div>
-        <a href="{{route('report.index',$plan_no)}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
+        <a href="{{route('report_list',$plan_no)}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           뒤로 가기
         </a>

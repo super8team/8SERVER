@@ -27,7 +27,7 @@
            </a>
            
            @if ($user_info['type'] == 'student')
-             <a role="button" href="{{route('report.create')}}" aria-label="Right Align"
+             <a role="button" href="{{route('report_create',$plan_no)}}" aria-label="Right Align"
              class="btn btn-sm btn-default pull-right">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
               감상문 작성
@@ -49,7 +49,7 @@
               <tr>
                 <th>#</th>
                 <th>소감문 제목</th>
-                <th>작성일</th>
+                {{-- <th>작성일</th> --}}
                 @if ($user_info['type'] == 'teacher')
                 <th>점수</th>
                 @endif
@@ -62,12 +62,15 @@
                       <tr>
                         <td>{{$count+1}}</td>
                         <td>{{$report_title[$count]}}</td>
-                        <td>{{$report_date[$count]}}</td>
+                        {{-- <td>{{$report_date[$count]}}</td> --}}
                         @if ($user_info['type'] == 'teacher')
-                        <th>{{$report_score[$count]}}</th>
+                          @if ($report_score[$count])
+                            <td>{{$report_score[$count]}}</td>
+                          @else
+                            <td>미평가 감상문입니다.</td>
+                          @endif
                         @endif
-                                              
-                        
+                                        
                         <td colspan="2" class="text-center">
                           <a role="button" href="{{route('report.show',$report_no[$count])}}" class="btn btn-sm btn-warning">
                             보기
