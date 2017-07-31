@@ -955,6 +955,7 @@
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
+        console.log(storage_package);
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
