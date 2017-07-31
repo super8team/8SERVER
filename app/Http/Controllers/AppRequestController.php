@@ -319,8 +319,19 @@ class AppRequestController extends Controller
       $userNo = $request->input('userNo');
       $result = [];
 
-      $groups = \DB::table('groups')->where('joiner', $userNo)->get();
-      // dd($groups);
+      if ($request->input('userType') == "parents") {
+        // dd($userNo);
+        $children = \DB::table('students')->where('parents', $userNo)->get();
+        $groups = [];
+        // dd($children);
+        foreach ($children as $child) {
+          $groups[] = \DB::table('groups')->where('joiner', $child->student)->first();
+        }
+        // dd($groups);
+      } else {
+        $groups = \DB::table('groups')->where('joiner', $userNo)->get();
+      }
+      dd($groups);
       foreach ($groups as $group) {
         # code...
         $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
