@@ -372,10 +372,13 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
     if (btnBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
-      input.name      = btnBlock.getFieldValue('FIELDNAME');
+      input.id        = btnBlock.getFieldValue('FIELDNAME');
+      input.name      = btnBlock.getFieldValue('TEXT');
+      input.fill      = btnBlock.getFieldValue('FONTCOLOR');
       input.color     = btnBlock.getFieldValue('COLOUR');
-      input.text      = btnBlock.getFieldValue('TEXT');
-      input.fontColor = btnBlock.getFieldValue('FONTCOLOR');
+      input.size      = btnBlock.getFieldValue('FONTSIZE');
+      input.width     = btnBlock.getFieldValue('WIDTH');
+      input.height    = btnBlock.getFieldValue('HEIGHT');
     }
     btn_args.push(input);
     // message.push('%' + txt_args.length);
@@ -401,10 +404,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             input.id = '2';
           break;
       }
-      input.text  = txtBlock.getFieldValue('TEXT');
       input.name  = txtBlock.getFieldValue('TEXTNAME');
+      input.text  = txtBlock.getFieldValue('DESCRIPTION');
+      input.size  = txtBlock.getFieldValue('FONTSIZE');
       input.color = txtBlock.getFieldValue('COLOUR');
-      input.size  = txtBlock.getFieldValue('VALUE');
+      input.background = txtBlock.getFieldValue('BACKCOLOUR');
+      input.alpha = txtBlock.getFieldValue('ALPHA');
     }
       txt_args.push(input);
       // message.push('%' + txt_args.length);
@@ -428,71 +433,71 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         case 'image_1':
           console.log('1');
             input.id = '1';
-            var elements = document.getElementsByClassName('file_list');
-            if(contentsBlock){
-              console.log(document.getElementById('change').value);
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[0] == null)
-              {
-                cform.upFile.click();
-              }
-            }
-            input.src = document.getElementsByClassName('file_list')[0].value;
+            // var elements = document.getElementsByClassName('file_list');
+            // if(contentsBlock){
+            //   console.log(document.getElementById('change').value);
+            //   if(document.getElementById('change').value == 1)
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else if(elements[0] == null)
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+            // input.src = document.getElementsByClassName('file_list')[0].value;
             break;
         case 'image_2':
           console.log('2');
             input.id = '2';
-            console.log('2');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[1] == null)
-              {
-                cform.upFile.click();
-              }
-            }
-          input.src = document.getElementsByClassName('file_list')[1].value;
+          //   console.log('2');
+          //   if(contentsBlock){
+          //     if(document.getElementById('change').value == 1)
+          //     {
+          //       console.log('들어옴');
+          //       break;
+          //     }
+          //     else if(elements[1] == null)
+          //     {
+          //       cform.upFile.click();
+          //     }
+          //   }
+          // input.src = document.getElementsByClassName('file_list')[1].value;
           break;
         case 'image_3':
         console.log('3');
             input.id = '3';
-            console.log('3');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[2]== null)
-              {
-                cform.upFile.click();
-              }
-            }
-            input.src = document.getElementsByClassName('file_list')[2].value;
+            // console.log('3');
+            // if(contentsBlock){
+            //   if(document.getElementById('change').value == 1)
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else if(elements[2]== null)
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+            // input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_4':
         console.log('4');
             input.id = '4';
-            console.log('4');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[3]== null)
-              {
-                cform.upFile.click();
-              }
-            }
-          input.src = document.getElementsByClassName('file_list')[3].value;
+          //   console.log('4');
+          //   if(contentsBlock){
+          //     if(document.getElementById('change').value == 1)
+          //     {
+          //       console.log('들어옴');
+          //       break;
+          //     }
+          //     else if(elements[3]== null)
+          //     {
+          //       cform.upFile.click();
+          //     }
+          //   }
+          // input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
       var a = document.getElementsByClassName('file_list')
@@ -502,7 +507,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
-        // input.src = contentsBlock.getFieldValue('SRC');
+        input.src = contentsBlock.getFieldValue('SRC');
         input.width = contentsBlock.getFieldValue('WIDTH');
         input.height = contentsBlock.getFieldValue('HEIGHT');
       }
@@ -988,7 +993,7 @@ FactoryUtils.getFieldsJson_ = function(block) {
           break;
         case 'END':
           script_fields.push({
-              type: block.type
+              end: block.type
           });
       }
     }
