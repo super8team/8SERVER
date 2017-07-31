@@ -44,7 +44,7 @@ class AppRequestController extends Controller
               }
         }
 
-         dd($result);
+        // dd($result);
         return json_encode($result);
     }
 
@@ -74,6 +74,27 @@ class AppRequestController extends Controller
            break;
        }
     }
+
+
+    public function getBeforePlanHistory(Request $request) {
+      $details = DB::table('detail_plans')->where('plan', $request->input('planNo'))->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+      // dd($result);
+      return $result;
+    }
+
 
     private function getTeacherPlan($teacher) {
       $plan = DB::table('field_learning_plans')->where('teacher', $teacher->no)->first();
@@ -299,7 +320,7 @@ class AppRequestController extends Controller
       $result = [];
 
       $groups = \DB::table('groups')->where('joiner', $userNo)->get();
-      dd($groups);
+      // dd($groups);
       foreach ($groups as $group) {
         # code...
         $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
@@ -309,7 +330,7 @@ class AppRequestController extends Controller
           "date" => $plan->at,
         );
       }
-      dd($result);
+      // dd($result);
       return json_encode($result);
       // dd($result);
     }
@@ -328,10 +349,10 @@ class AppRequestController extends Controller
 
       foreach ($contents as $content) {
         # code...
-        $result[] = $content->spec;
+        $result[] = json_decode($content->spec);
       }
-      var_dump(json_encode($result));
-      // return json_encode($result);
+      // var_dump($result);
+      return json_encode($result);
     }
 
     public function getSurveyList(Request $request) {
