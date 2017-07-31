@@ -299,6 +299,7 @@ class AppRequestController extends Controller
       $result = [];
 
       $groups = \DB::table('groups')->where('joiner', $userNo)->get();
+      dd($groups);
       foreach ($groups as $group) {
         # code...
         $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
@@ -308,7 +309,7 @@ class AppRequestController extends Controller
           "date" => $plan->at,
         );
       }
-      // dd($result);
+      dd($result);
       return json_encode($result);
       // dd($result);
     }
@@ -344,7 +345,7 @@ class AppRequestController extends Controller
           // $survey = \DB::table('surveies')->where('no', $respond->survey)->first();
           $survey = \DB::table('surveies')->where('no', $respond->no)->first();
           $result[] = array(
-            "no" => $survey->no,
+            "no" => (String)$survey->no,
             "title" => $survey->title,
           );
       }
