@@ -551,6 +551,12 @@ Blockly.Blocks['header'] = {
     this.appendDummyInput()
         .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'VALUE')
+    this.appendDummyInput()
+        .appendField('배경 색')
+        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
+    this.appendDummyInput()
+        .appendField('투명 도')
+        .appendField(new Blockly.FieldColour('#ff0000'), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
     this.setTooltip('An input field for the user to enter text.');
@@ -578,6 +584,12 @@ Blockly.Blocks['bottom'] = {
     this.appendDummyInput()
         .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'VALUE')
+    this.appendDummyInput()
+        .appendField('배경 색')
+        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
+    this.appendDummyInput()
+        .appendField('투명 도')
+        .appendField(new Blockly.FieldColour('#ff0000'), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
     this.setTooltip('An input field for the user to enter text.');
