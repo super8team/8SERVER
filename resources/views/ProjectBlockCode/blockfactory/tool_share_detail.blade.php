@@ -69,7 +69,9 @@
   win.resizeTo(wid,hei);
 
   }
-              function myfunction(rating){
+              function myfunction(s){
+                console.log('진입');
+                console.log(s);
                 if(1<=s && s<2)
                     document.getElementsByName('star-input')[0].checked=true;
                 if(2<=s && s<3)
