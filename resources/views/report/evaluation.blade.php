@@ -8,6 +8,7 @@
   <div class="bluebg">
     <div class="container">
       <form class="form " action="{{route('report_evaluation',$report_no)}}" method="POST">
+        {{csrf_field()}}
       <div class="panel panel-default">
           <div class="panel-heading">
             {{-- 제목 가저오기 --}}

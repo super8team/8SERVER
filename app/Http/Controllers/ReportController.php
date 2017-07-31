@@ -101,7 +101,7 @@ class ReportController extends Controller
         'reports'      => $reports,
         'report_no'    => $report_no,
         'report_title' => $report_title,
-        'report_score' => $$report_score,
+        'report_score' => $report_score,
         // 'report_date'  => $report_date,
       ]); 
   }
