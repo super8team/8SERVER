@@ -45,8 +45,11 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')
             ->middleware('role:teacher'); // -->index
 // Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')->;
-Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
-Route::get('plan/students', 'PlanController@student')->name('plan.student');
+Route::get('plan/parents', 'PlanController@parents')->name('plan.parents')
+            ->middleware('role:parents'); // -->index
+Route::get('plan/students', 'PlanController@student')->name('plan.student')
+            ->middleware('role:student'); // -->index
+
 Route::get('plan/download', 'PlanController@download')->name('plan.download');
 Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
