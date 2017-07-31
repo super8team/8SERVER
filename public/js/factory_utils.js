@@ -93,11 +93,14 @@ goog.provide('FactoryUtils');
 //   this.blockLibraryController.openBlock2(xml3);
 // }
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
-  blockType = FactoryUtils.cleanBlockType(blockType);
+  console.log(blockType);
+  
+  console.log(blockType);
   console.log("현재 블록 작업 할 게요!");
   console.log(rootBlock);
   switch (format) {
     case 'JSON':
+
       var code = FactoryUtils.formatJson_(blockType, rootBlock);
 
       this.block_code = code;
@@ -284,7 +287,8 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   console.log("현재rootBlock:"+rootBlock);
   var JS = {};
   // Type is not used by Blockly, but may be used by a loader.
-  JS.type = blockType;
+
+  JS.name = blockType;
 
   JS.vertical   = FactoryUtils.getVerticalRootBlock_(rootBlock);
   JS.horizontal = FactoryUtils.getHorizontalRootBlock_(rootBlock);
@@ -357,6 +361,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           input.true   = CHECKEDIT1;
           input.false  = CHECKEDIT2;
         } else {
+          var a = [];
           input.name   = clickblock.getFieldValue('INPUTNAME');
           input.action = script_fields;
         }
@@ -915,6 +920,7 @@ FactoryUtils.getFieldsJson_ = function(block) {
           script_fields.push({
             bingo: block.getFieldValue('BINGO')
           });
+          // $.merge(script_fields,script_fields);
           break;
         case 'endBingo':
           script_fields.push({
