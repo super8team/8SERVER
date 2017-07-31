@@ -75,6 +75,27 @@ class AppRequestController extends Controller
        }
     }
 
+
+    public function getBeforePlanHistory(Request $request) {
+      $details = DB::table('detail_plans')->where('plan', $request->input('planNo'))->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+      // dd($result);
+      return $result;
+    }
+
+
     private function getTeacherPlan($teacher) {
       $plan = DB::table('field_learning_plans')->where('teacher', $teacher->no)->first();
       $details = DB::table('detail_plans')->where('plan', $plan->no)->get();

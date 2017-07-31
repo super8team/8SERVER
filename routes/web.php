@@ -54,6 +54,7 @@ Route::resource('map', 'MapController');
 // 앱 디테일플랜
 Route::post('app/getPlanList', 'AppRequestController@getPlanList');
 Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
+Route::post('app/getBeforePlanHistory', 'AppRequestController@getBeforePlanHistory');
 Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.search');
 
