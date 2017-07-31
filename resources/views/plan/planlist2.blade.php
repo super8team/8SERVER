@@ -31,13 +31,7 @@
                 <th>#</th>
                 <th>체험 학습 이름</th>
                 <th>작성일</th>
-                <th>바로가기
-                    <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-                     class="btn btn-sm btn-default pull-right">
-                      {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-                      새 계획 작성
-                    </a>
-                </th>
+                <th>바로가기</th>
               </tr>
             </thead>
             <tbody>

@@ -387,4 +387,26 @@ class AppRequestController extends Controller
       //  dd($result);
       return json_encode($result);
     }
+
+    public function setContentScore(Request $request) {
+      $user = $request->input('userNo');
+      $content = $request->input('contentNo');
+      $score = $request->input('score');
+
+      \DB::table('contents_evalutions')->insert([
+        "content" => $content,
+        "student" => $user,
+        "score" => $score,
+      ]);
+
+      $avgScrore = \DB::table('contents_evalutions')->where('content', $content)->avg('score');
+
+      \DB::table('contents')->where('no', $content)->update(["avg" => $avgScrore]);
+
+      return json_encode([
+        "content" => $content,
+        "input-score" => $score,
+        "avg-score" => $avgScore,
+      ]);
+    }
 }
