@@ -592,7 +592,7 @@ Blockly.Blocks['header'] = {
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
     this.appendDummyInput()
         .appendField('투명 도')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'ALPHA');
+        .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
     this.setTooltip('An input field for the user to enter text.');
@@ -625,7 +625,7 @@ Blockly.Blocks['bottom'] = {
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
     this.appendDummyInput()
         .appendField('투명 도')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'ALPHA');
+        .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
     this.setTooltip('An input field for the user to enter text.');

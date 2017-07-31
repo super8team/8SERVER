@@ -212,7 +212,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
          // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
             DB::table('contents')->insert([
-                ['spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_packages' => $newContentsPackage->no, 'copy' => 1]
+                ['spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_packages' => $newContentsPackage->no, 'copy' => 1]
             ]);
 
         }
@@ -416,7 +416,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       // for($i = 0; $i < $contents_xml_sizeof; $i++)
       // {
       //   DB::table('contents')->insert([
-      //       ['spec' => $contents_mgs[$i], 'xml' => $contents_xml[$i], 'like'=>0,'contents_package'=>2,'copy'=>0,'name'=>'070615']
+      //       ['spec' => $contents_mgs[$i], 'xml' => $contents_xml[$i], 'avg'=>0,'contents_package'=>2,'copy'=>0,'name'=>'070615']
       //   ]);
       //   //
       //   //
@@ -468,7 +468,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
           $content_spec = json_encode($json);
 
           DB::table('contents')->insert([
-              ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
+              ['spec' => $content_spec, 'xml' => $content_xml, 'avg' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
@@ -483,7 +483,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
             //정보들을 가지고 콘텐츠를 저장한다
             DB::table('contents')->insert([
-                ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
+                ['spec' => $content_spec, 'xml' => $content_xml, 'avg' => 0,
                 'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
             ]);
             //사용자의 패키지를 담을 배열 변수
@@ -539,7 +539,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
        // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
           DB::table('contents')->insert([
-              ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
+              ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
           ]);
       }
 
@@ -574,7 +574,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         //새로운 컨텐츠 패키지를 갖는 컨텐츠들을 저장한다.
         for($i = 0; $i<count($content_arr); $i++){
           DB::table('contents')->insert([
-            'spec'=>$content_arr[$i]->spec,'xml'=>$content_arr[$i]->xml,'like'=>0,
+            'spec'=>$content_arr[$i]->spec,'xml'=>$content_arr[$i]->xml,'avg'=>0,
             'contents_package'=>$new_package->no,'copy'=>0,'name'=>$content_arr[$i]->name
           ]);
         }
@@ -594,7 +594,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         //자신의 패키지에 콘텐츠를 저장한다.
         for($i=0; $i<count($contents_infor); $i++){
           DB::table('contents')->insert([
-            'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'like'=>0,
+            'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'avg'=>0,
             'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
           ]);
         }
