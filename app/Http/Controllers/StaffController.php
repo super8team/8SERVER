@@ -18,6 +18,18 @@ class StaffController extends Controller
 
     public function memberAdd()
     {
+
         return view('staff.member_add');
+    }
+
+    public function memberSearch()
+    {
+
+    }
+
+    public function ajax(Request $request)
+    {
+
+        return $request->ajax;
     }
 }
