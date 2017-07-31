@@ -85,9 +85,12 @@
                 @endfor
               @else
                 <tr>
-                  <td>아직</td>
-                  <td>작성된 감상문이 </td>
-                  <td>하나도 없답니다 ㅎㅎ</td>
+                  <td>아직 작성된 감상문이</td>
+                  <td>하나도 없답니다 </td>
+                  @if ($user_info['type'] == 'teacher')
+                    <td>ㅎㅎ</td>
+                  @endif
+                    
                   <td colspan="2" class="text-center">
                     <a role="button"  class="btn btn-sm btn-warning disabled">
                       보기
@@ -96,6 +99,7 @@
                     <a role="button" class="btn btn-sm btn-warning disabled">
                       평가하기
                     </a>
+                  @else
                     @endif
                   </td>
                 </tr>

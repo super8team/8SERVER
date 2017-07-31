@@ -210,3 +210,12 @@ Route::post('json/test', 'StaffController@ajax')->name('ajax');
 Route::get('/test23',function(){
     return view('test.ajax');
 });
+
+// ******************** 그룹  *********************
+// 참여자 설정
+Route::get('grouplist/{plan_no}' , 'GroupController@custom_index')->name('group_list');
+Route::resource('group', 'GroupController');
+
+// ******************** 팀  *********************
+// 팀 짜기 기능
+// Route::resource('team', 'TeamController');
