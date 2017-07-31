@@ -69,15 +69,18 @@ BlockLibraryController = function(blockLibraryName, opt_blockLibraryStorage) {
  * @return {string} The current block's type.
  * @private
  */
+ var contents_name;
 BlockLibraryController.prototype.getCurrentBlockType = function() {
   var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
-
+  contents_name = blockType;
   console.log(blockType);
   // Replace invalid characters.
   return FactoryUtils.cleanBlockType(blockType);
 };
-
+BlockLibraryController.prototype.getCurrentBlockName = function() {
+  return contents_name;
+};
 /**
  * Removes current block from Block Library and updates the save and delete
  * buttons so that user may save block to library and but not delete.
@@ -314,7 +317,8 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
 
 BlockLibraryController.prototype.saveToBlockLibrary = function() {
-  var blockType = this.getCurrentBlockType();
+  // var blockType = this.getCurrentBlockType();
+  var blockType = this.getCurrentBlockName();
   console.log('콘이름');
   console.log(blockType);
   // If user has not changed the name of the starter block.

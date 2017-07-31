@@ -176,6 +176,8 @@ FactoryUtils.cleanBlockType = function(blockType) {
   if (!blockType) {
     return '';
   }
+  console.log('블럭타입');
+  console.log(blockType);
   return blockType.replace(/\W/g, '_').replace(/^(\d)/, '_$1');
 };
 
