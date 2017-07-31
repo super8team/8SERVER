@@ -247,7 +247,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         foreach ($otherPackages as $otherPackage ) {
             array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
         }
-        
+
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
 

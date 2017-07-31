@@ -4,7 +4,7 @@
 
 
 </script>
-<body onload='resizeWindow(this,{{$package_avg}})'>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
       @php
