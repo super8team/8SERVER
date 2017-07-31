@@ -145,7 +145,10 @@ Route::get('staff', 'StaffController@index')->name('staff');
 Route::get('staff/result', 'StaffController@result')->name('staff.result');
 
 // 위원회 멤버 추가
-Route::get('staff/memberadd', 'StaffController@memberAdd')->name('staff.memberadd');
+Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberadd');
+
+// 위원회 멤버 검색
+Route::post('staff/memberSearch', 'StaffController@memberSearch')->name('staff.search');
 
 
 // *******************  체크리스트 *********************
@@ -198,3 +201,11 @@ Route::post('app/getLog', 'AppRequestController@logView');
 // *******************  워드 파일 다운로드  *********************
 Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@generateDocx')->name('word');;
 
+
+
+Route::post('json/test', 'StaffController@ajax')->name('ajax');
+
+
+Route::get('/test23',function(){
+    return view('test.ajax');
+});

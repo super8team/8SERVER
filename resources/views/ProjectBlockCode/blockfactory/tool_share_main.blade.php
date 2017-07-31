@@ -41,7 +41,7 @@
           @foreach($popularPackage as $key=>$value)
           @php
           $url = Storage::url('packageImgs/'.$value['imgs']);
-          //	$url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
+          // $url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
           @endphp
              <td>
                <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">

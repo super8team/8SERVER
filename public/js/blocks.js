@@ -955,7 +955,7 @@ Blockly.Blocks['quest'] = {
     this.setColour(160);
     this.appendDummyInput()
         .appendField('퀘스트 내용')
-        .appendField(new Blockly.FieldTextInput(''),'QUEST');
+        .appendField(new Blockly.FieldTextInput('퀘스트 내용 입력'),'QUEST');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
@@ -984,7 +984,7 @@ Blockly.Blocks['EDIT'] = {
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.appendDummyInput()
         .appendField('힌트')
-        .appendField(new Blockly.FieldTextInput(''), 'HINT');
+        .appendField(new Blockly.FieldTextInput('힌트를 입력해 주세요'), 'HINT');
     this.appendDummyInput()
         .appendField('사이즈')
         .appendField(new Blockly.FieldNumber(0), 'SIZE');
