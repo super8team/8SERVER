@@ -459,6 +459,15 @@ Blockly.Blocks['button_1'] = {
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOR');
+    this.appendDummyInput()
+        .appendField('글자 크기')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
+    this.appendDummyInput()
+        .appendField('높이 길이')
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
+    this.appendDummyInput()
+        .appendField('가로 길이')
+        .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
   },
@@ -481,6 +490,15 @@ Blockly.Blocks['button_2'] = {
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
+    this.appendDummyInput()
+        .appendField('글자 크기')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
+    this.appendDummyInput()
+        .appendField('높이 길이')
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
+    this.appendDummyInput()
+        .appendField('가로 길이')
+        .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
   },
@@ -503,6 +521,15 @@ Blockly.Blocks['button_3'] = {
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
+    this.appendDummyInput()
+        .appendField('글자 크기')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
+    this.appendDummyInput()
+        .appendField('높이 길이')
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
+    this.appendDummyInput()
+        .appendField('가로 길이')
+        .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
   },
@@ -525,6 +552,15 @@ Blockly.Blocks['button_4'] = {
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
+    this.appendDummyInput()
+        .appendField('글자 크기')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
+    this.appendDummyInput()
+        .appendField('높이 길이')
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
+    this.appendDummyInput()
+        .appendField('가로 길이')
+        .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
   },
@@ -544,13 +580,13 @@ Blockly.Blocks['header'] = {
         .appendField('상단');
     this.appendDummyInput()
         .appendField('글자 내용')
-        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+        .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
         .appendField('글자 크기')
-        .appendField(new Blockly.FieldNumber(0), 'VALUE')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
         .appendField('배경 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
@@ -577,13 +613,13 @@ Blockly.Blocks['bottom'] = {
         .appendField('하단');
     this.appendDummyInput()
         .appendField('글자 내용')
-        .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
+        .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
     this.appendDummyInput()
         .appendField('글자 크기')
-        .appendField(new Blockly.FieldNumber(0), 'VALUE')
+        .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
         .appendField('배경 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
@@ -1011,9 +1047,9 @@ Blockly.Blocks['image_1'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지1');
-    // this.appendDummyInput()
-    //     .appendField('이미지 주소')
-    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
+        .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
@@ -1036,9 +1072,9 @@ Blockly.Blocks['image_2'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지2');
-    // this.appendDummyInput()
-    //     .appendField('이미지 주소')
-    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
+        .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
@@ -1062,9 +1098,9 @@ Blockly.Blocks['image_3'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지3');
-    // this.appendDummyInput()
-    //     .appendField('이미지 주소')
-    //     .appendField(new Blockly.FieldTextInput(src), 'SRC');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
+        .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
@@ -1087,9 +1123,9 @@ Blockly.Blocks['image_4'] = {
     var src = ' ';
     this.appendDummyInput()
         .appendField('이미지4');
-    // this.appendDummyInput()
-    //     .appendField('이미지 주소')
-    //     .appendField(new Blockly.FieldTextInput('default'), 'IMGNAME');
+    this.appendDummyInput()
+        .appendField('이미지 주소')
+        .appendField(new Blockly.FieldTextInput('default'), 'IMGNAME');
     this.appendDummyInput()
         .appendField('이미지 이름')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
