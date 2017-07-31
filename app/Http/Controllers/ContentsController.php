@@ -247,7 +247,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         foreach ($otherPackages as $otherPackage ) {
             array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
         }
-
+        
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
 
@@ -277,7 +277,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
 
-        $package_contents_avg = $package_contents_sum / sizeof($contents);
+        $package_contents_avg = $package_contents_sum / 2;
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )
@@ -456,7 +456,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_spec = $request->spec;
         $content_name = $request->name;
 
-        
+
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key              = DB::table('contents_packages')->where('name','=', $package_name)->first();
