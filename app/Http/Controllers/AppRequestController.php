@@ -285,7 +285,7 @@ class AppRequestController extends Controller
       foreach ($logs as $log) {
         $result .= $log->in_out_substance."\n";
       }
-      dd(array("log" => $result));
+      // dd(array("log" => $result));
       return json_encode(array("log" => $result));
     }
 
@@ -308,6 +308,7 @@ class AppRequestController extends Controller
           "date" => $plan->at,
         );
       }
+      // dd($result);
       return json_encode($result);
       // dd($result);
     }
@@ -385,214 +386,7 @@ class AppRequestController extends Controller
         $result[] = $newSurvey;
       } // end of foreache, articles
       //  dd($result);
-      // return json_encode($result);
-
-      return json_encode([{
-    "number": 1,
-    "name" : "문제1",
-
-    "vertical" : "center",
-    "horizontal" : "center",
-    "location" : "(35.896480,128.620723)",
-    "visionable" : true,
-    "clickable" : true,
-    "disable" : false,
-    "script" : [
-      {
-        "type" : "CHECKEDIT",
-        "name" : "확인",
-        "answer" : "다보탑",
-        "true" : {
-          "out_img" : "http://20th.kclf.org/image/now/pop_o.gif",
-          "end" : "end"
-        },
-        "false" :{
-          "out_img" : "http://health.hoseo.ac.kr/dbimage/health/WebData/img/sub03/hpg_popup_incorrect.png",
-          "endQuest" : true
-        }
-      }
-    ],
-    "image" : [
-        {
-          "id" : 1,
-          "name": "tower",
-          "src" : "http://www.cha.go.kr/unisearch/images/national_treasure/1612679.jpg",
-          "width" : 900,
-          "height" : 900
-        }
-      ],
-    "text"  : [
-        {
-          "id" : 1,
-          "name": "데모문제",
-          "description" : "아래 구조물의 이름을 \n 입력해주세요",
-          "size": 25,
-          "color": "#000000",
-          "background": "#ffffff",
-          "alpha": 0.7
-        }
-      ],
-    "edit"  : {
-      "text" : "",
-      "hint" : "이곳을 눌러서 입력하세요",
-      "size" : 20
-    },
-    "button" : [
-      {
-        "id"   : 1,
-        "name" : "확인",
-        "fill" : "#DBDBDB",
-        "color": "#00182E",
-        "size" : 20,
-        "width": 250,
-        "height": 200
-      }
-    ]
-},
-{
-    "number": 2,
-    "name" : "문제2",
-
-    "vertical" : "center",
-    "horizontal" : "center",
-    "location" : "(35.896280,128.620380)",
-    "visionable" : true,
-    "clickable" : true,
-    "disable" : false,
-    "script" : [
-      {
-        "type" : "CLICK",
-        "name" : "wrong1",
-        "action" : {
-          "out_txt" : "빙고테스트.",
-          "bingo" : 1
-
-        }
-      },
-      {
-        "type" : "CLICK",
-        "name" : "wrong2",
-        "action" : {
-          "out_txt" : "빙고테스트.",
-          "bingo" : 2
-        }
-      },
-      {
-        "type" : "CLICK",
-        "name" : "wrong3",
-        "action" : {
-          "out_txt" : "맵 테스트.",
-          "openMap" : true
-        }
-      },
-      {
-        "type" : "CLICK",
-        "name" : "answer",
-        "action" : {
-          "out_txt" : "정답입니다.",
-          "quest" :"퀘스트퀘스트 퀘스트",
-          "bingo" : 3,
-          "end": "end"
-        }
-      }
-    ],
-    "image" : [
-        {
-          "id" : 1,
-          "name": "wrong1",
-          "src" : "http://163.44.166.91/LEARnFUN/storage/app/public/anjoongkeun.jpg",
-          "width" : 400,
-          "height" : 400
-        },
-        {
-          "id" : 2,
-          "name": "wrong2",
-          "src" : "http://163.44.166.91/LEARnFUN/storage/app/public/gandi.jpg",
-          "width" : 400,
-          "height" : 400
-        },
-        {
-          "id" : 3,
-          "name": "wrong3",
-          "src" : "http://163.44.166.91/LEARnFUN/storage/app/public/linkon.jpg",
-          "width" : 400,
-          "height" : 400
-        },
-        {
-          "id" : 4,
-          "name": "answer",
-          "src" : "http://163.44.166.91/LEARnFUN/storage/app/public/plands.gif",
-          "width" : 400,
-          "height" : 400
-        }
-      ],
-    "text"  : [
-
-        {
-          "id" : 1,
-          "name": "데모문제2",
-          "description" : "다음중 위인이 아닌 \n인물을 선택하세요",
-          "size": 25,
-          "color": "#000000",
-          "background": "#ffffff",
-          "alpha": 0.7
-        }
-      ],
-    "button" : [
-
-    ]
-}
-,
-  {
-    "number": 3,
-    "name" : "초기화",
-
-    "vertical" : "center",
-    "horizontal" : "center",
-    "location" : "(35.8965827, 128.6215884)",
-    "visionable" : true,
-    "clickable" : true,
-    "disable" : false,
-    "script" : [
-      {
-        "type" : "CLICK",
-        "name" : "test",
-        "action" : {
-          "out_img" : "https://ext.fmkorea.com/files/attach/new/20160702/3655086/53302805/404672452/dc7710206e8f59d7162dbbe9575e0f8b.gif",
-          "config" : [{
-            "target_name" : "문제1",
-            "visionable":true,
-            "clickable":true,
-            "disable":false
-          },{
-            "target_name" : "문제2",
-            "visionable":true,
-            "clickable":true,
-            "disable":false
-          }],
-          "endQuest" : true,
-          "endBingo" : true,
-          "closeMap" : true
-        }
-      }
-    ],
-    "image" : [
-      {
-        "id" : 1,
-        "name": "test",
-        "src" : "http://upload2.inven.co.kr/upload/2017/06/12/bbs/i13811589200.jpg",
-        "width" : 1500,
-        "height" : 1500
-      }
-    ],
-    "text"  : [
-
-    ],
-    "button" : [
-
-    ]
-}
-]);
+      return json_encode($result);
     }
 
     public function setContentScore(Request $request) {
@@ -613,7 +407,7 @@ class AppRequestController extends Controller
       return json_encode([
         "content" => $content,
         "input-score" => $score,
-        "avg-score" => $avgScore,
+        "avg-score" => $avgScore
       ]);
     }
 }
