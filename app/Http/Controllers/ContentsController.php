@@ -276,7 +276,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             $package_contents_sum=$package_contents_avg + $content->avg;
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
-
+        dd($contents);
         $package_contents_avg = $package_contents_sum / sizeof($contents);
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
