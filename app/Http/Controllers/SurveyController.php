@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      * 모든 설문조사 리스트를 본다
@@ -20,21 +20,27 @@ class SurveyController extends Controller
       $surveyNoArr = array();
       $surveyTitleArr = array();
       $surveyDateArr = array();
-
-      $surveies = DB::table('surveies')->get();
+      
+      $surveies = DB::table('surveies')->orderBy('created_at', 'desc')->paginate(15);
+      // $surveies = DB::table('surveies')->paginate(15);
+      // $surveies = DB::table('surveies')->get();
       foreach ($surveies as $survey) {
         array_push($surveyNoArr, $survey->no);
         array_push($surveyTitleArr, $survey->title);
         array_push($surveyDateArr, $survey->created_at);
       }
-
+      // $surveyNoArr = array_reverse($surveyNoArr);
+      // $surveyTitleArr = array_reverse($surveyTitleArr);
+      // $surveyDateArr = array_reverse($surveyDateArr);
+      
         return view('survey.survey_list', [
-          'survey_id' => $surveyNoArr,
+          'surveies'  => $surveies,
+          'survey_no' => $surveyNoArr,
           'survey_title' => $surveyTitleArr,
-          'survey_write_date' => $surveyDateArr,
+          'survey_date' => $surveyDateArr,
         ]);
     }
-
+  
     /**
      * Show the form for creating a new resource.
      * 설문조사를 작성하는 뷰를 보여준다
@@ -51,43 +57,51 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     
     public function store(Request $request)
     {
-      $newSurveyName = $request->input('survey_title');
-      $newSurvey = $request->input('q_title');
-      $userno = $request->input('user_id');
-      $qCount = count($newSurvey);
+      // 입력한 값을 가져와서
+     // dd(Auth::id());
+     $newSurveyName = $request->input('survey_title');
+     $newSurvey = $request->input('q_title');
+     $userno = Auth::id();
+     $qCount = count($newSurvey);
+// dd($newSurvey);
+     // DB에 저장 후
+     $surveyId = DB::table('surveies')->insertGetId([
+       'title' => $newSurveyName,
+       'writer' => $userno,
+       'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+       'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+     ]);
+     for ($i=0; $i<$qCount; $i++) {
+       var_dump ($surveyId);
+       $articleId = DB::table('survey_articles')->insertGetId([
+          'survey' => $surveyId,
+          'article' => $newSurvey[$i][1],
+          'type' => $newSurvey[$i][0],
+       ]);
 
-      $surveyId = DB::table('surveies')->insertGetId([
-        'name' => $survey_title,
-        'writer' => $userno,
-        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-      ]);
-
-      for ($i=0; $i<$qCount; $i++) {
-        $articleId = DB::table('survey_articles')->insertGetId([
-           'survey' => $surveyId,
-           'article' => $newSurvey[$i][1],
-           'type' => $newSurvey[$i][0],
-        ]);
-
-        if ($newSurvey[$i][0] == 'obj') {
-          $answerCount = count($newSurvey[$i][2]);
-          for($j=0; $j<$answerCount; $j++) {
-            $surveyId = DB::table('survey_answers')->insertGetId([
-               'survey_article' => $articleId,
-               'substance' => $newSurvey[$i][2][$j],
-            ]);
-          }
-        }
-      }
-
-        return view('survey.survey_view', [
-          'survey_title' => $newSurveyName,
-          'q_title' => $newSurvey, // 설문지
-          'survey_id' => $surveyId,
-        ]);
+      //  dd($surveyId);
+       if ($newSurvey[$i][0] == 'obj') {
+         $answerCount = count($newSurvey[$i][2]);
+         for($j=0; $j<$answerCount; $j++) {
+           DB::table('survey_answers')->insert([
+              'survey_article' => $articleId,
+              'substance' => $newSurvey[$i][2][$j],
+           ]);
+         }
+       }
+       
+     }
+    //  dd($newSurvey);
+     // 리스트로 넘어가기 방법
+     // return redirect()->route('plan.teacher');
+     return view('survey.survey_view', [
+       'survey_title' => $newSurveyName,
+       'q_title' => $newSurvey, // 설문지
+       'survey_no' => $surveyId,
+     ]);
     }
 
     /**
@@ -115,11 +129,11 @@ class SurveyController extends Controller
           }
         }
 
-        // dd($qTitle);
+        // dd( $qTitle);
         return view('survey.survey_view', [
           'survey_title' => $survey->title,
           'q_title' => $qTitle, // 설문지
-          'survey_id' => $survey->no,
+          'survey_no' => $survey->no,
         ]);
     }
 

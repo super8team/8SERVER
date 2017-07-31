@@ -34,13 +34,13 @@
           }
 
       }
-      $plan_title  = "농촌 고구마 캐기 여행";
-      $plan_date = "2017-05-22";
-      $teacher_name = "서현숙";
-      $trip_kind_value = "수학여행"; 
-      $attend_class_count = "3";
-      $attend_student_count = "75";
-      $unattend_student_count = "3";
+      // $plan_title  = "농촌 고구마 캐기 여행";
+      // $plan_date = "2017-05-22";
+      // $teacher_name = "서현숙";
+      // $trip_kind_value = "수학여행"; 
+      // $attend_class_count = "3";
+      // $attend_student_count = "75";
+      // $unattend_student_count = "3";
 
 
         // plan_title 		           = “(String)”,
@@ -62,7 +62,7 @@
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
-          <a href="javascript:history.back()"role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+          <a href="{{route('plan.teacher')}}" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-open-file"></span>
             뒤로 가기
           </a>
@@ -113,7 +113,8 @@
 									  <input type="text" name="plan_title" class="form-control required" 
                     value="{{$plan_title}}" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
                   @else
-
+                    <input type="text" name="plan_title" class="form-control required" 
+                     size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
                   @endif
 								</div>
 							</div>
@@ -125,8 +126,7 @@
 									</div>
                   @if(isset($plan_date)) 
                     <input type="date" class="form-control required" value="{{$plan_date}}" name="plan_date">
-                  @else<input type="text" name="plan_title" class="form-control required"
-											   size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+                  @else
                     <input type="date" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
                   @endif
 								</div>

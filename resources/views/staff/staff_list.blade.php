@@ -9,7 +9,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 가정통신문
-            <a role="button" href="javascript:history.back()" aria-label="Right Align"
+            <a role="button" href="{{route('plan.teacher')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기

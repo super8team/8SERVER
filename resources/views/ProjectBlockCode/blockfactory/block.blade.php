@@ -589,7 +589,6 @@
         <block type="bottom"></block>
       </category>
       <category name ="이미지">
-        <block type="image_detail"></block>
         <block type="image_1"></block>
         <block type="image_2"></block>
         <block type="image_3"></block>
@@ -606,7 +605,29 @@
       <category name="에디트">
         <block type="EDIT"></block>
       </category>
-
+      <category name="토스트">
+        <block type="toast"></block>
+      </category>
+      <category name="퀘스트">
+        <block type="quest"></block>
+        <block type="endQuest"></block>
+        <!-- blocks_ 139line -->
+      </category>
+      <category name="빙고">
+        <block type="bingo"></block>
+        <block type="endBingo"></block>
+      </category>
+      <category name="컬렉션">
+        <block type="collection"></block>
+        <block type="endCollection"></block>
+      </category>
+      <category name="지도">
+        <block type="openMap"></block>
+        <block type="closeMap"></block>
+      </category>
+      <category name="콘텐츠 수정">
+        <block type="CONFIG"></block>
+      </category>
     </xml>
 
     <xml id="workspacefactory_toolbox" class="toolbox">
@@ -971,7 +992,7 @@
               var user_packages = document.getElementsByClassName('package_button');
               var id_value     = data.length - 1;
               storage_package_child.value = data[id_value].id;
-              console.log(storage_package_child);
+
               // for(var i = 0; i < user_packages.length; i++){
               //   var package_name = user_packages[i].innerText;
               //   if(package_name == data[i]['name']){

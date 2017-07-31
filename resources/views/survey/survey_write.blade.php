@@ -104,7 +104,7 @@
               "</div>"+
             "<div class='col-sm-9'>"+
               /*서술형 제목 입력 란*/
-              "<input type='hidden' name ='q_title["+countQuestion+"][0]' value='subjec'>"+
+              "<input type='hidden' name ='q_title["+countQuestion+"][0]' value='sub'>"+
               "<input type='text' class='form-control' name='q_title["+(countQuestion)+"][1]'  placeholder='서술형 질문 입력 란'>"+
             "</div>"+
           "</div>"+
@@ -119,7 +119,7 @@
           // $('#createForm').text(string).html();
         });
 
-        $(document).ready("click","#submit",function() {
+        $(document).on("click","#submit",function() {
             document.survey_write_submit.action = "{{route('survey.store')}}";
             document.survey_write_submit.submit();
       });

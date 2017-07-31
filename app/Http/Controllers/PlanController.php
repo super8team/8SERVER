@@ -236,7 +236,7 @@ class PlanController extends Controller
       foreach($options as $option) {
         array_push($others, $option->option);
       }
-
+      
       return view('plan.plan_sheet', [
       'plan_no' => $id,
       'plan_title' => $plan_title,

@@ -6,7 +6,8 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <form class="form" action="{{ route('notice.create') }}">
+      <form class="form" action="{{route('notice.store')}}" method="POST">
+        {{ csrf_field() }}
         <div class="panel panel-default">
           <div class="panel-heading" style="height:55px;">
             <div class="form-group">
@@ -24,12 +25,12 @@
                 <textarea class="form-control" rows="25" name="notice_text" placeholder="내용을 입력해 주세요"></textarea>
               </div>
             </div>
-              <button href="#" type="submit" aria-label="Right Align"
-              class="btn btn-sm btn-default pull-right disabled" style="margin-right:15px; margin-top20px;">
+              <button type="btnSubmit" aria-label="Right Align"
+              class="btn btn-sm btn-default pull-right " style="margin-right:15px; margin-top20px;">
                {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                작성 완료
              </button>
-             <a href="javascript:history.back()"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
+             <a  href="{{route('notice.index')}}" role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
                {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
                뒤로 가기
              </a>

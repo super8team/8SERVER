@@ -356,11 +356,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           input.answer = clickblock.getFieldValue('ANSWER');
           input.true   = CHECKEDIT1;
           input.false  = CHECKEDIT2;
-        }else {
+        } else {
           input.name   = clickblock.getFieldValue('INPUTNAME');
           input.action = script_fields;
         }
-
       }
       srtargs.push(input);
   }
@@ -556,11 +555,11 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
   JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
   JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
-  JS.toast      = FactoryUtils.getToastRootBlock_(rootBlock);
-  JS.quest      = FactoryUtils.getQuestRootBlock_(rootBlock);
-  JS.bingo      = FactoryUtils.getBingoRootBlock_(rootBlock);
-  JS.collection = FactoryUtils.getCollectionRootBlock_(rootBlock);
-  JS.map        = FactoryUtils.getMapRootBlock_(rootBlock);
+  // JS.toast      = FactoryUtils.getToastRootBlock_(rootBlock);
+  // JS.quest      = FactoryUtils.getQuestRootBlock_(rootBlock);
+  // JS.bingo      = FactoryUtils.getBingoRootBlock_(rootBlock);
+  // JS.collection = FactoryUtils.getCollectionRootBlock_(rootBlock);
+  // JS.map        = FactoryUtils.getMapRootBlock_(rootBlock);
 
   return JSON.stringify(JS, null, '  ');
 
@@ -892,6 +891,37 @@ FactoryUtils.getFieldsJson_ = function(block) {
   while (block) {
     if (!block.disabled && !block.getInheritedDisabled()) {
       switch (block.type) {
+        case 'toast':
+        script_fields.push({
+          toast: block.getFieldValue('TOAST')
+        });
+          break;
+        case 'quest':
+         script_fields.push({
+          quest: block.getFieldValue('QUEST')
+        });
+          break;
+        case 'endQuest':
+         script_fields.push({
+             endQuest: block.getFieldValue('BOOL')
+            });
+          break;
+        case 'bingo':
+          script_fields.push({
+            bingo: block.getFieldValue('BINGO')
+          });
+          break;
+        case 'endBingo':
+          script_fields.push({
+            endBingo: block.getFieldValue('BOOL')
+          });
+          break;
+
+        case 'endCollection':
+          script_fields.push({
+            endCollection: block.getFieldValue('BOOL')
+          });
+          break;
         case 'button_1':
         case 'button_2':
         case 'button_3':
@@ -925,6 +955,24 @@ FactoryUtils.getFieldsJson_ = function(block) {
               width: Number(block.getFieldValue('WIDTH')),
               heght: Number(block.getFieldValue('HEIGHT'))
         });
+          break;
+        case 'collection':
+          script_fields.push({
+            collection: {
+              src: block.getFieldValue('COLLECTION_SRC'),
+              text: block.getFieldValue('COLLECTION')
+            }
+          });
+          break;
+        case 'CONFIG':
+          script_fields.push({
+            config: {
+              target_name:block.getFieldValue('CONTENTNAME'),
+              visionable:block.getFieldValue('VISION'),
+              clickable:block.getFieldValue('CLICK'),
+              disable:block.getFieldValue('DISABLE')
+            }
+          });
           break;
         case 'OUT_IMG':
           script_fields.push({
@@ -1454,35 +1502,3 @@ FactoryUtils.getQuestRootBlock_ = function(rootBlock) {
   }
   return '';
 }
-
-FactoryUtils.getBingoRootBlock_ = function(rootBlock) {
-  var bingoBlock = rootBlock.getInputTargetBlock('BINGO');
-  if(bingoBlock && !bingoBlock.disabled){
-    return bingoBlock.getFieldValue('BOOL');
-  }
-  return '';
-}
-
-FactoryUtils.getCollectionRootBlock_ = function(rootBlock) {
-  var collectionBlock = rootBlock.getInputTargetBlock('COLLECTION');
-  if(collectionBlock && !collectionBlock.disabled){
-    return collectionBlock.getFieldValue('BOOL');
-  }
-  return '';
-}
-
-FactoryUtils.getMapRootBlock_ = function(rootBlock) {
-  var mapBlock = rootBlock.getInputTargetBlock('MAP');
-  if(mapBlock && !mapBlock.disabled){
-    return mapBlock.getFieldValue('BOOL');
-  }
-  return '';
-}
-
-// FactoryUtils.getPackagenumRootBlock_ = function(rootBlock) {
-//   var packagenumBlock = rootBlock.getInputTargetBlock('PACKAGENUM');
-//   if(packagenumBlock && !packagenumBlock.disabled) {
-//     return packagenumBlock.getFieldValue('PACKAGENUM');
-//   }
-//   return '';
-// };
