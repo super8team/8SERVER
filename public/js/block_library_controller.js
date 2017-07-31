@@ -315,6 +315,8 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
 BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
+  console.log('콘이름');
+  console.log(blockType);
   // If user has not changed the name of the starter block.
   // if(this.packageBasket.length === 0) {
   //   alert("패키지를 생성 한 후 콘텐츠를 생성해 주세요");

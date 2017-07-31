@@ -94,8 +94,8 @@ goog.provide('FactoryUtils');
 // }
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
   console.log(blockType);
-  
-  console.log(blockType);
+
+
   console.log("현재 블록 작업 할 게요!");
   console.log(rootBlock);
   switch (format) {
