@@ -941,7 +941,9 @@ FactoryUtils.getFieldsJson_ = function(block) {
             text: block.getFieldValue('TEXT'),
             name: block.getFieldValue('FIELDNAME'),
             color: block.getFieldValue('COLOUR'),
-            size: block.getFieldValue('VALUE')
+            size: block.getFieldValue('VALUE'),
+            background: block.getFieldValue('BACKCOLOUR'),
+            alpah: block.getFieldValue('ALPHA')
           });
             break;
         case 'image_1':

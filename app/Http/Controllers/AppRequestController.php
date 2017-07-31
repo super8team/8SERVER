@@ -611,7 +611,7 @@ class AppRequestController extends Controller
       return json_encode([
         "content" => $content,
         "input-score" => $score,
-        "avg-score" => $avgScore
-      ])
+        "avg-score" => $avgScore,
+      ]);
     }
 }
