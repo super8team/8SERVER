@@ -993,7 +993,7 @@ FactoryUtils.getFieldsJson_ = function(block) {
           break;
         case 'END':
           script_fields.push({
-              type: block.type
+              end: block.type
           });
       }
     }
