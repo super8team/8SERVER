@@ -111,7 +111,7 @@ class NoticeController extends Controller
        
        //디비에 삽입
        $id = DB::table('notices')->insertGetId([
-       'plan'  =>12,
+       'plan'  =>$plan_no,
        'title' => $notice_title,
        'substance' => $notice_text,
        'writer' => $userno,
