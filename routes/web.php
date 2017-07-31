@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use App\Http\Middleware\CheckRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ Route::get('/', function () {
 })->name('main');
 
 Route::get('/test23',function(){
-  return view('._student_result');
+  // return view('._student_result');
+  $ch = new CheckRole();
 });
 
 
@@ -40,7 +42,9 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 // ******************** 플랜 리스트 *********************
 // 간단 계획
 
-Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
+Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')
+            ->middleware('role:teacher'); // -->index
+// Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')->;
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::get('plan/download', 'PlanController@download')->name('plan.download');
