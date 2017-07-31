@@ -90,7 +90,7 @@
                     document.getElementsByName('star-input')[7].checked=true;
                 if(9<=s && s<10)
                     document.getElementsByName('star-input')[8].checked=true;
-                if(s<=10)
+                if(s==10)
                     document.getElementsByName('star-input')[9].checked=true;
               }
 
