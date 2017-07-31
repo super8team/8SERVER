@@ -4,7 +4,7 @@
 
 
 </script>
-<body onload='resizeWindow(this,{{$package_avg}})'>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
       @php
@@ -69,7 +69,9 @@
   win.resizeTo(wid,hei);
 
   }
-              function myfunction(rating){
+              function myfunction(s){
+                console.log('진입');
+                console.log(s);
                 if(1<=s && s<2)
                     document.getElementsByName('star-input')[0].checked=true;
                 if(2<=s && s<3)
@@ -88,7 +90,7 @@
                     document.getElementsByName('star-input')[7].checked=true;
                 if(9<=s && s<10)
                     document.getElementsByName('star-input')[8].checked=true;
-                if(s<=10)
+                if(s==10)
                     document.getElementsByName('star-input')[9].checked=true;
               }
 

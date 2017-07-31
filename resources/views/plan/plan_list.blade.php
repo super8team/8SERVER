@@ -69,9 +69,9 @@
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
-                    <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
-                        참여 그룹
-                    </a>
+                    {{-- <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">참여 그룹</a> --}}
+
+
                     <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
                         상세 계획
                     </a>
@@ -87,12 +87,12 @@
                       공유
                     </button>
 
-                    <div class="modal modal fade " id="share" tabindex="-1" 
+                    <div class="modal modal fade " id="share" tabindex="-1"
                     role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" 
+                            <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="shareLabel">공유하기</h4>
                           </div>

@@ -1017,7 +1017,7 @@ Blockly.Blocks['bingo'] = {
     "colour": 210,
   });
   this.setPreviousStatement(true, 'CheckEdit');
-  this.setNextStatement(false, 'CheckEdit');
+  this.setNextStatement(true, 'CheckEdit');
   },
 };
 
