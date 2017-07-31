@@ -188,7 +188,8 @@ BlockFactory.updateLanguage = function() {
   }
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
   console.log(rootBlock.getFieldValue('NAME').trim());
-  // console.log(blockType);
+  console.log(blockType);
+  console.log('인토딩');
   if (!blockType) {
     blockType = BlockFactory.UNNAMED;
   }

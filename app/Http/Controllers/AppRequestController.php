@@ -44,7 +44,7 @@ class AppRequestController extends Controller
               }
         }
 
-         dd($result);
+        // dd($result);
         return json_encode($result);
     }
 
@@ -203,11 +203,13 @@ class AppRequestController extends Controller
       $notice = \DB::table('notices')->where('no', $request->input('notice'))->first();
       $respond = \DB::table('notice_responds', $notice->no)->where('parents', $request->input('no'))->first();
 
+      $user = \DB::table('users')->where('no', $notice->writer)->first()->name;
+
       $result = array(
         'notice' => $notice->no,
         'title' => $notice->title,
         'substance' => $notice->substance,
-        'writer' => $notice->writer,
+        'writer' => $user,
         'date' => $notice->created_at,
         // 'limitDate' => $notice->limit_date,
       );
@@ -297,7 +299,7 @@ class AppRequestController extends Controller
       $result = [];
 
       $groups = \DB::table('groups')->where('joiner', $userNo)->get();
-      dd($groups);
+      // dd($groups);
       foreach ($groups as $group) {
         # code...
         $plan = \DB::table('field_learning_plans')->where('no', $group->plan)->first();
@@ -307,7 +309,7 @@ class AppRequestController extends Controller
           "date" => $plan->at,
         );
       }
-      dd($result);
+      // dd($result);
       return json_encode($result);
       // dd($result);
     }
@@ -326,10 +328,10 @@ class AppRequestController extends Controller
 
       foreach ($contents as $content) {
         # code...
-        $result[] = $content->spec;
+        $result[] = json_decode($content->spec);
       }
-      var_dump(json_encode($result));
-      // return json_encode($result);
+      // var_dump($result);
+      return json_encode($result);
     }
 
     public function getSurveyList(Request $request) {

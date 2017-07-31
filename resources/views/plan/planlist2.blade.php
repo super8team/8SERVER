@@ -53,8 +53,8 @@
             @for ($count=0; $count < count($plan_title) ; $count++)
                   <tr>
                     <td>{{$count+1}}</td>
-                    <td>{{$plan_no[$count]}}</td>
                     <td>{{$plan_title[$count]}}</td>
+                    <td>{{$plan_date[$count]}}</td>
                     @if($user_info['type'] == 'student')
                       <td colspan="2" class="text-center">
                         <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">

@@ -131,6 +131,7 @@ Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->na
 // *******************  소감문 *********************
 // 소감문 목록
 Route::get('reportlist/{plan_no}', 'ReportController@custom_index')->name('report_list');
+Route::get('reportcreate/{plan_no}', 'ReportController@custom_create')->name('report_create');
 
 //소감문 평가 뷰
 Route::get('reportevaluationview/{report_no}', 'ReportController@view_evaluation')->name('report_view_evaluation');

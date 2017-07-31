@@ -970,7 +970,7 @@
         var content_spec_object = JSON.parse(content_spec);
 
         //저장할 컨텐츠 이름
-        var content_name        = content_spec_object['type'];
+        var content_name        = content_spec_object['name'];
         console.log(content_name);
         //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
         //중복이 없으면 새로운 패키지를 등록하고
