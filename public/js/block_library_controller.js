@@ -74,6 +74,7 @@ BlockLibraryController.prototype.getCurrentBlockType = function() {
   var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
   contents_name = blockType;
+  console.log('커런트타입');
   console.log(blockType);
   // Replace invalid characters.
   return FactoryUtils.cleanBlockType(blockType);
@@ -317,8 +318,8 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
 
 BlockLibraryController.prototype.saveToBlockLibrary = function() {
-  // var blockType = this.getCurrentBlockType();
-  var blockType = this.getCurrentBlockName();
+  var blockType = this.getCurrentBlockType();
+  blockType = this.getCurrentBlockName();
   console.log('콘이름');
   console.log(blockType);
   // If user has not changed the name of the starter block.
