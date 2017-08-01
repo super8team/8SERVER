@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta charset="UTF-8">
 
   <title>LEARnFUN</title>
@@ -976,7 +977,7 @@
         //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
         //중복이 없으면 새로운 패키지를 등록하고
         //중복이 있으면 그 패키지에 등록을 한다
-
+        var CSRF_TOKEN          = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
           url: '{{ route('contents.storageNewContent')}}',
           type: 'post',
@@ -984,7 +985,8 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : storage_package_name
+            'package_name' : storage_package_name,
+            '_token'       : CSRF_TOKEN
           },
           success: function(data){
             if(data){
