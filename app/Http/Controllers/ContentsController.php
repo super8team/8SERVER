@@ -391,12 +391,13 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       for($i = 0; $i < count($planField); $i++){
         $plan = $planField[$i][0];
+
         $pack = $planField[$i][1][0];
 
         DB::table('field_learning_plans')
                       ->where([
                         ['teacher',Auth::user()->no],
-                        ['name',$plan]
+                        ['no',$plan]
                       ])->update(['contents_package'=>$pack]);
       }
 
