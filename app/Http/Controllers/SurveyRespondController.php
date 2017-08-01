@@ -41,12 +41,12 @@ class SurveyRespondController extends Controller
       // $userNo = $request->input('user_id');
       $responds = $request->input('resp');
 
-      // $respond = \DB::table('survey_responds')->insertGetId([
-      //   'respondent' => $userNo,
-      //   'survey' => $survey,
-      //   'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-      //   'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-      // ]);
+      $respond = \DB::table('survey_responds')->insertGetId([
+        'respondent' => $userNo,
+        'survey' => $survey,
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+      ]);
 
       $respondCount = count($responds);
       // dd($responds);
@@ -68,15 +68,15 @@ class SurveyRespondController extends Controller
           for($j=0; $j<$answerCount; $j++) {
             $qTitle[$i][2][$j] = $answers[$j]->substance;
           }
-        //  \DB::table('survey_respond_contents')->insert([
-        //    "survey_respond" => $respond,
-        //    "survey_article" => $articles[$i]->no,
-        //    "respond" => $responds[$i],
-        //  ]);
+         \DB::table('survey_respond_contents')->insert([
+           "survey_respond" => $respond,
+           "survey_article" => $articles[$i]->no,
+           "respond" => $responds[$i],
+         ]);
         }
       }
 // dd(count($qTitle));
-      return view('survey.survey_result', [
+      return view('survey.survey_student_result', [
         'resp' => $responds,
         'survey_title' => $survey->title,
         'q_title' => $qTitle, // 설문지
