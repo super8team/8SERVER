@@ -91,6 +91,8 @@ BlockLibraryStorage.prototype.clear = function() {
 BlockLibraryStorage.prototype.addBlock = function(blockType, blockXML) {
   var prettyXml = Blockly.Xml.domToPrettyText(blockXML);
   this.blocks[blockType] = prettyXml;
+  console.log('블럭 저장소');
+  console.log(this.blocks);
 };
 
 /**
@@ -141,6 +143,8 @@ BlockLibraryStorage.prototype.getBlockXmlMap = function(blockTypes) {
     var xml = this.getBlockXml(blockType);
     blockXmlMap[blockType] = xml;
   }
+  console.log('블럭 저장');
+  console.log(blockXmlMap);
   return blockXmlMap;
 };
 
@@ -157,6 +161,8 @@ BlockLibraryStorage.prototype.getBlockTypes = function() {
  * @return {boolean} True if empty, false otherwise.
  */
 BlockLibraryStorage.prototype.isEmpty = function() {
+  console.log('블럭 저장');
+  console.log(this.blocks);
   for (var blockType in this.blocks) {
     return false;
   }

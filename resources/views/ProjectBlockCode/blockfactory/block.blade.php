@@ -978,7 +978,7 @@
         //중복이 있으면 그 패키지에 등록을 한다
 
         $.ajax({
-          method: 'GET',
+          method: 'POST',
           url: '{{ route('contents.storageNewContent')}}',
           data: {
             'xml'          : content_xml,
@@ -1049,7 +1049,7 @@
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
+      var popupOption = 'directories=no, toolbar=yes, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=600, height=100%';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
