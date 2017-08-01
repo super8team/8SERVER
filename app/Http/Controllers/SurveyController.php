@@ -187,13 +187,23 @@ class SurveyController extends Controller
           $answerCount = count($answers);
           for($j=0; $j<$answerCount; $j++) {
             $qTitle[$i][2][$j] = $answers[$j]->substance;
-            $count = \DB::table('survey_respond_contents')->
+            $qTitle[$i][3][$j] = \DB::table('survey_respond_contents')->where('respond', 'like', $j)->count();
           }
         } elseif($qTitle[$i][0] == "ox") {
-
+          $qTitle[$i][2] = \DB::table('survey_respond_contents')->where('respond', "true")->count();
+          $qTitle[$i][3] = \DB::table('survey_respond_contents')->where('respond', "false")->count();
         } else {
-
+          $subs = \DB::table('survey_respond_contents')->where('survey_article', $articles[$i]->no)->get();
+          foreach ($subs as $sub) {
+            # code...
+            $qTitle[$i][2][] = $sub->respond;
+          }
         }
       }
+
+      // dd($qTitle);
+      return view('survey_result', [
+        'q_title' => $qTitle,
+      ]);
     }
 }

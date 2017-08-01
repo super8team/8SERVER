@@ -186,7 +186,7 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 
 // *******************  앱 체크리스트 *********************
 
-Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
+Route::post('app/getCheckList', 'AppRequestController@getCheckList')->name('getChecklist');
 
 Route::post('app/upload', function (Request $request) {
 
