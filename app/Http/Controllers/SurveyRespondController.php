@@ -47,17 +47,17 @@ class SurveyRespondController extends Controller
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
       ]);
+      // $respond = 2;
 
       $respondCount = count($responds);
       // dd($responds);
-      for($i=0; $i<$respondCount; $i++) {
-        // 응답 자체는 어떻게 구성되어 있지?
-      }
 
       $qTitle = [];
       $survey = \DB::table('surveies')->where('no', $id)->first();
       $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
       $articleCount = count($articles);
+
+      // dd($articles);
 
       for ($i=0; $i<$articleCount; $i++) {
         $qTitle[$i][0] = $articles[$i]->type;
@@ -65,17 +65,22 @@ class SurveyRespondController extends Controller
         if($qTitle[$i][0] == "obj") {
           $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
           $answerCount = count($answers);
+
+          // dd($answers);
           for($j=0; $j<$answerCount; $j++) {
             $qTitle[$i][2][$j] = $answers[$j]->substance;
           }
-         \DB::table('survey_respond_contents')->insert([
-           "survey_respond" => $respond,
-           "survey_article" => $articles[$i]->no,
-           "respond" => $responds[$i],
-         ]);
         }
+
+
+       \DB::table('survey_respond_contents')->insert([
+         "survey_respond" => $respond,
+         "survey_article" => $articles[$i]->no,
+         "respond" => $responds[$i],
+       ]);
       }
-// dd(count($qTitle));
+
+      // dd($qTitle);
       return view('survey.survey_student_result', [
         'resp' => $responds,
         'survey_title' => $survey->title,
