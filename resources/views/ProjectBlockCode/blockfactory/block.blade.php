@@ -978,8 +978,8 @@
         //중복이 있으면 그 패키지에 등록을 한다
 
         $.ajax({
-          method: 'POST',
           url: '{{ route('contents.storageNewContent')}}',
+          type: 'post',
           data: {
             'xml'          : content_xml,
             'spec'         : content_spec,
