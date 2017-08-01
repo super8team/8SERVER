@@ -61,7 +61,9 @@ td {
 }
 
 #detail_article  >*{
-  height:30;
+  height: 30;
+  font-size: 20px;
+  border: 0px; 
 }
 /*#mapSize > body {
   width: 500px;

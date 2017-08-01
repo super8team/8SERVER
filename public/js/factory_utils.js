@@ -330,6 +330,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     }
     editBlock = editBlock.nextConnection && editBlock.nextConnection.targetBlock();
   }
+
   while(clickblock) {
     if(!clickblock.disabled  && !clickblock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(

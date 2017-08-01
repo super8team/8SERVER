@@ -377,35 +377,43 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];
-      // dd($packages);
+
       // dd($fields);
       //패키지를 등록할 현장학습리스트를 추출한다
       for($i = 0; $i<15; $i++){
         if(array_key_exists($i, $packages)){
-          array_push($planField,$fields[$i],$packages[$i]);
+          // array_push($planField,$fields[$i],$packages[$i]);
+          $planField[$i][0] = $fields[$i];
+          $planField[$i][1]= $packages[$i];
+          // $planField[$i]=$packages[$i];
         }
       }
 
-      $pack = count($packages);
-      // dd(count($planField)-1);
-      // dd($planField);
-      // dd(count($pack));
-      // dd($planField);
-      // dd($packages);
-      // dd($planField);
-      for($i = 0 ; $i < count($planField)-1 ; $i++){
-        //체험학습 리스트
-        $fieldList  =   $planField[$i];
-        // dd(count($planField));
-        for($j = 0; $j < $pack; $j++){
-          $package = $planField[$i+1][$j];
-          DB::table('field_learning_plans')
-                            ->where([
-                              ['teacher','=', Auth::user()->no],
-                              ['name', '=',$fieldList],
-                            ])->update(['contents_package'=>$package]);
-        }
+      for($i = 0; $i < count($planField); $i++){
+        $plan = $planField[$i][0];
+
+        $pack = $planField[$i][1][0];
+
+        DB::table('field_learning_plans')
+                      ->where([
+                        ['teacher',Auth::user()->no],
+                        ['no',$plan]
+                      ])->update(['contents_package'=>$pack]);
       }
+
+      // for($i = 0 ; $i < count($planField)-1 ; $i++){
+      //   //체험학습 리스트
+      //   $fieldList  =   $planField[$i];
+      //   // dd(count($planField));
+      //   for($j = 0; $j < $pack; $j++){
+      //     $package = $planField[$i+1][$j];
+      //     DB::table('field_learning_plans')
+      //                       ->where([
+      //                         ['teacher','=', Auth::user()->no],
+      //                         ['name', '=',$fieldList],
+      //                       ])->update(['contents_package'=>$package]);
+      //   }
+      // }
         // $package    =   $planField[$i+1]
           // DB::table('field_learning_plans')
           //             ->where('teacher',Auth::user()->no)
