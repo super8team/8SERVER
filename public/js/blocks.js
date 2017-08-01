@@ -155,7 +155,7 @@ var CLICK_ARGS = [
   {
     "type": "field_dropdown",
     "name": "CLICK",
-    "options": [['true','true'],['true','true']],
+    "options": [['true','true'],['false','false']],
   }
 ];
 
@@ -164,7 +164,7 @@ var DISABLE_ARGS = [
   {
     "type": "field_dropdown",
     "name": "DISABLE",
-    "options": [['true','true'],['true','true']],
+    "options": [['true','true'],['false','false']],
   }
 ];
 
