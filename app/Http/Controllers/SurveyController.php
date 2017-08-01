@@ -20,7 +20,7 @@ class SurveyController extends Controller
       $surveyNoArr = array();
       $surveyTitleArr = array();
       $surveyDateArr = array();
-      
+
       $surveies = DB::table('surveies')->orderBy('created_at', 'desc')->paginate(15);
       // $surveies = DB::table('surveies')->paginate(15);
       // $surveies = DB::table('surveies')->get();
@@ -32,7 +32,7 @@ class SurveyController extends Controller
       // $surveyNoArr = array_reverse($surveyNoArr);
       // $surveyTitleArr = array_reverse($surveyTitleArr);
       // $surveyDateArr = array_reverse($surveyDateArr);
-      
+
         return view('survey.survey_list', [
           'surveies'  => $surveies,
           'survey_no' => $surveyNoArr,
@@ -40,7 +40,7 @@ class SurveyController extends Controller
           'survey_date' => $surveyDateArr,
         ]);
     }
-  
+
     /**
      * Show the form for creating a new resource.
      * 설문조사를 작성하는 뷰를 보여준다
@@ -57,11 +57,11 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     
+
     public function store(Request $request)
     {
       // 입력한 값을 가져와서
-     
+
      $newSurveyName = $request->input('survey_title');
      $newSurvey = $request->input('q_title');
     //  dd($newSurveyName,$newSurvey);
@@ -76,7 +76,7 @@ class SurveyController extends Controller
        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
      ]);
      for ($i=0; $i<$qCount; $i++) {
-       var_dump ($surveyId);
+      //  var_dump ($surveyId);
        $articleId = DB::table('survey_articles')->insertGetId([
           'survey' => $surveyId,
           'article' => $newSurvey[$i][1],
@@ -93,7 +93,7 @@ class SurveyController extends Controller
            ]);
          }
        }
-       
+
      }
     //  dd($newSurvey);
      // 리스트로 넘어가기 방법

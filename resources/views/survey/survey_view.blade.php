@@ -9,8 +9,8 @@
   <div class="bluedecobar">
   </div>
   <div class="bluebg">
-    <div class="container">                                                       
-      <form class="form-horizontal" name="survey_write_submit" 
+    <div class="container">
+      <form class="form-horizontal" name="survey_write_submit"
       action="{{route('survey.respond.store',$survey_no)}}"  method="POST">
         {{ csrf_field() }}
         <input type="hidden" name="survey_no" value="{{$survey_no}}">
@@ -63,7 +63,7 @@
               <div class='panel panel-default'>
                 <div class='panel-heading' style='height:55px;'>
                   <div class='col-sm-1'>
-                    <h4><label class='col-sm-1 text-left'>Q{{$i+1}}</label></h4>
+                    <h4><label class='col-sm-1 text-left'>Q</label></h4>
                   </div>
                   <div class='col-sm-9'>
                     <h4>{{$q_title[$i][1]}}</h4>
@@ -130,7 +130,7 @@
            설문 완료
          </button>
          @endif
-         
+
      </div>
     </div>
   </form>
