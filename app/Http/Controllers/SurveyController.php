@@ -171,4 +171,29 @@ class SurveyController extends Controller
     {
         //
     }
+
+    public function total($survey) {
+      $qTitle = [];
+      $survey = \DB::table('surveies')->where('no', $survey)->first();
+      $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
+
+      $articleCount = count($articles);
+
+      for ($i=0; $i<$articleCount; $i++) {
+        $qTitle[$i][0] = $articles[$i]->type;
+        $qTitle[$i][1] = $articles[$i]->article;
+        if($qTitle[$i][0] == "obj") {
+          $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
+          $answerCount = count($answers);
+          for($j=0; $j<$answerCount; $j++) {
+            $qTitle[$i][2][$j] = $answers[$j]->substance;
+            $count = \DB::table('survey_respond_contents')->
+          }
+        } elseif($qTitle[$i][0] == "ox") {
+
+        } else {
+
+        }
+      }
+    }
 }

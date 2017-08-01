@@ -67,6 +67,7 @@ Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.se
 
 // 설문조사 리스트, 작성, 열람
 Route::resource('survey', 'SurveyController');
+Route::get('survey/{survey}/total', 'SurveyController@total')->name('survey.total.respond');
 // index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
 Route::resource('survey.respond', 'SurveyRespondController');
