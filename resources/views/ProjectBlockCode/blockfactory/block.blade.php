@@ -554,7 +554,7 @@
           <!-- <div id="addrList">
             <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
           </div> -->
-          <div id="get_location" border="1px solid black" ></div>
+          <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
 
         <!-- 블럭 프리뷰  -->
