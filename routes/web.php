@@ -108,7 +108,7 @@ Route::get('contents/registerToPlanDB','ContentsController@registerToPlanDB')->n
 Route::get('contents/packages/{package_id}','ContentsController@extractContents')->name('contents.extractContents');
 
 //콘텐츠 저장하기
-Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
+Route::post('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
 

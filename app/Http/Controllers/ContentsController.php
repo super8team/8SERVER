@@ -359,8 +359,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       //교사가 가지고 있는 패키지를 담습니다.
 
-
-      // $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
       return view('ProjectBlockCode.blockfactory.tool_confirm',
                 [
                   'field_lists'=>$field_list_array,'package'=>$package_list_array,
@@ -382,11 +380,12 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       // dd($packages);
       // dd($fields);
       //패키지를 등록할 현장학습리스트를 추출한다
-      for($i = 0; $i<10; $i++){
+      for($i = 0; $i<15; $i++){
         if(array_key_exists($i, $packages)){
           array_push($planField,$fields[$i],$packages[$i]);
         }
       }
+
       $pack = count($packages);
       // dd(count($planField)-1);
       // dd($planField);
