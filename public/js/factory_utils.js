@@ -316,7 +316,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(editBlock) {
     if(!editBlock.disabled){
 
-    var input = {}
+    var input = {};
 
     if (editBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
@@ -324,7 +324,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       input.hint      = editBlock.getFieldValue('HINT');
       input.size      = editBlock.getFieldValue('SIZE');
     }
-    editargs.push(input);
+    JS.edit = input;
     // message.push('%' + txt_args.length);
     lastInput = editargs;
     }
@@ -412,7 +412,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           break;
       }
       input.name  = txtBlock.getFieldValue('TEXTNAME');
-      input.text  = txtBlock.getFieldValue('DESCRIPTION');
+      input.description  = txtBlock.getFieldValue('DESCRIPTION');
       input.size  = txtBlock.getFieldValue('FONTSIZE');
       input.color = txtBlock.getFieldValue('COLOUR');
       input.background = txtBlock.getFieldValue('BACKCOLOUR');
@@ -555,11 +555,11 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     JS.button = btn_args;
   }
   if(srtargs.length) {
-    JS.click = srtargs;
+    JS.script = srtargs;
   }
-  if(editargs.length) {
-    JS.edit = editargs;
-  }
+  // if(editargs.length) {
+    // JS.edit =  editargs;
+  // }
 
   console.log("^^"+rootBlock);
 
