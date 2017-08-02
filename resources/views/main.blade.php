@@ -1,7 +1,7 @@
 @extends('master')
 
 {{-- TODO 뭔가 이름 바꾸는거 변수로 한페이지에서 관리하려면? -> --}}
-@section('title' , 'LEAN&FUN')
+@section('title' , 'LEARnFUN')
 
 @section('content')
 <head>
