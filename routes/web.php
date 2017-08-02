@@ -40,7 +40,7 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 // ******************** 플랜 리스트 *********************
 // 간단 계획
 
-Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
+Route::post('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
 Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
 Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::get('plan/download', 'PlanController@download')->name('plan.download');
@@ -214,6 +214,7 @@ Route::get('/test23',function(){
 // ******************** 그룹  *********************
 // 참여자 설정
 Route::get('grouplist/{plan_no}' , 'GroupController@custom_index')->name('group_list');
+Route::get('groupcreate/{plan_no}' , 'GroupController@custom_create')->name('group_create');
 Route::resource('group', 'GroupController');
 
 // ******************** 팀  *********************

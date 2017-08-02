@@ -39,6 +39,7 @@
 							<input type="text" class="hidden" value="" name="schoolplan_no" id="schooltrip_plan_id">
 						</form> --}}
 						<form class="forms-wrapper" action="{{route('plan.teacher')}}" method="post">
+							{{csrf_field()}}
 							<div class="row form-group" >
 								<input type="text" class="hidden" value="NEW" name="WROKMODE_NAME" id="WORKMODE_ID">
 								<div class="btn-group pull-right">
