@@ -510,6 +510,5 @@ class AppRequestController extends Controller
           "respond" => "0";
         ]);
       }
-
     }
 }
