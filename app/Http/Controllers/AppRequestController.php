@@ -494,4 +494,22 @@ class AppRequestController extends Controller
       // dd($result);
       return json_encode($result);
     }
+
+    public function setChecklist(Request $request) {
+      $user = $request->input('userNo');
+      $checked = $request->input('checked'); // 1, 2, 4, 3...
+      $noChecked = $request->input('noChecked'); // 7, 5, 6...
+
+      foreach ($checked as $checklist) {
+        \DB::table('checklist_responds')->where('checklist', $checklist)->update([
+          "respond" => "1";
+        ]);
+      }
+      foreach ($noChecked as $checklist) {
+        \DB::table('checklist_responds')->where('checklist', $checklist)->update([
+          "respond" => "0";
+        ]);
+      }
+
+    }
 }
