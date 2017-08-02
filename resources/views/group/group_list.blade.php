@@ -25,68 +25,34 @@
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
+           <a role="button" href="{{route('group_create',$plan_no)}}" aria-label="Right Align"
+           class="btn btn-sm btn-default pull-right">
+            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+            참여자 정하기
+          </a>
          </h3>
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-12">
-              <table class="table table-bordered table-hover">
+            @for ($i=0; $i < $division ; $i++)
+              @if($i%4 == 0 && $i >1 )
+                <div class="">
+              @endif
+                <div class="col-sm-3">
+                  <ul class="list-group">
+                    @for ($t=($i*25); $t <25+(25*$i) ; $t++)
+                      @if ($t < $students_count )
+                        <li class="list-group-item">{{$students[$t][1]}} ____ {{$t}} ____</li>
+                      @endif
+                    @endfor
+                  </ul>
+                </div>
+              @if($i%4 == 0 && $i >1)
+              </div>
+              @endif
+            @endfor
+            {{-- <div class="col-sm-12"> --}}
+              {{-- <table class="table table-bordered table-hover">
                 <thead>
                   <th>미참여 학생 명단 넣기</th>
                   <th>추가 빼기 버튼 넣기</th>
@@ -97,8 +63,8 @@
                   <td>그안에 체크박스 넣기</td>
                   <td>ㅅㅅ</td>
                 </tbody>
-              </table>
-            </div>
+              </table> --}}
+            {{-- </div> --}}
           </div>
         </div>
       </div>

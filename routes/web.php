@@ -41,7 +41,6 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 // ******************** 플랜 리스트 *********************
 // 간단 계획
-
 Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')
             ->middleware('role:teacher'); // -->index
 // Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')->;
@@ -219,3 +218,15 @@ Route::post('json/test', 'StaffController@ajax')->name('ajax');
 Route::get('/test23',function(){
     return view('test.ajax');
 });
+
+
+// ******************** 그룹  *********************
+// 참여자 설정
+Route::get('grouplist/{plan_no}' , 'GroupController@custom_index')->name('group_list');
+Route::get('groupcreate/{plan_no}' , 'GroupController@custom_create')->name('group_create');
+Route::resource('group', 'GroupController');
+
+// ******************** 팀  *********************
+// 팀 짜기 기능
+// Route::resource('team', 'TeamController');
+
