@@ -277,7 +277,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
 
-        $package_contents_avg = $package_contents_sum / sizeof($contents);
+        $package_contents_avg = 7;
+        // $package_contents_avg = $package_contents_sum / 1;
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )
@@ -358,8 +359,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       //교사가 가지고 있는 패키지를 담습니다.
 
-
-      // $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
       return view('ProjectBlockCode.blockfactory.tool_confirm',
                 [
                   'field_lists'=>$field_list_array,'package'=>$package_list_array,
@@ -378,34 +377,43 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];
-      // dd($packages);
+
       // dd($fields);
       //패키지를 등록할 현장학습리스트를 추출한다
-      for($i = 0; $i<10; $i++){
+      for($i = 0; $i<15; $i++){
         if(array_key_exists($i, $packages)){
-          array_push($planField,$fields[$i],$packages[$i]);
+          // array_push($planField,$fields[$i],$packages[$i]);
+          $planField[$i][0] = $fields[$i];
+          $planField[$i][1]= $packages[$i];
+          // $planField[$i]=$packages[$i];
         }
       }
-      $pack = count($packages);
-      // dd(count($planField)-1);
-      // dd($planField);
-      // dd(count($pack));
-      // dd($planField);
-      // dd($packages);
-      // dd($planField);
-      for($i = 0 ; $i < count($planField)-1 ; $i++){
-        //체험학습 리스트
-        $fieldList  =   $planField[$i];
-        // dd(count($planField));
-        for($j = 0; $j < $pack; $j++){
-          $package = $planField[$i+1][$j];
-          DB::table('field_learning_plans')
-                            ->where([
-                              ['teacher','=', Auth::user()->no],
-                              ['name', '=',$fieldList],
-                            ])->update(['contents_package'=>$package]);
-        }
+
+      for($i = 0; $i < count($planField); $i++){
+        $plan = $planField[$i][0];
+
+        $pack = $planField[$i][1][0];
+
+        DB::table('field_learning_plans')
+                      ->where([
+                        ['teacher',Auth::user()->no],
+                        ['no',$plan]
+                      ])->update(['contents_package'=>$pack]);
       }
+
+      // for($i = 0 ; $i < count($planField)-1 ; $i++){
+      //   //체험학습 리스트
+      //   $fieldList  =   $planField[$i];
+      //   // dd(count($planField));
+      //   for($j = 0; $j < $pack; $j++){
+      //     $package = $planField[$i+1][$j];
+      //     DB::table('field_learning_plans')
+      //                       ->where([
+      //                         ['teacher','=', Auth::user()->no],
+      //                         ['name', '=',$fieldList],
+      //                       ])->update(['contents_package'=>$package]);
+      //   }
+      // }
         // $package    =   $planField[$i+1]
           // DB::table('field_learning_plans')
           //             ->where('teacher',Auth::user()->no)
@@ -456,7 +464,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $content_spec = $request->spec;
         $content_name = $request->name;
 
-        
+
         $results = DB::select('select * from contents_packages where name = :name', ['name' => $package_name]);
         if($results){
           $package_key              = DB::table('contents_packages')->where('name','=', $package_name)->first();

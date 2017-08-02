@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta charset="UTF-8">
 
   <title>LEARnFUN</title>
@@ -553,7 +554,7 @@
           <!-- <div id="addrList">
             <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
           </div> -->
-          <div id="get_location" border="1px solid black" ></div>
+          <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
 
         <!-- 블럭 프리뷰  -->
@@ -955,6 +956,7 @@
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
+        console.log(storage_package);
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
@@ -975,15 +977,16 @@
         //데이터베이스에서 패키지 이름이 존재하는 지 검사를 하고
         //중복이 없으면 새로운 패키지를 등록하고
         //중복이 있으면 그 패키지에 등록을 한다
-
+        var CSRF_TOKEN          = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-          method: 'GET',
           url: '{{ route('contents.storageNewContent')}}',
+          type: 'post',
           data: {
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : storage_package_name
+            'package_name' : storage_package_name,
+            '_token'       : CSRF_TOKEN
           },
           success: function(data){
             if(data){
@@ -1048,7 +1051,7 @@
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=200, top=70, width=1000, height=580';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=600, height=450';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');

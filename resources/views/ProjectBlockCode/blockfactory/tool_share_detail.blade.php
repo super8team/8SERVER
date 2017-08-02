@@ -4,7 +4,7 @@
 
 
 </script>
-<body onload='resizeWindow(this,{{$package_avg}})'>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
       @php
@@ -12,7 +12,7 @@
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
       <div style="display:inline">
-        <span class="star-input" style="margin-top:100px">
+        <span class="star-input" style="margin-top:140px; margin-left:100px;">
           <span class="input" style="margin-top:50px">
             <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
             <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
@@ -69,7 +69,9 @@
   win.resizeTo(wid,hei);
 
   }
-              function myfunction(rating){
+              function myfunction(s){
+                console.log('진입');
+                console.log(s);
                 if(1<=s && s<2)
                     document.getElementsByName('star-input')[0].checked=true;
                 if(2<=s && s<3)
@@ -88,7 +90,7 @@
                     document.getElementsByName('star-input')[7].checked=true;
                 if(9<=s && s<10)
                     document.getElementsByName('star-input')[8].checked=true;
-                if(s<=10)
+                if(s==10)
                     document.getElementsByName('star-input')[9].checked=true;
               }
 

@@ -334,7 +334,7 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var xmlElement = goog.dom.createDom('xml');
   var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
-
+  
   // Do not add option again if block type is already in library.
   if (!this.has(blockType)) {
     console.log('call addoption');
@@ -361,6 +361,8 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
  */
 BlockLibraryController.prototype.has = function(blockType) {
   var blockLibrary = this.storage.blocks;
+  console.log('블럭 저장소');
+  console.log(blockLibrary);
   return (blockType in blockLibrary && blockLibrary[blockType] != null);
 };
 

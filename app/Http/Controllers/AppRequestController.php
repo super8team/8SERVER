@@ -75,6 +75,27 @@ class AppRequestController extends Controller
        }
     }
 
+
+    public function getBeforePlanHistory(Request $request) {
+      $details = DB::table('detail_plans')->where('plan', $request->input('planNo'))->get();
+
+      $result = [];
+      $result["gps"] = [];
+
+      $placeIndex = 1;
+      foreach ($details as $detail) {
+          $place = DB::table('places')->where('no', $detail->place)->first();
+          $result["gps"]["place".$placeIndex]=["no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng];
+          // array_push($result["gps"], array("place".$i=>array("no"=>$place->no, "name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng)));
+          // $result["place"] = array("name"=>$place->name, "lat"=>$place->lat, "lng"=>$place->lng);
+          // $result["$place->name"] = array("lat"=>$place->lat, "lng"=>$place->lng);
+          $placeIndex++;
+      }
+      // dd($result);
+      return $result;
+    }
+
+
     private function getTeacherPlan($teacher) {
       $plan = DB::table('field_learning_plans')->where('teacher', $teacher->no)->first();
       $details = DB::table('detail_plans')->where('plan', $plan->no)->get();
@@ -298,7 +319,22 @@ class AppRequestController extends Controller
       $userNo = $request->input('userNo');
       $result = [];
 
-      $groups = \DB::table('groups')->where('joiner', $userNo)->get();
+      if ($request->input('userType') == "parents") {
+        // dd($userNo);
+        $children = \DB::table('students')->where('parents', $userNo)->get();
+        $groups = [];
+        // dd($childGroups);
+        foreach ($children as $child) {
+          $childGroups = \DB::table('groups')->where('joiner', $child->student)->get();
+          // dd($childGroups);
+          foreach ($childGroups as $childGroup) {
+            $groups[] = $childGroup;
+          }
+        }
+        // dd($groups);
+      } else {
+        $groups = \DB::table('groups')->where('joiner', $userNo)->get();
+      }
       // dd($groups);
       foreach ($groups as $group) {
         # code...
@@ -410,5 +446,52 @@ class AppRequestController extends Controller
         "input-score" => $score,
         "avg-score" => $avgScore
       ]);
+    }
+
+    // getCheckList
+    // checkList { check1 { title : bigsort : smallsort : substance}
+    //                      check2 { title : ......
+    public function getCheckList(Request $request) {
+      $userNo = $request->input('userNo');
+      $plan = DB::table('groups')->where('joiner', $userNo)->orderBy('plan', 'desc')->first();
+
+      // $checklists = DB::table('checklists')->where('smallsort', '')->get();
+      $checklists = DB::table('checklists')->get();
+
+      // dd($checklists);
+      $result = [];
+
+      // checklist 별로 묶어서 출력하려고 하던 코드
+      // $substancesCount = count($checklists);
+      // $checkTitlePlag = 1;
+      // for ($i=0; $i<$substancesCount; $i++) {
+      //   $result["check".$checkTitlePlag] = [$checklists[$i]->];
+      // }
+
+      // 데모용
+      $checkIndex = 1;
+      foreach ($checklists as $check_substance) {
+        $planChecklist = DB::table('plan_checklists')
+        ->where('plan', $plan->plan)->where('checklist', $check_substance->no)->first();
+          // ->where('plan', 6)->where('checklist', $check_substance->no)->first();
+        $respond = DB::table('checklist_responds')->where('checklist', $planChecklist->no)->first();
+        // dd($respond);
+        // var_dump($check_substance->substance."<br>");
+        // dd($check_substance->smallsort);
+        if ($check_substance->smallsort != null)
+          $smallsort = $check_substance->smallsort;
+        else $smallsort = '';
+        $result["check".$checkIndex] = ["title" => $check_substance->title,
+                                        "no" => $planChecklist->no,
+                                        "bigsort" => $check_substance->bigsort,
+                                        "smallsort" => $smallsort,
+                                        "substance" => $check_substance->substance,
+                                        "respond" => $respond->respond];
+
+        $checkIndex++;
+      }
+
+      // dd($result);
+      return json_encode($result);
     }
 }

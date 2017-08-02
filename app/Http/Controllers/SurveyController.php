@@ -20,7 +20,7 @@ class SurveyController extends Controller
       $surveyNoArr = array();
       $surveyTitleArr = array();
       $surveyDateArr = array();
-      
+
       $surveies = DB::table('surveies')->orderBy('created_at', 'desc')->paginate(15);
       // $surveies = DB::table('surveies')->paginate(15);
       // $surveies = DB::table('surveies')->get();
@@ -32,7 +32,7 @@ class SurveyController extends Controller
       // $surveyNoArr = array_reverse($surveyNoArr);
       // $surveyTitleArr = array_reverse($surveyTitleArr);
       // $surveyDateArr = array_reverse($surveyDateArr);
-      
+
         return view('survey.survey_list', [
           'surveies'  => $surveies,
           'survey_no' => $surveyNoArr,
@@ -40,7 +40,7 @@ class SurveyController extends Controller
           'survey_date' => $surveyDateArr,
         ]);
     }
-  
+
     /**
      * Show the form for creating a new resource.
      * 설문조사를 작성하는 뷰를 보여준다
@@ -57,11 +57,11 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     
+
     public function store(Request $request)
     {
       // 입력한 값을 가져와서
-     
+
      $newSurveyName = $request->input('survey_title');
      $newSurvey = $request->input('q_title');
     //  dd($newSurveyName,$newSurvey);
@@ -76,7 +76,7 @@ class SurveyController extends Controller
        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
      ]);
      for ($i=0; $i<$qCount; $i++) {
-       var_dump ($surveyId);
+      //  var_dump ($surveyId);
        $articleId = DB::table('survey_articles')->insertGetId([
           'survey' => $surveyId,
           'article' => $newSurvey[$i][1],
@@ -93,7 +93,7 @@ class SurveyController extends Controller
            ]);
          }
        }
-       
+
      }
     //  dd($newSurvey);
      // 리스트로 넘어가기 방법
@@ -170,5 +170,40 @@ class SurveyController extends Controller
     public function destroy($survey)
     {
         //
+    }
+
+    public function total($survey) {
+      $qTitle = [];
+      $survey = \DB::table('surveies')->where('no', $survey)->first();
+      $articles = \DB::table('survey_articles')->where('survey', $survey->no)->get();
+
+      $articleCount = count($articles);
+
+      for ($i=0; $i<$articleCount; $i++) {
+        $qTitle[$i][0] = $articles[$i]->type;
+        $qTitle[$i][1] = $articles[$i]->article;
+        if($qTitle[$i][0] == "obj") {
+          $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
+          $answerCount = count($answers);
+          for($j=0; $j<$answerCount; $j++) {
+            $qTitle[$i][2][$j] = $answers[$j]->substance;
+            $qTitle[$i][3][$j] = \DB::table('survey_respond_contents')->where('respond', 'like', $j)->count();
+          }
+        } elseif($qTitle[$i][0] == "ox") {
+          $qTitle[$i][2] = \DB::table('survey_respond_contents')->where('respond', "true")->count();
+          $qTitle[$i][3] = \DB::table('survey_respond_contents')->where('respond', "false")->count();
+        } else {
+          $subs = \DB::table('survey_respond_contents')->where('survey_article', $articles[$i]->no)->get();
+          foreach ($subs as $sub) {
+            # code...
+            $qTitle[$i][2][] = $sub->respond;
+          }
+        }
+      }
+
+      // dd($qTitle);
+      return view('survey_result', [
+        'q_title' => $qTitle,
+      ]);
     }
 }

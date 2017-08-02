@@ -316,7 +316,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(editBlock) {
     if(!editBlock.disabled){
 
-    var input = {}
+    var input = {};
 
     if (editBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
@@ -324,12 +324,13 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       input.hint      = editBlock.getFieldValue('HINT');
       input.size      = editBlock.getFieldValue('SIZE');
     }
-    editargs.push(input);
+    JS.edit = input;
     // message.push('%' + txt_args.length);
     lastInput = editargs;
     }
     editBlock = editBlock.nextConnection && editBlock.nextConnection.targetBlock();
   }
+
   while(clickblock) {
     if(!clickblock.disabled  && !clickblock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(
@@ -412,7 +413,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           break;
       }
       input.name  = txtBlock.getFieldValue('TEXTNAME');
-      input.text  = txtBlock.getFieldValue('DESCRIPTION');
+      input.description  = txtBlock.getFieldValue('DESCRIPTION');
       input.size  = txtBlock.getFieldValue('FONTSIZE');
       input.color = txtBlock.getFieldValue('COLOUR');
       input.background = txtBlock.getFieldValue('BACKCOLOUR');
@@ -555,11 +556,11 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     JS.button = btn_args;
   }
   if(srtargs.length) {
-    JS.click = srtargs;
+    JS.script = srtargs;
   }
-  if(editargs.length) {
-    JS.edit = editargs;
-  }
+  // if(editargs.length) {
+    // JS.edit =  editargs;
+  // }
 
   console.log("^^"+rootBlock);
 
@@ -898,38 +899,46 @@ FactoryUtils.getFieldsJs_ = function(block) {
    return fields;
  };
 FactoryUtils.getFieldsJson_ = function(block) {
-  var script_fields = [];
-
+  var script_fields = {};
+  var script_obj = [];
   while (block) {
     if (!block.disabled && !block.getInheritedDisabled()) {
       switch (block.type) {
+        case 'openMap':
+            script_fields['openMap'] =block.getFieldValue('BOOL');
+          break;
+        case 'closeMap':
+            script_fields['closeMap'] =block.getFieldValue('BOOL');
+          break;
         case 'toast':
         script_fields.push({
           toast: block.getFieldValue('TOAST')
         });
           break;
         case 'quest':
-         script_fields.push({
-          quest: block.getFieldValue('QUEST')
-        });
+        //  script_fields.push({
+        //   quest: block.getFieldValue('QUEST')
+        // });
+        script_fields['quest'] = block.getFieldValue('QUEST');
           break;
         case 'endQuest':
-         script_fields.push({
-             endQuest: block.getFieldValue('BOOL')
-            });
+        //  script_fields.push({
+        //      endQuest: block.getFieldValue('BOOL')
+        //     });
+         script_fields['endQuest'] = block.getFieldValue('BOOL');
           break;
         case 'bingo':
-          script_fields.push({
-            bingo: block.getFieldValue('BINGO')
-          });
-          // $.merge(script_fields,script_fields);
+          // script_fields.push({
+          //   bingo: block.getFieldValue('BINGO')
+          // });
+          script_fields['bingo'] = block.getFieldValue('BINGO');
           break;
         case 'endBingo':
-          script_fields.push({
-            endBingo: block.getFieldValue('BOOL')
-          });
+          // script_fields.push({
+          //   endBingo: block.getFieldValue('BOOL')
+          // });
+          script_fields['endBingo'] = block.getFieldValue('BINGO');
           break;
-
         case 'endCollection':
           script_fields.push({
             endCollection: block.getFieldValue('BOOL')
@@ -980,29 +989,31 @@ FactoryUtils.getFieldsJson_ = function(block) {
           });
           break;
         case 'CONFIG':
-          script_fields.push({
-            config: {
+          script_obj.push({
               target_name:block.getFieldValue('CONTENTNAME'),
               visionable:block.getFieldValue('VISION'),
               clickable:block.getFieldValue('CLICK'),
               disable:block.getFieldValue('DISABLE')
-            }
           });
+          script_fields['config'] = script_obj;
           break;
         case 'OUT_IMG':
-          script_fields.push({
-              out_img:block.getFieldValue('OUT_SRC')
-          });
+          // script_fields.push({
+          //     out_img:block.getFieldValue('OUT_SRC')
+          // });
+          script_fields['out_img'] = block.getFieldValue('OUT_SRC');
           break;
         case 'OUT_TXT':
-          script_fields.push({
-              out_txt: block.getFieldValue('OUT_TXT')
-          });
+          // script_fields.push({
+          //     out_txt: block.getFieldValue('OUT_TXT')
+          // });
+          script_fields['out_txt'] = block.getFieldValue('OUT_TXT');
           break;
         case 'END':
-          script_fields.push({
-              end: block.type
-          });
+          // script_fields.push({
+          //     end: block.type
+          // });
+          script_fields['end'] = 'end';
       }
     }
     block = block.nextConnection && block.nextConnection.targetBlock();
