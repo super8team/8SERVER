@@ -150,10 +150,7 @@ colour:160,
 previousStatement:null,
 nextStatement:null
 },
-{type:"closeMap",message0:"%1",
-args0:[{type:"field_dropdown",name:"BOOL",
-options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],
-colour:160,tooltip:"%{BKY_LOGIC_BOOLEAN_TOOLTIP}",helpUrl:"%{BKY_LOGIC_BOOLEAN_HELPURL}"},
+
     {type:"logic_boolean",message0:"%1",
 args0:[{type:"field_dropdown",name:"BOOL",
 options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],

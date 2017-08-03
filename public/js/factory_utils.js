@@ -93,11 +93,14 @@ goog.provide('FactoryUtils');
 //   this.blockLibraryController.openBlock2(xml3);
 // }
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
-  blockType = FactoryUtils.cleanBlockType(blockType);
+  console.log(blockType);
+
+
   console.log("현재 블록 작업 할 게요!");
   console.log(rootBlock);
   switch (format) {
     case 'JSON':
+
       var code = FactoryUtils.formatJson_(blockType, rootBlock);
 
       this.block_code = code;
@@ -173,6 +176,8 @@ FactoryUtils.cleanBlockType = function(blockType) {
   if (!blockType) {
     return '';
   }
+  console.log('블럭타입');
+  console.log(blockType);
   return blockType.replace(/\W/g, '_').replace(/^(\d)/, '_$1');
 };
 
@@ -284,7 +289,8 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   console.log("현재rootBlock:"+rootBlock);
   var JS = {};
   // Type is not used by Blockly, but may be used by a loader.
-  JS.type = blockType;
+
+  JS.name = blockType;
 
   JS.vertical   = FactoryUtils.getVerticalRootBlock_(rootBlock);
   JS.horizontal = FactoryUtils.getHorizontalRootBlock_(rootBlock);
@@ -310,7 +316,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   while(editBlock) {
     if(!editBlock.disabled){
 
-    var input = {}
+    var input = {};
 
     if (editBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
@@ -318,12 +324,13 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       input.hint      = editBlock.getFieldValue('HINT');
       input.size      = editBlock.getFieldValue('SIZE');
     }
-    editargs.push(input);
+    JS.edit = input;
     // message.push('%' + txt_args.length);
     lastInput = editargs;
     }
     editBlock = editBlock.nextConnection && editBlock.nextConnection.targetBlock();
   }
+
   while(clickblock) {
     if(!clickblock.disabled  && !clickblock.getInheritedDisabled()){
       var script_fields = FactoryUtils.getFieldsJson_(
@@ -357,6 +364,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
           input.true   = CHECKEDIT1;
           input.false  = CHECKEDIT2;
         } else {
+          var a = [];
           input.name   = clickblock.getFieldValue('INPUTNAME');
           input.action = script_fields;
         }
@@ -372,10 +380,13 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
 
     if (btnBlock.type != 'input_dummy') {
     //name 속성의 값을 가져옴
-      input.name      = btnBlock.getFieldValue('FIELDNAME');
+      input.id        = btnBlock.getFieldValue('FIELDNAME');
+      input.name      = btnBlock.getFieldValue('TEXT');
+      input.fill      = btnBlock.getFieldValue('FONTCOLOR');
       input.color     = btnBlock.getFieldValue('COLOUR');
-      input.text      = btnBlock.getFieldValue('TEXT');
-      input.fontColor = btnBlock.getFieldValue('FONTCOLOR');
+      input.size      = btnBlock.getFieldValue('FONTSIZE');
+      input.width     = btnBlock.getFieldValue('WIDTH');
+      input.height    = btnBlock.getFieldValue('HEIGHT');
     }
     btn_args.push(input);
     // message.push('%' + txt_args.length);
@@ -401,10 +412,12 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             input.id = '2';
           break;
       }
-      input.text  = txtBlock.getFieldValue('TEXT');
       input.name  = txtBlock.getFieldValue('TEXTNAME');
+      input.description  = txtBlock.getFieldValue('DESCRIPTION');
+      input.size  = txtBlock.getFieldValue('FONTSIZE');
       input.color = txtBlock.getFieldValue('COLOUR');
-      input.size  = txtBlock.getFieldValue('VALUE');
+      input.background = txtBlock.getFieldValue('BACKCOLOUR');
+      input.alpha = txtBlock.getFieldValue('ALPHA');
     }
       txt_args.push(input);
       // message.push('%' + txt_args.length);
@@ -428,71 +441,71 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         case 'image_1':
           console.log('1');
             input.id = '1';
-            var elements = document.getElementsByClassName('file_list');
-            if(contentsBlock){
-              console.log(document.getElementById('change').value);
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[0] == null)
-              {
-                cform.upFile.click();
-              }
-            }
-            input.src = document.getElementsByClassName('file_list')[0].value;
+            // var elements = document.getElementsByClassName('file_list');
+            // if(contentsBlock){
+            //   console.log(document.getElementById('change').value);
+            //   if(document.getElementById('change').value == 1)
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else if(elements[0] == null)
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+            // input.src = document.getElementsByClassName('file_list')[0].value;
             break;
         case 'image_2':
           console.log('2');
             input.id = '2';
-            console.log('2');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[1] == null)
-              {
-                cform.upFile.click();
-              }
-            }
-          input.src = document.getElementsByClassName('file_list')[1].value;
+          //   console.log('2');
+          //   if(contentsBlock){
+          //     if(document.getElementById('change').value == 1)
+          //     {
+          //       console.log('들어옴');
+          //       break;
+          //     }
+          //     else if(elements[1] == null)
+          //     {
+          //       cform.upFile.click();
+          //     }
+          //   }
+          // input.src = document.getElementsByClassName('file_list')[1].value;
           break;
         case 'image_3':
         console.log('3');
             input.id = '3';
-            console.log('3');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[2]== null)
-              {
-                cform.upFile.click();
-              }
-            }
-            input.src = document.getElementsByClassName('file_list')[2].value;
+            // console.log('3');
+            // if(contentsBlock){
+            //   if(document.getElementById('change').value == 1)
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else if(elements[2]== null)
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+            // input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_4':
         console.log('4');
             input.id = '4';
-            console.log('4');
-            if(contentsBlock){
-              if(document.getElementById('change').value == 1)
-              {
-                console.log('들어옴');
-                break;
-              }
-              else if(elements[3]== null)
-              {
-                cform.upFile.click();
-              }
-            }
-          input.src = document.getElementsByClassName('file_list')[3].value;
+          //   console.log('4');
+          //   if(contentsBlock){
+          //     if(document.getElementById('change').value == 1)
+          //     {
+          //       console.log('들어옴');
+          //       break;
+          //     }
+          //     else if(elements[3]== null)
+          //     {
+          //       cform.upFile.click();
+          //     }
+          //   }
+          // input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
       var a = document.getElementsByClassName('file_list')
@@ -502,7 +515,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
-        // input.src = contentsBlock.getFieldValue('SRC');
+        input.src = contentsBlock.getFieldValue('SRC');
         input.width = contentsBlock.getFieldValue('WIDTH');
         input.height = contentsBlock.getFieldValue('HEIGHT');
       }
@@ -543,11 +556,11 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
     JS.button = btn_args;
   }
   if(srtargs.length) {
-    JS.click = srtargs;
+    JS.script = srtargs;
   }
-  if(editargs.length) {
-    JS.edit = editargs;
-  }
+  // if(editargs.length) {
+    // JS.edit =  editargs;
+  // }
 
   console.log("^^"+rootBlock);
 
@@ -886,37 +899,46 @@ FactoryUtils.getFieldsJs_ = function(block) {
    return fields;
  };
 FactoryUtils.getFieldsJson_ = function(block) {
-  var script_fields = [];
-
+  var script_fields = {};
+  var script_obj = [];
   while (block) {
     if (!block.disabled && !block.getInheritedDisabled()) {
       switch (block.type) {
+        case 'openMap':
+            script_fields['openMap'] =block.getFieldValue('BOOL');
+          break;
+        case 'closeMap':
+            script_fields['closeMap'] =block.getFieldValue('BOOL');
+          break;
         case 'toast':
         script_fields.push({
           toast: block.getFieldValue('TOAST')
         });
           break;
         case 'quest':
-         script_fields.push({
-          quest: block.getFieldValue('QUEST')
-        });
+        //  script_fields.push({
+        //   quest: block.getFieldValue('QUEST')
+        // });
+        script_fields['quest'] = block.getFieldValue('QUEST');
           break;
         case 'endQuest':
-         script_fields.push({
-             endQuest: block.getFieldValue('BOOL')
-            });
+        //  script_fields.push({
+        //      endQuest: block.getFieldValue('BOOL')
+        //     });
+         script_fields['endQuest'] = block.getFieldValue('BOOL');
           break;
         case 'bingo':
-          script_fields.push({
-            bingo: block.getFieldValue('BINGO')
-          });
+          // script_fields.push({
+          //   bingo: block.getFieldValue('BINGO')
+          // });
+          script_fields['bingo'] = block.getFieldValue('BINGO');
           break;
         case 'endBingo':
-          script_fields.push({
-            endBingo: block.getFieldValue('BOOL')
-          });
+          // script_fields.push({
+          //   endBingo: block.getFieldValue('BOOL')
+          // });
+          script_fields['endBingo'] = block.getFieldValue('BINGO');
           break;
-
         case 'endCollection':
           script_fields.push({
             endCollection: block.getFieldValue('BOOL')
@@ -941,7 +963,9 @@ FactoryUtils.getFieldsJson_ = function(block) {
             text: block.getFieldValue('TEXT'),
             name: block.getFieldValue('FIELDNAME'),
             color: block.getFieldValue('COLOUR'),
-            size: block.getFieldValue('VALUE')
+            size: block.getFieldValue('VALUE'),
+            background: block.getFieldValue('BACKCOLOUR'),
+            alpah: block.getFieldValue('ALPHA')
           });
             break;
         case 'image_1':
@@ -965,29 +989,31 @@ FactoryUtils.getFieldsJson_ = function(block) {
           });
           break;
         case 'CONFIG':
-          script_fields.push({
-            config: {
+          script_obj.push({
               target_name:block.getFieldValue('CONTENTNAME'),
               visionable:block.getFieldValue('VISION'),
               clickable:block.getFieldValue('CLICK'),
               disable:block.getFieldValue('DISABLE')
-            }
           });
+          script_fields['config'] = script_obj;
           break;
         case 'OUT_IMG':
-          script_fields.push({
-              out_img:block.getFieldValue('OUT_SRC')
-          });
+          // script_fields.push({
+          //     out_img:block.getFieldValue('OUT_SRC')
+          // });
+          script_fields['out_img'] = block.getFieldValue('OUT_SRC');
           break;
         case 'OUT_TXT':
-          script_fields.push({
-              out_txt: block.getFieldValue('OUT_TXT')
-          });
+          // script_fields.push({
+          //     out_txt: block.getFieldValue('OUT_TXT')
+          // });
+          script_fields['out_txt'] = block.getFieldValue('OUT_TXT');
           break;
         case 'END':
-          script_fields.push({
-              type: block.type
-          });
+          // script_fields.push({
+          //     end: block.type
+          // });
+          script_fields['end'] = 'end';
       }
     }
     block = block.nextConnection && block.nextConnection.targetBlock();

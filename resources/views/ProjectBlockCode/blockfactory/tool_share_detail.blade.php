@@ -4,7 +4,7 @@
 
 
 </script>
-<body onload='resizeWindow(this)'>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
       @php
@@ -12,7 +12,7 @@
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
       <div style="display:inline">
-        <span class="star-input" style="margin-top:100px">
+        <span class="star-input" style="margin-top:140px; margin-left:100px;">
           <span class="input" style="margin-top:50px">
             <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
             <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
@@ -69,40 +69,31 @@
   win.resizeTo(wid,hei);
 
   }
-  function myfunction(rating){
-              switch(rating){
-                case '1':
-                  document.getElementsByName('star-input')[0].checked=true;
-                break;
-                case '2':
-                  document.getElementsByName('star-input')[1].checked=true;
-                break;
-                case '3':
-                  document.getElementsByName('star-input')[2].checked=true;
-                break;
-                case '4':
-                  document.getElementsByName('star-input')[3].checked=true;
-                break;
-                case '5':
-                  document.getElementsByName('star-input')[4].checked=true;
-                break;
-                case '6':
-                  document.getElementsByName('star-input')[5].checked=true;
-                break;
-                case '7':
-                  document.getElementsByName('star-input')[6].checked=true;
-                break;
-                case '8':
-                  document.getElementsByName('star-input')[7].checked=true;
-                break;
-                case '9':
-                  document.getElementsByName('star-input')[8].checked=true;
-                break;
-                case '10':
-                  document.getElementsByName('star-input')[9].checked=true;
-                break;
+              function myfunction(s){
+                console.log('진입');
+                console.log(s);
+                if(1<=s && s<2)
+                    document.getElementsByName('star-input')[0].checked=true;
+                if(2<=s && s<3)
+                    document.getElementsByName('star-input')[1].checked=true;
+                if(3<=s && s<4)
+                    document.getElementsByName('star-input')[2].checked=true;
+                if(4<=s && s<5)
+                    document.getElementsByName('star-input')[3].checked=true;
+                if(5<=s && s<6)
+                    document.getElementsByName('star-input')[4].checked=true;
+                if(6<=s && s<7)
+                    document.getElementsByName('star-input')[5].checked=true;
+                if(7<=s && s<8)
+                    document.getElementsByName('star-input')[6].checked=true;
+                if(8<=s && s<9)
+                    document.getElementsByName('star-input')[7].checked=true;
+                if(9<=s && s<10)
+                    document.getElementsByName('star-input')[8].checked=true;
+                if(s==10)
+                    document.getElementsByName('star-input')[9].checked=true;
               }
-            }
+
             var starRating = function(){
             var $star = $(".star-input"),
                 $result = $star.find("output>b");

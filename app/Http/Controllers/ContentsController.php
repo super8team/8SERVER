@@ -212,7 +212,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
          // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
             DB::table('contents')->insert([
-                ['spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_packages' => $newContentsPackage->no, 'copy' => 1]
+                ['spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_packages' => $newContentsPackage->no, 'copy' => 1]
             ]);
 
         }
@@ -259,7 +259,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
         $contentsName = [];
         $contentsId = [];
-
+        $package_contents_sum = 0;
         // packageId를 가지는 contents_pacage_share 가져옴
         $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 
@@ -273,8 +273,12 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
 
         foreach($contents as $content){
+            $package_contents_sum=$package_contents_avg + $content->avg;
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
+
+        $package_contents_avg = 7;
+        // $package_contents_avg = $package_contents_sum / 1;
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )
@@ -284,7 +288,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
                                                      ->with('view', $contentsPackageShare->views)
                                                      ->with('writer', $user->name)
                                                      ->with('download_count', $contentsPackageShare->downloads)
-                                                     ->with('contents_name', $contentsName);
+                                                     ->with('contents_name', $contentsName)
+                                                     ->with('package_avg',$package_contents_avg);
 
     }
     public function shareRegister(Request $request)
@@ -354,8 +359,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       //교사가 가지고 있는 패키지를 담습니다.
 
-
-      // $picnic = ['first'=>'경북궁','second'=>'왕릉','third'=>'첨성대'];
       return view('ProjectBlockCode.blockfactory.tool_confirm',
                 [
                   'field_lists'=>$field_list_array,'package'=>$package_list_array,
@@ -374,34 +377,43 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];
-      // dd($packages);
+
       // dd($fields);
       //패키지를 등록할 현장학습리스트를 추출한다
-      for($i = 0; $i<10; $i++){
+      for($i = 0; $i<15; $i++){
         if(array_key_exists($i, $packages)){
-          array_push($planField,$fields[$i],$packages[$i]);
+          // array_push($planField,$fields[$i],$packages[$i]);
+          $planField[$i][0] = $fields[$i];
+          $planField[$i][1]= $packages[$i];
+          // $planField[$i]=$packages[$i];
         }
       }
-      $pack = count($packages);
-      // dd(count($planField)-1);
-      // dd($planField);
-      // dd(count($pack));
-      // dd($planField);
-      // dd($packages);
-      // dd($planField);
-      for($i = 0 ; $i < count($planField)-1 ; $i++){
-        //체험학습 리스트
-        $fieldList  =   $planField[$i];
-        // dd(count($planField));
-        for($j = 0; $j < $pack; $j++){
-          $package = $planField[$i+1][$j];
-          DB::table('field_learning_plans')
-                            ->where([
-                              ['teacher','=', Auth::user()->no],
-                              ['name', '=',$fieldList],
-                            ])->update(['contents_package'=>$package]);
-        }
+
+      for($i = 0; $i < count($planField); $i++){
+        $plan = $planField[$i][0];
+
+        $pack = $planField[$i][1][0];
+
+        DB::table('field_learning_plans')
+                      ->where([
+                        ['teacher',Auth::user()->no],
+                        ['no',$plan]
+                      ])->update(['contents_package'=>$pack]);
       }
+
+      // for($i = 0 ; $i < count($planField)-1 ; $i++){
+      //   //체험학습 리스트
+      //   $fieldList  =   $planField[$i];
+      //   // dd(count($planField));
+      //   for($j = 0; $j < $pack; $j++){
+      //     $package = $planField[$i+1][$j];
+      //     DB::table('field_learning_plans')
+      //                       ->where([
+      //                         ['teacher','=', Auth::user()->no],
+      //                         ['name', '=',$fieldList],
+      //                       ])->update(['contents_package'=>$package]);
+      //   }
+      // }
         // $package    =   $planField[$i+1]
           // DB::table('field_learning_plans')
           //             ->where('teacher',Auth::user()->no)
@@ -412,7 +424,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       // for($i = 0; $i < $contents_xml_sizeof; $i++)
       // {
       //   DB::table('contents')->insert([
-      //       ['spec' => $contents_mgs[$i], 'xml' => $contents_xml[$i], 'like'=>0,'contents_package'=>2,'copy'=>0,'name'=>'070615']
+      //       ['spec' => $contents_mgs[$i], 'xml' => $contents_xml[$i], 'avg'=>0,'contents_package'=>2,'copy'=>0,'name'=>'070615']
       //   ]);
       //   //
       //   //
@@ -464,7 +476,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
           $content_spec = json_encode($json);
 
           DB::table('contents')->insert([
-              ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
+              ['spec' => $content_spec, 'xml' => $content_xml, 'avg' => 0,
               'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
           ]);
 
@@ -479,7 +491,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             $package_key = DB::table('contents_packages')->where('name','=', $package_name)->first();
             //정보들을 가지고 콘텐츠를 저장한다
             DB::table('contents')->insert([
-                ['spec' => $content_spec, 'xml' => $content_xml, 'like' => 0,
+                ['spec' => $content_spec, 'xml' => $content_xml, 'avg' => 0,
                 'contents_package' => $package_key->no, 'copy' => 0,'name'=>$content_name]
             ]);
             //사용자의 패키지를 담을 배열 변수
@@ -508,6 +520,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
 
+
       //공유 패키지 이미지
       Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
       dd('이미지 저정 방법 알아보기');
@@ -519,8 +532,9 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       //공유할 패키지를 새로 등록한다.
       DB::table('contents_packages')->insert([
           [
-           'owner' => Auth::user()->no,
-           'name' => $package_name
+           'owner'  => Auth::user()->no,
+           'name'   => $package_name,
+           'explain'=> $explain
           ]
       ]);
 
@@ -533,7 +547,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
        // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
           DB::table('contents')->insert([
-              ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'like' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
+              ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
           ]);
       }
 
@@ -568,7 +582,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         //새로운 컨텐츠 패키지를 갖는 컨텐츠들을 저장한다.
         for($i = 0; $i<count($content_arr); $i++){
           DB::table('contents')->insert([
-            'spec'=>$content_arr[$i]->spec,'xml'=>$content_arr[$i]->xml,'like'=>0,
+            'spec'=>$content_arr[$i]->spec,'xml'=>$content_arr[$i]->xml,'avg'=>0,
             'contents_package'=>$new_package->no,'copy'=>0,'name'=>$content_arr[$i]->name
           ]);
         }
@@ -588,7 +602,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         //자신의 패키지에 콘텐츠를 저장한다.
         for($i=0; $i<count($contents_infor); $i++){
           DB::table('contents')->insert([
-            'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'like'=>0,
+            'spec'=>$contents_infor[$i]->spec,'xml'=>$contents_infor[$i]->xml,'avg'=>0,
             'contents_package'=>$package_num,'copy'=>0,'name'=>$contents_infor[$i]->name
           ]);
         }

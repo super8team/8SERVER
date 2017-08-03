@@ -12,6 +12,28 @@ class ContentsSeeder extends Seeder
     public function run()
     {
         //
+        // {   "number": 1,"name" : "문제1",
+        //
+        //     "vertical" : "center","horizontal" : "center","location" : "(35.896480,128.620723)","visionable" : true,"clickable" : true,"disable" : false,"script" : [{"type" : "CHECKEDIT","name" : "확인","answer" : "다보탑","true" : {"out_img" : "http://20th.kclf.org/image/now/pop_o.gif","end" : "end"},
+        //     "false" :{"out_img" : "http://health.hoseo.ac.kr/dbimage/health/WebData/img/sub03/hpg_popup_incorrect.png","endQuest" : true}}],
+        //     "image" : [{"id" : 1,"name": "tower","src" : "http://www.cha.go.kr/unisearch/images/national_treasure/1612679.jpg","width" : 900,"height" : 900}],"text"  : [{"id" 	: 1,"name": "데모문제","description" : "아래 구조물의 이름을 \n 입력해주세요","size": 25,"color": "#000000","background": "#ffffff","alpha": 0.7}],
+        //     "edit"  : {
+        //       "text" : "",
+        //       "hint" : "이곳을 눌러서 입력하세요",
+        //       "size" : 20
+        //     },
+        //     "button" : [
+        //       {
+        //         "id"   : 1,
+        //         "name" : "확인",
+        //         "fill" : "#DBDBDB",
+        //         "color": "#00182E",
+        //         "size" : 20,
+        //         "width": 250,
+        //         "height": 200
+        //       }
+        //     ]
+        // },
         DB::table('contents')->insert([
         ['spec'=> '{  "type": "이순신",  "vertical": "TOP",  "horizontal": "RIGHT",  "image": [    {      "id": "1",      "name": "default",      "width": "15",      "height": "15"    },    {      "id": "2",      "name": "default",      "width": "15",      "height": "15"    },    {      "id": "3",      "name": "default",      "width": "15",      "height": "15"    },    {      "id": "4",      "name": "default",      "width": "15",      "height": "15"    }  ],  "click": [    {      "type": "CHECKEDIT",      "name": "NAME",      "answer": "이순신",      "true": [        {          "type": "정답"        },        {          "type": "OUT_TXT"        }      ],      "false": [        {          "type": "오답"        },        {          "type": "OUT_TXT"        }      ]    }  ],  "location": "(35.8973756177235, 128.62051129326574)",  "visionable": "TRUE",  "clickable": "TRUE",  "disable": "TRUE"}',
          'xml'=>'<xml xmlns="http://www.w3.org/1999/xhtml"> <block type="factory_base" id="4V=(e;gIV)PnEpe?C04p" deletable="false" movable="false" x="0" y="0">  <mutation connections="null"></mutation><field name="NAME">이순신</field><value name="VERTICAL"> <block type="vertical" id="d*RgQ/Pvf4,N~m4.d7)t" deletable="false" movable="false"> <field name="VERTICAL">TOP</field></block>    </value>    <value name="HORIZONTAL">      <block type="horizontal" id="L$[JqoKzA-$b5nlH:O]c" deletable="false" movable="false"> <field name="HORIZONTAL">RIGHT</field>   </block>  </value> <statement name="SCRIPT">   <block type="CHECKEDIT" id="x8fY,r})%/JY,mdr$QC7"> <field name="EDITINPUTNAME">NAME</field> <field name="ANSWER">이순신</field>  <statement name="CHECKEDIT1">  <block type="OUT_TXT" id="[U#X7/{c`M|5jlZ`dm^a"><field name="OUT_TXT">정답</field>   </block>  </statement> <statement name="CHECKEDIT2">   <block type="OUT_TXT" id="?/%H%,H$E$mR8tdZ~f`G"><field name="OUT_TXT">오답</field> </block></statement>   </block>  </statement> <statement name="IMAGES"> <block type="image_1" id="mftw%g%W;?P@aF_tuL/J"><field name="SRC">park.jpg</field> <field name="IMGNAME">default</field> <field name="WIDTH">15</field>  <field name="HEIGHT">15</field>  <next>  <block type="image_2" id="=T`TaJ)Q2Up`4krjbc-U">  <field name="SRC">abc.jpg</field><field name="IMGNAME">default</field> <field name="WIDTH">15</field> <field name="HEIGHT">15</field><next>   <block type="image_3" id="bi]-a0{k^6v20WL/8Kg[">  <field name="SRC">kim.jpg</field>  <field name="IMGNAME">default</field><field name="WIDTH">15</field> <field name="HEIGHT">15</field> <next> <block type="image_4" id="]}ewjGecMOMNTwQG?i:F"><field name="SRC">le.jpg</field> <field name="IMGNAME">default</field> <field name="WIDTH">15</field> <field name="HEIGHT">15</field> </block> </next> </block>  </next></block> </next> </block>    </statement>    <value name="VISIONABLE">      <block type="logic_boolean" id="#~d8cRaZe7RgUx==3@Wk" deletable="false" movable="false">        <field name="BOOL">TRUE</field>  </block> </value> <value name="CLICKABLE">  <block type="logic_boolean" id="YGux$mLCYHC|D.,7@z;q" deletable="false" movable="false">  <field name="BOOL">TRUE</field></block>  </value>    <value name="DISABLE">  <block type="logic_boolean" id="F:zzv8KIJ_F@ksJQ[{(k" movable="false">  <field name="BOOL">TRUE</field>  </block> </value></block></xml>',

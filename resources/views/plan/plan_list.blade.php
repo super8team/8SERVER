@@ -15,11 +15,14 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">계획 리스트
-          <a role="button" href="{{route('main')}}" aria-label="Right Align"
-           class="btn btn-sm btn-default ">
-          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-            뒤로 돌아가기
-          </a>
+           <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
+            class="btn btn-sm btn-default pull-right">
+             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+             새 계획 작성
+           </a>
+           <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-sm btn-default pull-right">
+             콘텐츠 만들기
+           </a>
         </h3>
       </div>
       <div class="panel-body">
@@ -30,12 +33,11 @@
               <th>체험 학습 이름</th>
               <th>체험학습 실시일</th>
               <th>바로가기
-                  <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-                   class="btn btn-sm btn-default pull-right">
-
-                    {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-                    새 계획 작성
-                  </a>
+                <a role="button" href="{{route('main')}}" aria-label="Right Align"
+                 class="btn btn-sm btn-default pull-right">
+                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                   뒤로 돌아가기
+                 </a>
               </th>
             </tr>
           </thead>
@@ -69,6 +71,11 @@
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
+                    {{-- <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                      참여 그룹
+                    </a> --}}
+
+
                     <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
                         상세 계획
                     </a>
@@ -84,12 +91,12 @@
                       공유
                     </button>
 
-                    <div class="modal modal fade " id="share" tabindex="-1" 
+                    <div class="modal modal fade " id="share" tabindex="-1"
                     role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" 
+                            <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="shareLabel">공유하기</h4>
                           </div>
@@ -111,30 +118,8 @@
                </tr>
           @endfor
         </tbody>
-        </table>
-        <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-sm btn-default">
-          콘텐츠 툴
-        </a>
-        {{-- 페이지 네이션 --}}
-        <nav class="page text-center">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        </table>        
+        {{-- 페이지 네이션 --}}        
       </div>{{-- panel-body --}}
     </div>{{-- pannel panel-body --}}
   </div>{{-- container --}}

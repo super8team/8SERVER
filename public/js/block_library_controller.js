@@ -69,15 +69,19 @@ BlockLibraryController = function(blockLibraryName, opt_blockLibraryStorage) {
  * @return {string} The current block's type.
  * @private
  */
+ var contents_name;
 BlockLibraryController.prototype.getCurrentBlockType = function() {
   var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
-
+  contents_name = blockType;
+  console.log('커런트타입');
   console.log(blockType);
   // Replace invalid characters.
   return FactoryUtils.cleanBlockType(blockType);
 };
-
+BlockLibraryController.prototype.getCurrentBlockName = function() {
+  return contents_name;
+};
 /**
  * Removes current block from Block Library and updates the save and delete
  * buttons so that user may save block to library and but not delete.
@@ -315,6 +319,9 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
 BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
+  blockType = this.getCurrentBlockName();
+  console.log('콘이름');
+  console.log(blockType);
   // If user has not changed the name of the starter block.
   // if(this.packageBasket.length === 0) {
   //   alert("패키지를 생성 한 후 콘텐츠를 생성해 주세요");
@@ -327,7 +334,7 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var xmlElement = goog.dom.createDom('xml');
   var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
-
+  
   // Do not add option again if block type is already in library.
   if (!this.has(blockType)) {
     console.log('call addoption');
@@ -354,6 +361,8 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
  */
 BlockLibraryController.prototype.has = function(blockType) {
   var blockLibrary = this.storage.blocks;
+  console.log('블럭 저장소');
+  console.log(blockLibrary);
   return (blockType in blockLibrary && blockLibrary[blockType] != null);
 };
 

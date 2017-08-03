@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use App\Http\Middleware\CheckRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ Route::get('/', function () {
 })->name('main');
 
 Route::get('/test23',function(){
-  return view('._student_result');
+  // return view('._student_result');
+  $ch = new CheckRole();
 });
 
 
@@ -39,10 +41,14 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 // ******************** 플랜 리스트 *********************
 // 간단 계획
+Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')
+            ->middleware('role:teacher'); // -->index
+// Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')->;
+Route::get('plan/parents', 'PlanController@parents')->name('plan.parents')
+            ->middleware('role:parents'); // -->index
+Route::get('plan/students', 'PlanController@student')->name('plan.student')
+            ->middleware('role:student'); // -->index
 
-Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher'); // -->index
-Route::get('plan/parents', 'PlanController@parents')->name('plan.parents');
-Route::get('plan/students', 'PlanController@student')->name('plan.student');
 Route::get('plan/download', 'PlanController@download')->name('plan.download');
 Route::resource('plan', 'PlanController');
 Route::resource('map', 'MapController');
@@ -50,6 +56,7 @@ Route::resource('map', 'MapController');
 // 앱 디테일플랜
 Route::post('app/getPlanList', 'AppRequestController@getPlanList');
 Route::post('app/getPlanDetail', 'MapController@getPlanDetial');
+Route::post('app/getBeforePlanHistory', 'AppRequestController@getBeforePlanHistory');
 Route::post('json/getTimeTable', 'MapController@getTimeTable')->name('map.getTimeTable');
 Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.search');
 
@@ -59,6 +66,7 @@ Route::post('json/getDetailShare', 'MapController@getDetailShare')->name('map.se
 
 // 설문조사 리스트, 작성, 열람
 Route::resource('survey', 'SurveyController');
+Route::get('survey/{survey}/total', 'SurveyController@total')->name('survey.total.respond');
 // index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
 Route::resource('survey.respond', 'SurveyRespondController');
@@ -100,7 +108,7 @@ Route::get('contents/registerToPlanDB','ContentsController@registerToPlanDB')->n
 Route::get('contents/packages/{package_id}','ContentsController@extractContents')->name('contents.extractContents');
 
 //콘텐츠 저장하기
-Route::get('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
+Route::post('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
 
@@ -127,6 +135,7 @@ Route::post('app/respondUpdate', 'AppRequestController@noticeRespondUpdate')->na
 // *******************  소감문 *********************
 // 소감문 목록
 Route::get('reportlist/{plan_no}', 'ReportController@custom_index')->name('report_list');
+Route::get('reportcreate/{plan_no}', 'ReportController@custom_create')->name('report_create');
 
 //소감문 평가 뷰
 Route::get('reportevaluationview/{report_no}', 'ReportController@view_evaluation')->name('report_view_evaluation');
@@ -162,6 +171,8 @@ Route::get('checklist/write', 'ChecklistController@write')->name('checklist.writ
 // 체크리스트 열람
 Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
 
+Route::post('app/setCheckList', 'AppRequestController@setChecklist');
+
 
 // *******************  앱 히스토리 *********************
 
@@ -177,7 +188,7 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 
 // *******************  앱 체크리스트 *********************
 
-Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
+Route::post('app/getCheckList', 'AppRequestController@getCheckList')->name('getChecklist');
 
 Route::post('app/upload', function (Request $request) {
 
@@ -204,3 +215,23 @@ Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@ge
 
 
 
+<<<<<<< HEAD
+=======
+Route::post('json/test', 'StaffController@ajax')->name('ajax');
+
+
+Route::get('/test23',function(){
+    return view('test.ajax');
+});
+
+
+// ******************** 그룹  *********************
+// 참여자 설정
+Route::get('grouplist/{plan_no}' , 'GroupController@custom_index')->name('group_list');
+Route::get('groupcreate/{plan_no}' , 'GroupController@custom_create')->name('group_create');
+Route::resource('group', 'GroupController');
+
+// ******************** 팀  *********************
+// 팀 짜기 기능
+// Route::resource('team', 'TeamController');
+>>>>>>> 55239cec90dd000f1404be3298f0ebeb8eaf1998
