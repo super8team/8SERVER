@@ -68,16 +68,7 @@
           </a>
 					<span class="clearfix"></span>
 				</div>
-				<div class="panel-body">
-          {{-- 임시 서류 작성 페이지로 이동  --}}
-          @if (isset($plan_no))
-						<a href="{{route('plan.show', $plan_no)}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
-					@else
-						<a href="{{route('plan.create')}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
-					@endif
-            <span class="glyphicon glyphicon-open-file"></span>
-            임시 계획 작성
-          </a>
+				<div class="panel-body">        
           {{-- 값이 있는 경우 표시 --}}
           @if (isset($plan_no))
             <a href="{{route('plan.destroy', $plan_no)}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
