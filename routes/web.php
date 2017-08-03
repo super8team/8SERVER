@@ -170,6 +170,8 @@ Route::get('checklist/write', 'ChecklistController@write')->name('checklist.writ
 // 체크리스트 열람
 Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
 
+Route::post('app/setCheckList', 'AppRequestController@setChecklist');
+
 
 // *******************  앱 히스토리 *********************
 
@@ -229,4 +231,3 @@ Route::resource('group', 'GroupController');
 // ******************** 팀  *********************
 // 팀 짜기 기능
 // Route::resource('team', 'TeamController');
-
