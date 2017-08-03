@@ -71,9 +71,9 @@
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
-                    <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
                       참여 그룹
-                    </a>
+                    </a> --}}
 
 
                     <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
@@ -118,28 +118,8 @@
                </tr>
           @endfor
         </tbody>
-        </table>
-        
-        {{-- 페이지 네이션 --}}
-        <nav class="page text-center">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        </table>        
+        {{-- 페이지 네이션 --}}        
       </div>{{-- panel-body --}}
     </div>{{-- pannel panel-body --}}
   </div>{{-- container --}}

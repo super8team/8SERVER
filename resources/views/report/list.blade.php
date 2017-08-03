@@ -14,7 +14,7 @@
           if($user_info['type'] == 'student'){
             $back_route = 'plan.student';
           }elseif ($user_info['type'] == 'teacher'){
-            $back_route = 'plan.student';
+            $back_route = 'plan.teacher';
           }else{
             $back_route = 'plan.parents';
           }              

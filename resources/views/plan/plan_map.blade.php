@@ -33,7 +33,7 @@
       //아니면 기본 위치는 서울로 지정 할 것
 
       map = new google.maps.Map(document.getElementById('map'),{
-        zoom: 7,
+        zoom: 8,
         center: {lat: 37.579, lng: 126.990},  // Center the map on Korea seaul
         mapTypeControl: true,
         mapTypeControlOptions: {
@@ -859,9 +859,9 @@
         {{-- <div class="col-sm-4">
           <p><a id="likelist" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
         </div> --}}
-        <div class="col-sm-8">
-          <p><a id="addsave" class="btn btn-lg btn-warning pull-right">저장</a></p>
-          <p><a id="line" class="btn btn-lg btn-warning pull-right">경로 재설정</a></p>
+        <div class="col-sm-12">
+          <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
+          <p><a id="line" class="btn btn-lg btn-warning btn-block">경로 재설정</a></p>
             <form class="form" name="plan_map_write" method="post" >
               {{ csrf_field() }}
               <input type="hidden" name="plan_no" value="{{$plan_no}}">
