@@ -502,12 +502,12 @@ class AppRequestController extends Controller
 
       foreach ($checked as $checklist) {
         \DB::table('checklist_responds')->where('checklist', $checklist)->update([
-          "respond" => "1";
+          "respond" => "1",
         ]);
       }
       foreach ($noChecked as $checklist) {
         \DB::table('checklist_responds')->where('checklist', $checklist)->update([
-          "respond" => "0";
+          "respond" => "0",
         ]);
       }
     }
