@@ -215,8 +215,6 @@ Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@ge
 
 
 
-<<<<<<< HEAD
-=======
 Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 
@@ -234,4 +232,3 @@ Route::resource('group', 'GroupController');
 // ******************** 팀  *********************
 // 팀 짜기 기능
 // Route::resource('team', 'TeamController');
->>>>>>> 55239cec90dd000f1404be3298f0ebeb8eaf1998
