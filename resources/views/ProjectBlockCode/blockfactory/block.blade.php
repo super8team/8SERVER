@@ -320,7 +320,7 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package">
+              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:40px;font-weight:bold">
 
               </td>
             </tr>
