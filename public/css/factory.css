@@ -390,10 +390,16 @@ button, .buttonStyle {
 }
 #createNewPackage {
   height: 50px;
+  border:0px;
   font-size: 20px;
   display: table;
   align: center;
   margin: 0 auto;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/minus-circle-128.png');
+  background-repeat:no-repeat;
+  background-size : 65% 100%;
+  background-position:center;
 }
 #storagePackage {
   height: 50px;

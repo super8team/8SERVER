@@ -320,7 +320,7 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:40px;font-weight:bold">
+              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
 
               </td>
             </tr>
@@ -343,7 +343,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-                      <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}">
+                      <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
 
                     </div>
 
@@ -395,6 +395,8 @@
         <!-- 블럭 워크스페이스 -->
         <td id="packageList">
           <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+          <button id="createNewPackage" background=""></button>
+          <!-- <button id="storagePackage">패키지 저장</button> -->
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -402,8 +404,7 @@
               </button>
             @endforeach
           </div>
-          <button id="createNewPackage">패키지 생성</button>
-          <button id="storagePackage">패키지 저장</button>
+
         </td>
 
         <td id="blocklyWorkspaceContainer">
@@ -1093,13 +1094,12 @@
     console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
-    var present = document.getElementById('presentPackageName');
+    // var present = document.getElementById('presentPackageName');
     var str_space = /\s/;  // 공백체크
     if(str_space.exec(textContent)) { //공백 체크
        textContent = textContent.replace(' ',''); // 공백제거
     }
-    console.log(present);
-    present.value = "現在패키지"+textContent;
+    // present.value = "現在패키지"+textContent;
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
