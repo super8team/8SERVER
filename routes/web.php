@@ -74,7 +74,7 @@ Route::resource('survey.respond', 'SurveyRespondController');
 
 Route::post('app/getSurveyList', 'AppRequestController@getSurveyList');
 Route::post('app/getSurveyDetail', 'AppRequestController@getSurveyDetail');
-Route::post('app/survey/{survey}', 'AppLoginController@accessSurvey');
+Route::post('app/survey/{survey}/{id}/{password}', 'AppLoginController@accessSurvey');
 
 
 // ******************** 콘텐츠 *********************
@@ -216,7 +216,6 @@ Route::post('app/getLog', 'AppRequestController@logView');
 
 // *******************  워드 파일 다운로드  *********************
 Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@generateDocx')->name('word');;
-
 
 
 Route::post('json/test', 'StaffController@ajax')->name('ajax');
