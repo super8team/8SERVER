@@ -34,10 +34,21 @@
           </table>
         </div>
       </div> --}}
+      @php
+      $user_info = Auth::user();
+      
+      if($user_info['type'] == 'student'){
+        $back_route = 'plan.student';
+      }elseif ($user_info['type'] == 'teacher'){
+        $back_route = 'plan.teacher';
+      }else{
+        $back_route = 'plan.parents';
+      }              
+      @endphp
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">선택한 체험학습의 설문조사
-            <a role="button" href="javascript:history.back()" aria-label="Right Align"
+            <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기

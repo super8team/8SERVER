@@ -29,7 +29,17 @@ class StaffController extends Controller
 
     public function ajax(Request $request)
     {
+//        $json = "박";
+        $json = $request->input('search');
+//        dd($json);
+        // 값을 비교 하는 쿼리
+        $searches = \DB::table('users')->where('name', 'like', "%$json%")->get();
+        $result = [];
+        foreach ($searches as $search) {
+            $result[] = array("no" => $search->no, "id" => $search->id, "name" => $search->name);
+        }
 
-        return $request->ajax;
+        return $result;
+
     }
 }

@@ -447,4 +447,68 @@ class AppRequestController extends Controller
         "avg-score" => $avgScore
       ]);
     }
+
+    // getCheckList
+    // checkList { check1 { title : bigsort : smallsort : substance}
+    //                      check2 { title : ......
+    public function getCheckList(Request $request) {
+      $userNo = $request->input('userNo');
+      $plan = DB::table('groups')->where('joiner', $userNo)->orderBy('plan', 'desc')->first();
+
+      // $checklists = DB::table('checklists')->where('smallsort', '')->get();
+      $checklists = DB::table('checklists')->get();
+
+      // dd($checklists);
+      $result = [];
+
+      // checklist 별로 묶어서 출력하려고 하던 코드
+      // $substancesCount = count($checklists);
+      // $checkTitlePlag = 1;
+      // for ($i=0; $i<$substancesCount; $i++) {
+      //   $result["check".$checkTitlePlag] = [$checklists[$i]->];
+      // }
+
+      // 데모용
+      $checkIndex = 1;
+      foreach ($checklists as $check_substance) {
+        $planChecklist = DB::table('plan_checklists')
+        ->where('plan', $plan->plan)->where('checklist', $check_substance->no)->first();
+          // ->where('plan', 6)->where('checklist', $check_substance->no)->first();
+        $respond = DB::table('checklist_responds')->where('checklist', $planChecklist->no)->first();
+        // dd($respond);
+        // var_dump($check_substance->substance."<br>");
+        // dd($check_substance->smallsort);
+        if ($check_substance->smallsort != null)
+          $smallsort = $check_substance->smallsort;
+        else $smallsort = '';
+        $result["check".$checkIndex] = ["title" => $check_substance->title,
+                                        "no" => $planChecklist->no,
+                                        "bigsort" => $check_substance->bigsort,
+                                        "smallsort" => $smallsort,
+                                        "substance" => $check_substance->substance,
+                                        "respond" => $respond->respond];
+
+        $checkIndex++;
+      }
+
+      // dd($result);
+      return json_encode($result);
+    }
+
+    public function setChecklist(Request $request) {
+      $user = $request->input('userNo');
+      $checked = $request->input('checked'); // 1, 2, 4, 3...
+      $noChecked = $request->input('noChecked'); // 7, 5, 6...
+
+      foreach ($checked as $checklist) {
+        \DB::table('checklist_responds')->where('checklist', $checklist)->update([
+          "respond" => "1",
+        ]);
+      }
+      foreach ($noChecked as $checklist) {
+        \DB::table('checklist_responds')->where('checklist', $checklist)->update([
+          "respond" => "0",
+        ]);
+      }
+    }
 }

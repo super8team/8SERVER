@@ -41,7 +41,6 @@ Route::post('app/getStudentList', 'AppRequestController@getStudentList');
 
 // ******************** 플랜 리스트 *********************
 // 간단 계획
-
 Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')
             ->middleware('role:teacher'); // -->index
 // Route::get('plan/teacher', 'PlanController@teacher')->name('plan.teacher')->;
@@ -160,6 +159,7 @@ Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberad
 // 위원회 멤버 검색
 Route::post('staff/memberSearch', 'StaffController@memberSearch')->name('staff.search');
 
+Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 // *******************  체크리스트 *********************
 // 체크리스트 목록
@@ -170,6 +170,8 @@ Route::get('checklist/write', 'ChecklistController@write')->name('checklist.writ
 
 // 체크리스트 열람
 Route::get('checklist/view', 'ChecklistController@view')->name('checklist.view');
+
+Route::post('app/setCheckList', 'AppRequestController@setChecklist');
 
 
 // *******************  앱 히스토리 *********************
@@ -186,7 +188,7 @@ Route::post('app/getHistoryContent', 'HistoryController@getHistoryContent')->nam
 
 // *******************  앱 체크리스트 *********************
 
-Route::post('app/getCheckList', 'ChecklistController@getCheckList')->name('getChecklist');
+Route::post('app/getCheckList', 'AppRequestController@getCheckList')->name('getChecklist');
 
 Route::post('app/upload', function (Request $request) {
 
@@ -219,3 +221,14 @@ Route::post('json/test', 'StaffController@ajax')->name('ajax');
 Route::get('/test23',function(){
     return view('test.ajax');
 });
+
+
+// ******************** 그룹  *********************
+// 참여자 설정
+Route::get('grouplist/{plan_no}' , 'GroupController@custom_index')->name('group_list');
+Route::get('groupcreate/{plan_no}' , 'GroupController@custom_create')->name('group_create');
+Route::resource('group', 'GroupController');
+
+// ******************** 팀  *********************
+// 팀 짜기 기능
+// Route::resource('team', 'TeamController');

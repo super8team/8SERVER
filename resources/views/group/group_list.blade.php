@@ -25,80 +25,40 @@
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
            </a>
+           <a role="button" href="{{route('group_create',$plan_no)}}" aria-label="Right Align"
+           class="btn btn-sm btn-default pull-right">
+            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+            참여자 정하기
+          </a>
          </h3>
         </div>
         <div class="panel-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-3">
-              <ul class="list-group">
-                <li class="list-group-item">체슈</li>
-                <li class="list-group-item">닝교</li>
-                <li class="list-group-item">흐물즈물</li>
-                <li class="list-group-item">권운성</li>
-                <li class="list-group-item">깣으</li>
-                <li class="list-group-item">윤리</li>
-                <li class="list-group-item">게이</li>
-                <li class="list-group-item">진진</li>
-                <li class="list-group-item">깐기</li>
-                <li class="list-group-item">깜둥이</li>
-              </ul>
-            </div>
-            <div class="col-sm-12">
-              <table class="table table-bordered table-hover">
-                <thead>
-                  <th>미참여 학생 명단 넣기</th>
-                  <th>추가 빼기 버튼 넣기</th>
-                  <th>동적으로 안해도 되겠지?ㅎㅎ</th>
-                </thead>
-                <tbody>
-                  <td>반 선택하기 창 넣기</td>
-                  <td>그안에 체크박스 넣기</td>
-                  <td>ㅅㅅ</td>
-                </tbody>
-              </table>
-            </div>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <th>#</th>
+                <th>반</th>
+                <th>이름</th>
+              </thead>
+              <tbody>
+                @if ($student_name)
+                  @for ($i=0; $i <count($student_name) ; $i++)
+                    <tr>
+                      <td>{{$i}}</td>
+                      <td>{{$student_class[$i]}}</td>
+                      <td>{{$student_name[$i]}}
+                        <input type="checkbox" name="group" value="{{$student_no[$i]}}">
+                      </td>
+                    </tr>
+                  @endfor
+                @else
+                  <tr>
+                    <td>000</td>
+                    <td>위의 기능을 사용해서 학생</td>
+                    <td>리스트를 뽑아주세요</td>
+                  </tr>
+                @endif
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

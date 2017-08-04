@@ -1,13 +1,23 @@
 @extends('master')
 
 {{-- TODO 뭔가 이름 바꾸는거 변수로 한페이지에서 관리하려면? -> --}}
-@section('title' , 'LEAN&FUN')
+@section('title' , 'LEARnFUN')
 
 @section('content')
 <head>
     <script src="../public/js/parallax.js"></script>
     {{-- <script src="js/custum.js"></script> --}}
   </head>
+  {{-- 로그인에 따른 접속 에러 --}}
+  {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script> --}}
+  {{-- <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"> --}}
+  <script type="text/javascript">
+    // toastr.info("토스트");
+    var log = "{{Session::get('fail')}}";
+    if (log != "")
+    alert(log);
+  </script>
+
     {{-- 타이틀 이미지  --}}
        <div class="carousel-inner" role="listbox">
          <div class=" parallax-window" data-parallax="scroll" data-image-src="{{asset('img/titleimg.jpg')}}"
