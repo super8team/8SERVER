@@ -83,10 +83,10 @@ class AppLoginController extends Controller
     }
 
     public function accessSurvey(Request $request, $survey) {
-      $id = $result->input('userID');
-      $pw = $result->input('password');
+      $id = $request->input('userID');
+      $pw = $request->input('password');
 
-      if(Auth::attempt(['id'=>$id, 'password'=>$pw]) {
+      if(Auth::attempt(['id'=>$id, 'password'=>$pw])) {
         return redirect()->route('survey.show', ['survey' => $survey]);
       }
     }
