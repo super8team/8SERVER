@@ -293,7 +293,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td id='as'>
+        <td style='width:1%; border:1px solid'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -320,15 +320,16 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
+              <td id="present_package">
+
+              </td>
             </tr>
           </table>
         </td>
         <td id="blockFactorySupplie">
           <table>
             <tr id="blockLibrary">
-
               <td id="contents_list">
-
                 <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
                   {{$user}}<br>콘텐츠리스트
                 </button>
@@ -393,7 +394,7 @@
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
         <td id="packageList">
-          <button type="button" name="button" disabled>패키지 리스트</button>
+          <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -1061,6 +1062,10 @@
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
     // if(event.target != package_div.firstChild){
+      var package_name_td = document.getElementById('present_package');
+      package_name_td.innerHTML = event.target.textContent;
+
+
       if(boundary == 0){
           event.target.style.backgroundColor = '#2AE7F1';
           boundary++;
@@ -1146,6 +1151,5 @@
   });
   });
   </script>
-
   </html>
   @endsection
