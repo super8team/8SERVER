@@ -8,11 +8,13 @@
     <script type="text/javascript">
     function oneCheckbox(a){
         var obj = document.getElementsByName("package");
-        console.log('선택된 엘리먼트');
-        console.log(a);
-        for(var i=0; i<obj.length; i++){
-              if(obj[i] != a){
-                obj[i].checked = false;
+
+        var parent = a.parentNode
+        var child  = parent.childNodes;
+
+        for(var i=0; i<child.length; i++){
+              if(child[i] != a){
+                child[i].checked = false;
               }
             }
       }
