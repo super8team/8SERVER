@@ -1065,8 +1065,10 @@
           event.target.style.backgroundColor = 'blue';
           boundary++;
           before_ele = event.target;
+          console.log('0일때');
       }else{
-        before_ele.style.backgroundColor = 'wthie';
+        console.log('0이 아닐때');
+        before_ele.style.backgroundColor = '#2AE7F1';
         package_div.insertBefore(event.target, package_div.firstChild);
         before_ele = event.target;
         event.target.style.backgroundColor = 'blue';
