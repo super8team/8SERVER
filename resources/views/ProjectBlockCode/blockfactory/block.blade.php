@@ -397,7 +397,7 @@
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
-              {{$package_name['name']}}
+                {{$package_name['name']}}
               </button>
             @endforeach
           </div>
@@ -1056,11 +1056,14 @@
     var package_div     = document.getElementById('packageDiv');
 
   package_div.addEventListener('click',function(event){
-
+    console.log('바뀜');
+    event.target.style.backgroundColor = 'black';
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    if(event.target != package_div.firstChild)
+    if(event.target != package_div.firstChild){
       package_div.insertBefore(event.target, package_div.firstChild);
+
+    }
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
