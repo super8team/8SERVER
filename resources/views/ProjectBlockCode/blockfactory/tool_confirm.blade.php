@@ -7,7 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
     function oneCheckbox(a){
-        var obj = document.getElementsByName("package_name");
+        var obj = document.getElementsByName("package");
+        console.log('선택된 엘리먼트');
+        console.log(a);
         for(var i=0; i<obj.length; i++){
               if(obj[i] != a){
                 obj[i].checked = false;
