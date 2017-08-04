@@ -218,10 +218,7 @@ Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@ge
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5efc989e50e6cea32b83d330421466890cb0fff8
 Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 
