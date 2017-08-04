@@ -1060,7 +1060,7 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    if(event.target != package_div.firstChild){
+    // if(event.target != package_div.firstChild){
       if(boundary == 0){
           event.target.style.backgroundColor = '#2AE7F1';
           boundary++;
@@ -1069,11 +1069,11 @@
       }else{
         console.log('0이 아닐때');
         before_ele.style.backgroundColor = 'white';
-        package_div.insertBefore(event.target, package_div.firstChild);
+        // package_div.insertBefore(event.target, package_div.firstChild);
         before_ele = event.target;
         event.target.style.backgroundColor = '#2AE7F1';
       }
-    }
+    // }
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
