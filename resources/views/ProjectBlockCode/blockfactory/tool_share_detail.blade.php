@@ -12,7 +12,7 @@
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
       <div style="display:inline">
-        <span class="star-input" style="margin-top:140px; margin-left:100px;">
+        <span class="star-input" style="margin-top:170px; margin-left:100px;">
           <span class="input" style="margin-top:50px">
             <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
             <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
@@ -36,7 +36,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80" readonly>{{$package_subs}}</textarea>
+      <textarea name="name" rows="8" cols="80" font-size="20px" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
@@ -70,8 +70,6 @@
 
   }
               function myfunction(s){
-                console.log('진입');
-                console.log(s);
                 if(1<=s && s<2)
                     document.getElementsByName('star-input')[0].checked=true;
                 if(2<=s && s<3)
@@ -104,7 +102,6 @@
               .on("focusout", ".star-input>.input", function(){
               var $this = $(this);
               setTimeout(function(){
-                console.log('1');
                 if($this.find(":focus").length === 0){
                   $this.removeClass("focus");
                 }
@@ -114,12 +111,10 @@
               $result.text($(this).next().text());
             })
               .on("mouseover", ".star-input label", function(){
-                console.log('2');
               $result.text($(this).text());
             })
               .on("mouseleave", ".star-input>.input", function(){
               var $checked = $star.find(":checked");
-              console.log($checked);
               if($checked.length === 0){
                 $result.text("0");
               } else {

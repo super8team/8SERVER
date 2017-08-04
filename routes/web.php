@@ -160,6 +160,7 @@ Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberad
 // 위원회 멤버 검색
 Route::post('staff/memberSearch', 'StaffController@memberSearch')->name('staff.search');
 
+Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 // *******************  체크리스트 *********************
 // 체크리스트 목록

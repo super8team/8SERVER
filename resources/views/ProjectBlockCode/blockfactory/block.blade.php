@@ -342,7 +342,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-                      <input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+                      <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}">
 
                     </div>
 
@@ -389,16 +389,15 @@
         </button>
       </td>
      </tr>
-
+      <FONT face="굴림">
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
-
         <td id="packageList">
-          <button type="button" name="button" disabled>{{$user}}님의 패키지</button>
+          <button type="button" name="button" disabled>패키지 리스트</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
-                {{$package_name['name']}}
+              {{$package_name['name']}}
               </button>
             @endforeach
           </div>
