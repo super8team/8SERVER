@@ -46,28 +46,28 @@
 
           {{-- 레코드를 10개 출력  --}}
 
-          @for ($count=0; $count < count($plan_title) ; $count++)
+          @for ($count=0; $count < count($plan_title); $count++)
                 <tr>
                   <td>{{$plan_no[$count]}}</td>
                   <td>{{$plan_title[$count]}}
-                    <a role="button" href="{{route('plan.edit',$plan_no[$count])}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{route('plan.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       수정
                     </a>
                   </td>
                   <td>{{$plan_date[$count]}}</td>
 
                   <td colspan="2" class="text-center">
-                    <a role="button" href="{{route('plan.show',$plan_no[$count])}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       서류작성
                     </a>
-                    <a role="button" href="{{route('staff')}}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                    <a role="button" href="{{route('staff', ['count'=>$plan_no[$count]])}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                       위원회
                     </a>
 
-                    <a role="button" href="{{ route('survey.index')}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{ route('survey.index', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       설문조사
                     </a>
-                    <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{ route('notice_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
@@ -76,14 +76,14 @@
                     </a> --}}
 
 
-                    <a role="button" href="{{route('map.edit', $plan_no[$count])}}" class="btn btn-sm btn-danger">
+                    <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-danger">
                         상세 계획
                     </a>
-                    <a role="button" href="{{route('checklist')}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{route('checklist', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       체크리스트
                     </a>
                     {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
-                    <a role="button" href="{{route('report_list',$plan_no)}}" class="btn btn-sm btn-default">
+                    <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       소감문
                     </a>
                     <!-- Button trigger modal -->

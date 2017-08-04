@@ -78,6 +78,13 @@
           }
       }
 
+      function enterkey() {
+          if (window.event.keyCode == 13) {
+              searchClick();
+          }
+      }
+
+
       function storageBtn() {
           var storage = document.get
 
@@ -120,13 +127,13 @@
 
   <div class="bluebg">
     <div class="container">
-      <form class="form" action="{{route('staff.memberadd')}}" method="POST">
-        {{ csrf_field() }}
+{{--      <form class="form" action="{{route('staff.memberadd')}}" method="POST">--}}
+        {{--{{ csrf_field() }}--}}
         <div class="col-lg-5">
           <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="form-group col-sm-9">
-                  <input type="text" name="search" id="searchBar" placeholder="이름을 검색 해주세요">
+                  <input type="text" name="search" id="searchBar" placeholder="이름을 검색 해주세요" onKeyDown="enterkey()">
                 </div>
                   <button type="button" onclick="searchClick()" id="searchBtn" class="btn btn-default">검색</button>
             </div>
@@ -159,9 +166,10 @@
             <button id="addMember" type="button" onclick="addMemberBtn()"  class="btn btn-lg btn-default">
                 추가
               <span class="glyphicon glyphicon-forward"></span>
-            </input>
+            </button>
           </div>
-        </form>
+        </div>
+        {{--</form>--}}
 
         <form class="form" action="{{route('staff.memberadd')}}" method="post">
           {{ csrf_field() }}
@@ -171,9 +179,6 @@
               <span class="glyphicon glyphicon-backward"></span>
             </a>
           </div>
-
-        </div><!-- /.panel .chat-panel -->
-
           {{-- Step 5 : 처리 --}}
           <div class="col-lg-5">
             <div class="panel panel-default">
@@ -195,6 +200,7 @@
               </div>
             </div><!-- /.panel .chat-panel -->
         </form><!-- ㅇㅇㅇㅇ/.col-lg-4 -->
+
       </div>
     </div>
 @endsection

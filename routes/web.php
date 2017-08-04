@@ -147,14 +147,16 @@ Route::post('reportevaluation/{report_no}', 'ReportController@evaluation')->name
 Route::resource('report','ReportController');
 
 // *******************  위원회 *********************
+// 위원회 멤버 추가
+Route::get('staff/memberAdd/{number}', 'StaffController@memberAdd')->name('staff.memberadd');
+
 // 위원회 목록
-Route::get('staff', 'StaffController@index')->name('staff');
+Route::get('staff/{count}', 'StaffController@index')->name('staff');
 
 // 위원회 결과
 Route::get('staff/result', 'StaffController@result')->name('staff.result');
 
-// 위원회 멤버 추가
-Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberadd');
+
 
 // 위원회 멤버 검색
 Route::post('staff/memberSearch', 'StaffController@memberSearch')->name('staff.search');
@@ -215,8 +217,7 @@ Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@ge
 
 
 
-<<<<<<< HEAD
-=======
+
 Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 
@@ -234,4 +235,3 @@ Route::resource('group', 'GroupController');
 // ******************** 팀  *********************
 // 팀 짜기 기능
 // Route::resource('team', 'TeamController');
->>>>>>> 55239cec90dd000f1404be3298f0ebeb8eaf1998

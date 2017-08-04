@@ -6,9 +6,24 @@ use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    public function index()
+    public function index($count)
     {
-        return view('staff.staff_list');
+        $current_plan = \DB::table('field_learning_plans')->where('no', $count)->first();
+
+
+        $currentPlanId = $current_plan->no;
+        $currentPlanTitle = $current_plan->name;
+        $currentPlanDate = $current_plan->at;
+        $list_number      = $count;
+
+
+        return view('staff.staff_list', [
+            'current_plan_no' => $currentPlanId,
+            'current_plan_title' => $currentPlanTitle,
+            'current_plan_date' => $currentPlanDate,
+            'list_number'    => $list_number
+        ]);
+
     }
 
     public function result()
@@ -16,10 +31,11 @@ class StaffController extends Controller
         return view('staff.result');
     }
 
-    public function memberAdd()
+    public function memberAdd($list_number)
     {
+        $committee = \DB::table('committees')->where('no', $count)->first();
 
-        return view('staff.member_add');
+        return view('staff.member_add')->with('list_number',$list_number);
     }
 
     public function memberSearch()

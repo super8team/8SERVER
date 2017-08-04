@@ -83,78 +83,58 @@
             </div>
 
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">댓글
-                    </h3>
-                </div>
-                <div class="panel-body" style="min-height:300px;">
-                    <div class="row">
-                    <table class="table table-bordered col-lg-1">
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>내용</th>
-                            <th>작성자</th>
-                            <th style="min-width:50px;">작성날짜</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>아이들 교육을 위해서라면 꼭 가봐야 할 장소 같네요!!</td>
-                            <td>박성원</td>
-                            <td>2017/00/00</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>좋네요..</td>
-                            <td>권유성</td>
-                            <td>2017/00/00</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>아~ 두말할 필요도 없죠~!</td>
-                            <td>정연제</td>
-                            <td>2017/00/00</td>
-                        </tr>
-                    </table>
-                </div>
-                    <form class="form" action="" method="post">
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-sm-offset-2 col-md-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="내용을 입력 하세요.">
-                                    <span class="input-group-btn">
-                                     <button class="btn btn-default" type="button">확인</button>
-                                 </span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    {{-- 페이지 네이션 --}}
-                    <nav class="page text-center">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-            </div>
-        </div>
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h3 class="panel-title">댓글--}}
+                    {{--</h3>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body" style="min-height:300px;">--}}
+                    {{--<div class="row">--}}
+                    {{--<table class="table table-bordered col-lg-1">--}}
+                        {{--<thead>--}}
+                        {{--<tr>--}}
+                            {{--<th>번호</th>--}}
+                            {{--<th>내용</th>--}}
+                            {{--<th>작성자</th>--}}
+                            {{--<th style="min-width:50px;">작성날짜</th>--}}
+                        {{--</tr>--}}
+                        {{--</thead>--}}
+                        {{--<tbody>--}}
+                        {{--<tr>--}}
+                            {{--<td>1</td>--}}
+                            {{--<td>아이들 교육을 위해서라면 꼭 가봐야 할 장소 같네요!!</td>--}}
+                            {{--<td>박성원</td>--}}
+                            {{--<td>2017/00/00</td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td>2</td>--}}
+                            {{--<td>좋네요..</td>--}}
+                            {{--<td>권유성</td>--}}
+                            {{--<td>2017/00/00</td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td>3</td>--}}
+                            {{--<td>아~ 두말할 필요도 없죠~!</td>--}}
+                            {{--<td>정연제</td>--}}
+                            {{--<td>2017/00/00</td>--}}
+                        {{--</tr>--}}
+                    {{--</table>--}}
+                {{--</div>--}}
+                    {{--<form class="form" action="" method="post">--}}
+                        {{--{{ csrf_field() }}--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-sm-offset-2 col-md-8">--}}
+                                {{--<div class="input-group">--}}
+                                    {{--<input type="text" class="form-control" placeholder="내용을 입력 하세요.">--}}
+                                    {{--<span class="input-group-btn">--}}
+                                     {{--<button class="btn btn-default" type="button">확인</button>--}}
+                                 {{--</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 @endsection
 
