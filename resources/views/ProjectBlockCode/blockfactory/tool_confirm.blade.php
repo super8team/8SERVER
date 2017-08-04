@@ -49,14 +49,7 @@
             </tbody>
         </table>
         <div>
-          <!-- 컨텐츠에 사용 될 이미지를 전부 저장해 주세요 -->
-          <div class="">
-            <!-- <input type="file" name="contents_img[]" value=""> -->
 
-          </div>
-        </div>
-        {{ csrf_field() }}
-        <div>
           <input type="submit" name="" value="등록하기">
           <button id="cancel">
             취소

@@ -389,16 +389,15 @@
         </button>
       </td>
      </tr>
-
+      <FONT face="굴림">
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
-
         <td id="packageList">
           <button type="button" name="button" disabled>패키지 리스트</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
-                {{$package_name['name']}}
+              {{$package_name['name']}}
               </button>
             @endforeach
           </div>
