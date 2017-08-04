@@ -1054,15 +1054,23 @@
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
-
+    var before_ele;
+    var boundary  = 0;
   package_div.addEventListener('click',function(event){
-    console.log('바뀜');
-    event.target.style.backgroundColor = 'black';
+
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
     if(event.target != package_div.firstChild){
-      package_div.insertBefore(event.target, package_div.firstChild);
-
+      if(boundary == 0){
+          event.target.style.backgroundColor = 'blue';
+          boundary++;
+          before_ele = event.target;
+      }else{
+        before_ele.style.backgroundColor = 'wthie';
+        package_div.insertBefore(event.target, package_div.firstChild);
+        before_ele = event.target;
+        event.target.style.backgroundColor = 'blue';
+      }
     }
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
