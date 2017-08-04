@@ -74,7 +74,6 @@ Route::resource('survey.respond', 'SurveyRespondController');
 
 Route::post('app/getSurveyList', 'AppRequestController@getSurveyList');
 Route::post('app/getSurveyDetail', 'AppRequestController@getSurveyDetail');
-Route::post('app/survey/{survey}/{id}/{password}', 'AppLoginController@accessSurvey');
 
 
 // ******************** 콘텐츠 *********************
