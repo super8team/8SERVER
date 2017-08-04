@@ -1062,16 +1062,16 @@
     //클릭한 패키지를 상단에 위치 시킴
     if(event.target != package_div.firstChild){
       if(boundary == 0){
-          event.target.style.backgroundColor = 'blue';
+          event.target.style.backgroundColor = '#2AE7F1';
           boundary++;
           before_ele = event.target;
           console.log('0일때');
       }else{
         console.log('0이 아닐때');
-        before_ele.style.backgroundColor = '#2AE7F1';
+        before_ele.style.backgroundColor = 'white';
         package_div.insertBefore(event.target, package_div.firstChild);
         before_ele = event.target;
-        event.target.style.backgroundColor = 'blue';
+        event.target.style.backgroundColor = '#2AE7F1';
       }
     }
 
