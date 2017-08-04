@@ -171,7 +171,7 @@
         </div>
         {{--</form>--}}
 
-        <form class="form" action="{{route('staff.memberadd')}}" method="post">
+        <form class="form" action="{{route('staff.memberAdd')}}" method="post">
           {{ csrf_field() }}
           <div class="text-center">
             <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">

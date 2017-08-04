@@ -10,11 +10,10 @@ class StaffController extends Controller
     {
         $current_plan = \DB::table('field_learning_plans')->where('no', $count)->first();
 
-
-        $currentPlanId = $current_plan->no;
-        $currentPlanTitle = $current_plan->name;
-        $currentPlanDate = $current_plan->at;
-        $list_number      = $count;
+        $currentPlanId    =  $current_plan->no;
+        $currentPlanTitle =  $current_plan->name;
+        $currentPlanDate  =  $current_plan->at;
+        $list_number      =  $count;
 
 
         return view('staff.staff_list', [
@@ -28,14 +27,16 @@ class StaffController extends Controller
 
     public function result()
     {
+//        $committee = \DB::table('committees')->where('no', $count)->first();
+
         return view('staff.result');
     }
 
-    public function memberAdd($list_number)
+    public function memberAdd()
     {
-        $committee = \DB::table('committees')->where('no', $count)->first();
+//        $committee = \DB::table('committees')->where('no', $count)->first();
 
-        return view('staff.member_add')->with('list_number',$list_number);
+        return view('staff.member_add');
     }
 
     public function memberSearch()
