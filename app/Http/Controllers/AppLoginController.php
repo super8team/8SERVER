@@ -25,6 +25,7 @@ class AppLoginController extends Controller
                   "grade" => "",
                   "class" => "",
                   "schoolName" => "",
+                  "password" => "",
                 );
 
       if(Auth::attempt(['id'=>$inputId, 'password'=>$inputPw])) {
@@ -36,6 +37,7 @@ class AppLoginController extends Controller
         $result["id"] = $user->id;
         $result["name"] = $user->name;
         $result["type"] = $user->type;
+        $result["password"] = $user->password;
 
         if ($user->type == "parents") {
             $childs = DB::table('users')
@@ -78,5 +80,14 @@ class AppLoginController extends Controller
       }
 
     return json_encode($result);
+    }
+
+    public function accessSurvey(Request $request, $survey) {
+      $id = $result->input('userID');
+      $pw = $result->input('password');
+
+      if(Auth::attempt(['id'=>$id, 'password'=>$pw]) {
+        return redirect()->route('survey.show', ['survey' => $survey]);
+      }
     }
 }
