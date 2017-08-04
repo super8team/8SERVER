@@ -127,7 +127,6 @@
 
       var searchWord = document.getElementById('searchWord').value;
 
-      console.log('검색한 키워드');
       console.log(searchWord);
       $.ajax({
         method: 'GET',

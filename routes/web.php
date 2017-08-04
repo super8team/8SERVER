@@ -74,6 +74,7 @@ Route::resource('survey.respond', 'SurveyRespondController');
 
 Route::post('app/getSurveyList', 'AppRequestController@getSurveyList');
 Route::post('app/getSurveyDetail', 'AppRequestController@getSurveyDetail');
+Route::post('app/survey/{survey}', 'AppLoginController@accessSurvey');
 
 
 // ******************** 콘텐츠 *********************
@@ -217,7 +218,10 @@ Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@ge
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5efc989e50e6cea32b83d330421466890cb0fff8
 Route::post('json/test', 'StaffController@ajax')->name('ajax');
 
 

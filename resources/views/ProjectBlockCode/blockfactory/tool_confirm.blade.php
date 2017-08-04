@@ -7,10 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
     function oneCheckbox(a){
-        var obj = document.getElementsByName("package_name");
-        for(var i=0; i<obj.length; i++){
-              if(obj[i] != a){
-                obj[i].checked = false;
+        var obj = document.getElementsByName("package");
+
+        var parent = a.parentNode
+        var child  = parent.childNodes;
+
+        for(var i=0; i<child.length; i++){
+              if(child[i] != a){
+                child[i].checked = false;
               }
             }
       }
@@ -34,7 +38,7 @@
                       <input type="button" value="{{ $field_lists[$j]['name']}}">
                       <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['no']}}" hidden>
                     </td>
-                    <td style="border:1px solid;vertical-align:middle;text-align:center">
+                    <td style="border:1px solid;vertical-align:middle;text-align:center" class="package_name">
                       @for ($i = 0; $i < $package_count ; $i++)
                            <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)">{{ $package[$i]['name'] }}
                            <br>
@@ -45,14 +49,7 @@
             </tbody>
         </table>
         <div>
-          <!-- 컨텐츠에 사용 될 이미지를 전부 저장해 주세요 -->
-          <div class="">
-            <!-- <input type="file" name="contents_img[]" value=""> -->
 
-          </div>
-        </div>
-        {{ csrf_field() }}
-        <div>
           <input type="submit" name="" value="등록하기">
           <button id="cancel">
             취소

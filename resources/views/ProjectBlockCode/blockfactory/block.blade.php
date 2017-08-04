@@ -342,7 +342,7 @@
                       </button>
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-                      <input id="presentPackageName" type="button" name="" value="現在패키지  {{$packages[0]['name']}}">
+                      <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}">
 
                     </div>
 
@@ -389,12 +389,11 @@
         </button>
       </td>
      </tr>
-
+      <FONT face="굴림">
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
-
         <td id="packageList">
-          <button type="button" name="button" disabled>{{$user}}님의 패키지</button>
+          <button type="button" name="button" disabled>패키지 리스트</button>
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -1055,13 +1054,26 @@
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
-
+    var before_ele;
+    var boundary  = 0;
   package_div.addEventListener('click',function(event){
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    if(event.target != package_div.firstChild)
-      package_div.insertBefore(event.target, package_div.firstChild);
+    // if(event.target != package_div.firstChild){
+      if(boundary == 0){
+          event.target.style.backgroundColor = '#2AE7F1';
+          boundary++;
+          before_ele = event.target;
+          console.log('0일때');
+      }else{
+        console.log('0이 아닐때');
+        before_ele.style.backgroundColor = 'white';
+        // package_div.insertBefore(event.target, package_div.firstChild);
+        before_ele = event.target;
+        event.target.style.backgroundColor = '#2AE7F1';
+      }
+    // }
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
