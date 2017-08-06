@@ -938,7 +938,7 @@
     </form>
   </body>
   <script type="text/javascript">
-
+  var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
         // self.blockLibraryController.saveToBlockLibrary();
@@ -957,12 +957,15 @@
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
+        var present_package       = document.getElementById('present_package');
         console.log(storage_package);
+        console.log('클릭한 패키지 이름');
+        console.log(present_package.innerText);
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
         console.log('완료');
-        console.log('현재 패키지 이름'+storage_package_name);
+        console.log('현재 패키지 이름'+present_package.innerText);
 
         //저장할 컨텐츠 xml
         var content_xml         = child_content[1].value;
@@ -986,7 +989,7 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : storage_package_name,
+            'package_name' : present_package.innerText,
             '_token'       : CSRF_TOKEN
           },
           success: function(data){
@@ -995,8 +998,8 @@
               console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
               var id_value     = data.length - 1;
-              storage_package_child.value = data[id_value].id;
-
+              // storage_package_child.value = data[id_value].id;
+              new_package.value = data[id_value].id;
               // for(var i = 0; i < user_packages.length; i++){
               //   var package_name = user_packages[i].innerText;
               //   if(package_name == data[i]['name']){
@@ -1065,7 +1068,7 @@
     // if(event.target != package_div.firstChild){
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
-
+      new_package = event.target;
 
       if(boundary == 0){
           event.target.style.backgroundColor = '#2AE7F1';
