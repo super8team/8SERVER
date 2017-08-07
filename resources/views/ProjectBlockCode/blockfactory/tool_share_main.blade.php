@@ -45,7 +45,7 @@
           @endphp
              <td>
                <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                 <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="" style="width:170px; height:100px">
+                 <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
                </a>
              </td>
           @endforeach
@@ -61,11 +61,9 @@
       <div align="center" id="contentsPackageTitle">
         콘텐츠 패키지
       </div>
-      <div id="packageResearch">
-
-          <input id="searchWord"   type="text"   name="word"   value="설명">
-          <input id="searchButton" type="button" name="button" value="검색">
-
+      <div id="packageResearch" style="margin-left:40%">
+          <input id="searchWord"   type="text"   name="word"   value="설명1">
+          <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
           @php
@@ -81,7 +79,7 @@
                   @endphp
           <div id="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImfs/{{$value['imgs']}}"  style="width:100px; height:150px">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
                         수정하기
