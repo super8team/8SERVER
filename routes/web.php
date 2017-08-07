@@ -148,13 +148,14 @@ Route::resource('report','ReportController');
 
 // *******************  위원회 *********************
 // 위원회 멤버 추가
-Route::get('staff/memberAdd/{number}', 'StaffController@memberAdd')->name('staff.memberadd');
+Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberAdd');
+
+// 위원회 결과
+Route::get('staff/result', 'StaffController@result')->name('staff.result');
 
 // 위원회 목록
 Route::get('staff/{count}', 'StaffController@index')->name('staff');
 
-// 위원회 결과
-Route::get('staff/result', 'StaffController@result')->name('staff.result');
 
 
 
@@ -214,8 +215,6 @@ Route::post('app/getLog', 'AppRequestController@logView');
 
 // *******************  워드 파일 다운로드  *********************
 Route :: get ('word/{no}/{plan_number}', 'FieldLearningPlanDocumentController@generateDocx')->name('word');;
-
-
 
 
 Route::post('json/test', 'StaffController@ajax')->name('ajax');

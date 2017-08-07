@@ -293,7 +293,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td id='as'>
+        <td style='width:1%; border:1px solid;'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -320,29 +320,40 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
+              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
+
+              </td>
             </tr>
           </table>
         </td>
-        <td id="blockFactorySupplie">
+        <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
-
-              <td id="contents_list">
-
-                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
+              <td id="contents_list" >
+                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled hidden>
                   {{$user}}<br>콘텐츠리스트
                 </button>
+                <div>
+                  <button type="button" id="createNewBlockButton">
+                  </button>
+                </div>
+                <div>
+                  <!-- 콘텐츠 저장 -->
+                  <button type="button" id="saveToBlockLibraryButton">
+                  </button>
+                </div>
               </td>
+
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
                     <div>
-                      <button>
+                      <!-- <button>
                         <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button>
+                      </button> -->
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
-                      <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}">
+                      <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
 
                     </div>
 
@@ -356,7 +367,7 @@
                           <input type="text" name="id"  value="">
                       </button>-->
                       @for($i=0; $i < $contentsize; $i++)
-                      <button class= "content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}">
+                      <button style="margin-bottom:35px;margin-left:15px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
                           <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
                           <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
@@ -371,29 +382,34 @@
                 </select> -->
               </span>
               </td>
-            </tr>
-         </table>
-      </td>
-      <td id="blockLibraryControls">
-        <button id="registerContents">
-          현장체험 등록
-        </button>
-        <button id="shareContentsButton">
-          창작 마당
-        </button>
-        <button id="saveToBlockLibraryButton">
-          콘텐츠 저장
-        </button>
-        <button id="removeBlockFromLibraryButton">
-          콘텐츠 삭제
-        </button>
-      </td>
+            <!-- </tr> -->
+         <!-- </table>
+      </td> -->
+        <td id="blockLibraryControls">
+          <button id="registerContents">
+            현장체험 등록
+          </button>
+          <button id="shareContentsButton">
+            창작 마당
+          </button>
+          <button id="saveToBlockLibraryButton" hidden>
+            콘텐츠 저장
+          </button>
+          <button id="removeBlockFromLibraryButton">
+            콘텐츠 삭제
+          </button>
+        </td>
+        </tr>
+      </table>
+   </td>
      </tr>
       <FONT face="굴림">
       <tr height="90%">
         <!-- 블럭 워크스페이스 -->
         <td id="packageList">
-          <button type="button" name="button" disabled>패키지 리스트</button>
+          <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+          <button id="createNewPackage" background=""></button>
+          <!-- <button id="storagePackage">패키지 저장</button> -->
           <div id="packageDiv">
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
@@ -401,8 +417,7 @@
               </button>
             @endforeach
           </div>
-          <button id="createNewPackage">패키지 생성</button>
-          <button id="storagePackage">패키지 저장</button>
+
         </td>
 
         <td id="blocklyWorkspaceContainer">
@@ -936,7 +951,7 @@
     </form>
   </body>
   <script type="text/javascript">
-
+  var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
         // self.blockLibraryController.saveToBlockLibrary();
@@ -955,12 +970,15 @@
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
+        var present_package       = document.getElementById('present_package');
         console.log(storage_package);
+        console.log('클릭한 패키지 이름');
+        console.log(present_package.innerText);
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
         console.log('완료');
-        console.log('현재 패키지 이름'+storage_package_name);
+        console.log('현재 패키지 이름'+present_package.innerText);
 
         //저장할 컨텐츠 xml
         var content_xml         = child_content[1].value;
@@ -984,7 +1002,7 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : storage_package_name,
+            'package_name' : present_package.innerText,
             '_token'       : CSRF_TOKEN
           },
           success: function(data){
@@ -993,8 +1011,8 @@
               console.log(data);
               var user_packages = document.getElementsByClassName('package_button');
               var id_value     = data.length - 1;
-              storage_package_child.value = data[id_value].id;
-
+              // storage_package_child.value = data[id_value].id;
+              new_package.value = data[id_value].id;
               // for(var i = 0; i < user_packages.length; i++){
               //   var package_name = user_packages[i].innerText;
               //   if(package_name == data[i]['name']){
@@ -1061,6 +1079,10 @@
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
     // if(event.target != package_div.firstChild){
+      var package_name_td = document.getElementById('present_package');
+      package_name_td.innerHTML = event.target.textContent;
+      new_package = event.target;
+
       if(boundary == 0){
           event.target.style.backgroundColor = '#2AE7F1';
           boundary++;
@@ -1088,13 +1110,12 @@
     console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
-    var present = document.getElementById('presentPackageName');
+    // var present = document.getElementById('presentPackageName');
     var str_space = /\s/;  // 공백체크
     if(str_space.exec(textContent)) { //공백 체크
        textContent = textContent.replace(' ',''); // 공백제거
     }
-    console.log(present);
-    present.value = "現在패키지"+textContent;
+    // present.value = "現在패키지"+textContent;
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
@@ -1146,6 +1167,5 @@
   });
   });
   </script>
-
   </html>
   @endsection
