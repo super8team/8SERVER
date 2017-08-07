@@ -152,7 +152,8 @@
             a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
 
             var img_ele    = document.createElement('img');
-            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public{{Storage::url("packageImgs/image1.jpg")}}');
+
+            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'.img_url);
 
             name_div.innerHTML = package_name;
 
