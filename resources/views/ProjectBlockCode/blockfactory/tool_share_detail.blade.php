@@ -36,7 +36,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80" font-size="20px" readonly>{{$package_subs}}</textarea>
+      <textarea name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다

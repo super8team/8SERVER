@@ -153,6 +153,11 @@ input[type="button"], .inputStyle {
 #packageList input[type="submit"]{
   width: 5%;
 }*/
+#registerContents, #shareContentsButton, #removeBlockFromLibraryButton{
+  background-color: white;
+  border:1px black solid;
+  border-radius: 0px;
+}
 #factoryHeader {
   display: table;
   height: 10%;

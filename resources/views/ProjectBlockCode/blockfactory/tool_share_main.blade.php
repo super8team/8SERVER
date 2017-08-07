@@ -81,7 +81,7 @@
                   @endphp
           <div id="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImfs/{{$value['imgs']}}"  style="width:100px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
                         수정하기
