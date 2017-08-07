@@ -137,6 +137,7 @@
             $('#shareList').empty();
 
             var img_url          = data[0]['img_url'];
+            console.log(img_url);
             var package_name     = data[1];
             var contents_package = data[0]['contents_package'];
 
@@ -151,9 +152,11 @@
             var a_ele      = document.createElement('a');
             a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
 
-            var img_ele    = document.createElement('img');
 
-            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+ img_url);
+            var img_ele    = document.createElement('img');
+            var img_url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
+            console.log(img_url);
+            img_ele.setAttribute('src',img_url);
 
             name_div.innerHTML = package_name;
 
