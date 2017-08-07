@@ -153,7 +153,7 @@
 
             var img_ele    = document.createElement('img');
 
-            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'.img_url);
+            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+ img_url);
 
             name_div.innerHTML = package_name;
 
