@@ -389,7 +389,7 @@
           <button id="registerContents" >
             현장체험 등록
           </button>
-          <button id="shareContentsButton" style="display:block">
+          <button id="shareContentsButton">
             창작 마당
           </button>
           <!-- <button id="saveToBlockLibraryButton" hidden>
@@ -1137,7 +1137,7 @@
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
               parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "33px";
+              parent_wrap.style.marginBottom = "35px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
