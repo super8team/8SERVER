@@ -620,7 +620,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       $result = DB::table('contents_package_shares')->where('explain',$searchWord)->first();
       array_push($result_array,$result);
-      img_url;
+
       $package_serial = $result->contents_package;
 
       $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
