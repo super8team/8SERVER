@@ -1136,6 +1136,8 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
+              parent_wrap.style.marginBottom = "35px";
+              parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
               child_wrap.setAttribute('class','contents_xml');
