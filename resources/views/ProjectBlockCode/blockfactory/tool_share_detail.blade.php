@@ -10,7 +10,7 @@
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
-      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
+      <img src="http://163.44.166.91/LEARnFUN/public/storage/{{$url}}" alt="콘텐츠 이미지" class="content_img">
       <div style="display:inline">
         <span class="star-input" style="margin-top:170px; margin-left:100px;">
           <span class="input" style="margin-top:50px">
