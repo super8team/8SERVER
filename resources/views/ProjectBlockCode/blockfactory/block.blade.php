@@ -367,7 +367,7 @@
                           <input type="text" name="id"  value="">
                       </button>-->
                       @for($i=0; $i < $contentsize; $i++)
-                      <button class= "content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}">
+                      <button style="margin-bottom:35px;margin-left:15px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
                           <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
                           <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
