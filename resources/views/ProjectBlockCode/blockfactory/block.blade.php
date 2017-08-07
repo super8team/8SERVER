@@ -293,7 +293,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:1px solid;'>
+        <td style='width:1%; border:0px solid;'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -367,7 +367,7 @@
                           <input type="text" name="id"  value="">
                       </button>-->
                       @for($i=0; $i < $contentsize; $i++)
-                      <button style="margin-bottom:35px;margin-left:15px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
+                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
                           <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
                           <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
@@ -386,15 +386,15 @@
          <!-- </table>
       </td> -->
         <td id="blockLibraryControls">
-          <button id="registerContents">
+          <button id="registerContents" >
             현장체험 등록
           </button>
-          <button id="shareContentsButton">
+          <button id="shareContentsButton" style="display:block">
             창작 마당
           </button>
-          <button id="saveToBlockLibraryButton" hidden>
+          <!-- <button id="saveToBlockLibraryButton" hidden>
             콘텐츠 저장
-          </button>
+          </button> -->
           <button id="removeBlockFromLibraryButton">
             콘텐츠 삭제
           </button>
@@ -1136,7 +1136,8 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.style.marginBottom = "35px";
+              parent_wrap.height     =  "50px";
+              parent_wrap.style.marginBottom = "33px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
