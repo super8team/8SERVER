@@ -139,7 +139,7 @@ input[type="button"], .inputStyle {
   width: 12%;
 }
 #contents_list > button {
-  height: 100px;
+  /*height: 100px;*/
   font-size: 15px;
 }
 #share_contents_list{
@@ -335,7 +335,7 @@ button, .buttonStyle {
 
 #blockFactorySupplie {
   width: 32%;
-  height: 5%;
+  height:20%;
 }
 
 #present_package {
@@ -386,8 +386,28 @@ button, .buttonStyle {
 #packageList {
   border: 1px solid;
   width: 17%;
-
 }
+
+#createNewBlockButton {
+  width: 100px;
+  height: 45%;
+  border: 0px;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/plus-circle-128.png');
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+}
+
+#saveToBlockLibraryButton {
+  width: 100px;
+  height: 45%;
+  border: 0px;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/pittogrammi/142/24-128.png');
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+}
+
 #createNewPackage {
   height: 50px;
   border:0px;

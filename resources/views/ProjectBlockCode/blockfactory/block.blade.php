@@ -293,7 +293,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:1px solid'>
+        <td style='width:1%; border:1px solid;'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -326,21 +326,31 @@
             </tr>
           </table>
         </td>
-        <td id="blockFactorySupplie">
+        <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
-              <td id="contents_list">
-                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
+              <td id="contents_list" >
+                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled hidden>
                   {{$user}}<br>콘텐츠리스트
                 </button>
+                <div>
+                  <button type="button" id="createNewBlockButton">
+                  </button>
+                </div>
+                <div>
+                  <!-- 콘텐츠 저장 -->
+                  <button type="button" id="saveToBlockLibraryButton">
+                  </button>
+                </div>
               </td>
+
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
                     <div>
-                      <button>
+                      <!-- <button>
                         <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button>
+                      </button> -->
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
                       <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
@@ -372,23 +382,26 @@
                 </select> -->
               </span>
               </td>
-            </tr>
-         </table>
-      </td>
-      <td id="blockLibraryControls">
-        <button id="registerContents">
-          현장체험 등록
-        </button>
-        <button id="shareContentsButton">
-          창작 마당
-        </button>
-        <button id="saveToBlockLibraryButton">
-          콘텐츠 저장
-        </button>
-        <button id="removeBlockFromLibraryButton">
-          콘텐츠 삭제
-        </button>
-      </td>
+            <!-- </tr> -->
+         <!-- </table>
+      </td> -->
+        <td id="blockLibraryControls">
+          <button id="registerContents">
+            현장체험 등록
+          </button>
+          <button id="shareContentsButton">
+            창작 마당
+          </button>
+          <button id="saveToBlockLibraryButton" hidden>
+            콘텐츠 저장
+          </button>
+          <button id="removeBlockFromLibraryButton">
+            콘텐츠 삭제
+          </button>
+        </td>
+        </tr>
+      </table>
+   </td>
      </tr>
       <FONT face="굴림">
       <tr height="90%">
