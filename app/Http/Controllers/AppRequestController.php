@@ -409,6 +409,7 @@ class AppRequestController extends Controller
       $questionIndex = 0;
       foreach ($articles as $article) {
         $newSurvey = array(
+          "no" => $article->no,
           "question" => $article->article,
           "answers" => "",
           "selected" => "",
