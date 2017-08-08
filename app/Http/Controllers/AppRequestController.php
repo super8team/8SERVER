@@ -401,6 +401,7 @@ class AppRequestController extends Controller
       $surveyNo = $request->input('survey');
       $articles = \DB::table('survey_articles')->where('survey', $surveyNo)->get();
       $userNo = $request->input('no');
+      // dd($surveyNo, $userNo);
       $respond = \DB::table('survey_responds')->where('survey', $surveyNo)
                           ->where('respondent', $userNo)->first();
 
@@ -427,7 +428,9 @@ class AppRequestController extends Controller
           $respondContent = \DB::table('survey_respond_contents')
                         ->where('survey_respond', $respond->no)
                         ->where('survey_article', $article->no)->first();
-          $newSurvey['selected'] = $respondContent->respond;
+          // dd($respondContent->respond);
+          if($respondContent!=null)
+            $newSurvey['selected'] = $respondContent->respond;
         }
         $result[] = $newSurvey;
       } // end of foreache, articles
