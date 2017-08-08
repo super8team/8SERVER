@@ -32,11 +32,15 @@
     <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
     <script src="{{URL::asset('/js/test.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
+    <style style="text/css">
+      h1, h2{font-family:'Nanum Brush Script', serif;}
+    </style>
   </head>
 
-  <body>
+  <body style="background-color:#F88FE7;">
       <table id="mainShareList">
-        <div align="center" id="mainShareListTitle" >인기있는 콘텐츠 패키지</div>
+        <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
           @php
@@ -45,7 +49,7 @@
           @endphp
              <td>
                <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                 <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="" style="width:170px; height:100px">
+                 <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
                </a>
              </td>
           @endforeach
@@ -59,13 +63,11 @@
       <br>
       <br>
       <div align="center" id="contentsPackageTitle">
-        콘텐츠 패키지
+        <h1>콘텐츠 패키지</h1>
       </div>
-      <div id="packageResearch">
-
-          <input id="searchWord"   type="text"   name="word"   value="설명">
-          <input id="searchButton" type="button" name="button" value="검색">
-
+      <div id="packageResearch" style="margin-left:39%">
+          <input id="searchWord"   type="text"   name="word"   value="설명1">
+          <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
           @php
@@ -81,7 +83,7 @@
                   @endphp
           <div id="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}"  style="width:100px; height:150px">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
                         수정하기
@@ -94,10 +96,10 @@
               $i++;
             @endphp
           @endforeach
-
-
+          <br>
+          <button id="share" type="button">패키지 공유하기</button>
       </div>
-      <button id="share" type="button" name="button">패키지 공유하기</button>
+
     </body>
     <script type="text/javascript">
 // var xmlText         = new XMLSerializer().serializeToString(xml);
@@ -139,6 +141,7 @@
             $('#shareList').empty();
 
             var img_url          = data[0]['img_url'];
+            console.log(img_url);
             var package_name     = data[1];
             var contents_package = data[0]['contents_package'];
 
@@ -153,8 +156,11 @@
             var a_ele      = document.createElement('a');
             a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
 
+
             var img_ele    = document.createElement('img');
-            img_ele.setAttribute('src','http://163.44.166.91/LEARnFUN/public{{Storage::url("packageImgs/image1.jpg")}}');
+            var img_url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
+            console.log(img_url);
+            img_ele.setAttribute('src',img_url);
 
             name_div.innerHTML = package_name;
 
