@@ -56,6 +56,7 @@
   </script>
 </head>
 <body>
+
 <div class="decobar"></div>
 
   <div id="tabContainer">
@@ -386,6 +387,8 @@
          <!-- </table>
       </td> -->
         <td id="blockLibraryControls">
+            
+          <video src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/videoex.mp4" controls autoplay >HTML5 Video is required for this example</video>
           <button id="registerContents" >
             현장체험 등록
           </button>

@@ -72,7 +72,7 @@
                       </td>
                     @elseif($user_info['type'] == 'parents')
                       <td colspan="2" class="text-center">
-                        <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
+                        <a role="button" href="{{ route('staff', $plan_no[$count])}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                           위원회
                         </a>
                         <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">

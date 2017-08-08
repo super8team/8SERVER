@@ -8,6 +8,7 @@ class StaffController extends Controller
 {
     public function index($count)
     {
+
         $current_plan = \DB::table('field_learning_plans')->where('no', $count)->first();
 
         $currentPlanId    =  $current_plan->no;
@@ -20,28 +21,83 @@ class StaffController extends Controller
             'current_plan_no' => $currentPlanId,
             'current_plan_title' => $currentPlanTitle,
             'current_plan_date' => $currentPlanDate,
-            'list_number'    => $list_number
+            'list_numb.er'    => $list_number,
+            'count' => $count
         ]);
 
     }
 
-    public function result()
+    public function result($count)
     {
-//        $committee = \DB::table('committees')->where('no', $count)->first();
+
+
+
+        $responds = \DB::table('checklist_responds')->where('checklist', $count)->get();
+
+        $checklist_responds = [];
+
+
+
+
+
+
+//        $checklists =  \DB::table('plan_checklists')->where('checklist', $count)->get();
+//
+//        $checklist_bigsort = [];
+//        $checklist_smallsort = [];
+//        $checklist_substance = [];
+//
+//        foreach ($checklists as $checklist) {
+//
+//        array_push($checklist_bigsort, $checklist->bigsort);
+//        array_push($checklist_smallsort, $checklist->smallsort);
+//        array_push($checklist_substance, $checklist->substance);
+//
+//        }
+//
+//
+//
+//        return view('staff.result')->with('', $checklist_bigsort)
+//                                    ->with('', $checklist_smallsort)
+//                                   ->with('', $checklist_substance);
 
         return view('staff.result');
+
     }
 
-    public function memberAdd()
+    public function memberAdd($count)
     {
-//        $committee = \DB::table('committees')->where('no', $count)->first();
 
-        return view('staff.member_add');
+        $committee_members =  \DB::table('committee_members')->where('committee', $count)->get();
+
+        $committee_member_no = [];
+        $committee_member_name = [];
+
+        foreach ($committee_members as $committee_member) {
+            $committee_member1 = \DB::table('users')->where('no', $committee_member->member)->first();
+            array_push( $committee_member_no, $committee_member1->no);
+            array_push( $committee_member_name, $committee_member1->name);
+        }
+
+
+        return view('staff.member_add')->with('committee_member_no', $committee_member_no)
+                                        ->with('committee_member_name', $committee_member_name)
+                                        ->with('plan_number', $count);
+
     }
 
-    public function memberSearch()
-    {
+    public function storage(Request $request) {
+        $storage_list_array = $request->storage_list;
+        $plan = $request->plan_num;
 
+        for($i = 0 ; $i < count($storage_list_array); $i++){
+           $user_name = DB::table('users')->where('name',$storage_list_array[$i])->first();
+           DB::table('committee_members')->insert([
+                'member'=>'1',
+                'committee'=>'1'
+           ]);
+        }
+        return $storage_list_array[0];
     }
 
     public function ajax(Request $request)
@@ -59,4 +115,7 @@ class StaffController extends Controller
         return $result;
 
     }
+
 }
+
+
