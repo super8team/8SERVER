@@ -381,12 +381,12 @@ button, .buttonStyle {
 }
 
 #blockLibraryContainer {
-  width: 47%;
+  width: 45%;
   vertical-align: bottom;
 }
 
 #blockLibraryControls {
-  width:24%;
+  width:26%;
   text-align: center;
   vertical-align: middle;
 }
@@ -415,8 +415,14 @@ button, .buttonStyle {
   width: 17%;
 }
 
+#makeVideo {
+  background-color: white;
+  border:1px black solid;
+  border-radius: 0px;
+}
+
 #createNewBlockButton {
-  width: 120px;
+  width: 100px;
   height: 40px;
   border: 0px;
   background-color: white;
@@ -426,7 +432,7 @@ button, .buttonStyle {
 }
 
 #saveToBlockLibraryButton {
-  width: 120px;
+  width: 100px;
   height: 40px;
   border: 0px;
   background-color: white;
