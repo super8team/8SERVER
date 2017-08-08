@@ -1,9 +1,6 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
 
-
-</script>
 <body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
@@ -97,13 +94,13 @@
                 $result = $star.find("output>b");
             $(document)
               .on("focusin", ".star-input>.input", function(){
-              $(this).addClass("focus");
+              // $(this).addClass("focus");
             })
               .on("focusout", ".star-input>.input", function(){
               var $this = $(this);
               setTimeout(function(){
                 if($this.find(":focus").length === 0){
-                  $this.removeClass("focus");
+                  // $this.removeClass("focus");
                 }
               }, 100);
             })
@@ -111,6 +108,7 @@
               $result.text($(this).next().text());
             })
               .on("mouseover", ".star-input label", function(){
+              console.log('새ㅕ오');
               $result.text($(this).text());
             })
               .on("mouseleave", ".star-input>.input", function(){
