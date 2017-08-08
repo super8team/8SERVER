@@ -32,11 +32,15 @@
     <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
     <script src="{{URL::asset('/js/test.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
+    <style style="text/css">
+      h1, h2{font-family:'Nanum Brush Script', serif;}
+    </style>
   </head>
 
-  <body>
+  <body style="background-color:#F88FE7;">
       <table id="mainShareList">
-        <div align="center" id="mainShareListTitle" >인기있는 콘텐츠 패키지</div>
+        <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
           @php
@@ -59,9 +63,9 @@
       <br>
       <br>
       <div align="center" id="contentsPackageTitle">
-        콘텐츠 패키지
+        <h1>콘텐츠 패키지</h1>
       </div>
-      <div id="packageResearch" style="margin-left:40%">
+      <div id="packageResearch" style="margin-left:39%">
           <input id="searchWord"   type="text"   name="word"   value="설명1">
           <input id="searchButton" type="button" name="button" value="">
       </div>
@@ -92,10 +96,10 @@
               $i++;
             @endphp
           @endforeach
-
-
+          <br>
+          <button id="share" type="button">패키지 공유하기</button>
       </div>
-      <button id="share" type="button" name="button">패키지 공유하기</button>
+
     </body>
     <script type="text/javascript">
 // var xmlText         = new XMLSerializer().serializeToString(xml);

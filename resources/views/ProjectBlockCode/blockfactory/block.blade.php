@@ -429,8 +429,8 @@
         <td id="mapSize">
           <div>
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  <input id="address" style="width: 200px;" type="text" value='장소 검색' onblur="checkField(this)" onfocus="clearField(this)">
-                  <input type="submit" value="검색">
+                  <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
+                  <input id="mapSearch" type="submit" value="">
             </form>
           </div>
 
@@ -1068,7 +1068,7 @@
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=600, height=450';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=680, height=470';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
