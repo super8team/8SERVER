@@ -300,7 +300,7 @@ class AppRequestController extends Controller
 
       // 자녀 한명용 코드
       if($request->input('userType') == "parents") {
-        $userNo = \DB::table('students')->where('parents', $userNo)->first()->no;
+        $userNo = \DB::table('students')->where('parents', $userNo)->first()->student;
 
         //실제 여러 자녀가 가능한 경우의 코드
         // $userNo = $request->input('childNo');
