@@ -540,10 +540,17 @@ class AppRequestController extends Controller
                   ->update(['updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
 
         foreach ($answers as $key => $value) {
-          \DB::table('survey_respond_contents')
-                    ->where([['survey_respond', '=', $respNo],
-                            ['survey_article', '=', $key]])
-                    ->update(['respond'=>$value]);
+          try {
+            \DB::table('survey_respond_contents')
+                      ->where([['survey_respond', '=', $respNo],
+                              ['survey_article', '=', $key]])
+                      ->update(['respond'=>$value]);
+          } catch (Exception $e) {
+            \DB::table('survey_respond_contents')
+                      ->insert(['survey_respond' => $respNo,
+                              'survey_article' => (int) $key,
+                              'respond'=>$value]);
+          }
         }
     }
 
