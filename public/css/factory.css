@@ -136,15 +136,18 @@ input[type="button"], .inputStyle {
   opacity: 1;
 }
 #contents_list{
-  width: 12%;
+  width: 10%;
 }
 #contents_list > button {
-  height: 100px;
+  /*height: 100px;*/
   font-size: 15px;
 }
 #share_contents_list{
-  border: 1px solid black;
+  margin-top: 10px;
+  font-size: 30px;
+  border: 0px solid black;
   width: 15%;
+  font-family:'Nanum Brush Script', serif;
 }
 .content_name{
   margin-left: 35px;
@@ -153,6 +156,11 @@ input[type="button"], .inputStyle {
 #packageList input[type="submit"]{
   width: 5%;
 }*/
+#registerContents, #shareContentsButton, #removeBlockFromLibraryButton{
+  background-color: white;
+  border:1px black solid;
+  border-radius: 0px;
+}
 #factoryHeader {
   display: table;
   height: 10%;
@@ -274,6 +282,10 @@ button, .buttonStyle {
   opacity: 1;
 }
 
+#share {
+  margin-top: 10px;
+}
+
 #mainShareList {
   /*border:1px solid black;*/
   margin-left: 15%;
@@ -281,19 +293,19 @@ button, .buttonStyle {
   width:70%;
   height:20%;
 }
-#mainShareListTitle {
-  font-size: 24px;
+#mainShareListTitle  {
+  font-size: 34px;
 }
-
-#contentsPackageTitle {
-  font-size: 24px;
+#contentsPackageTitle{
+  font-size: 30px;
+  height: 40px;
 }
 #mainShareList #mainContenstsImage {
   height: 10%;
   /*border:1px solid black;*/
 }
 #packageResearch {
-  margin-right : 15%;
+  float:auto;
 }
 
 #mainShareList #mainPackageName {
@@ -301,11 +313,28 @@ button, .buttonStyle {
   /*border:1px solid black;*/
 }
 
+#searchButton{
+  width: 40px;
+  height: 42px;
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+  background-color:white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-128.png');
+}
+#mapSearch {
+  width: 40px;
+  height: 35px;
+  margin-left: 15px;
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+  background-color:white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-128.png');
+}
 #shareList {
   /*border:1px solid black;*/
   margin-left: 15%;
   margin-top: 5%;
-  width:70%;
+  width:75%;
   height:35%;
 }
 
@@ -335,12 +364,15 @@ button, .buttonStyle {
 
 #blockFactorySupplie {
   width: 32%;
-  height: 5%;
+  height:20%;
 }
 
-#as {
-  width: 1%;
-  border:1px solid ;
+#present_package {
+  margin : auto;
+  text-align : center;
+  vertical-align : middle;
+  font-size: 40px;
+  font-weight : bold;
 }
 
 #blockFactoryPreview {
@@ -350,13 +382,11 @@ button, .buttonStyle {
 
 #blockLibraryContainer {
   width: 47%;
-  border: 0px solid;
   vertical-align: bottom;
 }
 
 #blockLibraryControls {
   width:24%;
-  border: 1px solid;
   text-align: center;
   vertical-align: middle;
 }
@@ -381,16 +411,42 @@ button, .buttonStyle {
 }
 
 #packageList {
-  border: 1px solid;
+  border: 0px solid;
   width: 17%;
-
 }
+
+#createNewBlockButton {
+  width: 120px;
+  height: 40px;
+  border: 0px;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/plus-circle-128.png');
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+}
+
+#saveToBlockLibraryButton {
+  width: 120px;
+  height: 40px;
+  border: 0px;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/pittogrammi/142/24-128.png');
+  background-repeat:no-repeat;
+  background-size : 100% 100%;
+}
+
 #createNewPackage {
   height: 50px;
+  border:0px;
   font-size: 20px;
   display: table;
   align: center;
   margin: 0 auto;
+  background-color: white;
+  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/plus-circle-128.png');
+  background-repeat:no-repeat;
+  background-size : 65% 100%;
+  background-position:center;
 }
 #storagePackage {
   height: 50px;

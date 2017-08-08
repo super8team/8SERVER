@@ -175,15 +175,15 @@ BlockLibraryView.prototype.updateButtons =
     if (!isInLibrary) {
       // Block type has not been saved to library yet. Disable the delete button
       // and allow user to save.
-      // this.saveButton.textContent = '저장 "' + blockType + '"';
-      this.saveButton.textContent = '저장';
+      // this.saveButton.textContent = ' "' + blockType + '"';
+      this.saveButton.textContent = '';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
       // this.saveButton.disabled = false;
     } else {
       // Block type has already been saved. Disable the save button unless the
       // there are unsaved changes (checked below).
-      this.saveButton.textContent = '저장';
+      this.saveButton.textContent = '';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
       // this.updateButton.disabled = false;

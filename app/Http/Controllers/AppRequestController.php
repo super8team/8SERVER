@@ -127,7 +127,7 @@ class AppRequestController extends Controller
       // $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
 
       $child = DB::table('students')->where('parents', $parents->no)->first();
-      $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'desc')->first();
+      $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'asc')->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
@@ -147,7 +147,7 @@ class AppRequestController extends Controller
     }
 
     private function getStudentPlan($student) {
-      $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'desc')->first();
+      $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'asc')->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
@@ -297,6 +297,14 @@ class AppRequestController extends Controller
 
     public function logView(Request $request) {
       $userNo = $request->input('userNo');
+
+      // 자녀 한명용 코드
+      if($request->input('userType') == "parents") {
+        $userNo = \DB::table('students')->where('parents', $userNo)->first()->no;
+
+        //실제 여러 자녀가 가능한 경우의 코드
+        // $userNo = $request->input('childNo');
+      }
 
       $group = \DB::table('groups')->where('joiner', $userNo)->first();
       $logs = \DB::table('schedule_logs')->where('plan', $group->plan)->get();

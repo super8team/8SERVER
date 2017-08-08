@@ -1,21 +1,22 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 
 <script src="http://code.jquery.com/jquery-1.5.js"></script>
-
+<link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
 <body>
 
     <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">
       <div class="wrapper" >
+
         <span id="content_wrapper">
+
           <div>
-            <input type="file" name="package_image" >
-            <div id="holder" ></div>
-            <input type="text" name="package_name" value="패키지 이름" style="vertical-align:top" onfocus="this.value=''">
+            <input type="file" name="package_image" style="display:block">
+            <div id="holder" style="display:inline-block"></div>
+            <textarea name="package_explain" rows="8" cols="80" onFocus="this.value=''" style="resize:none;height:140px" placeholder="설명을 입력해 주세요"></textarea>
+            </div>
           </div>
           <br>
-          <div>
-            <textarea name="package_explain" rows="8" cols="80" onFocus="this.value=''">설명</textarea>
-          </div>
+          <input type="text" name="package_name" placeholder="패키지 이름" style="vertical-align:top;display:block" onfocus="this.value=''">
           <div id="share_contents_list">
             콘텐츠 목록
           </div>
@@ -50,8 +51,8 @@ upload.onchange = function (e) {
   reader.onload = function (event) {
     var img = new Image();
     img.src = event.target.result;
-    img.width  = 120;
-    img.height = 120;
+    img.width  = 140;
+    img.height = 140;
     // note: no onload required since we've got the dataurl...I think! :)
 
     holder.innerHTML = '';
