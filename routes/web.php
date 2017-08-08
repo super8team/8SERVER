@@ -149,13 +149,16 @@ Route::resource('report','ReportController');
 
 // *******************  위원회 *********************
 // 위원회 멤버 추가
-Route::get('staff/memberAdd', 'StaffController@memberAdd')->name('staff.memberAdd');
+Route::get('staff/memberAdd/{count}', 'StaffController@memberAdd')->name('staff.memberAdd');
 
 // 위원회 결과
-Route::get('staff/result', 'StaffController@result')->name('staff.result');
+Route::get('staff/result/{count}', 'StaffController@result')->name('staff.result');
 
 // 위원회 목록
 Route::get('staff/{count}', 'StaffController@index')->name('staff');
+
+// 위원회 저장
+Route::post('staff/storage', 'StaffController@storage')->name('staff.storage');
 
 
 

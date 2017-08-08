@@ -33,10 +33,10 @@
               <td>{{$current_plan_title}}</td>
               <td>{{$current_plan_date}}</td>
               <td colspan="2" class="text-center">
-                <a role="button" href="{{route('staff.memberAdd')}}" class="btn btn-sm btn-default">
+                <a role="button" href="{{route('staff.memberAdd', ['count'=>$count])}}" class="btn btn-sm btn-default">
                   위원 관리
                 </a>
-                <a role="button" href="{{route('staff.result')}}" class="btn btn-sm btn-default">
+                <a role="button" href="{{route('staff.result', ['count'=>$count])}}" class="btn btn-sm btn-default">
                   심의 결과 보기
                 </a>
               </td>
