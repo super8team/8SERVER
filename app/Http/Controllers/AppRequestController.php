@@ -528,8 +528,8 @@ class AppRequestController extends Controller
 
       $resp = \DB::table('survey_responds')->where([['respondent', '=', $userNo], ['survey', '=', $surveyNo]])->first();
       if ($resp != null)
-        updateSurveyRespond($answers, $resp->no);
-      else insertSurveyRespond($request);
+        $this->updateSurveyRespond($answers, $resp->no);
+      else $this->insertSurveyRespond($request);
     }
 
     private function updateSurveyRespond(Request $request, $respNo) {
