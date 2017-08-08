@@ -526,7 +526,7 @@ class AppRequestController extends Controller
       $surveyNo = json_decode($request->input('survey'));
 
 
-      $resp = \DB::table('survey_responds')->where(['respondent', '=', $userNo], ['survey', '=', $surveyNo])->first();
+      $resp = \DB::table('survey_responds')->where([['respondent', '=', $userNo], ['survey', '=', $surveyNo]])->first();
       if ($resp != null)
         updateSurveyRespond($answers, $resp->no);
       else insertSurveyRespond($request);
@@ -541,8 +541,8 @@ class AppRequestController extends Controller
 
         foreach ($answers as $key => $value) {
           \DB::table('survey_respond_contents')
-                    ->where(['survey_respond', '=', $respNo],
-                            ['survey_article', '=', $key])
+                    ->where([['survey_respond', '=', $respNo],
+                            ['survey_article', '=', $key]])
                     ->update(['respond'=>$value]);
         }
     }
