@@ -111,6 +111,7 @@
               $result.text($(this).next().text());
             })
               .on("mouseover", ".star-input label", function(){
+              console.log('새ㅕ오');
               $result.text($(this).text());
             })
               .on("mouseleave", ".star-input>.input", function(){
