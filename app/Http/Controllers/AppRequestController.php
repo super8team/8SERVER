@@ -520,4 +520,50 @@ class AppRequestController extends Controller
         ]);
       }
     }
+
+    public function surveyRespondStore(Request $request) {
+      $userNo = json_decode($request->input('userNo'));
+      $surveyNo = json_decode($request->input('survey'));
+
+
+      $resp = \DB::table('survey_responds')->where(['respondent', '=', $userNo], ['survey', '=', $surveyNo])->first();
+      if ($resp != null)
+        updateSurveyRespond($answers, $resp->no);
+      else insertSurveyRespond($request);
+    }
+
+    private function updateSurveyRespond(Request $request, $respNo) {
+        $answers = json_decode($request->input('answer'));
+        $userNo = json_decode($request->input('userNo'));
+
+        \DB::table('survey_responds')->where('no', $respNo)
+                  ->update(['updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+
+        foreach ($answers as $key => $value) {
+          \DB::table('survey_respond_contents')
+                    ->where(['survey_respond', '=', $respNo],
+                            ['survey_article', '=', $key])
+                    ->update(['respond'=>$value]);
+        }
+    }
+
+    private function insertSurveyRespond(Request $request) {
+        $answers = json_decode($request->input('answer'));
+        $userNo = json_decode($request->input('userNo'));
+        $surveyNo = json_decode($request->input('survey'));
+
+        $respNo = \DB::table('survey_responds')->insertGetId([
+                      'respondent' => $userNo,
+                      'survey' => $surveyNo,
+                      'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                      'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+        foreach ($answers as $key => $value) {
+          \DB::table('survey_respond_contents')
+                    ->insert(['survey_respond' => $respNo],
+                            ['survey_article' => $key],
+                            ['respond'=>$value]);
+        }
+    }
 }
