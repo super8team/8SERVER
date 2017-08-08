@@ -525,21 +525,21 @@ class AppRequestController extends Controller
       $userNo = json_decode($request->input('userNo'));
       $surveyNo = json_decode($request->input('survey'));
 
-
       $resp = \DB::table('survey_responds')->where([['respondent', '=', $userNo], ['survey', '=', $surveyNo]])->first();
       if ($resp != null)
-        $this->updateSurveyRespond($answers, $resp->no);
+        $this->updateSurveyRespond($request, $resp->no);
       else $this->insertSurveyRespond($request);
     }
 
     private function updateSurveyRespond(Request $request, $respNo) {
         $answers = json_decode($request->input('answer'));
         $userNo = json_decode($request->input('userNo'));
-
+// dd($answers);
         \DB::table('survey_responds')->where('no', $respNo)
                   ->update(['updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
 
         foreach ($answers as $key => $value) {
+          // dd($respNo, $key, $value, $userNo);
           \DB::table('survey_respond_contents')
                     ->where([['survey_respond', '=', $respNo],
                             ['survey_article', '=', $key]])
@@ -548,6 +548,7 @@ class AppRequestController extends Controller
     }
 
     private function insertSurveyRespond(Request $request) {
+      // dd("inesrt 시작합니당 ㅎㅎ");
         $answers = json_decode($request->input('answer'));
         $userNo = json_decode($request->input('userNo'));
         $surveyNo = json_decode($request->input('survey'));
@@ -558,12 +559,13 @@ class AppRequestController extends Controller
                       'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                       'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-
+// dd("여기말하는거아닌가?", $respNo);
         foreach ($answers as $key => $value) {
+          // var_dump($key." : ".$value.'<br>');
           \DB::table('survey_respond_contents')
-                    ->insert(['survey_respond' => $respNo],
-                            ['survey_article' => $key],
-                            ['respond'=>$value]);
+                    ->insert(['survey_respond' => $respNo,
+                            'survey_article' => (int) $key,
+                            'respond'=>$value]);
         }
     }
 }
