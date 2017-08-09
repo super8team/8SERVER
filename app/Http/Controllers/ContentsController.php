@@ -251,8 +251,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
 
-
-
       }
     public function shareDetail($package_id)
     {
@@ -277,8 +275,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
             array_push($contentsName, array('name'=>$content->name,'id'=>$content->no));
         }
 
-        $package_contents_avg = 7;
-        // $package_contents_avg = $package_contents_sum / 1;
+        // $package_contents_avg = 7;
+        $package_contents_avg = $package_contents_sum / count($contents);
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )
