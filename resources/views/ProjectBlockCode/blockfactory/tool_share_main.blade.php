@@ -57,7 +57,7 @@
         <tr id="mainPackageName">
           @foreach($popularPackage as $key=>$value)
             <td>
-              {{$value['name'];}}
+              {{$value['name']}}
             </td>
           @endforeach
         </tr>
@@ -88,7 +88,7 @@
                       <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
-                      {{$value['name'];}}
+                      {{$value['name']}}
                     </div>
           </div>
             @if($i%4==0)
