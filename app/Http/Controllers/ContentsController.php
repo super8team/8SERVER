@@ -43,9 +43,10 @@ $userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를
 $packages = [];
 // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
-if($owndedPackages){
 
+if(empty($owndedPackages)){
 $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+
 // dd($content_count);
 $content_count = count($content_count);
 
@@ -69,6 +70,7 @@ for($i = 0; $i<$packageCount;$i++){
 // dd($packages[0]['contents'][0]['xml']);
 return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
 }else{
+
   return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
 }
 
