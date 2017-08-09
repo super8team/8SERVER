@@ -44,7 +44,8 @@ $packages = [];
 // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
-if(empty($owndedPackages)){
+if(!empty($owndedPackages)){
+
 $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
 
 // dd($content_count);
