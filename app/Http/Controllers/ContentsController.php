@@ -241,11 +241,11 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $otherPackages        = DB::table('contents_package_shares')->orderBy('views', 'asc ')->take(6)->get();
 
         foreach ($popularPackages as $popularPackage ) {
-            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
+            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'name'=>$popularPackage->name));
         }
 
         foreach ($otherPackages as $otherPackage ) {
-            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
+            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url,'name'=>$otherPackage->name));
         }
 
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
