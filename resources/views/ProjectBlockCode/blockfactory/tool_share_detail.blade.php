@@ -1,16 +1,13 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
 
-
-</script>
 <body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
     <div>
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
-      <img src="http://163.44.166.91/LEARnFUN/public/{{$url}}" alt="콘텐츠 이미지" class="content_img">
+      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
       <div style="display:inline">
         <span class="star-input" style="margin-top:170px; margin-left:100px;">
           <span class="input" style="margin-top:50px">
@@ -36,7 +33,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80" font-size="20px" readonly>{{$package_subs}}</textarea>
+      <textarea name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
@@ -97,13 +94,13 @@
                 $result = $star.find("output>b");
             $(document)
               .on("focusin", ".star-input>.input", function(){
-              $(this).addClass("focus");
+              // $(this).addClass("focus");
             })
               .on("focusout", ".star-input>.input", function(){
               var $this = $(this);
               setTimeout(function(){
                 if($this.find(":focus").length === 0){
-                  $this.removeClass("focus");
+                  // $this.removeClass("focus");
                 }
               }, 100);
             })
@@ -111,6 +108,7 @@
               $result.text($(this).next().text());
             })
               .on("mouseover", ".star-input label", function(){
+              console.log('새ㅕ오');
               $result.text($(this).text());
             })
               .on("mouseleave", ".star-input>.input", function(){
@@ -123,12 +121,12 @@
             });
             };
             starRating();
-  $(document).ready(function(){
-    document.getElementById('content_download').addEventListener('click',function(){
-      var package_num = document.getElementsByName('package_num')[0].value;
-      window.location.href = "LEARnFUN/public/toolShareDownload?package_num="+package_num;
-    });
-  });
+  // $(document).ready(function(){
+  //   document.getElementById('content_download').addEventListener('click',function(){
+  //     var package_num = document.getElementsByName('package_num')[0].value;
+  //     window.location.href = "LEARnFUN/public/toolShareDownload?package_num="+package_num;
+  //   });
+  // });
 
   </script>
 </body>

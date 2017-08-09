@@ -2,7 +2,7 @@
 @extends('master')
 
 @section('title','위원회 관리')
-
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 
   <script type="text/javascript">
@@ -85,11 +85,33 @@
       }
 
 
-      function storageBtn() {
-          var storage = document.get
+      function storageBtn(count){
+          var storage_list = [];
+          var parent = document.getElementsByName('added_list');
 
+          for(var i =0; i < parent.length; i++){
+              storage_list[i] = parent[i].value;
+         }
 
-      }
+          var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+
+          $.ajax({
+            url: '{{route('staff.storage')}}',
+            type: 'post',
+            data:{
+                'storage_list': storage_list,
+                'plan_num': count,
+                '_token': CSRF_TOKEN
+            },
+            success: function(data){
+                console.log(data);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
+        }
 
 
     // 1- 2 검색후 조건이 있을경우 div를 비움
@@ -171,7 +193,7 @@
         </div>
         {{--</form>--}}
 
-        <form class="form" action="{{route('staff.memberAdd')}}" method="post">
+        <form class="form" method="post">
           {{ csrf_field() }}
           <div class="text-center">
             <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
@@ -196,7 +218,7 @@
                     {{--@endfor--}}
                   </table>
                </div><!-- /.panel-body -->
-                <button  type="button" onclick="storageBtn()" class="btn btn-lg btn-default">저장</button>
+                <button  type="button" onclick="storageBtn({{$plan_number}})" class="btn btn-lg btn-default">저장</button>
               </div>
             </div><!-- /.panel .chat-panel -->
         </form><!-- ㅇㅇㅇㅇ/.col-lg-4 -->

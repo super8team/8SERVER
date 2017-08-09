@@ -178,7 +178,7 @@ colour:160,
 previousStatement:null,
 nextStatement:null
 },
-    {type:"endQuest",message0:"%1",
+    {type:"endQuest",message0:"퀘스트 종료%1",
   args0:[{type:"field_dropdown",name:"BOOL",
   options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],
   colour:160,

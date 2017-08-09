@@ -38,6 +38,7 @@
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
   <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
+  <script src="{{URL::asset('/js/notipopup.js')}}"></script>
   <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
   <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
@@ -56,6 +57,7 @@
   </script>
 </head>
 <body>
+
 <div class="decobar"></div>
 
   <div id="tabContainer">
@@ -293,7 +295,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:1px solid'>
+        <td style='width:1%; border:0px solid;'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -323,24 +325,35 @@
               <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
 
               </td>
+
             </tr>
           </table>
         </td>
-        <td id="blockFactorySupplie">
+        <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
-              <td id="contents_list">
-                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled>
+              <td id="contents_list" >
+                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled hidden>
                   {{$user}}<br>콘텐츠리스트
                 </button>
+                <div>
+                  <button type="button" id="createNewBlockButton">
+                  </button>
+                </div>
+                <div>
+                  <!-- 콘텐츠 저장 -->
+                  <button type="button" id="saveToBlockLibraryButton">
+                  </button>
+                </div>
               </td>
+
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
                     <div>
-                      <button>
+                      <!-- <button>
                         <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button>
+                      </button> -->
                       <!-- <button id="presentPackageName" type="button" name="button">
                       </button> -->
                       <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
@@ -357,7 +370,7 @@
                           <input type="text" name="id"  value="">
                       </button>-->
                       @for($i=0; $i < $contentsize; $i++)
-                      <button class= "content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}">
+                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
                           <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
                           <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
@@ -372,23 +385,27 @@
                 </select> -->
               </span>
               </td>
-            </tr>
-         </table>
-      </td>
-      <td id="blockLibraryControls">
-        <button id="registerContents">
-          현장체험 등록
-        </button>
-        <button id="shareContentsButton">
-          창작 마당
-        </button>
-        <button id="saveToBlockLibraryButton">
-          콘텐츠 저장
-        </button>
-        <button id="removeBlockFromLibraryButton">
-          콘텐츠 삭제
-        </button>
-      </td>
+            <!-- </tr> -->
+         <!-- </table>
+
+      </td> -->
+        <td id="blockLibraryControls">
+          <button id="registerContents" >
+            현장체험 등록
+          </button>
+          <button id="shareContentsButton">
+            창작 마당
+          </button>
+          <!-- <button id="saveToBlockLibraryButton" hidden>
+            콘텐츠 저장
+          </button> -->
+          <button id="removeBlockFromLibraryButton">
+            콘텐츠 삭제
+          </button>
+        </td>
+        </tr>
+      </table>
+   </td>
      </tr>
       <FONT face="굴림">
       <tr height="90%">
@@ -416,8 +433,8 @@
         <td id="mapSize">
           <div>
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  <input id="address" style="width: 200px;" type="text" value='장소 검색' onblur="checkField(this)" onfocus="clearField(this)">
-                  <input type="submit" value="검색">
+                  <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
+                  <input id="mapSearch" type="submit" value="">
             </form>
           </div>
 
@@ -557,7 +574,13 @@
           </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
-
+        <div id="notipopup">
+                  <div>
+                    <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
+                      <!-- <div class="todayclose">TODAY CLOSE</div> -->
+                      <div class="class">닫기</div>
+                  </div>
+              </div>
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
           <table id="blocklyPreviewContainer">
@@ -938,6 +961,13 @@
     </form>
   </body>
   <script type="text/javascript">
+  $('#notipopup').topmenu({
+                startX:'20%',
+                startY:'10%',
+                close:'.close',
+                todayclose:'.todayclose',
+                code:'notipopup'
+            });
   var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
@@ -1055,7 +1085,7 @@
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=600, height=450';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=680, height=470';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
@@ -1123,6 +1153,9 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
+              parent_wrap.height     =  "50px";
+              parent_wrap.style.marginBottom = "35px";
+              parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
               child_wrap.setAttribute('class','contents_xml');

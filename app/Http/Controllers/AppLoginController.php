@@ -81,10 +81,4 @@ class AppLoginController extends Controller
 
     return json_encode($result);
     }
-
-    public function accessSurvey(Request $request, $survey, $id, $pw) {
-      if(Auth::attempt(['id'=>$id, 'password'=>$pw])) {
-        return redirect()->route('survey.show', ['survey' => $survey]);
-      }
-    }
 }

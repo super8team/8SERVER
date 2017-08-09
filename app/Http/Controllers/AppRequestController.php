@@ -127,7 +127,7 @@ class AppRequestController extends Controller
       // $plan = DB::table('field_learning_plans')->where('teacher', $user->no)->first();
 
       $child = DB::table('students')->where('parents', $parents->no)->first();
-      $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'desc')->first();
+      $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'asc')->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
@@ -147,7 +147,7 @@ class AppRequestController extends Controller
     }
 
     private function getStudentPlan($student) {
-      $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'desc')->first();
+      $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'asc')->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
@@ -298,6 +298,14 @@ class AppRequestController extends Controller
     public function logView(Request $request) {
       $userNo = $request->input('userNo');
 
+      // 자녀 한명용 코드
+      if($request->input('userType') == "parents") {
+        $userNo = \DB::table('students')->where('parents', $userNo)->first()->no;
+
+        //실제 여러 자녀가 가능한 경우의 코드
+        // $userNo = $request->input('childNo');
+      }
+
       $group = \DB::table('groups')->where('joiner', $userNo)->first();
       $logs = \DB::table('schedule_logs')->where('plan', $group->plan)->get();
 
@@ -393,6 +401,7 @@ class AppRequestController extends Controller
       $surveyNo = $request->input('survey');
       $articles = \DB::table('survey_articles')->where('survey', $surveyNo)->get();
       $userNo = $request->input('no');
+      // dd($surveyNo, $userNo);
       $respond = \DB::table('survey_responds')->where('survey', $surveyNo)
                           ->where('respondent', $userNo)->first();
 
@@ -401,6 +410,7 @@ class AppRequestController extends Controller
       $questionIndex = 0;
       foreach ($articles as $article) {
         $newSurvey = array(
+          "no" => $article->no,
           "question" => $article->article,
           "answers" => "",
           "selected" => "",
@@ -418,7 +428,9 @@ class AppRequestController extends Controller
           $respondContent = \DB::table('survey_respond_contents')
                         ->where('survey_respond', $respond->no)
                         ->where('survey_article', $article->no)->first();
-          $newSurvey['selected'] = $respondContent->respond;
+          // dd($respondContent->respond);
+          if($respondContent!=null)
+            $newSurvey['selected'] = $respondContent->respond;
         }
         $result[] = $newSurvey;
       } // end of foreache, articles
@@ -510,5 +522,51 @@ class AppRequestController extends Controller
           "respond" => "0",
         ]);
       }
+    }
+
+    public function surveyRespondStore(Request $request) {
+      $userNo = json_decode($request->input('userNo'));
+      $surveyNo = json_decode($request->input('survey'));
+      $answers = json_decode($request->input('answer'));
+
+      $resp = \DB::table('survey_responds')->where([['respondent', '=', $userNo], ['survey', '=', $surveyNo]])->first();
+      if ($resp != null)
+        $this->updateSurveyRespond($answers, $userNo, $resp->no);
+      else $this->insertSurveyRespond($userNo, $surveyNo, $answers);
+    }
+
+    private function updateSurveyRespond($answers, $userNo, $respNo) {
+        \DB::table('survey_responds')->where('no', $respNo)
+                  ->update(['updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s')]);
+
+        foreach ($answers as $key => $value) {
+          try {
+            \DB::table('survey_respond_contents')
+                      ->where([['survey_respond', '=', $respNo],
+                              ['survey_article', '=', $key]])
+                      ->update(['respond'=>$value]);
+          } catch (Exception $e) {
+            \DB::table('survey_respond_contents')
+                      ->insert(['survey_respond' => $respNo,
+                              'survey_article' => (int) $key,
+                              'respond'=>$value]);
+          }
+        }
+    }
+
+    private function insertSurveyRespond($userNo, $surveyNo, $answers) {
+        $respNo = \DB::table('survey_responds')->insertGetId([
+                      'respondent' => $userNo,
+                      'survey' => $surveyNo,
+                      'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                      'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+        foreach ($answers as $key => $value) {
+          \DB::table('survey_respond_contents')
+                    ->insert(['survey_respond' => $respNo,
+                            'survey_article' => (int) $key,
+                            'respond'=>$value]);
+        }
     }
 }
