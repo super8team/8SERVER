@@ -234,4 +234,5 @@ Route::resource('group', 'GroupController');
 
 // ******************** 팀  *********************
 // 팀 짜기 기능
-// Route::resource('team', 'TeamController');
+Route::get('teamlist/{plan_no}', 'TeamController@custom_index')->name('team_list');
+// Route::get('team', 'TeamController');

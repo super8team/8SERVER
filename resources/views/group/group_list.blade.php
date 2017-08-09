@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','소감문 리스트')
+@section('title','그룹리스트')
 
 @section('content')
   <div class="bluedecobar"></div>
@@ -14,7 +14,7 @@
           if($user_info['type'] == 'student'){
             $back_route = 'plan.student';
           }elseif ($user_info['type'] == 'teacher'){
-            $back_route = 'plan.student';
+            $back_route = 'plan.teacher';
           }else{
             $back_route = 'plan.parents';
           }              
@@ -24,6 +24,9 @@
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
              뒤로 돌아가기
+           </a>
+           <a role="button" href="{{route('team_list', $plan_no)}}" class="btn btn-sm btn-default pull-right">
+             팀 정하기
            </a>
            <a role="button" href="{{route('group_create',$plan_no)}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">

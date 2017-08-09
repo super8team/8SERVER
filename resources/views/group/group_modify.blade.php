@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','가정 통신문 작성')
+@section('title','그룹 수정')
 
 @section('content')
   <script type="text/javascript">
