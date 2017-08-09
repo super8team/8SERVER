@@ -44,7 +44,10 @@ $packages = [];
 // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
+if(!empty($owndedPackages)){
+
 $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+
 // dd($content_count);
 $content_count = count($content_count);
 
@@ -67,7 +70,10 @@ for($i = 0; $i<$packageCount;$i++){
 // dd($packages);
 // dd($packages[0]['contents'][0]['xml']);
 return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
+}else{
 
+  return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
+}
 
 
 // for($i=0; $i<$packageCount; $i++) {
@@ -122,38 +128,25 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 //                                                           ->with('contents_id',   $contents[0]->no)
 //                                                           ->with('package_name', $package_infor);
 // >>>>>>> 19f1c7ac845580e62f2a5be159c2ee0b35d6ff4c
-
-
       //no -> 사용자 primary key
         // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
         // $package_infor = [];
-
-
         // $user      = DB::table('users')->where('no','=',$id)->get();
         // dd($user);
-
-
         // 콘텐츠 패키지에서 주인을 인식하기 위한 컬럼은 owner 컬럼이다
         // $packages  = DB::table('contents_packages')->where('owner','=',$id)->get();
         //$packages에서 사용자가 가지고 있는 패키지를 가져올 수 있다
         //그렇기 때문에 밑의 커리도 맘대로 하면 안된다 생각을 해고 쿼리를 때려야 한다
-        //
-
         // $contents  =  DB::table('contents')->where('contents_package','=',$packages->no)->get();
         //$packages->no 값을 가져온다. 이 값을 이용해 contents_테이블에 외래키로 가져온 다음
         //contents테이블의 contents_package 로 도킹한다
         //그럼 결과값은 배열로 처리를 한다
-
         // 패키지 번호를 알아냄
         // 그 패키지 번호를 사용해서
         // 외래키를 사용해서 콘텐츠들의 리스트들을 추출함
         // $contenst  = DB::table('contents')->where('no','=',$no)->get();
         #251 (1) { ["items":protected]=> array(1)
-
         // array_push($package_infor, array('ids'=>$packages->no,'name'=>$packages->name));
-
-
-
         // $package_name    = new Array();
         //packages->no도 빼와야 함
 
@@ -162,8 +155,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         // $contents_name     = new Array();
         // 사용자가 여러개의 패키지를 가지고 있고
         // 하나의 패키지가 가지고 있는 컨텐츠는 여러개 이다
-
-
         // for()
         // {
         //
@@ -173,7 +164,6 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         //                                                   ->with('block_myungse', $contents[3]->spec)
         //                                                   ->with('contents_id',   $contents[3]->no)
         //                                                   ->with('package_name', $package_infor);
-
     }
 
 
@@ -241,17 +231,15 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $otherPackages        = DB::table('contents_package_shares')->orderBy('views', 'asc ')->take(6)->get();
 
         foreach ($popularPackages as $popularPackage ) {
-            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
+            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'name'=>$popularPackage->name));
         }
 
         foreach ($otherPackages as $otherPackage ) {
-            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
+            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url,'name'=>$otherPackage->name));
         }
 
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
                                                                     ->with('otherPackage',$otherPackageInfor);
-
-
 
       }
     public function shareDetail($package_id)
@@ -278,7 +266,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         }
 
         $package_contents_avg = 7;
-        // $package_contents_avg = $package_contents_sum / 1;
+        // $package_contents_avg = $package_contents_sum / count($contents);
 
         return view('ProjectBlockCode.blockfactory.tool_share_detail')->with('package_id', $contentsPackageShare->no)
                                                      ->with('package_name',$contentsPackage->name )

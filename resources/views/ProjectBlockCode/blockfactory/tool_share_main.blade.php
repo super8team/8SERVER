@@ -55,8 +55,10 @@
           @endforeach
         </tr>
         <tr id="mainPackageName">
-          @foreach ($popularPackage as $imgs)
-               <td>contents_package_shares 컬럼 추가하기</td>
+          @foreach($popularPackage as $key=>$value)
+            <td>
+              {{$value['name']}}
+            </td>
           @endforeach
         </tr>
       </table>
@@ -86,7 +88,7 @@
                       <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
-                        수정하기
+                      {{$value['name']}}
                     </div>
           </div>
             @if($i%4==0)

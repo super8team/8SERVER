@@ -38,6 +38,7 @@
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
   <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
+  <script src="{{URL::asset('/js/notipopup.js')}}"></script>
   <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
   <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
 
@@ -324,6 +325,7 @@
               <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
 
               </td>
+
             </tr>
           </table>
         </td>
@@ -367,6 +369,7 @@
                           <input type="text" class="block_myungse" value="">
                           <input type="text" name="id"  value="">
                       </button>-->
+                      @if($packages)
                       @for($i=0; $i < $contentsize; $i++)
                       <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
@@ -376,6 +379,7 @@
                       </button>
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       @endfor
+                      @endif
                    </div>
                     </form>
                   </div>
@@ -385,10 +389,9 @@
               </td>
             <!-- </tr> -->
          <!-- </table>
+
       </td> -->
         <td id="blockLibraryControls">
-            
-          <video src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/videoex.mp4" controls autoplay >HTML5 Video is required for this example</video>
           <button id="registerContents" >
             현장체험 등록
           </button>
@@ -414,11 +417,13 @@
           <button id="createNewPackage" background=""></button>
           <!-- <button id="storagePackage">패키지 저장</button> -->
           <div id="packageDiv">
+            @if($packages)
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
                 {{$package_name['name']}}
               </button>
             @endforeach
+            @endif
           </div>
 
         </td>
@@ -573,7 +578,13 @@
           </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
-
+        <div id="notipopup">
+                  <div>
+                    <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
+                      <!-- <div class="todayclose">TODAY CLOSE</div> -->
+                      <div class="class">닫기</div>
+                  </div>
+              </div>
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
           <table id="blocklyPreviewContainer">
@@ -954,6 +965,13 @@
     </form>
   </body>
   <script type="text/javascript">
+  $('#notipopup').topmenu({
+                startX:'20%',
+                startY:'10%',
+                close:'.close',
+                todayclose:'.todayclose',
+                code:'notipopup'
+            });
   var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
