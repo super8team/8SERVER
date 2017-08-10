@@ -428,7 +428,7 @@ class AppRequestController extends Controller
           $respondContent = \DB::table('survey_respond_contents')
                         ->where('survey_respond', $respond->no)
                         ->where('survey_article', $article->no)->first();
-          // dd($respondContent->respond);
+          //  dd($respond, $article);
           if($respondContent!=null)
             $newSurvey['selected'] = $respondContent->respond;
         }
@@ -527,7 +527,7 @@ class AppRequestController extends Controller
     public function surveyRespondStore(Request $request) {
       $userNo = json_decode($request->input('userNo'));
       $surveyNo = json_decode($request->input('survey'));
-      $answers = json_decode($request->input('answer'));
+      $answers = $request->input('answer');
 
       $resp = \DB::table('survey_responds')->where([['respondent', '=', $userNo], ['survey', '=', $surveyNo]])->first();
       if ($resp != null)
