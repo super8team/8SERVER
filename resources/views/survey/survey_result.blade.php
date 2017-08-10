@@ -82,7 +82,7 @@
 $(document).ready(function () {
 
   // Build the chart
-  @for ($i=0; $i < 4; $i++)
+  @for ($i=0; $i < count($q_title); $i++)
     // OX 일 경우
     @if ($q_title[$i][0] == "ox")
     $("#graph").append("<div class='panel panel-default'><div class='panel-heading'></div><div class='panel-body'> <div id='{{$i}}' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div></div></div>")
