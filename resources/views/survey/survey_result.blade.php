@@ -82,7 +82,7 @@
 $(document).ready(function () {
 
   // Build the chart
-  @for ($i=0; $i < count($q_title) $i++)
+  @for ($i=0; $i < count($q_title); $i++)
     
     // OX 일 경우
     @if ($q_title[$i][0] == "ox")
