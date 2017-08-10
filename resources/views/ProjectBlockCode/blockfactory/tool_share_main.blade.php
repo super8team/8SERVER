@@ -27,14 +27,49 @@
     <script src="{{URL::asset('/js/map.js')}}"></script>
     <script src="{{URL::asset('/js/app_controller.js')}}"></script>
     <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
     <script src="{{URL::asset('/js/slick.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick.css')}}">
     <style style="text/css">
-      h1, h2{font-family:'Nanum Brush Script', serif;}
+    h1, h2{font-family:'Nanum Brush Script', serif;}
+    .slider {
+      width: 92%;
+      margin: 100px auto;
+    }
+    *  {
+      box-sizing: border-box;
+    }
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+
+    .slick-active {
+      opacity: .5;
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
     </style>
   </head>
 
@@ -42,23 +77,24 @@
       <table id="mainShareList">
         <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
+          <div class="center slider">
           @foreach($popularPackage as $key=>$value)
-             <td class="center slider">
-               <div>
+                 <div style="display:inline-block">
                  <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
+                   <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:120px; height:100px">
                  </a>
-               </div>
-             </td>
+                 {{$value['name']}}
+                 </div>
           @endforeach
+           </div>
         </tr>
-        <tr id="mainPackageName">
+        <!-- <tr id="mainPackageName">
           @foreach($popularPackage as $key=>$value)
             <td>
-              {{$value['name']}}
+
             </td>
           @endforeach
-        </tr>
+        </tr> -->
       </table>
       <br>
       <br>
@@ -83,10 +119,10 @@
                   @endphp
           <div id="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:100px; height:100px">
                     </a>
                     <div id="package_name" display="inline-block">
-                      {{$value['name']}}
+
                     </div>
           </div>
             @if($i%4==0)
