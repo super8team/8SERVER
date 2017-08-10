@@ -13,7 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">설문 결과
-                        <a role="button" href="{{route('staff', 10)}}" aria-label="Right Align"
+                        <a role="button" href="{{route('staff', ['count'=>$count])}}" aria-label="Right Align"
                            class="btn btn-sm btn-default ">
                             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
                             뒤로 돌아가기

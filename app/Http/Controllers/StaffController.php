@@ -27,16 +27,11 @@ class StaffController extends Controller
 
     }
 
-    public function result($count)
+    public function result()
     {
 
 
-
-        $responds = \DB::table('checklist_responds')->where('checklist', $count)->get();
-
-        $checklist_responds = [];
-
-
+//        $responds = \DB::table('checklist_responds')->where('checklist', $count)->get();
 
 
 
@@ -86,19 +81,41 @@ class StaffController extends Controller
 
     }
 
-    public function storage(Request $request) {
-        $storage_list_array = $request->storage_list;
-        $plan = $request->plan_num;
+    public function storage(Request $request)
+    {
 
-        for($i = 0 ; $i < count($storage_list_array); $i++){
-           $user_name = DB::table('users')->where('name',$storage_list_array[$i])->first();
-           DB::table('committee_members')->insert([
-                'member'=>'1',
-                'committee'=>'1'
-           ]);
+        $committee_no = $request->input('committee_number');
+
+        $list = $request->input('serial');
+
+        \DB::table('committees')->insert([
+            'plan'=>$committee_no,'leader'=>5
+        ]);
+
+        for ($i = 0; $i < count($list); $i++) {
+            \DB::table('committee_members')->insert([
+                'member' => $list[$i],'committee'=>$committee_no
+            ]);
         }
-        return $storage_list_array[0];
+
+        return redirect()->route('staff',['count'=>$committee_no]);
+
     }
+
+//        $storage_list_array = $request->storage_list;
+//        $plan = $request->plan_num;
+//        dd($request->input('serial'));
+
+//        for($i = 0 ; $i < count($storage_list_array); $i++){
+//           $user_name = DB::table('users')->where('name',$storage_list_array[$i])->first();
+//           DB::table('committee_members')->insert([
+//                'member'=>'1',
+//                'committee'=>'1'
+//           ]);
+//        }
+//        return $storage_list_array[0];
+
+
 
     public function ajax(Request $request)
     {
