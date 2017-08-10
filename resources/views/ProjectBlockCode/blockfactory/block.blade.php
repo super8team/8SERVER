@@ -966,8 +966,8 @@
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'20%',
-                startY:'10%',
+                startX:'70%',
+                startY:'75%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
