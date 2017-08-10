@@ -229,7 +229,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $popularPackages      = DB::table('contents_package_shares')->orderBy('views', 'desc')->take(3)->get();
 
         $otherPackages        = DB::table('contents_package_shares')->orderBy('views', 'asc ')->take(6)->get();
-
+        
         foreach ($popularPackages as $popularPackage ) {
             array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'name'=>$popularPackage->name));
         }
@@ -540,7 +540,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
       }
 
       DB::table('contents_package_shares')->insert([
-          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'views' => 0, 'downloads' => 0]
+          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'name'=>$package_name,'views' => 0, 'downloads' => 0]
       ]);
       // Input::file('picture')->move($destinationPath, $img);
 
@@ -550,6 +550,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
     public function downloadShareContent(Request $request)
     {
+
       // 선생님이 새로운 패키지에 컨텐츠를 저장 할려고 하는 경우
       // dd($request->input());
       $user        = Auth::user()->no;

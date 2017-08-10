@@ -30,7 +30,7 @@
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
-    <script src="{{URL::asset('/js/test.js')}}"></script>
+    <script src="{{URL::asset('/js/slick.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
     <style style="text/css">
@@ -43,14 +43,12 @@
         <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
           @foreach($popularPackage as $key=>$value)
-          @php
-          $url = Storage::url('packageImgs/'.$value['imgs']);
-          // $url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
-          @endphp
-             <td>
-               <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                 <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
-               </a>
+             <td class="center slider">
+               <div>
+                 <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                   <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
+                 </a>
+               </div>
              </td>
           @endforeach
         </tr>
@@ -104,7 +102,15 @@
 
     </body>
     <script type="text/javascript">
-// var xmlText         = new XMLSerializer().serializeToString(xml);
+    $(document).on('ready', function() {
+        $(".center").slick({
+          dots: true,
+          infinite: true,
+          centerMode: true,
+          slidesToShow: 5,
+          slidesToScroll: 3
+        });
+      });// var xmlText         = new XMLSerializer().serializeToString(xml);
     $('#share').click(function(e){
       var value = e.target.getAttribute('value');
       var i;
