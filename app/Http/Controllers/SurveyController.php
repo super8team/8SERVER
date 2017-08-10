@@ -201,7 +201,6 @@ class SurveyController extends Controller
         }
       }
 
-      dd($qTitle);
       return view('survey.survey_result', [
         'q_title' => $qTitle,
       ]);
