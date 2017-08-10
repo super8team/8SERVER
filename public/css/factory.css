@@ -136,6 +136,7 @@ input[type="button"], .inputStyle {
   opacity: 1;
 }
 #contents_list{
+  border-left:1px solid;
   width: 10%;
 }
 #contents_list > button {
@@ -301,8 +302,8 @@ button, .buttonStyle {
   height: 40px;
 }
 #mainShareList #mainContenstsImage {
-  height: 10%;
-  /*border:1px solid black;*/
+  height:10%;
+  border:1px solid black;
 }
 #packageResearch {
   float:auto;
@@ -386,6 +387,7 @@ button, .buttonStyle {
 }
 
 #blockLibraryControls {
+  border:1px solid;
   width:26%;
   text-align: center;
   vertical-align: middle;

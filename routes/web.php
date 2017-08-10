@@ -148,6 +148,9 @@ Route::post('reportevaluation/{report_no}', 'ReportController@evaluation')->name
 Route::resource('report','ReportController');
 
 // *******************  위원회 *********************
+// 위원회 저장
+Route::post('staff/storage', 'StaffController@storage')->name('staff.storage');
+
 // 위원회 멤버 추가
 Route::get('staff/memberAdd/{count}', 'StaffController@memberAdd')->name('staff.memberAdd');
 
@@ -157,8 +160,7 @@ Route::get('staff/result/{count}', 'StaffController@result')->name('staff.result
 // 위원회 목록
 Route::get('staff/{count}', 'StaffController@index')->name('staff');
 
-// 위원회 저장
-Route::post('staff/storage', 'StaffController@storage')->name('staff.storage');
+
 
 
 

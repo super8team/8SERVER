@@ -966,8 +966,8 @@
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'20%',
-                startY:'10%',
+                startX:'70%',
+                startY:'75%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -1084,12 +1084,12 @@
 
   document.getElementById('registerContents').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=100, width=550, height=270';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=550, height=270';
       window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable="no", left=200, top=70, width=680, height=470';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=680, height=1000';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');

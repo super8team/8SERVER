@@ -15,19 +15,33 @@
                   $('#searchBar').val();
                   console.log(data[0]);
                   $('#createDiv').empty();
-                  for($i=0; $i < data.length; $i++) {
+                  for ($i=0; $i < data.length; $i++) {
                       var div = document.createElement('div');
                       div.innerHTML=data[$i].name;
+
+                      var person_name    = document.createTextNode(data[$i].name);
+
                       var val = div.innerHTML=data[$i].name;
+
                       var check = document.createElement('input');
                       check.setAttribute('type', 'checkbox');
                       check.setAttribute('name', 'list');
                       check.setAttribute('value',val);
-                      console.log(check);
+                      var member_serial = document.createElement('input');
+                      member_serial.setAttribute('type','text');
+                      member_serial.setAttribute('name','serial');
+                      member_serial.setAttribute('value',data[$i].no);
+                      member_serial.setAttribute('hidden',true);
+//                      console.log('serial');
+//                      console.log(member_serial);
+
 //                      디버깅 체크
 //                     console.log(data[$i].name);
                       document.getElementById('createDiv').appendChild(check);
-                      document.getElementById('createDiv').appendChild(div);
+                      document.getElementById('createDiv').appendChild(member_serial);
+                      document.getElementById('createDiv').appendChild(person_name);
+
+//                      console.log(document.getElementById('createDiv'));
 
                   }
               }
@@ -37,11 +51,14 @@
       function addMemberBtn() {
 //       var a = document.getElementById('createDiv');
           var user_list = document.getElementsByName('list');
+          var user_serial = document.getElementsByName('serial');
           console.log('개수'+user_list.length)
           for(var i = 0; i < user_list.length ; i++ ){
                 if(user_list[i].checked) {
                     //추가된 위원회 이름
+
                     var list_name = user_list[i].value;
+                    var list_serial = user_serial[i].value;
 
                     var parent_div            = document.getElementById('added_member');
                     var added_list_parent     = document.createElement('div');
@@ -52,9 +69,17 @@
                     check.setAttribute('type', 'checkbox');
                     check.setAttribute('name', 'added_list');
                     check.setAttribute('value',list_name);
+                    var serial = document.createElement('input');
+                    serial.setAttribute('type','text');
+                    serial.setAttribute('value',list_serial);
+                    serial.setAttribute('name','serial[]');
+                    serial.setAttribute('hidden','true');
 
+                    added_list_parent.appendChild(serial);
                     added_list_parent.appendChild(check);
                     added_list_parent.appendChild(person_name);
+
+                    console.log(added_list_parent);
 
                     parent_div.appendChild(added_list_parent);
 
@@ -66,7 +91,7 @@
 
       function deleteMemberBtn() {
           var member = document.getElementsByName('added_list');
-          var parent = document.getElementById('added_member')
+          var parent = document.getElementById('added_member');
           console.log(member[0]);
           for(var i = member.length-1;i >= 0; i--){
               console.log(i);
@@ -76,6 +101,8 @@
                     parent.removeChild(member[i].parentNode);
                 }
           }
+          console.log('삭제');
+          console.log(parent);
       }
 
       function enterkey() {
@@ -86,32 +113,18 @@
 
 
       function storageBtn(count){
+
+
           var storage_list = [];
           var parent = document.getElementsByName('added_list');
 
           for(var i =0; i < parent.length; i++){
               storage_list[i] = parent[i].value;
-         }
+          }
 
           var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
 
-          $.ajax({
-            url: '{{route('staff.storage')}}',
-            type: 'post',
-            data:{
-                'storage_list': storage_list,
-                'plan_num': count,
-                '_token': CSRF_TOKEN
-            },
-            success: function(data){
-                console.log(data);
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-
-        }
+      }
 
 
     // 1- 2 검색후 조건이 있을경우 div를 비움
@@ -124,6 +137,7 @@
 
     //3
 //  });
+
 
   </script>
   <div class="bluedecobar">
@@ -145,7 +159,15 @@
       position: relative;
     }
 
+
+
   </style>
+
+  {{--<form type action="{{route('staff.storage')}}" method="post">--}}
+      {{--<input type="hidden" name="">--}}
+
+  {{--</form>--}}
+
 
   <div class="bluebg">
     <div class="container">
@@ -160,7 +182,7 @@
                   <button type="button" onclick="searchClick()" id="searchBtn" class="btn btn-default">검색</button>
             </div>
             <div class="clearfix"></div>
-            <div class="panel-body scrollspy">
+            <div class="panel-body scrollspy-b ">
               {{-- Step 1 :검색 --}}
 
               {{-- Step 2 : 데이터 추가
@@ -193,7 +215,7 @@
         </div>
         {{--</form>--}}
 
-        <form class="form" method="post">
+
           {{ csrf_field() }}
           <div class="text-center">
             <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
@@ -204,25 +226,41 @@
           {{-- Step 5 : 처리 --}}
           <div class="col-lg-5">
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 현재 위원회
               </div><!-- /.panel-heading -->
                 <div class="panel-body scrollspy">
+
+                    <form action="{{route('staff.storage')}}" method="POST">
                   <table class="table table-bordered table-hover ">
 {{--                    @for ($i=0; $i <10 ; $i++)--}}
+                      
                       <tr>
                         <td id = 'added_member'>
 
                         </td>
                       </tr>
+                        
                     {{--@endfor--}}
                   </table>
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                        <input type="hidden" name="committee_number" value='{{$plan_number}}'>
+                        <input type="submit">
+                    </form>
                </div><!-- /.panel-body -->
-                <button  type="button" onclick="storageBtn({{$plan_number}})" class="btn btn-lg btn-default">저장</button>
               </div>
             </div><!-- /.panel .chat-panel -->
-        </form><!-- ㅇㅇㅇㅇ/.col-lg-4 -->
+
 
       </div>
     </div>
 @endsection
+
+
+
+
+
+
+
+
+
