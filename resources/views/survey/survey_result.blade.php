@@ -75,8 +75,8 @@
   // 1-2 DB에서 받아오는 정보
   @endphp
 
-<script src="../public/js/highcharts.js"></script>
-<script src="../public/js/modules/exporting.js"></script>
+<script src="{{asset('js/highcharts.js')}}"></script>
+<script src="{{asset('js/modules/exporting.js')}}"></script>
 <script type="text/javascript">
 
 $(document).ready(function () {
