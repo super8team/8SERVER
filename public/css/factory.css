@@ -302,8 +302,8 @@ button, .buttonStyle {
   height: 40px;
 }
 #mainShareList #mainContenstsImage {
-  height: 10%;
-  /*border:1px solid black;*/
+  height:10%;
+  border:1px solid black;
 }
 #packageResearch {
   float:auto;

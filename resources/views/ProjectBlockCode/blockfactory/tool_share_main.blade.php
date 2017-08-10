@@ -36,37 +36,33 @@
     <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick-theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('/css/bootstrap.css')}}">
     <style style="text/css">
     h1, h2{font-family:'Nanum Brush Script', serif;}
     .slider {
       width: 92%;
-      margin: 100px auto;
+      margin: 50px auto;
     }
-    *  {
+    /**  {
       box-sizing: border-box;
-    }
+    }*/
     .slick-slide {
       margin: 0px 20px;
     }
-
     .slick-slide img {
       width: 100%;
     }
-
     .slick-prev:before,
     .slick-next:before {
       color: black;
     }
-
     .slick-slide {
       transition: all ease-in-out .3s;
       opacity: .2;
     }
-
     .slick-active {
       opacity: .5;
     }
-
     .slick-current {
       opacity: 1;
     }
@@ -83,7 +79,7 @@
                  <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
                    <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:120px; height:100px">
                  </a>
-                 {{$value['name']}}
+                 {{--$value['name']--}}
                  </div>
           @endforeach
            </div>
@@ -91,7 +87,6 @@
         <!-- <tr id="mainPackageName">
           @foreach($popularPackage as $key=>$value)
             <td>
-
             </td>
           @endforeach
         </tr> -->
@@ -106,33 +101,23 @@
           <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
-          @php
-          $i = 1
-          @endphp
-          @if($i==5)
-            @continue;
-          @endif
 
-          @foreach ($otherPackage as $key => $value)
+          @foreach ($otherPackage as $value)
                   @php
-                    $url = Storage::url('packageImgs/'.$value['imgs']);
+                    $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
           <div id="contenstsImage">
-                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:100px; height:100px">
+                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value->no}}">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value->img_url}}"  style="width:100px; height:100px">
                     </a>
                     <div id="package_name" display="inline-block">
-
+                    {{--$value->name--}}
                     </div>
           </div>
-            @if($i%4==0)
-              <br>
-            @endif
-            @php
-              $i++;
-            @endphp
           @endforeach
-          <br>
+          <div style="margin-left:20%">
+          {{$otherPackage->links()}}
+          </div>
           <button id="share" type="button">패키지 공유하기</button>
       </div>
 
@@ -155,7 +140,6 @@
       var content_myungse = document.getElementsByClassName('block_myungse');
       var m;
       var n;
-
       for(i = 0 ; i < content_xml.length ; i++){
         content_xml[i].value;
         console.log(content_myungse[i].value);
@@ -165,14 +149,10 @@
       }
       console.log(m);
       console.log(typeof(n));
-
     window.location.href='shareShare';
     });
-
     $('#searchButton').click(function(){
-
       var searchWord = document.getElementById('searchWord').value;
-
       console.log(searchWord);
       $.ajax({
         method: 'GET',
@@ -183,39 +163,27 @@
         success: function(data){
             console.log('통신 성공');
             $('#shareList').empty();
-
             var img_url          = data[0]['img_url'];
             console.log(img_url);
             var package_name     = data[1];
             var contents_package = data[0]['contents_package'];
-
             var parent_div = document.getElementById('shareList');
-
             var infor_div    = document.createElement('div');
             infor_div.setAttribute('id','contentsImage');
-
             var name_div   = document.createElement('div');
             name_div.setAttribute('id','package_name');
-
             var a_ele      = document.createElement('a');
             a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
-
-
             var img_ele    = document.createElement('img');
             var img_url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
             console.log(img_url);
             img_ele.setAttribute('src',img_url);
-
             name_div.innerHTML = package_name;
-
             a_ele.appendChild(img_ele);
-
             infor_div.appendChild(name_div);
             infor_div.appendChild(a_ele);
-
             parent_div.appendChild(infor_div);
             console.log(parent_div);
-
         },
         error: function(){
           console.log('통신실패');

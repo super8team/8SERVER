@@ -227,19 +227,21 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
         $otherPackageInfor    = [];
         $popularPackageInfor  = [];
         $popularPackages      = DB::table('contents_package_shares')->orderBy('views', 'desc')->take(6)->get();
-
-        $otherPackages        = DB::table('contents_package_shares')->orderBy('views', 'asc ')->take(6)->get();
+        // dd($popularPackages);
+        $otherPackages        = DB::table('contents_package_shares')->paginate(5);;
 
         foreach ($popularPackages as $popularPackage ) {
-            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'name'=>$popularPackage->name));
+            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
         }
 
-        foreach ($otherPackages as $otherPackage ) {
-            array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url,'name'=>$otherPackage->name));
-        }
+        // ,'name'=>$popularPackage->name
+        // foreach ($otherPackages as $otherPackage ) {
+        //     array_push($otherPackageInfor, array('ids'=>$otherPackage->no,'imgs'=>$otherPackage->img_url));
+        // }
+        // ,'name'=>$otherPackage->name
 
         return view('ProjectBlockCode.blockfactory.tool_share_main')->with('popularPackage',$popularPackageInfor)
-                                                                    ->with('otherPackage',$otherPackageInfor);
+                                                                    ->with('otherPackage',$otherPackages);
 
       }
     public function shareDetail($package_id)
