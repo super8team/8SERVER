@@ -369,6 +369,7 @@
                           <input type="text" class="block_myungse" value="">
                           <input type="text" name="id"  value="">
                       </button>-->
+                      @if($packages)
                       @for($i=0; $i < $contentsize; $i++)
                       <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
                           {{$packages[0]['contents'][$i]['name']}}
@@ -378,6 +379,7 @@
                       </button>
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       @endfor
+                      @endif
                    </div>
                     </form>
                   </div>
@@ -415,11 +417,13 @@
           <button id="createNewPackage" background=""></button>
           <!-- <button id="storagePackage">패키지 저장</button> -->
           <div id="packageDiv">
+            @if($packages)
             @foreach($packages as $package_name)
               <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
                 {{$package_name['name']}}
               </button>
             @endforeach
+            @endif
           </div>
 
         </td>
