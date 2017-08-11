@@ -408,10 +408,10 @@
    </td>
      </tr>
       <FONT face="굴림">
-      <tr height="90%">
+      <tr style="height:90%">
         <!-- 블럭 워크스페이스 -->
         <td id="packageList">
-          <div style="display: inline-block;width:20%;height:100%;background-color:#e3f2ff" >
+          <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
@@ -435,15 +435,14 @@
         </td>
         <!-- 지도 -->
 
-        <td id="mapSize" style="background-color:#e3f2ff">
-
+        <td id="mapSize">
           <div style="width:400px;display:inline-block;background-color:white">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
           </div>
-          <div id="map" style="height:410px; width: 400px;">
+          <div  style="border:1px solid;height:90%; width: 400px;">
           </div>
 <script type="text/javascript">
    var markersArray = [];
@@ -962,7 +961,7 @@
     </xml>
 </div>
 
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" style="height:10%;border:1px solid" id="img_parent" name="form_name" enctype="multipart/form-data">
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
     </form>
