@@ -71,9 +71,9 @@
                                         <div class='panel-body'>
                                             <div class='form-group col-sm-12'>
                                                 <ul class="list-group">
-                                                    @for ($t=0 ; $t <count($q_title[$i][2]) ; $t++)
-                                                         <input type='hidden' class='form-control ' name='q_result[{{$i}}][2][{{$t}}]'
-                                                       value="{{$q_title[$i][2][$t]}}">
+                                                    @for ($t=0 ; $t <count($q_title[$i][1]) ; $t++)
+                                                         <input type='hidden' class='form-control ' name='q_result[{{$i}}][1][{{$t}}]'
+                                                       value="{{$q_title[$i][1][$t]}}">
                                                         <div class="col-sm-12">
                                                             <li class="list-group-item col-sm-12">
                                                                  <blockquote>
@@ -81,7 +81,7 @@
                                                                 <span class="badge"></span>
                                                                 <h4>
                                                                     <span class="label label-default">{{$t+1}}</span>&nbsp;&nbsp;&nbsp;
-                                                                    {{$q_title[$i][2][$t]}}
+                                                                    {{$q_title[$i][1][$t]}}
                                                                     <label class='checkbox-inline margin-right-3 pull-right'>
                                                                         <input type='radio' value='{{$t}}' name='resp[{{$i}}]'>선택
                                                                     </label>
