@@ -135,7 +135,7 @@ class SurveyRespondController extends Controller
         return view('survey_student_result',{
           'q_title' => $qTitle,
           'resp'    => $resp,
-        })
+        });
   
         // dd($qTitle, $resp);
     }

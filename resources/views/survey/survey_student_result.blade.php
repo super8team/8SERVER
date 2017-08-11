@@ -41,15 +41,21 @@
                                                 <label>정답을 정해 주세요</label>
                                             </div>
                                             <div class='col-sm-4'>
-                                              @if (isset($resp[$i]))
-                                                
-                                              @endif
+                                              @if ($resp[$i] == ture)
                                                 <label class='checkbox-inline margin-right-3'>
-                                                    <input type='radio' value='true' name='resp[{{$i}}]'>참
-                                                </label>
+                                                      <input type='radio' value='true' name='resp[{{$i}}]' checked='checked'>참
+                                                </label>                                                
                                                 <label class='checkbox-inline margin-right-3'>
                                                     <input type='radio' value='false' name='resp[{{$i}}]'>거짓
                                                 </label>
+                                              @else
+                                                <label class='checkbox-inline margin-right-3'>
+                                                      <input type='radio' value='true' name='resp[{{$i}}]'>참
+                                                </label>                                                
+                                                <label class='checkbox-inline margin-right-3'>
+                                                    <input type='radio' value='false' name='resp[{{$i}}]' checked='checked'>거짓
+                                                </label>
+                                              @endif
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +89,8 @@
                                                                     <span class="label label-default">{{$t+1}}</span>&nbsp;&nbsp;&nbsp;
                                                                     {{$q_title[$i][1][$t]}}
                                                                     <label class='checkbox-inline margin-right-3 pull-right'>
-                                                                        <input type='radio' value='{{$t}}' name='resp[{{$i}}]'>선택
+                                                                        <input type='radio' value='{{$t}}' name='resp[{{$i}}]'
+                                                                        @if(isset($resp[$i])) checked='checked' @endif>선택
                                                                     </label>
                                                                 </h4>
                                                                 </p>
@@ -110,7 +117,7 @@
                                             </div>
                                         </div>
                                         <div class='panel-body'>
-                                            <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='{{$q_title[$i][2]}}' ></textarea>
+                                            <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='{{$resp[$i]}}' ></textarea>
                                         </div>
                                     </div>
                                 </div>
