@@ -436,15 +436,15 @@
         <!-- 지도 -->
 
         <td id="mapSize">
-          <div style="width:400px;display:inline-block;background-color:white">
+          <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
+            <div id="map" style="height:70%; width:100%;display:inline-block">
+            </div>
           </div>
-          <div  style="border:1px solid;height:90%; width: 400px;">
-          </div>
-<script type="text/javascript">
+<script type="text/javascript">``
    var markersArray = [];
 
    var map = new google.maps.Map(document.getElementById("map"), {
@@ -578,14 +578,15 @@
           </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
-
-        <div id="notipopup">
-                    <div>
-                    <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
-                      <!-- <div class="todayclose">TODAY CLOSE</div> -->
-                      <div class="class">닫기</div>
-                  </div>
-        </div>
+          <div id="right-space">
+          </div>
+          <div id="notipopup">
+                      <div>
+                      <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
+                        <!-- <div class="todayclose">TODAY CLOSE</div> -->
+                        <div class="class">닫기</div>
+                    </div>
+          </div>
 
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
