@@ -101,10 +101,11 @@
           반별로 필터링하기
           @for ($i=0; $i < $class_count ; $i++)
             <label class="checkbox-inline">
-              <input type="checkbox" value="{{$i+1}}" name="filter_class"> {{$i+1}}반&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="checkbox" value="{{$i+1}}" name="filter_class[]"> {{$i+1}}반&nbsp;&nbsp;&nbsp;&nbsp;
             </label> 
           @endfor
         </div>
+        <input type="hidden" name="grade_class" value="group_class no 테스트용{{--$grade_class_no--}}">
       </form>        
       <form class="form" action="{{route('group.store')}}">      
       <div class="panel panel-default">
