@@ -130,7 +130,7 @@ class SurveyController extends Controller
           }
         }
 
-        // dd( $qTitle);
+        dd($qTitle);
         return view('survey.survey_view', [
           'survey_title' => $survey->title,
           'q_title' => $qTitle, // 설문지
