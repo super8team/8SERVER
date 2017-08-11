@@ -130,7 +130,7 @@ class SurveyController extends Controller
           }
         }
 
-        // dd( $qTitle);
+        dd($qTitle);
         return view('survey.survey_view', [
           'survey_title' => $survey->title,
           'q_title' => $qTitle, // 설문지
@@ -195,7 +195,6 @@ class SurveyController extends Controller
         } else {
           $subs = \DB::table('survey_respond_contents')->where('survey_article', $articles[$i]->no)->get();
           foreach ($subs as $sub) {
-            # code...
             $qTitle[$i][2][] = $sub->respond;
           }
         }

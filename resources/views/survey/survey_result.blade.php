@@ -172,7 +172,13 @@ $(document).ready(function () {
     @endif
     @if ($q_title[$i][0] == "sub")
     // $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{--$q_title[$i][1]--}}</div><div class='panel-body'>{{--$q_title[$i][2]--}} </div></div>")
-      $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{$q_title[$i][1]}}</div><div class='panel-body'>{{$q_title[$i][1]}} </div></div>");
+      $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{$q_title[$i][1]}}</div><div class='panel-body'>"+    
+      "<table class='table table-bordered table-hover'>"+        
+        @for ($t=0; $t < count($q_title[$i][2]); $t++)
+        "<tr><td>{{$q_title[$i][2][$t]}}</td></tr>"+
+        @endfor          
+      "</table>"+
+      "</div></div>");
     @endif
   @endfor
 

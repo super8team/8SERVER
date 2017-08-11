@@ -333,14 +333,11 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list" >
-                <button style="text-align:center" value="{{$user}}<br>콘텐츠리스트" disabled hidden>
-                  {{$user}}<br>콘텐츠리스트
-                </button>
-                <div>
-                  <button type="button" id="createNewBlockButton">
+                <div style="background-color: #95CDFF">
+                  <button type="button" id="createNewBlockButton" >
                   </button>
                 </div>
-                <div>
+                <div style="background-color: #95CDFF">
                   <!-- 콘텐츠 저장 -->
                   <button type="button" id="saveToBlockLibraryButton">
                   </button>
@@ -391,7 +388,8 @@
          <!-- </table>
 
       </td> -->
-        <td id="blockLibraryControls">
+        <td id="blockLibraryControls" >
+
           <button id="registerContents" >
             현장체험 등록
           </button>
@@ -410,22 +408,25 @@
    </td>
      </tr>
       <FONT face="굴림">
-      <tr height="90%">
+      <tr style="height:90%">
         <!-- 블럭 워크스페이스 -->
         <td id="packageList">
-          <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
-          <button id="createNewPackage" background=""></button>
-          <!-- <button id="storagePackage">패키지 저장</button> -->
-          <div id="packageDiv">
-            @if($packages)
-            @foreach($packages as $package_name)
-              <button class="package_button" type="button" name="button" value={{$package_name['id']}}>
-                {{$package_name['name']}}
-              </button>
-            @endforeach
-            @endif
+          <div id="left-space">
           </div>
-
+          <div style="float:right;display:inline-block;width:80%;">
+            <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+            <button id="createNewPackage"></button>
+            <!-- <button id="storagePackage">패키지 저장</button> -->
+            <div id="packageDiv" style="display:inline;" style="float:right" >
+              @if($packages)
+              @foreach($packages as $package_name)
+                <button style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
+                  {{$package_name['name']}}
+                </button>
+              @endforeach
+              @endif
+            </div>
+          </div>
         </td>
 
         <td id="blocklyWorkspaceContainer">
@@ -435,16 +436,15 @@
         <!-- 지도 -->
 
         <td id="mapSize">
-          <div>
+          <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
+            <div id="map" style="height:70%; width:100%;display:inline-block">
+            </div>
           </div>
-
-          <div id="map" style="height: 400px; width: 650px;">
-          </div>
-<script type="text/javascript">
+<script type="text/javascript">``
    var markersArray = [];
 
    var map = new google.maps.Map(document.getElementById("map"), {
@@ -578,13 +578,16 @@
           </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
         <!-- </div> -->
-        <div id="notipopup">
-                  <div>
-                    <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
-                      <!-- <div class="todayclose">TODAY CLOSE</div> -->
-                      <div class="class">닫기</div>
-                  </div>
-              </div>
+          <div id="right-space">
+          </div>
+          <div id="notipopup">
+                      <div>
+                      <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
+                        <!-- <div class="todayclose">TODAY CLOSE</div> -->
+                        <div class="class">닫기</div>
+                    </div>
+          </div>
+
         <!-- 블럭 프리뷰  -->
         <td style="display:none;">
           <table id="blocklyPreviewContainer">
@@ -959,7 +962,7 @@
     </xml>
 </div>
 
-  <form method="post" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" style="height:10%;border:1px solid" id="img_parent" name="form_name" enctype="multipart/form-data">
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
     </form>
