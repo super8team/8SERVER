@@ -79,7 +79,7 @@
                         <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
                           보기
                         </a>
-                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-danger">
+                        <a role="button" href="{{route('survey.respond.show',$survey_no[$count])}}" class="btn btn-sm btn-danger">
                           결과보기
                         </a>
                       </td>
