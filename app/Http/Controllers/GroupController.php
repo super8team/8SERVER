@@ -71,6 +71,10 @@ class GroupController extends Controller
 
       $grade_filter = $request->input('filter_grade');
       $class_filter = $request->input('filter_class');
+<<<<<<< HEAD
+=======
+      $school_filter = \DB::table('works')->where('teacher', Auth::id())->value('school');
+>>>>>>> eac1f2e72ee0c1e0ef6d17ee63d3043151d3753e
       // $result = array();
       // //로그인 된 교사의 정보로 학교정보를 가저움
       // //
@@ -99,9 +103,19 @@ class GroupController extends Controller
           //학년이 grade_filter 이고 반이 $class_filter[$i]인 사람의 정보를 가져온다
           $students = \DB::table('students')->where('grade_class',$class_filter[$i])->get();
           foreach($students as $student){
+<<<<<<< HEAD
             $user = \DB::table('users')->where('grade',$grade_filter)->first();
+=======
+            // $user = \DB::table('users')->where('grade',$grade_filter)->first();
+            $user = \DB::table('users')->where('no', $student->student)->first();
+            $grade_class = \DB::table('grade_classes')->where([
+                            ['grade', $grade_filter],
+                            ['class', $class_filter],
+                            ['school', $school_filter],
+                          ])->first();
+>>>>>>> eac1f2e72ee0c1e0ef6d17ee63d3043151d3753e
             array_push($student_no , $user->no);
-            array_push($student_class, $user->class);
+            array_push($student_class, $grade_class->grade."학년 ".$grade_class->class." 반");
             array_push($student_name , $user->name);
           }
 
