@@ -135,7 +135,7 @@ class SurveyRespondController extends Controller
         
         $survey_title = \DB::table('surveies')->where('no', $id)->value('title'); 
         // dd($resp);
-        dd($qTitle);
+        // dd($qTitle);
         return view('survey.survey_student_result',[
           'survey_title' =>$survey_title,
           'q_title' => $qTitle,
