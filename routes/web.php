@@ -69,6 +69,7 @@ Route::resource('survey', 'SurveyController');
 Route::get('survey/{survey}/total', 'SurveyController@total')->name('survey.total.respond');
 // index(전체리스트) create(설문작성) store(설문저장) show(설문보기-교사가결과보기)
 
+Route::get('survey/respond/{id}', 'SurveyRespondController@studentResultShow')->name('survey.stdResult');
 Route::resource('survey.respond', 'SurveyRespondController');
 // index(설문보기-학생참여) store(응답저장) show(자기응답보기)
 
