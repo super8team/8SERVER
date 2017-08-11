@@ -21,7 +21,7 @@ class SurveyController extends Controller
       $surveyTitleArr = array();
       $surveyDateArr = array();
 
-      $surveies = DB::table('surveies')->orderBy('created_at', 'desc')->paginate(15);
+      $surveies = DB::table('surveies')->orderBy('no', 'desc')->paginate(15);
       // $surveies = DB::table('surveies')->paginate(15);
       // $surveies = DB::table('surveies')->get();
       foreach ($surveies as $survey) {
@@ -201,6 +201,7 @@ class SurveyController extends Controller
         }
       }
 
+      // dd($qTitle);
       return view('survey.survey_result', [
         'q_title' => $qTitle,
       ]);

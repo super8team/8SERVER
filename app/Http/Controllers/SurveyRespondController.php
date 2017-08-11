@@ -97,8 +97,40 @@ class SurveyRespondController extends Controller
      */
     public function show($id)
     {
+      $qTitle = [];
+      $resp = [];
 
+      $user = Auth::user();
+      $articles = \DB::table('survey_articles')->where('survey', $id)->get();
+      $articleCount = count($articles);
+
+      $respond = \DB::table('survey_responds')->where([
+                            ['survey', $id],
+                            ['respondent', $user->no]
+                          ])->first();
+
+      for ($i=0; $i<$articleCount; $i++) {
+        $qTitle[$i][0] = $articles[$i]->type;
+        $qTitle[$i][1] = $articles[$i]->article;
+
+        if($qTitle[$i][0] == "obj") {
+          $answers = \DB::table('survey_answers')->where('survey_article', $articles[$i]->no)->get();
+          $answerCount = count($answers);
+          // dd($answers);
+          for($j=0; $j<$answerCount; $j++) {
+            $qTitle[$i][2][$j] = $answers[$j]->substance;
+          }
+        }
+
+        $resp[] = \DB::table('survey_respond_contents')->where([
+                            ['survey_respond', $respond->no],
+                            ['survey_article', $articles[$i]->no]
+                          ])->value('respond');
+      }
+
+      // dd($qTitle, $resp);
     }
+
 
     /**
      * Show the form for editing the specified resource.
