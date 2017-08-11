@@ -18,45 +18,32 @@ class StaffController extends Controller
 
 
         return view('staff.staff_list', [
-            'current_plan_no' => $currentPlanId,
+            'current_plan_no'    => $currentPlanId,
             'current_plan_title' => $currentPlanTitle,
-            'current_plan_date' => $currentPlanDate,
-            'list_numb.er'    => $list_number,
-            'count' => $count
+            'current_plan_date'  => $currentPlanDate,
+            'list_number'        => $list_number,
+            'count'              => $count
         ]);
 
     }
 
-    public function result()
+    public function result($count)
     {
+//         계획번호로 체크리스트 정렬
+        $plan_checklists = \DB::table('plan_checklists')->where('plan', $count)->get();
 
+        $responds = [];
 
-//        $responds = \DB::table('checklist_responds')->where('checklist', $count)->get();
+        foreach($plan_checklists as $plan_checklist) {
+            $checklist_respond = \DB::table('checklist_responds')->where('checklist', $plan_checklist->checklist)->first();
 
+            $responds[] = $checklist_respond->respond;
 
+        }
+//    dd($count);
 
-
-//        $checklists =  \DB::table('plan_checklists')->where('checklist', $count)->get();
-//
-//        $checklist_bigsort = [];
-//        $checklist_smallsort = [];
-//        $checklist_substance = [];
-//
-//        foreach ($checklists as $checklist) {
-//
-//        array_push($checklist_bigsort, $checklist->bigsort);
-//        array_push($checklist_smallsort, $checklist->smallsort);
-//        array_push($checklist_substance, $checklist->substance);
-//
-//        }
-//
-//
-//
-//        return view('staff.result')->with('', $checklist_bigsort)
-//                                    ->with('', $checklist_smallsort)
-//                                   ->with('', $checklist_substance);
-
-        return view('staff.result');
+        return view('staff.result')->with('count', $count)
+                                    ->with('resp' ,json_encode($responds, JSON_UNESCAPED_SLASHES ));
 
     }
 
@@ -73,7 +60,6 @@ class StaffController extends Controller
             array_push( $committee_member_no, $committee_member1->no);
             array_push( $committee_member_name, $committee_member1->name);
         }
-
 
         return view('staff.member_add')->with('committee_member_no', $committee_member_no)
                                         ->with('committee_member_name', $committee_member_name)
@@ -101,20 +87,6 @@ class StaffController extends Controller
         return redirect()->route('staff',['count'=>$committee_no]);
 
     }
-
-//        $storage_list_array = $request->storage_list;
-//        $plan = $request->plan_num;
-//        dd($request->input('serial'));
-
-//        for($i = 0 ; $i < count($storage_list_array); $i++){
-//           $user_name = DB::table('users')->where('name',$storage_list_array[$i])->first();
-//           DB::table('committee_members')->insert([
-//                'member'=>'1',
-//                'committee'=>'1'
-//           ]);
-//        }
-//        return $storage_list_array[0];
-
 
 
     public function ajax(Request $request)
