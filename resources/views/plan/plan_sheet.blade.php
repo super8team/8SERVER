@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','모체')
+@section('title','서류작성 페이지')
 
 @section('content')
 

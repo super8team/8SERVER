@@ -195,7 +195,6 @@ class SurveyController extends Controller
         } else {
           $subs = \DB::table('survey_respond_contents')->where('survey_article', $articles[$i]->no)->get();
           foreach ($subs as $sub) {
-            # code...
             $qTitle[$i][2][] = $sub->respond;
           }
         }
