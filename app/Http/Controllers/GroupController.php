@@ -32,7 +32,7 @@ class GroupController extends Controller
         $student_name[] = $user->name;
 
         $std = \DB::table('students')->where('student'. $user->no)->first();
-        $grd_cls = \DB::table('grade_classes')->where('no', $std->grade_class);
+        $grd_cls = \DB::table('grade_classes')->where('no', $std->grade_class)
         $student_class[] = $grd_cls->grade."학년 ".$grd_cls->class;
       }
 
