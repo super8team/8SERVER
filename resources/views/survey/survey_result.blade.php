@@ -160,10 +160,7 @@ $(document).ready(function () {
               {
                 name: '{{$q_title[$i][2][$t]}}',
                 y:    {{$q_title[$i][3][$t]}}
-              }
-                @if(isset($q_title[$i][2][$t+1]))
-                {{","}}
-                @endif
+              },
               @endfor
 
             ]
