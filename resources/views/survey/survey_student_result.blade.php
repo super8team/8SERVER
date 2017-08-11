@@ -41,7 +41,7 @@
                                                 <label>정답을 정해 주세요</label>
                                             </div>
                                             <div class='col-sm-4'>
-                                              @if ($resp[$i] == ture)
+                                              @if ($resp[$i] == 'ture')
                                                 <label class='checkbox-inline margin-right-3'>
                                                       <input type='radio' value='true' name='resp[{{$i}}]' checked='checked'>참
                                                 </label>                                                
