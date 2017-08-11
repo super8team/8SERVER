@@ -52,71 +52,41 @@
   // 필요한 값
   // $q_title
   // $resp
-
-  for ($num = 0; $num < 4; $num++) {
-    $result[$num][0] = $q_title[$num][0];
-    $result[$num][1] = $q_title[$num][1];
-    if(isset($resp)){
-      //ox
-      if($result[$num][0] == "ox"){
-        //안에 빈값이면 0으로 초기화
-        if(isset($result[$num][2]) == false || isset($result[$num][3]) == false) {
-              $result[$num][2] = 0;
-              $result[$num][3] = 0;
-        }
-        //ox 판단 후 해당 값 증가
-        if ($resp[$num] == "true") {
-          $result[$num][2]++;
-          //DB 저장 코드
-        }else{
-          $result[$num][3]++;
-          //DB 저장 코드
-        }
-      }
-      //obj
-      if($result[$num][0] == "obj"){
-        //결과 값 안에 아무것 도 없을 경우 0 으로 초기화
-        //선택항목 갯수
-        $sub_obj_count = count($q_title[$num][2]);
-        //선택한 값
-        $selected = $resp[$num];
-        //선택사항 제목 저장
-        $result[$num][2] = $q_title[$num][2];
-
-        for ($t=0; $t < $sub_obj_count ; $t++) {
-          //빈 값일경우 전부 0 으로 초기화
-          if(isset($result[$num][3][$t]) == false){
-            $result[$num][3][$t] = 0;
-          }
-          //선택한 값일 경우 +1
-          if($selected == $t){
-            $result[$num][3][$t]++;
-            //DB 저장 코드
-          }
-        }
-      }
-      //서술형 저장
-      if($result[$num][0] == "sub"){
-        $result[$num][2] = $resp[$num];
-      }
-    }else{
-      break;
-    }
-  }
+  
+  //현제 넘어오는 값
+  //$qtitle[0][0] = ox
+  //$qtitle[0][1] = ox제목
+  //$qtitle[0][2] = true 겟수
+  //$qtitle[0][3] = false 겟수
+  
+  //$qtitle[1][0] 
+  //$qtitle[1][1]
+  //$qtitle[1][2]
+  //$qtitle[1][2][0]  = 객관식 1 질문제목
+  //$qtitle[1][2][1]  = 객관식 2 질문제목
+  //$qtitle[1][2][1]  = 객관식 1 답변수
+  //$qtitle[1][2][1]  = 객관식 2 답변수
+  
+  //$qtitle[2][0]   = sub
+  //$qtitle[2][1]   = 서술형 제목
+  //$qtitle[2][2]   = 서술형 제목  -> 지금 예가 안넘어온다
+  
 
   // 1-2 DB에서 받아오는 정보
   @endphp
 
-<script src="../public/js/highcharts.js"></script>
-<script src="../public/js/modules/exporting.js"></script>
+<script src="{{asset('js/highcharts.js')}}"></script>
+<script src="{{asset('js/modules/exporting.js')}}"></script>
 <script type="text/javascript">
 
 $(document).ready(function () {
 
   // Build the chart
-  @for ($i=0; $i < 4; $i++)
+  @for ($i=0; $i < count($q_title); $i++)
+    
     // OX 일 경우
-    @if ($result[$i][0] == "ox")
+    @if ($q_title[$i][0] == "ox")
+    
     $("#graph").append("<div class='panel panel-default'><div class='panel-heading'></div><div class='panel-body'> <div id='{{$i}}' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div></div></div>")
     Highcharts.chart('{{$i}}', {
         chart: {
@@ -127,7 +97,7 @@ $(document).ready(function () {
         },
         title: {
             // text: 'Browser market shares January, 2015 to May, 2015'
-            text: '{{$result[$i][1]}}'
+            text: '{{$q_title[$i][1]}}'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -147,16 +117,16 @@ $(document).ready(function () {
             colorByPoint: true,
             data: [ {
                 name: '찬성',
-                y: {{$result[$i][2]}}
+                y: {{$q_title[$i][2]}}
             }, {
                 name: '반대',
-                y: {{$result[$i][3]}}
+                y: {{$q_title[$i][3]}}
             }]
         }]
     });
     @endif
     // 객관식 일 경우
-    @if ($result[$i][0] == "obj")
+    @if ($q_title[$i][0] == "obj")
     $("#graph").append("<div class='panel panel-default'><div class='panel-heading'></div><div class='panel-body'> <div id='{{$i}}' style='min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto'></div></div></div>")
     Highcharts.chart('{{$i}}', {
         chart: {
@@ -167,7 +137,7 @@ $(document).ready(function () {
         },
         title: {
             // text: 'Browser market shares January, 2015 to May, 2015'
-            text: '{{$result[$i][1]}}'
+            text: '{{$q_title[$i][1]}}'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -186,22 +156,26 @@ $(document).ready(function () {
             name: 'Brands',
             colorByPoint: true,
             data: [
-              @for ($t=0; $t <count($result[$i][2]) ; $t++)
+              @for ($t=0; $t <count($q_title[$i][2]) ; $t++)
               {
-                name: '{{$result[$i][2][$t]}}',
-                y:    {{$result[$i][3][$t]}}
-              }
-                @if($i != count($result[$i][2])-1)
-                {{","}}
-                @endif
+                name: '{{$q_title[$i][2][$t]}}',
+                y:    {{$q_title[$i][3][$t]}}
+              },
               @endfor
 
             ]
         }]
     });
     @endif
-    @if ($result == "sub")
-      $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{$result[$i][1]}}</div><div class='panel-body'>{{$result[$i][2]}} </div></div>")
+    @if ($q_title[$i][0] == "sub")
+    // $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{--$q_title[$i][1]--}}</div><div class='panel-body'>{{--$q_title[$i][2]--}} </div></div>")
+      $("#graph").append("<div class='panel panel-default'><div class='panel-heading'>{{$q_title[$i][1]}}</div><div class='panel-body'>"+    
+      "<table class='table table-bordered table-hover'>"+        
+        @for ($t=0; $t < count($q_title[$i][2]); $t++)
+        "<tr><td>{{$q_title[$i][2][$t]}}</td></tr>"+
+        @endfor          
+      "</table>"+
+      "</div></div>");
     @endif
   @endfor
 

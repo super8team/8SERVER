@@ -6,34 +6,6 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      {{-- <div class="panel panel-default">
-        <div class="panel-heading">
-        </div>
-        <div class="panel-body">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>작성일</th>
-                <th>바로가기</th>
-              </tr>
-            </thead>
-            <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>으앙아아아앙</td>
-                    <td>0000/00/00</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('survey.show', 2)}}" class="btn btn-sm btn-danger">
-                        보기
-                      </a>
-                    </td>
-                  </tr>
-          </tbody>
-          </table>
-        </div>
-      </div> --}}
       @php
       $user_info = Auth::user();
       
@@ -81,21 +53,40 @@
             // $survey_date  = array_reverse($survey_date);
             // $surveies     = array_reverse($surveies);
             @endphp
-            @for ($count=0; $count < count($survey_title) ; $count++)
-                  <tr>
-                    <td>{{$count+1}}</td>
-                    <td>{{$survey_title[$count]}}</td>
-                    <td>{{$survey_date[$count]}}</td>
-                    <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
-                        보기
-                      </a>
-                      <a role="button" href="{{--route('survey.respond.show',$survey_no[$count])--}}" class="btn btn-sm btn-danger">
-                        결과보기
-                      </a>
-                    </td>
-                  </tr>
-            @endfor
+            @if($user_info['type'] == 'teacher')
+              @for ($count=0; $count < count($survey_title) ; $count++)
+                    <tr>
+                      <td>{{$count+1}}</td>
+                      <td>{{$survey_title[$count]}}</td>
+                      <td>{{$survey_date[$count]}}</td>
+                      <td colspan="2" class="text-center">
+                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
+                          보기
+                        </a>
+                        <a role="button" href="{{route('survey.total.respond',$survey_no[$count])}}" class="btn btn-sm btn-danger">
+                          결과보기
+                        </a>
+                      </td>
+                    </tr>
+              @endfor
+            @else
+              @for ($count=0; $count < count($survey_title) ; $count++)
+                    <tr>
+                      <td>{{$count+1}}</td>
+                      <td>{{$survey_title[$count]}}</td>
+                      <td>{{$survey_date[$count]}}</td>
+                      <td colspan="2" class="text-center">
+                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
+                          보기
+                        </a>
+                        <a role="button" href="{{route('survey.stdResult',$survey_no[$count])}}" class="btn btn-sm btn-danger">
+                          결과보기
+                        </a>
+                      </td>
+                    </tr>
+              @endfor
+            @endif
+          
           </tbody>
           </table>
           {{-- 여기 페이징 기능점요 ㅋ --}}

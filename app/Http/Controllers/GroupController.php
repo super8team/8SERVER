@@ -21,6 +21,7 @@ class GroupController extends Controller
       $student_no     = array();
       $student_class  = array();
       $student_name   = array();
+      $student_classNo = array();
 
       //넘길 정보
       //plan_no로 검색해서 그룹 정보를 받아옴,학생이름,반,
@@ -32,8 +33,9 @@ class GroupController extends Controller
         $student_name[] = $user->name;
 
         $std = \DB::table('students')->where('student'. $user->no)->first();
-        $grd_cls = \DB::table('grade_classes')->where('no', $std->grade_class)
+        $grd_cls = \DB::table('grade_classes')->where('no', $std->grade_class);
         $student_class[] = $grd_cls->grade."학년 ".$grd_cls->class;
+        $grade_class_no[] = $grd_cls->no;
       }
 
 
@@ -42,7 +44,7 @@ class GroupController extends Controller
           'student_no'     => $student_no,
           'student_class'  => $student_class,
           'student_name'   => $student_name,
-
+          'grade_class_no' => $grade_class_no,
         ]);
     }
     /**
@@ -69,8 +71,7 @@ class GroupController extends Controller
       $grade_count =3; //교사가 속해있는 학교의 학년 수
       $class_count =5;  //학년중 반의 갯수가 가장 많은 반의 수... ->학년 별로 반개수가 다른것은 추후 수정하겠음
 
-      $grade_filter = $request->input('filter_grade');
-      $class_filter = $request->input('filter_class');
+      $filter = $request->input('grade_class');
       // $result = array();
       // //로그인 된 교사의 정보로 학교정보를 가저움
       // //
@@ -91,17 +92,21 @@ class GroupController extends Controller
       $student_no    = array();
       $student_class = array();
       $student_name  = array();
+      $grade_class_no= array();
 
       //필터링 정보가 들어왔을떄
-      if($grade_filter){
-        for ($i=0; $i < count($class_filter); $i++) {
+      if($filter){
+        for ($i=0; $i < count($filter); $i++) {
           //각 반별로 뽑기
           //학년이 grade_filter 이고 반이 $class_filter[$i]인 사람의 정보를 가져온다
-          $students = \DB::table('students')->where('grade_class',$class_filter[$i])->get();
+          $students = \DB::table('students')->where('grade_class',$filter[$i])->get();
+          $grade_class = \DB::table('grade_classes')->where('no', $filter[$i])->first();
           foreach($students as $student){
-            $user = \DB::table('users')->where('grade',$grade_filter)->first();
+            // $user = \DB::table('users')->where('grade',$grade_filter)->first();
+            $user = \DB::table('users')->where('no', $student->student)->first();
             array_push($student_no , $user->no);
-            array_push($student_class, $user->class);
+            array_push($grade_class_no, $grade_class->no);
+            array_push($student_class, $grade_class->grade."학년 ".$grade_class->class." 반");
             array_push($student_name , $user->name);
           }
 
@@ -119,6 +124,7 @@ class GroupController extends Controller
         'student_no'     => $student_no,
         'student_class'  => $student_class,
         'student_name'   => $student_name,
+        'grade_class_no' => $grade_class_no,
         'grade_count'    => $grade_count,
         'class_count'    => $class_count,
       ]);

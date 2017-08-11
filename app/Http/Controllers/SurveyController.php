@@ -21,7 +21,7 @@ class SurveyController extends Controller
       $surveyTitleArr = array();
       $surveyDateArr = array();
 
-      $surveies = DB::table('surveies')->orderBy('created_at', 'desc')->paginate(15);
+      $surveies = DB::table('surveies')->orderBy('no', 'desc')->paginate(15);
       // $surveies = DB::table('surveies')->paginate(15);
       // $surveies = DB::table('surveies')->get();
       foreach ($surveies as $survey) {
@@ -130,7 +130,7 @@ class SurveyController extends Controller
           }
         }
 
-        // dd( $qTitle);
+        // dd($qTitle);
         return view('survey.survey_view', [
           'survey_title' => $survey->title,
           'q_title' => $qTitle, // 설문지
@@ -195,14 +195,13 @@ class SurveyController extends Controller
         } else {
           $subs = \DB::table('survey_respond_contents')->where('survey_article', $articles[$i]->no)->get();
           foreach ($subs as $sub) {
-            # code...
             $qTitle[$i][2][] = $sub->respond;
           }
         }
       }
 
       // dd($qTitle);
-      return view('survey_result', [
+      return view('survey.survey_result', [
         'q_title' => $qTitle,
       ]);
     }

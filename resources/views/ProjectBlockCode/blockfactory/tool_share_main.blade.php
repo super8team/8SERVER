@@ -27,14 +27,45 @@
     <script src="{{URL::asset('/js/map.js')}}"></script>
     <script src="{{URL::asset('/js/app_controller.js')}}"></script>
     <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/prettify.js')}}"></script>
     <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
-    <script src="{{URL::asset('/js/test.js')}}"></script>
+    <script src="{{URL::asset('/js/slick.js')}}"></script>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
     <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('/css/slick.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('/css/bootstrap.css')}}">
     <style style="text/css">
-      h1, h2{font-family:'Nanum Brush Script', serif;}
+    h1, h2{font-family:'Nanum Brush Script', serif;}
+    .slider {
+      width: 92%;
+      margin: 50px auto;
+    }
+    /**  {
+      box-sizing: border-box;
+    }*/
+    .slick-slide {
+      margin: 0px 20px;
+    }
+    .slick-slide img {
+      width: 100%;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+    .slick-active {
+      opacity: .5;
+    }
+    .slick-current {
+      opacity: 1;
+    }
     </style>
   </head>
 
@@ -42,25 +73,23 @@
       <table id="mainShareList">
         <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
+          <div class="center slider">
           @foreach($popularPackage as $key=>$value)
-          @php
-          $url = Storage::url('packageImgs/'.$value['imgs']);
-          // $url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/image9.jpg';
-          @endphp
-             <td>
-               <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                 <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:170px; height:100px">
-               </a>
-             </td>
+                 <div style="display:inline-block">
+                 <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                   <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
+                 </a>
+                 {{--$value['name']--}}
+                 </div>
           @endforeach
+           </div>
         </tr>
-        <tr id="mainPackageName">
+        <!-- <tr id="mainPackageName">
           @foreach($popularPackage as $key=>$value)
             <td>
-              {{$value['name']}}
             </td>
           @endforeach
-        </tr>
+        </tr> -->
       </table>
       <br>
       <br>
@@ -72,39 +101,37 @@
           <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
-          @php
-          $i = 1
-          @endphp
-          @if($i==5)
-            @continue;
-          @endif
 
-          @foreach ($otherPackage as $key => $value)
+          @foreach ($otherPackage as $value)
                   @php
-                    $url = Storage::url('packageImgs/'.$value['imgs']);
+                    $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
           <div id="contenstsImage">
-                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}"  style="width:130px; height:150px">
+                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value->no}}">
+                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
-                      {{$value['name']}}
+                    {{--$value->name--}}
                     </div>
           </div>
-            @if($i%4==0)
-              <br>
-            @endif
-            @php
-              $i++;
-            @endphp
           @endforeach
-          <br>
+          <div style="margin-left:20%">
+          {{$otherPackage->links()}}
+          </div>
           <button id="share" type="button">패키지 공유하기</button>
       </div>
 
     </body>
     <script type="text/javascript">
-// var xmlText         = new XMLSerializer().serializeToString(xml);
+    $(document).on('ready', function() {
+        $(".center").slick({
+          dots: true,
+          infinite: true,
+          centerMode: true,
+          slidesToShow: 5,
+          slidesToScroll: 3
+        });
+      });// var xmlText         = new XMLSerializer().serializeToString(xml);
     $('#share').click(function(e){
       var value = e.target.getAttribute('value');
       var i;
@@ -113,7 +140,6 @@
       var content_myungse = document.getElementsByClassName('block_myungse');
       var m;
       var n;
-
       for(i = 0 ; i < content_xml.length ; i++){
         content_xml[i].value;
         console.log(content_myungse[i].value);
@@ -123,14 +149,10 @@
       }
       console.log(m);
       console.log(typeof(n));
-
     window.location.href='shareShare';
     });
-
     $('#searchButton').click(function(){
-
       var searchWord = document.getElementById('searchWord').value;
-
       console.log(searchWord);
       $.ajax({
         method: 'GET',
@@ -141,39 +163,27 @@
         success: function(data){
             console.log('통신 성공');
             $('#shareList').empty();
-
             var img_url          = data[0]['img_url'];
             console.log(img_url);
             var package_name     = data[1];
             var contents_package = data[0]['contents_package'];
-
             var parent_div = document.getElementById('shareList');
-
             var infor_div    = document.createElement('div');
             infor_div.setAttribute('id','contentsImage');
-
             var name_div   = document.createElement('div');
             name_div.setAttribute('id','package_name');
-
             var a_ele      = document.createElement('a');
             a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
-
-
             var img_ele    = document.createElement('img');
             var img_url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
             console.log(img_url);
             img_ele.setAttribute('src',img_url);
-
             name_div.innerHTML = package_name;
-
             a_ele.appendChild(img_ele);
-
             infor_div.appendChild(name_div);
             infor_div.appendChild(a_ele);
-
             parent_div.appendChild(infor_div);
             console.log(parent_div);
-
         },
         error: function(){
           console.log('통신실패');
