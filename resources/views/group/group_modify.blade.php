@@ -105,7 +105,7 @@
             </label> 
           @endfor
         </div>
-        <input type="hidden" name="grade_class" value="group_class no 테스트용{{--$grade_class_no--}}">
+        <input type="hidden" name="grade_class" value="{{$grade_class_no}}">
       </form>        
       <form class="form" action="{{route('group.store')}}">      
       <div class="panel panel-default">
