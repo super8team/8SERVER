@@ -90,6 +90,7 @@
                       공유
                     </button>
 
+
                     <div class="modal modal fade " id="share" tabindex="-1"
                     role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
                       <div class="modal-dialog">

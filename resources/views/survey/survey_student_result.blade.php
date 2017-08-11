@@ -41,15 +41,21 @@
                                                 <label>정답을 정해 주세요</label>
                                             </div>
                                             <div class='col-sm-4'>
-                                              @if (isset($resp[$i]))
-                                                
-                                              @endif
+                                              @if ($resp[$i] == 'true')
                                                 <label class='checkbox-inline margin-right-3'>
-                                                    <input type='radio' value='true' name='resp[{{$i}}]'>참
-                                                </label>
+                                                      <input type='radio' value='true' name='resp[{{$i}}]' checked='checked'>참
+                                                </label>                                                
                                                 <label class='checkbox-inline margin-right-3'>
                                                     <input type='radio' value='false' name='resp[{{$i}}]'>거짓
                                                 </label>
+                                              @else
+                                                <label class='checkbox-inline margin-right-3'>
+                                                      <input type='radio' value='true' name='resp[{{$i}}]'>참
+                                                </label>                                                
+                                                <label class='checkbox-inline margin-right-3'>
+                                                    <input type='radio' value='false' name='resp[{{$i}}]' checked='checked'>거짓
+                                                </label>
+                                              @endif
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +78,7 @@
                                             <div class='form-group col-sm-12'>
                                                 <ul class="list-group">
                                                     @for ($t=0 ; $t <count($q_title[$i][2]) ; $t++)
-                                                         <input type='hidden' class='form-control ' name='q_result[{{$i}}][2][{{$t}}]'
+                                                         <input type='hidden' class='form-control ' name='q_result[{{$i}}][1][{{$t}}]'
                                                        value="{{$q_title[$i][2][$t]}}">
                                                         <div class="col-sm-12">
                                                             <li class="list-group-item col-sm-12">
@@ -83,7 +89,8 @@
                                                                     <span class="label label-default">{{$t+1}}</span>&nbsp;&nbsp;&nbsp;
                                                                     {{$q_title[$i][2][$t]}}
                                                                     <label class='checkbox-inline margin-right-3 pull-right'>
-                                                                        <input type='radio' value='{{$t}}' name='resp[{{$i}}]'>선택
+                                                                        <input type='radio' value='{{$t}}' name='resp[{{$i}}]'
+                                                                        @if($resp[$i] == $t) checked='checked' @endif>선택
                                                                     </label>
                                                                 </h4>
                                                                 </p>
@@ -110,7 +117,7 @@
                                             </div>
                                         </div>
                                         <div class='panel-body'>
-                                            <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='{{$q_title[$i][2]}}' ></textarea>
+                                            <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='{{$resp[$i]}}' ></textarea>
                                         </div>
                                     </div>
                                 </div>

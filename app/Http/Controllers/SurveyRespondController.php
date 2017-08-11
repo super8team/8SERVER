@@ -130,8 +130,17 @@ class SurveyRespondController extends Controller
           $resp[] = \DB::table('survey_respond_contents')->where([
                               ['survey_respond', $respond->no],
                               ['survey_article', $articles[$i]->no]
-                            ])->value('respond');
+                            ])->value('respond');                            
         }
+        
+        $survey_title = \DB::table('surveies')->where('no', $id)->value('title'); 
+        // dd($resp);
+        // dd($qTitle);
+        return view('survey.survey_student_result',[
+          'survey_title' =>$survey_title,
+          'q_title' => $qTitle,
+          'resp'    => $resp,
+        ]);
   
         // dd($qTitle, $resp);
     }
