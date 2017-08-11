@@ -41,7 +41,7 @@
                                                 <label>정답을 정해 주세요</label>
                                             </div>
                                             <div class='col-sm-4'>
-                                              @if ($resp[$i] == 'ture')
+                                              @if ($resp[$i] == 'true')
                                                 <label class='checkbox-inline margin-right-3'>
                                                       <input type='radio' value='true' name='resp[{{$i}}]' checked='checked'>참
                                                 </label>                                                
@@ -77,9 +77,9 @@
                                         <div class='panel-body'>
                                             <div class='form-group col-sm-12'>
                                                 <ul class="list-group">
-                                                    @for ($t=0 ; $t <count($q_title[$i][1]) ; $t++)
+                                                    @for ($t=0 ; $t <count($q_title[$i][2]) ; $t++)
                                                          <input type='hidden' class='form-control ' name='q_result[{{$i}}][1][{{$t}}]'
-                                                       value="{{$q_title[$i][1][$t]}}">
+                                                       value="{{$q_title[$i][2][$t]}}">
                                                         <div class="col-sm-12">
                                                             <li class="list-group-item col-sm-12">
                                                                  <blockquote>
@@ -87,10 +87,10 @@
                                                                 <span class="badge"></span>
                                                                 <h4>
                                                                     <span class="label label-default">{{$t+1}}</span>&nbsp;&nbsp;&nbsp;
-                                                                    {{$q_title[$i][1][$t]}}
+                                                                    {{$q_title[$i][2][$t]}}
                                                                     <label class='checkbox-inline margin-right-3 pull-right'>
                                                                         <input type='radio' value='{{$t}}' name='resp[{{$i}}]'
-                                                                        @if(isset($resp[$i])) checked='checked' @endif>선택
+                                                                        @if($resp[$i] == $t) checked='checked' @endif>선택
                                                                     </label>
                                                                 </h4>
                                                                 </p>
