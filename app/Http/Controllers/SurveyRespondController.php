@@ -132,6 +132,10 @@ class SurveyRespondController extends Controller
                               ['survey_article', $articles[$i]->no]
                             ])->value('respond');
         }
+        return view('survey_student_result',{
+          'q_title' => $qTitle,
+          'resp'    => $resp,
+        })
   
         // dd($qTitle, $resp);
     }
