@@ -160,7 +160,6 @@ input[type="button"], .inputStyle {
 }*/
 #registerContents, #shareContentsButton, #removeBlockFromLibraryButton{
   background-color: white;
-  border-left:1px black solid;
   border-radius: 0px;
 }
 #factoryHeader {
@@ -392,7 +391,7 @@ button, .buttonStyle {
 }
 
 #blockLibraryControls {
-  border:1px solid;
+  border-left:1px solid;
   background-color: #95CDFF;
   width:26%;
   text-align: center;
@@ -415,9 +414,8 @@ button, .buttonStyle {
 #mapSize {
   width:27%;
   height: 900px;
-  border: 1px solid;
-  background-color:#e3f2ff;
 }
+
 
 #files {
   position: absolute;
@@ -500,6 +498,15 @@ button, .buttonStyle {
   height: 100%;
   background-color: #e3f2ff;
 }
+
+#right-space {
+  display: inline-block;
+  width: 15%;
+  height: 100%;
+  background-color: #e3f2ff;
+  float: right;
+}
+
 #blocklyWorkspaceContainer {
   width: 47%;
 }
