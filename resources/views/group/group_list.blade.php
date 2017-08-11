@@ -28,11 +28,13 @@
            <a role="button" href="{{route('team_list', $plan_no)}}" class="btn btn-sm btn-default pull-right">
              팀 정하기
            </a>
-           <a role="button" href="{{route('group_create',$plan_no)}}" aria-label="Right Align"
-           class="btn btn-sm btn-default pull-right">
-            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            참여자 정하기
-          </a>
+           <form class="form" action="{{route('group_create',$plan_no)}}">
+             <button type="btnSubmit"  aria-label="Right Align" class="btn btn-sm btn-default pull-right">
+              참여자 정하기
+            </button>
+            <input type="hidden" name="grade_class" value="{{$grade_class_no}}">
+           </form>
+          
          </h3>
         </div>
         <div class="panel-body">
