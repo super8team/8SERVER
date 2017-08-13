@@ -582,7 +582,7 @@
           </div>
           <div id="notipopup">
                       <div>
-                      <video src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></video>
+                      <iframe src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></iframe>
                         <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
