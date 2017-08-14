@@ -89,7 +89,7 @@ class FieldLearningPlanDocumentController extends Controller
         $templateProcessor->setValue('schoolAddress', $school->address);
         $templateProcessor->setValue('schoolPhone', $school->tel);
 //        $templateProcessor->setValue('teacher', $user->name);
-        $templateProcessor->setValue('teacher', "박성원 ㅎㅎ");
+        $templateProcessor->setValue('teacher', "박성원");
         $templateProcessor->setValue('period', $startDay->at);
         $templateProcessor->setValue('total_count', $total_count_count);
         $templateProcessor->setValue('teacher_count', $teacher_count);
