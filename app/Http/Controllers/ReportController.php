@@ -41,12 +41,13 @@ class ReportController extends Controller
   { 
     $report_no     = $request->input('report_no');    
     $report_score  = $request->input('report_score');
+    $plan_no       = $request->input('plan_no');
     
     DB::table('review_evaluations')->where('review',$report_no)->insert([
     'score' => $report_score,
   ]);
     //TODO 저거 위 디비에서 가저온 no 의 플랜에 접근하여 플랜넘버를 가져오삼
-    return view('report.report_list',$plan_no);
+    return redirect()->route('report_list', $plan_no);
   }
   
   public function custom_index($plan_no)

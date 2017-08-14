@@ -27,6 +27,7 @@
             {{ $report_text }}
             
           </div>
+          <input type="hidden" name="plan_no" value="{{$plan_no}}">
         </div>
         <a href="{{route('report.index',$plan_no)}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
