@@ -71,6 +71,7 @@ class StaffController extends Controller
     {
 
         $committee_no = $request->input('committee_number');
+//        $result_no = $request->input('result_number');
 
         $list = $request->input('serial');
 
@@ -78,13 +79,23 @@ class StaffController extends Controller
             'plan'=>$committee_no,'leader'=>5
         ]);
 
+
         for ($i = 0; $i < count($list); $i++) {
             \DB::table('committee_members')->insert([
                 'member' => $list[$i],'committee'=>$committee_no
             ]);
         }
 
-        return redirect()->route('staff',['count'=>$committee_no]);
+//        if($request) {
+//            $request->session()->flash('flash_message', '저장성공');
+            return redirect()->route('staff',['count'=>$committee_no]);
+
+//        }
+
+//        else {
+//            $request->session()->flash('flash_message', '저장실패');
+//            return redirect()->route('staff.result', ['count'=>$committee_no]);
+//         }
 
     }
 
