@@ -107,7 +107,6 @@
           </tbody>
           </table>
           <div class="">
-            {{$reports->links() }}
           </div>
         </div>
       </div>
