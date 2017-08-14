@@ -35,7 +35,7 @@
                 @for($j = 0; $j < $field_count; $j++)
                 <tr style="border:1px solid">
                     <td style="border:1px solid;text-align:center">
-                      <input type="button" value="{{ $field_lists[$j]['name']}}">
+                      <input type="button" value="{{ $field_lists[$j]['name']}}" style="vertical-align:middle">
                       <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['no']}}" hidden>
                     </td>
                     <td style="vertical-align:middle;" class="package_name">
