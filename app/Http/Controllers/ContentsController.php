@@ -313,6 +313,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     public function shareDownload(Request $request)
     {
       $choices_no = $request->input('choice_content');
+      dd($choices_no);
       $content_arr = [];
       foreach($choices_no as $no){
         $content = DB::table('contents')->where('no',$no)->first();
