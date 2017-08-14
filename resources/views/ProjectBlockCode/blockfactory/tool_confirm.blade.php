@@ -38,10 +38,14 @@
                       <input type="button" value="{{ $field_lists[$j]['name']}}">
                       <input type="text" name="field_list[]" style="" value="{{ $field_lists[$j]['no']}}" hidden>
                     </td>
-                    <td style="vertical-align:middle;text-align:center;float:left;" class="package_name">
+                    <td style="vertical-align:middle;" class="package_name">
                       @for ($i = 0; $i < $package_count ; $i++)
-                           <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)" style="vertical-align:center;margin-top:14px;">{{ $package[$i]['name'] }}
-                           <br>
+                           <input type="checkbox" name="package[{{$j}}][]" value="{{$package[$i]['no']}}" onclick="oneCheckbox(this)" style="vertical-align:center;margin-top:14px;width:20px;">{{ $package[$i]['name'] }}
+                           @if($i != 0)
+                             @if($i / 2 == 0)
+                                <br>
+                             @endif
+                           @endif
                       @endfor
                     </td>
                 </tr>
