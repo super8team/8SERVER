@@ -7,7 +7,7 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <form class="form " action="{{route('report_evaluation',$report_no)}}">
+      <form class="form " action="{{route('report_evaluation')}}">
         {{csrf_field()}}
       <div class="panel panel-default">
           <div class="panel-heading">
@@ -33,10 +33,10 @@
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           뒤로 가기
         </a>
-        <a href="{{route('report_evaluation')}}"role="btnsubmit" class="btn btn-sm btn-default margin-right-10 pull-right">
+        <button type="btnSubmit" role="btnsubmit" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
           평가 완료
-        </a>
+        </button>
       </div>
       <input type="hidden" name="report_no" value="{{$report_no}}">
     </form>
