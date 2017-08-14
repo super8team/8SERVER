@@ -60,6 +60,10 @@ class ReportController extends Controller
       //report list 가져오기 15개로 페이징
       // $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
       $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
+      
+      //TODO 진아야 이부분이야
+      $score_insert = DB::table('review_evaluations')->where('no',$reports->no)->get();
+      
       // 뿌려주기 준비
       foreach($reports as $report){
         array_push($report_no , $report->no);
@@ -127,7 +131,7 @@ class ReportController extends Controller
     'substance' => $report_text,
     // 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
     // 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-  ]);
+  ]);    
     
   return view('report.view',[
     'report_title' => $report_title,
