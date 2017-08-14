@@ -7,7 +7,7 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <form class="form " action="{{route('report_evaluation',$report_no)}}" method="POST">
+      <form class="form " action="{{route('report_evaluation',$report_no)}}">
         {{csrf_field()}}
       <div class="panel panel-default">
           <div class="panel-heading">
