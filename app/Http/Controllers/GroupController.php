@@ -22,6 +22,7 @@ class GroupController extends Controller
       $student_class  = array();
       $student_name   = array();
       $student_classNo = array();
+      $grade_class_no = array();
 
       //넘길 정보
       //plan_no로 검색해서 그룹 정보를 받아옴,학생이름,반,

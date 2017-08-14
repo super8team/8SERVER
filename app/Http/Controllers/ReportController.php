@@ -68,7 +68,7 @@ class ReportController extends Controller
         array_push($report_no , $report->no);
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
-        $score_inserts = DB::table('review_evaluations')->where('no',$reports->no)->get();
+        $score_inserts = DB::table('review_evaluations')->where('no',$report->no)->get();
         $scores = [];
         foreach ($score_inserts as $scrore) {
           $scores[] = $score->score;
