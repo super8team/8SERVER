@@ -32,7 +32,7 @@
              <button type="btnSubmit"  aria-label="Right Align" class="btn btn-sm btn-default pull-right">
               참여자 정하기
             </button>
-            <input type="hidden" name="grade_class" value="{{$grade_class_no}}">
+            {{-- <input type="hidden" name="grade_class" value="{{$grade_class_no}}"> --}}
            </form>
           
          </h3>
@@ -52,6 +52,7 @@
                       <td>{{$student_class[$i]}}</td>
                       <td>{{$student_name[$i]}}
                         <input type="checkbox" name="group" value="{{$student_no[$i]}}">
+                        <input type="hidden" name="grade_class" value="{{$grade_class_no[$i]}}">                        
                       </td>
                     </tr>
                   @endfor

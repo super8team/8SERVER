@@ -55,20 +55,25 @@ class ReportController extends Controller
       $report_no    = array();
       $report_title = array();
       $report_score = array();
+      $report_score = array();
       // $report_date  = array();
       
       //report list 가져오기 15개로 페이징
       // $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
-      $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
+      // $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
+      $reports = DB::table('review_writes')->get();
+      
       // 뿌려주기 준비
       foreach($reports as $report){
         array_push($report_no , $report->no);
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
-        if($report->score != null){
-          array_push($report_score, $report->score);
-        }  
-        // array_push($report_date , $report->created_at);
+        $score_inserts = DB::table('review_evaluations')->where('no',$reports->no)->get();
+        $scores = [];
+        foreach ($score_inserts as $scrore) {
+          $scores[] = $score->score;
+        }
+        array_push($report_score, $scores);
       }
       // 뿌리기 
       //reportes 는 페이지 네이션을 해야하기 땜에 지우지마셍
@@ -127,7 +132,7 @@ class ReportController extends Controller
     'substance' => $report_text,
     // 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
     // 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-  ]);
+  ]);    
     
   return view('report.view',[
     'report_title' => $report_title,
