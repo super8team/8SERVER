@@ -61,17 +61,14 @@ class ReportController extends Controller
       // $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
       $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
       
-      //TODO 진아야 이부분이야
-      $score_insert = DB::table('review_evaluations')->where('no',$reports->no)->get();
-      
       // 뿌려주기 준비
       foreach($reports as $report){
         array_push($report_no , $report->no);
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
-        $score_insert = DB::table('review_evaluations')->where('no',$reports->no)->first();
-        if($score_insert != null){
-          array_push($report_score, $score_insert);
+        $score_inserts = DB::table('review_evaluations')->where('no',$reports->no)->get();
+        if($score_inserts != null){
+          array_push($report_score, $score_inserts);
         }else{
           array_push($report_score, '미평가 항목입니다.');
         }  
