@@ -174,9 +174,10 @@ class ReportController extends Controller
     
     return view('report.view',[
       'report_no'    => $reports->no,
-      'plan_no'    => $report->plan,
+      'plan_no'      => $report->plan,
       'report_title' => $report->title,
       'report_text'  => $report->substance,
+      'report_score' => $report_score,
     ]);
   }
 

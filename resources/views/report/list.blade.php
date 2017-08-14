@@ -99,7 +99,7 @@
                     <a role="button" class="btn btn-sm btn-warning disabled">
                       평가하기
                     </a>
-                  @else
+                    @else
                     @endif
                   </td>
                 </tr>

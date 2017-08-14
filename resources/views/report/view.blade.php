@@ -10,7 +10,6 @@
         <div class="panel-heading">
             {{-- 제목 가저오기 --}}
             {{ $report_title }}
-            소감문 데스
         </div>
         <div class="panel-body" style="min-height:500px">
           <div class="col-sm-12">
