@@ -64,7 +64,7 @@
                         <td>{{$report_title[$count]}}</td>
                         {{-- <td>{{$report_date[$count]}}</td> --}}
                         @if ($user_info['type'] == 'teacher')
-                          @if ($report_score[$count])
+                          @if (isset($report_score[$count]))
                             <td>{{$report_score[$count]}}</td>
                           @else
                             <td>미평가 감상문입니다.</td>
