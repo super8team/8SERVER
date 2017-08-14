@@ -22,7 +22,7 @@ class ReportController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-
+//뭐냐..
   public function view_evaluation($report_no){
     //디비에서 값 가져오기
     //TODO  report_no 로 검색하여 가저오기
