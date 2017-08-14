@@ -82,7 +82,6 @@ class ReportController extends Controller
       //reportes 는 페이지 네이션을 해야하기 땜에 지우지마셍
       return view('report.list', [
         'plan_no'      => $plan_no,
-        'reports'      => $reports,
         'report_no'    => $report_no,
         'report_title' => $report_title,
         'report_score' => $report_score,
