@@ -37,7 +37,7 @@ class ReportController extends Controller
   
   }
   //TODO 
-  public function evaluation(Request $request)
+  public function evaluation(Request $request )
   { 
     $report_no     = $request->input('report_no');    
     $report_score  = $request->input('report_score');
