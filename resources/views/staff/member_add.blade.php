@@ -234,7 +234,7 @@
                     <form action="{{route('staff.storage')}}" method="POST">
                   <table class="table table-bordered table-hover ">
 {{--                    @for ($i=0; $i <10 ; $i++)--}}
-                      
+
                       <tr>
                         <td id = 'added_member'>
 
