@@ -76,7 +76,7 @@
                             보기
                           </a>
                           @if ($user_info['type'] == 'teacher')                          
-                          <a role="button" href="{{route('reportevaluationview',$report_no[$count])}}" class="btn btn-sm btn-warning">
+                          <a role="button" href="{{route('report_view_evaluation',$report_no[$count])}}" class="btn btn-sm btn-warning">
                             평가하기
                           </a>
                           @endif
