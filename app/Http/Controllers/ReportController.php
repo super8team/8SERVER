@@ -44,6 +44,8 @@ class ReportController extends Controller
     $plan_no       = $request->input('plan_no');
     
     DB::table('review_evaluations')->where('review',$report_no)->insert([
+    'review' => $report_no,
+    'evaluater' => Auth::id(),
     'score' => $report_score,
   ]);
     //TODO 저거 위 디비에서 가저온 no 의 플랜에 접근하여 플랜넘버를 가져오삼
