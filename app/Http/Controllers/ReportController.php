@@ -23,30 +23,6 @@ class ReportController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  // public function custom_index(){
-  //   //넘길애들 선언
-  //   $report_no    = array();
-  //   $report_title = array();
-  //   $report_date  = array();
-  //   
-  //   //report list 가져오기 15개로 페이징
-  //   $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
-  //   // $reports = DB::table('reports')->orderBy('created_at', 'desc')->paginate(15);
-  //   // 뿌려주기 준비
-  //   foreach($reports as $report){
-  //     array_push($report_no , $report->no);
-  //     array_push($report_title, $report->title);
-  //     array_push($report_date , $report->created_at);
-  //   }
-  //   // 뿌리기  
-  //   return view('report.list', [
-  //     'reports'      => $reports,
-  //     'report_no'    => $report_no,
-  //     'report_title' => $report_title,
-  //     'report_date'  => $report_date,
-  //   ]); 
-  // }
-  
   public function view_evaluation($report_no){
     //디비에서 값 가져오기
     //TODO  report_no 로 검색하여 가저오기
@@ -174,9 +150,10 @@ class ReportController extends Controller
     
     return view('report.view',[
       'report_no'    => $reports->no,
-      'plan_no'    => $report->plan,
+      'plan_no'      => $report->plan,
       'report_title' => $report->title,
       'report_text'  => $report->substance,
+      'report_score' => $report_score,
     ]);
   }
 

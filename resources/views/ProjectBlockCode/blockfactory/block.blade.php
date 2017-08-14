@@ -582,7 +582,7 @@
           </div>
           <div id="notipopup">
                       <div>
-                      <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
+                      <iframe src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></iframe>
                         <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
@@ -1092,7 +1092,7 @@
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=680, height=1000';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=1000';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
