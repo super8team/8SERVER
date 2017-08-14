@@ -55,6 +55,7 @@ class ReportController extends Controller
       $report_no    = array();
       $report_title = array();
       $report_score = array();
+      $report_score = array();
       // $report_date  = array();
       
       //report list 가져오기 15개로 페이징
@@ -67,12 +68,11 @@ class ReportController extends Controller
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
         $score_inserts = DB::table('review_evaluations')->where('no',$reports->no)->get();
-        if($score_inserts != null){
-          array_push($report_score, $score_inserts);
-        }else{
-          array_push($report_score, '미평가 항목입니다.');
-        }  
-        // array_push($report_date , $report->created_at);
+        $scores = [];
+        foreach ($score_inserts as $scrore) {
+          $scores[] = $score->score;
+        }
+        array_push($report_score, $scores);
       }
       // 뿌리기 
       //reportes 는 페이지 네이션을 해야하기 땜에 지우지마셍
