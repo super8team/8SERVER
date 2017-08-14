@@ -28,7 +28,7 @@ class ReportController extends Controller
     //TODO  report_no 로 검색하여 가저오기
     $reports = \DB::table('review_writes')->where('no', $report_no)->first();
     
-    return view('report.evalution',[
+    return view('report.evaluation',[
       'plan_no'      => $reports->plan,
       'report_no'    => $reports->no,
       'report_title' => $reports->title,
