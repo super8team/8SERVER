@@ -69,8 +69,11 @@ class ReportController extends Controller
         array_push($report_no , $report->no);
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
-        if($report->score != null){
-          array_push($report_score, $report->score);
+        $score_insert = DB::table('review_evaluations')->where('no',$reports->no)->first();
+        if($score_insert != null){
+          array_push($report_score, $score_insert);
+        }else{
+          array_push($report_score, '미평가 항목입니다.');
         }  
         // array_push($report_date , $report->created_at);
       }
