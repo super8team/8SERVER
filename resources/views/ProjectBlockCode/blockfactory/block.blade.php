@@ -970,8 +970,8 @@
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'70%',
-                startY:'75%',
+                startX:'50%',
+                startY:'50%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
