@@ -50,9 +50,9 @@
                 <tr>
                   <td>{{$plan_no[$count]}}</td>
                   <td>{{$plan_title[$count]}}
-                    <a role="button" href="{{route('plan.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('plan.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       수정
-                    </a>
+                    </a> --}}
                   </td>
                   <td>{{$plan_date[$count]}}</td>
 
@@ -71,9 +71,9 @@
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
                       가정통신
                     </a>
-                    <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
                       참여 그룹
-                    </a>                    
+                    </a>                     --}}
                     
                     <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-danger">
                         상세 계획
@@ -82,9 +82,9 @@
                       체크리스트
                     </a>
                     {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
-                    <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
+                    {{-- <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       소감문
-                    </a>
+                    </a> --}}
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#share">
                       공유
