@@ -29,7 +29,7 @@
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
 								<button type="submit" class="btn btn-danger btn-sm margin-right-20">
-                  <span class="glyphicon glyphicon-search">계획작성하기</span>
+                  <span class="glyphicon glyphicon-search">수정하기</span>
                 </button>
 							</div>
 						</div>
