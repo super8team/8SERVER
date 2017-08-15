@@ -120,13 +120,13 @@
 														<td class='info bold'> 추천 인솔교사수 </td> <td class="text-center">4명 이상 </td>
 														<td class='info bold'> 추천 안전요원수  </td> <td class="text-center"> 1명 이상 </td>
 														<td class='info bold text-center'> <a data-toggle="modal" data-target="#view_myschool_helpfile" type="button" class="btn btn-sm btn-info" value="./explain/manual_doc_2_4.html">
-																<span class="fa fa-file"> 도움말</a></td>
+																{{-- <span class="fa fa-file"> 도움말</a></td> --}}
 													</tr>
 													<tr>
 														<td class='info bold'> 교육청 컨설팅 유무 </td> <td class="text-center">필요없음 </td>
 														<td class='info bold'> 시민 감사 표집 대상 </td> <td class="text-center">대상학교아님 </td>
 														<td class='info bold text-center'> <a data-toggle="modal" data-target="#view_myschool_helpfile" type="button" class="btn btn-sm btn-info" value="./explain/manual_doc_2_4.html">
-															<span class="fa fa-file"> 도움말</a></td>
+															{{-- <span class="fa fa-file"> 도움말</a></td> --}}
 													</tr>
 													<tr>
 														<td class='info bold'> 필수 준수 사항 </td> <td colspan="4" >인력확보 등을 고려하여 1명 이상 배치 권장함.</br>안전대책 수립후 자율실시 가능함</br></td>
