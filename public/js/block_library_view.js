@@ -110,8 +110,6 @@ BlockLibraryView.prototype.addOption = function(blockType, selected,xml) {
       }, blockType);
 
       this.dropdown.appendChild(option);
-
-      // this.dropdown.appendChild(content_xml);
       this.optionMap[blockType] = option;
 
       // Select the block.
