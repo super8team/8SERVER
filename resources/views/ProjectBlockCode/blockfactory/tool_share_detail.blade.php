@@ -47,8 +47,7 @@
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
       @endfor
       <br>
-      <input type="checkbox" name="" value="">경북궁1
-      <input type="checkbox" name="" value="">경북궁2
+      
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">
     </form>

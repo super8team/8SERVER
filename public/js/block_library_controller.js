@@ -189,48 +189,6 @@ BlockLibraryController.prototype.openBlock = function(blockType) {
     console.log(typeof(xml));
     console.log(typeof(xmlText));
 
-    // var xmltest2 = String(xmlTextNode);
-    // console.log(xmltest2);
-    // console.log(typeof(xmltest2));
-    // document.getElementById('xmlinfor').value = this.storage.getBlockXml(blockType);
-
-    // var xml3 =
-    // '<xml xmlns="http://www.w3.org/1999/xhtml">'+
-    // '<block type="factory_base" id="jsJbcVlNT:#E9,M-7V(1" deletable="false" movable="false" x="0" y="0">'+
-    // '<mutation connections="null"></mutation>'+
-    // '<field name="NAME">fef</field>'+
-    // '<value name="VERTICAL">'+
-    //   '<block type="vertical" id="5VQix4TOuX6BV_lv^#;r" deletable="false">'+
-    //     '<field name="VERTICAL"></field>'+
-    //   '</block>'+
-    // '</value>'+
-    // '<value name="HORIZONTAL">'+
-    //   '<block type="horizontal" id="C)e#DB8cz`+Bo-9o4~0[" deletable="false">'+
-    //     '<field name="HORIZONTAL"></field>'+
-    //   '</block>'+
-    // '</value>'+
-    // '<value name="VISIONABLE">'+
-    //   '<block type="logic_boolean" id="e@4|/*}pCo~#aYE8Fr15" deletable="false">'+
-    //     '<field name="BOOL">TRUE</field>'+
-    //   '</block>'+
-    // '</value>'+
-    // '<value name="CLICKABLE">'+
-    //   '<block type="logic_boolean" id="d[._igq{x2w7zubn4[Af" deletable="false">'+
-    //     '<field name="BOOL">FALSE</field>'+
-    //   '</block>'+
-    // '</value>'+
-    // '<value name="DISABLE">'+
-    //   '<block type="logic_boolean" id="nDYlY2Z{v$2K|XI`c5T^">'+
-    //     '<field name="BOOL">TRUE</field>'+
-    //   '</block>'+
-    // '</value>'+
-    // '</block>'+
-    // '</xml>';
-    // var xmlDoc = $.parseXML(xml3);
-    // console.log(typeof(xmlDoc));
-    // var mainXml = xmlDoc.firstChild;
-    // console.log(typeof(mainXml));
-
     BlockFactory.mainWorkspace.clear();
     Blockly.Xml.domToWorkspace(xmlText, BlockFactory.mainWorkspace);
     BlockFactory.mainWorkspace.clearUndo();
@@ -334,7 +292,7 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   var xmlElement = goog.dom.createDom('xml');
   var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
-  
+
   // Do not add option again if block type is already in library.
   if (!this.has(blockType)) {
     console.log('call addoption');
