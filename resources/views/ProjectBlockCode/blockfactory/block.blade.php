@@ -554,20 +554,8 @@
                  }
              }
              map.fitBounds(bounds);
-         } else if (status == google.maps.GeocoderStatus.ERROR) {
-             alert("서버 통신에러！");
-         } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-             alert("리퀘스트에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-         } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-             alert("단시간에 쿼리 과다송신！");
-         } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-             alert("이 페이지에서는 지오코더 이용불가! 왜?");
-         } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-             alert("서버에 문제 발생한거 같아요.다시 한번 해보세요.");
-         } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-             alert("앙..못찾겠어요");
-         } else {
-             alert("??");
+         }  else {
+             alert("검색할 수 없습니다");
          }
      });
  }
@@ -582,7 +570,7 @@
           </div>
           <div id="notipopup">
                       <div>
-                      <iframe src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></iframe>
+                      <video src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></video>
                         <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
@@ -969,8 +957,8 @@
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'70%',
-                startY:'75%',
+                startX:'50%',
+                startY:'50%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'

@@ -587,10 +587,7 @@ AppController.prototype.assignLibraryClickHandlers = function() {
         }
         document.getElementById('upFile').value = null;
         document.getElementById('change').value = 1;
-        console.log('파일');
-
-
-
+      
         var obj   = event.target;
         var value = event.target.value;
         console.log(obj);
