@@ -1,14 +1,7 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
 <style media="screen">
-  * {
-    background-color: #e3f2ff;
-  }
-  #explain
-  {
-    font-family:'Nanum Brush Script', serif;
-  }
+
 </style>
 <body onload='resizeWindow(this);myfunction({{$package_avg}});'>
   <span id = "content_wrapper">
@@ -42,7 +35,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
-      <textarea id="explain"name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
+      <textarea name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
