@@ -154,10 +154,12 @@ input[type="button"], .inputStyle {
 .content_name{
   margin-left: 35px;
 }
-/*
-#packageList input[type="submit"]{
-  width: 5%;
+
+/*.field_list1 {
+  background-color: green;
+  width:100px;
 }*/
+
 #registerContents, #shareContentsButton, #removeBlockFromLibraryButton{
   background-color: white;
   border-radius: 0px;
