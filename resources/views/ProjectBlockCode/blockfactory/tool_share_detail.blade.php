@@ -47,7 +47,7 @@
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
       @endfor
       <br>
-      
+
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">
     </form>
@@ -128,6 +128,6 @@
   //     window.location.href = "LEARnFUN/public/toolShareDownload?package_num="+package_num;
   //   });
   // });
-
+      
   </script>
 </body>
