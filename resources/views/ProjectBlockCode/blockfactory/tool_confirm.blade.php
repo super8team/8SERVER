@@ -5,7 +5,7 @@
     <title>tool_confirm</title>
     <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 
-    </style>
+    <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
     function oneCheckbox(a){
@@ -21,17 +21,24 @@
             }
       }
     </script>
+    <style media="screen">
+      h2, h4{font-family:'Nanum Brush Script', serif;}
+      h4 {
+        margin-bottom: : 20px;
+      }
+    </style>
   </head>
   <body style="background-color:#e3f2ff;">
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
         <table style="width:70%;margin-left:auto;margin-right:auto;">
             <tbody>
                 <tr>
-                  <td style="border:1px solid;text-align:center;height:40px">
-                    <h3>체험 학습 리스트</h3>
+                  <td style="border:1px solid;text-align:center;height:40px;border-right:0px">
+                    <h2>체험 학습 리스트</h2>
+                    <h4>※ 체험 학습을 클릭 하세요</h4>
                   </td>
-                  <td style="border:1px solid;text-align:center;height:40px">
-                    <h3>선택 가능한 패키지 리스트</h3>
+                  <td style="border:1px solid;text-align:center;height:40px;border-left:0px;vertical-align:middle ">
+                    <h2>선택 가능한 패키지 리스트</h2>
                   </td>
                 </tr>
                 @for($j = 0; $j < $field_count; $j++)
