@@ -1088,7 +1088,7 @@
 
   document.getElementById('registerContents').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=270';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
       window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
