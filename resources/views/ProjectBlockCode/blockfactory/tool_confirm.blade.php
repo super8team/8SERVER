@@ -30,7 +30,7 @@
   </head>
   <body style="background-color:#e3f2ff;">
       <form id="parent" action="{{route('contents.registerToPlanDB')}}" method="get">
-        <table style="width:70%;margin-left:auto;margin-right:auto;">
+        <table style="width:80%;margin-left:auto;margin-right:auto;">
             <tbody>
                 <tr>
                   <td style="border:1px solid;text-align:center;height:40px;border-right:0px">
@@ -66,18 +66,14 @@
                 @endfor
                 <tr>
                   <td colspan="2">
-                    <input type="submit" style="margin-top:150px;" value="등록하기">
-                    <button id="cancel">
+                    <input type="submit" style="margin-top:150px;" value="등록하기" style="font-size: 15px">
+                    <button id="cancel" style="font-size:15px">
                       취소
                     </button>
                   </td>
                 </tr>
             </tbody>
         </table>
-        <div>
-
-
-        </div>
       </form>
 
     <script type="text/javascript">
