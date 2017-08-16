@@ -2,8 +2,10 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style media="screen">
 
+#explain
+{font-family:'Nanum Brush Script', serif;}
 </style>
-<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});' background-color="#e3f2ff">
   <span id = "content_wrapper">
     <div>
       @php
@@ -35,7 +37,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
+      <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
