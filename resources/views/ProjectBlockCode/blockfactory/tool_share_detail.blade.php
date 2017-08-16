@@ -31,13 +31,13 @@
       </span>
     </div>
     <div id = "detail_article">
-      <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
-      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" readonly>
-      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" readonly>
-      <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
+      <input id = "date"     type="text" name="" value="{{$write_date}}" style="border:1px solid" readonly>
+      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" style="border:1px solid" readonly>
+      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" style="border:1px solid" readonly>
+      <input id = "name" type="text" name="" value="이름:{{$package_name}}" style="border:1px solid" readonly>
     </div>
     <div>
-      <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;" readonly>{{$package_subs}}</textarea>
+      <textarea id="explain" rows="9" cols="80" font-size="40px" style="resize:none;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
