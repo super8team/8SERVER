@@ -69,7 +69,7 @@
     </style>
   </head>
 
-  <body style="background-color:#F88FE7;">
+  <body style="background-color:#e3f2ff;">
       <table id="mainShareList">
         <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
         <tr id="mainContenstsImage">
@@ -93,7 +93,7 @@
       </table>
       <br>
       <br>
-      <div align="center" id="contentsPackageTitle">
+      <div align="center" id="contentsPackageTitle" >
         <h1>콘텐츠 패키지</h1>
       </div>
       <div id="packageResearch" style="margin-left:39%">

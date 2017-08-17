@@ -1,7 +1,11 @@
 <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style media="screen">
 
-<body onload='resizeWindow(this);myfunction({{$package_avg}});'>
+#explain
+{font-family:'Nanum Brush Script', serif;}
+</style>
+<body onload='resizeWindow(this);myfunction({{$package_avg}});' style="background-color:#e3f2ff">
   <span id = "content_wrapper">
     <div>
       @php
@@ -9,7 +13,7 @@
       @endphp
       <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
       <div style="display:inline">
-        <span class="star-input" style="margin-top:170px; margin-left:100px;">
+        <span class="star-input" style="margin-top:170px; margin-left:70px;">
           <span class="input" style="margin-top:50px">
             <input type="radio" name="star-input" id="p1" value="1" disabled><label for="p1">1</label>
             <input type="radio" name="star-input" id="p2" value="2" disabled><label for="p2">2</label>
@@ -27,13 +31,13 @@
       </span>
     </div>
     <div id = "detail_article">
-      <input id = "date"     type="text" name="" value="{{$write_date}}" readonly>
-      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" readonly>
-      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" readonly>
-      <input id = "name" type="text" name="" value="이름:{{$package_name}}" readonly>
+      <input id = "date"     type="text" name="" value="{{$write_date}}" style="border:1px solid" readonly>
+      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" style="border:1px solid" readonly>
+      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" style="border:1px solid" readonly>
+      <input id = "name" type="text" name="" value="이름:{{$package_name}}" style="border:1px solid" readonly>
     </div>
     <div>
-      <textarea name="name" rows="8" cols="80" font-size="20px" style="resize:none;" readonly>{{$package_subs}}</textarea>
+      <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;width:655px;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
@@ -47,8 +51,8 @@
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
       @endfor
       <br>
-      <input type="checkbox" name="" value="">경북궁1
-      <input type="checkbox" name="" value="">경북궁2
+      <input type="checkbox" name="" value="">경북궁 콘텐츠1
+      <input type="checkbox" name="" value="">경북궁 콘텐츠2
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">
     </form>

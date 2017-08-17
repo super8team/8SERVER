@@ -444,7 +444,7 @@
             <div id="map" style="height:70%; width:100%;display:inline-block">
             </div>
           </div>
-<script type="text/javascript">``
+<script type="text/javascript">
    var markersArray = [];
 
    var map = new google.maps.Map(document.getElementById("map"), {
@@ -455,6 +455,7 @@
 
    google.maps.event.addListener(map, 'click', function (mouseEvent) {
     getAddress(mouseEvent.latLng);
+    
     document.getElementById('get_location').innerHTML = mouseEvent.latLng;
    });
 
@@ -580,9 +581,10 @@
         <!-- </div> -->
           <div id="right-space">
           </div>
+
           <div id="notipopup">
                       <div>
-                      <iframe src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></iframe>
+                      <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
                         <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
@@ -969,8 +971,8 @@
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'70%',
-                startY:'75%',
+                startX:'50%',
+                startY:'50%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -1087,7 +1089,7 @@
 
   document.getElementById('registerContents').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=550, height=270';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
       window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',

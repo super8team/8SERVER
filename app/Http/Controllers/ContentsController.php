@@ -14,160 +14,45 @@ class ContentsController extends Controller
 {
     public function index()
     {
-      // Request $request
-/////////////////////////////////// for 연제 /////////////////////////////////////////////
-//
-// // 한 유저(선생님)가 가지고 있는 패키지와 콘텐츠 전체!
-//
-// $packages = 여러 패키지들이 담겨있는 배열
-// $packages[번호] = 각 패키지 연관배열
-// $packages[번호]['name'] = 패키지이름
-// $packages[번호]['id'] = 패키지아이디
-// $packages[번호]['contents'] = 포함된 컨텐츠들의 배열
-// $packages[번호]['contents'][번호] = 패키지에 포함된 컨텐츠 연관배열
-// $packages[번호]['contents'][번호]['id'] = 컨텐츠 아이디
-// $packages[번호]['contents'][번호]['name'] = 컨텐츠 이름
-
-// dd($id);
-// $userNo   = $request->input('user_id'); // 서버한테 post로 현재 유저 아이디를 주고
-// dd(Auth::user());
-//
-
-$userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
-
-//유저 타입이 선생님이 아니면 경고창을 띄우기
-// $user_bool = DB::table('users')->where('no',$userNO)->first();
-// if($user_bool->type != 'teacher'){
-//
-// }
-$packages = [];
-// $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
-$owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
-
-if(!empty($owndedPackages)){
-
-$content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
-
-// dd($content_count);
-$content_count = count($content_count);
-
-$packageCount  = count($owndedPackages);
-
-for($i = 0; $i<$packageCount;$i++){
-  $packages[$i]['name'] = $owndedPackages[$i]->name;
-  $packages[$i]['id']   = $owndedPackages[$i]->no;
-
-  $contents     = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
-  $contentCount = count($contents);
-
-  for($j=0; $j<$contentCount; $j++) {
-    $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
-    $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-    $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
-    $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
-  }
-}
-// dd($packages);
-// dd($packages[0]['contents'][0]['xml']);
-return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
-}else{
-
-  return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
-}
 
 
-// for($i=0; $i<$packageCount; $i++) {
-//   $packages[$i]['name'] = $owndedPackages[$i]->name;
-//   $packages[$i]['id']   = $owndedPackages[$i]->no;
-//
-//   $contents     = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
-//   $contentCount = count($contents);
-//
-//   for($j=0; $j<$contentCount; $j++) {
-//     $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
-//     $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-//     $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
-//     $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
-//   }
-// }
+          $userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
 
+          $packages = [];
+          // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
+          $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
-//
-//
-// /////////////////////////////////// for 연제 /////////////////////////////////////////////
-//
-//
-//         return view('blockfactory.block')->with('packages_name', '')
-//                                           ->with('packages_id', '')
-//                                           ->with('contents_name', '')
-//                                           ->with('contents_id', '');
-//
-// =======
-//         $package_infor = [];
-//         $user = DB::table('users')->where('no','=',$id)->get();
-//         // dd($user);
-//         $packages  =  DB::table('contents_packages')->where('no','=',$id)->first();
-//
-//         $contents  =  DB::table('contents')->where('contents_package','=',$packages->no)->get();
-//         // dd($contents);
-//         //
-//         // 패키지 번호를 알아냄
-//         // 그 패키지 번호를 사용해서
-//         // 외래키를 사용해서 콘텐츠들의 리스트들을 추출함
-//         // $contenst  = DB::table('contents')->where('no','=',$no)->get();
-//         #251 (1) { ["items":protected]=> array(1)
-//
-//         array_push($package_infor, array('ids'=>$packages->no,'name'=>$packages->name));
-//
-//
-//         // var_dump($packages);
-//         // var_dump($packagesx);
-//         return view('ProjectBlockCode.blockfactory.block')->with('contents_xml',  $contents[0]->xml)
-//                                                           ->with('contents_name', '첫번째이야기..')
-//                                                           ->with('block_myungse', $contents[0]->spec)
-//                                                           ->with('contents_id',   $contents[0]->no)
-//                                                           ->with('package_name', $package_infor);
-// >>>>>>> 19f1c7ac845580e62f2a5be159c2ee0b35d6ff4c
-      //no -> 사용자 primary key
-        // 연제한테 어떻게 값을 받을지 물어볼것(id? no?)
-        // $package_infor = [];
-        // $user      = DB::table('users')->where('no','=',$id)->get();
-        // dd($user);
-        // 콘텐츠 패키지에서 주인을 인식하기 위한 컬럼은 owner 컬럼이다
-        // $packages  = DB::table('contents_packages')->where('owner','=',$id)->get();
-        //$packages에서 사용자가 가지고 있는 패키지를 가져올 수 있다
-        //그렇기 때문에 밑의 커리도 맘대로 하면 안된다 생각을 해고 쿼리를 때려야 한다
-        // $contents  =  DB::table('contents')->where('contents_package','=',$packages->no)->get();
-        //$packages->no 값을 가져온다. 이 값을 이용해 contents_테이블에 외래키로 가져온 다음
-        //contents테이블의 contents_package 로 도킹한다
-        //그럼 결과값은 배열로 처리를 한다
-        // 패키지 번호를 알아냄
-        // 그 패키지 번호를 사용해서
-        // 외래키를 사용해서 콘텐츠들의 리스트들을 추출함
-        // $contenst  = DB::table('contents')->where('no','=',$no)->get();
-        #251 (1) { ["items":protected]=> array(1)
-        // array_push($package_infor, array('ids'=>$packages->no,'name'=>$packages->name));
-        // $package_name    = new Array();
-        //packages->no도 빼와야 함
+          if(!empty($owndedPackages)){
 
-        // $contents_xml     = new Array();
-        // $contents_myungse = new Array();
-        // $contents_name     = new Array();
-        // 사용자가 여러개의 패키지를 가지고 있고
-        // 하나의 패키지가 가지고 있는 컨텐츠는 여러개 이다
-        // for()
-        // {
-        //
-        // }
-        // return view('ProjectBlockCode.blockfactory.block')->with('contents_xml',  $contents[3]->xml)
-        //                                                   ->with('contents_name', $contents[3]->name)
-        //                                                   ->with('block_myungse', $contents[3]->spec)
-        //                                                   ->with('contents_id',   $contents[3]->no)
-        //                                                   ->with('package_name', $package_infor);
+          $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+
+          // dd($content_count);
+          $content_count = count($content_count);
+
+          $packageCount  = count($owndedPackages);
+
+          for($i = 0; $i<$packageCount;$i++){
+            $packages[$i]['name'] = $owndedPackages[$i]->name;
+            $packages[$i]['id']   = $owndedPackages[$i]->no;
+
+            $contents     = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
+            $contentCount = count($contents);
+
+            for($j=0; $j<$contentCount; $j++) {
+              $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
+              $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+              $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
+              $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
+            }
+          }
+
+          return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
+          }else{
+
+            return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
+          }
+
     }
-
-
-
     // 공유하기 페이지에서 나오는 항목들을 서버로 넘김 -> redirect 메인
 
     public function block(Request $request)
@@ -313,7 +198,7 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
     public function shareDownload(Request $request)
     {
       $choices_no = $request->input('choice_content');
-      dd($choices_no);
+
       $content_arr = [];
       foreach($choices_no as $no){
         $content = DB::table('contents')->where('no',$no)->first();
@@ -364,7 +249,8 @@ return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'con
 
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
-      // dd($fields);
+
+      dd($packages);
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];

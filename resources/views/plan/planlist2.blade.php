@@ -66,9 +66,9 @@
                         <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
                           체크리스트
                         </a>
-                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
+                        {{-- <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
                           소감문
-                        </a>
+                        </a> --}}
                       </td>
                     @elseif($user_info['type'] == 'parents')
                       <td colspan="2" class="text-center">
@@ -84,29 +84,12 @@
                         <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
                           체크리스트
                         </a>
-                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
+                        {{-- <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
                           소감문
-                        </a>
+                        </a> --}}
                       </td>
                       {{-- 센세가 셋킨시타토키  테수토 용 --}}
-                    @else
-                      <td colspan="2" class="text-center">
-                        <a role="button" href="{{ route('staff') }}" aria-label="Left Align" class="btn btn-sm btn-default ">
-                          위원회
-                        </a>
-                        <a role="button" href="{{ route('survey.index') }}" class="btn btn-sm btn-info">
-                          설문조사
-                        </a>
-                        <a role="button" href="{{ route('notice_list', $plan_no[$count])}}" class="btn btn-sm btn-warning">
-                          가정통신
-                        </a>
-                        <a role="button" href="{{ route('checklist') }}" class="btn btn-sm btn-danger">
-                          체크리스트
-                        </a>
-                        <a role="button" href="{{ route('report_list',$plan_no) }}" class="btn btn-sm btn-danger ">
-                          소감문
-                        </a>
-                      </td>
+                  
                     @endif
                     
                  </tr>
