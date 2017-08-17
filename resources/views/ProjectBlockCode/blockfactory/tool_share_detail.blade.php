@@ -37,7 +37,7 @@
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" style="border:1px solid" readonly>
     </div>
     <div>
-      <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;width:660px;" readonly>{{$package_subs}}</textarea>
+      <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;width:655px;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
       여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
@@ -51,7 +51,8 @@
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
       @endfor
       <br>
-
+      <input type="checkbox" name="" value="">경북궁 콘텐츠1
+      <input type="checkbox" name="" value="">경북궁 콘텐츠2
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">
     </form>
