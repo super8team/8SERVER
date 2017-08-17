@@ -82,7 +82,7 @@ class FieldLearningPlanDocumentController extends Controller
                                             ->where('type', 'teacher')->count();
 
 
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/documents/word.docx");
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/test/word.docx");
 
 
         $templateProcessor->setValue('schoolName', $school->name);
