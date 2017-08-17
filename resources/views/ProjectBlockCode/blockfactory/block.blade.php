@@ -444,7 +444,7 @@
             <div id="map" style="height:70%; width:100%;display:inline-block">
             </div>
           </div>
-<script type="text/javascript">``
+<script type="text/javascript">
    var markersArray = [];
 
    var map = new google.maps.Map(document.getElementById("map"), {
@@ -455,6 +455,7 @@
 
    google.maps.event.addListener(map, 'click', function (mouseEvent) {
     getAddress(mouseEvent.latLng);
+    
     document.getElementById('get_location').innerHTML = mouseEvent.latLng;
    });
 
