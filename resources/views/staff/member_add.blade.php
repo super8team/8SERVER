@@ -216,7 +216,7 @@
         {{--</form>--}}
 
 
-          {{ csrf_field() }}
+{{--          {{ csrf_field() }}--}}
           <div class="text-center">
             <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
               삭제
