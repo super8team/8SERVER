@@ -136,7 +136,7 @@ input[type="button"], .inputStyle {
   opacity: 1;
 }
 #contents_list{
-  border-left:1px solid;
+  border-left:0px solid;
   width: 10%;
   background-color: #95CDFF;
 }
@@ -376,7 +376,7 @@ button, .buttonStyle {
   margin : auto;
   text-align : center;
   vertical-align : middle;
-  font-size: 40px;
+  font-size: 35px;
   font-weight : bold;
 }
 
@@ -425,11 +425,12 @@ button, .buttonStyle {
 }
 
 #packageList {
-  border: 1px solid;
+  border: 0px solid;
   width: 17%;
   height:90%;
-
 }
+
+
 
 #makeVideo {
   background-color: white;
@@ -441,8 +442,9 @@ button, .buttonStyle {
   width: 100px;
   height: 40px;
   border: 0px;
-  background-color: #95CDFF;
-  background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/plus-circle-128.png');
+  background-color: black;
+  color: white;
+  opacity: 0.9;
   background-repeat:no-repeat;
   background-size : 100% 100%;
 }
@@ -451,8 +453,9 @@ button, .buttonStyle {
   width: 100px;
   height: 40px;
   border: 0px;
-  background-color: #95CDFF;
-  background-image: url('https://cdn2.iconfinder.com/data/icons/pittogrammi/142/24-128.png');
+  background-color: black;
+  color: white;
+  opacity: 0.9;
   background-repeat:no-repeat;
   background-size : 100% 100%;
 }
