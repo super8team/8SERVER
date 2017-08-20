@@ -322,7 +322,7 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
+              <td id="present_package">
 
               </td>
 
@@ -335,11 +335,13 @@
               <td id="contents_list" >
                 <div style="background-color: #95CDFF">
                   <button type="button" id="createNewBlockButton" >
+                    NEW
                   </button>
                 </div>
                 <div style="background-color: #95CDFF">
                   <!-- 콘텐츠 저장 -->
                   <button type="button" id="saveToBlockLibraryButton">
+                    SAVE
                   </button>
                 </div>
               </td>
@@ -347,25 +349,11 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-                    <div>
-                      <!-- <button>
-                        <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button> -->
-                      <!-- <button id="presentPackageName" type="button" name="button">
-                      </button> -->
-                      <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
-
-                    </div>
 
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
                       </div>
-                      <!-- <button id="dropdown_??" class= "content_list" type="button" name="button">
-                          blockType
-                          <input type="text" class="contents_xml"  value="">
-                          <input type="text" class="block_myungse" value="">
-                          <input type="text" name="id"  value="">
-                      </button>-->
+                      <!-- 패키지 리스트 출력 코드 -->
                       @if($packages)
                       @for($i=0; $i < $contentsize; $i++)
                       <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
@@ -380,14 +368,9 @@
                    </div>
                     </form>
                   </div>
-                <!-- <select id="blockLibraryDropdown">
-                </select> -->
+
               </span>
               </td>
-            <!-- </tr> -->
-         <!-- </table>
-
-      </td> -->
         <td id="blockLibraryControls" >
 
           <button id="registerContents" >
@@ -396,9 +379,6 @@
           <button id="shareContentsButton">
             창작 마당
           </button>
-          <!-- <button id="saveToBlockLibraryButton" hidden>
-            콘텐츠 저장
-          </button> -->
           <button id="removeBlockFromLibraryButton">
             콘텐츠 삭제
           </button>
@@ -416,7 +396,6 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
             <button id="createNewPackage"></button>
-            <!-- <button id="storagePackage">패키지 저장</button> -->
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
               @foreach($packages as $package_name)
@@ -434,15 +413,14 @@
           <div id="blocklyMask"></div>
         </td>
         <!-- 지도 -->
-
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
-            <div id="map" style="height:70%; width:100%;display:inline-block">
-            </div>
+              <div id="map" style="height:70%; width:100%;display:inline-block">
+              </div>
           </div>
 <script type="text/javascript">
    var markersArray = [];
@@ -455,7 +433,7 @@
 
    google.maps.event.addListener(map, 'click', function (mouseEvent) {
     getAddress(mouseEvent.latLng);
-    
+
     document.getElementById('get_location').innerHTML = mouseEvent.latLng;
    });
 
@@ -574,18 +552,14 @@
  }
 </script>
 
-          <!-- <div id="addrList">
-            <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
-          </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
-        <!-- </div> -->
+
           <div id="right-space">
           </div>
 
           <div id="notipopup">
                       <div>
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
           </div>
@@ -972,7 +946,7 @@
   <script type="text/javascript">
   $('#notipopup').topmenu({
                 startX:'50%',
-                startY:'50%',
+                startY:'30%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -980,7 +954,7 @@
   var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
-        // self.blockLibraryController.saveToBlockLibrary();
+
         var a = new BlockLibraryController();
         a.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
