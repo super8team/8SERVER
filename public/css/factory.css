@@ -412,7 +412,7 @@ button, .buttonStyle {
   margin : auto;
   text-align : center;
   vertical-align : middle;
-  font-size: 35px;
+  font-size: 30px;
   font-weight : bold;
 }
 
@@ -502,8 +502,8 @@ button, .buttonStyle {
   	font-size:15px;
   	font-weight:bold;
   	font-style:normal;
-  	height:40px;
-  	line-height:32px;
+  	height:30px;
+  	line-height:20px;
   	width:86px;
   	text-decoration:none;
   	text-align:center;
@@ -538,8 +538,8 @@ button, .buttonStyle {
 	font-size:15px;
 	font-weight:bold;
 	font-style:normal;
-	height:40px;
-	line-height:32px;
+  height:30px;
+  line-height:20px;
 	width:86px;
 	text-decoration:none;
 	text-align:center;
