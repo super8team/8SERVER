@@ -281,13 +281,7 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   console.log('콘이름');
   console.log(blockType);
   // If user has not changed the name of the starter block.
-  // if(this.packageBasket.length === 0) {
-  //   alert("패키지를 생성 한 후 콘텐츠를 생성해 주세요");
-  //   return;
-  // }else if (blockType == 'block_type') {
-  //   alert('다른 이름으로 입력 해주세요');
-  //   return;
-  // }
+
   // Create block XML.
   var xmlElement = goog.dom.createDom('xml');
   var block      = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);

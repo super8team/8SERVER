@@ -455,8 +455,7 @@ Blockly.Blocks['button_1'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
         .appendField('버튼 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOR');
     this.appendDummyInput()
@@ -464,8 +463,7 @@ Blockly.Blocks['button_1'] = {
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
         .appendField('높이 길이')
-        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
         .appendField('가로 길이')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
@@ -486,8 +484,7 @@ Blockly.Blocks['button_2'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
         .appendField('버튼 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
@@ -495,8 +492,7 @@ Blockly.Blocks['button_2'] = {
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
         .appendField('높이 길이')
-        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
         .appendField('가로 길이')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
@@ -517,8 +513,7 @@ Blockly.Blocks['button_3'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
         .appendField('버튼 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
@@ -526,8 +521,7 @@ Blockly.Blocks['button_3'] = {
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
         .appendField('높이 길이')
-        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
         .appendField('가로 길이')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
@@ -548,8 +542,7 @@ Blockly.Blocks['button_4'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
         .appendField('버튼 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 색')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
@@ -557,8 +550,7 @@ Blockly.Blocks['button_4'] = {
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
         .appendField('높이 길이')
-        .appendField(new Blockly.FieldNumber(0), 'HEIGHT');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
         .appendField('가로 길이')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
@@ -583,14 +575,12 @@ Blockly.Blocks['header'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
         .appendField('글자 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
         .appendField('배경 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR')
         .appendField('투명 도')
         .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
@@ -616,14 +606,12 @@ Blockly.Blocks['bottom'] = {
         .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
         .appendField('글자 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField('글자 크기')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
         .appendField('배경 색')
-        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR');
-    this.appendDummyInput()
+        .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR')
         .appendField('투명 도')
         .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');

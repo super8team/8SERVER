@@ -295,7 +295,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:0px solid;'>
+        <td style='width:1%; border:0px solid;height:100%'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -322,10 +322,9 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
-
+              <td id="present_package">
+                {{$packages[0]['name']}}
               </td>
-
             </tr>
           </table>
         </td>
@@ -333,13 +332,14 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list" >
-                <div style="background-color: #95CDFF">
-                  <button type="button" id="createNewBlockButton" >
+                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
+                  <button type="button" id="createNewBlockButton"  >
+                    NEW
                   </button>
                 </div>
-                <div style="background-color: #95CDFF">
-                  <!-- 콘텐츠 저장 -->
-                  <button type="button" id="saveToBlockLibraryButton">
+                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
+                  <button type="button" id="saveToBlockLibraryButton" >
+                    SAVE
                   </button>
                 </div>
               </td>
@@ -347,59 +347,35 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-                    <div>
-                      <!-- <button>
-                        <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button> -->
-                      <!-- <button id="presentPackageName" type="button" name="button">
-                      </button> -->
-                      <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
-
-                    </div>
-
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
                       </div>
-                      <!-- <button id="dropdown_??" class= "content_list" type="button" name="button">
-                          blockType
-                          <input type="text" class="contents_xml"  value="">
-                          <input type="text" class="block_myungse" value="">
-                          <input type="text" name="id"  value="">
-                      </button>-->
-                      @if($packages)
-                      @for($i=0; $i < $contentsize; $i++)
-                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
-                          {{$packages[0]['contents'][$i]['name']}}
-                          <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
-                          <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
-                          <input type="text" name="id"  value="{{$packages[0]['contents'][$i]['id']}}" hidden>
-                      </button>
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      @endfor
-                      @endif
+                      <!-- 패키지 리스트 출력 코드 -->
+                        @if($packages)
+                            @foreach($first_package as $content)
+                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                              {{$content->name}}
+                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                              <input type="text" name="id"  value="{{$content->no}}" hidden>
+                           </button>
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           @endforeach
+                       @endif
                    </div>
                     </form>
                   </div>
-                <!-- <select id="blockLibraryDropdown">
-                </select> -->
+
               </span>
               </td>
-            <!-- </tr> -->
-         <!-- </table>
-
-      </td> -->
         <td id="blockLibraryControls" >
-
           <button id="registerContents" >
             현장체험 등록
           </button>
           <button id="shareContentsButton">
             창작 마당
           </button>
-          <!-- <button id="saveToBlockLibraryButton" hidden>
-            콘텐츠 저장
-          </button> -->
-          <button id="removeBlockFromLibraryButton">
+          <button id="removeBlockFromLibraryButton" hidden>
             콘텐츠 삭제
           </button>
         </td>
@@ -414,9 +390,8 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
             <button id="createNewPackage"></button>
-            <!-- <button id="storagePackage">패키지 저장</button> -->
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
               @foreach($packages as $package_name)
@@ -434,15 +409,14 @@
           <div id="blocklyMask"></div>
         </td>
         <!-- 지도 -->
-
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
-            <div id="map" style="height:70%; width:100%;display:inline-block">
-            </div>
+              <div id="map" style="height:70%; width:100%;display:inline-block">
+              </div>
           </div>
 <script type="text/javascript">
    var markersArray = [];
@@ -455,7 +429,7 @@
 
    google.maps.event.addListener(map, 'click', function (mouseEvent) {
     getAddress(mouseEvent.latLng);
-    
+
     document.getElementById('get_location').innerHTML = mouseEvent.latLng;
    });
 
@@ -574,18 +548,14 @@
  }
 </script>
 
-          <!-- <div id="addrList">
-            <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
-          </div> -->
           <div id="get_location" border="1px solid black" hidden></div>
-        <!-- </div> -->
+
           <div id="right-space">
           </div>
 
           <div id="notipopup">
                       <div>
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <!-- <div class="todayclose">TODAY CLOSE</div> -->
                         <div class="class">닫기</div>
                     </div>
           </div>
@@ -628,7 +598,6 @@
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-
       <category name="실행">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
@@ -972,7 +941,7 @@
   <script type="text/javascript">
   $('#notipopup').topmenu({
                 startX:'50%',
-                startY:'50%',
+                startY:'30%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -980,7 +949,7 @@
   var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
-        // self.blockLibraryController.saveToBlockLibrary();
+
         var a = new BlockLibraryController();
         a.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
@@ -1051,7 +1020,14 @@
             }
           },
           error: function(){
-            alert('실패임');
+            //마지막에 추가된 개체 삭제하기
+            var content_obj = document.getElementsByClassName('content_list');
+            var obj_length  = content_obj.length;
+            var del_obj     = document.getElementsByClassName('content_list')[obj_length-1];
+            del_obj.remove();
+
+            //경고 창 띄우기
+            alert('컨텐츠 이름 중복 입니다');
           }
         });
         document.getElementById('change').value = 0;
@@ -1104,24 +1080,12 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    // if(event.target != package_div.firstChild){
+
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
 
-      if(boundary == 0){
-          event.target.style.backgroundColor = '#2AE7F1';
-          boundary++;
-          before_ele = event.target;
-          console.log('0일때');
-      }else{
-        console.log('0이 아닐때');
-        before_ele.style.backgroundColor = 'white';
-        // package_div.insertBefore(event.target, package_div.firstChild);
-        before_ele = event.target;
-        event.target.style.backgroundColor = '#2AE7F1';
-      }
-    // }
+
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
@@ -1162,8 +1126,6 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "35px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
