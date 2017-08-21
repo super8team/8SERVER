@@ -315,7 +315,7 @@ button, .buttonStyle {
 }
 
 
-#mainShareList #mainContenstsImage {
+#mainShareList .mainContenstsImage {
   height:10%;
   border:1px solid black;
 }
@@ -353,9 +353,10 @@ button, .buttonStyle {
   height:35%;
 }
 
-#shareList #contenstsImage {
+#shareList .contenstsImage {
   height: 9%;
   display: inline-block;
+  margin-right: 30px;
 }
 
 #shareList #packageName {
@@ -449,7 +450,7 @@ button, .buttonStyle {
 }
 
 #createNewBlockButton {
-  -moz-box-shadow:inset 1px 1px 0px -1px #97c4fe;
+    -moz-box-shadow:inset 1px 1px 0px -1px #97c4fe;
   	-webkit-box-shadow:inset 1px 1px 0px -1px #97c4fe;
   	box-shadow:inset 1px 1px 0px -1px #97c4fe;
   	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
@@ -476,8 +477,8 @@ button, .buttonStyle {
   	font-size:15px;
   	font-weight:bold;
   	font-style:normal;
-  	height:50px;
-  	line-height:50px;
+  	height:40px;
+  	line-height:32px;
   	width:86px;
   	text-decoration:none;
   	text-align:center;
@@ -512,8 +513,8 @@ button, .buttonStyle {
 	font-size:15px;
 	font-weight:bold;
 	font-style:normal;
-	height:50px;
-	line-height:50px;
+	height:40px;
+	line-height:32px;
 	width:86px;
 	text-decoration:none;
 	text-align:center;
