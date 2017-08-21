@@ -294,7 +294,7 @@
     <!-- Blockly Factory Tab -->
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
-      <tr style="border:1px solid;height:190px">
+      <tr style="border:0px solid;height:190px">
         <td style='width:1%; border:0px solid;height:100%'>
           <table id="blockFactoryPreview" >
             <tr>
@@ -347,7 +347,6 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
                       </div>
@@ -1123,7 +1122,7 @@
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
               parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "35px";
+              parent_wrap.style.marginBottom = "30px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
