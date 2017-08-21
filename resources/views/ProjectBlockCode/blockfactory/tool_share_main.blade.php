@@ -79,7 +79,7 @@
                  <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
                    <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
-                 $value['name']
+                 {{$value['name']}}
                  </div>
           @endforeach
            </div>
@@ -111,7 +111,7 @@
                       <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
-                    $value->name
+                    {{$value->name}}
                     </div>
           </div>
           @endforeach
