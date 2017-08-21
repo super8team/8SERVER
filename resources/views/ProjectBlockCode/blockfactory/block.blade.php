@@ -294,8 +294,8 @@
     <!-- Blockly Factory Tab -->
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
-      <tr>
-        <td style='width:1%; border:0px solid;'>
+      <tr style="border:1px solid;height:190px">
+        <td style='width:1%; border:0px solid;height:100%'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -325,7 +325,6 @@
               <td id="present_package">
 
               </td>
-
             </tr>
           </table>
         </td>
@@ -334,13 +333,12 @@
             <tr id="blockLibrary">
               <td id="contents_list" >
                 <div style="background-color: #95CDFF">
-                  <button type="button" id="createNewBlockButton" >
+                  <button type="button" id="createNewBlockButton"  >
                     NEW
                   </button>
                 </div>
-                <div style="background-color: #95CDFF">
-                  <!-- 콘텐츠 저장 -->
-                  <button type="button" id="saveToBlockLibraryButton">
+                <div style="background-color: #95CDFF;margin-top:-10px">
+                  <button type="button" id="saveToBlockLibraryButton" >
                     SAVE
                   </button>
                 </div>
@@ -354,7 +352,7 @@
                       <div id="button_blockLib">
                       </div>
                       <!-- 패키지 리스트 출력 코드 -->
-                  
+
                    </div>
                     </form>
                   </div>
@@ -362,7 +360,6 @@
               </span>
               </td>
         <td id="blockLibraryControls" >
-
           <button id="registerContents" >
             현장체험 등록
           </button>
