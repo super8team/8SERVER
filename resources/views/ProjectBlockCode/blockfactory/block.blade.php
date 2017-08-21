@@ -352,12 +352,15 @@
                       </div>
                       <!-- 패키지 리스트 출력 코드 -->
                         @if($packages)
-                            @for($i=0; $i < 8; $i++)
-                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$first_package[$i]['xml']}}" >
-                  
+                            @foreach($first_package as $content)
+                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content['xml']}}" >
+                              {{$content['name']}}
+                              <input type="text" class="contents_xml"  value="{{$content['xml']}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content['spec']}}" hidden>
+                              <input type="text" name="id"  value="{{$content['id']}}" hidden>
                            </button>
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           @endfor
+                           @endforeach
                        @endif
                    </div>
                     </form>
