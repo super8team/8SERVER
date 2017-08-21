@@ -3,6 +3,15 @@
 @section('title','위원회 항목')
 
 @section('content')
+
+  <script type="text/javascript">
+      // toastr.info("토스트");
+      var memberSave = "{{Session::get('success')}}";
+      if (memberSave != "")
+          alert(log);
+
+  </script>
+
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
