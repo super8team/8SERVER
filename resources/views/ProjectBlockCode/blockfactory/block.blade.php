@@ -1122,7 +1122,7 @@
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
               parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "30px";
+              parent_wrap.style.marginBottom = "20px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');
