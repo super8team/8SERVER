@@ -357,7 +357,7 @@
                               {{$content->name}}
                               <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
                               <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
-                              <input type="text" name="id"  value="{{$content->id}}" hidden>
+                              <input type="text" name="id"  value="{{$content->no}}" hidden>
                            </button>
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            @endforeach
