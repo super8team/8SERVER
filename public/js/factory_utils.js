@@ -58,44 +58,9 @@ goog.provide('FactoryUtils');
  var root_block;
  var myungse = new Array();
 
-// FactoryUtils = function(){
-//   var xml3 = '<xml xmlns="http://www.w3.org/1999/xhtml">'+
-//   '<block type="factory_base" id="jsJbcVlNT:#E9,M-7V(1" deletable="false" movable="false" x="0" y="0">'+
-//   '<mutation connections="null"></mutation>'+
-//   '<field name="NAME">fef</field>'+
-//   '<value name="VERTICAL">'+
-//     '<block type="vertical" id="5VQix4TOuX6BV_lv^#;r" deletable="false">'+
-//       '<field name="VERTICAL"></field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="HORIZONTAL">'+
-//     '<block type="horizontal" id="C)e#DB8cz`+Bo-9o4~0[" deletable="false">'+
-//       '<field name="HORIZONTAL"></field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="VISIONABLE">'+
-//     '<block type="logic_boolean" id="e@4|/*}pCo~#aYE8Fr15" deletable="false">'+
-//       '<field name="BOOL">TRUE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="CLICKABLE">'+
-//     '<block type="logic_boolean" id="d[._igq{x2w7zubn4[Af" deletable="false">'+
-//       '<field name="BOOL">FALSE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="DISABLE">'+
-//     '<block type="logic_boolean" id="nDYlY2Z{v$2K|XI`c5T^">'+
-//       '<field name="BOOL">TRUE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '</block>'+
-//   '</xml>';
-//   this.blockLibraryController.openBlock2(xml3);
-// }
+
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
   console.log(blockType);
-
-
   console.log("현재 블록 작업 할 게요!");
   console.log(rootBlock);
   switch (format) {
