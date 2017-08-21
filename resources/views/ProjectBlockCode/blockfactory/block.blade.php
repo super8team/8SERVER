@@ -294,7 +294,7 @@
     <!-- Blockly Factory Tab -->
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
-      <tr style="border:0px solid;height:190px">
+      <tr>
         <td style='width:1%; border:0px solid;height:100%'>
           <table id="blockFactoryPreview" >
             <tr>
@@ -332,12 +332,12 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list" >
-                <div style="background-color: #95CDFF">
+                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
                   <button type="button" id="createNewBlockButton"  >
                     NEW
                   </button>
                 </div>
-                <div style="background-color: #95CDFF;margin-top:-10px">
+                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
                   <button type="button" id="saveToBlockLibraryButton" >
                     SAVE
                   </button>
@@ -390,7 +390,7 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled><h4>패 키 지 리 스 트</h4></button>
+            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
             <button id="createNewPackage"></button>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
