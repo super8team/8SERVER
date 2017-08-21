@@ -354,17 +354,7 @@
                       <div id="button_blockLib">
                       </div>
                       <!-- 패키지 리스트 출력 코드 -->
-                      @if($packages)
-                      @for($i=0; $i < $contentsize; $i++)
-                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
-                          {{$packages[0]['contents'][$i]['name']}}
-                          <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
-                          <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
-                          <input type="text" name="id"  value="{{$packages[0]['contents'][$i]['id']}}" hidden>
-                      </button>
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      @endfor
-                      @endif
+                  
                    </div>
                     </form>
                   </div>
@@ -394,7 +384,7 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+            <button type="button" class="package_button" name="button" disabled><h4>패 키 지 리 스 트</h4></button>
             <button id="createNewPackage"></button>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
