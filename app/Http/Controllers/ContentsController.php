@@ -37,8 +37,8 @@ class ContentsController extends Controller
 
             $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
             $contentCount = count($contents);
+
             
-            dd($contents[0]);
             // for($j=0; $j<$contentCount; $j++) {
             //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
             //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
