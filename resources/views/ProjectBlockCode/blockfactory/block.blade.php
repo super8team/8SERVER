@@ -379,7 +379,7 @@
           <button id="shareContentsButton">
             창작 마당
           </button>
-          <button id="removeBlockFromLibraryButton">
+          <button id="removeBlockFromLibraryButton" hidden>
             콘텐츠 삭제
           </button>
         </td>
