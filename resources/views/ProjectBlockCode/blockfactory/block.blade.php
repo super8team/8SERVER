@@ -354,7 +354,7 @@
                         @if($packages)
                             @for($i=0; $i < 8; $i++)
                             <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$first_package[$i]['xml']}}" >
-                               {{$first_package[$i]['name']}}
+                               'f'
                                <input type="text" class="contents_xml"  value="{{$first_package[$i]['xml']}}" hidden>
                                <input type="text" class="block_myungse" value="{{$first_package[$i]['spec']}}" hidden>
                                <input type="text" name="id"  value="{{$first_package[$i]['id']}}" hidden>
