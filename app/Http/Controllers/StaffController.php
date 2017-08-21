@@ -88,8 +88,9 @@ class StaffController extends Controller
             ]);
         }
 
-
-            return redirect()->route('staff',['count'=>$committee_no]);
+            $request->session()->flash('success', "저장성공");
+//            dd($request->session()->all());
+            return redirect()->route('staff', ['count' => $committee_no]);
 //              return view('staff.memberAdd')->with('committee_mebers', $committee_mebers);
 
 
