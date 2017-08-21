@@ -323,7 +323,7 @@
                 </button>
               </td>
               <td id="present_package">
-                {{$package_name['name']}}
+                {{$packages[0]['name']}}
               </td>
             </tr>
           </table>
