@@ -353,11 +353,11 @@
                       <!-- 패키지 리스트 출력 코드 -->
                         @if($packages)
                             @foreach($first_package as $content)
-                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content['xml']}}" >
-                              {{$content['name']}}
-                              <input type="text" class="contents_xml"  value="{{$content['xml']}}" hidden>
-                              <input type="text" class="block_myungse" value="{{$content['spec']}}" hidden>
-                              <input type="text" name="id"  value="{{$content['id']}}" hidden>
+                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                              {{$content->name}}
+                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                              <input type="text" name="id"  value="{{$content->id}}" hidden>
                            </button>
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            @endforeach
