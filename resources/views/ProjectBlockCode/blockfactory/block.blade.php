@@ -602,7 +602,6 @@
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-
       <category name="실행">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
@@ -1084,7 +1083,7 @@
       new_package = event.target;
 
       if(boundary == 0){
-          event.target.style.backgroundColor = '#2AE7F1';
+          event.target.style.backgroundColor = '#150DF1';
           boundary++;
           before_ele = event.target;
           console.log('0일때');
@@ -1093,7 +1092,7 @@
         before_ele.style.backgroundColor = 'white';
         // package_div.insertBefore(event.target, package_div.firstChild);
         before_ele = event.target;
-        event.target.style.backgroundColor = '#2AE7F1';
+        event.target.style.backgroundColor = '#150DF1';
       }
     // }
 
