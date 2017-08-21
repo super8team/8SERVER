@@ -46,7 +46,7 @@ class ContentsController extends Controller
             }
           }
 
-          return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
+            return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
           }else{
 
             return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
