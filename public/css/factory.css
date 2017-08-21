@@ -163,7 +163,7 @@ input[type="button"], .inputStyle {
 #contents_list{
   border-left:0px solid;
   width: 10%;
-  background-color: #95CDFF;
+  background-color: #D4A2FF;
 }
 #contents_list > button {
   /*height: 100px;*/
@@ -421,18 +421,18 @@ button, .buttonStyle {
 #blockFactoryPreview {
   height: 100%;
   width: 100%;
-  background-color: #95CDFF;
+  background-color: #D4A2FF;
 }
 
 #blockLibraryContainer {
   width: 45%;
-  background-color: #95CDFF;
+  background-color: #D4A2FF;
   vertical-align: bottom;
 }
 
 #blockLibraryControls {
   border-left:1px solid;
-  background-color: #95CDFF;
+  background-color: #D4A2FF;
   width:26%;
   text-align: center;
   vertical-align: middle;
