@@ -353,7 +353,10 @@
                       <!-- 패키지 리스트 출력 코드 -->
                         @if($packages)
                             @for($i=0; $i < 8; $i++)
-                          
+                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$first_package[$i]['xml']}}" >
+                  
+                           </button>
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            @endfor
                        @endif
                    </div>
