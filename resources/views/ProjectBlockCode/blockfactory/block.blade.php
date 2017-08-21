@@ -1010,7 +1010,14 @@
             }
           },
           error: function(){
-            alert('실패임');
+            //마지막에 추가된 개체 삭제하기
+            var content_obj = document.getElementsByClassName('content_list');
+            var obj_length  = content_obj.length;
+            var del_obj     = document.getElementsByClassName('content_list')[obj_length-1];
+            del_obj.remove();
+
+            //경고 창 띄우기
+            alert('컨텐츠 이름 중복 입니다');
           }
         });
         document.getElementById('change').value = 0;
@@ -1063,24 +1070,12 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    // if(event.target != package_div.firstChild){
+
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
 
-      if(boundary == 0){
-          event.target.style.backgroundColor = '#150DF1';
-          boundary++;
-          before_ele = event.target;
-          console.log('0일때');
-      }else{
-        console.log('0이 아닐때');
-        before_ele.style.backgroundColor = 'white';
-        // package_div.insertBefore(event.target, package_div.firstChild);
-        before_ele = event.target;
-        event.target.style.backgroundColor = '#150DF1';
-      }
-    // }
+
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
@@ -1121,8 +1116,6 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "20px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');

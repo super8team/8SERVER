@@ -183,12 +183,14 @@ input[type="button"], .inputStyle {
 
 .content_list {
   font: 15px/100% Arial, Helvetica, sans-serif;
-  color: #fef4e9;
-  border: solid 1px #8FB2FA;
-  background: #7BC0FC;
-  background: -webkit-gradient(linear, left top, left bottom, from(#8FB2FA), to(#03A5FC));
-  background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  /*color: #fef4e9;*/
+  border: solid 1px #00E8AB;
+  margin-bottom: 13px;
+  height: 50px;
+  /*background-color: #B540E8;*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#00E8AB), to(#00E8AB));
+  /*background: -moz-linear-gradient(top,  #faa51a,  #f47a20);*/
+  /*filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');*/
 }
 /*.field_list1 {
   background-color: green;
