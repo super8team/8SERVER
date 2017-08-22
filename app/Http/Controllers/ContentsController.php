@@ -256,11 +256,11 @@ class ContentsController extends Controller
       $planField_second = [];
       for($i = 0; $i < 20; $i++){
         if (array_key_exists($i, $fields)) {
-          dd($packages[$i]);
+          dd($packages);
             DB::table('field_learning_plans')->where([
                       ['no',$fields[$i]]
             ])->update(['contents_package'=>$packages[$i][0]]);
-              
+
         }
       }
 
