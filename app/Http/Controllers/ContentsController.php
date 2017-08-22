@@ -116,7 +116,7 @@ class ContentsController extends Controller
         $otherPackages        = DB::table('contents_package_shares')->paginate(4);
 
         foreach ($popularPackages as $popularPackage ) {
-            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
+            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'package_name'=>$popularPackage->package_name));
         }
 
         // ,'name'=>$popularPackage->name
