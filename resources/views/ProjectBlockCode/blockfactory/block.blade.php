@@ -914,10 +914,10 @@
     </xml>
 </div>
 
-  <form method="post" style="height:10%;border:1px solid" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" style="height:10%;border:1px solid" id="img_parent"  name="form_name" enctype="multipart/form-data">
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
-    </form>
+  </form>
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
@@ -989,13 +989,7 @@
               var id_value     = data.length - 1;
               // storage_package_child.value = data[id_value].id;
               new_package.value = data[id_value].id;
-              // for(var i = 0; i < user_packages.length; i++){
-              //   var package_name = user_packages[i].innerText;
-              //   if(package_name == data[i]['name']){
-              //     user_packages[i].innerText = data[i]['name'];
-              //     user_packages[i].value     = data[i]['id'];
-              //   }
-              // }
+
             }else{
               console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
             }
@@ -1037,7 +1031,7 @@
              file_list.setAttribute("name","filename[]");
              parent.appendChild(file_list);
              console.log('getCmaFileInfo function 2');
-             console.log(file_list);
+             console.log(document.getElementsByClassName('file_list'));
   }
 
  function getCmaFileView(obj,stype) {
