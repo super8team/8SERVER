@@ -169,20 +169,20 @@
                 <li>
                   @php
                   $user_info = Auth::user();
-                  
+
                   if($user_info['type'] == 'student'){
                     $text = '학생';
                   }elseif ($user_info['type'] == 'teacher'){
                     $text = '교사';
                   }else{
                     $text = '학부모';
-                  }              
+                  }
                   @endphp
                   <a href="#" >{{$text}}</a>
-                    
+
                 </li>
                 <li>
-                  <a href="#" onclick="event.preventDefault(); 
+                  <a href="#" onclick="event.preventDefault();
                                                           document.getElementById('logout-form').submit();">
                     로그아웃
                   </a>

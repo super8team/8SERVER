@@ -295,7 +295,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:0px solid;'>
+        <td style='width:1%; border:0px solid;height:100%'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -323,9 +323,8 @@
                 </button>
               </td>
               <td id="present_package">
-
+                {{$packages[0]['name']}}
               </td>
-
             </tr>
           </table>
         </td>
@@ -333,14 +332,13 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list" >
-                <div style="background-color: #95CDFF">
-                  <button type="button" id="createNewBlockButton" >
+                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
+                  <button type="button" id="createNewBlockButton"  >
                     NEW
                   </button>
                 </div>
-                <div style="background-color: #95CDFF">
-                  <!-- 콘텐츠 저장 -->
-                  <button type="button" id="saveToBlockLibraryButton">
+                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
+                  <button type="button" id="saveToBlockLibraryButton" >
                     SAVE
                   </button>
                 </div>
@@ -349,22 +347,21 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-
                     <div id="dropdownDiv_blockLib">
                       <div id="button_blockLib">
                       </div>
                       <!-- 패키지 리스트 출력 코드 -->
-                      @if($packages)
-                      @for($i=0; $i < $contentsize; $i++)
-                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
-                          {{$packages[0]['contents'][$i]['name']}}
-                          <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
-                          <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
-                          <input type="text" name="id"  value="{{$packages[0]['contents'][$i]['id']}}" hidden>
-                      </button>
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      @endfor
-                      @endif
+                        @if($packages)
+                            @foreach($first_package as $content)
+                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                              {{$content->name}}
+                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                              <input type="text" name="id"  value="{{$content->no}}" hidden>
+                           </button>
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           @endforeach
+                       @endif
                    </div>
                     </form>
                   </div>
@@ -372,14 +369,13 @@
               </span>
               </td>
         <td id="blockLibraryControls" >
-
           <button id="registerContents" >
             현장체험 등록
           </button>
           <button id="shareContentsButton">
             창작 마당
           </button>
-          <button id="removeBlockFromLibraryButton">
+          <button id="removeBlockFromLibraryButton" hidden>
             콘텐츠 삭제
           </button>
         </td>
@@ -394,7 +390,7 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
             <button id="createNewPackage"></button>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
@@ -1024,7 +1020,14 @@
             }
           },
           error: function(){
-            alert('실패임');
+            //마지막에 추가된 개체 삭제하기
+            var content_obj = document.getElementsByClassName('content_list');
+            var obj_length  = content_obj.length;
+            var del_obj     = document.getElementsByClassName('content_list')[obj_length-1];
+            del_obj.remove();
+
+            //경고 창 띄우기
+            alert('컨텐츠 이름 중복 입니다');
           }
         });
         document.getElementById('change').value = 0;
@@ -1077,24 +1080,12 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    // if(event.target != package_div.firstChild){
+
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
 
-      if(boundary == 0){
-          event.target.style.backgroundColor = '#150DF1';
-          boundary++;
-          before_ele = event.target;
-          console.log('0일때');
-      }else{
-        console.log('0이 아닐때');
-        before_ele.style.backgroundColor = 'white';
-        // package_div.insertBefore(event.target, package_div.firstChild);
-        before_ele = event.target;
-        event.target.style.backgroundColor = '#150DF1';
-      }
-    // }
+
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
@@ -1135,8 +1126,6 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "35px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');

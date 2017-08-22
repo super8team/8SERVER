@@ -35,18 +35,18 @@ class ContentsController extends Controller
             $packages[$i]['name'] = $owndedPackages[$i]->name;
             $packages[$i]['id']   = $owndedPackages[$i]->no;
 
-            $contents     = \DB::table('contents')->where('contents_package', $packages[$i]['id'])->get();
+            $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
             $contentCount = count($contents);
 
-            for($j=0; $j<$contentCount; $j++) {
-              $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
-              $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-              $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
-              $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
-            }
+            // for($j=0; $j<$contentCount; $j++) {
+            //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
+            //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+            //   $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
+            //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
+            // }
           }
 
-          return view('ProjectBlockCode.blockfactory.block', ['packages' => $packages,'contentsize'=>$content_count,'index'=>0,'user'=>Auth::user()->name]);
+            return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
           }else{
 
             return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
@@ -116,7 +116,7 @@ class ContentsController extends Controller
         $otherPackages        = DB::table('contents_package_shares')->paginate(4);
 
         foreach ($popularPackages as $popularPackage ) {
-            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url));
+            array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'package_name'=>$popularPackage->package_name));
         }
 
         // ,'name'=>$popularPackage->name
