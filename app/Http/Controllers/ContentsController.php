@@ -250,13 +250,9 @@ class ContentsController extends Controller
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
 
-
-      //현장체험 리스트를 담는 변수
-      $planField = [];
-      $planField_second = [];
       for($i = 0; $i < 20; $i++){
         if (array_key_exists($i, $packages)) {
-          
+
             DB::table('field_learning_plans')->where([
                       ['no',$fields[$i]]
             ])->update(['contents_package'=>$packages[$i][0]]);
@@ -265,10 +261,12 @@ class ContentsController extends Controller
       }
 
 
-      // dd($fields);
+
+      //현장체험 리스트를 담는 변수
+      // $planField = [];
+      // $planField_second = [];
+
       //패키지를 등록할 현장학습리스트를 추출한다
-
-
       // for($i = 0; $i < count($planField); $i++){
       //   $plan = $planField[$i][0];
       //
