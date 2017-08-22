@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
 //      $this->call(PlanChecklistsSeeder::class);
 
         // $this->call(ContentsSeeder::class);
-        // $this->call(ContentsPackageSharesSeeder::class);
+         $this->call(ContentsPackageSharesSeeder::class);
 
 //        $this->call(PlanDemoSeeder::class);
 
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(NoticeSeeder::class);
 
-        $this->call(ChecklistRespondSeeder::class);
+ //       $this->call(ChecklistRespondSeeder::class);
 
     }
 
