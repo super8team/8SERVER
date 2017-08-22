@@ -250,33 +250,34 @@ class ContentsController extends Controller
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
 
-      dd($packages);
+
       //현장체험 리스트를 담는 변수
       $planField = [];
       $planField_second = [];
-
-      // dd($fields);
-      //패키지를 등록할 현장학습리스트를 추출한다
-      for($i = 0; $i<15; $i++){
-        if(array_key_exists($i, $packages)){
-          // array_push($planField,$fields[$i],$packages[$i]);
-          $planField[$i][0] = $fields[$i];
-          $planField[$i][1]= $packages[$i];
-          // $planField[$i]=$packages[$i];
+      for($i = 0; $i < 20; $i++){
+        if (array_key_exists($i, $fields)) {
+            DB::table('field_learning_plans')->where([
+                      ['no',$fields[$i]]
+            ])->update(['contents_package'=>$packages[$i][0]]);
         }
       }
 
-      for($i = 0; $i < count($planField); $i++){
-        $plan = $planField[$i][0];
 
-        $pack = $planField[$i][1][0];
+      // dd($fields);
+      //패키지를 등록할 현장학습리스트를 추출한다
 
-        DB::table('field_learning_plans')
-                      ->where([
-                        ['teacher',Auth::user()->no],
-                        ['no',$plan]
-                      ])->update(['contents_package'=>$pack]);
-      }
+
+      // for($i = 0; $i < count($planField); $i++){
+      //   $plan = $planField[$i][0];
+      //
+      //   $pack = $planField[$i][1][0];
+      //
+      //   DB::table('field_learning_plans')
+      //                 ->where([
+      //                   ['teacher',Auth::user()->no],
+      //                   ['no',$plan]
+      //                 ])->update(['contents_package'=>$pack]);
+      // }
 
       // for($i = 0 ; $i < count($planField)-1 ; $i++){
       //   //체험학습 리스트

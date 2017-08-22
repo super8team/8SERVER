@@ -6,6 +6,9 @@
 
 <!DOCTYPE html>
 <head>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
+  </script>
+
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta charset="UTF-8">
 
@@ -32,7 +35,6 @@
   <script src="{{URL::asset('/js/block_exporter_view.js')}}"></script>
   <script src="{{URL::asset('/js/block_exporter_controller.js')}}"></script>
   <script src="{{URL::asset('/js/blocks.js')}}"></script>
-  <script src="{{URL::asset('/js/map.js')}}"></script>
   <script src="{{URL::asset('/js/app_controller.js')}}"></script>
   <script src="http://code.jquery.com/jquery-1.5.js"></script>
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
@@ -40,8 +42,6 @@
   <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
   <script src="{{URL::asset('/js/notipopup.js')}}"></script>
   <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
-  <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
-
 
 
   <script>
@@ -295,7 +295,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:0px solid;height:100%'>
+        <td style="height:80px">
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -308,7 +308,7 @@
               </td>
               <td id="buttonContainer">
                 <button id="linkButton" title="Save and link to blocks.">
-                  <img src="link.png" height="21" width="21" hidden>
+                  <img src="link.png" height="" width="21" hidden>
                 </button>
                 <button id="clearBlockLibraryButton" title="Clear Block Library." hidden>
                   <span>콘텐츠 전부 삭제하기</span>
@@ -353,7 +353,7 @@
                       <!-- 패키지 리스트 출력 코드 -->
                         @if($packages)
                             @foreach($first_package as $content)
-                            <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
                               {{$content->name}}
                               <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
                               <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
@@ -418,135 +418,116 @@
               <div id="map" style="height:70%; width:100%;display:inline-block">
               </div>
           </div>
-<script type="text/javascript">
-   var markersArray = [];
+          <script type="text/javascript">
 
-   var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 18,
-    center: new google.maps.LatLng(35.8963091, 128.62205110000002),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-   });
+          var markersArray = [];
 
-   google.maps.event.addListener(map, 'click', function (mouseEvent) {
-    getAddress(mouseEvent.latLng);
+          var map = new google.maps.Map(document.getElementById("map"), {
+           zoom: 15,
+           center: new google.maps.LatLng(35.8963091, 128.62205110000002),
+           mapTypeId: google.maps.MapTypeId.ROADMAP,
+           mapTypeControlOptions: {
+           style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+           }
+          });
 
-    document.getElementById('get_location').innerHTML = mouseEvent.latLng;
-   });
+          google.maps.event.addListener(map, 'click', function (mouseEvent) {
+           getAddress(mouseEvent.latLng);
 
- function getAddress(latlng) {
+           document.getElementById('get_location').innerHTML = mouseEvent.latLng;
+          });
 
-     var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({
-   latLng: latlng
-  }, function(results, status) {
-   if (status == google.maps.GeocoderStatus.OK) {
-       if (results[0].geometry) {
+          function getAddress(latlng) {
 
-           var address = results[0].formatted_address;
+            var geocoder = new google.maps.Geocoder();
+          geocoder.geocode({
+          latLng: latlng
+          }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              if (results[0].geometry) {
 
-           var marker = new google.maps.Marker({
-               position: latlng,
-               map: map
-           });
+                  var address = results[0].formatted_address;
 
-     new google.maps.InfoWindow({
-         content: address + "<br>(Lat, Lng) = " + latlng
-         //content: address
-     }).open(map, marker);
+                  var marker = new google.maps.Marker({
+                      position: latlng,
+                      map: map
+                  });
 
-     var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
-     $("#markerList").append(opt);
+            new google.maps.InfoWindow({
+                content: address + "<br>(Lat, Lng) = " + latlng
+                //content: address
+            }).open(map, marker);
 
-     //markersArray.push(marker);
-    }
-   } else if (status == google.maps.GeocoderStatus.ERROR) {
-    alert("통신중 에러발생！");
-   } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-    alert("요청에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-   } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-    alert("단시간에 쿼리 과다송신！");
-   } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-    alert("이 페이지에는 지오코더 이용 불가! 왜??");
-   } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-    alert("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
-   } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-    alert("존재하지 않습니다.");
-   } else {
-    alert("??");
-   }
-  });
- }
+            var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
+            $("#markerList").append(opt);
+
+            //markersArray.push(marker);
+           }
+          } else {
+           alert("다시 입력해 주세요");
+          }
+          });
+          }
 
 
- function changemap() {
-     var sm = $("#markerList option:selected").val().toString().replace(/[\(\)]/gi, '').split(",");
-     console.log(sm);
-     map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
-     map.setZoom(14);
- }
- function clearField(field){
-    if (field.value == field.defaultValue) {
-      field.value = '';
-    }
-  }
-  function checkField(field){
-    if (field.value == '') {
-      field.value = field.defaultValue;
-    }
-  }
- function resetSearch()
- {
-     location.reload();
- }
+          function changemap() {
+            var sm = $("#markerList option:selected").val().toString().replace(/[\(\)]/gi, '').split(",");
+            console.log(sm);
+            map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
+            map.setZoom(14);
+          }
+          function clearField(field){
+           if (field.value == field.defaultValue) {
+             field.value = '';
+           }
+          }
+          function checkField(field){
+           if (field.value == '') {
+             field.value = field.defaultValue;
+           }
+          }
+          function resetSearch()
+          {
+            location.reload();
+          }
 
- function getLatLng(place) {
+          function getLatLng(place) {
 
-     var geocoder = new google.maps.Geocoder();
-     geocoder.geocode({
-         address: place,
-         region: 'ko'
-     }, function (results, status) {
-         if (status == google.maps.GeocoderStatus.OK) {
-             var bounds = new google.maps.LatLngBounds();
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                address: place,
+                region: 'ko'
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var bounds = new google.maps.LatLngBounds();
 
-             for (var r in results) {
-                 if (results[r].geometry) {
-                     var latlng = results[r].geometry.location;
-                     bounds.extend(latlng);
-                     //var address = results[0].formatted_address.replace(/^日本, /, '');
-                     var address = results[r].formatted_address;
+                    for (var r in results) {
+                        if (results[r].geometry) {
+                            var latlng = results[r].geometry.location;
+                            bounds.extend(latlng);
+                            //var address = results[0].formatted_address.replace(/^日本, /, '');
+                            var address = results[r].formatted_address;
 
-      new google.maps.InfoWindow({
-       content: address + "<br>(Lat, Lng) = " + latlng.toString()
-      }).open(map, new google.maps.Marker({
-       position: latlng,
-       map: map
-      }));
+             new google.maps.InfoWindow({
+              content: address + "<br>(Lat, Lng) = " + latlng.toString()
+             }).open(map, new google.maps.Marker({
+              position: latlng,
+              map: map
+             }));
 
-                     var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
-                     $("#markerList").append(opt);
-                     $("#addrList").append(slt);
-                 }
-             }
-             map.fitBounds(bounds);
-         } else if (status == google.maps.GeocoderStatus.ERROR) {
-             alert("서버 통신에러！");
-         } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-             alert("리퀘스트에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-         } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-             alert("단시간에 쿼리 과다송신！");
-         } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-             alert("이 페이지에서는 지오코더 이용불가! 왜?");
-         } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-             alert("서버에 문제 발생한거 같아요.다시 한번 해보세요.");
-         } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-             alert("앙..못찾겠어요");
-         } else {
-             alert("??");
-         }
-     });
- }
-</script>
+                            var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
+                            $("#markerList").append(opt);
+                            $("#addrList").append(slt);
+                        }
+                    }
+                    map.fitBounds(bounds);
+                }  else {
+                    alert("다시 입력해 주세요");
+                }
+            });
+          }
+
+          </script>
 
           <div id="get_location" border="1px solid black" hidden></div>
 
