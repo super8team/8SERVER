@@ -387,7 +387,7 @@ class ContentsController extends Controller
 
     public function sharePackages(Request $request)
     {
-      $img_name   =   $request->file('image');
+      $img_name   =   $request->file('package_image');
       dd($img_name);
       // $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
