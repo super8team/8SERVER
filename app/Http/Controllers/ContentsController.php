@@ -394,14 +394,15 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      dd(storage_path());
+      $destination = storage_path().'/app/public/packageImages';
+
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
+      // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
-      $images->move('',$image_name);
-      dd('fqw');
+      $images->move($destination,$image_name);
+      dd($destination);
       //공유 패키지 이미지
 
 
