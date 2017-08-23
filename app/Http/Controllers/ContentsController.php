@@ -259,9 +259,6 @@ class ContentsController extends Controller
 
         }
       }
-
-
-
       //현장체험 리스트를 담는 변수
       // $planField = [];
       // $planField_second = [];

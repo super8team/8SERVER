@@ -183,8 +183,9 @@ input[type="button"], .inputStyle {
 
 .content_list {
   font: 15px/100% Arial, Helvetica, sans-serif;
-  vertical-align: middle;
+  vertical-align: bottom;
   border: solid 1px #DCFF00;
+  margin-top: 20px;
   height: 50px;
   /*background-color: #B540E8;*/
   background: -webkit-gradient(linear, left top, left bottom, from(#DCFF00), to(#DCFF00));
@@ -415,7 +416,7 @@ button, .buttonStyle {
 #blockFactoryPreview {
   height: 100%;
   width: 100%;
-  background-color: #F1C987;
+  background-color: #D4A2FF;
 }
 
 #blockLibraryContainer {
@@ -424,7 +425,7 @@ button, .buttonStyle {
 }
 
 #blockLibraryControls {
-  border-left:1px solid;
+  border-left: 0px solid;
   background-color: #D4A2FF;
   width:26%;
   text-align: center;

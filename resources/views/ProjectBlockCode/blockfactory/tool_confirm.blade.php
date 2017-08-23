@@ -33,22 +33,23 @@
         <table style="width:80%;margin-left:auto;margin-right:auto;">
             <tbody>
                 <tr>
-                  <td style="border:1px solid;text-align:center;height:40px;border-right:0px">
+                  <td style="border:1px solid;text-align:center;height:40px;width:50%;border-right:0px">
                     <h2>체험 학습 리스트</h2>
                     <h4>※ 체험 학습을 클릭 하세요</h4>
                   </td>
-                  <td style="border:1px solid;text-align:center;height:40px;border-left:0px;vertical-align:middle ">
+                  <td style="border:1px solid;text-align:center;height:40px;width:50%;border-left:0px;vertical-align:middle ">
                     <h2>선택 가능한 패키지 리스트</h2>
                   </td>
                 </tr>
                 @for($j = 0; $j < $field_count; $j++)
                 <tr style="border:0px solid" class="test">
-                    <td style="border:0px solid;text-align:center">
+                    <td style="border:0px solid;text-align:center;width:50%;">
                       <input type="button" class="field_list1" value="{{ $field_lists[$j]['name']}}"
                       style="border:0px solid;vertical-align:middle;background-color:#95CDFF;width:94%;font-size:15px">
+
                       <input type="text"  name="field_list[]"  value="{{ $field_lists[$j]['no']}}" hidden>
                     </td>
-                    <td style="vertical-align:middle;" class="package_name" >
+                    <td style="vertical-align:middle;width:50%;" class="package_name" >
                       <div class ="field_list2" style="display:none">
 
                       @for ($i = 0; $i < $package_count ; $i++)
@@ -60,6 +61,7 @@
                              @endif
                            @endif
                       @endfor
+
                       </div>
                     </td>
                 </tr>
