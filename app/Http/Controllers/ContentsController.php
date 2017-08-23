@@ -219,7 +219,7 @@ class ContentsController extends Controller
       //체험현장학습 리스트를 뽑아내는 쿼리
       $field_list_array   = [];
       $package_list_array = [];
-      $teacher_no = Auth::user()->no;
+      $teacher_no  = Auth::user()->no;
       $field_lists = DB::table('field_learning_plans')->where('teacher','=',$teacher_no)->get();
 
       foreach($field_lists as $field_list){
@@ -394,13 +394,13 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-
+      dd(storage_path());
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      // $imagePath = base_path().sprintf('/public/storage/packageImgs',$image_name);
+      $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
-      $images->move('http://163.44.166.91/LEARnFUN/public/storage/packageImgs/',$image_name);
+      $images->move('',$image_name);
       dd('fqw');
       //공유 패키지 이미지
 
