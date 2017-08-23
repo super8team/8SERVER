@@ -114,7 +114,7 @@ class ContentsController extends Controller
         $popularPackages      = DB::table('contents_package_shares')->orderBy('views', 'desc')->take(6)->get();
         // dd($popularPackages);
         $otherPackages        = DB::table('contents_package_shares')->paginate(4);
-
+        dd($popularPackages);
         foreach ($popularPackages as $popularPackage ) {
             array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'package_name'=>$popularPackage->package_name));
         }
@@ -394,18 +394,15 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      $destination = public_path().'/img';
-      $url = Storage::url('packageImgs/');
+      $destination = storage_path().'/packageImgs';
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
       Input::file('package_image')->move($destination,$image_name);
-      dd($destination);
-      //공유 패키지 이미지
 
+      //공유 패키지 이미지
 
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
@@ -502,16 +499,19 @@ class ContentsController extends Controller
 
       $result_array = [];
 
-      $result = DB::table('contents_package_shares')->where('explain',$searchWord)->first();
-      array_push($result_array,$result);
+      $result = DB::table('contents_package_shares')
+                      ->where('package_name','like','%'+$searchWord+'%')
+                      ->get();
+        dd($result);
+      // array_push($result_array,$result);
+      //
+      // $package_serial = $result->contents_package;
 
-      $package_serial = $result->contents_package;
-
-      $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
-      array_push($result_array,$package_name->name);
+      // $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
+      // array_push($result_array,$package_name->name);
 
 
 
-      return $result_array;
+      return $result;
     }
 }
