@@ -13,20 +13,14 @@ class FieldLearningPlansSeeder extends Seeder
     public function run()
     {
       setlocale(LC_CTYPE, 'ko_KR');
-      // $asis = new DateTimeZone('Asia');
       // teacher id = jsong(82) / ukwak(103)
-        DB::table('field_learning_plans')->insert([
-          // ['name' => '', 'teacher' => '', 'at' => '', 'deleted_at' =>],
-          // ['name' => '', 'teacher' => '', 'at' => '', 'deleted_at' =>],
-          // ['name' => '', 'teacher' => '', 'at' => '', 'deleted_at' =>],
-          // ['name' => '', 'teacher' => '', 'at' => '', 'deleted_at' =>],
-          // ['name' => '', 'teacher' => '', 'at' => '', 'deleted_at' =>],
-          ['name' => '제주도 수학여행', 'teacher' => 82,
-          'at' => Carbon::createFromDate(2015, 9, 10, 'Asia/Seoul'),],
-          ['name' => '영진전문대 체험학습', 'teacher' => 82,
-          'at' => Carbon::createFromDate(2016, 4, 26),],
-        ]);
-
+        // DB::table('field_learning_plans')->insert([
+        //   ['name' => '제주도 수학여행', 'teacher' => 82,
+        //   'at' => Carbon::createFromDate(2015, 9, 10, 'Asia/Seoul'),],
+        //   ['name' => '영진전문대 체험학습', 'teacher' => 82,
+        //   'at' => Carbon::createFromDate(2016, 4, 26),],
+        // ]);
+        //
         DB::table('simple_plans')->insert([
           ['plan' => 1, 'type' => '수학여행', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
           ['plan' => 2, 'type' => '숙박형', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
