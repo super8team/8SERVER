@@ -60,10 +60,12 @@ class FieldLearningPlanDocumentController extends Controller
         // 현재 로그인한 유저(선생님)의 근무정보 가져옴
 //        $work = \DB::table('works')->where('teacher', $user->no)->first();
         $work = \DB::table('works')->where('teacher', 106)->first();
-//        dd($work);
+//	dd($work);
+
         // 근무정보 해당하는 학교의 정보를 가져옴
         $school = \DB::table('schools')->where('no', $work->school)->first();
 //        dd($school);
+
         // 현재 작성중인 계획 번호를 하나 가져옴
         $startDay = \DB::table('field_learning_plans')->where('no', $plan_number)->first();
 
@@ -108,9 +110,9 @@ class FieldLearningPlanDocumentController extends Controller
 //        $templateProcessor->setValue('date', $date);
 
 
-        $templateProcessor->saveAs('./word.docx');
+        $templateProcessor->saveAs('storage/word.docx');
 
-//        return response()->download('./word.docx');
+        return response()->download('storage/word.docx');
     }
 
 
