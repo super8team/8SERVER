@@ -397,10 +397,11 @@ class ContentsController extends Controller
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      $imagePath = base_path().sprintf('/storage/public/packageImgs',$image_name);
-      
-      dd($imagePath);
+      $imagePath = base_path().sprintf('/public/storage/packageImgs',$image_name);
+
+
       $images->move($imagePath,$image_name);
+      dd($imagePath);
       //공유 패키지 이미지
 
 
