@@ -387,14 +387,14 @@ class ContentsController extends Controller
 
     public function sharePackages(Request $request)
     {
-      $img_name   =   $request->file('package_image');
-      dd($img_name);
+      // $img_name   =   $request->file('package_image');+
+
       // $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-
+      dd($package_img);
 
       //공유 패키지 이미지
       Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
