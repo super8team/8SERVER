@@ -410,83 +410,80 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
             var judgeImage = document.getElementById('judgeImage').value;
-
-            if(contentsBlock){
-              console.log(document.getElementById('change').value);
-              //있을 때
-              if(document.getElementsByClassName('file_list')[0])
-              {
-                 input.src = document.getElementsByClassName('file_list')[0].value;
-                 break;
-              }
-              else
-              {
-                //new 일 때
-                if(judgeImage==0){
-                  cform.upFile.click();
-                }else if(document.getElementsByClassName('file_list')[0]==null){
-                  cform.upFile.click();
-                }
-              }
-            }
+            // if(contentsBlock){
+            //   console.log(document.getElementById('change').value);
+            //   //있을 때
+            //   // if(document.getElementsByClassName('file_list')[0])
+            //   // {
+            //   //    input.src = document.getElementsByClassName('file_list')[0].value;
+            //   //    break;
+            //   // }
+            //   //이미지 input이 없을 때
+            //   else
+            //   {
+            //     //new 일 때
+            //     if(judgeImage==0){
+            //       cform.upFile.click();
+            //     }
+            //   }
+            // }
             break;
         case 'image_2':
           console.log(JS);
           console.log(args);
             input.id = '2';
-          //   console.log('2');
-            if(contentsBlock){
-              if(document.getElementsByClassName('file_list')[1])
-              {
-                console.log('들어옴');
-                input.src = document.getElementsByClassName('file_list')[1].value;
-              }
-              else
-              {
-                cform.upFile.click();
-              }
-            }
-
+            //   console.log('2');
+            // if(contentsBlock){
+            //   if(document.getElementsByClassName('file_list')[1])
+            //   {
+            //     console.log('들어옴');
+            //     input.src = document.getElementsByClassName('file_list')[1].value;
+            //   }
+            //   else
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
           break;
         case 'image_3':
         console.log('3');
             input.id = '3';
             console.log('3');
-            if(contentsBlock){
-              if(document.getElementsByClassName('file_list')[2])
-              {
-                console.log('들어옴');
-                break;
-              }
-              else
-              {
-                cform.upFile.click();
-              }
-            }
-            input.src = document.getElementsByClassName('file_list')[2].value;
+            // if(contentsBlock){
+            //   if(document.getElementsByClassName('file_list')[2])
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+            // input.src = document.getElementsByClassName('file_list')[2].value;
           break;
         case 'image_4':
         console.log('4');
             input.id = '4';
             console.log('4');
-            if(contentsBlock){
-              if(document.getElementsByClassName('file_list')[3])
-              {
-                console.log('들어옴');
-                break;
-              }
-              else
-              {
-                cform.upFile.click();
-              }
-            }
-          input.src = document.getElementsByClassName('file_list')[3].value;
+            // if(contentsBlock){
+            //   if(document.getElementsByClassName('file_list')[3])
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
+          // input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
-        // input.src = contentsBlock.getFieldValue('SRC');
+        input.src = contentsBlock.getFieldValue('SRC');
         input.width = contentsBlock.getFieldValue('WIDTH');
         input.height = contentsBlock.getFieldValue('HEIGHT');
       }

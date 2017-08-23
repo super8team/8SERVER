@@ -347,7 +347,7 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-                    <div id="dropdownDiv_blockLib">
+                    <div id="dropdownDiv_blockLib" >
                       <div id="button_blockLib">
                       </div>
                       <!-- 패키지 리스트 출력 코드 -->
@@ -914,7 +914,7 @@
     </xml>
 </div>
 
-  <form method="post" style="height:10%;border:1px solid" id="img_parent"  name="form_name" enctype="multipart/form-data">
+  <form method="post" style="height:10%;border:1px solid" id="img_parent"  name="form_name" enctype="multipart/form-data" hidden>
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
   </form>
