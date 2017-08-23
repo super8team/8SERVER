@@ -10,16 +10,16 @@
         <div class="panel-heading">
           @php
           $user_info = Auth::user();
-          
+
           if($user_info['type'] == 'student'){
             $back_route = 'plan.student';
           }elseif ($user_info['type'] == 'teacher'){
             $back_route = 'plan.teacher';
           }else{
             $back_route = 'plan.parents';
-          }              
+          }
           @endphp
-          <h3 class="panel-title">선택한 체험학습의 참여명단 
+          <h3 class="panel-title">선택한 체험학습의 참여명단
             <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
@@ -34,7 +34,7 @@
             </button>
             {{-- <input type="hidden" name="grade_class" value="{{$grade_class_no}}"> --}}
            </form>
-          
+
          </h3>
         </div>
         <div class="panel-body">
