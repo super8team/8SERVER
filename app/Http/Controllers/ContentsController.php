@@ -397,8 +397,8 @@ class ContentsController extends Controller
 
 
       //공유 패키지 이미지
-      Storage::putFileAs('public/packageImgs', $package_img);
-      dd('ff');
+      Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
+
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
       //공유 패키지를 구성할 콘텐츠
