@@ -64,8 +64,8 @@
                         <td>{{$report_title[$count]}}</td>
                         {{-- <td>{{$report_date[$count]}}</td> --}}
                         @if ($user_info['type'] == 'teacher')
-                          @if ($report_score[$count])
-                            <td>{{$report_score[$count]}}</td>
+                          @if (isset($report_score[0][$count]) )
+                            <td>{{$report_score[0][$count]}}</td>
                           @else
                             <td>미평가 감상문입니다.</td>
                           @endif
@@ -76,7 +76,7 @@
                             보기
                           </a>
                           @if ($user_info['type'] == 'teacher')                          
-                          <a role="button" href="{{route('reportevaluationview',$report_no[$count])}}" class="btn btn-sm btn-warning">
+                          <a role="button" href="{{route('report_view_evaluation',$report_no[$count])}}" class="btn btn-sm btn-warning">
                             평가하기
                           </a>
                           @endif
@@ -99,7 +99,7 @@
                     <a role="button" class="btn btn-sm btn-warning disabled">
                       평가하기
                     </a>
-                  @else
+                    @else
                     @endif
                   </td>
                 </tr>
@@ -107,7 +107,6 @@
           </tbody>
           </table>
           <div class="">
-            {{$reports->links() }}
           </div>
         </div>
       </div>

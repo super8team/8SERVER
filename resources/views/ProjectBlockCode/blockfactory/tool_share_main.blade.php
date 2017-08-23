@@ -69,31 +69,26 @@
     </style>
   </head>
 
-  <body style="background-color:#F88FE7;">
+  <body style="background-color:#e3f2ff;">
       <table id="mainShareList">
         <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
-        <tr id="mainContenstsImage">
+        <tr class="mainContenstsImage">
           <div class="center slider">
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
                  <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
                    <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
-                 {{--$value['name']--}}
+                 {{$value['package_name']}}
                  </div>
           @endforeach
            </div>
         </tr>
-        <!-- <tr id="mainPackageName">
-          @foreach($popularPackage as $key=>$value)
-            <td>
-            </td>
-          @endforeach
-        </tr> -->
+
       </table>
       <br>
       <br>
-      <div align="center" id="contentsPackageTitle">
+      <div align="center" id="contentsPackageTitle" >
         <h1>콘텐츠 패키지</h1>
       </div>
       <div id="packageResearch" style="margin-left:39%">
@@ -106,17 +101,17 @@
                   @php
                     $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
-          <div id="contenstsImage">
+          <div class="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value->no}}">
                       <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
-                    {{--$value->name--}}
+                    {{$value->package_name}}
                     </div>
           </div>
           @endforeach
-          <div style="margin-left:20%">
-          {{$otherPackage->links()}}
+          <div style="margin:auto;">
+            {{$otherPackage->links()}}
           </div>
           <button id="share" type="button">패키지 공유하기</button>
       </div>

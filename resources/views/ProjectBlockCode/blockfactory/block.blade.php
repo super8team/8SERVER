@@ -6,6 +6,9 @@
 
 <!DOCTYPE html>
 <head>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
+  </script>
+
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta charset="UTF-8">
 
@@ -32,7 +35,6 @@
   <script src="{{URL::asset('/js/block_exporter_view.js')}}"></script>
   <script src="{{URL::asset('/js/block_exporter_controller.js')}}"></script>
   <script src="{{URL::asset('/js/blocks.js')}}"></script>
-  <script src="{{URL::asset('/js/map.js')}}"></script>
   <script src="{{URL::asset('/js/app_controller.js')}}"></script>
   <script src="http://code.jquery.com/jquery-1.5.js"></script>
   <script src="{{URL::asset('/js/prettify.js')}}"></script>
@@ -40,8 +42,6 @@
   <script src="{{URL::asset('/js/tool_confirm.js')}}"></script>
   <script src="{{URL::asset('/js/notipopup.js')}}"></script>
   <link rel="stylesheet" href="{{URL::asset('/css/factory.css')}}">
-  <script src="http://maps.google.com/maps/api/js" type="text/javascript"></script>
-
 
 
   <script>
@@ -295,7 +295,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style='width:1%; border:0px solid;'>
+        <td style="height:80px">
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -308,7 +308,7 @@
               </td>
               <td id="buttonContainer">
                 <button id="linkButton" title="Save and link to blocks.">
-                  <img src="link.png" height="21" width="21" hidden>
+                  <img src="link.png" height="" width="21" hidden>
                 </button>
                 <button id="clearBlockLibraryButton" title="Clear Block Library." hidden>
                   <span>콘텐츠 전부 삭제하기</span>
@@ -322,10 +322,9 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package" style="margin:auto;text-align:center;vertical-align:middle;font-size:35px;font-weight:bold">
-
+              <td id="present_package">
+                {{$packages[0]['name']}}
               </td>
-
             </tr>
           </table>
         </td>
@@ -333,13 +332,14 @@
           <table>
             <tr id="blockLibrary">
               <td id="contents_list" >
-                <div style="background-color: #95CDFF">
-                  <button type="button" id="createNewBlockButton" >
+                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
+                  <button type="button" id="createNewBlockButton"  >
+                    NEW
                   </button>
                 </div>
-                <div style="background-color: #95CDFF">
-                  <!-- 콘텐츠 저장 -->
-                  <button type="button" id="saveToBlockLibraryButton">
+                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
+                  <button type="button" id="saveToBlockLibraryButton" >
+                    SAVE
                   </button>
                 </div>
               </td>
@@ -347,59 +347,35 @@
               <td id="blockLibraryContainer">
               <span>
                 <div class="dropdown">
-                    <div>
-                      <!-- <button>
-                        <a id="createNewBlockButton">new 콘텐츠</a>
-                      </button> -->
-                      <!-- <button id="presentPackageName" type="button" name="button">
-                      </button> -->
-                      <!-- <input id="presentPackageName" type="button" name="" value="현재패키지  {{$packages[0]['name']}}"> -->
-
-                    </div>
-
-                    <div id="dropdownDiv_blockLib">
+                    <div id="dropdownDiv_blockLib" >
                       <div id="button_blockLib">
                       </div>
-                      <!-- <button id="dropdown_??" class= "content_list" type="button" name="button">
-                          blockType
-                          <input type="text" class="contents_xml"  value="">
-                          <input type="text" class="block_myungse" value="">
-                          <input type="text" name="id"  value="">
-                      </button>-->
-                      @if($packages)
-                      @for($i=0; $i < $contentsize; $i++)
-                      <button style="margin-bottom:35px;margin-left:15px;height:50px" class="content_list" type="button" name="button" value="{{$packages[0]['contents'][$i]['xml']}}" >
-                          {{$packages[0]['contents'][$i]['name']}}
-                          <input type="text" class="contents_xml"  value="{{$packages[0]['contents'][$i]['xml']}}" hidden>
-                          <input type="text" class="block_myungse" value="{{$packages[0]['contents'][$i]['spec']}}" hidden>
-                          <input type="text" name="id"  value="{{$packages[0]['contents'][$i]['id']}}" hidden>
-                      </button>
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      @endfor
-                      @endif
+                      <!-- 패키지 리스트 출력 코드 -->
+                        @if($packages)
+                            @foreach($first_package as $content)
+                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                              {{$content->name}}
+                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                              <input type="text" name="id"  value="{{$content->no}}" hidden>
+                           </button>
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           @endforeach
+                       @endif
                    </div>
                     </form>
                   </div>
-                <!-- <select id="blockLibraryDropdown">
-                </select> -->
+
               </span>
               </td>
-            <!-- </tr> -->
-         <!-- </table>
-
-      </td> -->
         <td id="blockLibraryControls" >
-
           <button id="registerContents" >
             현장체험 등록
           </button>
           <button id="shareContentsButton">
             창작 마당
           </button>
-          <!-- <button id="saveToBlockLibraryButton" hidden>
-            콘텐츠 저장
-          </button> -->
-          <button id="removeBlockFromLibraryButton">
+          <button id="removeBlockFromLibraryButton" hidden>
             콘텐츠 삭제
           </button>
         </td>
@@ -414,9 +390,8 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled>패키지 리스트</button>
+            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
             <button id="createNewPackage"></button>
-            <!-- <button id="storagePackage">패키지 저장</button> -->
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
               @foreach($packages as $package_name)
@@ -434,156 +409,134 @@
           <div id="blocklyMask"></div>
         </td>
         <!-- 지도 -->
-
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
                   <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
-            <div id="map" style="height:70%; width:100%;display:inline-block">
-            </div>
+              <div id="map" style="height:70%; width:100%;display:inline-block">
+              </div>
           </div>
-<script type="text/javascript">``
-   var markersArray = [];
+          <script type="text/javascript">
 
-   var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 18,
-    center: new google.maps.LatLng(35.8963091, 128.62205110000002),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-   });
+          var markersArray = [];
 
-   google.maps.event.addListener(map, 'click', function (mouseEvent) {
-    getAddress(mouseEvent.latLng);
-    document.getElementById('get_location').innerHTML = mouseEvent.latLng;
-   });
+          var map = new google.maps.Map(document.getElementById("map"), {
+           zoom: 15,
+           center: new google.maps.LatLng(35.8963091, 128.62205110000002),
+           mapTypeId: google.maps.MapTypeId.ROADMAP,
+           mapTypeControlOptions: {
+           style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+           }
+          });
 
- function getAddress(latlng) {
+          google.maps.event.addListener(map, 'click', function (mouseEvent) {
+           getAddress(mouseEvent.latLng);
 
-     var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({
-   latLng: latlng
-  }, function(results, status) {
-   if (status == google.maps.GeocoderStatus.OK) {
-       if (results[0].geometry) {
+           document.getElementById('get_location').innerHTML = mouseEvent.latLng;
+          });
 
-           var address = results[0].formatted_address;
+          function getAddress(latlng) {
 
-           var marker = new google.maps.Marker({
-               position: latlng,
-               map: map
-           });
+            var geocoder = new google.maps.Geocoder();
+          geocoder.geocode({
+          latLng: latlng
+          }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              if (results[0].geometry) {
 
-     new google.maps.InfoWindow({
-         content: address + "<br>(Lat, Lng) = " + latlng
-         //content: address
-     }).open(map, marker);
+                  var address = results[0].formatted_address;
 
-     var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
-     $("#markerList").append(opt);
+                  var marker = new google.maps.Marker({
+                      position: latlng,
+                      map: map
+                  });
 
-     //markersArray.push(marker);
-    }
-   } else if (status == google.maps.GeocoderStatus.ERROR) {
-    alert("통신중 에러발생！");
-   } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-    alert("요청에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-   } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-    alert("단시간에 쿼리 과다송신！");
-   } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-    alert("이 페이지에는 지오코더 이용 불가! 왜??");
-   } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-    alert("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
-   } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-    alert("존재하지 않습니다.");
-   } else {
-    alert("??");
-   }
-  });
- }
+            new google.maps.InfoWindow({
+                content: address + "<br>(Lat, Lng) = " + latlng
+                //content: address
+            }).open(map, marker);
+
+            var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
+            $("#markerList").append(opt);
+
+            //markersArray.push(marker);
+           }
+          } else {
+           alert("다시 입력해 주세요");
+          }
+          });
+          }
 
 
- function changemap() {
-     var sm = $("#markerList option:selected").val().toString().replace(/[\(\)]/gi, '').split(",");
-     console.log(sm);
-     map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
-     map.setZoom(14);
- }
- function clearField(field){
-    if (field.value == field.defaultValue) {
-      field.value = '';
-    }
-  }
-  function checkField(field){
-    if (field.value == '') {
-      field.value = field.defaultValue;
-    }
-  }
- function resetSearch()
- {
-     location.reload();
- }
+          function changemap() {
+            var sm = $("#markerList option:selected").val().toString().replace(/[\(\)]/gi, '').split(",");
+            console.log(sm);
+            map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
+            map.setZoom(14);
+          }
+          function clearField(field){
+           if (field.value == field.defaultValue) {
+             field.value = '';
+           }
+          }
+          function checkField(field){
+           if (field.value == '') {
+             field.value = field.defaultValue;
+           }
+          }
+          function resetSearch()
+          {
+            location.reload();
+          }
 
- function getLatLng(place) {
+          function getLatLng(place) {
 
-     var geocoder = new google.maps.Geocoder();
-     geocoder.geocode({
-         address: place,
-         region: 'ko'
-     }, function (results, status) {
-         if (status == google.maps.GeocoderStatus.OK) {
-             var bounds = new google.maps.LatLngBounds();
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                address: place,
+                region: 'ko'
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var bounds = new google.maps.LatLngBounds();
 
-             for (var r in results) {
-                 if (results[r].geometry) {
-                     var latlng = results[r].geometry.location;
-                     bounds.extend(latlng);
-                     //var address = results[0].formatted_address.replace(/^日本, /, '');
-                     var address = results[r].formatted_address;
+                    for (var r in results) {
+                        if (results[r].geometry) {
+                            var latlng = results[r].geometry.location;
+                            bounds.extend(latlng);
+                            //var address = results[0].formatted_address.replace(/^日本, /, '');
+                            var address = results[r].formatted_address;
 
-      new google.maps.InfoWindow({
-       content: address + "<br>(Lat, Lng) = " + latlng.toString()
-      }).open(map, new google.maps.Marker({
-       position: latlng,
-       map: map
-      }));
+             new google.maps.InfoWindow({
+              content: address + "<br>(Lat, Lng) = " + latlng.toString()
+             }).open(map, new google.maps.Marker({
+              position: latlng,
+              map: map
+             }));
 
-                     var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
-                     $("#markerList").append(opt);
-                     $("#addrList").append(slt);
-                 }
-             }
-             map.fitBounds(bounds);
-         } else if (status == google.maps.GeocoderStatus.ERROR) {
-             alert("서버 통신에러！");
-         } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-             alert("리퀘스트에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-         } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-             alert("단시간에 쿼리 과다송신！");
-         } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-             alert("이 페이지에서는 지오코더 이용불가! 왜?");
-         } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-             alert("서버에 문제 발생한거 같아요.다시 한번 해보세요.");
-         } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-             alert("앙..못찾겠어요");
-         } else {
-             alert("??");
-         }
-     });
- }
-</script>
+                            var opt = $("<option value='" + latlng.toString() + "'>" + address + "</option>");
+                            $("#markerList").append(opt);
+                            $("#addrList").append(slt);
+                        }
+                    }
+                    map.fitBounds(bounds);
+                }  else {
+                    alert("다시 입력해 주세요");
+                }
+            });
+          }
 
-          <!-- <div id="addrList">
-            <select id="markerList" onchange="changemap()"><option selected="" value="">검색 List</option></select>
-          </div> -->
+          </script>
+
           <div id="get_location" border="1px solid black" hidden></div>
-        <!-- </div> -->
+
           <div id="right-space">
           </div>
+
           <div id="notipopup">
                       <div>
-                      <video src="videoex.mp4" autoplay controls width="300px" height="200px"></video>
-                        <!-- <div class="todayclose">TODAY CLOSE</div> -->
+                      <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
                         <div class="class">닫기</div>
                     </div>
           </div>
@@ -626,7 +579,6 @@
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-
       <category name="실행">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
@@ -962,15 +914,16 @@
     </xml>
 </div>
 
-  <form method="post" style="height:10%;border:1px solid" id="img_parent" name="form_name" enctype="multipart/form-data">
+  <form method="post" style="height:10%;border:1px solid" id="img_parent"  name="form_name" enctype="multipart/form-data" hidden>
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
-    </form>
+  </form>
+  <input type="text" id="judgeImage" name="judgeImage" value="0" hidden>
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
-                startX:'70%',
-                startY:'75%',
+                startX:'50%',
+                startY:'30%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -978,7 +931,7 @@
   var new_package;
   document.getElementById('saveToBlockLibraryButton').addEventListener('click',
       function() {
-        // self.blockLibraryController.saveToBlockLibrary();
+
         var a = new BlockLibraryController();
         a.saveToBlockLibrary();
         //저장할 [콘텐츠의 정보]를 가져오는 로직
@@ -1037,19 +990,20 @@
               var id_value     = data.length - 1;
               // storage_package_child.value = data[id_value].id;
               new_package.value = data[id_value].id;
-              // for(var i = 0; i < user_packages.length; i++){
-              //   var package_name = user_packages[i].innerText;
-              //   if(package_name == data[i]['name']){
-              //     user_packages[i].innerText = data[i]['name'];
-              //     user_packages[i].value     = data[i]['id'];
-              //   }
-              // }
+
             }else{
               console.log('기존의 패키지에 콘텐츠를 저장하였습니다');
             }
           },
           error: function(){
-            alert('실패임');
+            //마지막에 추가된 개체 삭제하기
+            var content_obj = document.getElementsByClassName('content_list');
+            var obj_length  = content_obj.length;
+            var del_obj     = document.getElementsByClassName('content_list')[obj_length-1];
+            del_obj.remove();
+
+            //경고 창 띄우기
+            alert('컨텐츠 이름 중복 입니다');
           }
         });
         document.getElementById('change').value = 0;
@@ -1078,7 +1032,7 @@
              file_list.setAttribute("name","filename[]");
              parent.appendChild(file_list);
              console.log('getCmaFileInfo function 2');
-             console.log(file_list);
+             console.log(document.getElementsByClassName('file_list'));
   }
 
  function getCmaFileView(obj,stype) {
@@ -1087,12 +1041,12 @@
 
   document.getElementById('registerContents').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=550, height=270';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
       window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
-      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=680, height=1000';
+      var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=1000';
       window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
@@ -1102,24 +1056,10 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-    // if(event.target != package_div.firstChild){
+
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
-
-      if(boundary == 0){
-          event.target.style.backgroundColor = '#2AE7F1';
-          boundary++;
-          before_ele = event.target;
-          console.log('0일때');
-      }else{
-        console.log('0이 아닐때');
-        before_ele.style.backgroundColor = 'white';
-        // package_div.insertBefore(event.target, package_div.firstChild);
-        before_ele = event.target;
-        event.target.style.backgroundColor = '#2AE7F1';
-      }
-    // }
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
@@ -1160,8 +1100,6 @@
               var name_text = document.createTextNode(data[i]['name']);
               parent_wrap.setAttribute('class','content_list');
               parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.height     =  "50px";
-              parent_wrap.style.marginBottom = "35px";
               parent_wrap.style.marginLeft   = "15px";
 
               child_wrap.setAttribute('type','text');

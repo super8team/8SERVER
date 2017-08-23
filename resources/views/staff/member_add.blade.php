@@ -127,6 +127,7 @@
       }
 
 
+
     // 1- 2 검색후 조건이 있을경우 div를 비움
     // 1- 3 없을경우 안내 멘트
 
@@ -216,7 +217,7 @@
         {{--</form>--}}
 
 
-          {{ csrf_field() }}
+{{--          {{ csrf_field() }}--}}
           <div class="text-center">
             <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
               삭제
@@ -234,7 +235,7 @@
                     <form action="{{route('staff.storage')}}" method="POST">
                   <table class="table table-bordered table-hover ">
 {{--                    @for ($i=0; $i <10 ; $i++)--}}
-                      
+
                       <tr>
                         <td id = 'added_member'>
 

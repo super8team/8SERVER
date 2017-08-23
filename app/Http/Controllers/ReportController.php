@@ -22,37 +22,13 @@ class ReportController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-
-  // public function custom_index(){
-  //   //넘길애들 선언
-  //   $report_no    = array();
-  //   $report_title = array();
-  //   $report_date  = array();
-  //   
-  //   //report list 가져오기 15개로 페이징
-  //   $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
-  //   // $reports = DB::table('reports')->orderBy('created_at', 'desc')->paginate(15);
-  //   // 뿌려주기 준비
-  //   foreach($reports as $report){
-  //     array_push($report_no , $report->no);
-  //     array_push($report_title, $report->title);
-  //     array_push($report_date , $report->created_at);
-  //   }
-  //   // 뿌리기  
-  //   return view('report.list', [
-  //     'reports'      => $reports,
-  //     'report_no'    => $report_no,
-  //     'report_title' => $report_title,
-  //     'report_date'  => $report_date,
-  //   ]); 
-  // }
-  
+//뭐냐..
   public function view_evaluation($report_no){
     //디비에서 값 가져오기
     //TODO  report_no 로 검색하여 가저오기
     $reports = \DB::table('review_writes')->where('no', $report_no)->first();
     
-    return view('report.evalution',[
+    return view('report.evaluation',[
       'plan_no'      => $reports->plan,
       'report_no'    => $reports->no,
       'report_title' => $reports->title,
@@ -61,16 +37,19 @@ class ReportController extends Controller
   
   }
   //TODO 
-  public function evaluation(Request $request)
+  public function evaluation(Request $request )
   { 
     $report_no     = $request->input('report_no');    
     $report_score  = $request->input('report_score');
+    $plan_no       = $request->input('plan_no');
     
     DB::table('review_evaluations')->where('review',$report_no)->insert([
+    'review' => $report_no,
+    'evaluater' => Auth::id(),
     'score' => $report_score,
   ]);
     //TODO 저거 위 디비에서 가저온 no 의 플랜에 접근하여 플랜넘버를 가져오삼
-    return view('report.report_list',$plan_no);
+    return redirect()->route('report_list', $plan_no);
   }
   
   public function custom_index($plan_no)
@@ -79,26 +58,30 @@ class ReportController extends Controller
       $report_no    = array();
       $report_title = array();
       $report_score = array();
+      $report_score = array();
       // $report_date  = array();
       
       //report list 가져오기 15개로 페이징
       // $reports = DB::table('review_writes')->where('plan',$plan_no)->orderBy('created_at', 'desc')->paginate(15);
-      $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
+      // $reports = DB::table('review_writes')->orderBy('created_at', 'desc')->paginate(15);
+      $reports = DB::table('review_writes')->where('plan',$plan_no)->get();
+      
       // 뿌려주기 준비
       foreach($reports as $report){
         array_push($report_no , $report->no);
         array_push($report_title, $report->title);
         //여 기 에러날꺼 같음
-        if($report->score != null){
-          array_push($report_score, $report->score);
-        }  
-        // array_push($report_date , $report->created_at);
+        $score_inserts = DB::table('review_evaluations')->where('no',$report->no)->get();
+        $scores = [];
+        foreach ($score_inserts as $score) {
+          $scores[] = $score->score;
+        }
+        array_push($report_score, $scores);
       }
       // 뿌리기 
       //reportes 는 페이지 네이션을 해야하기 땜에 지우지마셍
       return view('report.list', [
         'plan_no'      => $plan_no,
-        'reports'      => $reports,
         'report_no'    => $report_no,
         'report_title' => $report_title,
         'report_score' => $report_score,
@@ -151,7 +134,7 @@ class ReportController extends Controller
     'substance' => $report_text,
     // 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
     // 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-  ]);
+  ]);    
     
   return view('report.view',[
     'report_title' => $report_title,
@@ -174,9 +157,10 @@ class ReportController extends Controller
     
     return view('report.view',[
       'report_no'    => $reports->no,
-      'plan_no'    => $report->plan,
+      'plan_no'      => $report->plan,
       'report_title' => $report->title,
       'report_text'  => $report->substance,
+      'report_score' => $report_score,
     ]);
   }
 

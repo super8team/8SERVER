@@ -186,6 +186,7 @@ BlockFactory.updateLanguage = function() {
   if (!rootBlock) {
     return;
   }
+  console.log(rootBlock.getFieldValue('NAME'));
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
   console.log(rootBlock.getFieldValue('NAME').trim());
   console.log(blockType);

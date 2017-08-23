@@ -60,9 +60,11 @@ class FieldLearningPlanDocumentController extends Controller
         // 현재 로그인한 유저(선생님)의 근무정보 가져옴
 //        $work = \DB::table('works')->where('teacher', $user->no)->first();
         $work = \DB::table('works')->where('teacher', 106)->first();
+//	dd($work);
 
         // 근무정보 해당하는 학교의 정보를 가져옴
         $school = \DB::table('schools')->where('no', $work->school)->first();
+//        dd($school);
 
         // 현재 작성중인 계획 번호를 하나 가져옴
         $startDay = \DB::table('field_learning_plans')->where('no', $plan_number)->first();
@@ -82,24 +84,35 @@ class FieldLearningPlanDocumentController extends Controller
                                             ->where('type', 'teacher')->count();
 
 
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/documents/word.docx");
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/word.docx");
 
-
-        $templateProcessor->setValue('schoolName', $school->name);
-        $templateProcessor->setValue('schoolAddress', $school->address);
-        $templateProcessor->setValue('schoolPhone', $school->tel);
+        $templateProcessor->setValue('schoolName', '영진전문대학');
+        $templateProcessor->setValue('schoolAddress', '대구 북구 복현동');
+        $templateProcessor->setValue('schoolPhone', '010-5034-6922');
 //        $templateProcessor->setValue('teacher', $user->name);
-        $templateProcessor->setValue('teacher', "박성원 ㅎㅎ");
+        $templateProcessor->setValue('teacher', '박성원');
         $templateProcessor->setValue('period', $startDay->at);
-        $templateProcessor->setValue('total_count', $total_count_count);
-        $templateProcessor->setValue('teacher_count', $teacher_count);
-        $templateProcessor->setValue('student_count', $student_count);
-        $templateProcessor->setValue('date', $date);
+        $templateProcessor->setValue('total_count', '85');
+        $templateProcessor->setValue('teacher_count', '5');
+        $templateProcessor->setValue('student_count', '80');
+        $templateProcessor->setValue('date', '2017-08-25');
+        
+        
+//        $templateProcessor->setValue('schoolName', $school->name);
+//        $templateProcessor->setValue('schoolAddress', $school->address);
+//        $templateProcessor->setValue('schoolPhone', $school->tel);
+////        $templateProcessor->setValue('teacher', $user->name);
+//        $templateProcessor->setValue('teacher', "박성원");
+//        $templateProcessor->setValue('period', $startDay->at);
+//        $templateProcessor->setValue('total_count', $total_count_count);
+//        $templateProcessor->setValue('teacher_count', $teacher_count);
+//        $templateProcessor->setValue('student_count', $student_count);
+//        $templateProcessor->setValue('date', $date);
 
 
-        $templateProcessor->saveAs('./word.docx');
+        $templateProcessor->saveAs('storage/word.docx');
 
-//        return response()->download('./word.docx');
+        return response()->download('storage/word.docx');
     }
 
 

@@ -1,15 +1,19 @@
+
 var markersArray = [];
 
 var map = new google.maps.Map(document.getElementById("map"), {
- zoom: 12,
- center: new google.maps.LatLng(37.49736948554443, 127.02452659606933),
- mapTypeId: google.maps.MapTypeId.ROADMAP
+ zoom: 15,
+ center: new google.maps.LatLng(35.8963091, 128.62205110000002),
+ mapTypeId: google.maps.MapTypeId.ROADMAP,
+ mapTypeControlOptions: {
+ style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+ }
 });
 
 google.maps.event.addListener(map, 'click', function (mouseEvent) {
  getAddress(mouseEvent.latLng);
- console.log(mouseEvent.latLng);
- alert(mouseEvent.latLng);
+
+ document.getElementById('get_location').innerHTML = mouseEvent.latLng;
 });
 
 function getAddress(latlng) {
@@ -38,20 +42,8 @@ if (status == google.maps.GeocoderStatus.OK) {
 
   //markersArray.push(marker);
  }
-} else if (status == google.maps.GeocoderStatus.ERROR) {
- alert("통신중 에러발생！");
-} else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
- alert("요청에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-} else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
- alert("단시간에 쿼리 과다송신！");
-} else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
- alert("이 페이지에는 지오코더 이용 불가! 왜??");
-} else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
- alert("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
-} else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
- alert("존재하지 않습니다.");
 } else {
- alert("??");
+ alert("다시 입력해 주세요");
 }
 });
 }
@@ -63,7 +55,16 @@ function changemap() {
   map.setCenter(new google.maps.LatLng(sm[0].trim(), sm[1].trim()));
   map.setZoom(14);
 }
-
+function clearField(field){
+ if (field.value == field.defaultValue) {
+   field.value = '';
+ }
+}
+function checkField(field){
+ if (field.value == '') {
+   field.value = field.defaultValue;
+ }
+}
 function resetSearch()
 {
   location.reload();
@@ -99,20 +100,8 @@ function getLatLng(place) {
               }
           }
           map.fitBounds(bounds);
-      } else if (status == google.maps.GeocoderStatus.ERROR) {
-          alert("서버 통신에러！");
-      } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-          alert("리퀘스트에 문제발생！geocode()에 전달하는GeocoderRequest확인요！");
-      } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-          alert("단시간에 쿼리 과다송신！");
-      } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-          alert("이 페이지에서는 지오코더 이용불가! 왜?");
-      } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-          alert("서버에 문제 발생한거 같아요.다시 한번 해보세요.");
-      } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-          alert("앙..못찾겠어요");
-      } else {
-          alert("??");
+      }  else {
+          alert("다시 입력해 주세요");
       }
   });
 }

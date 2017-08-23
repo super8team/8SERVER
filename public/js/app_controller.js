@@ -585,11 +585,8 @@ AppController.prototype.assignLibraryClickHandlers = function() {
             console.log(img_file_object[i].value);
             img_file_object[i].remove();
         }
-        document.getElementById('upFile').value = null;
-        document.getElementById('change').value = 1;
-        console.log('파일');
-
-
+        // document.getElementById('upFile').value = null;
+        document.getElementById('judgeImage').value = 1;
 
         var obj   = event.target;
         var value = event.target.value;
@@ -672,7 +669,7 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
   document.getElementById('createNewBlockButton').addEventListener('click', function() {
       var proceedWithUnsavedChanges =
           self.blockLibraryController.warnIfUnsavedChanges();
-      // document.getElementById('present_file').value = 1;
+      document.getElementById('judgeImage').value = 0;
 
       var img_file_object = document.getElementsByClassName('file_list');
 

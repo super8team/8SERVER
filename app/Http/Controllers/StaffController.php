@@ -69,14 +69,18 @@ class StaffController extends Controller
 
     public function storage(Request $request)
     {
-
+        // 받아온 값의 위원회 번호를 넣는다.
         $committee_no = $request->input('committee_number');
+//        $result_no = $request->input('result_number');
 
+        // 회원의 이름
         $list = $request->input('serial');
+
 
         \DB::table('committees')->insert([
             'plan'=>$committee_no,'leader'=>5
         ]);
+
 
         for ($i = 0; $i < count($list); $i++) {
             \DB::table('committee_members')->insert([
@@ -84,8 +88,27 @@ class StaffController extends Controller
             ]);
         }
 
-        return redirect()->route('staff',['count'=>$committee_no]);
+            $request->session()->flash('success', "저장성공");
+//            dd($request->session()->all());
+            return redirect()->route('staff', ['count' => $committee_no]);
+//              return view('staff.memberAdd')->with('committee_mebers', $committee_mebers);
 
+
+    }
+
+
+    public function storageList(Request $request)
+    {
+
+        $committee_no = $request->input('committee_number');
+
+        if ($committee_no) {
+            return view('staff.memberAdd');
+        }
+        else {
+            return view();
+
+        }
     }
 
 

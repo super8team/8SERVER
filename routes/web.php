@@ -112,6 +112,8 @@ Route::get('contents/packages/{package_id}','ContentsController@extractContents'
 //콘텐츠 저장하기
 Route::post('contents/storageNewContent','ContentsController@storageNewContent')->name('contents.storageNewContent');
 
+Route::post('contents/modifyContent','ContentsController@modifyContent')->name('contents.modifyContent');
+
 Route::get('contents/downloadShareContent','ContentsController@downloadShareContent')->name('contents.downloadShareContent');
 
 Route::get('contents/searchContents','ContentsController@searchContents')->name('contents.searchContents');
@@ -143,7 +145,7 @@ Route::get('reportcreate/{plan_no}', 'ReportController@custom_create')->name('re
 Route::get('reportevaluationview/{report_no}', 'ReportController@view_evaluation')->name('report_view_evaluation');
 
 // 소감문 평가
-Route::post('reportevaluation/{report_no}', 'ReportController@evaluation')->name('report_evaluation');
+Route::get('reportevaluation', 'ReportController@evaluation')->name('report_evaluation');
 
 // 소감문 기타
 Route::resource('report','ReportController');

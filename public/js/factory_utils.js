@@ -58,44 +58,9 @@ goog.provide('FactoryUtils');
  var root_block;
  var myungse = new Array();
 
-// FactoryUtils = function(){
-//   var xml3 = '<xml xmlns="http://www.w3.org/1999/xhtml">'+
-//   '<block type="factory_base" id="jsJbcVlNT:#E9,M-7V(1" deletable="false" movable="false" x="0" y="0">'+
-//   '<mutation connections="null"></mutation>'+
-//   '<field name="NAME">fef</field>'+
-//   '<value name="VERTICAL">'+
-//     '<block type="vertical" id="5VQix4TOuX6BV_lv^#;r" deletable="false">'+
-//       '<field name="VERTICAL"></field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="HORIZONTAL">'+
-//     '<block type="horizontal" id="C)e#DB8cz`+Bo-9o4~0[" deletable="false">'+
-//       '<field name="HORIZONTAL"></field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="VISIONABLE">'+
-//     '<block type="logic_boolean" id="e@4|/*}pCo~#aYE8Fr15" deletable="false">'+
-//       '<field name="BOOL">TRUE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="CLICKABLE">'+
-//     '<block type="logic_boolean" id="d[._igq{x2w7zubn4[Af" deletable="false">'+
-//       '<field name="BOOL">FALSE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '<value name="DISABLE">'+
-//     '<block type="logic_boolean" id="nDYlY2Z{v$2K|XI`c5T^">'+
-//       '<field name="BOOL">TRUE</field>'+
-//     '</block>'+
-//   '</value>'+
-//   '</block>'+
-//   '</xml>';
-//   this.blockLibraryController.openBlock2(xml3);
-// }
+
 FactoryUtils.getBlockDefinition =   function(blockType, rootBlock, format, workspace) {
   console.log(blockType);
-
-
   console.log("현재 블록 작업 할 게요!");
   console.log(rootBlock);
   switch (format) {
@@ -283,6 +248,7 @@ FactoryUtils.getGeneratorStub = function(block, generatorLanguage) {
  * @private
  */
 FactoryUtils.formatJson_ = function(blockType, rootBlock) {
+
   console.log("첫진입");
   // console.log("blockType:"+blockType);F
   //rootblock : 기본 제공 블럭
@@ -435,55 +401,61 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       var cform = document.form_name;
       var ex;
       var ex2;
-
-      console.log(contentsBlock.type);
+      console.log(JS);
+      console.log(args);
       switch(contentsBlock.type){
         case 'image_1':
-          console.log('1');
+        console.log(JS);
+        console.log(args);
             input.id = '1';
-            // var elements = document.getElementsByClassName('file_list');
+            var elements = document.getElementsByClassName('file_list');
+            var judgeImage = document.getElementById('judgeImage').value;
             // if(contentsBlock){
             //   console.log(document.getElementById('change').value);
-            //   if(document.getElementById('change').value == 1)
+            //   //있을 때
+            //   // if(document.getElementsByClassName('file_list')[0])
+            //   // {
+            //   //    input.src = document.getElementsByClassName('file_list')[0].value;
+            //   //    break;
+            //   // }
+            //   //이미지 input이 없을 때
+            //   else
+            //   {
+            //     //new 일 때
+            //     if(judgeImage==0){
+            //       cform.upFile.click();
+            //     }
+            //   }
+            // }
+            break;
+        case 'image_2':
+          console.log(JS);
+          console.log(args);
+            input.id = '2';
+            //   console.log('2');
+            // if(contentsBlock){
+            //   if(document.getElementsByClassName('file_list')[1])
             //   {
             //     console.log('들어옴');
-            //     break;
+            //     input.src = document.getElementsByClassName('file_list')[1].value;
             //   }
-            //   else if(elements[0] == null)
+            //   else
             //   {
             //     cform.upFile.click();
             //   }
             // }
-            // input.src = document.getElementsByClassName('file_list')[0].value;
-            break;
-        case 'image_2':
-          console.log('2');
-            input.id = '2';
-          //   console.log('2');
-          //   if(contentsBlock){
-          //     if(document.getElementById('change').value == 1)
-          //     {
-          //       console.log('들어옴');
-          //       break;
-          //     }
-          //     else if(elements[1] == null)
-          //     {
-          //       cform.upFile.click();
-          //     }
-          //   }
-          // input.src = document.getElementsByClassName('file_list')[1].value;
           break;
         case 'image_3':
         console.log('3');
             input.id = '3';
-            // console.log('3');
+            console.log('3');
             // if(contentsBlock){
-            //   if(document.getElementById('change').value == 1)
+            //   if(document.getElementsByClassName('file_list')[2])
             //   {
             //     console.log('들어옴');
             //     break;
             //   }
-            //   else if(elements[2]== null)
+            //   else
             //   {
             //     cform.upFile.click();
             //   }
@@ -493,25 +465,21 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
         case 'image_4':
         console.log('4');
             input.id = '4';
-          //   console.log('4');
-          //   if(contentsBlock){
-          //     if(document.getElementById('change').value == 1)
-          //     {
-          //       console.log('들어옴');
-          //       break;
-          //     }
-          //     else if(elements[3]== null)
-          //     {
-          //       cform.upFile.click();
-          //     }
-          //   }
+            console.log('4');
+            // if(contentsBlock){
+            //   if(document.getElementsByClassName('file_list')[3])
+            //   {
+            //     console.log('들어옴');
+            //     break;
+            //   }
+            //   else
+            //   {
+            //     cform.upFile.click();
+            //   }
+            // }
           // input.src = document.getElementsByClassName('file_list')[3].value;
           break;
       }
-      var a = document.getElementsByClassName('file_list')
-      console.log(a);
-      console.log(a[0]);
-
       if (contentsBlock.type != 'input_dummy') {
         //name 속성의 값을 가져옴
         input.name = contentsBlock.getFieldValue('IMGNAME');
@@ -524,7 +492,13 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       lastInput = contentsBlock;
       var lastInput2 = '/'+lastInput;
       console.log(imgArgs);
-
+      console.log(args);
+      if(!args)
+      {
+        console.log('이미지 객체 없습니다');
+      }else{
+        console.log(args);
+      }
     }
     contentsBlock = contentsBlock.nextConnection &&
         contentsBlock.nextConnection.targetBlock();
@@ -568,12 +542,16 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
   JS.visionable = FactoryUtils.getVisionableBoolRootBlock_(rootBlock);
   JS.clickable  = FactoryUtils.getClickableRootBlock1_(rootBlock);
   JS.disable    = FactoryUtils.getDisableRootBlock_(rootBlock);
-  // JS.toast      = FactoryUtils.getToastRootBlock_(rootBlock);
-  // JS.quest      = FactoryUtils.getQuestRootBlock_(rootBlock);
-  // JS.bingo      = FactoryUtils.getBingoRootBlock_(rootBlock);
-  // JS.collection = FactoryUtils.getCollectionRootBlock_(rootBlock);
-  // JS.map        = FactoryUtils.getMapRootBlock_(rootBlock);
-
+  console.log('이미지 테스트');
+  console.log(JS);
+  console.log(document.getElementsByClassName('file_list').length);
+  var img_num = document.getElementsByClassName('file_list').length;
+  console.log(img_num);
+  for(var i = 0; i < img_num;i++){
+    if(!args[i]){
+      document.getElementsByClassName('file_list')[i].remove();
+    }
+  }
   return JSON.stringify(JS, null, '  ');
 
 };
