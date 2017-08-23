@@ -394,11 +394,12 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      dd($package_img);
 
+      $request->file('package_image')->store('share_package_img');
+      dd('이미지 저정');
       //공유 패키지 이미지
       Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
-      dd('이미지 저정 방법 알아보기');
+
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
       //공유 패키지를 구성할 콘텐츠
