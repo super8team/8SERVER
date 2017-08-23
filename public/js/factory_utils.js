@@ -424,7 +424,7 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
                 //new 일 때
                 if(judgeImage==0){
                   cform.upFile.click();
-                }else if(document.getElementsByClassName('file_list')[0]){
+                }else if(document.getElementsByClassName('file_list')[0]==null){
                   cform.upFile.click();
                 }
               }
