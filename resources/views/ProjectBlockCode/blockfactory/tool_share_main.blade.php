@@ -156,10 +156,28 @@
           'searchWord1'  : searchWord
         },
         success: function(data){
-            console.log('통신 성공');
+            console.log(data);
             $('#shareList').empty();
+            var parent_div = document.getElementById('shareList');
+            var infor_div  = document.createElement('div');
+            var img_ele    = document.createElement('img');
+            var a_ele      = document.createElement('a');
+            var name_div   = document.createElement('div');
+
+            for(var i = 0; i< data.length ; i++){
+              var contents_package = data[i]['contents_package'];
+              var img_url          = data[i]['img_url'];
+              var img_url          = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
+              var package_name     = data[i]['package_name'];
+              a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
+              img_ele.setAttribute('src',img_url);
+              name_div.innerHTML = package_name;
+              a_ele.appendChild(img_ele);
+              infor_div.appendChild(name_div);
+              infor_div.appendChild(a_ele);
+              parent_div.appendChild(infor_div);
+            }
             var img_url          = data[0]['img_url'];
-            console.log(img_url);
             var package_name     = data[1];
             var contents_package = data[0]['contents_package'];
             var parent_div = document.getElementById('shareList');
@@ -178,7 +196,7 @@
             infor_div.appendChild(name_div);
             infor_div.appendChild(a_ele);
             parent_div.appendChild(infor_div);
-            console.log(parent_div);
+            // console.log(parent_div);
         },
         error: function(){
           console.log('통신실패');

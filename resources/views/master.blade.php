@@ -144,7 +144,7 @@
             <span class="icon-bar"></span>
           </button>
           {{-- 상표 이미지 로고 --}}
-          <img class="navbar-brand" src="{{asset('img/logo.png')}}" alt="">
+          <img class="navbar-brand" style="border-radius:70px" src="{{asset('img/logo.jpg')}}" alt="">
            {{-- 상표 이름 적기 --}}
           <a class="navbar-brand" href="{{ route('main') }}">LEARnFUN</a>
         </div>

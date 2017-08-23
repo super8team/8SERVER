@@ -684,7 +684,7 @@
                  <td>작성자</td>
                </tr>
                <tr>
-                 <td colspan="2">흐미 불국사 지리구요</td>
+                 <td colspan="2">경주 체험학습 계획입니다.</td>
                </tr>
              </tbody>
            </table>
@@ -811,7 +811,7 @@
                 </table>
 
                 {{-- 페이지 네이션 --}}
-                <nav class="page text-center">
+                {{-- <nav class="page text-center">
                   <ul class="pagination">
                     <li>
                       <a href="#" aria-label="Previous">
@@ -829,7 +829,7 @@
                       </a>
                     </li>
                   </ul>
-                </nav>
+                </nav> --}}
                 <div id="script-warning">
 
                 </div>
