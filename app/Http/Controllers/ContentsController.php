@@ -394,7 +394,7 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      $destination = storage_path().'/app/public/packageImages';
+      $destination = public_path().'/img';
       $url = Storage::url('packageImgs/');
 
       $images = Input::file('package_image');
@@ -402,7 +402,7 @@ class ContentsController extends Controller
       // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
-      Input::file('package_image')->move('http://163.44.166.91/LEARnFUN/public/storage/packageImgs/',$image_name);
+      Input::file('package_image')->move($destination,$image_name);
       dd($destination);
       //공유 패키지 이미지
 
