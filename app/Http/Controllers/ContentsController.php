@@ -398,13 +398,10 @@ class ContentsController extends Controller
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
       $imagePath = base_path().sprintf('/storage/public/packageImgs',$image_name);
+      dd($imagePath);
       $images->move($imagePath,$image_name);
       //공유 패키지 이미지
-      dd('gg');
-      Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
-      $request->file('package_image')->storeAs(
-          'avatars', $request->user()->id
-      );
+      
 
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
@@ -434,7 +431,7 @@ class ContentsController extends Controller
       }
 
       DB::table('contents_package_shares')->insert([
-          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'name'=>$package_name,'views' => 0, 'downloads' => 0]
+          ['contents_package' => $newContentsPackage->no, 'img_url' => $image_name, 'explain' => $explain, 'name'=>$package_name,'views' => 0, 'downloads' => 0]
       ]);
       // Input::file('picture')->move($destinationPath, $img);
 
