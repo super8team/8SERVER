@@ -397,11 +397,11 @@ class ContentsController extends Controller
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      $imagePath = base_path().sprintf('/public/storage/packageImgs',$image_name);
-                        /opt/lampp/htdocs/LEARnFUN/public/storage/packageImgs
-              
+      // $imagePath = base_path().sprintf('/public/storage/packageImgs',$image_name);
+
+
       $images->move('http://163.44.166.91/LEARnFUN/public/storage/packageImgs/',$image_name);
-      dd($imagePath);
+      dd('fqw');
       //공유 패키지 이미지
 
 
