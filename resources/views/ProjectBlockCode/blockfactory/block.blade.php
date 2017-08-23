@@ -918,6 +918,7 @@
     <input id="change" type="text" name="" value="0" hidden>
     <input type="file" name="upFile" id="upFile" onchange="getCmaFileView(this,'name')" hidden>
   </form>
+  <input type="text" id="judgeImage" name="judgeImage" value="0" hidden>
   </body>
   <script type="text/javascript">
   $('#notipopup').topmenu({
@@ -1059,8 +1060,6 @@
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
-
-
 
     var parent       = document.getElementById('dropdownDiv_blockLib');
 

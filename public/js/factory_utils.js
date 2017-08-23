@@ -403,17 +403,17 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       var ex2;
       console.log(JS);
       console.log(args);
-      console.log(rootBlock);
       switch(contentsBlock.type){
         case 'image_1':
-        console.log(document.getElementsByClassName('file_list'));
         console.log(JS);
         console.log(args);
             input.id = '1';
             var elements = document.getElementsByClassName('file_list');
+            var judgeImage = document.getElementById('judgeImage').value;
+
             if(contentsBlock){
               console.log(document.getElementById('change').value);
-
+              //있을 때
               if(document.getElementsByClassName('file_list')[0])
               {
                 input.src = document.getElementsByClassName('file_list')[0].value;
@@ -421,10 +421,10 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
               }
               else
               {
-                cform.upFile.click();
+                if(judgeImage==0)
+                  cform.upFile.click();
               }
             }
-
             break;
         case 'image_2':
           console.log(JS);
