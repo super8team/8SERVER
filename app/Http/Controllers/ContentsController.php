@@ -15,8 +15,8 @@ class ContentsController extends Controller
     public function index()
     {
 
-
-          $userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
+          // 서버한테 post로 현재 유저 아이디를 주고
+          $userNo   = Auth::user()->no;
 
           $packages = [];
           // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
@@ -388,7 +388,7 @@ class ContentsController extends Controller
     public function sharePackages(Request $request)
     {
       $img_name   =   $request->file('image');
-
+      dd($img_name);
       // $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
       //공유 패키지 이름
@@ -420,7 +420,7 @@ class ContentsController extends Controller
       for($i = 0; $i < sizeof($downContents); $i++) {
           $oldContents = DB::table('contents')->where('no', $downContents[$i])->first();
 
-       // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
+          // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
           DB::table('contents')->insert([
               ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
           ]);

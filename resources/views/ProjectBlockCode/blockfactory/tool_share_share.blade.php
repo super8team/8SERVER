@@ -33,35 +33,34 @@
     </form>
 
 <script type="text/javascript">
-function check()
-{
-  var string = $('.wrapper').html();
-  $('.downForm').appendChild(string);
-}
+  function check()
+  {
+    var string = $('.wrapper').html();
+    $('.downForm').appendChild(string);
+  }
 
-var upload = document.getElementsByTagName('input')[0],
-    holder = document.getElementById('holder');
+  var upload = document.getElementsByTagName('input')[0],
+      holder = document.getElementById('holder');
 
+  upload.onchange = function (e) {
+    e.preventDefault();
 
-upload.onchange = function (e) {
-  e.preventDefault();
+    var file = upload.files[0],
+        reader = new FileReader();
+    reader.onload = function (event) {
+      var img = new Image();
+      img.src = event.target.result;
+      img.width  = 140;
+      img.height = 140;
+      // note: no onload required since we've got the dataurl...I think! :)
 
-  var file = upload.files[0],
-      reader = new FileReader();
-  reader.onload = function (event) {
-    var img = new Image();
-    img.src = event.target.result;
-    img.width  = 140;
-    img.height = 140;
-    // note: no onload required since we've got the dataurl...I think! :)
+      holder.innerHTML = '';
+      holder.appendChild(img);
+    };
+    reader.readAsDataURL(file);
 
-    holder.innerHTML = '';
-    holder.appendChild(img);
+    return false;
   };
-  reader.readAsDataURL(file);
-
-  return false;
-};
 
 
 
