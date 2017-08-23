@@ -396,6 +396,7 @@ class ContentsController extends Controller
       $package_img     =  $request->file('package_image')->getClientOriginalName();
       $destination = storage_path().'/app/public/packageImages';
       $url = Storage::url('packageImgs/');
+      dd($url);
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
       // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
