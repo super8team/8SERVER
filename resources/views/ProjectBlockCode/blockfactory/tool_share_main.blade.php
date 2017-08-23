@@ -156,8 +156,11 @@
           'searchWord1'  : searchWord
         },
         success: function(data){
-            console.log('통신 성공');
+            console.log(data);
             $('#shareList').empty();
+            for(var i = 0; i< data.length ; i++){
+              console.log(data[i]);
+            }
             var img_url          = data[0]['img_url'];
             console.log(img_url);
             var package_name     = data[1];
