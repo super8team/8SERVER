@@ -15,7 +15,7 @@ class FieldLearningPlanDocumentsSeeder extends Seeder
 
             ['name' => '(수학여행)현장체험학습 실시 계획 기안문', 'explain' => '', 'work' => 1, 'document_url' => 'noURL'],
             ['name' => '수학여행 계획서 양식', 'explain' => '', 'work' => 1, 'document_url' => 'noURL'],
-            ['name' => '안심수학여행서비스신청서', 'explain' => '', 'work' => 1, 'document_url' => 'noURL'],
+            ['name' => '안심수학여행서비스신청서', 'explain' => '', 'work' => 1, 'document_url' => 'storage/word.doc'],
             ['name' => '청렴교육', 'explain' => '', 'work' => 1, 'document_url' => 'noURL'],
             ['name' => '기본안전교육', 'explain' => '', 'work' => 1, 'document_url' => 'noURL'],
             ['name' => '체험학습 참가희망조사', 'explain' => '', 'work' => 2, 'document_url' => 'noURL'],

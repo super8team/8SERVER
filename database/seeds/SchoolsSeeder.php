@@ -11,18 +11,32 @@ class SchoolsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('schools')->insert([
+      $faker = Faker\Factory::create('ko_KR');
+      DB::table('schools')->insert([
+        ['name' => '영진고등학교', 'tel' => '01050346922', 'address'=>$faker->address], // 1
+        ['name' => '영진중학교', 'tel' => '01050346923', 'address'=>$faker->address], // 2
+        ['name' => '한국중학교', 'tel' => '01050346925', 'address'=>$faker->address], /// 3
+        ['name' => '대한고등학교', 'tel' => '01050346927', 'address'=>$faker->address], // 4 시연에 나오는 학교
+        ['name' => '동지여자고등학교', 'tel' => '01050346926', 'address'=>$faker->address], // 5
+        ['name' => '수피아여자고등학교', 'tel' => '01050346929', 'address'=>$faker->address], // 6
+      ]);
 
-        ['name' => '학교1', 'tel' => '01050346922'],
-        ['name' => '학교2', 'tel' => '01050346923'],
-        ['name' => '학교3', 'tel' => '01050346924'],
-        ['name' => '학교4', 'tel' => '01050346925'],
-        ['name' => '학교5', 'tel' => '01050346926'],
-        ['name' => '학교6', 'tel' => '01050346927'],
-        ['name' => '학교7', 'tel' => '01050346928'],
-        ['name' => '학교8', 'tel' => '01050346929'],
-        ['name' => '학교9', 'tel' => '01050346930']
+      $teachers = DB::table('users')->where('type', 'teacher')->get();
+      foreach($teachers as $teacher) {
+        DB::table('works')->insert([
+          ['school' => 16, 'teacher' => $teacher->no]
+        ]);
+      }
 
-    ]);
+      $teachers = DB::table('users')->where('type', 'teacher')->inRandomOrder()->get();
+      $index=1;
+      for($class=1; $class<4; $class++) {
+        for($grade=1; $grade<6; $grade++) {
+          DB::table('grade_classes')->insert([
+            ["school" => 16, 'grade'=>$class, 'class'=>$grade,
+            'teacher'=>$teachers[$index++]->no]
+          ]);
+        }
+      }
     }
 }
