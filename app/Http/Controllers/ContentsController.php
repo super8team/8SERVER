@@ -502,7 +502,7 @@ class ContentsController extends Controller
       $result = DB::table('contents_package_shares')
                       ->where('package_name','like','%'+$searchWord+'%')
                       ->get();
-        dd($result);
+
       // array_push($result_array,$result);
       //
       // $package_serial = $result->contents_package;
