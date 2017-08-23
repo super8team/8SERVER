@@ -416,13 +416,17 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
               //있을 때
               if(document.getElementsByClassName('file_list')[0])
               {
-                input.src = document.getElementsByClassName('file_list')[0].value;
-                break;
+                 input.src = document.getElementsByClassName('file_list')[0].value;
+                 break;
               }
               else
               {
-                if(judgeImage==0)
+                //new 일 때
+                if(judgeImage==0){
                   cform.upFile.click();
+                }else if(document.getElementsByClassName('file_list')[0]){
+                  cform.upFile.click();
+                }
               }
             }
             break;
