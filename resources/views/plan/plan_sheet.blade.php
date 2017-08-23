@@ -87,7 +87,7 @@
 															<td class='info bold'> 선택 내용 </td>
 															<td class="text-center"  colspan="5">
 																@foreach ($transpotation as $value)
-																{{ "배열 들어갈 꺼임" }}
+																{{ "대중교통,관람(미술관,박물관 등)" }}
 																@endforeach
 															</td>
 														</tr>
