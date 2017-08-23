@@ -114,7 +114,7 @@ class ContentsController extends Controller
         $popularPackages      = DB::table('contents_package_shares')->orderBy('views', 'desc')->take(6)->get();
         // dd($popularPackages);
         $otherPackages        = DB::table('contents_package_shares')->paginate(4);
-        
+
         foreach ($popularPackages as $popularPackage ) {
             array_push($popularPackageInfor, array('ids'=>$popularPackage->no,'imgs'=>$popularPackage->img_url,'package_name'=>$popularPackage->package_name));
         }
@@ -500,7 +500,7 @@ class ContentsController extends Controller
       $result_array = [];
 
       $result = DB::table('contents_package_shares')
-                      ->where('package_name','like','%'+$searchWord+'%')
+                      ->where('package_name','like','%'.$searchWord.'%')
                       ->get();
 
       // array_push($result_array,$result);
