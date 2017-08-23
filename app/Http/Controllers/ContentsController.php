@@ -402,7 +402,7 @@ class ContentsController extends Controller
       // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
-      $images->move($url,$image_name);
+      Input::file('package_image')->move('http://163.44.166.91/LEARnFUN/public/storage/packageImgs/',$image_name);
       dd($destination);
       //공유 패키지 이미지
 
