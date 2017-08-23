@@ -3,7 +3,7 @@
 <script src="http://code.jquery.com/jquery-1.5.js"></script>
 <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
 <body>
-
+                                                                                                              
     <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">
       <div class="wrapper" >
 

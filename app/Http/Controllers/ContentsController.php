@@ -395,8 +395,12 @@ class ContentsController extends Controller
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
 
-
+      $images = Input::file('package_image');
+      $image_name = $images->getClientOriginalName();
+      $imagePath = base_path().sprintf('/storage/public/packageImgs',$image_name);
+      $images->move($imagePath,$image_name);
       //공유 패키지 이미지
+      dd('gg');
       Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
       $request->file('package_image')->storeAs(
           'avatars', $request->user()->id
