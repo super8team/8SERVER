@@ -84,12 +84,7 @@
           @endforeach
            </div>
         </tr>
-        <!-- <tr id="mainPackageName">
-          @foreach($popularPackage as $key=>$value)
-            <td>
-            </td>
-          @endforeach
-        </tr> -->
+
       </table>
       <br>
       <br>
@@ -115,8 +110,8 @@
                     </div>
           </div>
           @endforeach
-          <div style="margin-left:20%">
-          {{$otherPackage->links()}}
+          <div style="margin:auto;">
+            {{$otherPackage->links()}}
           </div>
           <button id="share" type="button">패키지 공유하기</button>
       </div>

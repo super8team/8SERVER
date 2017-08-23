@@ -15,8 +15,8 @@ class ContentsController extends Controller
     public function index()
     {
 
-
-          $userNo   = Auth::user()->no; // 서버한테 post로 현재 유저 아이디를 주고
+          // 서버한테 post로 현재 유저 아이디를 주고
+          $userNo   = Auth::user()->no;
 
           $packages = [];
           // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
@@ -219,7 +219,7 @@ class ContentsController extends Controller
       //체험현장학습 리스트를 뽑아내는 쿼리
       $field_list_array   = [];
       $package_list_array = [];
-      $teacher_no = Auth::user()->no;
+      $teacher_no  = Auth::user()->no;
       $field_lists = DB::table('field_learning_plans')->where('teacher','=',$teacher_no)->get();
 
       foreach($field_lists as $field_list){
@@ -250,33 +250,31 @@ class ContentsController extends Controller
       $packages = $request->input('package');
       $fields   = $request->input('field_list');
 
-      dd($packages);
-      //현장체험 리스트를 담는 변수
-      $planField = [];
-      $planField_second = [];
+      for($i = 0; $i < 20; $i++){
+        if (array_key_exists($i, $packages)) {
 
-      // dd($fields);
-      //패키지를 등록할 현장학습리스트를 추출한다
-      for($i = 0; $i<15; $i++){
-        if(array_key_exists($i, $packages)){
-          // array_push($planField,$fields[$i],$packages[$i]);
-          $planField[$i][0] = $fields[$i];
-          $planField[$i][1]= $packages[$i];
-          // $planField[$i]=$packages[$i];
+            DB::table('field_learning_plans')->where([
+                      ['no',$fields[$i]]
+            ])->update(['contents_package'=>$packages[$i][0]]);
+
         }
       }
+      //현장체험 리스트를 담는 변수
+      // $planField = [];
+      // $planField_second = [];
 
-      for($i = 0; $i < count($planField); $i++){
-        $plan = $planField[$i][0];
-
-        $pack = $planField[$i][1][0];
-
-        DB::table('field_learning_plans')
-                      ->where([
-                        ['teacher',Auth::user()->no],
-                        ['no',$plan]
-                      ])->update(['contents_package'=>$pack]);
-      }
+      //패키지를 등록할 현장학습리스트를 추출한다
+      // for($i = 0; $i < count($planField); $i++){
+      //   $plan = $planField[$i][0];
+      //
+      //   $pack = $planField[$i][1][0];
+      //
+      //   DB::table('field_learning_plans')
+      //                 ->where([
+      //                   ['teacher',Auth::user()->no],
+      //                   ['no',$plan]
+      //                 ])->update(['contents_package'=>$pack]);
+      // }
 
       // for($i = 0 ; $i < count($planField)-1 ; $i++){
       //   //체험학습 리스트
@@ -389,18 +387,26 @@ class ContentsController extends Controller
 
     public function sharePackages(Request $request)
     {
-      $img_name   =   $request->file('image');
+      // $img_name   =   $request->file('package_image');
 
       // $imgUri = $request->file('image')->storeAs('historyImgs', "$historyNo-$substanceNo.png");
 
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
+      $destination = public_path().'/img';
+      $url = Storage::url('packageImgs/');
+
+      $images = Input::file('package_image');
+      $image_name = $images->getClientOriginalName();
+      // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
+      Input::file('package_image')->move($destination,$image_name);
+      dd($destination);
       //공유 패키지 이미지
-      Storage::putFileAs('public/packageImgs', $package_img,Auth::user()->no);
-      dd('이미지 저정 방법 알아보기');
+
+
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
       //공유 패키지를 구성할 콘텐츠
@@ -422,14 +428,14 @@ class ContentsController extends Controller
       for($i = 0; $i < sizeof($downContents); $i++) {
           $oldContents = DB::table('contents')->where('no', $downContents[$i])->first();
 
-       // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
+          // 새로운 콘텐츠패키지에 기존 콘텐츠 복사본이 생김
           DB::table('contents')->insert([
               ['name'=>$oldContents->name,'spec' => $oldContents->spec, 'xml' => $oldContents->xml, 'avg' => 0, 'contents_package' => $newContentsPackage->no, 'copy' => 1]
           ]);
       }
 
       DB::table('contents_package_shares')->insert([
-          ['contents_package' => $newContentsPackage->no, 'img_url' => "packageImgs/$package_name.png", 'explain' => $explain, 'name'=>$package_name,'views' => 0, 'downloads' => 0]
+          ['contents_package' => $newContentsPackage->no, 'img_url' => $image_name, 'explain' => $explain, 'name'=>$package_name,'views' => 0, 'downloads' => 0]
       ]);
       // Input::file('picture')->move($destinationPath, $img);
 

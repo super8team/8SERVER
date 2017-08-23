@@ -83,7 +83,6 @@ p {
   display: table;
   align: center;
   margin: 0 auto;
-
   -moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
 	-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
 	box-shadow: 0px 1px 0px 0px #f0f7fa;
@@ -183,19 +182,15 @@ input[type="button"], .inputStyle {
 
 .content_list {
   font: 15px/100% Arial, Helvetica, sans-serif;
-  /*color: #fef4e9;*/
-  border: solid 1px #00E8AB;
-  margin-bottom: 13px;
+  vertical-align: bottom;
+  border: solid 1px #DCFF00;
+  margin-top: 20px;
   height: 50px;
   /*background-color: #B540E8;*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#00E8AB), to(#00E8AB));
+  background: -webkit-gradient(linear, left top, left bottom, from(#DCFF00), to(#DCFF00));
   /*background: -moz-linear-gradient(top,  #faa51a,  #f47a20);*/
   /*filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');*/
 }
-/*.field_list1 {
-  background-color: green;
-  width:100px;
-}*/
 
 #registerContents, #shareContentsButton, #removeBlockFromLibraryButton{
   background-color: white;
@@ -407,7 +402,6 @@ button, .buttonStyle {
 
 #blockFactorySupplie {
   width: 32%;
-  height:20%;
 }
 
 #present_package {
@@ -427,11 +421,10 @@ button, .buttonStyle {
 #blockLibraryContainer {
   width: 45%;
   background-color: #D4A2FF;
-  vertical-align: bottom;
 }
 
 #blockLibraryControls {
-  border-left:1px solid;
+  border-left: 0px solid;
   background-color: #D4A2FF;
   width:26%;
   text-align: center;

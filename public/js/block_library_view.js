@@ -181,7 +181,7 @@ BlockLibraryView.prototype.updateButtons =
     } else {
       // Block type has already been saved. Disable the save button unless the
       // there are unsaved changes (checked below).
-      this.saveButton.textContent = 'MODIFY';
+      this.saveButton.textContent = 'SAVE';
       this.saveButton.disabled = false;
       this.deleteButton.disabled = false;
       // this.updateButton.disabled = false;
