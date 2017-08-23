@@ -18,10 +18,10 @@
            <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             새 계획 작성
+             새 체험학습 계획 작성
            </a>
            <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-sm btn-default pull-right">
-             콘텐츠 만들기
+             미션 만들기
            </a>
         </h3>
       </div>
