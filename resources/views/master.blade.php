@@ -96,7 +96,7 @@
                 {{ csrf_field() }}
                   <fieldset>
                       <div class="form-group">
-                          <input class="form-control" placeholder="ID" name="id" type="text" value="ut" autofocus>
+                          <input class="form-control" placeholder="ID" name="id" type="text" value="garam70" autofocus>
                       </div>
                       <div class="form-group">
                           <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
