@@ -21,10 +21,10 @@ class FieldLearningPlansSeeder extends Seeder
         //   'at' => Carbon::createFromDate(2016, 4, 26),],
         // ]);
         //
-        DB::table('simple_plans')->insert([
-          ['plan' => 1, 'type' => '수학여행', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
-          ['plan' => 2, 'type' => '숙박형', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
-        ]);
+//        DB::table('simple_plans')->insert([
+//          ['plan' => 1, 'type' => '수학여행', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
+//          ['plan' => 2, 'type' => '숙박형', 'grade_class_count'=>3, 'student_count'=>10, 'unjoin_student_count'=>1],
+//        ]);
 
         $checklists = DB::table('checklists')->get();
         foreach($checklists as $checklist) {

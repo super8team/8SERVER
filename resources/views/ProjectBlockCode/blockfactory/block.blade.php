@@ -1083,12 +1083,12 @@
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
-      url: '/LEARnFUN/public/contents/packages/'+package_id, // This is the url we gave in the route
+      url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
       data: {'id' : package_id}, // a JSON object to send back
       success: function(data){ // What to do if we succeed
           console.log('926');
           if(data){
-          // console.log(data[0]['name']);
+           console.log(data);
           for(var i = 0; i < data.length; i++){
               console.log('990');
               var parent_wrap  = document.createElement("button");
