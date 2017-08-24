@@ -22,34 +22,32 @@ class ContentsController extends Controller
           // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
           $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
-          if(!empty($owndedPackages)){
 
-          $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
-
-          // dd($content_count);
-          $content_count = count($content_count);
-
-          $packageCount  = count($owndedPackages);
-
-          for($i = 0; $i<$packageCount;$i++){
-            $packages[$i]['name'] = $owndedPackages[$i]->name;
-            $packages[$i]['id']   = $owndedPackages[$i]->no;
-
-            $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
-            $contentCount = count($contents);
-
-            // for($j=0; $j<$contentCount; $j++) {
-            //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
-            //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-            //   $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
-            //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
-            // }
-          }
-
-            return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
-          }else{
-
+          if($owndedPackages->isEmpty()){
             return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
+          }else{
+            $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+
+            $content_count = count($content_count);
+
+            $packageCount  = count($owndedPackages);
+
+            for($i = 0; $i<$packageCount;$i++){
+              $packages[$i]['name'] = $owndedPackages[$i]->name;
+              $packages[$i]['id']   = $owndedPackages[$i]->no;
+
+              $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
+              $contentCount = count($contents);
+
+              // for($j=0; $j<$contentCount; $j++) {
+              //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
+              //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+              //   $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
+              //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
+              // }
+            }
+
+              return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
           }
 
     }

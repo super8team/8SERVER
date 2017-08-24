@@ -177,25 +177,7 @@
               infor_div.appendChild(a_ele);
               parent_div.appendChild(infor_div);
             }
-            var img_url          = data[0]['img_url'];
-            var package_name     = data[1];
-            var contents_package = data[0]['contents_package'];
-            var parent_div = document.getElementById('shareList');
-            var infor_div    = document.createElement('div');
-            infor_div.setAttribute('id','contentsImage');
-            var name_div   = document.createElement('div');
-            name_div.setAttribute('id','package_name');
-            var a_ele      = document.createElement('a');
-            a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
-            var img_ele    = document.createElement('img');
-            var img_url = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
-            console.log(img_url);
-            img_ele.setAttribute('src',img_url);
-            name_div.innerHTML = package_name;
-            a_ele.appendChild(img_ele);
-            infor_div.appendChild(name_div);
-            infor_div.appendChild(a_ele);
-            parent_div.appendChild(infor_div);
+
             // console.log(parent_div);
         },
         error: function(){
