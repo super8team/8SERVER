@@ -22,7 +22,8 @@ class HistoryController extends Controller
       // $user     = "Illum"; // teacher 더미
       $user     = DB::table('users')->where('id', $user)->first();
 
-      $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
+      // $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
+      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
       $historyNo  = DB::table('histories')->where('plan', $plan->no)->value('no');
 
       if ($historyNo == '') {
@@ -85,7 +86,8 @@ class HistoryController extends Controller
     }
 
     private function getStudentHistoryContent($user, $place) {
-      $plan = DB::table('groups')->where('joiner', $user->no)->first();
+      // $plan = DB::table('groups')->where('joiner', $user->no)->first();
+      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
       $history  = DB::table('histories')->where('plan', $plan->plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
@@ -105,7 +107,8 @@ class HistoryController extends Controller
 
     private function getParentsHistoryContent($user, $place) {
       $user = DB::table('students')->where('parents', $user->no)->first();
-      $plan = DB::table('groups')->where('joiner', $user->student)->first();
+      // $plan = DB::table('groups')->where('joiner', $user->student)->first();
+      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
       $history  = DB::table('histories')->where('plan', $plan->plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
@@ -123,7 +126,8 @@ class HistoryController extends Controller
     }
 
     private function getTeacherHistoryContent($user, $place) {
-      $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
+      // $plan     = DB::table('field_learning_plans')->where('teacher', $user->no)->orderBy('no', 'desc')->first();
+      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
       $history  = DB::table('histories')->where('plan', $plan->no)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
