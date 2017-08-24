@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     //  $this->call(EtcSelectArticlesSeeder::class);
     //  $this->call(TrafficArticlesSeeder::class);
     // $this->call(SchoolsSeeder::class);
-    // $this->call(PlaceSeeder::class);
+     $this->call(PlaceSeeder::class);
     // $this->call(FieldLearningProgramArticlesSeeder::class);
     // $this->call(InstAuthArticlesSeeder::class);
     // $this->call(FieldLearningPlanWorksSeeder::class);
@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 //    $this->call(CheckListsSeeder::class);
     // $this->call(FieldLearningPlansSeeder::class);
 
-//     $this->call(DetailPlansSeeder::class);
-     $this->call(GroupsSeeder::class);
+     $this->call(DetailPlansSeeder::class);
+    //  $this->call(GroupsSeeder::class);
 
 //      $this->call(ContentsPackageSeeder::class);
         // $this->call(LogSeeder::class);

@@ -2,11 +2,10 @@
 
 <script src="http://code.jquery.com/jquery-1.5.js"></script>
 <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
-<body>
-                                                                                                              
+<body style="background-color:#e3f2ff;">
+
     <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">
       <div class="wrapper" >
-
         <span id="content_wrapper">
 
           <div>
