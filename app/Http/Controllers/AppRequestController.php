@@ -129,7 +129,7 @@ class AppRequestController extends Controller
 
       $child = DB::table('students')->where('parents', $parents->no)->first();
       // $plan = DB::table('groups')->where('joiner', $child->student)->orderBy('plan', 'asc')->first();
-      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
+      $plan = DB::table('groups')->where('plan', 5)->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];
@@ -150,7 +150,7 @@ class AppRequestController extends Controller
 
     private function getStudentPlan($student) {
       // $plan = DB::table('groups')->where('joiner', $student->no)->orderBy('plan', 'asc')->first();
-      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
+      $plan = DB::table('groups')->where('plan', 5)->first();
       $details = DB::table('detail_plans')->where('plan', $plan->plan)->get();
 
       $result = [];

@@ -87,7 +87,7 @@ class HistoryController extends Controller
 
     private function getStudentHistoryContent($user, $place) {
       // $plan = DB::table('groups')->where('joiner', $user->no)->first();
-      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
+      $plan = DB::table('groups')->where('plan', 5)->first();
       $history  = DB::table('histories')->where('plan', $plan->plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
@@ -108,7 +108,7 @@ class HistoryController extends Controller
     private function getParentsHistoryContent($user, $place) {
       $user = DB::table('students')->where('parents', $user->no)->first();
       // $plan = DB::table('groups')->where('joiner', $user->student)->first();
-      $plan = DB::table('field_learning_plans')->where('no', 5)->first();
+      $plan = DB::table('groups')->where('plan', 5)->first();
       $history  = DB::table('histories')->where('plan', $plan->plan)->first();
       $historySubstances = DB::table('history_substances')->where('history', $history->no)->where('place', $place)->get();
 
