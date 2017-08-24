@@ -25,8 +25,9 @@ class DatabaseSeeder extends Seeder
 //    $this->call(CheckListsSeeder::class);
     // $this->call(FieldLearningPlansSeeder::class);
 
-//     $this->call(DetailPlansSeeder::class);
-     $this->call(GroupsSeeder::class);
+    //     $this->call(DetailPlansSeeder::class);
+    $this->call(DetailPlanShareSeeder::class);
+    //  $this->call(GroupsSeeder::class);
 
 //      $this->call(ContentsPackageSeeder::class);
         // $this->call(LogSeeder::class);
