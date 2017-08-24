@@ -46,6 +46,10 @@
 									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan" onclick="location.href='{{route('plan.edit',$plan_no)}}'"> <span class="fa fa-download"> 다시 계획하기 </button>
 									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"> <span class="fa fa-download"> 첨부파일 일괄다운로드 </button>
 									<button type="btnSubmit" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"> <span class="fa fa-save"> 진행상황 저장하기 </button>
+										<a href="{{route('plan.teacher')}}" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+					            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					            뒤로 가기
+					          </a>
 								</div>
 							</div>
 

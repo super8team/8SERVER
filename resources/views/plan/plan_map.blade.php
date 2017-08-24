@@ -766,7 +766,7 @@
                     <tr>
                       <td class='info bold'> 선택 내용 </td>
                       <td class="text-center"  colspan="5">
-                        배열로 넣다
+                        대중교통,관람(미술관,박물관 등)
                       </td>
                     </tr>
                   </tbody>
@@ -780,7 +780,6 @@
             <div class="panel-heading">
               검색 넣을 곳
               <div class="pull-right">
-                오른쪽 정렬
               </div>
             </div><!-- /.panel-heading -->
             <div class="panel-body">
