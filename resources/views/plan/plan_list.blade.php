@@ -13,7 +13,7 @@
 <div class="bluebg">
   <div class="container">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading" style="height:70px">
         <h3 class="panel-title">계획 리스트
            <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
             class="btn btn-lg btn-default pull-right">
