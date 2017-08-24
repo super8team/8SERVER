@@ -59,7 +59,7 @@ class FieldLearningPlanDocumentController extends Controller
 
         // 현재 로그인한 유저(선생님)의 근무정보 가져옴
 //        $work = \DB::table('works')->where('teacher', $user->no)->first();
-        $work = \DB::table('works')->where('teacher', 106)->first();
+        $work = \DB::table('works')->where('teacher', $user->no)->first();
 //	dd($work);
 
         // 근무정보 해당하는 학교의 정보를 가져옴
@@ -74,7 +74,7 @@ class FieldLearningPlanDocumentController extends Controller
 
         // 체험학습에 참여할 총인원의 수를 가져옴
        $total_count_count = \DB::table('groups')->where('plan', $plan_number)->count();
-        
+
         // 체험학습에 참여한 학생
         $student_count = \DB::table('groups')->where('plan', $plan_number)
                                             ->where('type', 'student')->count();
@@ -86,18 +86,18 @@ class FieldLearningPlanDocumentController extends Controller
 
         $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/word.docx");
 
-        $templateProcessor->setValue('schoolName', '영진전문대학');
-        $templateProcessor->setValue('schoolAddress', '대구 북구 복현동');
-        $templateProcessor->setValue('schoolPhone', '010-5034-6922');
+        $templateProcessor->setValue('schoolName', $school->name);
+        $templateProcessor->setValue('schoolAddress', $school->address);
+        $templateProcessor->setValue('schoolPhone', $school->tel);
 //        $templateProcessor->setValue('teacher', $user->name);
-        $templateProcessor->setValue('teacher', '박성원');
+        $templateProcessor->setValue('teacher', $user->name);
         $templateProcessor->setValue('period', '2017-08-25');
-        $templateProcessor->setValue('total_count', '85');
-        $templateProcessor->setValue('teacher_count', '5');
-        $templateProcessor->setValue('student_count', '80');
+        $templateProcessor->setValue('total_count', $total_count_count);
+        $templateProcessor->setValue('teacher_count', $teacher_count);
+        $templateProcessor->setValue('student_count', $student_count);
         $templateProcessor->setValue('date', '2017-08-25');
-        
-        
+
+
 //        $templateProcessor->setValue('schoolName', $school->name);
 //        $templateProcessor->setValue('schoolAddress', $school->address);
 //        $templateProcessor->setValue('schoolPhone', $school->tel);
