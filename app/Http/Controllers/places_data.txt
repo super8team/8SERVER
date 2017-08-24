@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.1.19-MariaDB
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,30 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `schools`
+-- Table structure for table `places`
 --
 
-DROP TABLE IF EXISTS `schools`;
+DROP TABLE IF EXISTS `places`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schools` (
+CREATE TABLE `places` (
   `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`no`),
-  UNIQUE KEY `schools_tel_unique` (`tel`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `explain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
+  `radius` int(11) NOT NULL,
+  `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `schools`
+-- Dumping data for table `places`
 --
 
-LOCK TABLES `schools` WRITE;
-/*!40000 ALTER TABLE `schools` DISABLE KEYS */;
-INSERT INTO `schools` VALUES (1,'?????????б?','010-1234-5679','?뱸?????? ?ϱ?'),(2,'학교2','01050346923',''),(3,'학교3','01050346924',''),(4,'학교4','01050346925',''),(5,'학교5','01050346926',''),(6,'학교6','01050346927',''),(7,'학교7','01050346928',''),(8,'학교8','01050346929',''),(9,'학교9','01050346930','');
-/*!40000 ALTER TABLE `schools` ENABLE KEYS */;
+LOCK TABLES `places` WRITE;
+/*!40000 ALTER TABLE `places` DISABLE KEYS */;
+INSERT INTO `places` VALUES (1,'영진전문대 도서관','설명1',35.895139,128.622535,10,'noIMG'),(2,'동대구역','설명2',35.87802,128.627862,10,'noIMG'),(3,'경대병원역','설명3',35.866499,128.604974,10,'noIMG'),(4,'반월당역','설명4',35.865664,128.593486,10,'noIMG'),(5,'서문시장역','설명5',35.869994,128.582222,10,'noIMG'),(6,'북구청역','설명6',35.884151,128.581366,10,'noIMG'),(7,'칠성초등학교','설명7',35.886719,128.593658,10,'noIMG'),(8,'대산초등학교','설명8',35.897173,128.593572,10,'noIMG'),(9,'연암공원','설명9',35.8999,128.600526,10,'noIMG'),(10,'대동초등학교','설명10',35.897329,128.61237,10,'noIMG');
+/*!40000 ALTER TABLE `places` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-18 23:05:25
+-- Dump completed on 2017-08-23 15:42:48
