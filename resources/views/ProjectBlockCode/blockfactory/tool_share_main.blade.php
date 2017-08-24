@@ -76,7 +76,7 @@
           <div class="center slider">
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
-                 <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
+                 <a href="/8server/public/contents/shareDetail/{{$value['ids']}}">
                    <img src="http://163.44.166.91/8server/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
@@ -101,7 +101,7 @@
                     $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
           <div class="contenstsImage">
-                    <a href="/LEARnFUN/public/contents/shareDetail/{{$value->no}}">
+                    <a href="/8server/public/contents/shareDetail/{{$value->no}}">
                       <img src="http://163.44.166.91/8server/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
@@ -166,9 +166,9 @@
             for(var i = 0; i< data.length ; i++){
               var contents_package = data[i]['contents_package'];
               var img_url          = data[i]['img_url'];
-              var img_url          = 'http://163.44.166.91/LEARnFUN/public/storage/packageImgs/'+img_url;
+              var img_url          = 'http://163.44.166.91/8server/public/storage/packageImgs/'+img_url;
               var package_name     = data[i]['package_name'];
-              a_ele.setAttribute('href','/LEARnFUN/public/contents/shareDetail/'+contents_package);
+              a_ele.setAttribute('href','/8server/public/contents/shareDetail/'+contents_package);
               img_ele.setAttribute('src',img_url);
               name_div.innerHTML = package_name;
               a_ele.appendChild(img_ele);
