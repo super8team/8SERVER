@@ -91,8 +91,8 @@
       <div align="center" id="contentsPackageTitle" >
         <h1>콘텐츠 패키지</h1>
       </div>
-      <div id="packageResearch" style="margin-left:39%">
-          <input id="searchWord"   type="text"   name="word"   value="설명1">
+      <div id="packageResearch" style="margin-left:41%">
+          <input id="searchWord"   type="text"   name="word"   value="">
           <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
