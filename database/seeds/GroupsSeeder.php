@@ -12,44 +12,26 @@ class GroupsSeeder extends Seeder
     public function run()
     {
 
-        // $plans = DB::table('field_learning_plans')->get();
-
-        // $plans->each(function ($plan) {
-        //     DB::table('groups')->insert([
-        //
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' =>  DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no],
-        //         ['plan' => DB::table('field_learning_plans')->inRandomOrder()->first()->no, 'joiner' => DB::table('users')
-        //             ->where('type', 'student')->inRandomOrder()
-        //             ->first()->no]
-        //     ]);
-        // });
-
+        $students = DB::table('students')->where('grade_class', 11)->orWhere('grade_class', 12)->orWhere('grade_class', 13)->get();
+        foreach($students as $student) {
+          DB::table('groups')->insert([
+            'plan'=>1,
+            'joiner'=>$student->student,
+            'type'=>'student',
+          ]);
+          DB::table('groups')->insert([
+            'plan'=>2,
+            'joiner'=>$student->student,
+            'type'=>'student',
+          ]);
+        }
         DB::table('groups')->insert([
-           ['plan' => 6, 'joiner' => 106]
+          ['plan'=>1, 'joiner'=>91, 'type'=>'teacher'],
+          ['plan'=>1, 'joiner'=>193, 'type'=>'teacher'],
+          ['plan'=>2, 'joiner'=>91, 'type'=>'teacher'],
+          ['plan'=>2, 'joiner'=>193, 'type'=>'teacher'],r
+          ['plan'=>1, 'joiner'=>214, 'type'=>'teacher'],
+          ['plan'=>2, 'joiner'=>214, 'type'=>'teacher'],
         ]);
-
     }
 }

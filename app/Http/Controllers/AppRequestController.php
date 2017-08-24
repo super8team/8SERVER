@@ -391,6 +391,8 @@ class AppRequestController extends Controller
           $result[] = array(
             "no" => (String)$survey->no,
             "title" => $survey->title,
+            "date"  => $respond->created_at,
+            "update"=> $respond->updated_at, // 응답일!
           );
       }
       // dd($result);
@@ -525,6 +527,7 @@ class AppRequestController extends Controller
     }
 
     public function surveyRespondStore(Request $request) {
+      // 0814.1026 항상 responds 가 만들어져 있다는 설정하에 코드 수정할 것
       $userNo = json_decode($request->input('userNo'));
       $surveyNo = json_decode($request->input('survey'));
       $answers = $request->input('answer');
