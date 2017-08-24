@@ -923,7 +923,7 @@
   <script type="text/javascript">
   $('#notipopup').topmenu({
                 startX:'50%',
-                startY:'30%',
+                startY:'0%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
