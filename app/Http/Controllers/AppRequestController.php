@@ -29,7 +29,8 @@ class AppRequestController extends Controller
         // dd($grade_classes);
 
         foreach ($grade_classes as $grade) {
-          $result['school']['class'.str_split($grade->class, 1)[0]] = array();
+		if(str_split($grade->class, 1)[0] > 3) break;        
+  $result['school']['class'.str_split($grade->class, 1)[0]] = array();
 
               $students = DB::table('students')->where('grade_class', $grade->no)->take(5)->get();
               // dd($students);

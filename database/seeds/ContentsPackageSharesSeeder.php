@@ -11,7 +11,7 @@ class ContentsPackageSharesSeeder extends Seeder
      */
     public function run()
     {
-        //
+       //
 
         DB::table('contents_package_shares')->insert([
             ['contents_package'=>2,'img_url'=>'image2.jpg','explain'=>'불국사의 역사를 공부할 수 있는 문제!','views'=>'23','downloads'=>4, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),'package_name'=>'불국사'],

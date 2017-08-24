@@ -13,34 +13,34 @@ class ContentsPackageSeeder extends Seeder
     {
 
         DB::table('contents_packages')->insert([
-            ['name' => '콘텐츠1', 'explain' => '설명1', 'owner' => DB::table('users')
-                                                                                    ->where('type', 'teacher')->inRandomOrder()
-                                                                                    ->first()->no],
-            ['name' => '고구려 역사', 'explain' => '설명2', 'owner' => DB::table('users')
+             ['name' => '고구려 역사', 'explain' => '설명1', 'owner' => DB::table('users')
+                                                                                     ->where('type', 'teacher')->inRandomOrder()
+                                                                                     ->first()->no],
+             ['name' => '발해역사', 'explain' => '설명2', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '고려 역사', 'explain' => '설명3', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '신라 역사', 'explain' => '설명4', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '통일 신라 역사', 'explain' => '설명5', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '삼국시대 역사', 'explain' => '설명6', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '대구 YMCA', 'explain' => '설명7', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+             ['name' => '신도시의 역사', 'explain' => '설명8', 'owner' => DB::table('users')
                 ->where('type', 'teacher')->inRandomOrder()
                 ->first()->no],
-            ['name' => '발해 역사', 'explain' => '설명3', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '고려 역사', 'explain' => '설명4', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '신라 역사', 'explain' => '설명5', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '통일신라 역사', 'explain' => '설명6', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '삼국시대 역사', 'explain' => '설명7', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '대구YMCA', 'explain' => '설명8', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-            ['name' => '신도시의 역사', 'explain' => '설명9', 'owner' => DB::table('users')
-                ->where('type', 'teacher')->inRandomOrder()
-                ->first()->no],
-
+             ['name' => '이승만대통령에 대해서', 'explain' => '설명9', 'owner' => DB::table('users')
+                 ->where('type', 'teacher')->inRandomOrder()
+                 ->first()->no],
+           // ['name' => '이순신', 'explain' => '이순신 일대기를 알아 볼 수 있는 패키지', 'owner' => 28]
         ]);
 
 
