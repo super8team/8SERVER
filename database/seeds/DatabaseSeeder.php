@@ -25,12 +25,8 @@ class DatabaseSeeder extends Seeder
 //    $this->call(CheckListsSeeder::class);
     // $this->call(FieldLearningPlansSeeder::class);
 
-<<<<<<< HEAD
     //     $this->call(DetailPlansSeeder::class);
     $this->call(DetailPlanShareSeeder::class);
-=======
-     $this->call(DetailPlansSeeder::class);
->>>>>>> e784c7191a394f8ef83d6303f10c4c7a2729a0b7
     //  $this->call(GroupsSeeder::class);
 
 //      $this->call(ContentsPackageSeeder::class);
