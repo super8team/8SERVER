@@ -77,7 +77,7 @@
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
                  <a href="/LEARnFUN/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
+                   <img src="http://163.44.166.91/8server/public/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
                  </div>
@@ -102,7 +102,7 @@
                   @endphp
           <div class="contenstsImage">
                     <a href="/LEARnFUN/public/contents/shareDetail/{{$value->no}}">
-                      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
+                      <img src="http://163.44.166.91/8server/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
                     {{$value->package_name}}
