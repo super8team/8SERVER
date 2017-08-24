@@ -91,7 +91,7 @@ class FieldLearningPlanDocumentController extends Controller
         $templateProcessor->setValue('schoolPhone', '010-5034-6922');
 //        $templateProcessor->setValue('teacher', $user->name);
         $templateProcessor->setValue('teacher', '박성원');
-        $templateProcessor->setValue('period', $startDay->at);
+        $templateProcessor->setValue('period', '2017-08-25');
         $templateProcessor->setValue('total_count', '85');
         $templateProcessor->setValue('teacher_count', '5');
         $templateProcessor->setValue('student_count', '80');
