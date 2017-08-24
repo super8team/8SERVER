@@ -21,7 +21,7 @@ class ContentsController extends Controller
           $packages = [];
           // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
           $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
-
+          dd($owndedPackages);
           if(!empty($owndedPackages)){
 
           $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();

@@ -31,7 +31,6 @@
       </span>
     </div>
     <div id = "detail_article">
-      <input id = "date"     type="text" name="" value="{{$write_date}}" style="border:1px solid" readonly>
       <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" style="border:1px solid" readonly>
       <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" style="border:1px solid" readonly>
       <input id = "name" type="text" name="" value="이름:{{$package_name}}" style="border:1px solid" readonly>
