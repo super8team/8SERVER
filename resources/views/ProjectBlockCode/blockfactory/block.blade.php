@@ -1003,7 +1003,7 @@
             del_obj.remove();
 
             //경고 창 띄우기
-            alert('컨텐츠 이름 중복 입니다');
+            alert('하나의 패키지를 선택하고 저장해 주세오');
           }
         });
         document.getElementById('change').value = 0;
