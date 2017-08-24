@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
     // $this->call(FieldLearningPlanDocumentsSeeder::class);
     // $this->call(StudentsSeeder::class);
 //    $this->call(CheckListsSeeder::class);
-    // $this->call(FieldLearningPlansSeeder::class);
+ //   $this->call(FieldLearningPlansSeeder::class);
 
-//     $this->call(DetailPlansSeeder::class);
-     $this->call(GroupsSeeder::class);
+     $this->call(DetailPlansSeeder::class);
+//     $this->call(GroupsSeeder::class);
 
 //      $this->call(ContentsPackageSeeder::class);
         // $this->call(LogSeeder::class);
