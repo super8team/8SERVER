@@ -29,7 +29,6 @@ class FieldLearningPlanDocumentController extends Controller
         switch ($no) {
             case 1:
                $this->word($plan_number);
-                return response()->download('./word.docx');
             break;
             case 2:
             break;
@@ -84,7 +83,7 @@ class FieldLearningPlanDocumentController extends Controller
                                             ->where('type', 'teacher')->count();
 
 
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/word.docx");
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor("storage/documents/3_documents.docx");
 
         $templateProcessor->setValue('schoolName', $school->name);
         $templateProcessor->setValue('schoolAddress', $school->address);
