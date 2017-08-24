@@ -23,7 +23,7 @@ class ContentsController extends Controller
           $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
 
-          if($owndedPackaged->isEmpty()){
+          if($owndedPackages->isEmpty()){
             return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
           }else{
             $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
