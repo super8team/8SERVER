@@ -30,7 +30,7 @@ class GroupsSeeder extends Seeder
         // ['plan'=>1, 'joiner'=>214, 'type'=>'teacher'],
         DB::table('groups')->insert([
           ['plan'=>5, 'joiner'=>91, 'type'=>'teacher'],
-          ['plan'=>5, 'joiner'=>193, 'type'=>'teacher'],r
+          ['plan'=>5, 'joiner'=>193, 'type'=>'teacher'],
           ['plan'=>5, 'joiner'=>214, 'type'=>'teacher'],
         ]);
     }
