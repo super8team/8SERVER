@@ -22,34 +22,32 @@ class ContentsController extends Controller
           // $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
           $owndedPackages = \DB::table('contents_packages')->where('owner', $userNo)->get();
 
-          if(!empty($owndedPackages)){
 
-          $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
-
-          // dd($content_count);
-          $content_count = count($content_count);
-
-          $packageCount  = count($owndedPackages);
-
-          for($i = 0; $i<$packageCount;$i++){
-            $packages[$i]['name'] = $owndedPackages[$i]->name;
-            $packages[$i]['id']   = $owndedPackages[$i]->no;
-
-            $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
-            $contentCount = count($contents);
-
-            // for($j=0; $j<$contentCount; $j++) {
-            //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
-            //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
-            //   $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
-            //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
-            // }
-          }
-
-            return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
-          }else{
-
+          if($owndedPackages->isEmpty()){
             return view('ProjectBlockCode.blockfactory.block', ['packages' => null,'contentsize'=>null,'index'=>0,'user'=>Auth::user()->name]);
+          }else{
+            $content_count = DB::table('contents')->where('contents_package',$owndedPackages[0]->no)->get();
+
+            $content_count = count($content_count);
+
+            $packageCount  = count($owndedPackages);
+
+            for($i = 0; $i<$packageCount;$i++){
+              $packages[$i]['name'] = $owndedPackages[$i]->name;
+              $packages[$i]['id']   = $owndedPackages[$i]->no;
+
+              $contents     = \DB::table('contents')->where('contents_package', $packages[0]['id'])->get();
+              $contentCount = count($contents);
+
+              // for($j=0; $j<$contentCount; $j++) {
+              //   $packages[$i]['contents'][$j]['id']   = $contents[$j]->no;
+              //   $packages[$i]['contents'][$j]['name'] = $contents[$j]->name;
+              //   $packages[$i]['contents'][$j]['xml']  = $contents[$j]->xml;
+              //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
+              // }
+            }
+
+              return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
           }
 
     }
@@ -134,7 +132,7 @@ class ContentsController extends Controller
 
         $contentsName = [];
         $contentsId = [];
-        $package_contents_sum = 0;
+        $package_contents_avg = 0;
         // packageId를 가지는 contents_pacage_share 가져옴
         $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 
@@ -394,18 +392,15 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      $destination = public_path().'/img';
-      $url = Storage::url('packageImgs/');
+      $destination = storage_path().'/packageImgs';
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();
-      // $imagePath = storage_path().sprintf('/public/storage/packageImgs',$image_name);
 
 
       Input::file('package_image')->move($destination,$image_name);
-      dd($destination);
-      //공유 패키지 이미지
 
+      //공유 패키지 이미지
 
       //공유 패키지 설명
       $explain         =  $request->input('package_explain');
@@ -502,16 +497,19 @@ class ContentsController extends Controller
 
       $result_array = [];
 
-      $result = DB::table('contents_package_shares')->where('explain',$searchWord)->first();
-      array_push($result_array,$result);
+      $result = DB::table('contents_package_shares')
+                      ->where('package_name','like','%'.$searchWord.'%')
+                      ->get();
 
-      $package_serial = $result->contents_package;
+      // array_push($result_array,$result);
+      //
+      // $package_serial = $result->contents_package;
 
-      $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
-      array_push($result_array,$package_name->name);
+      // $package_name = DB::table('contents_packages')->where('no',$package_serial)->first();
+      // array_push($result_array,$package_name->name);
 
 
 
-      return $result_array;
+      return $result;
     }
 }

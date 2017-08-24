@@ -13,6 +13,15 @@ class HistoriesSeeder extends Seeder
     public function run()
     {
 
+      $id = DB::table('histories')->insertGetId([
+        ['plan' => 2, 'register' => 214],
+        ['plan' => 1, 'register' => 214],
+      ]);
+
+      $history = DB::table('history_substances')->insert([
+        'history'=>$id, 'place'=>1, 'substance'=>''
+      ]);
+
         $plans = DB::table('field_learning_plans')->get();
 
         $plans->each(function ($plan) {

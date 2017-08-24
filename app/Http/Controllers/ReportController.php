@@ -78,6 +78,7 @@ class ReportController extends Controller
         }
         array_push($report_score, $scores);
       }
+
       // 뿌리기 
       //reportes 는 페이지 네이션을 해야하기 땜에 지우지마셍
       return view('report.list', [
