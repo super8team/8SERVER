@@ -39,7 +39,7 @@
       $teacher_name = "김갑순";
       $trip_kind_value = "수학여행"; 
       $attend_class_count = "3";
-      $attend_student_count = "75";
+      $attend_student_count = "80";
       $unattend_student_count = "1";
 
 

@@ -16,11 +16,12 @@
       <div class="panel-heading">
         <h3 class="panel-title">계획 리스트
            <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-            class="btn btn-sm btn-default pull-right">
-             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+            class="btn btn-lg btn-default pull-right">
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
              새 체험학습 계획 작성
            </a>
-           <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-sm btn-default pull-right">
+           <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-default pull-right">
+             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
              미션 만들기
            </a>
         </h3>
@@ -35,7 +36,7 @@
               <th>바로가기
                 <a role="button" href="{{route('main')}}" aria-label="Right Align"
                  class="btn btn-sm btn-default pull-right">
-                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                    뒤로 돌아가기
                  </a>
               </th>
@@ -76,7 +77,7 @@
                     </a>                     --}}
                     
                     <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-danger">
-                        상세 계획
+                      스케쥴
                     </a>
                     <a role="button" href="{{route('checklist', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       체크리스트
