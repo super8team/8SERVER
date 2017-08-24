@@ -132,7 +132,7 @@ class ContentsController extends Controller
 
         $contentsName = [];
         $contentsId = [];
-        $package_contents_sum = 0;
+        $$package_contents_avg = 0;
         // packageId를 가지는 contents_pacage_share 가져옴
         $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 

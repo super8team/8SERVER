@@ -96,7 +96,6 @@
           <input id="searchButton" type="button" name="button" value="">
       </div>
       <div id="shareList">
-
           @foreach ($otherPackage as $value)
                   @php
                     $url = Storage::url('packageImgs/'.$value->img_url);
@@ -110,7 +109,7 @@
                     </div>
           </div>
           @endforeach
-          <div style="margin:auto;">
+          <div style="margin-left:35%">
             {{$otherPackage->links()}}
           </div>
           <button id="share" type="button">패키지 공유하기</button>
