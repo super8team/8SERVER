@@ -39,7 +39,7 @@
       $teacher_name = "김갑순";
       $trip_kind_value = "수학여행"; 
       $attend_class_count = "3";
-      $attend_student_count = "75";
+      $attend_student_count = "80";
       $unattend_student_count = "1";
 
 
@@ -63,7 +63,7 @@
 				<div class="panel-heading text-center">
 					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
           <a href="{{route('plan.teacher')}}" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
-            <span class="glyphicon glyphicon-open-file"></span>
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             뒤로 가기
           </a>
 					<span class="clearfix"></span>
