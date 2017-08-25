@@ -928,8 +928,8 @@
     document.getElementById('notipopup').remove();
   }
   $('#notipopup').topmenu({
-                startX:'50%',
-                startY:'0%',
+                startX:'3%',
+                startY:'40%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
