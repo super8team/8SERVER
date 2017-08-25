@@ -922,11 +922,7 @@
   </body>
   <script type="text/javascript">
 
-  document.getElementsByClassName('closePopup').addEventListener('click',function(){
-    console.log('테스트');
-    parent.close();
-    self.close();
-  });
+
   function closePopup(){
     console.log('테스트');
     document.getElementById('notipopup').remove();
@@ -1066,7 +1062,7 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-
+    console.log('click');
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
