@@ -534,11 +534,11 @@
           <div id="right-space">
           </div>
 
-          <div id="notipopup">
-                      <div>
+          <div id="notipopup" style="height:30%">
+                      <div style="height:100%">
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <div class="class">닫기</div>
-                    </div>
+                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">닫기</button>
+                     </div>
           </div>
 
         <!-- 블럭 프리뷰  -->
@@ -921,6 +921,16 @@
   <input type="text" id="judgeImage" name="judgeImage" value="0" hidden>
   </body>
   <script type="text/javascript">
+
+  document.getElementsByClassName('closePopup').addEventListener('click',function(){
+    console.log('테스트');
+    parent.close();
+    self.close();
+  });
+  function closePopup(){
+    console.log('테스트');
+    document.getElementById('notipopup').remove();
+  }
   $('#notipopup').topmenu({
                 startX:'50%',
                 startY:'0%',
