@@ -77,7 +77,7 @@
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
                  <a href="/8server/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="http://163.44.166.91/8server/storage/public/packageImgs/image1.jpg" alt="" style="width:180px; height:180px">
+                   <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
                  </div>
