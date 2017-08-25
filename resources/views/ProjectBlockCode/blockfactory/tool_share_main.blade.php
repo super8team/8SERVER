@@ -109,7 +109,7 @@
                     </div>
           </div>
           @endforeach
-          <div style="margin-left:30%">
+          <div style="margin-left:32%">
             {{$otherPackage->links()}}
           </div>
           <button id="share" type="button">패키지 공유하기</button>

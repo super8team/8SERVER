@@ -928,7 +928,7 @@
     document.getElementById('notipopup').remove();
   }
   $('#notipopup').topmenu({
-                startX:'3%',
+                startX:'5%',
                 startY:'40%',
                 close:'.close',
                 todayclose:'.todayclose',
