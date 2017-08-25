@@ -102,7 +102,7 @@
                   @endphp
           <div class="contenstsImage">
                     <a href="/8server/public/contents/shareDetail/{{$value->no}}">
-                      <img src="http://163.44.166.91/8server/public/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
+                      <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
                     {{$value->package_name}}
