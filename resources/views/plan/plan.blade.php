@@ -35,7 +35,7 @@
 
       }
       $plan_title  = "경주 불국사 체험학습";
-      $plan_date = "2017-08-25";
+      $plan_date = "2017-09-08";
       $teacher_name = "김갑순";
       $trip_kind_value = "수학여행"; 
       $attend_class_count = "3";

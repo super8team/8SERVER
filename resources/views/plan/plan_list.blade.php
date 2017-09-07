@@ -8,21 +8,67 @@
   {{-- 총 레코드 수를 가저오기 --}}
   {{--  페이징은 나중에 한다!
   라라벨 페이지네이트 사용하기--}}
+{{-- 언어 변경 --}}
+@php
+  $lang = 'kr';
+  
+  if($lang == 'kr'){
+    $lang_plan_list         = '계획 리스트';
+    $lang_create_plan       = '계획 작성하기';
+    $lang_create_mission    = '미션 작성하기';
+    $lang_plan_name         = '체험학습 제목';
+    $lang_plan_date         = '체험학습 실시일';
+    $lang_short_cut         = '바로가기';
+    $lang_back              = '뒤로가기';
+    $lang_sheet             = '서류작성';
+    $lang_staff             = '위원회';
+    $lang_survey            = '설문조사';
+    $lang_notice            = '가정통신문';
+    $lang_scheduel          = '스케쥴';
+    $lang_checklist         = '체크리스트';
+    $lang_report            = '소감문';
+    $lang_share             = '공유';
+    $lang_modal_share_title = '공유하기';
+    $lang_modal_share_btn   = '계획 공유하기';
+    $lang_modal_cancle_btn  = '취소';
+  }
+  if($lang == 'jp'){
+    $lang_plan_list         = '計画リスト';
+    $lang_create_plan       = '計画作成';
+    $lang_create_mission    = 'ミッション作成';
+    $lang_plan_name         = '校外学習タイトル';
+    $lang_plan_date         = '校外学習実行日';
+    $lang_short_cut         = 'ショットカッ';
+    $lang_back              = '뒤로가기';
+    $lang_sheet             = '書類作成';
+    $lang_staff             = '委員会';
+    $lang_survey            = 'アンケート';
+    $lang_notice            = 'お知らせ';
+    $lang_scheduel          = 'スケージュール';
+    $lang_checklist         = 'チェックリスト';
+    $lang_report            = '感想文';
+    $lang_share             = '共有';
+    $lang_modal_share_title = '共有する';
+    $lang_modal_share_btn   = '計画共有';
+    $lang_modal_cancle_btn  = '取り消し';
+  }
+                                    
+@endphp
 
 <div class="bluedecobar"></div>
 <div class="bluebg">
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading" style="height:70px">
-        <h3 class="panel-title">계획 리스트
+        <h3 class="panel-title">{{$lang_plan_list}}
            <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
             class="btn btn-lg btn-default pull-right">
               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-             새 체험학습 계획 작성
+             {{$lang_create_plan}}
            </a>
            <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-default pull-right">
              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-             미션 만들기
+             {{$lang_create_mission}}
            </a>
         </h3>
       </div>
@@ -31,13 +77,13 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>체험 학습 이름</th>
-              <th>체험학습 실시일</th>
-              <th>바로가기
+              <th>{{$lang_plan_name}}</th>
+              <th>{{$lang_plan_date}}</th>
+              <th>{{$lang_short_cut}}
                 <a role="button" href="{{route('main')}}" aria-label="Right Align"
                  class="btn btn-sm btn-default pull-right">
                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                   뒤로 돌아가기
+                   {{$lang_back}}
                  </a>
               </th>
             </tr>
@@ -59,38 +105,37 @@
 
                   <td colspan="2" class="text-center">
                     <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      서류작성
+                      {{$lang_sheet}}
                     </a>
                     <a role="button" href="{{route('staff', ['count'=>$plan_no[$count]])}}" aria-label="Left Align" class="btn btn-sm btn-default ">
-                      위원회
+                      {{$lang_staff}}
                     </a>
 
                     <a role="button" href="{{ route('survey.index', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      설문조사
+                      {{$lang_survey}}
                     </a>
                     <a role="button" href="{{ route('notice_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                     {{-- <a role="button" href="{{route('notice.index')}}" class="btn btn-sm btn-default"> --}}
-                      가정통신
+                      {{$lang_notice}}
                     </a>
                     {{-- <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
                       참여 그룹
                     </a>                     --}}
                     
                     <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-danger">
-                      스케쥴
+                      {{$lang_scheduel}}
                     </a>
                     <a role="button" href="{{route('checklist', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      체크리스트
+                      {{$lang_checklist}}
                     </a>
                     {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
                     {{-- <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      소감문
+                      {{--$lang_report}}
                     </a> --}}
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#share">
-                      공유
+                      {{$lang_share}}
                     </button>
-
 
                     <div class="modal modal fade " id="share" tabindex="-1"
                     role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
@@ -99,7 +144,7 @@
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="shareLabel">공유하기</h4>
+                            <h4 class="modal-title" id="shareLabel">{{$lang_modal_share_title}}</h4>
                           </div>
                           <div class="modal-body">
                             <form class="form-horizontal" action="" method="post">
@@ -109,8 +154,8 @@
                             </form>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default">계획 공유하기</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            <button type="button" class="btn btn-default">{{$lang_modal_share_btn  }}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{$lang_modal_cancle_btn}}</button>
                           </div>
                         </div>
                       </div>
