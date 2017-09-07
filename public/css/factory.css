@@ -41,6 +41,11 @@ h3 {
   margin-bottom: 0;
 }
 
+.closePopup {
+  border:0px solid black;
+  background-color: white;
+}
+
 table {
   border: none;
   border-collapse: collapse;
@@ -369,7 +374,7 @@ button, .buttonStyle {
 }
 #shareList {
   /*border:1px solid black;*/
-  margin-left: 22%;
+  margin-left: 23%;
   margin-top: 5%;
   width:75%;
   height:35%;

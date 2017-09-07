@@ -534,11 +534,11 @@
           <div id="right-space">
           </div>
 
-          <div id="notipopup">
-                      <div>
+          <div id="notipopup" style="height:30%">
+                      <div style="height:100%">
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <div class="class">닫기</div>
-                    </div>
+                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">닫기</button>
+                     </div>
           </div>
 
         <!-- 블럭 프리뷰  -->
@@ -921,9 +921,15 @@
   <input type="text" id="judgeImage" name="judgeImage" value="0" hidden>
   </body>
   <script type="text/javascript">
+
+
+  function closePopup(){
+    console.log('테스트');
+    document.getElementById('notipopup').remove();
+  }
   $('#notipopup').topmenu({
-                startX:'50%',
-                startY:'30%',
+                startX:'5%',
+                startY:'40%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -1056,7 +1062,7 @@
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-
+    console.log('click');
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;

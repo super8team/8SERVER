@@ -11,7 +11,7 @@
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
-      <img src="http://163.44.166.91/LEARnFUN/public/storage/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
+      <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
       <div style="display:inline">
         <span class="star-input" style="margin-top:170px; margin-left:70px;">
           <span class="input" style="margin-top:50px">
@@ -50,7 +50,7 @@
         <input type="checkbox" name="choice_content[]" value="{{$contents_name[$i]['id']}}">{{$contents_name[$i]['name']}}</input>
       @endfor
       <br>
-  
+
        {{ csrf_field() }}
       <input type="submit" name="" value="콘텐츠 다운로드">
     </form>

@@ -248,6 +248,10 @@ section#services p {
 
 
 section#services .service-box {
+  border:10px;
+  border-color: white;
+  border-radius: 15px;
+  
 	text-align: center;
 	padding: 20px;
 	-webkit-transition: all 0.3s ease-in-out;

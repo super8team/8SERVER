@@ -63,10 +63,12 @@ $lang = 'kr';
            <div class="span3">
              <div class="service-box">
                <br>
-               <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
+               <a href="{{route('plan.parents')}}">
+                 <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
+               </a>
                <h2>{{$lang_parent}}</h2>
                <p>{{$lang_parent_sub}}</p>
-               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div><!-- /.col-sm-4 -->
            </div>
          </div>
@@ -74,10 +76,12 @@ $lang = 'kr';
            <div class="span3">
              <div class="service-box ">
               <br>
+              <a href="{{route('plan.teacher')}}">
               <img class="img-circle" src="{{asset('img/teacher01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
+              </a>
               <h2>{{$lang_teacher}}</h2>
               <p>{{$lang_teacher_sub}}</p>
-              <p><a class="btn btn-default" href="{{route('plan.teacher')}}" role="button">상세보기 &raquo;</a></p>
+              <p><a class="btn btn-default" href="{{route('plan.teacher')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->
@@ -85,10 +89,12 @@ $lang = 'kr';
            <div class="span3">
              <div class="service-box ">
                <br>
+               <a href="{{route('plan.student')}}">
                <img class="img-circle" src="{{asset('img/student01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
+               </a>
                <h2>{{$lang_student}}</h2>
                <p>{{$lang_student_sub}}</p>
-               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">상세보기 &raquo;</a></p>
+               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->

@@ -392,7 +392,7 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      $destination = storage_path().'/packageImgs';
+      $destination     = storage_path().'/packageImgs';
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();

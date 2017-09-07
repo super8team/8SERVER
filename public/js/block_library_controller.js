@@ -288,10 +288,10 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
   xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
 
   // Do not add option again if block type is already in library.
-  if (!this.has(blockType)) {
-    console.log('call addoption');
+  // if (!this.has(blockType)) {
+  //   console.log('call addoption');
     this.view.addOption(blockType, true, false);
-  }
+  // }
 
   // Save block.
   this.storage.addBlock(blockType, xmlElement);
