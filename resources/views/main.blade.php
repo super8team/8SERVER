@@ -18,7 +18,7 @@
     alert(log);
   </script>
 @php
-$lang = 'kr';
+$lang = 'jp';
   if($lang == 'kr'){
     $lang_learnfun      = 'LEARnFUN';
     $lang_learnfun_sub  = '학부모, 교사, 학생을 위한 현장 체험학습 서비스';
