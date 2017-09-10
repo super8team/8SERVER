@@ -370,13 +370,13 @@
               </td>
         <td id="blockLibraryControls" >
           <button id="registerContents" >
-            현장체험 등록
+            体験学習登録
           </button>
           <button id="shareContentsButton">
-            창작 마당
+            創作
           </button>
           <button id="removeBlockFromLibraryButton" hidden>
-            콘텐츠 삭제
+            コンテンツ削除
           </button>
         </td>
         </tr>
@@ -390,7 +390,7 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
+            <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
@@ -563,53 +563,53 @@
 
     <xml id="blockfactory_toolbox" class="toolbox">
 
-      <category name="버튼">
+      <category name="ボタン">
         <block type="button_1"></block>
         <block type="button_2"></block>
         <block type="button_3"></block>
         <block type="button_4"></block>
       </category>
-      <category name="텍스트">
+      <category name="テクスト">
         <block type="header"></block>
         <block type="bottom"></block>
       </category>
-      <category name ="이미지">
+      <category name ="イメージ">
         <block type="image_1"></block>
         <block type="image_2"></block>
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-      <category name="실행">
+      <category name="実行">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
         <block type="OUT_IMG"></block>
         <block type="OUT_TXT"></block>
         <block type="END"></block>
       </category>
-      <category name="에디트">
+      <category name="エディット">
         <block type="EDIT"></block>
       </category>
-      <category name="토스트">
+      <category name="トースト">
         <block type="toast"></block>
       </category>
-      <category name="퀘스트">
+      <category name="クエスト">
         <block type="quest"></block>
         <block type="endQuest"></block>
         <!-- blocks_ 139line -->
       </category>
-      <category name="빙고">
+      <category name="ビンゴ">
         <block type="bingo"></block>
         <block type="endBingo"></block>
       </category>
-      <category name="컬렉션">
+      <category name="コレクション">
         <block type="collection"></block>
         <block type="endCollection"></block>
       </category>
-      <category name="지도">
+      <category name="マップ">
         <block type="openMap"></block>
         <block type="closeMap"></block>
       </category>
-      <category name="콘텐츠 수정">
+      <category name="コンテンツ修正">
         <block type="CONFIG"></block>
       </category>
     </xml>
@@ -924,7 +924,6 @@
 
 
   function closePopup(){
-    console.log('테스트');
     document.getElementById('notipopup').remove();
   }
   $('#notipopup').topmenu({
@@ -1009,7 +1008,7 @@
             del_obj.remove();
 
             //경고 창 띄우기
-            alert('하나의 패키지를 선택하고 저장해 주세오');
+            alert('一つのパッケージを選択して保存してください');
           }
         });
         document.getElementById('change').value = 0;
@@ -1048,12 +1047,12 @@
   document.getElementById('registerContents').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
-      window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
+      window.open('{{route("contents.registerToPlan")}}', 'コンテンツ', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=900';
-      window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
+      window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
     var before_ele;
@@ -1077,7 +1076,6 @@
 
     var package_id = event.target.value;
     console.log(event.target);
-    console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
     // var present = document.getElementById('presentPackageName');

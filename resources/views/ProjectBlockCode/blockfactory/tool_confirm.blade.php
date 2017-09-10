@@ -34,11 +34,11 @@
             <tbody>
                 <tr>
                   <td style="border:1px solid;text-align:center;height:40px;width:50%;border-right:0px">
-                    <h2>체험 학습 리스트</h2>
-                    <h4>※ 체험 학습을 클릭 하세요</h4>
+                    <h2>体験学習リスト</h2>
+                    <h4>※ 体験学習をクリックしてください</h4>
                   </td>
                   <td style="border:1px solid;text-align:center;height:40px;width:50%;border-left:0px;vertical-align:middle ">
-                    <h2>선택 가능한 패키지 리스트</h2>
+                    <h2>選択可能なパッケージリスト</h2>
                   </td>
                 </tr>
                 @for($j = 0; $j < $field_count; $j++)
@@ -68,9 +68,9 @@
                 @endfor
                 <tr>
                   <td colspan="2">
-                    <input type="submit" style="margin-top:150px;" value="등록하기" style="font-size: 15px">
+                    <input type="submit" style="margin-top:150px;" value="登録" style="font-size: 15px">
                     <button id="cancel" style="font-size:15px">
-                      취소
+                      キャンセル
                     </button>
                   </td>
                 </tr>

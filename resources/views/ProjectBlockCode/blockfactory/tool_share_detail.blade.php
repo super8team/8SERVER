@@ -39,7 +39,7 @@
       <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;width:655px;" readonly>{{$package_subs}}</textarea>
     </div>
     <div>
-      여기는 패키지에 해당하는 콘텐츠들의 리스트입니다
+      当該パッケージのコンテンツリスト
     </div>
     <!-- 컨트롤러에서 넘어온 패키지의 콘텐츠 배열이 넘어와서 출력해준다 -->
 
@@ -56,7 +56,7 @@
     </form>
   </span>
 
-  <button type="button" name="button" onclick="history.back();">뒤로가기</button>
+  <button type="button" name="button" onclick="history.back();">バック</button>
 
   <!-- <button id="content_download" type="button" name="button">다운로드</button> -->
 
