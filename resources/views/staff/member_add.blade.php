@@ -178,7 +178,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="form-group col-sm-9">
-                  <input type="text" name="search" id="searchBar" placeholder="이름을 검색 해주세요" onKeyDown="enterkey()">
+                  <input type="text" name="search" id="searchBar" placeholder="お名前を検索してください" onKeyDown="enterkey()">
                 </div>
                   <button type="button" onclick="searchClick()" id="searchBtn" class="btn btn-default">検索</button>
             </div>
@@ -246,7 +246,7 @@
                   </table>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <input type="hidden" name="committee_number" value='{{$plan_number}}'>
-                        <input type="submit">
+                        <input type="submit" value="保存">
                     </form>
                </div><!-- /.panel-body -->
               </div>
