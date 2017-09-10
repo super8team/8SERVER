@@ -412,7 +412,7 @@
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
+                  <input id="address" style="width: 200px;" type="text" value='場所検索' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
               <div id="map" style="height:70%; width:100%;display:inline-block">

@@ -38,7 +38,7 @@
                     <h4>※ 体験学習をクリックしてください</h4>
                   </td>
                   <td style="border:1px solid;text-align:center;height:40px;width:50%;border-left:0px;vertical-align:middle ">
-                    <h2>選択可能なパッケージリスト</h2>
+                    <h2>パッケージリスト</h2>
                   </td>
                 </tr>
                 @for($j = 0; $j < $field_count; $j++)

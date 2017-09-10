@@ -31,9 +31,9 @@
       </span>
     </div>
     <div id = "detail_article">
-      <input id = "writer"   type="text" name="" value="작성자:{{$writer}}" style="border:1px solid" readonly>
-      <input id = "download" type="text" name="" value="다운로드수:{{$download_count}}" style="border:1px solid" readonly>
-      <input id = "name" type="text" name="" value="이름:{{$package_name}}" style="border:1px solid" readonly>
+      <input id = "writer"   type="text" name="" value="作成:{{$writer}}" style="border:1px solid" readonly>
+      <input id = "download" type="text" name="" value="ダウンロード:{{$download_count}}" style="border:1px solid" readonly>
+      <input id = "name" type="text" name="" value="名:{{$package_name}}" style="border:1px solid" readonly>
     </div>
     <div>
       <textarea id="explain" rows="8" cols="80" font-size="40px" style="resize:none;width:655px;" readonly>{{$package_subs}}</textarea>

@@ -31,36 +31,36 @@ Blockly.Blocks['factory_base'] = {
   init: function() {
     this.setColour(120);
     this.appendDummyInput()
-        .appendField('콘텐츠 이름')
+        .appendField('コンテンツの名')
         .appendField(new Blockly.FieldTextInput(''), 'NAME');
     this.appendValueInput('VERTICAL')
-        .appendField('콘텐츠 세로 정렬');
+        .appendField('コンテンツ縦並び');
     this.appendValueInput('HORIZONTAL')
-        .appendField('콘텐츠 가로 정렬');
+        .appendField('コンテンツ横並び');
     this.appendStatementInput('SCRIPT')
         .setCheck('CheckEdit')
-        .appendField('실행');
+        .appendField('実行');
     this.appendStatementInput('IMAGES')
         .setCheck('Image')
-        .appendField('이미지');
+        .appendField('イメージ');
     this.appendStatementInput('TEXTS')
         .setCheck('Text')
-        .appendField('텍스트');
+        .appendField('テキスト');
     this.appendStatementInput('BUTTONS')
         .setCheck('Button')
-        .appendField('버튼');
+        .appendField('ボタン');
     this.appendStatementInput('EDIT')
         .setCheck('Edit')
-        .appendField('에디트');
+        .appendField('エディット');
     this.appendValueInput('VISIONABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 표시');
+        .appendField('コンテンツの表示');
     this.appendValueInput('CLICKABLE')
         .setCheck('Boolean')
-        .appendField('클릭 작동');
+        .appendField('クリック動作');
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 정지');
+        .appendField('コンテンツの停止');
   },
   mutationToDom: function() {
     var container = document.createElement('mutation');
