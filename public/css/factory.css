@@ -103,6 +103,7 @@ p {
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border:1px solid #057fd0;
+  margin-bottom: 2px;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -558,7 +559,7 @@ button, .buttonStyle {
   background-color: white;
   background-image: url('https://cdn2.iconfinder.com/data/icons/font-awesome/1792/plus-circle-128.png');
   background-repeat:no-repeat;
-  background-size : 65% 100%;
+  background-size : 25% 100%;
   background-position:center;
 }
 #storagePackage {

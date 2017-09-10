@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','계획 작성')
+@section('title','計画作成')
 
 @section('content')
   @php
@@ -32,17 +32,77 @@
           if(!isset($unattend_student_count)){
             $unattend_student_count = "";
           }
-
       }
-      $plan_title  = "경주 불국사 체험학습";
+      // $plan_title  = "경주 불국사 체험학습";
+      // $plan_date = "2017-09-08";
+      // $teacher_name = "김갑순";
+      // $trip_kind_value = "수학여행"; 
+      // $attend_class_count = "3";
+      // $attend_student_count = "123";
+      // $unattend_student_count = "1";
+      
+      $plan_title  = "京都体験学習";
       $plan_date = "2017-09-08";
-      $teacher_name = "김갑순";
+      $teacher_name = "橋本カンナ";
       $trip_kind_value = "수학여행"; 
       $attend_class_count = "3";
       $attend_student_count = "123";
       $unattend_student_count = "1";
-
-
+      
+        $lang = 'jp';
+        
+        if($lang == 'kr'){
+          $lang_plan_list         = '계획 리스트';
+          $lang_create_plan       = '계획 작성하기';
+          $lang_create_mission    = '미션 작성하기';
+          $lang_plan_name         = '체험학습 제목';
+          $lang_plan_date         = '체험학습 실시일';
+          $lang_short_cut         = '바로가기';
+          $lang_back              = '뒤로가기';
+          $lang_sheet             = '서류작성';
+          $lang_staff             = '위원회';
+          $lang_survey            = '설문조사';
+          $lang_notice            = '가정통신문';
+          $lang_scheduel          = '스케쥴';
+          $lang_checklist         = '체크리스트';
+          $lang_report            = '소감문';
+          $lang_share             = '공유';
+          $lang_modal_share_title = '공유하기';
+          $lang_modal_share_btn   = '계획 공유하기';
+          $lang_modal_cancle_btn  = '취소';
+          $lang_delete            = '삭제';
+          $lang_select_trip_kind  = '체험학습 종류 선택';
+          $lang_trip_kind_syugaku = '수학여행';
+          $lang_trip_kind_tomaru  = '숙박형';
+          $lang_trip_kind_touzitu = '1일형';
+        }
+        if($lang == 'jp'){
+          $lang_plan_list         = '計画リスト';
+          $lang_create_plan       = '計画作成';
+          $lang_create_mission    = 'ミッション作成';
+          $lang_plan_name         = '体験学習タイトル';
+          $lang_plan_date         = '体験学習実行日';
+          $lang_short_cut         = 'ショットカット';
+          $lang_back              = 'もどる';
+          $lang_sheet             = '書類作成';
+          $lang_staff             = '委員会';
+          $lang_survey            = 'アンケート';
+          $lang_notice            = 'お知らせ';
+          $lang_scheduel          = 'スケージュール';
+          $lang_checklist         = 'チェックリスト';
+          $lang_report            = '感想文';
+          $lang_share             = '共有';
+          $lang_modal_share_title = '共有する';
+          $lang_modal_share_btn   = '計画共有';
+          $lang_modal_cancle_btn  = '取り消し';
+          $lang_delete            = '消し';
+          $lang_select_trip_kind  = '体験学習種類';
+          $lang_trip_kind_syugaku = '修学旅行';
+          $lang_trip_kind_tomaru  = '泊まる';
+          $lang_trip_kind_touzitu = '当日';
+          
+        }
+                  
         // plan_title 		           = “(String)”,
         // plan_date                = “(String)”,
         // teacher_name			       = “(String)”,
@@ -61,10 +121,10 @@
     <div class="container">
         <div class="panel panel-info">
 				<div class="panel-heading text-center">
-					<h3 class="panel-title" style="display: inline-block;">체험학습 계획 작성</h3>
+					<h3 class="panel-title" style="display: inline-block;">{{$lang_create_plan}}</h3>
           <a href="{{route('plan.teacher')}}" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            뒤로 가기
+            {{$lang_back}}
           </a>
 					<span class="clearfix"></span>
 				</div>
@@ -73,7 +133,7 @@
           @if (isset($plan_no))
             <a href="{{route('plan.destroy', $plan_no)}} "role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
               <span class="glyphicon glyphicon-open-file"></span>
-              삭제
+              {{$lang_delete}}
             </a>
           @endif
           {{-- 저장하기 및 계획 작성 페이지로 이동 --}}
@@ -91,7 +151,7 @@
 							<div class="btn-group pull-right">
                 {{-- 서브밋 부분 --}}
 								<button type="submit" class="btn btn-danger btn-sm margin-right-20">
-                  <span class="glyphicon glyphicon-search">계획작성하기</span>
+                  <span class="glyphicon glyphicon-search">{{$lang_create_plan}}</span>
                 </button>
 							</div>
 						</div>
@@ -102,10 +162,10 @@
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                   @if(isset($plan_title)) 
 									  <input type="text" name="plan_title" class="form-control required" 
-                    value="{{$plan_title}}" size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+                    value="{{$plan_title}}" size="20" maxlength="20" placeholder="{{$lang_plan_name}}" required="" autofocus="">
                   @else
                     <input type="text" name="plan_title" class="form-control required" 
-                     size="20" maxlength="20" placeholder="체험학습 제목" required="" autofocus="">
+                     size="20" maxlength="20" placeholder="{{$lang_plan_name}}" required="" autofocus="">
                   @endif
 								</div>
 							</div>
@@ -118,7 +178,7 @@
                   @if(isset($plan_date)) 
                     <input type="date" class="form-control required" value="{{$plan_date}}" name="plan_date">
                   @else
-                    <input type="date" class="form-control required" placeholder="체험학습 실시일" name="plan_date">
+                    <input type="date" class="form-control required" placeholder="{{$lang_plan_date}}" name="plan_date">
                   @endif
 								</div>
 
@@ -137,27 +197,27 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
 									<select class="form-control" name="trip_kind_value" required="">
-                   <option value="" disabled="" selected="">체험학습종류 선택</option>
+                   <option value="" disabled="" selected="">体験学習種類</option>
                     @if(isset($trip_kind_value))  
-                      @if($trip_kind_value == '수학여행')
-                        <option value="수학여행" selected="selected">수학여행</option>
+                      @if($trip_kind_value == '{{$lang_select_trip_kind}}')
+                        <option value="{{$lang_select_trip_kind}}" selected="selected">{{$lang_select_trip_kind}}</option>
                       @else
-                        <option value="수학여행">수학여행</option>
+                        <option value="{{$lang_trip_kind_syugaku}}">{{$lang_trip_kind_syugaku}}</option>
                       @endif
-                      @if($trip_kind_value == '숙박형')
-                        <option value="숙박형" selected="selected">숙박형</option>
+                      @if($trip_kind_value == '{{$lang_trip_kind_tomaru}}')
+                        <option value="{{$lang_trip_kind_tomaru}}" selected="selected">{{$lang_trip_kind_tomaru}}</option>
                       @else
-                        <option value="숙박형" >숙박형</option>
+                        <option value="{{$lang_trip_kind_tomaru}}" >{{$lang_trip_kind_tomaru}}</option>
                       @endif
-                      @if($trip_kind_value == '1일형')
-                        <option value="1일형" selected="selected">1일형</option>
+                      @if($trip_kind_value == '{{$lang_trip_kind_touzitu}}')
+                        <option value="{{$lang_trip_kind_touzitu}}" selected="selected">{{$lang_trip_kind_touzitu}}</option>
                       @else
-                        <option value="1일형" >1일형</option>
+                        <option value="{{$lang_trip_kind_touzitu}}" >{{$lang_trip_kind_touzitu}}</option>
                       @endif
                     @else
-                      <option value="수학여행">수학여행</option>
-                      <option value="숙박형" >숙박형</option>
-                      <option value="1일형" >1일형</option>
+                      <option value="{{$lang_trip_kind_syugaku}}">{{$lang_trip_kind_syugaku}}</option>
+                      <option value="{{$lang_trip_kind_tomaru}}">{{$lang_trip_kind_tomaru}}</option>
+                      <option value="{{$lang_trip_kind_touzitu}}" >{{$lang_trip_kind_touzitu}}</option>
                     @endif
 									</select>
 								</div>
@@ -167,7 +227,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 									<select class="form-control" name="attend_class_count" required="">
-										<option value="" disabled="" >참여 학급수</option>
+										<option value="" disabled="" >参加するクラス数</option>
                    @if(isset($attend_class_count))  
                         @for ($t=1; $t <=15 ; $t++)
                           <option value="{{$t}}" @if ($attend_class_count == $t) selected="selected"@endif>{{$t}}</option>
@@ -184,28 +244,28 @@
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="attend_student_count" @if(isset($attend_student_count)) value="{{$attend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="참여 학생수" required="">
+									<input type="number" name="attend_student_count" @if(isset($attend_student_count)) value="{{$attend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="参加学生数" required="">
 								</div>
 							</div>
               {{-- 미참여 학생 수 입력 --}}
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="unattend_student_count" @if(isset($unattend_student_count)) value="{{$unattend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="미참여 학생수" required="">
+									<input type="number" name="unattend_student_count" @if(isset($unattend_student_count)) value="{{$unattend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="未参加学生数" required="">
 								</div>
 							</div>
 						</div>
 						<div class="row well well-sm form-group center-block">
 							<div class="col-md-3">
-								   <label class="text bold margin-top-3">교통수단 (복수선택가능) : </label>
+								   <label class="text bold margin-top-3">公共交通機関 : </label>
 							</div>
               {{-- 교통수단 선택 --}}
 							<div class="col-md-9">
 								@php
-									$tmp_transportation = ['전세버스','항공','선박','기차','대중교통','없음'];
-									$tmp_activity				= ['수상활동','산악등반','장기도보','실험참가','도예체험','단순기술습득','위험기구사용','관광','관람(미술관,박물관 등)','도서관견학','강의참가'];
-									$tmp_institution		=	['시도교육청 직영시설이용','공공기관 인증프로그램이용','공공기관 직영프로그램이용','청소년단체운영프로그램이용','없음'];
-									$tmp_others					= ['MAS 이용(다수공급자계약제도이용)','지자체 안심수학여행서비스신청 및 회신','현장 경비(비용) 지출 없음','최종계약일로부터 60일이내 체험학습 실시예정','특별보호대상학생없음(신체허약자등)','수익자 부담 없음','계약 관계 없음'];
+									$tmp_transportation = ['貸し切りバス','航空','船','電鉄','公共交通機関','なし'];
+									$tmp_activity				= ['レジャー','登攀','徒歩','実験参加','陶芸体験','単純技術取得','危険な道具使用','観光','観覧','講座参加'];
+									$tmp_institution		=	['国家直営施設利用','公共機関認証プログラム利用','公共機関直営プログラム利用','初年団体運営プログラム利用','なし'];
+									$tmp_others					= ['MAS 利用','安心できる巣医学旅行サービス申し込み','現場での払いなし','最終契約日から６０日以内に学習実行する予定','特別保護対象なし','受益者負担なし','契約関係なし'];
 								@endphp
 								
 								@for($i=0; $i<count($tmp_transportation); $i++)
@@ -220,7 +280,7 @@
             {{-- 체험 프로그램 선택 --}}
 						<div class="row well well-sm form-group center-block">
 							<div class="col-md-3">
-								<label class="text bold margin-top-3">체험 프로그램 선택 : </label>
+								<label class="text bold margin-top-3">体験プログラム選択 : </label>
 							</div>
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
@@ -245,7 +305,7 @@
             {{-- 기관 인증여부 선택 --}}
 						<div class="row well well-sm form-group center-block">
 							<div class="col-md-3">
-								<label class="text bold margin-top-3">기관인증 여부 선택 : </label>
+								<label class="text bold margin-top-3">機関認証拒否: </label>
 							</div>
 							<div class="col-md-9">
 								<div class="row  margin-bottom-10">
@@ -269,7 +329,7 @@
             {{-- 기타 선택 사항 입력 --}}
 						<div class="row well well-sm form-group center-block">
 							<div class="col-md-3">
-								<label class="text bold margin-top-3">기타 선택사항 입력: </label>
+								<label class="text bold margin-top-3">その他入力: </label>
 							</div>
 							<div class="col-md-9">
 								<div class="row margin-bottom-10">
