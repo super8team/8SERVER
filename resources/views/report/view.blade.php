@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','소감문 보기')
+@section('title','感想文見る')
 
 @section('content')
   <div class="bluedecobar"></div>
@@ -19,7 +19,7 @@
         </div>
         <a href="{{route('report_list',$plan_no)}}"role="button" class="btn btn-sm btn-default margin-right-10 pull-right">
           {{-- <span class="glyphicon glyphicon-open-file"></span> --}}
-          뒤로 가기
+          戻る
         </a>
       </div>
     </div>
