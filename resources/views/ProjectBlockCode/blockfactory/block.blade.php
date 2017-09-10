@@ -392,15 +392,17 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
+            <li>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
               @foreach($packages as $package_name)
-                <button style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
+                <ul style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
                   {{$package_name['name']}}
-                </button>
+                </ul>
               @endforeach
               @endif
             </div>
+            </li>
           </div>
         </td>
 
@@ -537,7 +539,7 @@
           <div id="notipopup" style="height:30%">
                       <div style="height:100%">
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">닫기</button>
+                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">閉じる</button>
                      </div>
           </div>
 

@@ -150,7 +150,7 @@ var VISION_ARGS = [
   }
 ];
 
-var CLICK_MESSAGE = '클릭 작동 %1';
+var CLICK_MESSAGE = 'クリック作動 %1';
 var CLICK_ARGS = [
   {
     "type": "field_dropdown",
@@ -181,7 +181,7 @@ var FIELD_ARGS = [
     // "check": "Field"
   }
 ];
-var SCRIPT_MESSAGE = '이벤트 %1 ';
+var SCRIPT_MESSAGE = 'イベント %1 ';
 var SCRIPT_ARG = [
     {
       "type": "input_statement",
@@ -190,7 +190,7 @@ var SCRIPT_ARG = [
     }
 ];
 //true
-var CHECKEDIT_MESSAGE = '정답 일 경우 %1 ';
+var CHECKEDIT_MESSAGE = '正解の場合 %1 ';
 var CHECKEDIT_ARG = [
     {
       "type": "input_statement",
@@ -198,7 +198,7 @@ var CHECKEDIT_ARG = [
     }
 ];
 //false
-var CHECKEDIT2_MESSAGE = '오답 일 경우 %1 ';
+var CHECKEDIT2_MESSAGE = '誤答の場合 %1 ';
 var CHECKEDIT2_ARG = [
     {
       "type": "input_statement",
@@ -334,7 +334,7 @@ Blockly.Blocks['input_statement'] = {
 Blockly.Blocks['CHECKEDIT'] = {
   init: function() {
       this.jsonInit({
-        "message0": "클릭 이벤트 %1 %2 정답 %3 %4 %5",
+        "message0": "クリックイベント %1 %2 正解 %3 %4 %5",
         "args0": [
           {
             "type": "field_input",
@@ -369,7 +369,7 @@ Blockly.Blocks['CHECKEDIT'] = {
 Blockly.Blocks['CLICK'] = {
   init: function() {
       this.jsonInit({
-        "message0" : "클릭 이벤트 %1 %2",
+        "message0" : "クリックイベント %1 %2",
         "args0": [
           {
             "type": "field_input",
@@ -391,7 +391,7 @@ Blockly.Blocks['CLICK'] = {
 Blockly.Blocks['CONFIG'] = {
   init: function() {
       this.jsonInit({
-        "message0" : "수정할 콘텐츠 이름 %1 %2 ",
+        "message0" : "修正するコンテンツの名 %1 %2 ",
         "args0": [
           {
             "type": "field_input",
@@ -419,7 +419,7 @@ Blockly.Blocks['END'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('이벤트 끝')
+        .appendField('イベント終了')
     this.setPreviousStatement(true, 'CheckEdit');
   }
 }
@@ -1016,13 +1016,13 @@ Blockly.Blocks['EDIT'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('텍스트')
+        .appendField('テキスト')
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.appendDummyInput()
-        .appendField('힌트')
+        .appendField('ヒント')
         .appendField(new Blockly.FieldTextInput('ヒントを入力'), 'HINT');
     this.appendDummyInput()
-        .appendField('사이즈')
+        .appendField('サイズ')
         .appendField(new Blockly.FieldNumber(0), 'SIZE');
     this.setPreviousStatement(true, 'Edit');
     this.setNextStatement(true, 'Edit');
