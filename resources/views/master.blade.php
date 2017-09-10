@@ -88,7 +88,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">로그인</h4>
+            <h4 class="modal-title" id="myModalLabel">ログイン</h4>
           </div>
           <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
             <div class="row">
@@ -103,23 +103,22 @@
                       </div>
                       <div class="checkbox">
                           <label>
-                              <input name="remember" type="checkbox" value="Remember Me">아이디 기억하기
-                          </label>
+                              <input name="remember" type="checkbox" value="Remember Me">ログイン情報を保持する
                       </div>
                       <!-- Change this to a button or input when using this as a form -->
                       <p>
-                        <input type="submit" name="" value="로그인" class="btn btn-lg btn-success btn-block">
+                        <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">
                         <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
                       </p>
                   </fieldset>
               </form>
               <div class="col-sm-8 col-md-offset-2">
-                <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">회원가입</a></p>
+                <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
               </div>
 
               <div class="col-sm-8 col-md-offset-2">
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">ID찾기</a>
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">비번찾기</a>
+                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">IDを忘れた方</a>
+                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">パスワードを忘れた方</a>
               </div>
             </div>
            </div>
@@ -163,19 +162,19 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal">ログイン</a></li>
+                <li><a href="#">新規登録</a></li>
               @else
                 <li>
                   @php
                   $user_info = Auth::user();
 
                   if($user_info['type'] == 'student'){
-                    $text = '학생';
+                    $text = '生徒';
                   }elseif ($user_info['type'] == 'teacher'){
-                    $text = '교사';
+                    $text = '教師';
                   }else{
-                    $text = '학부모';
+                    $text = '父兄';
                   }
                   @endphp
                   <a href="#" >{{$text}}</a>
@@ -184,7 +183,7 @@
                 <li>
                   <a href="#" onclick="event.preventDefault();
                                                           document.getElementById('logout-form').submit();">
-                    로그아웃
+                    ログアウト
                   </a>
                   <form id="logout-form" class="" action="{{route('logout')}}" method="post">
                     {{csrf_field()}}
@@ -195,8 +194,8 @@
           @else
           <ul id="right_menu" class="nav navbar-nav navbar-right">
             {{-- <li class="nav-divider"></li> --}}
-            <li><a href="#">교사 학x2</a></li>
-            <li><a href="#/">회원정보 수정</a></li>
+            <li><a href="#">教師</a></li>
+            <li><a href="#/">ユーザ譲歩修正</a></li>
           </ul>
           @endif
         </div><!--/.nav-collapse -->

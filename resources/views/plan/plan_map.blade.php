@@ -441,7 +441,7 @@
     // 클릭한 버튼으로 작동할 위치 선택하여 데이터 받아옴
     function load_calendar(){
       $('#calendar').fullCalendar({ 
-        locale: 'ko',
+        locale: 'jp',
   			header: {
   				left: 'prev,next today',
   				center: 'title',
@@ -537,7 +537,7 @@
       //캘린더에서 작동하는 부분
       var count_id = 0;
       function inputscheduel() {
-        var title = prompt('일정 내용을 입력해주세요.');
+        var title = prompt('日程を入力してください');
         var eventData;
         if (title) {
           eventData = {
@@ -670,21 +670,21 @@
        <div class="modal-content">
          <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title" id="result_modal_label">공유 정보</h4>
+           <h4 class="modal-title" id="result_modal_label">共有された情報</h4>
          </div>
          <div class="modal-body">
            <table class="table table-bordered table-striped">
              <thead>
-               <th>작성한 학교</th>
-               <th>작성자</th>
+               <th>作成した学校</th>
+               <th>作成者</th>
              </thead>
              <tbody id="likelist_info">
                <tr>
-                 <td학교</td>
-                 <td>작성자</td>
+                 <td>学校</td>
+                 <td>作成者</td>
                </tr>
                <tr>
-                 <td colspan="2">경주 체험학습 계획입니다.</td>
+                 <td colspan="2">体験学習共有します。</td>
                </tr>
              </tbody>
            </table>
@@ -694,8 +694,8 @@
            </div>
          </div>
          <div id="modal-form-place" class="modal-footer">
-           <button type="button" {{--id="save_click"--}} class="btn btn-default save_click">계획 가저오기</button>
-           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+           <button type="button" {{--id="save_click"--}} class="btn btn-default save_click">計画呼び出し</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">取り消し</button>
          </div>
        </div>
      </div>
@@ -744,29 +744,29 @@
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            선택 내용
+            体験学習入力情報
           </div><!-- /.panel-heading -->
             <div class="panel-body">
               <div class="faq-content">
-                <table class="table table-bordered table-striped" id="group1_work1">
+                <table class="table table-bordered table-striped" id="group1_work1">        
                   <tbody>
                     <tr>
-                      <td class='info bold'> 체험학습 제목 </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
+                      <td class='info bold'> 体験学習タイトル </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 체험학습 실시일 </td> <td class="text-center">{{$plan_date}} </td>
-                      <td class='info bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td>
-                      <td class='info bold'> 체험학습 구분  </td> <td class="text-center">{{$trip_kind_value}} </td>
+                      <td class='info bold'> 体験学習実行日 </td> <td class="text-center">{{$plan_date}} </td>
+                      <td class='info bold'> 担当教師 </td> <td class="text-center">{{$teacher_name}}</td>
+                      <td class='info bold'> 体験学習種類  </td> <td class="text-center">{{$trip_kind_value}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 참여 학급수 </td> <td class="text-center">{{$attend_class_count}} </td>
-                      <td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_count}} </td>
-                      <td class='info bold'> 미참여 학생수 </td> <td class="text-center">{{$unattend_student_count}} </td>
+                      <td class='info bold'> 参加するクラスの数 </td> <td class="text-center">{{$attend_class_count}} </td>
+                      <td class='info bold'> 参加する学生数 </td> <td class="text-center">{{$attend_student_count}} </td>
+                      <td class='info bold'> 未参加する学生数 </td> <td class="text-center">{{$unattend_student_count}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 선택 내용 </td>
+                      <td class='info bold'> 選択した内容 </td>
                       <td class="text-center"  colspan="5">
-                        대중교통,관람(미술관,박물관 등)
+                        公共交通
                       </td>
                     </tr>
                   </tbody>
@@ -778,7 +778,7 @@
         <div class="col-lg-4" id="show">
           <div class="panel panel-default">
             <div class="panel-heading">
-              검색 넣을 곳
+              検索
               <div class="pull-right">
               </div>
             </div><!-- /.panel-heading -->
@@ -786,7 +786,7 @@
               <div class="input-group">
                 <input id="pac-input" class="form-control input-lg" name='map_search_box' type="text" placeholder="지역명을 입력해 주세요">
                 <span class="input-group-btn">
-                  <button class="btn btn-lg btn-default" type="button">검색</button>
+                  <button class="btn btn-lg btn-default" type="button">検索。。。</button>
                 </span>
               </div>
               <br>
@@ -800,9 +800,9 @@
                 </div>
                 <table  class="table table-bordered table-striped">
                   <thead>
-                    <th>작성한 학교</th>
-                    <th>작성자</th>
-                    <th>링크 버튼</th>
+                    <th>作成した学校</th>
+                    <th>作成者</th>
+                    <th>ショットカット</th>
                   </thead>
                   <tbody id="result_search">
 
@@ -848,7 +848,6 @@
         <div class="col-sm-12">
           <div class="panel panel-default collapsed">
               <div class="panel-heading">
-                맵 들어가는 곳
               </div>
               <div class="panel-body">
                 <div id="map" style="min-height:500px;"></div>
@@ -859,16 +858,15 @@
           <p><a id="likelist" class="btn btn-lg btn-warning btn-block">관심목록</a></p>
         </div> --}}
         <div class="col-sm-12">
-          <p><a id="addsave" class="btn btn-lg btn-warning btn-block">저장</a></p>
-          <p><a id="line" class="btn btn-lg btn-warning btn-block">경로 재설정</a></p>
+          <p><a id="addsave" class="btn btn-lg btn-warning btn-block">SAVE</a></p>
+          <p><a id="line" class="btn btn-lg btn-warning btn-block">経路立て直し</a></p>
             <form class="form" name="plan_map_write" method="post" >
               {{ csrf_field() }}
               <input type="hidden" name="plan_no" value="{{$plan_no}}">
               <div id ="saveZone">
               </div>
             </form>
-        </div>
-        
+        </div>        
       </div><!-- /.col-lg-4 -->
     </div>
   </div>
