@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','체험학습 리스트')
+@section('title','体験学習リスト')
 
 @section('content')
   {{-- 공간 나누기용 꾸미기 바  --}}
@@ -10,7 +10,7 @@
   라라벨 페이지네이트 사용하기--}}
 {{-- 언어 변경 --}}
 @php
-  $lang = 'kr';
+  $lang = 'jp';
   
   if($lang == 'kr'){
     $lang_plan_list         = '계획 리스트';
@@ -36,10 +36,10 @@
     $lang_plan_list         = '計画リスト';
     $lang_create_plan       = '計画作成';
     $lang_create_mission    = 'ミッション作成';
-    $lang_plan_name         = '校外学習タイトル';
-    $lang_plan_date         = '校外学習実行日';
-    $lang_short_cut         = 'ショットカッ';
-    $lang_back              = '뒤로가기';
+    $lang_plan_name         = '体験学習タイトル';
+    $lang_plan_date         = '体験学習実行日';
+    $lang_short_cut         = 'ショットカット';
+    $lang_back              = 'もどる';
     $lang_sheet             = '書類作成';
     $lang_staff             = '委員会';
     $lang_survey            = 'アンケート';
@@ -149,7 +149,7 @@
                           <div class="modal-body">
                             <form class="form-horizontal" action="" method="post">
                               {{ csrf_field() }}
-                                <input type="text" class="form-control" placeholder="팁을 입력 하세요">
+                                <input type="text" class="form-control" placeholder="アドバイスを書いてください。">
                                 <input type="hidden" class="form-control" value="{{--$plan_no--}}">
                             </form>
                           </div>
