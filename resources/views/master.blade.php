@@ -107,7 +107,7 @@
                       </div>
                       <!-- Change this to a button or input when using this as a form -->
                       <p>
-                        <input type="submit" name="" value="로그인" class="btn btn-lg btn-success btn-block">
+                        <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">
                         <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
                       </p>
                   </fieldset>
@@ -170,11 +170,11 @@
                   $user_info = Auth::user();
 
                   if($user_info['type'] == 'student'){
-                    $text = '학생';
+                    $text = '生徒';
                   }elseif ($user_info['type'] == 'teacher'){
-                    $text = '교사';
+                    $text = '教師';
                   }else{
-                    $text = '학부모';
+                    $text = '父兄';
                   }
                   @endphp
                   <a href="#" >{{$text}}</a>
