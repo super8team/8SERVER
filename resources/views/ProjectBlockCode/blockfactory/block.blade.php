@@ -392,17 +392,19 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-            <li>
+            <ul>
             <div id="packageDiv" style="display:inline;" style="float:right" >
               @if($packages)
               @foreach($packages as $package_name)
-                <ul style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
+              <!-- class="package_button" -->
+              <!-- style="float:right" -->
+                <li  style="margin-bottom:15px; list-style:none;" type="button" name="button" value={{$package_name['id']}}>
                   {{$package_name['name']}}
-                </ul>
+                </li>
               @endforeach
               @endif
             </div>
-            </li>
+          </ul>
           </div>
         </td>
 
