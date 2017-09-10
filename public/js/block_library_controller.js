@@ -233,7 +233,7 @@ BlockLibraryController.prototype.clearBlockLibrary = function() {
 BlockLibraryController.prototype.makeNewPackage = function() {
 
   if(this.packageBasket.length<5){
-    var packageName = prompt("패키지 이름을 입력하여 주세요");
+    var packageName = prompt("パッケージの名を入力してください");
     if(!packageName)
     {
       return;
@@ -245,21 +245,17 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
     packageName = packageName
 
-    var packageObject = goog.dom.createDom('button', {
+    var packageObject = goog.dom.createDom('li', {
       'type': 'button',
-      'class':'package_button',
-      'display': 'block'
-      // disabled: 'false'
+      'class': 'package_list'
     },packageName);
-
-    // var packageObject = goog.dom.createDom('input', {
-    //   'id':this.primaryPackagenum,
-    //   'class':'package7',
-    //   'type':'submit',
-    //   'value':packageName,
+    // var packageObject = goog.dom.createDom('button', {
+    //   'type': 'button',
+    //   'class':'package_button',
     //   'display': 'block'
     //   // disabled: 'false'
-    // });
+    // },packageName);
+
 
     this.packageName.appendChild(packageObject);
     this.packageBasket[this.packageArrayKey] = packageObject;
