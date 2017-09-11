@@ -87,7 +87,7 @@
           {{-- 레코드를 10개 출력  --}}
 
           @for ($count=0; $count < count($plan_title); $count++)
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
               <div class="panel-heading">
                 # {{$plan_no[$count]}}　{{$plan_title[$count]}}
               </div>
