@@ -212,20 +212,15 @@
                 追加
               <span class="glyphicon glyphicon-forward"></span>
             </button>
+            <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
+              削除
+              <span class="glyphicon glyphicon-backward"></span>
+            </a>
           </div>
         </div>
-        <div class="text-center">
-          <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
-            削除
-            <span class="glyphicon glyphicon-backward"></span>
-          </a>
-        </div>
-        {{--</form>--}}
 
-
-{{--          {{ csrf_field() }}--}}
-
-          {{-- Step 5 : 처리 --}}
+        
+      
           <div class="col-lg-5">
             <div class="panel panel-default">
               <div class="panel-heading"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
