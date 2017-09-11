@@ -19,11 +19,11 @@
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=2') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=3') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=3') }}"> --}}
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=3') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=4') }}">
 
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
