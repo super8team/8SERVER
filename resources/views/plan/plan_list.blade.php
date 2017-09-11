@@ -31,6 +31,7 @@
     $lang_modal_share_title = '공유하기';
     $lang_modal_share_btn   = '계획 공유하기';
     $lang_modal_cancle_btn  = '취소';
+    $lang_shortcut          = '자세히';
   }
   if($lang == 'jp'){
     $lang_plan_list         = '計画リスト';
@@ -51,6 +52,8 @@
     $lang_modal_share_title = '共有する';
     $lang_modal_share_btn   = '計画共有';
     $lang_modal_cancle_btn  = '取り消し';
+    $lang_shortcut          = '詳しくは';
+    
   }
                                     
 @endphp
@@ -72,45 +75,42 @@
            </a>
         </h3>
       </div>
-      <div class="panel-body">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>{{$lang_plan_name}}</th>
-              <th>{{$lang_plan_date}}</th>
-              <th>{{$lang_short_cut}}
-                <a role="button" href="{{route('main')}}" aria-label="Right Align"
-                 class="btn btn-sm btn-default pull-right">
-                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                   {{$lang_back}}
-                 </a>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <div class="panel-body">     
+  
           {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
 
           {{-- 레코드를 10개 출력  --}}
 
           @for ($count=0; $count < count($plan_title); $count++)
-                <tr>
-                  <td>{{$plan_no[$count]}}</td>
-                  <td>{{$plan_title[$count]}}
-                    {{-- <a role="button" href="{{route('plan.edit', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      수정
-                    </a> --}}
-                  </td>
-                  <td>{{$plan_date[$count]}}</td>
-
-                  <td colspan="2" class="text-center">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3>{{$plan_title[$count]}}</h3>
+              </div>
+              <div class="panel-footer panel-info">
+                # {{$plan_no[$count]}}
+                <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#share">
+                  {{$lang_shortcut}}
+                </button>                
+              </div>
+            </div>
+            {{-- 체험학습 상세 --}}
+            <div class="modal modal fade " id="info" tabindex="-1"
+            role="dialog" aria-labelledby="infoLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="infoLabel">{{$lang_modal_share_title}}</h4>
+                  </div>
+                  <div class="modal-body">
                     <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       {{$lang_sheet}}
                     </a>
                     <a role="button" href="{{route('staff', ['count'=>$plan_no[$count]])}}" aria-label="Left Align" class="btn btn-sm btn-default ">
                       {{$lang_staff}}
                     </a>
-
+  
                     <a role="button" href="{{ route('survey.index', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
                       {{$lang_survey}}
                     </a>
@@ -136,36 +136,42 @@
                     <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#share">
                       {{$lang_share}}
                     </button>
-
-                    <div class="modal modal fade " id="share" tabindex="-1"
-                    role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="shareLabel">{{$lang_modal_share_title}}</h4>
-                          </div>
-                          <div class="modal-body">
-                            <form class="form-horizontal" action="" method="post">
-                              {{ csrf_field() }}
-                                <input type="text" class="form-control" placeholder="アドバイスを書いてください。">
-                                <input type="hidden" class="form-control" value="{{--$plan_no--}}">
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default">{{$lang_modal_share_btn  }}</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">{{$lang_modal_cancle_btn}}</button>
-                          </div>
+                  </div>
+                  {{-- 공유하기 --}}
+                  <div class="modal modal fade " id="share" tabindex="-1"
+                  role="dialog" aria-labelledby="shareLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"
+                          aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="shareLabel">{{$lang_modal_share_title}}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal" action="" method="post">
+                            {{ csrf_field() }}
+                              <input type="text" class="form-control" placeholder="アドバイスを書いてください。">
+                              <input type="hidden" class="form-control" value="{{--$plan_no--}}">
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default">{{$lang_modal_share_btn  }}</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">{{$lang_modal_cancle_btn}}</button>
                         </div>
                       </div>
                     </div>
-                  </td>
-               </tr>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger　pull-right" data-dismiss="modal">{{$lang_modal_cancle_btn}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>                
           @endfor
-        </tbody>
-        </table>
-                
+          {{-- {{$plan_no[$count]}}
+          {{$plan_title[$count]}}    
+        {{$plan_date[$count]}} --}}
+
         {{-- 페이지 네이션 --}}        
       </div>{{-- panel-body --}}
     </div>{{-- pannel panel-body --}}
