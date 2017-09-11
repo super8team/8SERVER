@@ -116,15 +116,16 @@ section#services .service-box {
 /*마우스 올렸을시 번쩍이는 색*/
 section#services .span3:hover {
 	background:#ffffff;
+  border-radius: 15px;
 }
 
 section#services .service-box h2 {
-	color: #f7f7f7;
 	font-weight: 700;
 }
 /*마우스 오버 후 번쩍한 후 변하는 색*/
 section#services.section.blue .service-box:hover {
 	background:#d9d9d9;
+  border-radius: 15px;
 }
 
 
