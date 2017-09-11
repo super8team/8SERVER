@@ -173,7 +173,7 @@
     @yield('content')
 
 
-    <footer class="footer text-center" style="background-color:#9197B5; color: #FFFFFF;" >
+    <footer class="footer text-center" >
       <div class="container">
         <p class="">&copy; Since 2017 Super8TeamLEARnFUN Project Company, Inc.</p>
       </div>
