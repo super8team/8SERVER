@@ -154,14 +154,14 @@ if($lang == 'jp'){
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="attend_student_count" class="form-control required" value="{{$attend_student_coutn}}" size="20" maxlength="20" placeholder="参加学生数" required="">
+									<input type="number" name="attend_student_count" class="form-control required" value="{{$attend_student_coutn}}" size="20" maxlength="20" placeholder="参加生徒数" required="">
 								</div>
 							</div>
               {{-- 미참여 학생 수 입력 --}}
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="unattend_student_count" class="form-control required" value="{{$unattend_student_coutn}}" size="20" maxlength="20" placeholder="未参加学生数" required="">
+									<input type="number" name="unattend_student_count" class="form-control required" value="{{$unattend_student_coutn}}" size="20" maxlength="20" placeholder="未参加生徒数" required="">
 								</div>
 							</div>
 						</div>

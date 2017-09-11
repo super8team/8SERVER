@@ -20,7 +20,7 @@ class CheckRole
       // dd(Auth::user());
       if(Auth::check()){
         if (Auth::user()->type != $role) {
-          $request->session()->flash('fail', "{$role}로 로그인 해야 합니다!");
+          $request->session()->flash('fail', "{$role}の機能です。");
           return redirect('/');
           // return view('/main', ['alert' => 'gg']);
           // return redirect('/')->with('alert', "$role 유저만 접근할 수 있습니다!");
@@ -29,7 +29,7 @@ class CheckRole
         // dd("login!");
         // return view('/main', ['alert' => 'gg']);
         // return view('/main');
-        $request->session()->flash('fail', "로그인 해야 합니다!");
+        $request->session()->flash('fail', "ログイン後、利用できます。");
         return redirect('/');
         // ->with('alert', "로그인 해야 합니다!");
         // return redirect('/')->with('message', "로그인 해야 합니다!");

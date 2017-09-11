@@ -129,9 +129,9 @@
                       {{$lang_checklist}}
                     </a>
                     {{-- <a role="button" href="{{route('report_list',$plan_no[$count])}}" class="btn btn-sm btn-default"> --}}
-                    {{-- <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
-                      {{--$lang_report}}
-                    </a> --}}
+                    <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn btn-sm btn-default">
+                      {{$lang_report}}
+                    </a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#share">
                       {{$lang_share}}

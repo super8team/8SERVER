@@ -760,8 +760,8 @@
                     </tr>
                     <tr>
                       <td class='info bold'> 参加するクラスの数 </td> <td class="text-center">{{$attend_class_count}} </td>
-                      <td class='info bold'> 参加する学生数 </td> <td class="text-center">{{$attend_student_count}} </td>
-                      <td class='info bold'> 未参加する学生数 </td> <td class="text-center">{{$unattend_student_count}} </td>
+                      <td class='info bold'> 参加する生徒数 </td> <td class="text-center">{{$attend_student_count}} </td>
+                      <td class='info bold'> 未参加する生徒数 </td> <td class="text-center">{{$unattend_student_count}} </td>
                     </tr>
                     <tr>
                       <td class='info bold'> 選択した内容 </td>

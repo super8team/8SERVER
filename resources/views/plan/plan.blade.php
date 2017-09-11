@@ -244,14 +244,14 @@
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="attend_student_count" @if(isset($attend_student_count)) value="{{$attend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="参加学生数" required="">
+									<input type="number" name="attend_student_count" @if(isset($attend_student_count)) value="{{$attend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="参加生徒数" required="">
 								</div>
 							</div>
               {{-- 미참여 학생 수 입력 --}}
 							<div class="col-md-3">
 								<div class="input-group required">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="number" name="unattend_student_count" @if(isset($unattend_student_count)) value="{{$unattend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="未参加学生数" required="">
+									<input type="number" name="unattend_student_count" @if(isset($unattend_student_count)) value="{{$unattend_student_count}}" @endif class="form-control required" size="20" maxlength="20" placeholder="未参加生徒数" required="">
 								</div>
 							</div>
 						</div>
@@ -264,7 +264,7 @@
 								@php
 									$tmp_transportation = ['貸し切りバス','航空','船','電鉄','公共交通機関','なし'];
 									$tmp_activity				= ['レジャー','登攀','徒歩','実験参加','陶芸体験','単純技術取得','危険な道具使用','観光','観覧','講座参加'];
-									$tmp_institution		=	['国家直営施設利用','公共機関認証プログラム利用','公共機関直営プログラム利用','初年団体運営プログラム利用','なし'];
+									$tmp_institution		=	['国家直営施設利用','公共機関認証プログラム利用','公共機関直営プログラム利用','青少年団体運営プログラム利用','なし'];
 									$tmp_others					= ['MAS 利用','安心できる巣医学旅行サービス申し込み','現場での払いなし','最終契約日から６０日以内に学習実行する予定','特別保護対象なし','受益者負担なし','契約関係なし'];
 								@endphp
 								

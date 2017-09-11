@@ -214,16 +214,17 @@
             </button>
           </div>
         </div>
+        <div class="text-center">
+          <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
+            삭제
+            <span class="glyphicon glyphicon-backward"></span>
+          </a>
+        </div>
         {{--</form>--}}
 
 
 {{--          {{ csrf_field() }}--}}
-          <div class="text-center">
-            <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
-              삭제
-              <span class="glyphicon glyphicon-backward"></span>
-            </a>
-          </div>
+          
           {{-- Step 5 : 처리 --}}
           <div class="col-lg-5">
             <div class="panel panel-default">
@@ -251,8 +252,6 @@
                </div><!-- /.panel-body -->
               </div>
             </div><!-- /.panel .chat-panel -->
-
-
       </div>
     </div>
 @endsection

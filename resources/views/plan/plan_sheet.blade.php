@@ -289,7 +289,7 @@ if($lang == 'jp'){
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span class="label label-warning">TIPS</span>
-																父兄の同意(意見)が学生の意見に代替されず、十分に反映される方法で意見の収れんし、苦情が発生しないよう留意しなければならない。</label>
+																父兄の同意(意見)が生徒の意見に代替されず、十分に反映される方法で意見の収れんし、苦情が発生しないよう留意しなければならない。</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')

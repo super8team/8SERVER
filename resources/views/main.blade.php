@@ -33,13 +33,13 @@ $lang = 'jp';
   
   if($lang == 'jp'){
     $lang_learnfun      = 'LEARnFUN';
-    $lang_learnfun_sub  = '父兄、教師、学生ための体験学習サービス。';
+    $lang_learnfun_sub  = '父兄、教師、生徒ための体験学習サービス。';
     $lang_parent        = '父兄';
     $lang_parent_sub    = 'お知らせ、アンケート、委員会';
     $lang_teacher       = '教師';
     $lang_teacher_sub   = '書類自動作成、体験学習スケージュール作成。';
-    $lang_student       = '学生';
-    $lang_student_sub   = '学生が楽しめるミッション, 感想文作成。';
+    $lang_student       = '生徒';
+    $lang_student_sub   = '生徒が楽しめるミッション, 感想文作成。';
     $lang_shortcut      = '詳しくは';
   }
 @endphp
