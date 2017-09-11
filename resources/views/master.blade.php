@@ -85,8 +85,8 @@
           </form>
           <div class="col-sm-8 col-md-offset-2">
             <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
-            <p><a href="index.html" class="btn btn-lg btn-info btn-block" >IDを忘れた方</a></p>
-            <p><a href="index.html" class="btn btn-lg btn-info btn-block" >パスワードを忘れた方</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-primary btn-block" >IDを忘れた方</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-primary btn-block" >パスワードを忘れた方</a></p>
           </div>
         </div>
        </div>

@@ -61,18 +61,23 @@
 <div class="bluedecobar"></div>
 <div class="bluebg">  
   <div class="container">
-    <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-     class="btn btn-lg btn-default pull-right">
-       <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-      {{$lang_create_plan}}
-    </a>
-    <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-default pull-right">
-      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-      {{$lang_create_mission}}
-    </a>
+    <div class="row">
+        <div class="col-sm-12">
+          <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
+           class="btn btn-lg btn-default pull-right">
+             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            {{$lang_create_plan}}
+          </a>
+          <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-default pull-right">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            {{$lang_create_mission}}
+          </a>
+        </div>
+    </div>
+    
     <div class="panel panel-success">
-      <div class="panel-heading" style="height:70px">
-        <h3 class="panel-title">{{$lang_plan_list}}</h3>
+      <div class="panel-heading">
+        <h2 class="panel-title">{{$lang_plan_list}}</h2>
       </div>
       <div class="panel-body">     
   
