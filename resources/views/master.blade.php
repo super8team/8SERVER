@@ -40,12 +40,12 @@
     <script type="text/javascript">
 
       //<![CDATA[
-      $(document).ready(function(){
-          $(document).on("click","#login_link",function() {
-              $('#loginModal').modal('show')
-          });
-      
-      });
+      // $(document).ready(function(){
+      //     $(document).on("click","#login_link",function() {
+      //         $('#loginModal').modal('show')
+      //     });
+      // 
+      // });
 
       // ]]>
 
@@ -141,7 +141,7 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a id="login_link" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
                 <li><a href="#">新規登録</a></li>
               @else
                 <li>
