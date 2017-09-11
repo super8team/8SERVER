@@ -24,8 +24,7 @@
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css?ver=9') }}">
-    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet" />
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
       <system.webServer>
