@@ -21,7 +21,7 @@
               <input type="text" class="form-control pull right col-sm-3 col-sm-offset-12" name="report_score" placeholder="点数を入力してください" value="">
             </div>
           </div>
-        <div class="panel-body" style="min-height:500px">
+        <div class="panel-body  panel-custom" style="min-height:500px">
           <div class="col-sm-12">
             {{-- 내용 표시 칸 --}}
             {{ $report_text }}

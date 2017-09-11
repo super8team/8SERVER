@@ -12,7 +12,7 @@
             {{ $notice_title }}
             
         </div>
-        <div class="panel-body" style="min-height:500px">
+        <div class="panel-body  panel-custom" style="min-height:500px">
           <div class="col-sm-12">
             {{-- 내용 표시 칸 --}}
             {{ $notice_text}}

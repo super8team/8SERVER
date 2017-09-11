@@ -73,13 +73,14 @@
             {{$lang_create_mission}}
           </a>
         </div>
+        <br>
     </div>
     
     <div class="panel panel-success">
       <div class="panel-heading">
         <h2 class="panel-title">{{$lang_plan_list}}</h2>
       </div>
-      <div class="panel-body">     
+      <div class="panel-body  panel-custom">     
   
           {{-- 현장 체험학습 추가시 여기 테이블 추가 코드넣기 --}}
 
@@ -111,7 +112,7 @@
                     参加グループ
                   </a>
                   
-                  <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn   btn-danger">
+                  <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
                     {{$lang_scheduel}}
                   </a>
                   

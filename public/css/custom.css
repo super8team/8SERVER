@@ -148,7 +148,9 @@ section#services.section.blue .service-box:hover {
   background-color: #white;
 }
 
-
+.panel-custom{
+  min-height: 600px;
+}
 /*
 |-------------------------------------
 | 학부모

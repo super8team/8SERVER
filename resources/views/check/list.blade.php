@@ -22,7 +22,7 @@
          </h3>
 
         </div>
-        <div class="panel-body">
+        <div class="panel-body ">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -39,7 +39,7 @@
                     <td>(基本)安全事故予防チェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>
@@ -50,7 +50,7 @@
                     <td>(基本)修学旅行の用役会社提案書評価項目配点</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>
@@ -61,7 +61,7 @@
                     <td>(基本)コンサルティング チェックリスト(コンサルティング内容)</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>
@@ -72,7 +72,7 @@
                     <td>(基本)コンサルティング チェックリスト(措置結果)</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>
@@ -83,7 +83,7 @@
                     <td>(基本)市民監査官の体験学習 チェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>
@@ -129,7 +129,7 @@
                     <td>以前に作成したチェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
-                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
+                      <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-default">
                         見る
                       </a>
                     </td>

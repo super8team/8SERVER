@@ -20,7 +20,7 @@
             </a>
           </h3>
         </div>
-        <div class="panel-body" style="min-height:500px;">
+        <div class="panel-body  panel-custom" style="min-height:500px;">
           <table class="table table-bordered">
             <thead>
               <tr>

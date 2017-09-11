@@ -37,7 +37,7 @@
 
          </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body  panel-custom">
             <table class="table table-bordered table-hover">
               <thead>
                 <th>#</th>
