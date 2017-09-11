@@ -41,39 +41,10 @@
 
       //<![CDATA[
       $(document).ready(function(){
-        // 페이지별로 클래스 등등 변환 하기
-
-        // 홈페이지 url 받아오기
-        var currurl = "{{url()->current()}}";
-        var user    = "{{'teacher'}}"; // 학생 학부모 교사 에 따라 css 변경
-
-
-        //37번째 이후 의 문자열을 가저옴 http://localhost/Code/laravel/public/home
-        // 폴더 화 가 되었으니 explode 를 사용 하거나 하기
-        currurl = currurl.substr(37);
-
-        //확인용 메세지
-
-
-        //페이지별 css 변환
-        //  url 별로 하니 피곤하다 사용자 별로 하는게 더 쉬울듯?
-
-        // if (currurl == 'home') {
-        //   $("#left_menu li:first").addClass(" active ");  //만약 active 가 다른페이지로 이동해도 남아있는경우 removeClass 넣어주기
-        // }
-        // else if (currurl == 'teacher'){
-        //   $("nav").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }else if (currurl == 'planlist'){
-        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }else if (currurl == 'plan'){
-        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }
-        //
-        // else{
-        //   window.alert(currurl+' url 설정하라!');
-        // }
-
-
+          $(document).on("click","#login_link",function() {
+              $('#loginModal').modal('show')
+          });
+      
       });
 
       // ]]>
@@ -170,7 +141,7 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a  data-toggle="modal" data-target="#loginModal">ログイン</a></li>
+                <li><a id="login_link" href="#" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
                 <li><a href="#">新規登録</a></li>
               @else
                 <li>
