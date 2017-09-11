@@ -84,52 +84,59 @@
   <body>
     {{-- 메인 --}}
     <!-- Modal 모달 -->
-    <div class="modal fade  " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">ログイン</h4>
-          </div>
-          <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
-            <div class="row">
-              <form class="form  col-sm-8 col-md-offset-2" action="{{route('login')}}" method="post">
-                {{ csrf_field() }}
-                  <fieldset>
-                      <div class="form-group">
-                          <input class="form-control" placeholder="ID" name="id" type="text" value="garam70" autofocus>
-                      </div>
-                      <div class="form-group">
-                          <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
-                      </div>
-                      <div class="checkbox">
-                          <label>
-                              <input name="remember" type="checkbox" value="Remember Me">ログイン情報を保持する
-                      </div>
-                      <!-- Change this to a button or input when using this as a form -->
-                      <p>
-                        <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">
-                        <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
-                      </p>
-                  </fieldset>
-              </form>
-              <div class="col-sm-8 col-md-offset-2">
-                <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
-              </div>
+    
+    
+    
+    
+    <!-- Button trigger modal -->
 
-              <div class="col-sm-8 col-md-offset-2">
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">IDを忘れた方</a>
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">パスワードを忘れた方</a>
-              </div>
-            </div>
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           </div>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="loginModalLabel">ログイン</h4>
+      </div>
+      <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
+        <div class="row">
+          <form class="form  col-sm-8 col-md-offset-2" action="{{route('login')}}" method="post">
+            {{ csrf_field() }}
+              <fieldset>
+                  <div class="form-group">
+                      <input class="form-control" placeholder="ID" name="id" type="text" value="garam70" autofocus>
+                  </div>
+                  <div class="form-group">
+                      <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
+                  </div>
+                  <div class="checkbox">
+                      <label>
+                          <input name="remember" type="checkbox" value="Remember Me">ログイン情報を保持する
+                  </div>
+                  <!-- Change this to a button or input when using this as a form -->
+                  <p>
+                    <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">
+                    <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
+                  </p>
+              </fieldset>
+          </form>
+          <div class="col-sm-8 col-md-offset-2">
+            <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
+          </div>
+
+          <div class="col-sm-8 col-md-offset-2">
+            <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">IDを忘れた方</a>
+            <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">パスワードを忘れた方</a>
           </div>
         </div>
-      </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
     </div>
+  </div>
+</div>
     <!-- 상단 고정 메뉴바 fixed static navbar -->
     <nav class="navbar navbar-home navbar-fixed-top" role="navigation" style="margin-bottom: 0">
       <div class="container">
@@ -163,7 +170,7 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a href="#" data-toggle="modal" data-target="#myModal">ログイン</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
                 <li><a href="#">新規登録</a></li>
               @else
                 <li>
