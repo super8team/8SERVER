@@ -23,7 +23,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css') }}"> --}}
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
@@ -84,7 +84,7 @@
   <body>
     {{-- 메인 --}}
     <!-- Modal 모달 -->
-    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade  " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
