@@ -19,12 +19,12 @@
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=4') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=5') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=3') }}"> --}}
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=5') }}">
-    <link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=6') }}">
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
 
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
