@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url("https://fonts.googleapis.com/earlyaccess/notosansjapanese.css");
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -18,8 +19,8 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
- font-family: "Mplus 1p"; 
+ margin: 0;
+ @import font-family: "Noto Sans Japanese"; 
 }
 article,
 aside,
