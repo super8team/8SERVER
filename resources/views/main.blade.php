@@ -48,11 +48,9 @@ $lang = 'jp';
          <div class=" parallax-window" data-parallax="scroll" data-image-src="{{asset('img/titleimg.jpg')}}"
          style="height:500px;width:101%;">
           {{-- 캐러셀 css 나중에 폰트 찾으면 수정 --}}
-      
-          <div class="bluedecobar">
-            
-          </div>
-          
+      <br>
+          <div class="bluedecobar"></div>
+        <br>
            <div class="carousel-caption">
              <img src="{{asset('img/logo.png')}}" alt="img load fail" style="width:400px;height:300px">
              <h1>{{$lang_learnfun}}</h1>
