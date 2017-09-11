@@ -23,6 +23,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   overflow-y:scroll;
+  font-family: "Rounded Mplus 1c"; 
 }
 
 img.minisize{

@@ -103,7 +103,7 @@
                     {{$lang_notice}}
                   </a>
                   
-                  <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-sm btn-default">
+                  <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-default">
                     参加グループ
                   </a>
                   
