@@ -51,6 +51,9 @@ $lang = 'jp';
           <br>
           <br>
           <br>
+          <div class="" height="100px">
+            
+          </div>
           
            <div class="carousel-caption">
              <img src="{{asset('img/logo.png')}}" alt="img load fail" style="width:400px;height:300px">
