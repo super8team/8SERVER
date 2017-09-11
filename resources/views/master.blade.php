@@ -19,8 +19,8 @@
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/boottheme.css') }}">
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -144,7 +144,7 @@
             <span class="icon-bar"></span>
           </button>
           {{-- 상표 이미지 로고 --}}
-          <img class="navbar-brand" style="border-radius:70px height:50px;" src="{{asset('img/logo.jpg')}}" alt="">
+          <img class="navbar-brand" style="border-radius:70px " src="{{asset('img/logo.jpg')}}" alt="">
            {{-- 상표 이름 적기 --}}
           <a class="navbar-brand" href="{{ route('main') }}">LEARnFUN</a>
         </div>
