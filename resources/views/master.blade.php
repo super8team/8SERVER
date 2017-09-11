@@ -20,7 +20,7 @@
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=1') }}">
+    <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=2') }}">
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
