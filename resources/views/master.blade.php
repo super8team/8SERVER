@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/boottheme.css') }}">
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
@@ -109,7 +109,7 @@
   </div>
 </div>
     <!-- 상단 고정 메뉴바 fixed static navbar -->
-    <nav class="navbar navbar-home navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
       <div class="container">
         <div class="navbar-header">
           {{-- 화면 폭이 768px 이하로 내려가면 드롭다운 아이콘 이나타남 아이콘 만들기 --}}
