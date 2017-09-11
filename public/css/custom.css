@@ -87,7 +87,7 @@ section.section h4 {
 
 
 /* 섹션 + ID  */
-
+/*
 section#services h2 {
 	font-size: 22px;
 	margin-bottom: 15px;
@@ -111,8 +111,9 @@ section#services .service-box {
 	-o-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-}
+}*/
 /*마우스 올렸을시 번쩍이는 색*/
+/*
 section#services .span3:hover {
 	background:#B8D7FF;
 }
@@ -121,11 +122,13 @@ section#services .service-box h2 {
 	color: #f7f7f7;
 	font-weight: 700;
 }
+*/
 /*마우스 오버 후 번쩍한 후 변하는 색*/
+/*
 section#services.section.blue .service-box:hover {
 	background:#90AFFF;
 }
-
+*/
 
 /*
 *********************  홈페이지 End  *********************
