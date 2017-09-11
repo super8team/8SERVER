@@ -57,7 +57,6 @@
   }
                                     
 @endphp
-
 <div class="bluedecobar"></div>
 <div class="bluebg">
   <div class="container">
@@ -88,7 +87,7 @@
               </div>
               <div class="panel-footer panel-info">
                 # {{$plan_no[$count]}}
-                <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#share">
+                <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#info">
                   {{$lang_shortcut}}
                 </button>                
               </div>
