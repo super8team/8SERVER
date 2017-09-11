@@ -170,7 +170,7 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a href="#" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
+                <li><a  data-toggle="modal" data-target="#loginModal">ログイン</a></li>
                 <li><a href="#">新規登録</a></li>
               @else
                 <li>
