@@ -15,7 +15,7 @@
     <title> @yield('title')</title>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> --}}
-      <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
