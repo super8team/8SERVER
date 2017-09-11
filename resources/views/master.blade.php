@@ -19,11 +19,11 @@
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=1') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=3') }}"> --}}
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=1') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=2') }}">
 
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
@@ -84,8 +84,8 @@
           </form>
           <div class="col-sm-8 col-md-offset-2">
             <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
-            <p><a href="index.html" class="btn btn-lg btn-info " style="width:182px;">IDを忘れた方</a></p>
-            <p><a href="index.html" class="btn btn-lg btn-info " style="width:182px;">パスワードを忘れた方</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-info " >IDを忘れた方</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-info " >パスワードを忘れた方</a></p>
           </div>
         </div>
        </div>

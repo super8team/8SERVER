@@ -82,15 +82,16 @@
 
           @for ($count=0; $count < count($plan_title); $count++)
             <div class="panel panel-default">
+              <div class="panel-heading panel-info">
+                # {{$plan_no[$count]}}
+              </div>
               <div class="panel-body">
                 <h3>{{$plan_title[$count]}}</h3>
-              </div>
-              <div class="panel-footer panel-info">
-                # {{$plan_no[$count]}}
                 <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#info">
                   {{$lang_shortcut}}
-                </button>                
+                </button>
               </div>
+              
             </div>
             {{-- 체험학습 상세 --}}
             <div class="modal modal fade " id="info" tabindex="-1"
