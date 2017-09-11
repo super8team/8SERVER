@@ -392,19 +392,21 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-            <ul>
-            <div id="packageDiv" style="display:inline;" style="float:right" >
+<ul>
+            <div id="packageDiv"  style="float:right" >
+
               @if($packages)
               @foreach($packages as $package_name)
               <!-- class="package_button" -->
               <!-- style="float:right" -->
-                <li  style="margin-bottom:15px; list-style:none;" type="button" name="button" value={{$package_name['id']}}>
+                <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
                   {{$package_name['name']}}
                 </li>
               @endforeach
               @endif
+
             </div>
-          </ul>
+</ul>
           </div>
         </td>
 
@@ -1059,9 +1061,10 @@
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
+
     var before_ele;
     var boundary  = 0;
-  package_div.addEventListener('click',function(event){
+    package_div.addEventListener('click',function(event){
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴

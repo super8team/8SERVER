@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','체크 리스트')
+@section('title','チェックリスト')
 
 @section('content')
   <div class="bluedecobar"></div>
@@ -8,16 +8,16 @@
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">선택한 체험학습의 체크리스트
+          <h3 class="panel-title">選んだ体験学習のチェックリスト
             <a role="button" href="{{route('plan.teacher')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
+             戻る
            </a>
            <a role="button" href="{{route('checklist.write')}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            체크리스트 작성
+            チェックリスト作成
           </a>
          </h3>
 
@@ -27,64 +27,64 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>작성일</th>
-                <th>결과보기</th>
+                <th>体験学習タイトル</th>
+                <th>作成日</th>
+                <th>結果確認</th>
               </tr>
             </thead>
             <tbody>
               {{-- 안전사고 예방 체크리스트 --}}
                   <tr>
                     <td>1</td>
-                    <td>(기본)안전사고 예방 체크리스트</td>
+                    <td>(基本)安全事故予防チェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>
                   {{-- 수학여행 용역 업체 제안서 평가 항목 배점  --}}
                   <tr>
                     <td>2</td>
-                    <td>(기본)수학여행 용역 업체 제안서 평가 항목 배점</td>
+                    <td>(基本)修学旅行の用役会社提案書評価項目配点</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>
                   {{-- 컨설팅 체크리스트(컨설팅 내용) --}}
                   <tr>
                     <td>3</td>
-                    <td>(기본)컨설팅 체크리스트(컨설팅 내용)</td>
+                    <td>(基本)コンサルティング チェックリスト(コンサルティング内容)</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>
-                  {{-- 컨설팅 체크리스트(조치 결과) --}}
+                  {{-- コンサルティング チェックリスト(措置結果) --}}
                   <tr>
                     <td>4</td>
-                    <td>(기본)컨설팅 체크리스트(조치 결과)</td>
+                    <td>(基本)コンサルティング チェックリスト(措置結果)</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>
                   {{-- 시민감사관 현장체험학습 체크리스트 --}}
                   <tr>
                     <td>5</td>
-                    <td>(기본)시민감사관 현장체험학습 체크리스트</td>
+                    <td>(基本)市民監査官の体験学習 チェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>
@@ -94,7 +94,7 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">이전에 작성한 체크리스트 리스트
+          <h3 class="panel-title">以前に作成したチェックリスト
           </h3>
 
         </div>
@@ -103,9 +103,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>작성일</th>
-                <th>바로가기</th>
+                <th>体験学習名前</th>
+                <th>作成日</th>
+                <th>ショットカット</th>
               </tr>
             </thead>
             <tbody>
@@ -119,18 +119,18 @@
                 <td>{{$value['data']['name']}}</td>
                 <td>{{$value['data']['date']}}</td>
                   $num = $value['data']['id']
-                  예시
+                  例
                   <a role="button" href="{{$plan_modify + $num}}" class="btn btn-sm btn-primary">
-                    수정
+                    修正
                   </a>
               @endforeach --}}
                   <tr>
                     <td>{{$count+1}}</td>
-                    <td>이전에 작성한 체크리스트</td>
+                    <td>以前に作成したチェックリスト</td>
                     <td>2017/00/00</td>
                     <td colspan="2" class="text-center">
                       <a role="button" href="{{route('checklist.view')}}" class="btn btn-sm btn-danger">
-                        보기
+                        見る
                       </a>
                     </td>
                   </tr>

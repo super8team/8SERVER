@@ -1,7 +1,7 @@
 
 @extends('master')
 
-@section('title','위원회 관리')
+@section('title','委員会管理')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 
@@ -52,7 +52,7 @@
 //       var a = document.getElementById('createDiv');
           var user_list = document.getElementsByName('list');
           var user_serial = document.getElementsByName('serial');
-          console.log('개수'+user_list.length)
+          console.log('数'+user_list.length)
           for(var i = 0; i < user_list.length ; i++ ){
                 if(user_list[i].checked) {
                     //추가된 위원회 이름
@@ -101,7 +101,7 @@
                     parent.removeChild(member[i].parentNode);
                 }
           }
-          console.log('삭제');
+          console.log('削除');
           console.log(parent);
       }
 
@@ -178,9 +178,9 @@
           <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="form-group col-sm-9">
-                  <input type="text" name="search" id="searchBar" placeholder="이름을 검색 해주세요" onKeyDown="enterkey()">
+                  <input type="text" name="search" id="searchBar" placeholder="お名前を検索してください" onKeyDown="enterkey()">
                 </div>
-                  <button type="button" onclick="searchClick()" id="searchBtn" class="btn btn-default">검색</button>
+                  <button type="button" onclick="searchClick()" id="searchBtn" class="btn btn-default">検索</button>
             </div>
             <div class="clearfix"></div>
             <div class="panel-body scrollspy-b ">
@@ -209,14 +209,14 @@
 
           <div class="text-center">
             <button id="addMember" type="button" onclick="addMemberBtn()"  class="btn btn-lg btn-default">
-                추가
+                追加
               <span class="glyphicon glyphicon-forward"></span>
             </button>
           </div>
         </div>
         <div class="text-center">
           <a role="button" id="deleteMember" onclick="deleteMemberBtn()" class="btn btn-lg btn-default">
-            삭제
+            削除
             <span class="glyphicon glyphicon-backward"></span>
           </a>
         </div>
@@ -224,12 +224,12 @@
 
 
 {{--          {{ csrf_field() }}--}}
-          
+
           {{-- Step 5 : 처리 --}}
           <div class="col-lg-5">
             <div class="panel panel-default">
               <div class="panel-heading"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                현재 위원회
+                現在の委員会
               </div><!-- /.panel-heading -->
                 <div class="panel-body scrollspy">
 
@@ -247,7 +247,7 @@
                   </table>
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <input type="hidden" name="committee_number" value='{{$plan_number}}'>
-                        <input type="submit">
+                        <input type="submit" value="保存">
                     </form>
                </div><!-- /.panel-body -->
               </div>

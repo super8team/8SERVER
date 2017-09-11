@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','소감문 리스트')
+@section('title','感想文リスト')
 
 @section('content')
   <div class="bluedecobar"></div>
@@ -19,24 +19,24 @@
             $back_route = 'plan.parents';
           }              
           @endphp
-          <h3 class="panel-title">선택한 체험학습의 소감문            
+          <h3 class="panel-title">選んだ体験学習の感想文
             <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
+             戻る
            </a>
            
            @if ($user_info['type'] == 'student')
              <a role="button" href="{{route('report_create',$plan_no)}}" aria-label="Right Align"
              class="btn btn-sm btn-default pull-right">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-              감상문 작성
+              感想文作成
             </a>   
           @else
             <a role="button" href="" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right disabled">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             감상문 작성
+              感想文作成
            </a>   
            @endif
            
@@ -48,12 +48,12 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>소감문 제목</th>
+                <th>感想文タイトル</th>
                 {{-- <th>작성일</th> --}}
                 @if ($user_info['type'] == 'teacher')
-                <th>점수</th>
+                <th>点数</th>
                 @endif
-                <th>바로가기</th>
+                <th>すぐ行く</th>
               </tr>
             </thead>
             <tbody>
@@ -67,17 +67,17 @@
                           @if (isset($report_score[0][$count]) )
                             <td>{{$report_score[0][$count]}}</td>
                           @else
-                            <td>미평가 감상문입니다.</td>
+                            <td>未評価感想文です。</td>
                           @endif
                         @endif
                                         
                         <td colspan="2" class="text-center">
                           <a role="button" href="{{route('report.show',$report_no[$count])}}" class="btn btn-sm btn-warning">
-                            보기
+                            見る
                           </a>
                           @if ($user_info['type'] == 'teacher')                          
                           <a role="button" href="{{route('report_view_evaluation',$report_no[$count])}}" class="btn btn-sm btn-warning">
-                            평가하기
+                            評価する
                           </a>
                           @endif
                         </td>
@@ -85,19 +85,19 @@
                 @endfor
               @else
                 <tr>
-                  <td>아직 작성된 감상문이</td>
-                  <td>하나도 없답니다 </td>
+                  <td>まだ作成した感想文が</td>
+                  <td>ないです。</td>
                   @if ($user_info['type'] == 'teacher')
                     <td>ㅎㅎ</td>
                   @endif
                     
                   <td colspan="2" class="text-center">
                     <a role="button"  class="btn btn-sm btn-warning disabled">
-                      보기
+                      見る
                     </a>
                     @if ($user_info['type'] == 'teacher')                          
                     <a role="button" class="btn btn-sm btn-warning disabled">
-                      평가하기
+                      評価する
                     </a>
                     @else
                     @endif
