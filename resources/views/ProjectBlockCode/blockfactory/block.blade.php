@@ -58,7 +58,7 @@
 </head>
 <body>
 
-<div class="decobar"></div>
+<div class="bluedecobar"></div>
 
   <div id="tabContainer">
       <div id="blockFactory_tab" class="tab tabon" >Block Factory</div>
