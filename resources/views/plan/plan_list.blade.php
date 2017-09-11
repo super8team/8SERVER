@@ -61,7 +61,7 @@
 <div class="bluedecobar"></div>
 <div class="bluebg">
   <div class="container">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading" style="height:70px">
         <h3 class="panel-title">{{$lang_plan_list}}
            <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
