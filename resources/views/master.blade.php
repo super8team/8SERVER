@@ -53,15 +53,6 @@
   </head>
 
   <body>
-    {{-- 메인 --}}
-    <!-- Modal 모달 -->
-    
-    
-    
-    
-    <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -87,8 +78,7 @@
                   </div>
                   <!-- Change this to a button or input when using this as a form -->
                   <p>
-                    <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">
-                    <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
+                    <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">                  
                   </p>
               </fieldset>
           </form>
