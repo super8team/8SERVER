@@ -5866,22 +5866,18 @@ button.close {
   border: 0;
   -webkit-appearance: none;
 }
-body.modal-open,{
-padding-left: 15px;
+.modal-open {
+  /*overflow: hidden;*/
 }
-
-/*.modal-open {
-  overflow:hidden;
-}*/
 .modal {
+  display: none;
+  /*overflow: hidden;*/
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
-  display: none;
-  overflow: hidden;
+  z-index: 1050;
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
