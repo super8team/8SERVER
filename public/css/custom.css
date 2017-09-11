@@ -38,7 +38,7 @@ img.minisize{
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color:#9197B5
+  background-color:#bfbfbf;
 }
 
 .footer > .container {
@@ -72,18 +72,18 @@ section.section h4 {
 }
 
 /*태그별 폰트*/
-.section.blue h4 ,.section.green h4{
+/*.section.blue h4 ,.section.green h4{
 	color: #fcfcfc;
 }
 .section.blue p,.section.green p {
 	color: #f7f7f7;
-}
+}*/
 
 /*섹션 배경 색*/
 .section.blue {
   padding-top: 50px;
   padding-bottom: 50px;
-	background:#A8C8F9;
+	background:#f2f2f2;
 }
 
 
@@ -115,7 +115,7 @@ section#services .service-box {
 }
 /*마우스 올렸을시 번쩍이는 색*/
 section#services .span3:hover {
-	background:#B8D7FF;
+	background:#ffffff;
 }
 
 section#services .service-box h2 {
@@ -124,7 +124,7 @@ section#services .service-box h2 {
 }
 /*마우스 오버 후 번쩍한 후 변하는 색*/
 section#services.section.blue .service-box:hover {
-	background:#90AFFF;
+	background:#d9d9d9;
 }
 
 
@@ -143,7 +143,7 @@ section#services.section.blue .service-box:hover {
 
 .bluedecobar{
   width: 100%;
-  height: 60px;
+  height: 100px;
   background-color: #white;
 }
 
