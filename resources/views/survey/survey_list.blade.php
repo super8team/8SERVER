@@ -19,18 +19,19 @@
       @endphp
       <div class="panel panel-default panel-custom">
         <div class="panel-heading">
-          <h3 class="panel-title">選んだ体験学習のアンケート調査
-            <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
-            class="btn btn-sm btn-default pull-right">
-             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             戻る
-           </a>
-           <a role="button" href="{{route('survey.create')}}" aria-label="Right Align"
-           class="btn btn-sm btn-default pull-right">
-            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            アンケート作成
-          </a>
+          <h3 class="panel-title" style="display: inline-block;">選んだ体験学習のアンケート調査
+            
          </h3>
+         <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
+         class="btn btn-sm btn-default pull-right">
+          {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+          戻る
+        </a>
+        <a role="button" href="{{route('survey.create')}}" aria-label="Right Align"
+        class="btn btn-sm btn-default pull-right">
+         {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+         アンケート作成
+       </a>
           {{-- <h3 class="panel-title">이전에 작성한 설문조사 리스트
           </h3> --}}
 
