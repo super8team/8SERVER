@@ -7,8 +7,8 @@
   <div class="bluebg">
     <div class="container">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">선택한 체험학습의 가정통신문
+        <div class="panel-heading text-center">
+          <h3 class="panel-title">선택한 체험학습의 가정통신문 </h3>
             @php
             $user_info = Auth::user();
             
@@ -31,10 +31,8 @@
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
             가정 통신문 작성
           </a>
-         </h3>
-
         </div>
-        <div class="panel-body">
+        <div class="panel-body  panel-custom">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>

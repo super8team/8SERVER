@@ -6,14 +6,67 @@
 
 	@section('thead')
 		<thead>
-			<th width='5%' class='text-center'>확인</th>
-			<th width='25%' class='text-center'>업무이름</th>
-			<th width='25%' class='text-center'>관련파일</th>
-			<th width='45%' class='text-center'>업무지침</th>
+			<th width='5%' class='text-center'>確認</th>
+			<th width='25%' class='text-center'>業務名</th>
+			<th width='25%' class='text-center'>関連ファイル</th>
+			<th width='45%' class='text-center'>業務参考寺港</th>
 		</thead>
 	@endsection
 @php
+$lang = 'jp';
 
+if($lang == 'kr'){
+	$lang_plan_list         = '계획 리스트';
+	$lang_create_plan       = '계획 작성하기';
+	$lang_create_mission    = '미션 작성하기';
+	$lang_plan_name         = '체험학습 제목';
+	$lang_plan_date         = '체험학습 실시일';
+	$lang_short_cut         = '바로가기';
+	$lang_back              = '뒤로가기';
+	$lang_sheet             = '서류작성';
+	$lang_staff             = '위원회';
+	$lang_survey            = '설문조사';
+	$lang_notice            = '가정통신문';
+	$lang_scheduel          = '스케쥴';
+	$lang_checklist         = '체크리스트';
+	$lang_report            = '소감문';
+	$lang_share             = '공유';
+	$lang_modal_share_title = '공유하기';
+	$lang_modal_share_btn   = '계획 공유하기';
+	$lang_modal_cancle_btn  = '취소';
+	$lang_delete            = '삭제';
+	$lang_select_trip_kind  = '체험학습 종류 선택';
+	$lang_trip_kind_syugaku = '수학여행';
+	$lang_trip_kind_tomaru  = '숙박형';
+	$lang_trip_kind_touzitu = '1일형';
+}
+if($lang == 'jp'){
+	$lang_plan_list         = '計画リスト';
+	$lang_create_plan       = '計画作成';
+	$lang_create_mission    = 'ミッション作成';
+	$lang_plan_name         = '体験学習タイトル';
+	$lang_plan_date         = '体験学習実行日';
+	$lang_short_cut         = 'ショットカット';
+	$lang_back              = 'もどる';
+	$lang_sheet             = '書類作成';
+	$lang_staff             = '委員会';
+	$lang_survey            = 'アンケート';
+	$lang_notice            = 'お知らせ';
+	$lang_scheduel          = 'スケージュール';
+	$lang_checklist         = 'チェックリスト';
+	$lang_report            = '感想文';
+	$lang_share             = '共有';
+	$lang_modal_share_title = '共有する';
+	$lang_modal_share_btn   = '計画共有';
+	$lang_modal_cancle_btn  = '取り消し';
+	$lang_delete            = '消し';
+	$lang_select_trip_kind  = '体験学習種類';
+	$lang_trip_kind_syugaku = '修学旅行';
+	$lang_trip_kind_tomaru  = '泊まる';
+	$lang_trip_kind_touzitu = '当日';
+	
+}
+					
 //임시 변수
 	// $plan_title 						= "야비군";
 	// $plan_date							= "2017/05/23";
@@ -31,7 +84,7 @@
 			<div class="container">
 				<div class="panel panel-primary">
 					<div class="panel-heading  text-center">
-						<h3 class="panel-title" style="display: inline-block;">체험학습 업무 내용</h3>
+						<h3 class="panel-title" style="display: inline-block;">体験学習業務内容</h3>
 						<span class="clearfix"></span>
 					</div>
 					<div class="panel-body">
@@ -43,9 +96,13 @@
 							<div class="row form-group" >
 								<input type="text" class="hidden" value="NEW" name="WROKMODE_NAME" id="WORKMODE_ID">
 								<div class="btn-group pull-right">
-									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan" onclick="location.href='{{route('plan.edit',$plan_no)}}'"> <span class="fa fa-download"> 다시 계획하기 </button>
-									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"> <span class="fa fa-download"> 첨부파일 일괄다운로드 </button>
-									<button type="btnSubmit" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"> <span class="fa fa-save"> 진행상황 저장하기 </button>
+									<button type="button" class="btn btn-info btn-sm margin-right-20" id="btn_re_create_plan" onclick="location.href='{{route('plan.edit',$plan_no)}}'">やり直し<span class="fa fa-download">  </button>
+									<button type="button" class="btn btn-warning btn-sm margin-right-20" id="btn_download_file"> <span class="fa fa-download"> 全体ファイル </button>
+									<button type="btnSubmit" class="btn btn-danger btn-sm margin-right-20" id="btn_submit"> <span class="fa fa-save"> 進行事項保存 </button>
+										<a href="{{route('plan.teacher')}}" role="button" class="btn btn-sm btn-success margin-right-10 pull-right">
+					            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					            もどる
+					          </a>
 								</div>
 							</div>
 
@@ -53,7 +110,7 @@
 								<div class="panel panel-default">
 									<div class="panel-heading" id="heading-0">
 											<h5 class="panel-title text-center">
-												<< 체험학습 선택 사항 요약 >>
+												<< 体験学習選択事項要約 >>
 											</h5>
 										
 									</div>
@@ -61,33 +118,32 @@
 										<div class="panel-body">
 											<div class="faq-content">
 												<table class="table table-bordered table-striped" id="group1_work1">
-													<tbody>
+													<tbody>												
 														<tr>
-															<td class='info bold'> 체험학습 제목 </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
+															<td class='primary bold'> {{$lang_plan_name}} </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
 
 														</tr>
 														<tr>
-															<td class='info bold'> 체험학습 실시일 </td> <td class="text-center">{{$plan_date}} </td>
+															<td class='primary bold'> {{$lang_plan_date}} </td> <td class="text-center">{{$plan_date}} </td>
 
-															{{-- <td class='info bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td> --}}
+															{{-- <td class='primary bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td> --}}
 
-															<td class='info bold'> 체험학습 구분  </td> <td class="text-center">{{$trip_kind_value}} </td>
+															<td class='primary bold'> {{$lang_select_trip_kind}}  </td> <td class="text-center">{{$trip_kind_value}} </td>
+
+														</tr>
+														<tr>													
+															<td class='primary bold'> 参加クラス数 </td> <td class="text-center">{{$attend_class_count}} </td>
+
+															<td class='primary bold'>  参加生徒数 </td> <td class="text-center">{{$attend_student_count}} </td>
+
+															<td class='primary bold'> 未参加生徒数 </td> <td class="text-center">{{$unattend_student_count}} </td>
 
 														</tr>
 														<tr>
-
-															<td class='info bold'> 참여 학급수 </td> <td class="text-center">{{$attend_class_count}} </td>
-
-															<td class='info bold'> 참여 학생수  </td> <td class="text-center">{{$attend_student_count}} </td>
-
-															<td class='info bold'> 미참여 학생수 </td> <td class="text-center">{{$unattend_student_count}} </td>
-
-														</tr>
-														<tr>
-															<td class='info bold'> 선택 내용 </td>
+															<td class='primary bold'> 選択内容う </td>
 															<td class="text-center"  colspan="5">
 																@foreach ($transpotation as $value)
-																{{ "대중교통,관람(미술관,박물관 등)" }}
+																{{ "貸し切りバス" }}
 																@endforeach
 															</td>
 														</tr>
@@ -102,7 +158,7 @@
 									<div class="panel-heading dark-3" role="tab" id="heading-0">
 										
 											<h5 class="panel-title text-orange text-center">
-												<< 체험학습 업무 사항 요약 >>
+												<< 体験学習選択事項要約　>>
 											</h5>
 										
 									</div>
@@ -111,31 +167,41 @@
 											<div class="faq-content">
 												<table class="table table-bordered table-striped" id="group1_work1">
 													<tbody>
-													<tr>
-														<td class='info bold'> 진행업무개수 </td> <td class="text-center">59 개 (선택사항 1 개 포함 )  </td>
-														<td class='info bold'> 진행 규모 </td> <td class="text-center">소규모 - 적정함 </td>
-														<td class='info bold text-center'> 동의 비율 : 99.00 % </td>
-													</tr>
-													<tr>
-														<td class='info bold'> 추천 인솔교사수 </td> <td class="text-center">4명 이상 </td>
-														<td class='info bold'> 추천 안전요원수  </td> <td class="text-center"> 1명 이상 </td>
-														<td class='info bold text-center'> <a data-toggle="modal" data-target="#view_myschool_helpfile" type="button" class="btn btn-sm btn-info" value="./explain/manual_doc_2_4.html">
-																{{-- <span class="fa fa-file"> 도움말</a></td> --}}
-													</tr>
-													<tr>
-														<td class='info bold'> 교육청 컨설팅 유무 </td> <td class="text-center">필요없음 </td>
-														<td class='info bold'> 시민 감사 표집 대상 </td> <td class="text-center">대상학교아님 </td>
-														<td class='info bold text-center'> <a data-toggle="modal" data-target="#view_myschool_helpfile" type="button" class="btn btn-sm btn-info" value="./explain/manual_doc_2_4.html">
-															{{-- <span class="fa fa-file"> 도움말</a></td> --}}
-													</tr>
-													<tr>
-														<td class='info bold'> 필수 준수 사항 </td> <td colspan="4" >인력확보 등을 고려하여 1명 이상 배치 권장함.</br>안전대책 수립후 자율실시 가능함</br></td>
-													</tr>
-													<tr>
-														<td class='info bold'> 참고 사항 </td> <td colspan="4">단, 150명 미만의 경우 안전요원 배치가 어려울 때 그 사정을 밝히고 학교운영위원회 심의를 거쳐 제외 가능
-														</br>
-													</td>
-													</tr>
+														<tr>
+															<td class='primary bold'>進行業務の個数</td>
+															<td class="text-center">59個(選択事項1個含め)</td>
+															<td class='primary bold'>進行規模</td>
+															<td class="text-center">小規模・適正さ</td>
+															<td class='primary bold text-center'>同意の割合:99.00%</td>
+														</tr>
+														<tr>
+															<td class='primary bold'>推薦引率ギョサス</td>
+															<td class="text-center">4人以上</td>
+															<td class='primary bold'>推薦、安全要員数</td>
+															<td class="text-center">1人以上</td>
+															<td class='primary bold text-center'>
+																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-primary"value="。/explain/manual_doc_2_4.html">
+															{{--<span class="fa fa-file">ヘルプ</a></td>--}}
+														</tr>
+														<tr>
+															<td class='primary bold'>教育庁コンサルティングの有無</td>
+															<td class="text-center">必要ないこと</td>
+															<td class='primary bold'>市民監査、標本対象</td>
+															<td class="text-center">の対象校ないこと</td>
+															<td class='primary bold text-center'>
+																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-primary"value="。/explain/manual_doc_2_4.html">
+															{{--<span class="fa fa-file">ヘルプ</a></td>--}}
+														</tr>
+														<tr>
+															<td class='primary bold'>必須遵守事項</td>
+															<td colspan="4">人材確保などを考慮して1人以上配置推奨する。</br>安全対策樹立後自律実施可能であること</br></td>
+														</tr>
+														<tr>
+															<td class='pry bold'>参考事項</td>
+															<td colspan="4">ただし、150人未満の場合の安全要員の配置が難しい時その事情を明らかにして学校運営委員会の審議を経て、排除の可能
+															</br>
+															</td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -152,7 +218,7 @@
 											   href="#collapse-1">
 												<h5 class="panel-title">
 													<span
-														class="label label-default">1</span> 기본계획수립	</h5>
+														class="label label-default">1</span> 基本計画樹立	</h5>
 											</a>
 										</div>
 										<div id="collapse-1"
@@ -161,7 +227,7 @@
 											<div class="panel-body">
 												<div class="faq-content">
 													<label><span
-															class="label label-warning">TIPS</span> 실시 시기,목적,방법(소규모/학년단위) 등 계획 수립</label>
+															class="label label-warning">TIPS</span> 実施時期、目的、方法(小規模/学年単位)など、計画の樹立</label>
 													<table class="table table-bordered table-striped" id="group1_work1">
 
 															@yield('thead')
@@ -171,7 +237,7 @@
 															<td class="text-center">
 																<input type="checkbox" name="result_check[]" value="1">
 															</td>
-															<td class="text-center">체험학습 기본계획수립</td>
+															<td class="text-center">体験学習基本計画の樹立</td>
 
 															<td>
 																<span class="glyphicon glyphicon-save-file"></span>
@@ -215,7 +281,7 @@
 													<a role="button" class="nounderline" data-toggle="collapse"href="#collapse-2">
 														<h5 class="panel-title">
 															<span class="label label-default">2</span>
-															학부모 동의 및 학생선호도 조사
+															保護者の同意及び生徒の支持度調査
 														</h5>
 													</a>
 												</div>
@@ -223,7 +289,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span class="label label-warning">TIPS</span>
-																학부모 동의(의견)가 학생 의견으로 대체되지 않고 충분히 반영될 수 있는 방법으로 의견 수렴하여 민원이 발생하지 않도록 유의해야 함.</label>
+																父兄の同意(意見)が生徒の意見に代替されず、十分に反映される方法で意見の収れんし、苦情が発生しないよう留意しなければならない。</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -305,7 +371,7 @@
 													   href="#collapse-3">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">3</span> 현장체험학습 소위원회 운영	</h5>
+																class="label label-default">3</span> 現場体験学習小委員会の運営	</h5>
 													</a>
 												</div>
 												<div id="collapse-3"
@@ -314,7 +380,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 소규모 학교 경우 또는 학교장이「현장체험학습 소위원회」를 구성하지 않고도 소기의 목적 달성이																	가능하다고 판단되는 경우「학교운영위원회」로 대체 가능함.														</label>
+																	class="label label-warning">TIPS</span>小規模学校の場合又は学校長が"現場体験学習小委員会"を構成しなくても、所期の目的の達成が可能と判断される場合"学校運営委員会"で代替可能する</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -352,7 +418,7 @@
 													   href="#collapse-4">
 														<h5 class="panel-title">
 															<span class="label label-default">4</span>
-															 1차 현장답사
+															1次現場踏査
 														</h5>
 													</a>
 												</div>
@@ -362,7 +428,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span class="label label-warning">TIPS</span>
-																 무리한 일정 계획수립 삼가,학부모,교사,현장체험학습 소위원회 위원 등이 함께 참여하여 실시, 학교운영비로 사전답사 실시</label>
+																無理な日程計画の樹立謹んで、父兄、教師、現場体験学習小委員会委員などが一緒に参加して実施、学校運営費と事前踏査実施</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -454,7 +520,7 @@
 													   href="#collapse-5">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">5</span> 학교운영위원회 심의 및 학교장 결제</h5>
+																class="label label-default">5</span>学校運営委員会の審議及び学校長の決済</h5>
 													</a>
 												</div>
 												<div id="collapse-5"
@@ -463,7 +529,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 운영위원회 심의 사항 존중</label>
+																	class="label label-warning">TIPS</span> 運営委員会の審議事項尊重</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -509,7 +575,7 @@
 													   href="#collapse-6">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">6</span> 계약, 용역의뢰 및 보험가입</h5>
+																class="label label-default">6</span>契約、依頼および保険加入 </h5>
 													</a>
 												</div>
 												<div id="collapse-6"
@@ -518,7 +584,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 모든 계약은 입찰이 원칙이나 추정가격이 2천만원 미만일 경우 수의계약도 가능함.</label>
+																	class="label label-warning">TIPS</span>すべての契約は入札が原則や推定価格が2千万ウォン未満の場合、随意契約も可能であること</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -577,7 +643,7 @@
 													   href="#collapse-7">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">7</span> 2차 현장답사(시행직전)</h5>
+																class="label label-default">7</span> 2次現場踏査(施行直前に)</h5>
 													</a>
 												</div>
 												<div id="collapse-7"
@@ -586,7 +652,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 실제 업무담당자 또는 인솔자 중심으로 운영 가능	</label>
+																	class="label label-warning">TIPS</span> 実際の業務担当者または引率者中心に運営可能	</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -621,7 +687,7 @@
 													   href="#collapse-8">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">8</span> 외부 협조 요청 및 확인</h5>
+																class="label label-default">8</span> 外部協力要請および確認</h5>
 													</a>
 												</div>
 												<div id="collapse-8"
@@ -630,7 +696,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 책임범위 및 안전 관련 사항 요구</label>
+																	class="label label-warning">TIPS</span> 責任範囲及び安全に関する事項を要求</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -656,7 +722,7 @@
 													   href="#collapse-9">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">9</span> 사전안전교육</h5>
+																class="label label-default">9</span> 事前の安全教育</h5>
 													</a>
 												</div>
 												<div id="collapse-9"
@@ -665,7 +731,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 교과 및 창의적 체험활동 시간을 활용하여 사전교육 실시</label>
+																	class="label label-warning">TIPS</span> 教科や創意的な体験活動時間を活用して事前教育実施</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -690,7 +756,7 @@
 													   href="#collapse-10">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">10</span> 구비 및 운영준비</h5>
+																class="label label-default">10</span> 具備及び運営準備</h5>
 													</a>
 												</div>
 												<div id="collapse-10"
@@ -699,7 +765,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 운영계획서는 실시 3일전까지 학교 홈페이지 탑재(인적사항삭제)</label>
+																	class="label label-warning">TIPS</span> 体験学習の運営計画書は実施3日前まで学校のホームページ搭載(人的事項削除)</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -722,7 +788,7 @@
 													   href="#collapse-11">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">11</span> 운영 및 경비집행</h5>
+																class="label label-default">11</span> 運営及び経費執行</h5>
 													</a>
 												</div>
 												<div id="collapse-11"
@@ -731,7 +797,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 비상사고시 대처방법 및 보고방법 출력/지참</label>
+																	class="label label-warning">TIPS</span> 非常事故時の対処方法及び報告方法出力/持参</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -763,7 +829,7 @@
 													   href="#collapse-12">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">12</span> 정산</h5>
+																class="label label-default">12</span>精算</h5>
 													</a>
 												</div>
 												<div id="collapse-12"
@@ -772,7 +838,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 10일이내 정산결과를 학부모에게 공개해야함.</label>
+																	class="label label-warning">TIPS</span> 体験学習終了後10日以内調整の結果を、保護者に公開しなければならない</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -793,7 +859,7 @@
 													   href="#collapse-13">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">13</span> 만족도평가</h5>
+																class="label label-default">13</span> 満足度評価</h5>
 													</a>
 												</div>
 												<div id="collapse-13"
@@ -802,7 +868,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 7일 이내 실시</label>
+																	class="label label-warning">TIPS</span> 体験学習終了後7日以内を実施</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')
@@ -824,7 +890,7 @@
 													   href="#collapse-14">
 														<h5 class="panel-title">
 															<span
-																class="label label-default">14</span> 평가결과 처리</h5>
+																class="label label-default">14</span> 評価結果の処理</h5>
 													</a>
 												</div>
 												<div id="collapse-14"
@@ -833,7 +899,7 @@
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span
-																	class="label label-warning">TIPS</span> 체험학습 종료후 14일 이내 실시</label>
+																	class="label label-warning">TIPS</span> 体験学習終了後14日以内を実施</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')

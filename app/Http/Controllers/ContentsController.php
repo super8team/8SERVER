@@ -132,7 +132,7 @@ class ContentsController extends Controller
 
         $contentsName = [];
         $contentsId = [];
-        $package_contents_sum = 0;
+        $package_contents_avg = 0;
         // packageId를 가지는 contents_pacage_share 가져옴
         $contentsPackageShare  = DB::table('contents_package_shares')->where('no',$package_id)->first();
 
@@ -392,7 +392,7 @@ class ContentsController extends Controller
       //공유 패키지 이름
       $package_name    =  $request->input('package_name');
       $package_img     =  $request->file('package_image')->getClientOriginalName();
-      $destination = storage_path().'/packageImgs';
+      $destination     = storage_path().'/packageImgs';
 
       $images = Input::file('package_image');
       $image_name = $images->getClientOriginalName();

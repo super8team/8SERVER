@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','설문조사 결과')
+@section('title','アンケート結果')
 
 @section('content')
   @php
@@ -51,10 +51,10 @@ $(document).ready(function () {
             name: 'Brands',
             colorByPoint: true,
             data: [ {
-                name: '찬성',
+                name: '賛成',
                 y: {{$q_title[$i][2]}}
             }, {
-                name: '반대',
+                name: '反対',
                 y: {{$q_title[$i][3]}}
             }]
         }]
@@ -122,11 +122,11 @@ $(document).ready(function () {
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">설문 결과
+          <h3 class="panel-title">アンケート結果
              <a role="button" href="javascript:history.back()" aria-label="Right Align"
              class="btn btn-sm btn-default ">
               {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-              뒤로 돌아가기
+              戻る
             </a>
           </h3>
         </div>

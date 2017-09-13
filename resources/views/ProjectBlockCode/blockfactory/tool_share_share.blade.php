@@ -2,23 +2,22 @@
 
 <script src="http://code.jquery.com/jquery-1.5.js"></script>
 <link href='http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css' rel='stylesheet' type='text/css'>
-<body>
-                                                                                                              
+<body style="background-color:#e3f2ff;">
+
     <form class="downForm" action="{{route('contents.sharePackages')}}" method="post" enctype="multipart/form-data">
       <div class="wrapper" >
-
         <span id="content_wrapper">
 
           <div>
             <input type="file" name="package_image" style="display:block">
             <div id="holder" style="display:inline-block"></div>
-            <textarea name="package_explain" rows="8" cols="80" onFocus="this.value=''" style="resize:none;height:140px" placeholder="설명을 입력해 주세요"></textarea>
+            <textarea name="package_explain" rows="8" cols="80" onFocus="this.value=''" style="resize:none;height:140px" placeholder="説明を入力してください"></textarea>
             </div>
           </div>
           <br>
-          <input type="text" name="package_name" placeholder="패키지 이름" style="vertical-align:top;display:block" onfocus="this.value=''">
+          <input type="text" name="package_name" placeholder="パッケージの" style="vertical-align:top;display:block" onfocus="this.value=''">
           <div id="share_contents_list">
-            콘텐츠 목록
+            コンテンツリスト
           </div>
         </span>
         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -27,8 +26,8 @@
           {{$teacher_content->name}}
         @endforeach
         <br><br>
-        <button type="button" name="button" onclick="history.back();">뒤로가기</button>
-        <input id="sub" type="submit" value="공유 완료">
+        <button type="button" name="button" onclick="history.back();">バック</button>
+        <input id="sub" type="submit" value="公有完了">
       </div>
     </form>
 

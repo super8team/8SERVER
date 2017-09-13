@@ -57,8 +57,7 @@
   </script>
 </head>
 <body>
-
-<div class="decobar"></div>
+<div class="bluedecobar"></div>
 
   <div id="tabContainer">
       <div id="blockFactory_tab" class="tab tabon" >Block Factory</div>
@@ -370,13 +369,13 @@
               </td>
         <td id="blockLibraryControls" >
           <button id="registerContents" >
-            현장체험 등록
+            体験学習登録
           </button>
           <button id="shareContentsButton">
-            창작 마당
+            創作
           </button>
           <button id="removeBlockFromLibraryButton" hidden>
-            콘텐츠 삭제
+            コンテンツ削除
           </button>
         </td>
         </tr>
@@ -390,17 +389,23 @@
           <div id="left-space">
           </div>
           <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
+            <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-            <div id="packageDiv" style="display:inline;" style="float:right" >
+<ul>
+            <div id="packageDiv"  style="float:right" >
+
               @if($packages)
               @foreach($packages as $package_name)
-                <button style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
+              <!-- class="package_button" -->
+              <!-- style="float:right" -->
+                <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
                   {{$package_name['name']}}
-                </button>
+                </li>
               @endforeach
               @endif
+
             </div>
+</ul>
           </div>
         </td>
 
@@ -412,7 +417,7 @@
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
+                  <input id="address" style="width: 200px;" type="text" value='場所検索' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
               <div id="map" style="height:70%; width:100%;display:inline-block">
@@ -465,7 +470,7 @@
            }
           } else {
            alert("다시 입력해 주세요");
-          }
+            }
           });
           }
 
@@ -534,11 +539,11 @@
           <div id="right-space">
           </div>
 
-          <div id="notipopup">
-                      <div>
+          <div id="notipopup" style="height:30%">
+                      <div style="height:100%">
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <div class="class">닫기</div>
-                    </div>
+                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">閉じる</button>
+                     </div>
           </div>
 
         <!-- 블럭 프리뷰  -->
@@ -563,53 +568,53 @@
 
     <xml id="blockfactory_toolbox" class="toolbox">
 
-      <category name="버튼">
+      <category name="ボタン">
         <block type="button_1"></block>
         <block type="button_2"></block>
         <block type="button_3"></block>
         <block type="button_4"></block>
       </category>
-      <category name="텍스트">
+      <category name="テクスト">
         <block type="header"></block>
         <block type="bottom"></block>
       </category>
-      <category name ="이미지">
+      <category name ="イメージ">
         <block type="image_1"></block>
         <block type="image_2"></block>
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-      <category name="실행">
+      <category name="実行">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
         <block type="OUT_IMG"></block>
         <block type="OUT_TXT"></block>
         <block type="END"></block>
       </category>
-      <category name="에디트">
+      <category name="エディット">
         <block type="EDIT"></block>
       </category>
-      <category name="토스트">
+      <category name="トースト">
         <block type="toast"></block>
       </category>
-      <category name="퀘스트">
+      <category name="クエスト">
         <block type="quest"></block>
         <block type="endQuest"></block>
         <!-- blocks_ 139line -->
       </category>
-      <category name="빙고">
+      <category name="ビンゴ">
         <block type="bingo"></block>
         <block type="endBingo"></block>
       </category>
-      <category name="컬렉션">
+      <category name="コレクション">
         <block type="collection"></block>
         <block type="endCollection"></block>
       </category>
-      <category name="지도">
+      <category name="マップ">
         <block type="openMap"></block>
         <block type="closeMap"></block>
       </category>
-      <category name="콘텐츠 수정">
+      <category name="コンテンツ修正">
         <block type="CONFIG"></block>
       </category>
     </xml>
@@ -921,9 +926,14 @@
   <input type="text" id="judgeImage" name="judgeImage" value="0" hidden>
   </body>
   <script type="text/javascript">
+
+
+  function closePopup(){
+    document.getElementById('notipopup').remove();
+  }
   $('#notipopup').topmenu({
-                startX:'50%',
-                startY:'30%',
+                startX:'5%',
+                startY:'40%',
                 close:'.close',
                 todayclose:'.todayclose',
                 code:'notipopup'
@@ -1003,7 +1013,7 @@
             del_obj.remove();
 
             //경고 창 띄우기
-            alert('컨텐츠 이름 중복 입니다');
+            alert('一つのパッケージを選択して保存してください');
           }
         });
         document.getElementById('change').value = 0;
@@ -1042,21 +1052,22 @@
   document.getElementById('registerContents').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
-      window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
+      window.open('{{route("contents.registerToPlan")}}', 'コンテンツ', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=900';
-      window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
+      window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
     var package_div     = document.getElementById('packageDiv');
+
     var before_ele;
     var boundary  = 0;
-  package_div.addEventListener('click',function(event){
+    package_div.addEventListener('click',function(event){
 
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
-
+    console.log('click');
       var package_name_td = document.getElementById('present_package');
       package_name_td.innerHTML = event.target.textContent;
       new_package = event.target;
@@ -1071,7 +1082,6 @@
 
     var package_id = event.target.value;
     console.log(event.target);
-    console.log('919');
     console.log(event.target.textContent);
     var textContent = event.target.textContent;
     // var present = document.getElementById('presentPackageName');
@@ -1083,12 +1093,12 @@
     console.log(package_id);
     $.ajax({
       method: 'GET', // Type of response and matches what we said in the route
-      url: '/LEARnFUN/public/contents/packages/'+package_id, // This is the url we gave in the route
+      url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
       data: {'id' : package_id}, // a JSON object to send back
       success: function(data){ // What to do if we succeed
           console.log('926');
           if(data){
-          // console.log(data[0]['name']);
+           console.log(data);
           for(var i = 0; i < data.length; i++){
               console.log('990');
               var parent_wrap  = document.createElement("button");

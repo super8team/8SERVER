@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','위원회 항목')
+@section('title','委員会項目')
 
 @section('content')
 
@@ -15,13 +15,13 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-custom">
         <div class="panel-heading">
-          <h3 class="panel-title">선택한 체험학습
+          <h3 class="panel-title">選んだ体験学習
             <a role="button" href="{{route('plan.teacher')}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
+             戻る
            </a>
          </h3>
 
@@ -31,9 +31,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>체험학습 실시일</th>
-                <th>바로가기</th>
+                <th>体験学習名</th>
+                <th>体験学習名実施日</th>
+                <th>すぐ行く</th>
               </tr>
             </thead>
             <tbody>
@@ -43,10 +43,10 @@
               <td>{{$current_plan_date}}</td>
               <td colspan="2" class="text-center">
                 <a role="button" href="{{route('staff.memberAdd', ['count'=>$count])}}" class="btn btn-sm btn-default">
-                  위원 관리
+                  委員管理
                 </a>
                 <a role="button" href="{{route('staff.result', ['count'=>$count])}}" class="btn btn-sm btn-default">
-                  심의 결과 보기
+                  審議結果見る
                 </a>
               </td>
             </tr>

@@ -19,7 +19,7 @@
               </div>
             </div>
           </div>
-          <div class="panel-body">
+          <div class="panel-body  panel-custom">
             <div class="form-group">
               <div class="col-sm-12">
                 <textarea class="form-control" rows="25" name="notice_text" placeholder="내용을 입력해 주세요"></textarea>

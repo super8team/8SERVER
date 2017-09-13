@@ -17,16 +17,45 @@
     if (log != "")
     alert(log);
   </script>
-
+@php
+$lang = 'jp';
+  if($lang == 'kr'){
+    $lang_learnfun      = 'LEARnFUN';
+    $lang_learnfun_sub  = '학부모, 교사, 학생을 위한 현장 체험학습 서비스';
+    $lang_parent        = '학부모';
+    $lang_parent_sub    = '가정통신문, 설문,위원회 이용';
+    $lang_teacher       = '교사';
+    $lang_teacher_sub   = '서류 자동선택 현장체험학습 계획 만들기';
+    $lang_student       = '학생';
+    $lang_student_sub   = '학생이 즐기는 미션, 소감문 작성';
+    $lang_shortcut      = '바로가기';
+  }
+  
+  if($lang == 'jp'){
+    $lang_learnfun      = 'LEARnFUN';
+    $lang_learnfun_sub  = '父兄、教師、生徒ための体験学習サービス。';
+    $lang_parent        = '父兄';
+    $lang_parent_sub    = 'お知らせ、アンケート、委員会';
+    $lang_teacher       = '教師';
+    $lang_teacher_sub   = '書類自動作成、体験学習スケージュール作成。';
+    $lang_student       = '生徒';
+    $lang_student_sub   = '生徒が楽しめるミッション, 感想文作成。';
+    $lang_shortcut      = '詳しくは';
+  }
+@endphp
     {{-- 타이틀 이미지  --}}
+    <div style="height:60px; width:100%;">
+      
+    </div>
        <div class="carousel-inner" role="listbox">
          <div class=" parallax-window" data-parallax="scroll" data-image-src="{{asset('img/titleimg.jpg')}}"
          style="height:500px;width:101%;">
           {{-- 캐러셀 css 나중에 폰트 찾으면 수정 --}}
+          <div style="height:60px;"></div>
            <div class="carousel-caption">
-             <img src="{{asset('img/logo.png')}}" alt="로고자리야 으앙아앙아" style="width:400px;height:300px">
-             <h1>LEARnFUN</h1>
-             학부모, 교사, 학생을 위한 현장체험 학습 관련 서비스.
+             <img src="{{asset('img/logo.png')}}" alt="img load fail" style="width:400px;height:300px">
+             <h1>{{$lang_learnfun}}</h1>
+             {{$lang_learnfun_sub}}
            </div>
          </div>
        </div>
@@ -38,10 +67,12 @@
            <div class="span3">
              <div class="service-box">
                <br>
-               <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
-               <h2>학부모</h2>
-               <p>가정통신문, 설문</p>
-               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">상세보기 &raquo;</a></p>
+               <a href="{{route('plan.parents')}}">
+                 <img class="img-circle" src="{{asset('img/familly01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200x;">
+               </a>
+               <h2>{{$lang_parent}}</h2>
+               <p>{{$lang_parent_sub}}</p>
+               <p><a class="btn btn-default" href="{{route('plan.parents')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div><!-- /.col-sm-4 -->
            </div>
          </div>
@@ -49,12 +80,12 @@
            <div class="span3">
              <div class="service-box ">
               <br>
+              <a href="{{route('plan.teacher')}}">
               <img class="img-circle" src="{{asset('img/teacher01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
-              <h2>교사</h2>
-              <p>서류 자동선택 현장체험학습 계획 만들기</p>
-
-
-              <p><a class="btn btn-default" href="{{route('plan.teacher')}}" role="button">상세보기 &raquo;</a></p>
+              </a>
+              <h2>{{$lang_teacher}}</h2>
+              <p>{{$lang_teacher_sub}}</p>
+              <p><a class="btn btn-default" href="{{route('plan.teacher')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->
@@ -62,10 +93,12 @@
            <div class="span3">
              <div class="service-box ">
                <br>
+               <a href="{{route('plan.student')}}">
                <img class="img-circle" src="{{asset('img/student01.jpg')}}" alt="Generic placeholder image" style="width: 200px; height: 200px;">
-               <h2>학생</h2>
-               <p>학생이 즐기는 컨텐츠 </p>
-               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">상세보기 &raquo;</a></p>
+               </a>
+               <h2>{{$lang_student}}</h2>
+               <p>{{$lang_student_sub}}</p>
+               <p><a class="btn btn-default" href="{{route('plan.student')}}" role="button">{{$lang_shortcut}} &raquo;</a></p>
              </div>
            </div>
          </div><!-- /.col-sm-4 -->

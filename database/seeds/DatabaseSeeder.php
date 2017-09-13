@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php
+=======
+00<?php
+>>>>>>> afee925e9a3fcad0f1b5dd50e987eac66e0a568d
 
 use Illuminate\Database\Seeder;
 
@@ -11,12 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
+        //
+	$this->call(ContentsPackageSharesSeeder::class);
+    }
+=======
     //  $this->call(UserSeeder::class);
     //  $this->call(FieldLearningPlanStepsSeeder::class);
     //  $this->call(EtcSelectArticlesSeeder::class);
     //  $this->call(TrafficArticlesSeeder::class);
     // $this->call(SchoolsSeeder::class);
-    // $this->call(PlaceSeeder::class);
+    //  $this->call(PlaceSeeder::class);
     // $this->call(FieldLearningProgramArticlesSeeder::class);
     // $this->call(InstAuthArticlesSeeder::class);
     // $this->call(FieldLearningPlanWorksSeeder::class);
@@ -25,7 +34,8 @@ class DatabaseSeeder extends Seeder
 //    $this->call(CheckListsSeeder::class);
     // $this->call(FieldLearningPlansSeeder::class);
 
-//     $this->call(DetailPlansSeeder::class);
+        // $this->call(DetailPlansSeeder::class);
+        // $this->call(DetailPlanShareSeeder::class);
      $this->call(GroupsSeeder::class);
 
 //      $this->call(ContentsPackageSeeder::class);
@@ -52,4 +62,5 @@ class DatabaseSeeder extends Seeder
         // $this->call(NoticeSeeder::class);
     }
 
+>>>>>>> afee925e9a3fcad0f1b5dd50e987eac66e0a568d
 }

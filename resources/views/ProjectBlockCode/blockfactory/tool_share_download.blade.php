@@ -15,13 +15,13 @@
     </script>
 
     <meta charset="utf-8">
-    <title>다운로드</title>
+    <title>ダウンロード</title>
   </head>
   <body>
     <form action="{{route('contents.downloadShareContent')}}">
         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-        <button id="new_package"  type="button" name="button">새패키지로 추가  </button>
-        <button id="base_package" type="button" name="button">현재패키지로 추가</button>
+        <button id="new_package"  type="button" name="button">新しいパッケージに  </button>
+        <button id="base_package" type="button" name="button">現在のパッケージに</button>
 
 
         <div id = "contents_list_wrap">
@@ -29,7 +29,7 @@
 
           </div>
           <div id = "contents_list">
-            콘텐츠 목록
+          コンテンツリスト
           </div>
 
           @for($i=0; $i< count($choice_content) ; $i++)
@@ -69,9 +69,9 @@
       document.getElementById('new_package').addEventListener('click',function(){
           var check_num = $("input[type=checkbox]:checked").length;
           if(!check_num)
-              alert('다운로드 할 콘텐츠를 선택하세요');
+              alert('ダウンロードするコンテンツを選択してください');
           else{
-              var new_package_name    = prompt("새로운 패키지 명을 입력해 주세요", "New Package");
+              var new_package_name    = prompt("新しいパッケージ名を入力してください", "New Package");
               var parent              = document.getElementById("contents_list_wrap");
               var new_package_obj     = document.createElement("input");
 
