@@ -294,7 +294,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style="height:80px">
+        <td style="height:80px;" colspan="2">
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -327,6 +327,9 @@
             </tr>
           </table>
         </td>
+        <!-- <td>
+          새로운
+        </td> -->
         <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
@@ -343,41 +346,20 @@
                 </div>
               </td>
 
-              <td id="blockLibraryContainer">
-              <span>
-                <div class="dropdown">
-                    <div id="dropdownDiv_blockLib" >
-                      <div id="button_blockLib">
-                      </div>
-                      <!-- 패키지 리스트 출력 코드 -->
-                        @if($packages)
-                            @foreach($first_package as $content)
-                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
-                              {{$content->name}}
-                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
-                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
-                              <input type="text" name="id"  value="{{$content->no}}" hidden>
-                           </button>
-                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           @endforeach
-                       @endif
-                   </div>
-                    </form>
-                  </div>
-
-              </span>
+              <td>
+                test
               </td>
-        <td id="blockLibraryControls" >
-          <button id="registerContents" >
-            体験学習登録
-          </button>
-          <button id="shareContentsButton">
-            創作
-          </button>
-          <button id="removeBlockFromLibraryButton" hidden>
-            コンテンツ削除
-          </button>
-        </td>
+              <td id="blockLibraryControls" >
+                <button id="registerContents" >
+                  体験学習登録
+                </button>
+                <button id="shareContentsButton">
+                  創作
+                </button>
+                <button id="removeBlockFromLibraryButton" hidden>
+                  コンテンツ削除
+                </button>
+              </td>
         </tr>
       </table>
    </td>
@@ -391,7 +373,7 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-<ul>
+            <ul>
             <div id="packageDiv"  style="float:right" >
 
               @if($packages)
@@ -405,10 +387,32 @@
               @endif
 
             </div>
-</ul>
+          </ul>
           </div>
         </td>
-
+        <td id="blockLibraryContainer">
+        <span>
+          <div class="dropdown">
+              <div id="dropdownDiv_blockLib" >
+                <div id="button_blockLib">
+                </div>
+                <!-- 패키지 리스트 출력 코드 -->
+                  @if($packages)
+                      @foreach($first_package as $content)
+                      <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                        {{$content->name}}
+                        <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                        <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                        <input type="text" name="id"  value="{{$content->no}}" hidden>
+                     </button>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     @endforeach
+                 @endif
+             </div>
+              </form>
+            </div>
+        </span>
+        </td>
         <td id="blocklyWorkspaceContainer">
           <div id="blockly"></div>
           <div id="blocklyMask"></div>
