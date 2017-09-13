@@ -89,10 +89,10 @@
           @for ($count=0; $count < count($plan_title); $count++)
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3># {{$plan_no[$count]}}　{{$plan_title[$count]}}  出発日{{$plan_date[$count]}}</h3>                
+                <h4># {{$plan_no[$count]}}　{{$plan_title[$count]}}  出発日{{$plan_date[$count]}}</h4>                
               </div>
               <div class="panel-body">
-                <div class="btn-group">
+                <div class="btn-group text-center">
                   <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
                     {{$lang_sheet}}
                   </a>

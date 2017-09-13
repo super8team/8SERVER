@@ -16,6 +16,7 @@ Maxim - style.css
 html {
   position: relative;
   min-height: 100%;
+  background-color: #f2f2f2;
 }
 /*상단 메뉴 바에 가리 지 않도록 함
    또한 하단 메뉴 포함*/
