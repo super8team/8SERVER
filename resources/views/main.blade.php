@@ -44,6 +44,9 @@ $lang = 'jp';
   }
 @endphp
     {{-- 타이틀 이미지  --}}
+    <div style="height:60px; width:100%;">
+      
+    </div>
        <div class="carousel-inner" role="listbox">
          <div class=" parallax-window" data-parallax="scroll" data-image-src="{{asset('img/titleimg.jpg')}}"
          style="height:500px;width:101%;">
