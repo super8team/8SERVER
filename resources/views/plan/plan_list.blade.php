@@ -64,11 +64,11 @@
     <div class="row">
         <div class="col-sm-12">
           <a role="button"  href="{{route('plan.create')}}" aria-label="Right Align"
-           class="btn btn-lg btn-default pull-right">
+           class="btn btn-lg btn-primary pull-right">
              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             {{$lang_create_plan}}
           </a>
-          <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-default pull-right">
+          <a role="button" href="{{route('contents')}}" aria-label="Left Align" class="btn btn-lg btn-warning pull-right">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             {{$lang_create_mission}}
           </a>
@@ -89,10 +89,10 @@
           @for ($count=0; $count < count($plan_title); $count++)
             <div class="panel panel-default">
               <div class="panel-heading">
-                # {{$plan_no[$count]}}　{{$plan_title[$count]}}
+                <h3># {{$plan_no[$count]}}　{{$plan_title[$count]}}  出発日{{$plan_date[$count]}}</h3>                
               </div>
               <div class="panel-body">
-                
+                <div class="btn-group">
                   <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
                     {{$lang_sheet}}
                   </a>
@@ -129,6 +129,7 @@
                   </button>
               </div>
             </div>
+          </div>
             {{-- 체험학습 상세 --}}
             
                   {{-- 공유하기 --}}
