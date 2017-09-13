@@ -493,5 +493,4 @@
         {{--</div>--}}
     {{--</div>--}}
 @endsection
-    </body>
-
+</body>
