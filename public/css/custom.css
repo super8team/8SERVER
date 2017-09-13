@@ -16,7 +16,6 @@ Maxim - style.css
 html {
   position: relative;
   min-height: 100%;
-  background-color: #f2f2f2;
 }
 /*상단 메뉴 바에 가리 지 않도록 함
    또한 하단 메뉴 포함*/
@@ -143,10 +142,10 @@ section#services.section.blue .service-box:hover {
 /*  상단 파랑 바 */
 
 
-.bluedecobar{
+/*.bluedecobar{
   width: 100%;
   height: 100px;
-}
+}*/
 
 .panel-custom{
   min-height: 600px;

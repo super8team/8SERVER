@@ -89,47 +89,49 @@
           @for ($count=0; $count < count($plan_title); $count++)
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h4># {{$plan_no[$count]}}　{{$plan_title[$count]}}  出発日{{$plan_date[$count]}}</h4>                
+                <h5># {{$plan_no[$count]}}　{{$plan_title[$count]}}  出発日{{$plan_date[$count]}}</h5>                
               </div>
               <div class="panel-body">
-                <div class="btn-group text-center">
-                  <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_sheet}}
-                  </a>
-                  <a role="button" href="{{route('staff', ['count'=>$plan_no[$count]])}}" aria-label="Left Align" class="btn   btn-default ">
-                    {{$lang_staff}}
-                  </a>
-  
-                  <a role="button" href="{{ route('survey.index', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_survey}}
-                  </a>
-                  
-                  <a role="button" href="{{ route('notice_list', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_notice}}
-                  </a>
-                  
-                  <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-default">
-                    参加グループ
-                  </a>
-                  
-                  <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_scheduel}}
-                  </a>
-                  
-                  <a role="button" href="{{route('checklist', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_checklist}}
-                  </a>
-                  
-                  <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
-                    {{$lang_report}}
-                  </a>
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn   btn-default" data-toggle="modal" data-target="#share">
-                    {{$lang_share}}
-                  </button>
+                <div class="text-center">
+                  <div class="btn-group">
+                    <a role="button" href="{{route('plan.show', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_sheet}}
+                    </a>
+                    <a role="button" href="{{route('staff', ['count'=>$plan_no[$count]])}}" aria-label="Left Align" class="btn   btn-default ">
+                      {{$lang_staff}}
+                    </a>
+    
+                    <a role="button" href="{{ route('survey.index', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_survey}}
+                    </a>
+                    
+                    <a role="button" href="{{ route('notice_list', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_notice}}
+                    </a>
+                    
+                    <a role="button" href="{{route('group_list', $plan_no[$count])}}" class="btn btn-default">
+                      参加グループ
+                    </a>
+                    
+                    <a role="button" href="{{route('map.edit', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_scheduel}}
+                    </a>
+                    
+                    <a role="button" href="{{route('checklist', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_checklist}}
+                    </a>
+                    
+                    <a role="button" href="{{route('report_list', ['count'=>$plan_no[$count]])}}" class="btn   btn-default">
+                      {{$lang_report}}
+                    </a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn   btn-default" data-toggle="modal" data-target="#share">
+                      {{$lang_share}}
+                    </button>
+                  </div>
+                </div>                
               </div>
             </div>
-          </div>
             {{-- 체험학습 상세 --}}
             
                   {{-- 공유하기 --}}
