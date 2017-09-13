@@ -751,20 +751,20 @@
                 <table class="table table-bordered table-striped" id="group1_work1">        
                   <tbody>
                     <tr>
-                      <td class='info bold'> 体験学習タイトル </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
+                      <td class='primary bold'> 体験学習タイトル </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 体験学習実行日 </td> <td class="text-center">{{$plan_date}} </td>
-                      <td class='info bold'> 担当教師 </td> <td class="text-center">{{$teacher_name}}</td>
-                      <td class='info bold'> 体験学習種類  </td> <td class="text-center">{{$trip_kind_value}} </td>
+                      <td class='primary bold'> 体験学習実行日 </td> <td class="text-center">{{$plan_date}} </td>
+                      <td class='primary bold'> 担当教師 </td> <td class="text-center">{{$teacher_name}}</td>
+                      <td class='primary bold'> 体験学習種類  </td> <td class="text-center">{{$trip_kind_value}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 参加するクラスの数 </td> <td class="text-center">{{$attend_class_count}} </td>
-                      <td class='info bold'> 参加する学生数 </td> <td class="text-center">{{$attend_student_count}} </td>
-                      <td class='info bold'> 未参加する学生数 </td> <td class="text-center">{{$unattend_student_count}} </td>
+                      <td class='primary bold'> 参加するクラスの数 </td> <td class="text-center">{{$attend_class_count}} </td>
+                      <td class='primary bold'> 参加する生徒数 </td> <td class="text-center">{{$attend_student_count}} </td>
+                      <td class='primary bold'> 未参加する生徒数 </td> <td class="text-center">{{$unattend_student_count}} </td>
                     </tr>
                     <tr>
-                      <td class='info bold'> 選択した内容 </td>
+                      <td class='primary bold'> 選択した内容 </td>
                       <td class="text-center"  colspan="5">
                         公共交通
                       </td>
@@ -786,7 +786,7 @@
               <div class="input-group">
                 <input id="pac-input" class="form-control input-lg" name='map_search_box' type="text" placeholder="지역명을 입력해 주세요">
                 <span class="input-group-btn">
-                  <button class="btn btn-lg btn-default" type="button">検索。。。</button>
+                  <button class="btn btn-lg btn-default" type="button">検索</button>
                 </span>
               </div>
               <br>

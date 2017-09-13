@@ -120,27 +120,27 @@ if($lang == 'jp'){
 												<table class="table table-bordered table-striped" id="group1_work1">
 													<tbody>												
 														<tr>
-															<td class='info bold'> {{$lang_plan_name}} </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
+															<td class='primary bold'> {{$lang_plan_name}} </td> <td class="text-center"  colspan="5">{{$plan_title}} </td>
 
 														</tr>
 														<tr>
-															<td class='info bold'> {{$lang_plan_date}} </td> <td class="text-center">{{$plan_date}} </td>
+															<td class='primary bold'> {{$lang_plan_date}} </td> <td class="text-center">{{$plan_date}} </td>
 
-															{{-- <td class='info bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td> --}}
+															{{-- <td class='primary bold'> 담당교사 이름 </td> <td class="text-center">{{$teacher_name}}</td> --}}
 
-															<td class='info bold'> {{$lang_select_trip_kind}}  </td> <td class="text-center">{{$trip_kind_value}} </td>
+															<td class='primary bold'> {{$lang_select_trip_kind}}  </td> <td class="text-center">{{$trip_kind_value}} </td>
 
 														</tr>
 														<tr>													
-															<td class='info bold'> 参加クラス数 </td> <td class="text-center">{{$attend_class_count}} </td>
+															<td class='primary bold'> 参加クラス数 </td> <td class="text-center">{{$attend_class_count}} </td>
 
-															<td class='info bold'>  参加生徒数 </td> <td class="text-center">{{$attend_student_count}} </td>
+															<td class='primary bold'>  参加生徒数 </td> <td class="text-center">{{$attend_student_count}} </td>
 
-															<td class='info bold'> 未参加生徒数 </td> <td class="text-center">{{$unattend_student_count}} </td>
+															<td class='primary bold'> 未参加生徒数 </td> <td class="text-center">{{$unattend_student_count}} </td>
 
 														</tr>
 														<tr>
-															<td class='info bold'> 選択内容う </td>
+															<td class='primary bold'> 選択内容う </td>
 															<td class="text-center"  colspan="5">
 																@foreach ($transpotation as $value)
 																{{ "貸し切りバス" }}
@@ -168,36 +168,36 @@ if($lang == 'jp'){
 												<table class="table table-bordered table-striped" id="group1_work1">
 													<tbody>
 														<tr>
-															<td class='info bold'>進行業務の個数</td>
+															<td class='primary bold'>進行業務の個数</td>
 															<td class="text-center">59個(選択事項1個含め)</td>
-															<td class='info bold'>進行規模</td>
+															<td class='primary bold'>進行規模</td>
 															<td class="text-center">小規模・適正さ</td>
-															<td class='info bold text-center'>同意の割合:99.00%</td>
+															<td class='primary bold text-center'>同意の割合:99.00%</td>
 														</tr>
 														<tr>
-															<td class='info bold'>推薦引率ギョサス</td>
+															<td class='primary bold'>推薦引率ギョサス</td>
 															<td class="text-center">4人以上</td>
-															<td class='info bold'>推薦、安全要員数</td>
+															<td class='primary bold'>推薦、安全要員数</td>
 															<td class="text-center">1人以上</td>
-															<td class='info bold text-center'>
-																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-info"value="。/explain/manual_doc_2_4.html">
+															<td class='primary bold text-center'>
+																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-primary"value="。/explain/manual_doc_2_4.html">
 															{{--<span class="fa fa-file">ヘルプ</a></td>--}}
 														</tr>
 														<tr>
-															<td class='info bold'>教育庁コンサルティングの有無</td>
+															<td class='primary bold'>教育庁コンサルティングの有無</td>
 															<td class="text-center">必要ないこと</td>
-															<td class='info bold'>市民監査、標本対象</td>
+															<td class='primary bold'>市民監査、標本対象</td>
 															<td class="text-center">の対象校ないこと</td>
-															<td class='info bold text-center'>
-																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-info"value="。/explain/manual_doc_2_4.html">
+															<td class='primary bold text-center'>
+																<a data-toggle="modal"data-target="#view_myschool_helpfile"type="button"class="btn btn-sm btn-primary"value="。/explain/manual_doc_2_4.html">
 															{{--<span class="fa fa-file">ヘルプ</a></td>--}}
 														</tr>
 														<tr>
-															<td class='info bold'>必須遵守事項</td>
+															<td class='primary bold'>必須遵守事項</td>
 															<td colspan="4">人材確保などを考慮して1人以上配置推奨する。</br>安全対策樹立後自律実施可能であること</br></td>
 														</tr>
 														<tr>
-															<td class='info bold'>参考事項</td>
+															<td class='pry bold'>参考事項</td>
 															<td colspan="4">ただし、150人未満の場合の安全要員の配置が難しい時その事情を明らかにして学校運営委員会の審議を経て、排除の可能
 															</br>
 															</td>
@@ -289,7 +289,7 @@ if($lang == 'jp'){
 													<div class="panel-body">
 														<div class="faq-content">
 															<label><span class="label label-warning">TIPS</span>
-																父兄の同意(意見)が学生の意見に代替されず、十分に反映される方法で意見の収れんし、苦情が発生しないよう留意しなければならない。</label>
+																父兄の同意(意見)が生徒の意見に代替されず、十分に反映される方法で意見の収れんし、苦情が発生しないよう留意しなければならない。</label>
 															<table class="table table-bordered table-striped"
 																   id="group1_work1">
 																@yield('thead')

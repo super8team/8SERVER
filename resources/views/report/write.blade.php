@@ -16,7 +16,7 @@
               </div>
             </div>
           </div>
-          <div class="panel-body">
+          <div class="panel-body  panel-custom">
             <div class="form-group">
               <div class="col-sm-12">
                 <textarea class="form-control" rows="25" name="report_text" placeholder="内容を入力してください"></textarea>
