@@ -17,7 +17,7 @@
         $back_route = 'plan.parents';
       }              
       @endphp
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-custom">
         <div class="panel-heading">
           <h3 class="panel-title">選んだ体験学習のアンケート調査
             <a role="button" href="{{route($back_route)}}" aria-label="Right Align"

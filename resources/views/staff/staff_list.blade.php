@@ -15,7 +15,7 @@
   <div class="bluedecobar"></div>
   <div class="bluebg">
     <div class="container">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-custom">
         <div class="panel-heading">
           <h3 class="panel-title">選んだ体験学習
             <a role="button" href="{{route('plan.teacher')}}" aria-label="Right Align"
