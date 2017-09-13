@@ -101,7 +101,7 @@ class FieldLearningPlanDocumentController extends Controller
         $templateProcessor->setValue('date', '2017-08-25');
 
 
-        
+
 //        $templateProcessor->setValue('schoolName', $school->name);
 //        $templateProcessor->setValue('schoolAddress', $school->address);
 //        $templateProcessor->setValue('schoolPhone', $school->tel);
