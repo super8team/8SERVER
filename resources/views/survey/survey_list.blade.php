@@ -76,10 +76,10 @@
                       <td>{{$survey_title[$count]}}</td>
                       <td>{{$survey_date[$count]}}</td>
                       <td colspan="2" class="text-center">
-                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
+                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm margin-right-10 btn-warning">
                           見る
                         </a>
-                        <a role="button" href="{{route('survey.stdResult',$survey_no[$count])}}" class="btn btn-sm btn-danger">
+                        <a role="button" href="{{route('survey.stdResult',$survey_no[$count])}}" class="btn btn-sm margin-right-10 btn-danger">
                           結果見る
                         </a>
                       </td>
