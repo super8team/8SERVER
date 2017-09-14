@@ -346,9 +346,30 @@
                 </div>
               </td>
 
-              <td>
-                test
+              <td id="blockLibraryContainer">
+              <span>
+                <div class="dropdown">
+                    <div id="dropdownDiv_blockLib" >
+                      <div id="button_blockLib">
+                      </div>
+                      <!-- 패키지 리스트 출력 코드 -->
+                        @if($packages)
+                            @foreach($first_package as $content)
+                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                              {{$content->name}}
+                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                              <input type="text" name="id"  value="{{$content->no}}" hidden>
+                           </button>
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                           @endforeach
+                       @endif
+                   </div>
+                    </form>
+                  </div>
+              </span>
               </td>
+
               <td id="blockLibraryControls" >
                 <button id="registerContents" >
                   体験学習登録
@@ -390,29 +411,9 @@
           </ul>
           </div>
         </td>
-        <td id="blockLibraryContainer">
-        <span>
-          <div class="dropdown">
-              <div id="dropdownDiv_blockLib" >
-                <div id="button_blockLib">
-                </div>
-                <!-- 패키지 리스트 출력 코드 -->
-                  @if($packages)
-                      @foreach($first_package as $content)
-                      <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
-                        {{$content->name}}
-                        <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
-                        <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
-                        <input type="text" name="id"  value="{{$content->no}}" hidden>
-                     </button>
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                     @endforeach
-                 @endif
-             </div>
-              </form>
-            </div>
-        </span>
-        </td>
+               <!-- 수정한 코드 -->
+
+               <!-- 수정한 코드 -->
         <td id="blocklyWorkspaceContainer">
           <div id="blockly"></div>
           <div id="blocklyMask"></div>
