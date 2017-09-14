@@ -294,7 +294,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style="height:80px;" colspan="2">
+        <td style="height:80px;" >
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
