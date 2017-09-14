@@ -294,7 +294,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style="height:80px">
+        <td style="height:80px;" colspan="2">
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -327,6 +327,9 @@
             </tr>
           </table>
         </td>
+        <!-- <td>
+          새로운
+        </td> -->
         <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
@@ -364,20 +367,20 @@
                    </div>
                     </form>
                   </div>
-
               </span>
               </td>
-        <td id="blockLibraryControls" >
-          <button id="registerContents" >
-            体験学習登録
-          </button>
-          <button id="shareContentsButton">
-            創作
-          </button>
-          <button id="removeBlockFromLibraryButton" hidden>
-            コンテンツ削除
-          </button>
-        </td>
+
+              <td id="blockLibraryControls" >
+                <button id="registerContents" >
+                  体験学習登録
+                </button>
+                <button id="shareContentsButton">
+                  創作
+                </button>
+                <button id="removeBlockFromLibraryButton" hidden>
+                  コンテンツ削除
+                </button>
+              </td>
         </tr>
       </table>
    </td>
@@ -391,7 +394,7 @@
           <div style="float:right;display:inline-block;width:80%;">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-<ul>
+            <ul>
             <div id="packageDiv"  style="float:right" >
 
               @if($packages)
@@ -405,10 +408,12 @@
               @endif
 
             </div>
-</ul>
+          </ul>
           </div>
         </td>
+               <!-- 수정한 코드 -->
 
+               <!-- 수정한 코드 -->
         <td id="blocklyWorkspaceContainer">
           <div id="blockly"></div>
           <div id="blocklyMask"></div>
