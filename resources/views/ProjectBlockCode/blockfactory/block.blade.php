@@ -327,9 +327,11 @@
             </tr>
           </table>
         </td>
-        <!-- <td>
-          새로운
-        </td> -->
+        <!-- 새로운 td  -->
+        <td>
+          새로운 테이블 입니다.
+        </td>
+        <!-- 새로운 td  -->
         <td id="blockFactorySupplie" colspan="2">
           <table>
             <tr id="blockLibrary">
@@ -346,29 +348,9 @@
                 </div>
               </td>
 
-              <td id="blockLibraryContainer">
-              <span>
-                <div class="dropdown">
-                    <div id="dropdownDiv_blockLib" >
-                      <div id="button_blockLib">
-                      </div>
-                      <!-- 패키지 리스트 출력 코드 -->
-                        @if($packages)
-                            @foreach($first_package as $content)
-                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
-                              {{$content->name}}
-                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
-                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
-                              <input type="text" name="id"  value="{{$content->no}}" hidden>
-                           </button>
-                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           @endforeach
-                       @endif
-                   </div>
-                    </form>
-                  </div>
-              </span>
-              </td>
+              <!-- <td>
+
+              </td> -->
 
               <td id="blockLibraryControls" >
                 <button id="registerContents" >
@@ -383,7 +365,7 @@
               </td>
         </tr>
       </table>
-   </td>
+    </td>
      </tr>
       <FONT face="굴림">
       <tr style="height:90%">
@@ -411,9 +393,31 @@
           </ul>
           </div>
         </td>
-               <!-- 수정한 코드 -->
-
-               <!-- 수정한 코드 -->
+        <!-- 수정한 코드 -->
+        <td id="blockLibraryContainer">
+        <span>
+          <div class="dropdown">
+              <div id="dropdownDiv_blockLib" >
+                <div id="button_blockLib">
+                </div>
+                <!-- 패키지 리스트 출력 코드 -->
+                  @if($packages)
+                      @foreach($first_package as $content)
+                      <button style="vertical-align:middle;display:block" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                        {{$content->name}}
+                        <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                        <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                        <input type="text" name="id"  value="{{$content->no}}" hidden>
+                     </button>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     @endforeach
+                 @endif
+             </div>
+              </form>
+            </div>
+        </span>
+        </td>
+        <!-- 수정한 코드 -->
         <td id="blocklyWorkspaceContainer">
           <div id="blockly"></div>
           <div id="blocklyMask"></div>
