@@ -114,8 +114,11 @@ p {
 	text-decoration:none;
 	text-shadow:0px -1px 0px #5b6178;
 }
+
 .package_list{
+  width:100%;
   height:40px;
+  text-align: center;
   border:0px solid;
   list-style: none;
 }
@@ -582,8 +585,9 @@ button, .buttonStyle {
 
 
 #packageDiv {
+  float:left;
   width:100%;
-  border: 0px solid;
+  border:1px solid;
 }
 
 .toolbox {
