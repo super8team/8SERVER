@@ -1089,7 +1089,7 @@
     //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
     //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
     $('.content_list').remove();
-    event.target.style.backgroundColor = 'yellow';
+    event.target.style.backgroundColor = '#9FF781';
     console.log('ㅍㄱ유');
     var package_id = event.target.value;
     console.log(event.target);
