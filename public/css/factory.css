@@ -587,7 +587,7 @@ button, .buttonStyle {
 #packageDiv {
   float:left;
   width:100%;
-  border:1px solid;
+  border:0px solid;
 }
 
 .toolbox {
