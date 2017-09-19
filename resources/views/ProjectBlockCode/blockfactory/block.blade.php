@@ -373,12 +373,12 @@
         <td id="packageList">
           <div id="left-space">
           </div>
-          <div style="float:right;display:inline-block;width:80%;">
+          <div style="float:right;display:inline-block;width:80%;border:1px solid">
             <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
             <button id="createNewPackage"></button>
-            <ul>
-            <div id="packageDiv"  style="float:right" >
 
+            <!-- <ul style="width:60%;border:1px solid"> -->
+            <div id="packageDiv" >
               @if($packages)
               @foreach($packages as $package_name)
               <!-- class="package_button" -->
@@ -388,9 +388,9 @@
                 </li>
               @endforeach
               @endif
-
             </div>
-          </ul>
+          <!-- </ul> -->
+
           </div>
         </td>
         <!-- 수정한 코드 -->
@@ -960,8 +960,8 @@
 
         var length                = storage_contents.length;
         var parent_content        = storage_contents[length-1];
-        console.log('테스트임');
-        console.log(parent_content);
+
+        // console.log(parent_content);
         var child_content         = parent_content.childNodes;
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
@@ -1068,19 +1068,22 @@
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=900';
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
-    var package_div     = document.getElementById('packageDiv');
 
-    var before_ele;
-    var boundary  = 0;
-    package_div.addEventListener('click',function(event){
+  var package_div     = document.getElementById('packageDiv');
 
+  var before_ele = document.getElementsByClassName('package_list')[0];
+  var boundary  = 0;
+  package_div.addEventListener('click',function(event){
+    console.log(before_ele);
+    before_ele.style.backgroundColor = 'white';
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
     console.log('click');
-      var package_name_td = document.getElementById('present_package');
-      package_name_td.innerHTML = event.target.textContent;
-      new_package = event.target;
+    var package_name_td = document.getElementById('present_package');
+    package_name_td.innerHTML = event.target.textContent;
+    new_package = event.target;
 
+    before_ele = event.target;
     var parent       = document.getElementById('dropdownDiv_blockLib');
 
     var remove_obj    = document.getElementsByClassName("content_list");
@@ -1088,7 +1091,8 @@
     //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
     //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
     $('.content_list').remove();
-
+    event.target.style.backgroundColor = 'yellow';
+    console.log('ㅍㄱ유');
     var package_id = event.target.value;
     console.log(event.target);
     console.log(event.target.textContent);
