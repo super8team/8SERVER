@@ -409,6 +409,7 @@ button, .buttonStyle {
 }
 
 #blockFactoryContent {
+  height: 102%;
   width: 100%;
   overflow: hidden;
   margin-top: 64px;
@@ -434,7 +435,6 @@ button, .buttonStyle {
 
 #blockLibraryContainer {
   width: 10%;
-
   /*background-color: #D4A2FF;*/
   background-color: #9FF781;
 }
@@ -462,7 +462,7 @@ button, .buttonStyle {
 
 #mapSize {
   width:27%;
-  height: 100%;
+  height: 100;
 }
 
 

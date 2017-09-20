@@ -294,7 +294,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style="height:80px;" >
+        <td style="height:80px;"  rowspan = '2'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -305,7 +305,7 @@
                   </select>
                 </h3>
               </td>
-              <td id="buttonContainer">
+              <td id="buttonContainer" hidden>
                 <button id="linkButton" title="Save and link to blocks.">
                   <img src="link.png" height="" width="21" hidden>
                 </button>
@@ -321,8 +321,26 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package">
-                {{$packages[0]['name']}}
+              <td id="packageList" >
+                <div id="left-space">
+                </div>
+                <div style="float:right;display:inline-block;width:80%;">
+                  <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
+                  <button id="createNewPackage"></button>
+                  <!-- <ul style="width:60%;border:1px solid"> -->
+                  <div id="packageDiv" >
+                    @if($packages)
+                    @foreach($packages as $package_name)
+                    <!-- class="package_button" -->
+                    <!-- style="float:right" -->
+                      <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
+                        {{$package_name['name']}}
+                      </li>
+                    @endforeach
+                    @endif
+                  </div>
+                <!-- </ul> -->
+                </div>
               </td>
             </tr>
           </table>
@@ -383,36 +401,14 @@
                   コンテンツ削除
                 </button>
               </td>
-        </tr>
+          </tr>
       </table>
-    </td>
+      </td>
      </tr>
       <FONT face="굴림">
       <tr style="height:90%">
         <!-- 블럭 워크스페이스 -->
-        <td id="packageList"  rowspan = '2'>
-          <div id="left-space">
-          </div>
-          <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
-            <button id="createNewPackage"></button>
 
-            <!-- <ul style="width:60%;border:1px solid"> -->
-            <div id="packageDiv" >
-              @if($packages)
-              @foreach($packages as $package_name)
-              <!-- class="package_button" -->
-              <!-- style="float:right" -->
-                <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
-                  {{$package_name['name']}}
-                </li>
-              @endforeach
-              @endif
-            </div>
-          <!-- </ul> -->
-
-          </div>
-        </td>
         <!-- 수정한 코드 -->
 
         <!-- 수정한 코드 -->
@@ -964,15 +960,15 @@
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
         var storage_package       = document.getElementById('packageDiv');
-        var present_package       = document.getElementById('present_package');
+        var present_package       = event.target.textContent;
         console.log(storage_package);
         console.log('클릭한 패키지 이름');
-        console.log(present_package.innerText);
+
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
         console.log('완료');
-        console.log('현재 패키지 이름'+present_package.innerText);
+
 
         //저장할 컨텐츠 xml
         var content_xml         = child_content[1].value;
@@ -996,7 +992,7 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : present_package.innerText,
+            'package_name' : event.target.textContent,
             '_token'       : CSRF_TOKEN
           },
           success: function(data){
@@ -1074,11 +1070,12 @@
   package_div.addEventListener('click',function(event){
     console.log(before_ele);
     before_ele.style.backgroundColor = 'white';
+    console.log('클릭한 패키지:'+event.target.textContent);
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
     console.log('click');
-    var package_name_td = document.getElementById('present_package');
-    package_name_td.innerHTML = event.target.textContent;
+    // var package_name_td = document.getElementById('present_package');
+    // package_name_td.innerHTML = event.target.textContent;
     new_package = event.target;
 
     before_ele = event.target;
