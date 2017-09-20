@@ -966,9 +966,6 @@
         console.log('클릭한 패키지 이름');
         console.log(present_package);
 
-        var storage_package_child = storage_package.firstChild;
-        var storage_package_name  = storage_package_child.innerText ;
-
         console.log('완료');
 
         //저장할 컨텐츠 xml
