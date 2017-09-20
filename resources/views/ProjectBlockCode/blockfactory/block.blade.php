@@ -327,6 +327,7 @@
                 <div style="float:right;display:inline-block;width:80%;">
                   <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
                   <button id="createNewPackage"></button>
+                  <div id="present_storage_package"></div>
                   <!-- <ul style="width:60%;border:1px solid"> -->
                   <div id="packageDiv" >
                     @if($packages)
@@ -959,16 +960,16 @@
         var child_content         = parent_content.childNodes;
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
-        var storage_package       = document.getElementById('packageDiv');
+        var storage_package       = document.getElementById('present_storage_package').innerText;
         var present_package       = event.target.textContent;
         console.log(storage_package);
         console.log('클릭한 패키지 이름');
+        console.log(present_package);
 
         var storage_package_child = storage_package.firstChild;
         var storage_package_name  = storage_package_child.innerText ;
 
         console.log('완료');
-
 
         //저장할 컨텐츠 xml
         var content_xml         = child_content[1].value;
@@ -992,7 +993,7 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : event.target.textContent,
+            'package_name' : storage_package,
             '_token'       : CSRF_TOKEN
           },
           success: function(data){
@@ -1069,7 +1070,8 @@
   var boundary  = 0;
   package_div.addEventListener('click',function(event){
     console.log(before_ele);
-    before_ele.style.backgroundColor = 'white';
+    document.getElementById('present_storage_package').innerText =event.target.textContent;
+    before_ele.style.backgroundColor = 'green';
     console.log('클릭한 패키지:'+event.target.textContent);
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
