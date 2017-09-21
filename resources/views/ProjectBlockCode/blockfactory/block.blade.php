@@ -571,7 +571,6 @@
     <div id="modalShadow"></div>
 
     <xml id="blockfactory_toolbox" class="toolbox">
-
       <category name="ボタン">
         <block type="button_1"></block>
         <block type="button_2"></block>
