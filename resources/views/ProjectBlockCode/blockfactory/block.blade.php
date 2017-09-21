@@ -327,7 +327,7 @@
                 <div style="float:right;display:inline-block;width:80%;">
                   <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
                   <button id="createNewPackage"></button>
-                  <div id="present_storage_package"></div>
+                  <div id="present_storage_package" hidden></div>
                   <!-- <ul style="width:60%;border:1px solid"> -->
                   <div id="packageDiv" >
                     @if($packages)
@@ -1068,7 +1068,7 @@
   package_div.addEventListener('click',function(event){
     console.log(before_ele);
     document.getElementById('present_storage_package').innerText =event.target.textContent;
-    before_ele.style.backgroundColor = 'green';
+    before_ele.style.backgroundColor = 'white';
     console.log('클릭한 패키지:'+event.target.textContent);
     //insertbefore();
     //클릭한 패키지를 상단에 위치 시킴
