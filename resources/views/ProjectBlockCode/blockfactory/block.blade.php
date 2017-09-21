@@ -50,7 +50,6 @@
       blocklyFactory = new AppController();
       blocklyFactory.init();
       window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
-
     };
     window.addEventListener('load', init);
 
@@ -930,7 +929,9 @@
   </body>
   <script type="text/javascript">
 
-
+  $(document).ready(function(){
+    document.getElementsByClassName('package_list')[0].style.backgroundColor = '#9FF781';
+  });
   function closePopup(){
     document.getElementById('notipopup').remove();
   }
