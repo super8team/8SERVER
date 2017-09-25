@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <head>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap&language=ja&region=JP">
   </script>
 
   <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -324,11 +324,11 @@
                 <div id="left-space">
                 </div>
                 <div style="float:right;display:inline-block;width:80%;">
-                  <button type="button" class="package_button" name="button" disabled><h4><b>MISSION BOX</b></h4></button>
+                  <h4 style="text-align:center"><b>MISSION BOX</b></h4>
                   <button id="createNewPackage"></button>
                   <div id="present_storage_package" hidden></div>
                   <!-- <ul style="width:60%;border:1px solid"> -->
-                  <div id="packageDiv" >
+                  <div id="packageDiv">
                     @if($packages)
                     @foreach($packages as $package_name)
                     <!-- class="package_button" -->
@@ -432,7 +432,7 @@
 
           var map = new google.maps.Map(document.getElementById("map"), {
            zoom: 15,
-           center: new google.maps.LatLng(35.8963091, 128.62205110000002),
+           center: new google.maps.LatLng(35.0116363, 135.76802939999993),
            mapTypeId: google.maps.MapTypeId.ROADMAP,
            mapTypeControlOptions: {
            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -1060,93 +1060,95 @@
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=900';
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
-
-  var package_div     = document.getElementById('packageDiv');
-
+  //패키지 리스트
+  var package_div     = document.getElementsByClassName('package_list');
   var before_ele = document.getElementsByClassName('package_list')[0];
   var boundary  = 0;
-  package_div.addEventListener('click',function(event){
-    console.log(before_ele);
-    document.getElementById('present_storage_package').innerText =event.target.textContent;
-    before_ele.style.backgroundColor = 'white';
-    console.log('클릭한 패키지:'+event.target.textContent);
-    //insertbefore();
-    //클릭한 패키지를 상단에 위치 시킴
-    console.log('click');
-    // var package_name_td = document.getElementById('present_package');
-    // package_name_td.innerHTML = event.target.textContent;
-    new_package = event.target;
 
-    before_ele = event.target;
-    var parent       = document.getElementById('dropdownDiv_blockLib');
+  for (var i=0;i<package_div.length; i++) {
+        package_div[i].addEventListener('click',function(event){
+          console.log(before_ele);
+          document.getElementById('present_storage_package').innerText =event.target.textContent;
+          before_ele.style.backgroundColor = 'white';
+          console.log('클릭한 패키지:'+event.target.textContent);
+          //insertbefore();
+          //클릭한 패키지를 상단에 위치 시킴
+          console.log('click');
+          // var package_name_td = document.getElementById('present_package');
+          // package_name_td.innerHTML = event.target.textContent;
+          new_package = event.target;
 
-    var remove_obj    = document.getElementsByClassName("content_list");
+          before_ele = event.target;
+          var parent       = document.getElementById('dropdownDiv_blockLib');
 
-    //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
-    //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
-    $('.content_list').remove();
-    event.target.style.backgroundColor = '#9FF781';
-    var package_id = event.target.value;
-    console.log(event.target);
-    console.log(event.target.textContent);
-    var textContent = event.target.textContent;
-    // var present = document.getElementById('presentPackageName');
-    var str_space = /\s/;  // 공백체크
-    if(str_space.exec(textContent)) { //공백 체크
-       textContent = textContent.replace(' ',''); // 공백제거
-    }
-    // present.value = "現在패키지"+textContent;
-    console.log(package_id);
-    $.ajax({
-      method: 'GET', // Type of response and matches what we said in the route
-      url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
-      data: {'id' : package_id}, // a JSON object to send back
-      success: function(data){ // What to do if we succeed
-          console.log('926');
-          if(data){
-           console.log(data);
-          for(var i = 0; i < data.length; i++){
-              console.log('990');
-              var parent_wrap  = document.createElement("button");
-              var child_wrap   = document.createElement("input");
+          var remove_obj    = document.getElementsByClassName("content_list");
 
-              var xml_object   = document.createElement("input");
-              var spec_object  = document.createElement("input");
-              var id_object    = document.createElement("input");
-              var name_text = document.createTextNode(data[i]['name']);
-              parent_wrap.setAttribute('class','content_list');
-              parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.style.marginLeft   = "15px";
-
-              child_wrap.setAttribute('type','text');
-              child_wrap.setAttribute('class','contents_xml');
-              child_wrap.setAttribute('value',data[i]['xml']);
-              child_wrap.setAttribute('hidden','false');
-
-              spec_object.setAttribute('type','text');
-              spec_object.setAttribute('class','block_myungse');
-              spec_object.setAttribute('value',data[i]['spec']);
-              spec_object.setAttribute('hidden','false');
-
-              id_object.setAttribute('type','text');
-              id_object.setAttribute('name','id');
-              id_object.setAttribute('value',data[i]['id']);
-              id_object.setAttribute('hidden','false');
-              console.log('id'+data[i]['id']);
-
-              parent_wrap.appendChild(child_wrap);
-              parent_wrap.appendChild(spec_object);
-              parent_wrap.appendChild(id_object);
-              parent_wrap.appendChild(name_text);
-              $('#dropdownDiv_blockLib').append(parent_wrap);
-            }
+          //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
+          //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
+          $('.content_list').remove();
+          event.target.style.backgroundColor = '#9FF781';
+          var package_id = event.target.value;
+          console.log(event.target);
+          console.log(event.target.textContent);
+          var textContent = event.target.textContent;
+          // var present = document.getElementById('presentPackageName');
+          var str_space = /\s/;  // 공백체크
+          if(str_space.exec(textContent)) { //공백 체크
+             textContent = textContent.replace(' ',''); // 공백제거
           }
-      },
-      error: function() { // What to do if we fail
-          console.log('해당x');
+          // present.value = "現在패키지"+textContent;
+          console.log(package_id);
+          $.ajax({
+            method: 'GET', // Type of response and matches what we said in the route
+            url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
+            data: {'id' : package_id}, // a JSON object to send back
+            success: function(data){ // What to do if we succeed
+                console.log('926');
+                if(data){
+                 console.log(data);
+                for(var i = 0; i < data.length; i++){
+                    console.log('990');
+                    var parent_wrap  = document.createElement("button");
+                    var child_wrap   = document.createElement("input");
+
+                    var xml_object   = document.createElement("input");
+                    var spec_object  = document.createElement("input");
+                    var id_object    = document.createElement("input");
+                    var name_text = document.createTextNode(data[i]['name']);
+                    parent_wrap.setAttribute('class','content_list');
+                    parent_wrap.setAttribute('value',data[i]['xml']);
+                    parent_wrap.style.marginLeft   = "15px";
+
+                    child_wrap.setAttribute('type','text');
+                    child_wrap.setAttribute('class','contents_xml');
+                    child_wrap.setAttribute('value',data[i]['xml']);
+                    child_wrap.setAttribute('hidden','false');
+
+                    spec_object.setAttribute('type','text');
+                    spec_object.setAttribute('class','block_myungse');
+                    spec_object.setAttribute('value',data[i]['spec']);
+                    spec_object.setAttribute('hidden','false');
+
+                    id_object.setAttribute('type','text');
+                    id_object.setAttribute('name','id');
+                    id_object.setAttribute('value',data[i]['id']);
+                    id_object.setAttribute('hidden','false');
+                    console.log('id'+data[i]['id']);
+
+                    parent_wrap.appendChild(child_wrap);
+                    parent_wrap.appendChild(spec_object);
+                    parent_wrap.appendChild(id_object);
+                    parent_wrap.appendChild(name_text);
+                    $('#dropdownDiv_blockLib').append(parent_wrap);
+                  }
+                }
+            },
+            error: function() { // What to do if we fail
+                console.log('해당x');
+            }
+        });
+        });
       }
-  });
-  });
   </script>
   </html>
   @endsection
