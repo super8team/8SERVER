@@ -333,7 +333,7 @@
                     @foreach($packages as $package_name)
                     <!-- class="package_button" -->
                     <!-- style="float:right" -->
-                      <li class="package_list"name="button" value={{$package_name['id']}}>
+                      <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
                         {{$package_name['name']}}
                       </li>
                     @endforeach
@@ -1101,7 +1101,7 @@
           console.log(package_id);
           $.ajax({
             method: 'GET', // Type of response and matches what we said in the route
-            url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
+            url: '/contents/packages/'+package_id, // This is the url we gave in the route
             data: {'id' : package_id}, // a JSON object to send back
             success: function(data){ // What to do if we succeed
                 console.log('926');
