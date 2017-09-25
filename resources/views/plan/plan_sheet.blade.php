@@ -241,7 +241,7 @@ if($lang == 'jp'){
 
 															<td>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="asset('storage/수학여행.doc')">테스트 파일</a>
+																	<a href="{{asset('storage/수학여행.doc')}}">테스트 파일</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
 																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획 기안문.hwp">(수학여행)현장체험학습 실시 계획 기안문</a>
