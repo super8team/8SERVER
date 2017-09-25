@@ -116,13 +116,16 @@ p {
 }
 
 .package_list{
-  width:100%;
+  margin: auto;
+  line-height: 36px;
+  width:80%;
   height:40px;
   border-radius: 30px;
-  margin-bottom: 4px;
+  margin-top: 7px;
   text-align: center;
-  border:1px solid;
+  border:1.5px gray solid;
   list-style: none;
+
 }
 
 input[type="submit"]:disabled, .inputStyle:disabled {
@@ -585,7 +588,6 @@ button, .buttonStyle {
 #packageList button{
   width: 100%;
 }
-
 
 #packageDiv {
   float:left;

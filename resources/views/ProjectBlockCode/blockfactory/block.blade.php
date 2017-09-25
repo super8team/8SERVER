@@ -320,8 +320,8 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="packageList" >
-                <div id="left-space">
+              <td id="packageList" style="overflow:scroll;">
+                <div id="left-space" >
                 </div>
                 <div style="float:right;display:inline-block;width:80%;">
                   <h4 style="text-align:center"><b>MISSION BOX</b></h4>
@@ -333,7 +333,7 @@
                     @foreach($packages as $package_name)
                     <!-- class="package_button" -->
                     <!-- style="float:right" -->
-                      <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
+                      <li class="package_list"name="button" value={{$package_name['id']}}>
                         {{$package_name['name']}}
                       </li>
                     @endforeach
@@ -1061,12 +1061,13 @@
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
   //패키지 리스트
-  var package_div     = document.getElementsByClassName('package_list');
+  // var package_div     = document.getElementsByClassName('package_list');
+  var package_div = document.getElementById('packageDiv');
   var before_ele = document.getElementsByClassName('package_list')[0];
   var boundary  = 0;
 
-  for (var i=0;i<package_div.length; i++) {
-        package_div[i].addEventListener('click',function(event){
+  // for (var i=0;i<package_div.length; i++) {
+        package_div.addEventListener('click',function(event){
           console.log(before_ele);
           document.getElementById('present_storage_package').innerText =event.target.textContent;
           before_ele.style.backgroundColor = 'white';
@@ -1148,7 +1149,7 @@
             }
         });
         });
-      }
+      // }
   </script>
   </html>
   @endsection
