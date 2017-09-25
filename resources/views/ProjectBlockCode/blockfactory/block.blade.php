@@ -1101,7 +1101,7 @@
           console.log(package_id);
           $.ajax({
             method: 'GET', // Type of response and matches what we said in the route
-            url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
+            url: '/contents/packages/'+package_id, // This is the url we gave in the route
             data: {'id' : package_id}, // a JSON object to send back
             success: function(data){ // What to do if we succeed
                 console.log('926');
