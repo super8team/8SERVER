@@ -76,8 +76,11 @@
           <div class="center slider">
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
+                   @php
+                     $url = Storage::url('packageImgs/'.$value['imgs']);
+                   @endphp
                  <a href="/8server/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
+                   <img src="{{$$url}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
                  </div>
