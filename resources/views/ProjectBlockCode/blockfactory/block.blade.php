@@ -333,7 +333,7 @@
                     @foreach($packages as $package_name)
                     <!-- class="package_button" -->
                     <!-- style="float:right" -->
-                      <li class="package_list"name="button" value={{$package_name['id']}}>
+                      <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
                         {{$package_name['name']}}
                       </li>
                     @endforeach
