@@ -241,31 +241,34 @@ if($lang == 'jp'){
 
 															<td>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획 기안문.hwp">(수학여행)현장체험학습 실시 계획 기안문</a>
+																	<a href="{{asset('storage/수학여행.doc')}}">修学旅行のあらまし</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획서 양식.hwp">수학여행 계획서 양식</a>
+																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획 기안문.hwp">(修学旅行)現場体験学習の実施計画</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																<a href="{{route('word', ['no'=>1, 'plan_number'=>$plan_no])}}">안심수학여행서비스신청서</a>
+																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 실시 계획서 양식.hwp">修学旅行計画書の様式</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 청렴교육.hwp">청렴교육</a>
+																<a href="{{route('word', ['no'=>1, 'plan_number'=>$plan_no])}}">安心修学旅行サービス申請</a>
 																	</br>
 																<span class="glyphicon glyphicon-save-file"></span>
-																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 기본안전교육.hwp">기본안전교육</a>
+																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 청렴교육.hwp">清廉教育</a>
+																	</br>
+																<span class="glyphicon glyphicon-save-file"></span>
+																	<a href="http://schooltrip.pen.go.kr/schooltrip/download_files/(수학여행)현장체험학습 기본안전교육.hwp">基本安全</a>
 																</br>
 															</td>
 
 															<td>
 																<span class="glyphicon glyphicon-info-sign"></span>
-																포함내용: 교육장소,차량이동,교육프로그램,상황별 안전교육,현장체험학습 관계자에 대한 청렴 교육 계획
+																教育場所、車両の移動、教育プログラム、状況ごとの安全教育、現場体験学習関係者に対する清廉教育
 																</br>
-																<span class="glyphicon glyphicon-info-sign"></span>
+																{{-- <span class="glyphicon glyphicon-info-sign"></span>
 																소규모,테마형 현장체험학습 추진 원칙 준수
-																</br>
+																</br> --}}
 																<span class="glyphicon glyphicon-info-sign"></span>
-																안심수학여행서비스는 수학여행개시 2개월전 신청서를 해당 지자체에 제출함.
+																安心修学旅行サービスは修学旅行開始2ヵ月前の申請書を該当自治体に提出したこと。
 																</br>
 															</td>
 														</tr>
