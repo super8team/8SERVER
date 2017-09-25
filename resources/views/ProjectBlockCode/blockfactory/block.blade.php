@@ -576,7 +576,7 @@
         <block type="button_3"></block>
         <block type="button_4"></block>
       </category>
-      <category name="テクスト">
+      <category name="テキスト">
         <block type="header"></block>
         <block type="bottom"></block>
       </category>
