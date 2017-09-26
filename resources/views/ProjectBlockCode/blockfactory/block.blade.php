@@ -323,7 +323,7 @@
               <td id="packageList" style="overflow:scroll;">
                 <div id="left-space" >
                 </div>
-                <div style="float:right;display:inline-block;width:80%;">
+                <div style="float:right;display:inline-block;width:80%;overflow:scroll;">
                   <h4 style="text-align:center"><b>MISSION BOX</b></h4>
                   <button id="createNewPackage"></button>
                   <div id="present_storage_package" hidden></div>
@@ -346,16 +346,16 @@
           </table>
         </td>
         <!-- 새로운 td  -->
-        <td id="blockLibraryContainer" rowspan="2">
+        <td id="blockLibraryContainer" rowspan="2" style="background-color:white;border-right:1px solid gray;">
         <span>
-          <div class="dropdown">
+          <div class="dropdown" >
               <div id="dropdownDiv_blockLib" >
                 <div id="button_blockLib">
                 </div>
                 <!-- 패키지 리스트 출력 코드 -->
                   @if($packages)
                       @foreach($first_package as $content)
-                      <button style="vertical-align:middle;display:block" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                      <button style="margin-left:22px;vertical-align:middle;display:block;" class="content_list" type="button" name="button" value="{{$content->xml}}" >
                         {{$content->name}}
                         <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
                         <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
@@ -370,28 +370,25 @@
         </span>
         </td>
         <!-- 새로운 td  -->
+
         <td id="blockFactorySupplie" colspan="2">
           <table>
-            <tr id="blockLibrary">
+            <tr id="blockLibrary" >
               <td id="contents_list" >
-                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
+                <div style="background-color: gray;margin-bottom: -15px;">
                   <button type="button" id="createNewBlockButton"  >
                     NEW
                   </button>
                 </div>
-                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
+                <div style="background-color:gray;margin-bottom: 2px; ">
                   <button type="button" id="saveToBlockLibraryButton" >
                     SAVE
                   </button>
                 </div>
               </td>
 
-              <!-- <td>
-
-              </td> -->
-
-              <td id="blockLibraryControls" >
-                <button id="registerContents" >
+              <td id="blockLibraryControls">
+                <button id="registerContents">
                   体験学習登録
                 </button>
                 <button id="shareContentsButton">
@@ -402,7 +399,7 @@
                 </button>
               </td>
           </tr>
-      </table>
+        </table>
       </td>
      </tr>
       <FONT face="굴림">
@@ -930,7 +927,7 @@
   <script type="text/javascript">
 
   $(document).ready(function(){
-    document.getElementsByClassName('package_list')[0].style.backgroundColor = '#9FF781';
+    document.getElementsByClassName('package_list')[0].style.backgroundColor = '#6e6e6e';
   });
   function closePopup(){
     document.getElementById('notipopup').remove();
@@ -1061,13 +1058,13 @@
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
   //패키지 리스트
-  // var package_div     = document.getElementsByClassName('package_list');
-  var package_div = document.getElementById('packageDiv');
+  var package_div     = document.getElementsByClassName('package_list');
+  // var package_div = document.getElementById('packageDiv');
   var before_ele = document.getElementsByClassName('package_list')[0];
   var boundary  = 0;
 
-  // for (var i=0;i<package_div.length; i++) {
-        package_div.addEventListener('click',function(event){
+  for (var i=0;i<package_div.length; i++) {
+        package_div[i].addEventListener('click',function(event){
           console.log(before_ele);
           document.getElementById('present_storage_package').innerText =event.target.textContent;
           before_ele.style.backgroundColor = 'white';
@@ -1087,7 +1084,8 @@
           //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
           //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
           $('.content_list').remove();
-          event.target.style.backgroundColor = '#9FF781';
+
+          event.target.style.backgroundColor = '#6e6e6e';
           var package_id = event.target.value;
           console.log(event.target);
           console.log(event.target.textContent);
@@ -1149,7 +1147,7 @@
             }
         });
         });
-      // }
+      }
   </script>
   </html>
   @endsection
