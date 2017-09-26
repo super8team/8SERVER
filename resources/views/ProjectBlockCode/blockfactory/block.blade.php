@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <head>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6fGg2hJalQ8FiuUCKTuY94x9H5hQ26uo&libraries=places&callback=initMap&language=ja&region=JP">
   </script>
 
   <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -50,15 +50,13 @@
       blocklyFactory = new AppController();
       blocklyFactory.init();
       window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
-
     };
     window.addEventListener('load', init);
 
   </script>
 </head>
 <body>
-
-<div class="decobar"></div>
+<div class="bluedecobar"></div>
 
   <div id="tabContainer">
       <div id="blockFactory_tab" class="tab tabon" >Block Factory</div>
@@ -295,7 +293,7 @@
     <!-- <div class="papanel-body"> -->
     <table id="blockFactoryContent">
       <tr>
-        <td style="height:80px">
+        <td style="height:80px;"  rowspan = '2'>
           <table id="blockFactoryPreview" >
             <tr>
               <td id="previewContainer" hidden>
@@ -306,7 +304,7 @@
                   </select>
                 </h3>
               </td>
-              <td id="buttonContainer">
+              <td id="buttonContainer" hidden>
                 <button id="linkButton" title="Save and link to blocks.">
                   <img src="link.png" height="" width="21" hidden>
                 </button>
@@ -322,88 +320,95 @@
                   <span>Download Block Library</span>
                 </button>
               </td>
-              <td id="present_package">
-                {{$packages[0]['name']}}
+              <td id="packageList" style="overflow:scroll;">
+                <div id="left-space" >
+                </div>
+                <div style="float:right;display:inline-block;width:80%;overflow:scroll;">
+                  <h4 style="text-align:center"><b>MISSION BOX</b></h4>
+                  <button id="createNewPackage"></button>
+                  <div id="present_storage_package" hidden></div>
+                  <!-- <ul style="width:60%;border:1px solid"> -->
+                  <div id="packageDiv">
+                    @if($packages)
+                    @foreach($packages as $package_name)
+                    <!-- class="package_button" -->
+                    <!-- style="float:right" -->
+                      <li class="package_list" type="button" name="button" value={{$package_name['id']}}>
+                        {{$package_name['name']}}
+                      </li>
+                    @endforeach
+                    @endif
+                  </div>
+                <!-- </ul> -->
+                </div>
               </td>
             </tr>
           </table>
         </td>
+        <!-- 새로운 td  -->
+        <td id="blockLibraryContainer" rowspan="2" style="background-color:white;border-right:1px solid gray;">
+        <span>
+          <div class="dropdown" >
+              <div id="dropdownDiv_blockLib" >
+                <div id="button_blockLib">
+                </div>
+                <!-- 패키지 리스트 출력 코드 -->
+                  @if($packages)
+                      @foreach($first_package as $content)
+                      <button style="margin-left:22px;vertical-align:middle;display:block;" class="content_list" type="button" name="button" value="{{$content->xml}}" >
+                        {{$content->name}}
+                        <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
+                        <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
+                        <input type="text" name="id"  value="{{$content->no}}" hidden>
+                     </button>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     @endforeach
+                 @endif
+             </div>
+              </form>
+            </div>
+        </span>
+        </td>
+        <!-- 새로운 td  -->
+
         <td id="blockFactorySupplie" colspan="2">
           <table>
-            <tr id="blockLibrary">
+            <tr id="blockLibrary" >
               <td id="contents_list" >
-                <div style="background-color: #D4A2FF;margin-bottom: -15px;">
+                <div style="background-color: gray;margin-bottom: -15px;">
                   <button type="button" id="createNewBlockButton"  >
                     NEW
                   </button>
                 </div>
-                <div style="background-color: #D4A2FF;margin-bottom: 2px; ">
+                <div style="background-color:gray;margin-bottom: 2px; ">
                   <button type="button" id="saveToBlockLibraryButton" >
                     SAVE
                   </button>
                 </div>
               </td>
 
-              <td id="blockLibraryContainer">
-              <span>
-                <div class="dropdown">
-                    <div id="dropdownDiv_blockLib" >
-                      <div id="button_blockLib">
-                      </div>
-                      <!-- 패키지 리스트 출력 코드 -->
-                        @if($packages)
-                            @foreach($first_package as $content)
-                            <button style="vertical-align:middle" class="content_list" type="button" name="button" value="{{$content->xml}}" >
-                              {{$content->name}}
-                              <input type="text" class="contents_xml"  value="{{$content->xml}}" hidden>
-                              <input type="text" class="block_myungse" value="{{$content->spec}}" hidden>
-                              <input type="text" name="id"  value="{{$content->no}}" hidden>
-                           </button>
-                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           @endforeach
-                       @endif
-                   </div>
-                    </form>
-                  </div>
-
-              </span>
+              <td id="blockLibraryControls">
+                <button id="registerContents">
+                  体験学習登録
+                </button>
+                <button id="shareContentsButton">
+                  創作
+                </button>
+                <button id="removeBlockFromLibraryButton" hidden>
+                  コンテンツ削除
+                </button>
               </td>
-        <td id="blockLibraryControls" >
-          <button id="registerContents" >
-            현장체험 등록
-          </button>
-          <button id="shareContentsButton">
-            창작 마당
-          </button>
-          <button id="removeBlockFromLibraryButton" hidden>
-            콘텐츠 삭제
-          </button>
-        </td>
-        </tr>
-      </table>
-   </td>
+          </tr>
+        </table>
+      </td>
      </tr>
       <FONT face="굴림">
       <tr style="height:90%">
         <!-- 블럭 워크스페이스 -->
-        <td id="packageList">
-          <div id="left-space">
-          </div>
-          <div style="float:right;display:inline-block;width:80%;">
-            <button type="button" class="package_button" name="button" disabled><h4>MISSON BOX</h4></button>
-            <button id="createNewPackage"></button>
-            <div id="packageDiv" style="display:inline;" style="float:right" >
-              @if($packages)
-              @foreach($packages as $package_name)
-                <button style="float:right"class="package_button" type="button" name="button" value={{$package_name['id']}}>
-                  {{$package_name['name']}}
-                </button>
-              @endforeach
-              @endif
-            </div>
-          </div>
-        </td>
 
+        <!-- 수정한 코드 -->
+
+        <!-- 수정한 코드 -->
         <td id="blocklyWorkspaceContainer">
           <div id="blockly"></div>
           <div id="blocklyMask"></div>
@@ -412,7 +417,7 @@
         <td id="mapSize">
           <div style="width:85%;height:100%;display:inline-block;background-color:white;">
             <form action="#" onsubmit="getLatLng(document.getElementById('address').value); return(false);">
-                  <input id="address" style="width: 200px;" type="text" value='장소검색' onblur="checkField(this)" onfocus="clearField(this)">
+                  <input id="address" style="width: 200px;" type="text" value='場所検索' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
               <div id="map" style="height:70%; width:100%;display:inline-block">
@@ -424,7 +429,7 @@
 
           var map = new google.maps.Map(document.getElementById("map"), {
            zoom: 15,
-           center: new google.maps.LatLng(35.8963091, 128.62205110000002),
+           center: new google.maps.LatLng(35.0116363, 135.76802939999993),
            mapTypeId: google.maps.MapTypeId.ROADMAP,
            mapTypeControlOptions: {
            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -537,7 +542,7 @@
           <div id="notipopup" style="height:30%">
                       <div style="height:100%">
                       <embed src="https://www.youtube.com/embed/s2_xaEvcVI0" autoplay controls width="300px" height="200px"></embed>
-                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">닫기</button>
+                        <button onclick="closePopup()"  style="border:0px;display:block;background-color:white;margin-top:2px">閉じる</button>
                      </div>
           </div>
 
@@ -562,54 +567,53 @@
     <div id="modalShadow"></div>
 
     <xml id="blockfactory_toolbox" class="toolbox">
-
-      <category name="버튼">
+      <category name="ボタン">
         <block type="button_1"></block>
         <block type="button_2"></block>
         <block type="button_3"></block>
         <block type="button_4"></block>
       </category>
-      <category name="텍스트">
+      <category name="テキスト">
         <block type="header"></block>
         <block type="bottom"></block>
       </category>
-      <category name ="이미지">
+      <category name ="イメージ">
         <block type="image_1"></block>
         <block type="image_2"></block>
         <block type="image_3"></block>
         <block type="image_4"></block>
       </category>
-      <category name="실행">
+      <category name="実行">
         <block type="CLICK"></block>
         <block type="CHECKEDIT"></block>
         <block type="OUT_IMG"></block>
         <block type="OUT_TXT"></block>
         <block type="END"></block>
       </category>
-      <category name="에디트">
+      <category name="エディット">
         <block type="EDIT"></block>
       </category>
-      <category name="토스트">
+      <category name="トースト">
         <block type="toast"></block>
       </category>
-      <category name="퀘스트">
+      <category name="クエスト">
         <block type="quest"></block>
         <block type="endQuest"></block>
         <!-- blocks_ 139line -->
       </category>
-      <category name="빙고">
+      <category name="ビンゴ">
         <block type="bingo"></block>
         <block type="endBingo"></block>
       </category>
-      <category name="컬렉션">
+      <category name="コレクション">
         <block type="collection"></block>
         <block type="endCollection"></block>
       </category>
-      <category name="지도">
+      <category name="マップ">
         <block type="openMap"></block>
         <block type="closeMap"></block>
       </category>
-      <category name="콘텐츠 수정">
+      <category name="コンテンツ修正">
         <block type="CONFIG"></block>
       </category>
     </xml>
@@ -922,9 +926,10 @@
   </body>
   <script type="text/javascript">
 
-
+  $(document).ready(function(){
+    document.getElementsByClassName('package_list')[0].style.backgroundColor = '#6e6e6e';
+  });
   function closePopup(){
-    console.log('테스트');
     document.getElementById('notipopup').remove();
   }
   $('#notipopup').topmenu({
@@ -947,21 +952,18 @@
 
         var length                = storage_contents.length;
         var parent_content        = storage_contents[length-1];
-        console.log('테스트임');
-        console.log(parent_content);
+
+        // console.log(parent_content);
         var child_content         = parent_content.childNodes;
 
         //패키지 div중 가장 위에 있는 [패키지]를 가져오는 로직
-        var storage_package       = document.getElementById('packageDiv');
-        var present_package       = document.getElementById('present_package');
+        var storage_package       = document.getElementById('present_storage_package').innerText;
+        var present_package       = event.target.textContent;
         console.log(storage_package);
         console.log('클릭한 패키지 이름');
-        console.log(present_package.innerText);
-        var storage_package_child = storage_package.firstChild;
-        var storage_package_name  = storage_package_child.innerText ;
+        console.log(present_package);
 
         console.log('완료');
-        console.log('현재 패키지 이름'+present_package.innerText);
 
         //저장할 컨텐츠 xml
         var content_xml         = child_content[1].value;
@@ -985,7 +987,7 @@
             'xml'          : content_xml,
             'spec'         : content_spec,
             'name'         : content_name,
-            'package_name' : present_package.innerText,
+            'package_name' : storage_package,
             '_token'       : CSRF_TOKEN
           },
           success: function(data){
@@ -1009,7 +1011,7 @@
             del_obj.remove();
 
             //경고 창 띄우기
-            alert('하나의 패키지를 선택하고 저장해 주세오');
+            alert('一つのパッケージを選択して保存してください');
           }
         });
         document.getElementById('change').value = 0;
@@ -1048,95 +1050,104 @@
   document.getElementById('registerContents').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=400, top=100, width=700, height=500';
-      window.open('{{route("contents.registerToPlan")}}', '콘텐츠 저장하기', popupOption);
+      window.open('{{route("contents.registerToPlan")}}', 'コンテンツ', popupOption);
     });
   document.getElementById('shareContentsButton').addEventListener('click',
     function(event){
       var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=none, left=200, top=70, width=1000, height=900';
-      window.open('{{route("contents.share")}}', '창작공유마당', popupOption);
+      window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
-    var package_div     = document.getElementById('packageDiv');
-    var before_ele;
-    var boundary  = 0;
-  package_div.addEventListener('click',function(event){
+  //패키지 리스트
+  var package_div     = document.getElementsByClassName('package_list');
+  // var package_div = document.getElementById('packageDiv');
+  var before_ele = document.getElementsByClassName('package_list')[0];
+  var boundary  = 0;
 
-    //insertbefore();
-    //클릭한 패키지를 상단에 위치 시킴
-    console.log('click');
-      var package_name_td = document.getElementById('present_package');
-      package_name_td.innerHTML = event.target.textContent;
-      new_package = event.target;
+  for (var i=0;i<package_div.length; i++) {
+        package_div[i].addEventListener('click',function(event){
+          console.log(before_ele);
+          document.getElementById('present_storage_package').innerText =event.target.textContent;
+          before_ele.style.backgroundColor = 'white';
+          console.log('클릭한 패키지:'+event.target.textContent);
+          //insertbefore();
+          //클릭한 패키지를 상단에 위치 시킴
+          console.log('click');
+          // var package_name_td = document.getElementById('present_package');
+          // package_name_td.innerHTML = event.target.textContent;
+          new_package = event.target;
 
-    var parent       = document.getElementById('dropdownDiv_blockLib');
+          before_ele = event.target;
+          var parent       = document.getElementById('dropdownDiv_blockLib');
 
-    var remove_obj    = document.getElementsByClassName("content_list");
+          var remove_obj    = document.getElementsByClassName("content_list");
 
-    //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
-    //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
-    $('.content_list').remove();
+          //클릭을 하면 그 콘텐츠div의 콘텐츠는 사라짐,
+          //그리고 ajax를 사용해서 클릭한 패키지의 콘텐츠들을 불러옴
+          $('.content_list').remove();
 
-    var package_id = event.target.value;
-    console.log(event.target);
-    console.log('919');
-    console.log(event.target.textContent);
-    var textContent = event.target.textContent;
-    // var present = document.getElementById('presentPackageName');
-    var str_space = /\s/;  // 공백체크
-    if(str_space.exec(textContent)) { //공백 체크
-       textContent = textContent.replace(' ',''); // 공백제거
-    }
-    // present.value = "現在패키지"+textContent;
-    console.log(package_id);
-    $.ajax({
-      method: 'GET', // Type of response and matches what we said in the route
-      url: '/8server/public/contents/packages/'+package_id, // This is the url we gave in the route
-      data: {'id' : package_id}, // a JSON object to send back
-      success: function(data){ // What to do if we succeed
-          console.log('926');
-          if(data){
-           console.log(data);
-          for(var i = 0; i < data.length; i++){
-              console.log('990');
-              var parent_wrap  = document.createElement("button");
-              var child_wrap   = document.createElement("input");
-
-              var xml_object   = document.createElement("input");
-              var spec_object  = document.createElement("input");
-              var id_object    = document.createElement("input");
-              var name_text = document.createTextNode(data[i]['name']);
-              parent_wrap.setAttribute('class','content_list');
-              parent_wrap.setAttribute('value',data[i]['xml']);
-              parent_wrap.style.marginLeft   = "15px";
-
-              child_wrap.setAttribute('type','text');
-              child_wrap.setAttribute('class','contents_xml');
-              child_wrap.setAttribute('value',data[i]['xml']);
-              child_wrap.setAttribute('hidden','false');
-
-              spec_object.setAttribute('type','text');
-              spec_object.setAttribute('class','block_myungse');
-              spec_object.setAttribute('value',data[i]['spec']);
-              spec_object.setAttribute('hidden','false');
-
-              id_object.setAttribute('type','text');
-              id_object.setAttribute('name','id');
-              id_object.setAttribute('value',data[i]['id']);
-              id_object.setAttribute('hidden','false');
-              console.log('id'+data[i]['id']);
-
-              parent_wrap.appendChild(child_wrap);
-              parent_wrap.appendChild(spec_object);
-              parent_wrap.appendChild(id_object);
-              parent_wrap.appendChild(name_text);
-              $('#dropdownDiv_blockLib').append(parent_wrap);
-            }
+          event.target.style.backgroundColor = '#6e6e6e';
+          var package_id = event.target.value;
+          console.log(event.target);
+          console.log(event.target.textContent);
+          var textContent = event.target.textContent;
+          // var present = document.getElementById('presentPackageName');
+          var str_space = /\s/;  // 공백체크
+          if(str_space.exec(textContent)) { //공백 체크
+             textContent = textContent.replace(' ',''); // 공백제거
           }
-      },
-      error: function() { // What to do if we fail
-          console.log('해당x');
+          // present.value = "現在패키지"+textContent;
+          console.log(package_id);
+          $.ajax({
+            method: 'GET', // Type of response and matches what we said in the route
+            url: '/contents/packages/'+package_id, // This is the url we gave in the route
+            data: {'id' : package_id}, // a JSON object to send back
+            success: function(data){ // What to do if we succeed
+                console.log('926');
+                if(data){
+                 console.log(data);
+                for(var i = 0; i < data.length; i++){
+                    console.log('990');
+                    var parent_wrap  = document.createElement("button");
+                    var child_wrap   = document.createElement("input");
+
+                    var xml_object   = document.createElement("input");
+                    var spec_object  = document.createElement("input");
+                    var id_object    = document.createElement("input");
+                    var name_text = document.createTextNode(data[i]['name']);
+                    parent_wrap.setAttribute('class','content_list');
+                    parent_wrap.setAttribute('value',data[i]['xml']);
+                    parent_wrap.style.marginLeft   = "15px";
+
+                    child_wrap.setAttribute('type','text');
+                    child_wrap.setAttribute('class','contents_xml');
+                    child_wrap.setAttribute('value',data[i]['xml']);
+                    child_wrap.setAttribute('hidden','false');
+
+                    spec_object.setAttribute('type','text');
+                    spec_object.setAttribute('class','block_myungse');
+                    spec_object.setAttribute('value',data[i]['spec']);
+                    spec_object.setAttribute('hidden','false');
+
+                    id_object.setAttribute('type','text');
+                    id_object.setAttribute('name','id');
+                    id_object.setAttribute('value',data[i]['id']);
+                    id_object.setAttribute('hidden','false');
+                    console.log('id'+data[i]['id']);
+
+                    parent_wrap.appendChild(child_wrap);
+                    parent_wrap.appendChild(spec_object);
+                    parent_wrap.appendChild(id_object);
+                    parent_wrap.appendChild(name_text);
+                    $('#dropdownDiv_blockLib').append(parent_wrap);
+                  }
+                }
+            },
+            error: function() { // What to do if we fail
+                console.log('해당x');
+            }
+        });
+        });
       }
-  });
-  });
   </script>
   </html>
   @endsection

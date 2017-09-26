@@ -7,7 +7,7 @@
   $(document).ready(function(){
     var check  = false;
     var check2 = false;
-    
+
   //필터링 장소 섵택
   //필터링 장소 전체 선택
   $(document).on('click',"#checkall",function(){
@@ -29,18 +29,18 @@
   //     select_chkbox();
   //   }
   // });
-  
+
   //리스트뽑기
   //체크된 반 체크
-  //UI 생성  
+  //UI 생성
   //생성된 학생들 전체 선택
   //서브밋
-  
+
   // 사용 함수
   //처음 학생 리스트를 뽑는 함수
   function select_chkbox() {
     //체크된 항목 검사
-  
+
     //이름을 이용해서 filter 크기를 알아내기
 
       // $student[0]['no']       = 12
@@ -48,9 +48,9 @@
       // $student[0]['name']     = '김개똥'
 
       //체크된 값의 정보를 가저옴
-      
+
       //체크된 정보와 비교하여 해당 값을 가져옴
-      
+
       // for(var i = 0; i < size; i++){
       //     for (var t = 0; t < [i]; t++) {
       //         $('create_zone').append(
@@ -64,14 +64,14 @@
       //           "</tr>"
       //         );
       //     }
-      //     
+      //
       // }
-      }  
+      }
     });
 
 
 
-    
+
   </script>
   @php
     //컨트롤러에서 보내는 정보
@@ -86,63 +86,63 @@
       <form class="form" action="{{route('group_create',$plan_no)}}">
         {{ csrf_field() }}
         <div class="well">
-          학년 선택
+          年生選択
           @for ($i=0; $i < $grade_count; $i++)
             <label class="checkbox-inline">
-              <input type="radio" value="{{$i+1}}" name="filter_grade"> {{$i+1}}학년&nbsp;&nbsp;&nbsp;&nbsp;
-            </label> 
+              <input type="radio" value="{{$i+1}}" name="filter_grade"> {{$i+1}}年生&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
           @endfor
-          
-          
+
+
           <button class="btn btn-sm btn-default pull-right" type="btnSubmit">
-            체크한 반 학생 리스트 가져오기
+            チェックしたクラスの生徒リスト取る
           </button>
           <br>
-          반별로 필터링하기
+          班別にフィルタリング
           @for ($i=0; $i < $class_count ; $i++)
             <label class="checkbox-inline">
-              <input type="checkbox" value="{{$i+1}}" name="filter_class[]"> {{$i+1}}반&nbsp;&nbsp;&nbsp;&nbsp;
-            </label> 
+              <input type="checkbox" value="{{$i+1}}" name="filter_class[]"> {{$i+1}}クラス&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
           @endfor
         </div>
         <input type="hidden" name="grade_class" value="{{$grade_class_no[$i]}}">
-      </form>        
-      <form class="form" action="{{route('group.store')}}">      
+      </form>
+      <form class="form" action="{{route('group.store')}}">
       <div class="panel panel-default">
         <div class="panel-heading">
           @php
           $user_info = Auth::user();
-          
+
           if($user_info['type'] == 'student'){
             $back_route = 'plan.student';
           }elseif ($user_info['type'] == 'teacher'){
             $back_route = 'plan.student';
           }else{
             $back_route = 'plan.parents';
-          }              
+          }
           @endphp
-          <h3 class="panel-title">학생 불러오기 
+          <h3 class="panel-title">生徒取る
             <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
+             バック
            </a>
            <a role="button" href="{{route('group.store',$plan_no)}}" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right">
             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            참여자 확정
+            参加者の確定
           </a>
           <button class="btn btn-sm btn-default pull-right" type="button" id="checkall" name="select_all_btn">
-            전체선택
+            全体選択
           </button>
          </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body  panel-custom">
           <table class="table table-bordered table-hover">
             <thead>
               <th>#</th>
-              <th>반</th>
-              <th>이름</th>
+              <th>クラス</th>
+              <th>名前</th>
             </thead>
             <tbody>
               @if ($student_no)
@@ -158,8 +158,8 @@
               @else
                 <tr>
                   <td>000</td>
-                  <td>위의 기능을 사용해서 학생</td>
-                  <td>리스트를 뽑아주세요</td>
+                  <td>上の機能を使用して生徒</td>
+                  <td>リストを抜いてください</td>
                 </tr>
               @endif
             </tbody>
@@ -170,5 +170,5 @@
     </form>
       </div>
   </div>
-  
+
 @endsection

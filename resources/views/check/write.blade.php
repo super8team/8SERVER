@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','체크 리스트 작성')
+@section('title','チェックリスト作成')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                "</div>"+
              "<div class='col-sm-9'>"+
                "<input type='hidden' name ='q_title["+countQuestion+"][0]' value='ox'>"+
-               "<input type='text' class='form-control col-sm-9' name='q_title["+countQuestion+"][1]' placeholder='찬성 반대 질문 입력'>"+
+               "<input type='text' class='form-control col-sm-9' name='q_title["+countQuestion+"][1]' placeholder='O,Xクイズ入力'>"+
              "</div>"+
              "</div>"+
              "<div class='panel-body'>"+
@@ -51,12 +51,12 @@
                "</div>"+
              "<div class='col-sm-9'>"+
              "<input type='hidden' name ='q_title["+countQuestion+"][0]' value='obj'>"+
-               "<input type='text' class='form-control col-sm-9' name='q_title["+countQuestion+"][1]'  placeholder='객관식 설문 제목 입력'>"+
+               "<input type='text' class='form-control col-sm-9' name='q_title["+countQuestion+"][1]'  placeholder='客観式設問のタイトル入力'>"+
              "</div>"+
            "</div>"+
            "<div class='panel-body'>"+
              "<div class='form-group col-sm-12'>"+
-               "<a role='button' class='addSubObjBtn btn btn-default'>질문 문항 추가</a>"+
+               "<a role='button' class='addSubObjBtn btn btn-default'>質問追加</a>"+
              "</div>"+
            "</div>"+
            "</div>"+
@@ -80,7 +80,7 @@
             }
             // 별다른 이유없이 10개로 제한 하고 픔
             if(clickedQuestion[id] > 9){
-              alert("질문 개수는 10개를 넘을 수 없습니다.");
+              alert("質問数は10個を超えることはできません。");
             }else{
 
 
@@ -88,7 +88,7 @@
                "<div class='form-group col-sm-12'>"+
                "<div class='input-group'>"+
                "<span class='input-group-addon'>"+(clickedQuestion[id]+1) +"</span>"+
-                "<input type='text' class='form-control' name='q_title["+id+"][2]["+clickedQuestion[id]+"]' placeholder='질문을 입력 해 주세요'>"+
+                "<input type='text' class='form-control' name='q_title["+id+"][2]["+clickedQuestion[id]+"]' placeholder='質問を入力してください'>"+
                 "</div>"+
                "</div>"
              )
@@ -107,11 +107,11 @@
             "<div class='col-sm-9'>"+
               /*서술형 제목 입력 란*/
               "<input type='hidden' name ='q_title["+countQuestion+"][0]' value='subjec'>"+
-              "<input type='text' class='form-control' name='q_title["+(countQuestion)+"][1]'  placeholder='서술형 질문 입력 란'>"+
+              "<input type='text' class='form-control' name='q_title["+(countQuestion)+"][1]'  placeholder='敍述型質問入力欄'>"+
             "</div>"+
           "</div>"+
             "<div class='panel-body'>"+
-            "<textarea class='form-control' rows='5' name='notice_text' placeholder='내용을 입력해 주세요' ></textarea>"+
+            "<textarea class='form-control' rows='5' name='notice_text' placeholder='内容を入力してください' ></textarea>"+
             "</div>"+
           "</div>"
           $("#createForm").append(allString[countQuestion])
@@ -146,22 +146,22 @@
           <div class="panel-heading" style="height:55px;">
             <div class="form-group">
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="survey_title"  placeholder="체크리스트 제목을 입력해주세요 ">
+                <input type="text" class="form-control" name="survey_title"  placeholder="チェックリストのタイトルを入力してください">
               </div>
               {{-- 항목을 추가 할 수있는 드롭 다운 박스 問題を追加 --}}
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
-                  항목 추가 <span class="caret"></span>
+                  項目追加 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li id="addOx"><a>OX 퀴즈 추가 </a></li>
-                  <li id="addObjTest"><a>객관식 문항 추가</a></li>
-                  <li id="addSubjective"><a>주관식 문항 추가</a></li>
+                  <li id="addOx"><a>OXクイズ追加 </a></li>
+                  <li id="addObjTest"><a>客観式問題追加</a></li>
+                  <li id="addSubjective"><a>主観式問題追加</a></li>
                 </ul>
               </div>
-              <a role="button" href="javascript:history.back()"class="btn btn-default"> 뒤로가기</a>
+              <a role="button" href="javascript:history.back()"class="btn btn-default"> 戻る</a>
               {{-- <div class="col-sm-3">
-                <input type="date" class="form-control" name="simekiri"  placeholder="기한 입력">
+                <input type="date" class="form-control" name="simekiri"  placeholder="期間入力">
               </div> --}}
             </div>
           </div>
@@ -174,7 +174,7 @@
             <button type="btnSubmit" id="submit" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right" style="margin-right:15px; margin-top20px;">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             작성 완료
+             作成完了
            </button>
           </div>
         </div>

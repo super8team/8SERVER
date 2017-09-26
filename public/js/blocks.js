@@ -31,36 +31,36 @@ Blockly.Blocks['factory_base'] = {
   init: function() {
     this.setColour(120);
     this.appendDummyInput()
-        .appendField('콘텐츠 이름')
+        .appendField('コンテンツの名')
         .appendField(new Blockly.FieldTextInput(''), 'NAME');
     this.appendValueInput('VERTICAL')
-        .appendField('콘텐츠 세로 정렬');
+        .appendField('コンテンツ縦並び');
     this.appendValueInput('HORIZONTAL')
-        .appendField('콘텐츠 가로 정렬');
+        .appendField('コンテンツ横並び');
     this.appendStatementInput('SCRIPT')
         .setCheck('CheckEdit')
-        .appendField('실행');
+        .appendField('実行');
     this.appendStatementInput('IMAGES')
         .setCheck('Image')
-        .appendField('이미지');
+        .appendField('イメージ');
     this.appendStatementInput('TEXTS')
         .setCheck('Text')
-        .appendField('텍스트');
+        .appendField('テキスト');
     this.appendStatementInput('BUTTONS')
         .setCheck('Button')
-        .appendField('버튼');
+        .appendField('ボタン');
     this.appendStatementInput('EDIT')
         .setCheck('Edit')
-        .appendField('에디트');
+        .appendField('エディット');
     this.appendValueInput('VISIONABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 표시');
+        .appendField('コンテンツの表示');
     this.appendValueInput('CLICKABLE')
         .setCheck('Boolean')
-        .appendField('클릭 작동');
+        .appendField('クリック動作');
     this.appendValueInput('DISABLE')
         .setCheck('Boolean')
-        .appendField('콘텐츠 정지');
+        .appendField('コンテンツの停止');
   },
   mutationToDom: function() {
     var container = document.createElement('mutation');
@@ -150,7 +150,7 @@ var VISION_ARGS = [
   }
 ];
 
-var CLICK_MESSAGE = '클릭 작동 %1';
+var CLICK_MESSAGE = 'クリック作動 %1';
 var CLICK_ARGS = [
   {
     "type": "field_dropdown",
@@ -181,7 +181,7 @@ var FIELD_ARGS = [
     // "check": "Field"
   }
 ];
-var SCRIPT_MESSAGE = '이벤트 %1 ';
+var SCRIPT_MESSAGE = 'イベント %1 ';
 var SCRIPT_ARG = [
     {
       "type": "input_statement",
@@ -190,7 +190,7 @@ var SCRIPT_ARG = [
     }
 ];
 //true
-var CHECKEDIT_MESSAGE = '정답 일 경우 %1 ';
+var CHECKEDIT_MESSAGE = '正解の場合 %1 ';
 var CHECKEDIT_ARG = [
     {
       "type": "input_statement",
@@ -198,7 +198,7 @@ var CHECKEDIT_ARG = [
     }
 ];
 //false
-var CHECKEDIT2_MESSAGE = '오답 일 경우 %1 ';
+var CHECKEDIT2_MESSAGE = '誤答の場合 %1 ';
 var CHECKEDIT2_ARG = [
     {
       "type": "input_statement",
@@ -334,7 +334,7 @@ Blockly.Blocks['input_statement'] = {
 Blockly.Blocks['CHECKEDIT'] = {
   init: function() {
       this.jsonInit({
-        "message0": "클릭 이벤트 %1 %2 정답 %3 %4 %5",
+        "message0": "クリックイベント %1 %2 正解 %3 %4 %5",
         "args0": [
           {
             "type": "field_input",
@@ -369,7 +369,7 @@ Blockly.Blocks['CHECKEDIT'] = {
 Blockly.Blocks['CLICK'] = {
   init: function() {
       this.jsonInit({
-        "message0" : "클릭 이벤트 %1 %2",
+        "message0" : "クリックイベント %1 %2",
         "args0": [
           {
             "type": "field_input",
@@ -391,7 +391,7 @@ Blockly.Blocks['CLICK'] = {
 Blockly.Blocks['CONFIG'] = {
   init: function() {
       this.jsonInit({
-        "message0" : "수정할 콘텐츠 이름 %1 %2 ",
+        "message0" : "修正するコンテンツの名 %1 %2 ",
         "args0": [
           {
             "type": "field_input",
@@ -419,7 +419,7 @@ Blockly.Blocks['END'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('이벤트 끝')
+        .appendField('イベント終了')
     this.setPreviousStatement(true, 'CheckEdit');
   }
 }
@@ -448,23 +448,23 @@ Blockly.Blocks['button_1'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('버튼 아이디')
+        .appendField('ボタンのアイディ')
         .appendField('1', 'FIELDNAME');
     this.appendDummyInput()
-        .appendField('버튼 이름')
+        .appendField('ボタンの名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('버튼 색')
+        .appendField('ボタンの色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOR');
     this.appendDummyInput()
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
-        .appendField('높이 길이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
-        .appendField('가로 길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -477,23 +477,23 @@ Blockly.Blocks['button_2'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('버튼 아이디')
+        .appendField('ボタンのアイディ')
         .appendField('2', 'VALUE')
     this.appendDummyInput()
-        .appendField('글자 이름')
+        .appendField('ボタンの名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('버튼 색')
+        .appendField('ボタンの色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
-        .appendField('높이 길이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
-        .appendField('가로 길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -506,23 +506,23 @@ Blockly.Blocks['button_3'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('버튼 아이디')
+        .appendField('ボタンのアイディ')
         .appendField('3', 'VALUE');
     this.appendDummyInput()
-        .appendField('버튼 이름')
+        .appendField('ボタンの名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('버튼 색')
+        .appendField('ボタンの色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
-        .appendField('높이 길이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
-        .appendField('가로 길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -535,23 +535,23 @@ Blockly.Blocks['button_4'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('버튼 아이디')
+        .appendField('ボタンのアイディ')
         .appendField('4', 'VALUE');
     this.appendDummyInput()
-        .appendField('버튼 이름')
+        .appendField('ボタンの名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT');
     this.appendDummyInput()
-        .appendField('버튼 색')
+        .appendField('ボタンの色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'FONTCOLOUR');
     this.appendDummyInput()
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE');
     this.appendDummyInput()
-        .appendField('높이 길이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber(0), 'HEIGHT')
-        .appendField('가로 길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber(0), 'WIDTH');
     this.setPreviousStatement(true, 'Button');
     this.setNextStatement(true, 'Button');
@@ -566,22 +566,22 @@ Blockly.Blocks['header'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('글자 이름')
+        .appendField('文字の名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('상단');
+        .appendField('上段');
     this.appendDummyInput()
-        .appendField('글자 내용')
+        .appendField('文字の内容')
         .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
-        .appendField('배경 색')
+        .appendField('背景色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR')
-        .appendField('투명 도')
+        .appendField('透明度')
         .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
@@ -597,22 +597,22 @@ Blockly.Blocks['bottom'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('글자 이름')
+        .appendField('文字の名')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXTNAME')
         .appendField(',')
-        .appendField('하단');
+        .appendField('下段');
     this.appendDummyInput()
-        .appendField('글자 내용')
+        .appendField('文字の内容')
         .appendField(new Blockly.FieldTextInput('default'), 'DESCRIPTION')
     this.appendDummyInput()
-        .appendField('글자 색')
+        .appendField('文字の色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
-        .appendField('글자 크기')
+        .appendField('文字の大きさ')
         .appendField(new Blockly.FieldNumber(0), 'FONTSIZE')
     this.appendDummyInput()
-        .appendField('배경 색')
+        .appendField('背景色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'BACKCOLOUR')
-        .appendField('투명 도')
+        .appendField('透明度')
         .appendField(new Blockly.FieldNumber(0), 'ALPHA');
     this.setPreviousStatement(true, 'Text');
     this.setNextStatement(true, 'Text');
@@ -871,7 +871,7 @@ Blockly.Blocks['field_checkbox'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('체크 박스')
+        .appendField('チェックBOX')
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'CHECKED')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -945,7 +945,7 @@ Blockly.Blocks['OUT_IMG'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('이미지 주소')
+        .appendField('イメージアドレス')
         .appendField(new Blockly.FieldTextInput(src),'OUT_SRC');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
@@ -955,7 +955,7 @@ Blockly.Blocks['OUT_TXT'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('텍스트')
+        .appendField('テキスト')
         .appendField(new Blockly.FieldTextInput(''),'OUT_TXT');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
@@ -966,10 +966,10 @@ Blockly.Blocks['collection'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('이미지')
+        .appendField('イメージ')
         .appendField(new Blockly.FieldTextInput(''),'COLLECTION_SRC');
     this.appendDummyInput()
-        .appendField('콜렉션')
+        .appendField('コレクション')
         .appendField(new Blockly.FieldTextInput(''),'COLLECTION');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
@@ -979,7 +979,7 @@ Blockly.Blocks['toast'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('토스트')
+        .appendField('TOAST')
         .appendField(new Blockly.FieldTextInput(''),'TOAST');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
@@ -990,8 +990,8 @@ Blockly.Blocks['quest'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('퀘스트 내용')
-        .appendField(new Blockly.FieldTextInput('퀘스트 내용 입력'),'QUEST');
+        .appendField('クエスト内容')
+        .appendField(new Blockly.FieldTextInput('クエスト内容入力'),'QUEST');
     this.setPreviousStatement(true, 'CheckEdit');
     this.setNextStatement(true, 'CheckEdit');
   }
@@ -1016,13 +1016,13 @@ Blockly.Blocks['EDIT'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('텍스트')
+        .appendField('テキスト')
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.appendDummyInput()
-        .appendField('힌트')
-        .appendField(new Blockly.FieldTextInput('힌트를 입력해 주세요'), 'HINT');
+        .appendField('ヒント')
+        .appendField(new Blockly.FieldTextInput('ヒントを入力'), 'HINT');
     this.appendDummyInput()
-        .appendField('사이즈')
+        .appendField('サイズ')
         .appendField(new Blockly.FieldNumber(0), 'SIZE');
     this.setPreviousStatement(true, 'Edit');
     this.setNextStatement(true, 'Edit');
@@ -1034,17 +1034,17 @@ Blockly.Blocks['image_1'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('이미지1');
+        .appendField('イメージ1');
     this.appendDummyInput()
-        .appendField('이미지 주소')
+        .appendField('イメージアドレス')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('이미지 이름')
+        .appendField('イメージ名')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
-        .appendField('길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('높이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
     this.setPreviousStatement(true, 'Image');
     this.setNextStatement(true, 'Image');
@@ -1059,17 +1059,17 @@ Blockly.Blocks['image_2'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('이미지2');
+        .appendField('イメージ2');
     this.appendDummyInput()
-        .appendField('이미지 주소')
+        .appendField('イメージアドレス')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('이미지 이름')
+        .appendField('イメージ名')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
-        .appendField('길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('높이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
     this.setPreviousStatement(true, 'Image');
     this.setNextStatement(true, 'Image');
@@ -1085,17 +1085,17 @@ Blockly.Blocks['image_3'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('이미지3');
+        .appendField('イメージ3');
     this.appendDummyInput()
-        .appendField('이미지 주소')
+        .appendField('イメージアドレス')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('이미지 이름')
+        .appendField('イメージ名')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
-        .appendField('길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('높이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
     this.setPreviousStatement(true, 'Image');
     this.setNextStatement(true, 'Image');
@@ -1110,17 +1110,17 @@ Blockly.Blocks['image_4'] = {
     this.setColour(160);
     var src = ' ';
     this.appendDummyInput()
-        .appendField('이미지4');
+        .appendField('イメージ4');
     this.appendDummyInput()
-        .appendField('이미지 주소')
+        .appendField('イメージアドレス')
         .appendField(new Blockly.FieldTextInput('default'), 'IMGNAME');
     this.appendDummyInput()
-        .appendField('이미지 이름')
+        .appendField('イメージ名')
         .appendField(new Blockly.FieldTextInput(src),'IMGNAME');
     this.appendDummyInput()
-        .appendField('길이')
+        .appendField('横')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('높이')
+        .appendField('縦')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
         this.setPreviousStatement(true, 'Image');
         this.setNextStatement(true, 'Image');

@@ -15,15 +15,16 @@
     <title> @yield('title')</title>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> --}}
-      <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
     <!-- 부트스트랩 -->
     {{-- <link href="../public/css/bootstrap.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css?=8') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/boottheme.css?ver=3') }}"> --}}
     {{-- 커스텀 css --}}
     {{-- <link rel="stylesheet" href="../public/css/custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/custom.css?ver=9') }}">
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
     <script src="{{ asset('js/parallax.js') }}"></script>
     <configuration>
       <system.webServer>
@@ -39,41 +40,12 @@
     <script type="text/javascript">
 
       //<![CDATA[
-      $(document).ready(function(){
-        // 페이지별로 클래스 등등 변환 하기
-
-        // 홈페이지 url 받아오기
-        var currurl = "{{url()->current()}}";
-        var user    = "{{'teacher'}}"; // 학생 학부모 교사 에 따라 css 변경
-
-
-        //37번째 이후 의 문자열을 가저옴 http://localhost/Code/laravel/public/home
-        // 폴더 화 가 되었으니 explode 를 사용 하거나 하기
-        currurl = currurl.substr(37);
-
-        //확인용 메세지
-
-
-        //페이지별 css 변환
-        //  url 별로 하니 피곤하다 사용자 별로 하는게 더 쉬울듯?
-
-        // if (currurl == 'home') {
-        //   $("#left_menu li:first").addClass(" active ");  //만약 active 가 다른페이지로 이동해도 남아있는경우 removeClass 넣어주기
-        // }
-        // else if (currurl == 'teacher'){
-        //   $("nav").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }else if (currurl == 'planlist'){
-        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }else if (currurl == 'plan'){
-        //   $("nav#navbar").removeClass(' navbar-home').addClass('navbar-teacher');
-        // }
-        //
-        // else{
-        //   window.alert(currurl+' url 설정하라!');
-        // }
-
-
-      });
+      // $(document).ready(function(){
+      //     $(document).on("click","#login_link",function() {
+      //         $('#loginModal').modal('show')
+      //     });
+      // 
+      // });
 
       // ]]>
 
@@ -81,57 +53,50 @@
   </head>
 
   <body>
-    {{-- 메인 --}}
-    <!-- Modal 모달 -->
-    <div class="modal fade sidemenu" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">로그인</h4>
-          </div>
-          <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
-            <div class="row">
-              <form class="form  col-sm-8 col-md-offset-2" action="{{route('login')}}" method="post">
-                {{ csrf_field() }}
-                  <fieldset>
-                      <div class="form-group">
-                          <input class="form-control" placeholder="ID" name="id" type="text" value="garam70" autofocus>
-                      </div>
-                      <div class="form-group">
-                          <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
-                      </div>
-                      <div class="checkbox">
-                          <label>
-                              <input name="remember" type="checkbox" value="Remember Me">아이디 기억하기
-                          </label>
-                      </div>
-                      <!-- Change this to a button or input when using this as a form -->
-                      <p>
-                        <input type="submit" name="" value="로그인" class="btn btn-lg btn-success btn-block">
-                        <!-- <a href="{{route('login')}}" class="btn btn-lg btn-success btn-block">로그인</a> -->
-                      </p>
-                  </fieldset>
-              </form>
-              <div class="col-sm-8 col-md-offset-2">
-                <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">회원가입</a></p>
-              </div>
-
-              <div class="col-sm-8 col-md-offset-2">
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">ID찾기</a>
-                <a href="index.html" class="btn btn-lg btn-info " style="width:182px;">비번찾기</a>
-              </div>
-            </div>
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           </div>
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="loginModalLabel">ログイン</h4>
+      </div>
+      <div class="modal-body" style="padding-top:50px;padding-bottom:50px;">
+        <div class="row">
+          <form class="form  col-sm-8 col-md-offset-2" action="{{route('login')}}" method="post">
+            {{ csrf_field() }}
+              <fieldset>
+                  <div class="form-group">
+                      <input class="form-control" placeholder="ID" name="id" type="text" value="garam70" autofocus>
+                  </div>
+                  <div class="form-group">
+                      <input class="form-control" placeholder="Password" name="password" type="password" value="123456">
+                  </div>
+                  <div class="checkbox">
+                      <label>
+                          <input name="remember" type="checkbox" value="Remember Me">ログイン情報を保持する
+                  </div>
+                  <!-- Change this to a button or input when using this as a form -->
+                  <p>
+                    <input type="submit" name="" value="ログイン" class="btn btn-lg btn-success btn-block">                  
+                  </p>
+              </fieldset>
+          </form>
+          <div class="col-sm-8 col-md-offset-2">
+            <p><a href="{{route('register')}}" class="btn btn-lg btn-warning btn-block">新規登録</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-primary btn-block" >IDを忘れた方</a></p>
+            <p><a href="index.html" class="btn btn-lg btn-primary btn-block" >パスワードを忘れた方</a></p>
           </div>
         </div>
-      </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
     </div>
+  </div>
+</div>
     <!-- 상단 고정 메뉴바 fixed static navbar -->
-    <nav class="navbar navbar-home navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
       <div class="container">
         <div class="navbar-header">
           {{-- 화면 폭이 768px 이하로 내려가면 드롭다운 아이콘 이나타남 아이콘 만들기 --}}
@@ -144,7 +109,7 @@
             <span class="icon-bar"></span>
           </button>
           {{-- 상표 이미지 로고 --}}
-          <img class="navbar-brand" style="border-radius:70px" src="{{asset('img/logo.jpg')}}" alt="">
+          <img class="navbar-brand" style="border-radius:70px " src="{{asset('img/logo.jpg')}}" alt="">
            {{-- 상표 이름 적기 --}}
           <a class="navbar-brand" href="{{ route('main') }}">LEARnFUN</a>
         </div>
@@ -163,19 +128,19 @@
               {{-- <li class="nav-divider"></li> --}}
               <!-- Button trigger modal -->
               @if(!Auth::check())
-                <li><a href="#" data-toggle="modal" data-target="#myModal">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#loginModal">ログイン</a></li>
+                <li><a href="#">新規登録</a></li>
               @else
                 <li>
                   @php
                   $user_info = Auth::user();
 
                   if($user_info['type'] == 'student'){
-                    $text = '학생';
+                    $text = '生徒';
                   }elseif ($user_info['type'] == 'teacher'){
-                    $text = '교사';
+                    $text = '教師';
                   }else{
-                    $text = '학부모';
+                    $text = '父兄';
                   }
                   @endphp
                   <a href="#" >{{$text}}</a>
@@ -184,7 +149,7 @@
                 <li>
                   <a href="#" onclick="event.preventDefault();
                                                           document.getElementById('logout-form').submit();">
-                    로그아웃
+                    ログアウト
                   </a>
                   <form id="logout-form" class="" action="{{route('logout')}}" method="post">
                     {{csrf_field()}}
@@ -195,8 +160,8 @@
           @else
           <ul id="right_menu" class="nav navbar-nav navbar-right">
             {{-- <li class="nav-divider"></li> --}}
-            <li><a href="#">교사 학x2</a></li>
-            <li><a href="#/">회원정보 수정</a></li>
+            <li><a href="#">教師</a></li>
+            <li><a href="#/">ユーザ譲歩修正</a></li>
           </ul>
           @endif
         </div><!--/.nav-collapse -->
@@ -208,7 +173,7 @@
     @yield('content')
 
 
-    <footer class="footer text-center" style="background-color:#9197B5; color: #FFFFFF;" >
+    <footer class="footer text-center" >
       <div class="container">
         <p class="">&copy; Since 2017 Super8TeamLEARnFUN Project Company, Inc.</p>
       </div>

@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','설문조사 리스트')
+@section('title','アンケートリスト')
 
 @section('content')
   @php
@@ -23,7 +23,7 @@
             <a role="button" class="btn btn-default pull-right" href="{{route('survey.index')}}" aria-label="Right Align"
             class="btn btn-sm btn-default ">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             리스트로 돌아가기
+             戻る
            </a>
           </h3>
         </div>
@@ -42,14 +42,14 @@
                   </div>
                   <div class='panel-body'>
                     <div class='col-sm-2'>
-                      <label>정답을 정해 주세요</label>
+                      <label>正解を決めてください</label>
                     </div>
                     <div class='col-sm-4'>
                       <label class='checkbox-inline margin-right-3'>
-                        <input type='radio' value='true' name='resp[{{$i}}]'>참
+                        <input type='radio' value='true' name='resp[{{$i}}]'>True
                       </label>
                       <label class='checkbox-inline margin-right-3'>
-                        <input type='radio' value='false' name='resp[{{$i}}]'>거짓
+                        <input type='radio' value='false' name='resp[{{$i}}]'>False
                       </label>
                     </div>
                   </div>
@@ -85,7 +85,7 @@
                               <span class="label label-default">{{$t+1}}</span>&nbsp;&nbsp;&nbsp;
                                 {{$q_title[$i][2][$t]}}
                               <label class='checkbox-inline margin-right-3 pull-right'>
-                                <input type='radio' value='{{$t}}' name='resp[{{$i}}]'>선택
+                                <input type='radio' value='{{$t}}' name='resp[{{$i}}]'>選択
                               </label>
                               </h4>
                               </p>
@@ -113,7 +113,7 @@
                     </div>
                   </div>
                   <div class='panel-body'>
-                    <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='내용을 입력해 주세요' ></textarea>
+                    <textarea class='form-control' rows='5' name='resp[{{$i}}]' placeholder='内容を入力してください' ></textarea>
                   </div>
                 </div>
               </div>
@@ -122,12 +122,12 @@
          @if ($user_kind['type'] == 'teacher')
            <button type="submit" aria-label="Right Align"
            class="btn btn-sm btn-default pull-right disabled" style="margin-right:15px; margin-top20px;">
-            설문 완료
+            アンケート完了
           </button>
         @else
           <button type="submit" aria-label="Right Align"
           class="btn btn-sm btn-default pull-right" style="margin-right:15px; margin-top20px;">
-           설문 완료
+           アンケート完了
          </button>
          @endif
 

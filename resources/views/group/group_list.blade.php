@@ -19,30 +19,30 @@
             $back_route = 'plan.parents';
           }
           @endphp
-          <h3 class="panel-title">선택한 체험학습의 참여명단
+          <h3 class="panel-title">選択した体験学習の参加リスト
             <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
             class="btn btn-sm btn-default pull-right">
              {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
+             バック
            </a>
            <a role="button" href="{{route('team_list', $plan_no)}}" class="btn btn-sm btn-default pull-right">
-             팀 정하기
+             チーム決め
            </a>
            <form class="form" action="{{route('group_create',$plan_no)}}">
              <button type="btnSubmit"  aria-label="Right Align" class="btn btn-sm btn-default pull-right">
-              참여자 정하기
+              参加者決め
             </button>
             {{-- <input type="hidden" name="grade_class" value="{{$grade_class_no}}"> --}}
            </form>
 
          </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body  panel-custom">
             <table class="table table-bordered table-hover">
               <thead>
                 <th>#</th>
-                <th>반</th>
-                <th>이름</th>
+                <th>クラス</th>
+                <th>名前</th>
               </thead>
               <tbody>
                 @if ($student_name)
@@ -52,15 +52,15 @@
                       <td>{{$student_class[$i]}}</td>
                       <td>{{$student_name[$i]}}
                         <input type="checkbox" name="group" value="{{$student_no[$i]}}">
-                        <input type="hidden" name="grade_class" value="{{$grade_class_no[$i]}}">                        
+                        <input type="hidden" name="grade_class" value="{{$grade_class_no[$i]}}">
                       </td>
                     </tr>
                   @endfor
                 @else
                   <tr>
                     <td>000</td>
-                    <td>위의 기능을 사용해서 학생</td>
-                    <td>리스트를 뽑아주세요</td>
+                    <td>上の機能を使用して生徒</td>
+                    <td>リストを抜いてください</td>
                   </tr>
                 @endif
               </tbody>

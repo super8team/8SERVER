@@ -71,13 +71,16 @@
 
   <body style="background-color:#e3f2ff;">
       <table id="mainShareList">
-        <div align="center" id="mainShareListTitle" ><h1>인기있는 콘텐츠 패키지</h1></div>
+        <div align="center" id="mainShareListTitle" ><h1>人気のあるコンテンツパッケージ</h1></div>
         <tr class="mainContenstsImage">
           <div class="center slider">
           @foreach($popularPackage as $key=>$value)
                  <div style="display:inline-block">
+                   @php
+                     $url = Storage::url('packageImgs/'.$value['imgs']);
+                   @endphp
                  <a href="/8server/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
+                   <img src="{{$url}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
                  </div>
@@ -89,7 +92,7 @@
       <br>
       <br>
       <div align="center" id="contentsPackageTitle" >
-        <h1>콘텐츠 패키지</h1>
+        <h1>コンテンツパッケージ</h1>
       </div>
       <div id="packageResearch" style="margin-left:41%">
           <input id="searchWord"   type="text"   name="word"   value="">
@@ -112,7 +115,7 @@
           <div style="margin-left:30%">
             {{$otherPackage->links()}}
           </div>
-          <button id="share" type="button">패키지 공유하기</button>
+          <button id="share" type="button">パッケージ共有</button>
       </div>
 
     </body>

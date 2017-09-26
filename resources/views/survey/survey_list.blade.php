@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','설문조사 리스트')
+@section('title','アンケートリスト')
 
 @section('content')
   <div class="bluedecobar"></div>
@@ -17,20 +17,21 @@
         $back_route = 'plan.parents';
       }              
       @endphp
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-custom">
         <div class="panel-heading">
-          <h3 class="panel-title">선택한 체험학습의 설문조사
-            <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
-            class="btn btn-sm btn-default pull-right">
-             {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-             뒤로 돌아가기
-           </a>
-           <a role="button" href="{{route('survey.create')}}" aria-label="Right Align"
-           class="btn btn-sm btn-default pull-right">
-            {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
-            설문조사 작성
-          </a>
+          <h3 class="panel-title" style="display: inline-block;">選んだ体験学習のアンケート調査
+            
          </h3>
+         <a role="button" href="{{route($back_route)}}" aria-label="Right Align"
+         class="btn btn-sm btn-default pull-right">
+          {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+          戻る
+        </a>
+        <a role="button" href="{{route('survey.create')}}" aria-label="Right Align"
+        class="btn btn-sm btn-default pull-right">
+         {{-- <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> --}}
+         アンケート作成
+       </a>
           {{-- <h3 class="panel-title">이전에 작성한 설문조사 리스트
           </h3> --}}
 
@@ -40,9 +41,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>체험 학습 이름</th>
-                <th>작성일</th>
-                <th>바로가기</th>
+                <th>体験学習タイトル</th>
+                <th>作成日</th>
+                <th>すぐ行く</th>
               </tr>
             </thead>
             <tbody>
@@ -61,10 +62,10 @@
                       <td>{{$survey_date[$count]}}</td>
                       <td colspan="2" class="text-center">
                         <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
-                          보기
+                          見る
                         </a>
                         <a role="button" href="{{route('survey.total.respond',$survey_no[$count])}}" class="btn btn-sm btn-danger">
-                          결과보기
+                          結果見る
                         </a>
                       </td>
                     </tr>
@@ -76,11 +77,11 @@
                       <td>{{$survey_title[$count]}}</td>
                       <td>{{$survey_date[$count]}}</td>
                       <td colspan="2" class="text-center">
-                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm btn-warning">
-                          보기
+                        <a role="button" href="{{route('survey.show',$survey_no[$count])}}" class="btn btn-sm margin-right-10 btn-warning">
+                          見る
                         </a>
-                        <a role="button" href="{{route('survey.stdResult',$survey_no[$count])}}" class="btn btn-sm btn-danger">
-                          결과보기
+                        <a role="button" href="{{route('survey.stdResult',$survey_no[$count])}}" class="btn btn-sm margin-right-10 btn-danger">
+                          結果見る
                         </a>
                       </td>
                     </tr>
