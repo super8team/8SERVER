@@ -1111,16 +1111,16 @@
                 console.log('926');
                 if(data){
                 //string
-                console.log(typeof(data[0]['spec']));
-                var location_json = JSON.parse(data[0]['spec']);
-                console.log(typeof(location_json));
-                console.log(typeof(eval(location_json.location)));
-                var location_obj = eval(location_json.location);
-                console.log(typeof(location_obj));
-                getAddress('('+35.013060168900076+','+ 135.76638221478788+')');
-                console.log(location_obj);
-                console.log(typeof(data[0]['spec']));
-                console.log(data[0]['spec']['type']);
+                // console.log(typeof(data[0]['spec']));
+                // var location_json = JSON.parse(data[0]['spec']);
+                // console.log(typeof(location_json));
+                // console.log(typeof(eval(location_json.location)));
+                // var location_obj = eval(location_json.location);
+                // console.log(typeof(location_obj));
+                // getAddress('('+35.013060168900076+','+ 135.76638221478788+')');
+                // console.log(location_obj);
+                // console.log(typeof(data[0]['spec']));
+                // console.log(data[0]['spec']['type']);
                 for(var i = 0; i < data.length; i++){
                     console.log('990');
                     var parent_wrap  =  document.createElement("button");
