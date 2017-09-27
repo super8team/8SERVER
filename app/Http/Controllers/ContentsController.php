@@ -46,8 +46,7 @@ class ContentsController extends Controller
               //   $packages[$i]['contents'][$j]['spec'] = $contents[$j]->spec;
               // }
             }
-
-              return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
+            return view('ProjectBlockCode.blockfactory.block', ['first_package'=>$contents,'packages' => $packages,'contentsize'=>$contentCount,'index'=>0,'user'=>Auth::user()->name]);
           }
 
     }
@@ -55,7 +54,6 @@ class ContentsController extends Controller
 
     public function block(Request $request)
     {
-
         // 경로
         $destinationPath = public_path().'/img/';
         $name            = $request->package_img->getClientOriginalName();    //name값

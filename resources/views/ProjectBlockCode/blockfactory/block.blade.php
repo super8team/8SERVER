@@ -420,8 +420,8 @@
                   <input id="address" style="width: 200px;" type="text" value='場所検索' onblur="checkField(this)" onfocus="clearField(this)">
                   <input id="mapSearch" type="submit" value="">
             </form>
-              <div id="map" style="height:70%; width:100%;display:inline-block">
-              </div>
+            <div id="map" style="height:70%; width:100%;display:inline-block">
+            </div>
           </div>
           <script type="text/javascript">
 
@@ -438,25 +438,29 @@
 
           google.maps.event.addListener(map, 'click', function (mouseEvent) {
            getAddress(mouseEvent.latLng);
-
+           console.log('클릭타입');
+           console.log(typeof(mouseEvent.latLng));
            document.getElementById('get_location').innerHTML = mouseEvent.latLng;
           });
 
           function getAddress(latlng) {
+            latlng1 = eval(latlng);
+            console.log(typeof(latlng1));
+            console.log('위치로그'+latlng);
+          var geocoder = new google.maps.Geocoder();
 
-            var geocoder = new google.maps.Geocoder();
           geocoder.geocode({
-          latLng: latlng
-          }, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-              if (results[0].geometry) {
+            latLng: latlng
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0].geometry) {
 
-                  var address = results[0].formatted_address;
+                        var address = results[0].formatted_address;
 
-                  var marker = new google.maps.Marker({
-                      position: latlng,
-                      map: map
-                  });
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map
+                        });
 
             new google.maps.InfoWindow({
                 content: address + "<br>(Lat, Lng) = " + latlng
@@ -1058,13 +1062,15 @@
       window.open('{{route("contents.share")}}', '創作公有', popupOption);
     });
   //패키지 리스트
-  var package_div     = document.getElementsByClassName('package_list');
+  var package_div     =   document.getElementsByClassName('package_list');
   // var package_div = document.getElementById('packageDiv');
-  var before_ele = document.getElementsByClassName('package_list')[0];
+  var before_ele      =   document.getElementsByClassName('package_list')[0];
   var boundary  = 0;
+  console.log('안녕안ㄴㅇ');
 
-  for (var i=0;i<package_div.length; i++) {
-        package_div[i].addEventListener('click',function(event){
+  // for (var i=0;i<40; i++) {
+    // console.log('패키지의 개수'+package_div.length);
+        document.getElementById('packageDiv').addEventListener('click',function(event){
           console.log(before_ele);
           document.getElementById('present_storage_package').innerText =event.target.textContent;
           before_ele.style.backgroundColor = 'white';
@@ -1104,16 +1110,27 @@
             success: function(data){ // What to do if we succeed
                 console.log('926');
                 if(data){
-                 console.log(data);
+                //string
+                console.log(typeof(data[0]['spec']));
+                var location_json = JSON.parse(data[0]['spec']);
+                console.log(typeof(location_json));
+                console.log(typeof(eval(location_json.location)));
+                var location_obj = eval(location_json.location);
+                console.log(typeof(location_obj));
+                getAddress('('+35.013060168900076+','+ 135.76638221478788+')');
+                console.log(location_obj);
+                console.log(typeof(data[0]['spec']));
+                console.log(data[0]['spec']['type']);
                 for(var i = 0; i < data.length; i++){
                     console.log('990');
-                    var parent_wrap  = document.createElement("button");
-                    var child_wrap   = document.createElement("input");
+                    var parent_wrap  =  document.createElement("button");
+                    var child_wrap   =  document.createElement("input");
 
-                    var xml_object   = document.createElement("input");
-                    var spec_object  = document.createElement("input");
-                    var id_object    = document.createElement("input");
-                    var name_text = document.createTextNode(data[i]['name']);
+                    var xml_object   =  document.createElement("input");
+                    var spec_object  =  document.createElement("input");
+                    var id_object    =  document.createElement("input");
+                    var name_text    =  document.createTextNode(data[i]['name']);
+
                     parent_wrap.setAttribute('class','content_list');
                     parent_wrap.setAttribute('value',data[i]['xml']);
                     parent_wrap.style.marginLeft   = "15px";
@@ -1147,7 +1164,7 @@
             }
         });
         });
-      }
+      // }
   </script>
   </html>
   @endsection

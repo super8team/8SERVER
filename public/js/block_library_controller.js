@@ -54,7 +54,7 @@ BlockLibraryController = function(blockLibraryName, opt_blockLibraryStorage) {
   // The BlockLibraryView object handles the proper updating and formatting of
   // the block library dropdown.
   this.view = new BlockLibraryView();
-  this.packageName = document.getElementById('packageDiv');
+  this.packageNameDiv = document.getElementById('packageDiv');
   // this.primaryPackagenum = 1;
 
   this.packageBasket = new Array();
@@ -232,7 +232,7 @@ BlockLibraryController.prototype.clearBlockLibrary = function() {
  */
 BlockLibraryController.prototype.makeNewPackage = function() {
 
-  if(this.packageBasket.length<5){
+  // if(this.packageBasket.length<5){
     var packageName = prompt("パッケージの名を入力してください");
     if(!packageName)
     {
@@ -247,7 +247,8 @@ BlockLibraryController.prototype.makeNewPackage = function() {
 
     var packageObject = goog.dom.createDom('li', {
       'type': 'button',
-      'class': 'package_list'
+      'class': 'package_list',
+      'name' : 'button'
     },packageName);
     // var packageObject = goog.dom.createDom('button', {
     //   'type': 'button',
@@ -256,18 +257,19 @@ BlockLibraryController.prototype.makeNewPackage = function() {
     //   // disabled: 'false'
     // },packageName);
 
-
-    this.packageName.appendChild(packageObject);
+    this.packageNameDiv.appendChild(packageObject);
+    console.log('부모');
+    console.log(packageObject.parentNode);
     this.packageBasket[this.packageArrayKey] = packageObject;
     console.log(this.packageBasket[0].id);
     console.log(this.packageBasket);
     // this.primaryPackagenum++;
     this.packageArrayKey++;
     return ;
-  }else{
-    alert('패키지는 5개이하로만 가능합니다');
-    return;
-  }
+  // }else{
+  //   alert('패키지는 5개이하로만 가능합니다');
+  //   return;
+  // }
 }
 
 
