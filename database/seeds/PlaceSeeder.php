@@ -39,7 +39,10 @@ class PlaceSeeder extends Seeder
             ['name'=>'福岡市博物館', 'explain' => "", 'lat'=>33.589819, 'lng'=>130.353007, 'radius'=>10, 'img'=>'noIMG'],
             ['name'=>'福岡タワー', 'explain' => "", 'lat'=>33.593265, 'lng'=>130.351518, 'radius'=>10, 'img'=>'noIMG'],
             ['name'=>'ももち海浜公園', 'explain' => "", 'lat'=>33.594822, 'lng'=>130.353022, 'radius'=>10, 'img'=>'noIMG'],
-            ['name'=>'福岡 ヤフオク!ドーム', 'explain' => "", 'lat'=>33.595354, 'lng'=>130.362128, 'radius'=>10, 'img'=>'noIMG']
+            ['name'=>'福岡 ヤフオク!ドーム', 'explain' => "", 'lat'=>33.595354, 'lng'=>130.362128, 'radius'=>10, 'img'=>'noIMG'],
+            ['name'=>'南当仁公民館', 'explain' => "", 'lat'=> 33.585636, 'lng'=>130.366729, 'radius'=>10, 'img'=>'noIMG'],
+            ['name'=>'西新', 'explain' => "", 'lat'=> 33.582167, 'lng'=>130.357564, 'radius'=>10, 'img'=>'noIMG']
+
         ]);
 
     }
