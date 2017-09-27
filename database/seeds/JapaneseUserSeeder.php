@@ -13,14 +13,12 @@ class JapaneseUserSeeder extends Seeder
     {
         //
         $faker = Faker\Factory::create('ja_JP');
-        \DB::table('users')->where('id', 'ano')->update([
-          ['name'=>$faker->unique()->userName]
-        ]);
-        \DB::table('users')->where('id', 'ak77')->update([
-          ['name'=>$faker->unique()->userName]
-        ]);
-        \DB::table('users')->where('id', 'soyoun54')->update([
-          ['name'=>$faker->unique()->userName]
-        ]);
+
+        $users = \DB::table('users')->get();
+        foreach ($users as $user) {
+          \DB::table('users')->where('no', $user->no)->update([
+            ['name'=>$faker->unique()->userName]
+          ]);
+        }
     }
 }
