@@ -169,7 +169,7 @@
             for(var i = 0; i< data.length ; i++){
               var contents_package = data[i]['contents_package'];
               var img_url          = data[i]['img_url'];
-              var img_url          = 'http://163.44.166.91/8server/public/storage/packageImgs/'+img_url;
+              var img_url          = 'learnfun8.xyz/storage/packageImgs/'+img_url;
               var package_name     = data[i]['package_name'];
               a_ele.setAttribute('href','/8server/public/contents/shareDetail/'+contents_package);
               img_ele.setAttribute('src',img_url);
