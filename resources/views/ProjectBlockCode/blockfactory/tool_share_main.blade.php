@@ -79,8 +79,8 @@
                    @php
                      $url = Storage::url('packageImgs/'.$value['imgs']);
                    @endphp
-                 <a href="/8server/public/contents/shareDetail/{{$value['ids']}}">
-                   <img src="{{$url}}" alt="" style="width:180px; height:180px">
+                 <a href="learnfun8.xyz/contents/shareDetail/{{$value['ids']}}">
+                   <img src="http://learnfun8.xyz/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
                  </div>
@@ -104,7 +104,7 @@
                     $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
           <div class="contenstsImage">
-                    <a href="/8server/public/contents/shareDetail/{{$value->no}}">
+                    <a href="learnfun8.xyz/contents/shareDetail/{{$value->no}}">
                       <img src="http://163.44.166.91/8server/storage/public/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
@@ -170,8 +170,9 @@
               var contents_package = data[i]['contents_package'];
               var img_url          = data[i]['img_url'];
               var img_url          = 'learnfun8.xyz/storage/packageImgs/'+img_url;
+              console.log(img_url);
               var package_name     = data[i]['package_name'];
-              a_ele.setAttribute('href','/8server/public/contents/shareDetail/'+contents_package);
+              a_ele.setAttribute('href','learnfun8.xyz/contents/shareDetail/'+contents_package);
               img_ele.setAttribute('src',img_url);
               name_div.innerHTML = package_name;
               a_ele.appendChild(img_ele);
