@@ -104,7 +104,7 @@
                     $url = Storage::url('packageImgs/'.$value->img_url);
                   @endphp
           <div class="contenstsImage">
-                    <a href="shareDetail/{{$value->no}}">
+                    <a href="http://learnfun8.xyz/contents/shareDetail/{{$value->img_url}}">
                       <img src="http://learnfun8.xyz/storage/packageImgs/{{$value->img_url}}"  style="width:150px; height:150px">
                     </a>
                     <div id="package_name" display="inline-block">
