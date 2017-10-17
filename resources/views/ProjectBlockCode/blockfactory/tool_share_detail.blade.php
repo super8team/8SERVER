@@ -11,7 +11,7 @@
       @php
         $url = Storage::url('packageImgs/'.$package_img);
       @endphp
-      <img src="learnfun8.xyz/8server/storage/public/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
+      <img src="http://learnfun8.xyz/storage/packageImgs/{{$package_img}}" alt="{{$url}}" class="content_img">
       <div style="display:inline">
         <span class="star-input" style="margin-top:170px; margin-left:70px;">
           <span class="input" style="margin-top:50px">
