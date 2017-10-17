@@ -79,7 +79,7 @@
                    @php
                      $url = Storage::url('packageImgs/'.$value['imgs']);
                    @endphp
-                 <a href="contents/shareDetail/{{$value['ids']}}">
+                 <a href="/contents/shareDetail/{{$value['ids']}}">
                    <img src="http://learnfun8.xyz/storage/packageImgs/{{$value['imgs']}}" alt="" style="width:180px; height:180px">
                  </a>
                  {{$value['package_name']}}
